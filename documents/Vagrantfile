@@ -39,6 +39,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
+  # C:\\GitHub\\TeraNaviの部分は各自の環境に合わせて変えてください。
   config.vm.synced_folder "C:\\GitHub\\TeraNavi", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
