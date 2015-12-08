@@ -1,19 +1,13 @@
 <Context
-    path="/diary"
+    path="/TeraNavi"
     reloadable="true"
-    docBase="C:\GitHub\myapps\Diary">
-    <Resource
-        name="jdbc/info"
+    docBase="/vagrant_data/target/TeraNavi">
+    <!-- <Resource
+        name=""
         auth="Container"
         type="javax.sql.DataSource"
-        username="info"
-        password="pro"
-        driverClassName="oracle.jdbc.driver.OracleDriver"
-        url="jdbc:oracle:thin:@localhost:1521:orcl"
-        maxActive="5"
-        maxIdle="5"
-        maxWait="10000"
-        removeAbandoned="true"
-        removeAbandonedTimeout="60"
-        logAbandoned="true"/>
+        username=""
+        password=""
+        driverClassName=""
+        url=""/> -->
 </Context>
