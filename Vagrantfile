@@ -29,6 +29,7 @@ Vagrant.configure(2) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.hostname = "test"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -77,12 +78,12 @@ Vagrant.configure(2) do |config|
     sudo yum install -y mysql-server
     sudo service mysqld start
     #  tomcatに関する設定 最初だけコメント外してください。
-    # sudo wget http://ftp.jaist.ac.jp/pub/apache/tomcat/tomcat-7/v7.0.65/bin/apache-tomcat-7.0.65.tar.gz
-    # sudo tar zxvf apache-tomcat-7.0.65.tar.gz
-    # sudo rm -rf apache-tomcat-7.0.65.tar.gz
-    # sudo mv -f apache-tomcat-7.0.65 tomcat7
-    # sudo mv -f tomcat7 /usr/lib
-    # sudo rm -r /usr/lib/tomcat7/webapps/
+    sudo wget http://ftp.jaist.ac.jp/pub/apache/tomcat/tomcat-7/v7.0.65/bin/apache-tomcat-7.0.65.tar.gz
+    sudo tar zxvf apache-tomcat-7.0.65.tar.gz
+    sudo rm -rf apache-tomcat-7.0.65.tar.gz
+    sudo mv -f apache-tomcat-7.0.65 tomcat7
+    sudo mv -f tomcat7 /usr/lib
+    sudo rm -r /usr/lib/tomcat7/webapps/
     sudo cp -fp /vagrant_data/Documents/TeraNavi.xml /usr/lib/tomcat7/conf/Catalina/localhost\
     #  ApacheとTomcatの連携設定
     sudo cp -fp /vagrant_data/Documents/httpd.conf /etc/httpd/conf/httpd.conf
