@@ -2,6 +2,9 @@ package ttc.sample;
 // 必要なJUnitのクラスをimport
 import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.hamcrest.CoreMatchers.*;
+import java.util.Properties;
+
 
 // クラス名は必ず「テストしたいクラス名+Test」で書き、public
 public class UsersBeanTest {
@@ -16,7 +19,33 @@ public class UsersBeanTest {
     // テストメソッドは戻り値がvoidで引数を持たないこと。なお、throwsは自由に定義できる。
     // メソッド名は日本語でもいいので、テストする内容が分かりやすいように書く！
     @Test
-    public void setIdでidをセットできる(){
-        fail("まだ実装されていません");
+    public void setIdでidをセットできる() throws Exception{
+    	//    	初期化
+    	UsersBean sut = new UsersBean();
+    	Properties prop = new Properties();
+        prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
+        String id = prop.getProperty("id");
+        String expected = "12345678";
+        // 実行
+        sut.setId(id);
+        String actual = sut.getId();
+        //  verify
+        assertThat(actual,is(expected));
+    }
+    
+    @Test
+    public void getNameでnameを取得できる() throws Exception{
+//    	初期化
+    	UsersBean sut = new UsersBean();
+    	Properties prop = new Properties();
+    	prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
+        String name = prop.getProperty("name");
+        String expected = "blue210";
+        
+//        実行
+        sut.setName(name);
+        String actual = sut.getName();
+//        検証
+        assertThat(actual, is(expected));
     }
 }
