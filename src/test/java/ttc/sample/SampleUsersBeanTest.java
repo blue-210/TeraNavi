@@ -20,19 +20,22 @@ public class UsersBeanTest {
     // メソッド名は日本語でもいいので、テストする内容が分かりやすいように書く！
     @Test
     public void setIdでidをセットできる() throws Exception{
-    	//    	初期化
+    	// 初期化
     	UsersBean sut = new UsersBean();
     	Properties prop = new Properties();
         prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String id = prop.getProperty("id");
+        // 期待される値
         String expected = "12345678";
+
         // 実行
         sut.setId(id);
         String actual = sut.getId();
-        //  verify
+
+        //  検証
         assertThat(actual,is(expected));
     }
-    
+
     @Test
     public void getNameでnameを取得できる() throws Exception{
 //    	初期化
@@ -40,8 +43,10 @@ public class UsersBeanTest {
     	Properties prop = new Properties();
     	prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String name = prop.getProperty("name");
+
+        // 期待される値
         String expected = "blue210";
-        
+
 //        実行
         sut.setName(name);
         String actual = sut.getName();
