@@ -1,4 +1,4 @@
-package TTC;
+package ttc;
 
 /**
  * Hello world!

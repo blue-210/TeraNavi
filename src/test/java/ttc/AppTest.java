@@ -1,4 +1,4 @@
-package TTC;
+package ttc;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
