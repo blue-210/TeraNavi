@@ -21,9 +21,11 @@ public class SampleUsersBeanTest {
     @Test
     public void setIdでidをセットできる() throws Exception{
     	// 初期化
-    	SampleUsersBean sut = new UsersBean();
+
+    	SampleUsersBean sut = new SampleUsersBean();
+
     	Properties prop = new Properties();
-        prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
+        prop.load(SampleUsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String id = prop.getProperty("id");
         // 期待される値
         String expected = "12345678";
@@ -39,9 +41,11 @@ public class SampleUsersBeanTest {
     @Test
     public void getNameでnameを取得できる() throws Exception{
 //    	初期化
-    	SampleUsersBean sut = new UsersBean();
+
+    	SampleUsersBean sut = new SampleUsersBean();
+
     	Properties prop = new Properties();
-    	prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
+    	prop.load(SampleUsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String name = prop.getProperty("name");
 
         // 期待される値
