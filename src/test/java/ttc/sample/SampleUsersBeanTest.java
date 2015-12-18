@@ -7,7 +7,7 @@ import java.util.Properties;
 
 
 // クラス名は必ず「テストしたいクラス名+Test」で書き、public
-public class UsersBeanTest {
+public class SampleUsersBeanTest {
     // テストの基本は4フェーズテストです。
     // 1.初期化・・・テスト対象オブジェクトの初期化、必要な入力値、期待される結果などを準備　
     // 2.実行・・・テスト対象のメソッドを１つだけ実行
@@ -21,7 +21,7 @@ public class UsersBeanTest {
     @Test
     public void setIdでidをセットできる() throws Exception{
     	// 初期化
-    	UsersBean sut = new UsersBean();
+    	SampleUsersBean sut = new UsersBean();
     	Properties prop = new Properties();
         prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String id = prop.getProperty("id");
@@ -39,7 +39,7 @@ public class UsersBeanTest {
     @Test
     public void getNameでnameを取得できる() throws Exception{
 //    	初期化
-    	UsersBean sut = new UsersBean();
+    	SampleUsersBean sut = new UsersBean();
     	Properties prop = new Properties();
     	prop.load(UsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String name = prop.getProperty("name");
