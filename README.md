@@ -50,15 +50,14 @@
 #### Vagrantの使い方
 Vagrantは仮想環境の構築と開発・テスト環境の構築をまとめておこなってくれるツールです。（VirtualBoxを内部的に使っています)
 
-    *仮想環境を立ち上げる→vagrant up --provision
-    *仮想環境のいろいろな設定をやりなおす→vagrant provision
-    *仮想環境を停止する→vagrant halt
-    *仮想環境をぶっ壊す→vagrant destroy ※なお、もう一回vagrant upすればきれいな環境をつくってくれます。
+    ・仮想環境を立ち上げる→vagrant up --provision
+    ・仮想環境のいろいろな設定をやりなおす→vagrant provision
+    ・仮想環境を停止する→vagrant halt
+    ・仮想環境をぶっ壊す→vagrant destroy ※なお、もう一回vagrant upすればきれいな環境をつくってくれます。
 
 
 ## 開発の流れ
 * 下準備
-
 
     1. TeraNaviリモートリポジトリをGitHub上でフォーク（自分のリモートにコピー）※最初だけ
     2. ローカルにクローン（自分のリモートから自分のローカルにコピー）※最初だけ
