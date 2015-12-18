@@ -1,13 +1,11 @@
-drop database tera_db;
 #データベース作成
 create database tera_db character set utf8;
-	drop user TERA_NAVI@localhost;
-	#ユーザー作成
-	create user 'TERA_NAVI'@'localhost' identified by 'tera';
-	#権限追加
-	grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
-	#追加した権限を適用
-		FLUSH PRIVILEGES;
+#ユーザー作成
+create user 'TERA_NAVI'@'localhost' identified by 'tera';
+#権限追加
+grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
+#追加した権限を適用
+FLUSH PRIVILEGES;
 #秘密の質問表
 create table tera_db.secret_questions(secret_question_id char(1) primary key,
 									  secret_question_body varchar(80) not null,index(secret_question_id)) engine=InnoDB;
@@ -31,10 +29,10 @@ create table tera_db.articles(article_id varchar(10) primary key,fk_user_id char
 							  article_body varchar(20000),article_created_date date,article_status_flag char(1) not null,index(article_id),
 							  foreign key(fk_user_id) references tera_db.users(user_id))engine=InnoDB;
 #タグ表
-create table tera_db.TAGS(tag_id char(10) primary key,tag_name varchar(30) not null,index(tag_id))engine=InnoDB;
+create table tera_db.tags(tag_id char(10) primary key,tag_name varchar(30) not null,index(tag_id))engine=InnoDB;
 #記事タグ表
-create table tera_db.articles_TAGS(fk_article_id char(10),fk_tag_id char(10),foreign key (fk_article_id)references tera_db.articles(article_id),
-									foreign key(fk_tag_id) references tera_db.TAGS(tag_id))engine=InnoDB;
+create table tera_db.articles_tags(fk_article_id char(10),fk_tag_id char(10),foreign key (fk_article_id)references tera_db.articles(article_id),
+									foreign key(fk_tag_id) references tera_db.tags(tag_id))engine=InnoDB;
 #コミュニティユーザーリスト表
 create table tera_db.community_members_list(fk_user_id char(10),fk_community_id char(10),community_admin_flag char(1) not null,
 											foreign key(fk_user_id) references tera_db.users(user_id),
