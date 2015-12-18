@@ -1,9 +1,5 @@
 package ttc.sample;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/blue-210/master
 public class SampleUsersBean implements SampleBean{
     private String id;
     private String name;

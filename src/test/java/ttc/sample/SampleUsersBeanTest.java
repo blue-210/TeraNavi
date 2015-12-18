@@ -22,8 +22,6 @@ public class SampleUsersBeanTest {
     public void setIdでidをセットできる() throws Exception{
     	// 初期化
 
-    	SampleUsersBean sut = new SampleUsersBean();
-
     	Properties prop = new Properties();
         prop.load(SampleUsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String id = prop.getProperty("id");
@@ -41,9 +39,6 @@ public class SampleUsersBeanTest {
     @Test
     public void getNameでnameを取得できる() throws Exception{
 //    	初期化
-
-    	SampleUsersBean sut = new SampleUsersBean();
-
     	Properties prop = new Properties();
     	prop.load(SampleUsersBeanTest.class.getClassLoader().getResourceAsStream("test.properties"));
         String name = prop.getProperty("name");
