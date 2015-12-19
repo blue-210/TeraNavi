@@ -1,44 +1,29 @@
 package ttc.bean;
 
-public class CommentBean implements Bean{
-    private String commentId;
-    private String articleId;
+public class ChatBean implements Bean{
+    private String chatId;
     private String userId;
     private String userName;
     private String iconPath;
-    private String commentBody;
+    private String body;
+    private String date;
+    private String deleteFlag;
 
 
     /**
-    * Returns value of commentId
+    * Returns value of chatId
     * @return
     */
-    public String getCommentId() {
-    	return commentId;
+    public String getChatId() {
+    	return chatId;
     }
 
     /**
-    * Sets new value of commentId
+    * Sets new value of chatId
     * @param
     */
-    public void setCommentId(String commentId) {
-    	this.commentId = commentId;
-    }
-
-    /**
-    * Returns value of articleId
-    * @return
-    */
-    public String getArticleId() {
-    	return articleId;
-    }
-
-    /**
-    * Sets new value of articleId
-    * @param
-    */
-    public void setArticleId(String articleId) {
-    	this.articleId = articleId;
+    public void setChatId(String chatId) {
+    	this.chatId = chatId;
     }
 
     /**
@@ -90,18 +75,50 @@ public class CommentBean implements Bean{
     }
 
     /**
-    * Returns value of commentBody
+    * Returns value of body
     * @return
     */
-    public String getCommentBody() {
-    	return commentBody;
+    public String getBody() {
+    	return body;
     }
 
     /**
-    * Sets new value of commentBody
+    * Sets new value of body
     * @param
     */
-    public void setCommentBody(String commentBody) {
-    	this.commentBody = commentBody;
+    public void setBody(String body) {
+    	this.body = body;
+    }
+
+    /**
+    * Returns value of date
+    * @return
+    */
+    public String getDate() {
+    	return date;
+    }
+
+    /**
+    * Sets new value of date
+    * @param
+    */
+    public void setDate(String date) {
+    	this.date = date;
+    }
+
+    /**
+    * Returns value of deleteFlag
+    * @return
+    */
+    public String getDeleteFlag() {
+    	return deleteFlag;
+    }
+
+    /**
+    * Sets new value of deleteFlag
+    * @param
+    */
+    public void setDeleteFlag(String deleteFlag) {
+    	this.deleteFlag = deleteFlag;
     }
 }
