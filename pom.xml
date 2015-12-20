@@ -36,6 +36,13 @@
          <version>1.4.7</version>
       </dependency>
 
+      <!-- JDBCドライバ -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.35</version>
+        </dependency>
+
       <!-- jUnit -->
       <dependency>
          <groupId>junit</groupId>
