@@ -2,8 +2,17 @@ package ttc.sample;
 // 必要なJUnitのクラスをimport
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.*;
+import org.dbunit.database.*;
+import org.dbunit.dataset.*;
+import org.dbunit.dataset.excel.*;
+import org.dbunit.operation.*;
 import static org.hamcrest.CoreMatchers.*;
-
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
+import ttc.util.MySqlConnectionManager;
 
 public class SampleDaoTest {
     // DBに接続し、初期化としてTableをいったんキレイにして期待されるデータをセットする
@@ -18,22 +27,18 @@ public class SampleDaoTest {
         IDatabaseConnection connection = null;
 
         try{
-            IDataSet dataset = new XlsDataSetBuilder().build(this.getClass().getResourceAsStream("testdata.xlsx"));
+            IDataSet dataset = new XlsDataSet(this.getClass().getResourceAsStream("testdata.xlsx"));
             // セットアップ
             conn = MySqlConnectionManager.getInstance().getConnection();
             connection =  new DatabaseConnection(conn);
 
             DatabaseOperation.CLEAN_INSERT.execute(connection,dataset);
-        }finally{
-            if(connection != null){
-                connection.close();
-            }
-            if(conn != null){
-                conn.close();
-            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
+    @Test
     public void readでユーザを1人取得できる() throws Exception{
         // 初期化
         SampleDao sut = new SampleDao();
