@@ -10,7 +10,7 @@ import ttc.command.AbstractCommand;
 import ttc.exception.BusinessLogicException;
 
 public abstract class CommandFactory{
-	public static AbstractCommand getCommand(RequestContext rc){
+	public static AbstractCommand getCommand(RequestContext rc)throws BusinessLogicException{
 		AbstractCommand command = null;
 		Properties prop = new Properties();
 

@@ -25,7 +25,7 @@ public class WebApplicationController implements ApplicationController{
 		return reqc;
 	}
 
-	public ResponseContext handleRequest(RequestContext reqc){
+	public ResponseContext handleRequest(RequestContext reqc)throws PresentationException{
 
 		AbstractCommand command = CommandFactory.getCommand(reqc);
 		command.init(reqc);
