@@ -1,10 +1,10 @@
 package ttc.dao;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,7 +56,7 @@ public class BlogDao implements AbstractDao{
     }
 
     public List readAll()throws IntegrationException{
-        List result = null;
+        List result = new ArrayList();
         PreparedStatement pst = null;
 
         try{
