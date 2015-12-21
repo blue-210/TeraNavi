@@ -43,7 +43,7 @@ public class SampleDaoTest {
             // データセットの取得
             Connection conn = null;
             IDatabaseConnection connection = null;
-            IDataSet dataset = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("testdata.xls"));
+            IDataSet dataset = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("sampletestdata.xls"));
             // セットアップ
             // conn = MySqlConnectionManager.getInstance().getConnection();
             connection =  new JndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
