@@ -6,25 +6,6 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class SampleDaoTest {
     // DBに接続し、初期化としてTableをいったんキレイにして期待されるデータをセットする
-    @Rule
-    public DbUnitTester tester = new DbUnitTester(
-    "com.mysql.jdbc.Driver",
-    "jdbc:mysql://localhost/tera_db",
-    "TERA_NAVI",
-    "tera"){
-
-        @Override
-        protected void before() throws Exception{
-
-        }
-
-        @Override
-        protected org.dbunit.dataset.IDataSet createDataSet() throws Exception{
-            return new XlsDatasetBuilder()
-            .build(getClass().getResourceAsStream("testdata.xls"));
-        }
-    };
-
     @Before
     public void setUp(){
         SampleUsersBean bean = new SampleUsersBean();
