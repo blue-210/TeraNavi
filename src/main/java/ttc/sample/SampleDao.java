@@ -13,7 +13,6 @@ public class SampleDao{
     public List<SampleUsersBean> read(SampleUsersBean bean){
         List<SampleUsersBean> users = new ArrayList<>();
         try{
-            MySqlConnectionManager.getInstance().beginTransaction();
 
             String sql = "SELECT * FROM sampleusers";
 

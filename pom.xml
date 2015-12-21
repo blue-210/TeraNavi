@@ -56,6 +56,7 @@
             <groupId>mockit</groupId>
             <artifactId>jmockit</artifactId>
             <version>0.999.4</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- dbunit -->
@@ -63,14 +64,34 @@
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
             <version>2.5.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.11</version>
+            <artifactId>poi</artifactId>
+            <version>3.2-FINAL</version>
+            <scope>test</scope>
         </dependency>
 
+        <dependency>
+        	<groupId>tomcat</groupId>
+        	<artifactId>naming-java</artifactId>
+        	<version>5.0.28</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>tomcat</groupId>
+        	<artifactId>naming-factory</artifactId>
+        	<version>5.5.23</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>tomcat</groupId>
+        	<artifactId>naming-resources</artifactId>
+        	<version>5.5.23</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
