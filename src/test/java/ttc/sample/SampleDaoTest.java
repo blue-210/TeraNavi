@@ -3,8 +3,6 @@ package ttc.sample;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
-import org.dbunit.database.*;
-import ttc.util.MySqlConnectionManager;
 
 
 public class SampleDaoTest {
@@ -14,7 +12,6 @@ public class SampleDaoTest {
         SampleUsersBean bean = new SampleUsersBean();
         bean.setId("12345678");
         bean.setName("ぶるー");
-
         // DBのセットアップ
         // データセットの取得
         Connection conn = null;
