@@ -18,14 +18,13 @@ public class FrontServlet extends HttpServlet{
 		throws ServletException, IOException{
 
 			req.setCharacterEncoding("UTF-8");
-
-			ApplicationController app = new WebApplicationController();
-
-			RequestContext reqc = app.getRequest(req);
-
-			ResponseContext resc = null;
-
 			try{
+				ApplicationController app = new WebApplicationController();
+
+				RequestContext reqc = app.getRequest(req);
+
+				ResponseContext resc = null;
+			
 				resc = app.handleRequest(reqc);
 				resc.setResponse(res);
 				app.handleResponse(reqc, resc);

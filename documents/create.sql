@@ -6,6 +6,8 @@ create user 'TERA_NAVI'@'localhost' identified by 'tera';
 grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
 #追加した権限を適用
 FLUSH PRIVILEGES;
+-- サンプル表
+create table tera_db.sample(id char(8),name varchar(80));
 #秘密の質問表
 create table tera_db.secret_questions(secret_question_id char(1) primary key,
 									  secret_question_body varchar(80) not null,index(secret_question_id)) engine=InnoDB;
@@ -17,7 +19,7 @@ create table tera_db.users(user_id char(8) primary key,login_id varchar(30) not 
 						   user_header_path varchar(255) default 'WEB-INF/img/default_user_header.img',user_icon_path varchar(255) default 'WEB-INF/img/default_user_icon.img',
 						   blog_title varchar(200) default 'ようこそブログへ',blog_header_path varchar(255) default 'WEB-INF/img/default_blog_header.img',
 						   admin_flag char(1) not null,last_login_date char(8),admin_last_login_date char(8),user_status_flag char(1) not null,user_lock_start_date date,
-						   user_lock_end_date date,blog_explanation varchar(100),user_profile varchar(2000),index(fk_secret_question_id),index(user_id),index(user_name),
+						   user_lock_end_date date,blog_explanation varchar(100),user_profile varchar(2000),blog_status_flag char(1) default '0',index(fk_secret_question_id),index(user_id),index(user_name),
 						   foreign key(fk_secret_question_id) references tera_db.secret_questions(secret_question_id))engine=InnoDB;
 #　コミュニティ表
 create table tera_db.communities(community_id char(10) primary key,community_name varchar(50),community_profile varchar(400),
