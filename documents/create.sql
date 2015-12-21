@@ -7,7 +7,7 @@ grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
 #追加した権限を適用
 FLUSH PRIVILEGES;
 -- サンプル表
-create table tera_db.sample(id char(8),name varchar(80));
+create table tera_db.sampleusers(id char(8),name varchar(80));
 #秘密の質問表
 create table tera_db.secret_questions(secret_question_id char(1) primary key,
 									  secret_question_body varchar(80) not null,index(secret_question_id)) engine=InnoDB;
