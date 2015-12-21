@@ -7,28 +7,28 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class OracleConnectionManager implements AbstractConnectionManager{
-    private static OracleConnectionManager oracleConnection = null;
+public class SampleConnectionManager implements AbstractConnectionManager{
+    private static SampleConnectionManager sampleConnection = null;
     private Connection connection = null;
 
-    private OracleConnectionManager(){}
+    private SampleConnectionManager(){}
 
     public static AbstractConnectionManager getInstance(){
-        if(oracleConnection == null){
-            synchronized(OracleConnectionManager.class){
-                if(oracleConnection == null){
-                    oracleConnection = new OracleConnectionManager();
+        if(sampleConnection == null){
+            synchronized(SampleConnectionManager.class){
+                if(sampleConnection == null){
+                    sampleConnection = new SampleConnectionManager();
                 }
             }
         }
-        return oracleConnection;
+        return sampleConnection;
     }
 
     public Connection getConnection(){
         if(connection == null){
             try{
                 InitialContext init = new InitialContext();
-                DataSource source = (DataSource)init.lookup("java:comp/env/jdbc/onnnagokoro");
+                DataSource source = (DataSource)init.lookup("java:comp/env/jdbc/mysql");
                 connection = source.getConnection();
             }catch(NamingException e){
                 e.printStackTrace();
