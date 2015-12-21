@@ -1,4 +1,4 @@
-package dao;
+package ttc.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,21 +7,21 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class SampleConnectionManager implements AbstractConnectionManager{
-    private static SampleConnectionManager sampleConnection = null;
+public class MySqlConnectionManager{
+    private static MySqlConnectionManager myInstance = null;
     private Connection connection = null;
 
-    private SampleConnectionManager(){}
+    private MySqlConnectionManager(){}
 
-    public static AbstractConnectionManager getInstance(){
-        if(sampleConnection == null){
-            synchronized(SampleConnectionManager.class){
-                if(sampleConnection == null){
-                    sampleConnection = new SampleConnectionManager();
+    public static MySqlConnectionManager getInstance(){
+        if(myInstance == null){
+            synchronized(MySqlConnectionManager.class){
+                if(myInstance == null){
+                    myInstance = new MySqlConnectionManager();
                 }
             }
         }
-        return sampleConnection;
+        return myInstance;
     }
 
     public Connection getConnection(){
