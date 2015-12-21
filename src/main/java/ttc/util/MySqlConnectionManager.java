@@ -1,4 +1,4 @@
-package dao;
+package ttc.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,28 +7,28 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class OracleConnectionManager implements AbstractConnectionManager{
-    private static OracleConnectionManager oracleConnection = null;
+public class MySqlConnectionManager{
+    private static MySqlConnectionManager myInstance = null;
     private Connection connection = null;
 
-    private OracleConnectionManager(){}
+    private MySqlConnectionManager(){}
 
-    public static AbstractConnectionManager getInstance(){
-        if(oracleConnection == null){
-            synchronized(OracleConnectionManager.class){
-                if(oracleConnection == null){
-                    oracleConnection = new OracleConnectionManager();
+    public static MySqlConnectionManager getInstance(){
+        if(myInstance == null){
+            synchronized(MySqlConnectionManager.class){
+                if(myInstance == null){
+                    myInstance = new MySqlConnectionManager();
                 }
             }
         }
-        return oracleConnection;
+        return myInstance;
     }
 
     public Connection getConnection(){
         if(connection == null){
             try{
                 InitialContext init = new InitialContext();
-                DataSource source = (DataSource)init.lookup("java:comp/env/jdbc/onnnagokoro");
+                DataSource source = (DataSource)init.lookup("java:comp/env/jdbc/mysql");
                 connection = source.getConnection();
             }catch(NamingException e){
                 e.printStackTrace();
