@@ -1,9 +1,12 @@
 package ttc.dao;
 
-import ttc.bean.Bean;
 import java.util.List;
+import java.util.Map;
+
+import ttc.exception.IntegrationException;
 
 public interface AbstractDao{
-    public List read(Bean bean);
-    public int write(Bean bean);
+    public List read(Map map)throws IntegrationException;
+    public int update(Map map)throws IntegrationException;
+    public int insert(Map map)throws IntegrationException;
 }
