@@ -11,6 +11,8 @@ import ttc.controller.WebApplicationController;
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
+import ttc.exception.PresentationException;
+
 public class FrontServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException{
@@ -21,11 +23,18 @@ public class FrontServlet extends HttpServlet{
 
 			RequestContext reqc = app.getRequest(req);
 
-			ResponseContext resc = app.handleRequest(reqc);
+			ResponseContext resc = null;
 
-			resc.setResponse(res);
+			try{
+				resc = app.handleRequest(reqc);
+				resc.setResponse(res);
+				app.handleResponse(reqc, resc);
 
-			app.handleResponse(reqc, resc);
+			}catch(PresentationException e){
+				throw new IOException(e.getMessage(),e);
+			}
+
+
 		}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)

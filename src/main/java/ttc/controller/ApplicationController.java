@@ -9,7 +9,7 @@ public interface ApplicationController{
 
 	RequestContext getRequest(Object request);
 
-	ResponseContext handleRequest(RequestContext reqc);
+	ResponseContext handleRequest(RequestContext reqc)throws PresentationException;
 
 	void handleResponse(RequestContext reqc, ResponseContext resc) throws PresentationException;
 }
