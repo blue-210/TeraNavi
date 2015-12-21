@@ -7,7 +7,7 @@ import ttc.exception.PresentationException;
 
 public interface ApplicationController{
 
-	RequestContext getRequest(Object request);
+	RequestContext getRequest(Object request)throws PresentationException;
 
 	ResponseContext handleRequest(RequestContext reqc)throws PresentationException;
 

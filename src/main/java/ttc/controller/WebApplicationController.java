@@ -16,7 +16,7 @@ import ttc.exception.PresentationException;
 
 public class WebApplicationController implements ApplicationController{
 
-	public RequestContext getRequest(Object request){
+	public RequestContext getRequest(Object request)throws PresentationException{
 
 		RequestContext reqc = new WebRequestContext();
 

@@ -2,11 +2,13 @@ package ttc.sample;
 // 必要なJUnitのクラスをimport
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.*;
 import static org.hamcrest.CoreMatchers.*;
 
 
 // クラス名は必ず「テストしたいクラス名+Test」で書き、public
 public class SampleUsersBeanTest {
+    SampleUsersBean sut = new SampleUsersBean();
     /* 初期化処理が重複するときは@Beforeアノテーションを使ってくくりだします。
     *  たとえば、このテストでいえば、あらかじめBeanに値をセットしておくというのは共通している処理なので
     *　一つにまとめてしまったほうが楽ですね。
@@ -14,9 +16,8 @@ public class SampleUsersBeanTest {
     @Before
     public void setUp(){
         // sutとはSystem Under Testの略で、テスト対象となるクラスのこと。慣習的にこう書きます。
-        SampleUsersBean sut = new SampleUsersBean();
-        bean.setId("12345678");
-        bean.setName("青木隼人");
+        sut.setId("12345678");
+        sut.setName("青木隼人");
     }
 
     /* テストの基本は4フェーズテストです。
@@ -53,7 +54,7 @@ public class SampleUsersBeanTest {
 
         // 実行
         String actual = sut.getName();
-        
+
         // 検証
         assertThat(actual, is(expected));
     }
