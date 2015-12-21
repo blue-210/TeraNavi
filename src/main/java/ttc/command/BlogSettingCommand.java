@@ -14,7 +14,7 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class BlogCreateCommand extends AbstractCommand{
+public class BlogSettingCommand extends AbstractCommand{
 
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -28,12 +28,14 @@ public class BlogCreateCommand extends AbstractCommand{
 
             String explanation = reqc.getParameter("explanation")[0];
 
+            String status = reqc.getParameter("Status")[0];
+
             Map params = new HashMap();
             params.put("userId",userId);
             params.put("title",title);
             params.put("headerPath",headerPath);
             params.put("explanation",explanation);
-            params.put("status",1);
+            params.put("status",status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -44,7 +46,7 @@ public class BlogCreateCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("blogCreate");
+            resc.setTarget("blogSet");
 
             return resc;
         }catch(IntegrationException e){

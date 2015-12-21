@@ -29,13 +29,14 @@ public class BlogDao implements AbstractDao{
 
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "update users set blog_title=?,blog_header_path=?,blog_explanation=? where user_id=?";
+            String sql = "update users set blog_title=?,blog_header_path=?,blog_explanation=?,blog_status_flag=? where user_id=?";
             pst = cn.prepareStatement(sql);
 
             pst.setString(1,(String)map.get("title"));
             pst.setString(2,(String)map.get("headerPath"));
             pst.setString(3,(String)map.get("explanation"));
-            pst.setString(4,(String)map.get("userId"));
+            pst.setString(4,(String)map.get("status"));
+            pst.setString(5,(String)map.get("userId"));
 
             result =  pst.executeUpdate();
 
@@ -62,7 +63,7 @@ public class BlogDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "select blog_title,blog_header_path,blog_explanation from users where blog_title is not null";
+            String sql = "select blog_title,blog_header_path,blog_explanation from users where blog_status_flag = 1";
 
             pst = cn.prepareStatement(sql);
 
