@@ -1,12 +1,12 @@
 package ttc.dao;
 
 import java.util.List;
-import ttc.bean.Bean;
-import ttc.bean.BlogBean;
 import java.util.Map;
 
+import ttc.exception.IntegrationException;
+
 public class BlogDao implements AbstractDao{
-    public int write(Bean bean){
+    public int write(Map map)throws IntegrationException{
 
     }
 }
