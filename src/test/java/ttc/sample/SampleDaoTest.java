@@ -3,6 +3,7 @@ package ttc.sample;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.*;
+import org.dbunit.database.*;
 import org.dbunit.JndiDatabaseTester;
 import org.dbunit.dataset.*;
 import org.dbunit.dataset.excel.*;
@@ -21,7 +22,6 @@ public class SampleDaoTest {
     // DBに接続し、初期化としてTableをいったんキレイにして期待されるデータをセットする
     @Before
     public void setUp(){
-
         try{
             System.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
             System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
