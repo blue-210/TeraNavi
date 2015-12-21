@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserBean implements Bean{
     private String id;
-    private String loginName;
+    private String loginId;
     private String userName;
     private String nameKana;
     private String sex;
@@ -48,16 +48,16 @@ public class UserBean implements Bean{
 	* Returns value of loginName
 	* @return
 	*/
-	public String getLoginName() {
-		return loginName;
+	public String getLoginId() {
+		return loginId;
 	}
 
 	/**
 	* Sets new value of loginName
 	* @param
 	*/
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	/**
