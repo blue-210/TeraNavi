@@ -106,3 +106,4 @@ public class ArticleBean implements Bean{
     public void setComments(ArrayList comments) {
     	this.comments = comments;
     }
+}
