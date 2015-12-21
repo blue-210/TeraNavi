@@ -66,6 +66,13 @@
       </dependency>
    </dependencies>
 
+    <dependency>
+        <groupId>com.ninja-squad</groupId>
+        <artifactId>DbSetup</artifactId>
+        <version>1.6.0</version>
+        <scope>test</scope>
+    </dependency>
+
    <build>
      <finalName>TeraNavi</finalName>
      <pluginManagement>
