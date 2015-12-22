@@ -32,12 +32,12 @@ public class KeywordSearchCommand extends AbstractCommand{
 			MySqlConnectionManager.getInstance().beginTransaction();
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
 			AbstractDao dao = factory.getAbstractDao();
-			dao.readAll(params);
 
 			MySqlConnectionManager.getInstance().commit();
 			MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setTarget("comment");
+			resc.setTarget("SerchResult");
+			resc.setResult(dao.readAll(params));
 
 			return resc;
 		}catch(IntegrationException e){
