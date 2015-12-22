@@ -1,6 +1,6 @@
 package ttc.util;
 
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
@@ -15,7 +15,7 @@ public abstract class CommandFactory{
 		Properties prop = new Properties();
 
 		try{
-			prop.load(new FileInputStream("c:/GitHub/TeraNavi/resources/command.properties"));
+			prop.load(CommandFactory.class.getResourceAsStream("command.properties"));
 
 			String name = prop.getProperty(rc.getCommandPath());
 
