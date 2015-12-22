@@ -62,7 +62,7 @@ public class ArticleDao implements AbstractDao{
         return result;
     }
 
-    public List readAll()throws IntegrationException{
+    public List readAll(Map map)throws IntegrationException{
         return new ArrayList();
     }
 
