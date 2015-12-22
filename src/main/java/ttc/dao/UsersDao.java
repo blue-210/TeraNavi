@@ -88,16 +88,16 @@ public class UsersDao implements AbstractDao{
             sql.append("values(?,?,?,?,?,?,?,?,?,?);");
             pst=cn.prepareStatement(new String(sql));
 
-            pst.setString(2,(String)map.get("loginId"));
-            pst.setString(3,(String)map.get("userName"));
-            pst.setString(4,(String)map.get("nameKana"));
-            pst.setString(5,(String)map.get("sex"));
-            pst.setString(6,(String)map.get("sexVisibleFlag"));
-            pst.setString(7,(String)map.get("birthDate"));
-            pst.setString(8,(String)map.get("mailAddress"));
-            pst.setString(9,(String)map.get("password"));
-            pst.setString(10,(String)map.get("quepstionId"));
-            pst.setString(11,(String)map.get("secretAnswer"));
+            pst.setString(1,(String)map.get("loginId"));
+            pst.setString(2,(String)map.get("userName"));
+            pst.setString(3,(String)map.get("nameKana"));
+            pst.setString(4,(String)map.get("sex"));
+            pst.setString(5,(String)map.get("sexVisibleFlag"));
+            pst.setString(6,(String)map.get("birthDate"));
+            pst.setString(7,(String)map.get("mailAddress"));
+            pst.setString(8,(String)map.get("password"));
+            pst.setString(9,(String)map.get("quepstionId"));
+            pst.setString(10,(String)map.get("secretAnswer"));
 
             count = pst.executeUpdate();
         }catch(SQLException e){
