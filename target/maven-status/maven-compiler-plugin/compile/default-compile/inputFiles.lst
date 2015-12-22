@@ -5,12 +5,14 @@ c:\GitHub\TeraNavi\src\main\java\ttc\util\MySqlConnectionManager.java
 c:\GitHub\TeraNavi\src\main\java\ttc\context\WebRequestContext.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\TagBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\exception\IntegrationException.java
+c:\GitHub\TeraNavi\src\main\java\ttc\util\factory\CommentsDaoFactory.java
 c:\GitHub\TeraNavi\src\main\java\ttc\command\BlogSettingCommand.java
 c:\GitHub\TeraNavi\src\main\java\ttc\util\factory\AbstractDaoFactory.java
 c:\GitHub\TeraNavi\src\main\java\ttc\context\WebResponseContext.java
 c:\GitHub\TeraNavi\src\main\java\ttc\controller\WebApplicationController.java
 c:\GitHub\TeraNavi\src\main\java\ttc\command\CommentPostCommand.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\BlogBean.java
+c:\GitHub\TeraNavi\src\main\java\ttc\command\CommentDeleteCommand.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\UserBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\Bean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\controller\ApplicationController.java
@@ -22,6 +24,7 @@ c:\GitHub\TeraNavi\src\main\java\ttc\bean\SecretQuestionBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\DirectMessageBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\dao\UsersDao.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\CommunityBean.java
+c:\GitHub\TeraNavi\src\main\java\ttc\dao\ArticleDao.java
 c:\GitHub\TeraNavi\src\main\java\ttc\context\ResponseContext.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\RulesBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\context\RequestContext.java
@@ -41,3 +44,4 @@ c:\GitHub\TeraNavi\src\main\java\ttc\bean\PolisyBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\sample\SampleBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\sample\SampleUsersBean.java
 c:\GitHub\TeraNavi\src\main\java\ttc\bean\TopicBean.java
+c:\GitHub\TeraNavi\src\main\java\ttc\command\ArticlePostCommand.java
