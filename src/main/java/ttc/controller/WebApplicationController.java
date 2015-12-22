@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+import javax.servlet.http.HttpSession;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 import ttc.context.WebRequestContext;
@@ -16,7 +18,7 @@ import ttc.exception.PresentationException;
 
 public class WebApplicationController implements ApplicationController{
 
-	public RequestContext getRequest(Object request){
+	public RequestContext getRequest(Object request)throws PresentationException{
 
 		RequestContext reqc = new WebRequestContext();
 
@@ -42,7 +44,22 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletRequest req = (HttpServletRequest) reqc.getRequest();
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
-		req.setAttribute("result",resc.getResult());
+		String servletPath = req.getServletPath().substring(1);
+
+
+
+		if(servletPath.equals("login")){
+			HttpSession session = req.getSession(true);
+			session.setAttribute("loginUser",resc.getResult());
+		}else if(servletPath.equals("logout")){
+			HttpSession session = req.getSession(true);
+			session.removeAttribute("loginUser");
+
+		}else{
+
+			req.setAttribute("result",resc.getResult());
+
+		}
 
 		RequestDispatcher rd = req.getRequestDispatcher(resc.getTarget());
 

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import ttc.bean.UserBean;
+import ttc.exception.PresentationException;
 
 public class WebRequestContext implements RequestContext{
 	private Map parameters;
@@ -28,16 +29,20 @@ public class WebRequestContext implements RequestContext{
 		return request;
 	}
 
-	public void setRequest(Object request){
+	public void setRequest(Object request)throws PresentationException{
 		this.request = (HttpServletRequest) request;
 
 		parameters = this.request.getParameterMap();
 
 		//セッションからユーザーIDをパラメーターに代入する処理-------------
 		HttpSession session = this.request.getSession();
-		UserBean ub = (UserBean)session.getAttribute("userId");
+		UserBean ub = (UserBean)session.getAttribute("loginUser");
 		String[] userId = new String[1];
-		userId[0] = ub.getId();
+		try{
+			userId[0] = ub.getId();
+		}catch(NullPointerException e){
+			throw new PresentationException(e.getMessage(), e);
+		}
 		parameters.put("userId", userId);
 		//--------------------------------------------------------
 

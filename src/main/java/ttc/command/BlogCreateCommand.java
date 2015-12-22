@@ -44,6 +44,7 @@ public class BlogCreateCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+
             resc.setTarget("blogCreate");
 
             return resc;
