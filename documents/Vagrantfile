@@ -73,12 +73,28 @@ Vagrant.configure(2) do |config|
     sudo yum install -y java-1.7.0-openjdk
     # apacheに関する設定
     sudo yum install -y httpd
+    # MySQLに関する設定
     sudo yum install -y mysql-server
     sudo chkconfig mysqld on
     sudo service mysqld start
     sudo mysql -u root -f < /vagrant_data/Documents/delete.sql
     sudo mysql -u root -f < /vagrant_data/Documents/create.sql
+    # mavenを入れる
+    sudo wget http://ftp.jaist.ac.jp/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    sudo tar zxvf apache-maven-3.3.9-bin.tar.gz
+    sudo rm -rf apache-maven-3.3.9-bin.tar.gz
+    sudo mv -f apache-maven-3.3.9 maven3
+    sudo mv -f maven3 /usr/local
+    sudo ln -s /usr/local/maven3 /usr/local/maven
+    sudo cp /vagrant_data/Documents/maven.sh /etc/profile.d/maven.sh
     # tomcatに関する設定 最初だけコメント外してください。
+    sudo wget http://ftp.kddilabs.jp/infosystems/apache/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz
+    sudo tar zxvf apache-tomcat-7.0.67.tar.gz
+    sudo rm -rf apache-tomcat-7.0.67.tar.gz
+    sudo mv -f apache-tomcat-7.0.67 tomcat7
+    sudo mv -f tomcat7 /usr/lib
+    sudo rm -r /usr/lib/tomcat7/webapps/
+    sudo cp -fp /vagrant_data/Documents/TeraNavi.xml /usr/lib/tomcat7/conf/Catalina/localhost\
     #  ApacheとTomcatの連携設定
     sudo cp -fp /vagrant_data/Documents/httpd.conf /etc/httpd/conf/httpd.conf
     sudo useradd -m -d /home/tomcat tomcat
