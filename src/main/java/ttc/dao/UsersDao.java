@@ -87,7 +87,7 @@ public class UsersDao implements AbstractDao{
             cn=MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
-            sql.append("values(?,?,?,?,?,?,?,?,?,?);");
+            sql.append("values(?,?,?,?,?,?,?,?,?,?)");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("loginId"));
