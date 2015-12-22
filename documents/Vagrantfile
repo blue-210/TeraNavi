@@ -80,13 +80,9 @@ Vagrant.configure(2) do |config|
     sudo mysql -u root -f < /vagrant_data/Documents/delete.sql
     sudo mysql -u root -f < /vagrant_data/Documents/create.sql
     # mavenを入れる
-    sudo wget http://ftp.jaist.ac.jp/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-    sudo tar zxvf apache-maven-3.3.9-bin.tar.gz
-    sudo rm -rf apache-maven-3.3.9-bin.tar.gz
-    sudo mv -f apache-maven-3.3.9 maven3
-    sudo mv -f maven3 /usr/local
-    sudo ln -s /usr/local/maven3 /usr/local/maven
-    sudo cp /vagrant_data/Documents/maven.sh /etc/profile.d/maven.sh
+    sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+    sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+    sudo yum install -y apache-maven
     # tomcatに関する設定 最初だけコメント外してください。
     sudo wget http://ftp.kddilabs.jp/infosystems/apache/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz
     sudo tar zxvf apache-tomcat-7.0.67.tar.gz
