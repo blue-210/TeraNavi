@@ -28,7 +28,7 @@ public class LoginCommand extends AbstractCommand{
 
 
             Map params = new HashMap();
-            params.put("loginId",loginId);
+            params.put("value",loginId);
             params.put("where","where login_id=?");
 
 
@@ -43,6 +43,8 @@ public class LoginCommand extends AbstractCommand{
 
             UserBean ub=new UserBean();
             if(password.equals(ub.getPassword())){
+                ub.setPassword("dummy");
+                ub.setSecretAnswer("dummy");
                 resc.setResult(ub);
             }
 
