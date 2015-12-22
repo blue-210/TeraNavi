@@ -1,5 +1,7 @@
 package ttc.dao;
 
+import java.text.SimpleDateFormat;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -15,6 +17,7 @@ import ttc.exception.IntegrationException;
 import ttc.util.MySqlConnectionManager;
 
 import ttc.exception.NotLineException;
+
 
 public class UsersDao implements AbstractDao{
     PreparedStatement pst=null;
@@ -80,11 +83,92 @@ public class UsersDao implements AbstractDao{
     public int update(Map map)throws IntegrationException{
         int result=0;
         try{
+            UserBean ub=new UserBean();
             Connection cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "update users set last_login_dete=? where user_id=?";
-            pst = cn.prepareStatement(sql);
-            pst.setString(1,(String)map.get("loginDate"));
-            pst.setString(2,(String)map.get("userId"));
+            StringBuffer sql = new StringBuffer();
+            sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
+            sql.append("mail_address=?,password=?,user_header_path=?,user_icon_path=?,");
+            sql.append("last_login_dete=?,user_status_flag=?,user_lock_start_date=?,user_lock_end_date=?,");
+            sql.append("user_profile=? where user_id=?");
+            pst = cn.prepareStatement(new String(sql));
+
+            //ユーザーの名前を変更
+            if(map.containsKey("userName")){
+                pst.setString(1,(String)map.get("userName"));
+            }else{
+                pst.setString(1,ub.getUserName());
+            }
+            //ユーザーの名前（カナ）を変更
+            if(map.containsKey("userNameKana")){
+                pst.setString(2,(String)map.get("userNameKana"));
+            }else{
+                pst.setString(2,ub.getNameKana());
+            }
+            //性別の表示設定を変更
+            if(map.containsKey("SexVisibleFlag")){
+                pst.setString(3,(String)map.get("SexVisibleFlag"));
+            }else{
+                pst.setString(3,ub.getSexVisibleFlag());
+            }
+            //メールアドレスの変更
+            if(map.containsKey("mailAddress")){
+                pst.setString(4,(String)map.get("mailAddress"));
+            }else{
+                pst.setString(4,ub.getMailAddress());
+            }
+            //パスワードの変更
+            if(map.containsKey("password")){
+                pst.setString(5,(String)map.get("password"));
+            }else{
+                pst.setString(5,ub.getPassword());
+            }
+            //ユーザーのヘッダー画像のパスを変更
+            if(map.containsKey("headerPath")){
+                pst.setString(6,(String)map.get("headerPath"));
+            }else{
+                pst.setString(6,ub.getHeaderPath());
+            }
+            //ユーザーのアイコン画像パスを変更
+            if(map.containsKey("iconPath")){
+                pst.setString(7,(String)map.get("iconPath"));
+            }else{
+                pst.setString(7,ub.getIconPath());
+            }
+            //ユーザーが最後にログインした日を変更
+            if(map.containsKey("lastLoginDate")){
+                pst.setString(8,(String)map.get("lastLoginDate"));
+            }else{
+                pst.setString(8,ub.getLastLoginDate());
+            }
+            //ユーザーステータスを変更
+            if(map.containsKey("userStatus")){
+                pst.setString(9,(String)map.get("userStatus"));
+            }else{
+                pst.setString(9,ub.getUserStatus());
+            }
+            //ユーザのロック開始の日にちを変更
+            if(map.containsKey("lockStartDate")){
+                pst.setString(10,new SimpleDateFormat().parse((String)map.get("lockStartDate")));
+            }else{
+                pst.setString(10,new SimpleDateFormat().parse(ub.getLockStartDate()));
+            }
+            //ユーザのロック終了日を変更
+            if(map.containsKey("lockEndDate")){
+                pst.setString(11,new SimpleDateFormat().parse((String)map.get("lockEndDate")));
+            }else{
+                pst.setString(11,new SimpleDateFormat().parse(ub.getLockEndDate()));
+            }
+            //ユーザの自己紹介を変更
+            if(map.containsKey("profile")){
+                pst.setString(6,(String)map.get("profile"));
+            }else{
+                pst.setString(6,ub.getProfile());
+            }
+
+
+            pst.setString(13,(String)map.get("userId"));
+
+
             result = pst.executeUpdate();
 
 
