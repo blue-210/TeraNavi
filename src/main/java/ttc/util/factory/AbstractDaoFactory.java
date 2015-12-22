@@ -13,7 +13,7 @@ public abstract class AbstractDaoFactory{
         Properties prop = new Properties();
 
         try{
-            prop.load(AbstractDaoFactory.class.getResourceAsStream("../../../resources/dao.properties"));
+            prop.load(AbstractDaoFactory.class.getResourceAsStream("dao.properties"));
             String className = prop.getProperty(key);
 
             Class c = Class.forName(className);
