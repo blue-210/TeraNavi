@@ -83,11 +83,11 @@ public class UsersDao implements AbstractDao{
         int count = 0;
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql = new StringBuffer();
+            sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
+            sql.append("values(?,?,?,?,?,?,?,?,?,?);");
+            pst=cn.prepareStatement(new String(sql));
 
-            String sql="insert into users(user_id,login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer,user_eader_path,user_icon_path,blog_title,blog_header_path,admin_flag,last_login_date,admin_last_login_date,user_status_flag,user_lock_start_date,user_lock_end_date,blog_explanation,user_profile) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            pst=cn.prepareStatement(sql);
-
-            pst.setString(1,(String)map.get("id"));
             pst.setString(2,(String)map.get("loginId"));
             pst.setString(3,(String)map.get("userName"));
             pst.setString(4,(String)map.get("nameKana"));
@@ -98,18 +98,6 @@ public class UsersDao implements AbstractDao{
             pst.setString(9,(String)map.get("password"));
             pst.setString(10,(String)map.get("quepstionId"));
             pst.setString(11,(String)map.get("secretAnswer"));
-            pst.setString(12,(String)map.get("headerPath"));
-            pst.setString(13,(String)map.get("iconPath"));
-            pst.setString(14,(String)map.get("title"));
-            pst.setString(15,(String)map.get("headPhotoPath"));
-            pst.setString(16,(String)map.get("adminFlag"));
-            pst.setString(17,(String)map.get("lapstLoginDate"));
-            pst.setString(18,(String)map.get("adminLapstLoginDate"));
-            pst.setString(19,(String)map.get("userStatus"));
-            pst.setString(20,(String)map.get("lockEndDate"));
-            pst.setString(21,(String)map.get("lockStartDate"));
-            pst.setString(22,(String)map.get("blogExplanation"));
-            pst.setString(23,(String)map.get("profile"));
 
             count = pst.executeUpdate();
         }catch(SQLException e){
@@ -131,6 +119,7 @@ public class UsersDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
+
             String sql = "select * from users where user_id=?";
             pst = cn.prepareStatement(sql);
 
