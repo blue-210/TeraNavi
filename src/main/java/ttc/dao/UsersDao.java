@@ -58,7 +58,6 @@ public class UsersDao implements AbstractDao{
                 ub.setLockStartDate(rs.getString(21));
                 // ub.setBlogExplanation(rs.getString(22));
                 ub.setProfile(rs.getString(23));
-
                 list.add(ub);
             }
             MySqlConnectionManager.getInstance().commit();
@@ -84,25 +83,21 @@ public class UsersDao implements AbstractDao{
         int count = 0;
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();
-            StringBuffer sql=new StringBuffer();
-            sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,");
-            sql.append("birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
-            sql.append("values(?,?,?,?,?,?,?,?,?,?)");
-
+            StringBuffer sql = new StringBuffer();
+            sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
+            sql.append("values(?,?,?,?,?,?,?,?,?,?);");
             pst=cn.prepareStatement(new String(sql));
 
-
-            pst.setString(1,(String)map.get("loginId"));
-            pst.setString(2,(String)map.get("userName"));
-            pst.setString(3,(String)map.get("nameKana"));
-            pst.setString(4,(String)map.get("sex"));
-            pst.setString(5,(String)map.get("sexVisibleFlag"));
-            pst.setString(6,(String)map.get("birthDate"));
-            pst.setString(7,(String)map.get("mailAddress"));
-            pst.setString(8,(String)map.get("password"));
-            pst.setString(9,(String)map.get("quepstionId"));
-            pst.setString(10,(String)map.get("quepstionAnswer"));
-
+            pst.setString(2,(String)map.get("loginId"));
+            pst.setString(3,(String)map.get("userName"));
+            pst.setString(4,(String)map.get("nameKana"));
+            pst.setString(5,(String)map.get("sex"));
+            pst.setString(6,(String)map.get("sexVisibleFlag"));
+            pst.setString(7,(String)map.get("birthDate"));
+            pst.setString(8,(String)map.get("mailAddress"));
+            pst.setString(9,(String)map.get("password"));
+            pst.setString(10,(String)map.get("quepstionId"));
+            pst.setString(11,(String)map.get("secretAnswer"));
 
             count = pst.executeUpdate();
         }catch(SQLException e){
@@ -124,6 +119,7 @@ public class UsersDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
+
             String sql = "select * from users where user_id=?";
             pst = cn.prepareStatement(sql);
 
@@ -142,11 +138,10 @@ public class UsersDao implements AbstractDao{
             ub.setMailAddress(rs.getString(8));
             ub.setPassword(rs.getString(9));
             // あとでなおしてね
-            //ub.setQuestion(rs.getString(10));
+            // ub.setQuestion(rs.getString(10));
             ub.setSecretAnswer(rs.getString(11));
             ub.setHeaderPath(rs.getString(12));
             ub.setIconPath(rs.getString(13));
-            //　あとでなおしてね
             // ub.setTitle(rs.getString(14));
             // ub.setHeadPhotoPath(rs.getString(15));
             ub.setAdminFlag(rs.getString(16));
