@@ -29,6 +29,7 @@ public class LoginCommand extends AbstractCommand{
 
             Map params = new HashMap();
             params.put("loginId",loginId);
+            params.put("where","where login_id=?");
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
