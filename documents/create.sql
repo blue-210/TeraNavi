@@ -6,7 +6,7 @@ create user 'TERA_NAVI'@'localhost' identified by 'tera';
 grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
 #追加した権限を適用
 FLUSH PRIVILEGES;
--- サンプル表
+-- サンプル表de
 create table tera_db.sampleusers(id char(8),name varchar(80));
 #秘密の質問表
 create table tera_db.secret_questions(secret_question_id int(1) primary key auto_increment,
