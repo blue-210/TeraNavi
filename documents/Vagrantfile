@@ -79,6 +79,13 @@ Vagrant.configure(2) do |config|
     sudo mysql -u root -f < /vagrant_data/Documents/delete.sql
     sudo mysql -u root -f < /vagrant_data/Documents/create.sql
     # tomcatに関する設定 最初だけコメント外してください。
+    sudo wget http://ftp.riken.jp/net/apache/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz
+    sudo tar zxvf apache-tomcat-7.0.67.tar.gz
+    sudo rm -rf apache-tomcat-7.0.67.tar.gz
+    sudo mv -f apache-tomcat-7.0.67 tomcat7
+    sudo mv -f tomcat7 /usr/lib
+    sudo rm -r /usr/lib/tomcat7/webapps/
+    sudo cp -fp /vagrant_data/Documents/TeraNavi.xml /usr/lib/tomcat7/conf/Catalina/localhost\
     #  ApacheとTomcatの連携設定
     sudo cp -fp /vagrant_data/Documents/httpd.conf /etc/httpd/conf/httpd.conf
     sudo useradd -m -d /home/tomcat tomcat
