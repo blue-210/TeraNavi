@@ -78,7 +78,31 @@ public class UsersDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
-        return new Integer(1);
+        int result=0;
+        try{
+            Connection cn = MySqlConnectionManager.getInstance().getConnection();
+            String sql = "update users set last_login_dete=? where user_id=?";
+            pst = cn.prepareStatement(sql);
+            pst.setString(1,(String)map.get("loginDate"));
+            pst.setString(2,(String)map.get("userId"));
+            result = pst.executeUpdate();
+
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
+
     }
 
     public int insert(Map map)throws IntegrationException{
@@ -122,11 +146,14 @@ public class UsersDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
-            sql.append("select user_id,user_name,password,user_icon_path from users");
+            sql.append("select user_id,login_id,user_name,user_name_kana,sex,sex_visible_flag");
+            sql.append(",birth_date,mali_address,password,user_header_path,user_icon_path,admin_flag,last_login_dete,");
+            sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
+            sql.append("user_profile from users");
             sql.append(map.get("where"));
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("loginId"));
+            pst.setString(1,(String)map.get("value"));
 
             ResultSet rs = pst.executeQuery();
 
@@ -134,8 +161,21 @@ public class UsersDao implements AbstractDao{
 
                 ub.setId(rs.getString(1));
                 ub.setUserName(rs.getString(2));
-                ub.setPassword(rs.getString(3));
-                ub.setIconPath(rs.getString(4));
+                ub.setNameKana(rs.getString(3));
+                ub.setSex(rs.getString(4));
+                ub.setSexVisibleFlag(rs.getString(5));
+                ub.setBirthDate(rs.getString(6));
+                ub.setMailAddress(rs.getString(7));
+                ub.setPassword(rs.getString(8));
+                ub.setHeaderPath(rs.getString(9));
+                ub.setIconPath(rs.getString(10));
+                ub.setAdminFlag(rs.getString(11));
+                ub.setLastLoginDate(rs.getString(12));
+                ub.setAdminLastLoginDate(rs.getString(13));
+                ub.setUserStatus(rs.getString(14));
+                ub.setLockEndDate(rs.getString(15));
+                ub.setLockStartDate(rs.getString(16));
+                ub.setProfile(rs.getString(17));
 
             }else{
                 throw new NotLineException("0行が選択されました",null);
@@ -155,7 +195,5 @@ public class UsersDao implements AbstractDao{
         return ub;
     }
 
-    public List readAll()throws IntegrationException{
-        return new ArrayList();
-    }
+
 }
