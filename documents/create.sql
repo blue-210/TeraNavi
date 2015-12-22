@@ -40,11 +40,11 @@ create table tera_db.community_members_list(fk_user_id int(10),fk_community_id i
 											foreign key(fk_user_id) references tera_db.users(user_id),
 											foreign key(fk_community_id) references tera_db.communities(community_id))engine=InnoDB;
 #コメント表
-create table tera_db.comments(comment_id int(10) primary key auto_increment,fk_article_id int(10),comment_date datetime not null,fk_user_id char(10),comment_body varchar(800),
+create table tera_db.comments(comment_id int(10) primary key auto_increment,fk_article_id int(10),comment_date datetime not null,fk_user_id int(10),comment_body varchar(800),comment_delete_flag char(1) not null,
 							  index(comment_id),foreign key(fk_article_id) references tera_db.articles(article_id),foreign key (fk_user_id) references tera_db.users(user_id))engine=InnoDB;
 #DM表
 create table tera_db.direct_messages(message_id int(10) primary key auto_increment,message_body varchar(800),message_date datetime not null,
-									 fk_send_user_id char(8),fk_receive_user_id char(10),index(message_id),
+									 fk_send_user_id int(8),fk_receive_user_id int(10),index(message_id),
 									 foreign key(fk_send_user_id) references tera_db.users(user_id),
 									 foreign key(fk_receive_user_id) references tera_db.users(user_id))engine=InnoDB;
 #お問い合わせ表
@@ -61,8 +61,8 @@ create table tera_db.topic(topic_id int(10) primary key auto_increment,fk_commun
 						   foreign key(fk_community_id) references tera_db.communities(community_id),
 						   foreign key(fk_create_user_id) references tera_db.users(user_id))engine=InnoDB;
 #チャット表
-create table tera_db.chat(chat_id int(8) primary key auto_increment,fk_user_id char(8),fk_topic_id char(10),
-						  chat_body varchar(600),chat_date datetime,chat_delete_flag char(1) not null,index(chat_id)
+create table tera_db.chat(chat_id int(8) primary key auto_increment,fk_user_id int(8),fk_topic_id int(10),
+						  chat_body varchar(600),chat_date datetime,chat_delete_flag char(1) not null,index(chat_id),
 						  foreign key(fk_user_id) references tera_db.users(user_id),
 						  foreign key(fk_topic_id) references tera_db.topic(topic_id))engine=InnoDB;
 #登録キー表
