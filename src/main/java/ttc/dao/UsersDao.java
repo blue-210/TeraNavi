@@ -146,6 +146,7 @@ public class UsersDao implements AbstractDao{
             ub.setSecretAnswer(rs.getString(11));
             ub.setHeaderPath(rs.getString(12));
             ub.setIconPath(rs.getString(13));
+            //　あとでなおしてね
             // ub.setTitle(rs.getString(14));
             // ub.setHeadPhotoPath(rs.getString(15));
             ub.setAdminFlag(rs.getString(16));
