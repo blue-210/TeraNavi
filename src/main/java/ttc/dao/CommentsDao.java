@@ -77,7 +77,7 @@ public class CommentsDao implements AbstractDao{
         return result;
     }
 
-    public List readAll()throws IntegrationException{
+    public List readAll(Map map)throws IntegrationException{
         return null;
     }
 

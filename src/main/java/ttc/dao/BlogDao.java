@@ -56,7 +56,7 @@ public class BlogDao implements AbstractDao{
         return result;
     }
 
-    public List readAll()throws IntegrationException{
+    public List readAll(Map map)throws IntegrationException{
         List result = new ArrayList();
         PreparedStatement pst = null;
 
