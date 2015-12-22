@@ -7,11 +7,16 @@
     * main
         * java
             * ここにJavaのソースを配置する。このディレクトリ直下に自分たちのパッケージをつくってクラスをつくって・・・という感じ。
+        * resources
+            * ここにpropertiesファイルなどを置きます。
         * webapp
             * ここにはWEB-INFやjsファイル、CSSファイル配置。デザイン班の領域。
     * test
         * java
             * 未定ですが、JUnitを使ったテストクラスをここに配置します。
+        * resources
+            * テストで使うテストデータなどを置きます。
+
 * target
     * コンパイルされたものが格納されるディレクトリです。基本的にいじる必要はありません
 * pom.xml
@@ -40,20 +45,6 @@
     * Apache
 * データベース
     * MySQL
-
-### ローカルで仮想環境を立ち上げる
-　**最初にVagrantとVirtualBoxをインストールしてください**
-* Vagrant [ダウンロードはこちら](https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi)
-* VirtualBox version5.0.10 r104061 [ダウンロードはこちら](https://www.virtualbox.org/wiki/Downloads)
-
-#### Vagrantの使い方
-Vagrantは仮想環境の構築と開発・テスト環境の構築をまとめておこなってくれるツールです。（VirtualBoxを内部的に使っています)
-
-    ・仮想環境を立ち上げる→vagrant up --provision
-    ・仮想環境のいろいろな設定をやりなおす→vagrant provision
-    ・仮想環境を停止する→vagrant halt
-    ・仮想環境をぶっ壊す→vagrant destroy ※なお、もう一回vagrant upすればきれいな環境をつくってくれます。
-
 
 ## 開発の流れ
 下準備
@@ -100,3 +91,38 @@ JUnitの基本ルール
 	2. 実行・・・テスト対象のメソッドを１つだけ実行
 	3. 検証・・・テストの結果として得られた実測値が期待値と等価であるかを検証
 	4. 終了処理（必要な場合）・・・次のテストに影響が内容に後始末
+
+## 各種ツールの使い方メモ
+ひとまず基本的なことだけ書いておきます。必要に応じて追記する予定です。
+
+### Vagrant ~ローカルで仮想環境を立ち上げる~
+　**最初にVagrantとVirtualBoxをインストールしてください**
+* Vagrant [ダウンロードはこちら](https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4.msi)
+* VirtualBox version5.0.10 r104061 [ダウンロードはこちら](https://www.virtualbox.org/wiki/Downloads)
+
+### Vagrantの使い方
+Vagrantは仮想環境の構築と開発・テスト環境の構築をまとめておこなってくれるツールです。（VirtualBoxを内部的に使っています)
+
+    ・仮想環境を立ち上げる→vagrant up --provision
+    ・仮想環境のいろいろな設定をやりなおす→vagrant provision
+    ・仮想環境を停止する→vagrant halt
+    ・仮想環境をぶっ壊す→vagrant destroy ※なお、もう一回vagrant upすればきれいな環境をつくってくれます。
+
+### Mavenの使い方
+Mavenはライブラリ同士の依存関係を勝手に解決してよしなにしてくれるやつです。
+あとテストを走らせたり、コンパイルしたものをまとめてアプリケーションとして配備できるようにパッケージしてくれたりもします。
+
+    ・TeraNaviディレクトリにcdします。
+    ・コンパイルする→mvn compile
+    ・テストを走らせる→ mvn test
+    ・targetをキレイにしてからパッケージにまとめる→mvn clean package
+
+### Gitの使い方
+分散型バージョン管理システムです。何が分散してるかというとリポジトリが、です。
+
+    ・ローカルリポジトリへのコミットはこまめに。
+    ・コミットメッセージはちゃんと具体的に。何を変更したのかわかるように
+    ・自分のリポジトリに他の人のプッシュをこまめに反映させよう
+    ・自分の作業に合わせたブランチ名をつけてから作業を始めよう
+    ・メインリポジトリにpushできないときはまずローカルにメインの変更を反映させて、競合を解決してからマージしよう。
+    ・なんかエラーはいてる→open Git shell→git status

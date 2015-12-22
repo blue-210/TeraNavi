@@ -1,6 +1,7 @@
 package ttc.bean;
 public class SecretQuestionBean implements Bean{
-  private String questionBody;
+    private String questionBody;
+    private String questionId;
 
 
 	/**
@@ -17,5 +18,21 @@ public class SecretQuestionBean implements Bean{
 	*/
 	public void setQuestionBody(String questionBody) {
 		this.questionBody = questionBody;
+	}
+
+	/**
+	* Returns value of questionId
+	* @return
+	*/
+	public String getQuestionId() {
+		return questionId;
+	}
+
+	/**
+	* Sets new value of questionId
+	* @param
+	*/
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
 	}
 }
