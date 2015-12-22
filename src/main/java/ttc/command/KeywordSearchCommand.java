@@ -40,7 +40,7 @@ public class KeywordSearchCommand extends AbstractCommand{
 
 			return resc;
 		}catch(IntegrationException e){
-				  throw new BusinessLogicException(e.getMessage(),e);
+				throw new BusinessLogicException(e.getMessage(),e);
 		}
 
 	}
