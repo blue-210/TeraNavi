@@ -46,7 +46,7 @@ public class LoginCommand extends AbstractCommand{
             }
 
 
-            resc.setTarget("Login");
+            resc.setTarget("LoginResult");
 
             return resc;
         }catch(IntegrationException e){
