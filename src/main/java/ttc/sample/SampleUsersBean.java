@@ -1,6 +1,7 @@
 package ttc.sample;
+import ttc.bean.Bean;
 
-public class SampleUsersBean implements SampleBean{
+public class SampleUsersBean implements Bean{
     private String id;
     private String name;
 

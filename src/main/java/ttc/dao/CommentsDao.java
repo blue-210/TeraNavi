@@ -24,7 +24,7 @@ public class CommentsDao implements AbstractDao{
             Connection cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into comments(fk_article_id,");
-            sql.append("comment_date,fk_user_id,comment_body) values(?,?,?,?)");
+            sql.append("comment_date,fk_user_id,comment_body,comment_delete_flag) values(?,?,?,?,0)");
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("articleId"));
@@ -51,10 +51,33 @@ public class CommentsDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
-        return 0;
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = MySqlConnectionManager.getInstance().getConnection();
+            String sql = "update comments set comment_delete_flag=1 where comment_id=?";
+            pst = cn.prepareStatement(sql);
+            pst.setString(1,(String)map.get("commentId"));
+            result = pst.executeUpdate();
+
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
 
-    public List readAll()throws IntegrationException{
+    public List readAll(Map map)throws IntegrationException{
         return null;
     }
 

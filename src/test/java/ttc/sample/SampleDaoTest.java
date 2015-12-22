@@ -26,15 +26,15 @@ public class SampleDaoTest {
             System.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
             System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
             InitialContext ic = new InitialContext();
-            ic.createSubcontext("java:");
-            ic.createSubcontext("java:comp");
-            ic.createSubcontext("java:comp/env");
-            ic.createSubcontext("java:comp/env/jdbc");
+            // ic.createSubcontext("java:");
+            // ic.createSubcontext("java:comp");
+            // ic.createSubcontext("java:comp/env");
+            // ic.createSubcontext("java:comp/env/jdbc");
             MysqlDataSource ds = new MysqlDataSource();
             ds.setUser("TERA_NAVI");
             ds.setPassword("tera");
             ds.setURL("jdbc:mysql://localhost:3306/tera_db");
-            ic.bind("java:comp/env/jdbc/mysql", ds);
+            // ic.bind("java:comp/env/jdbc/mysql", ds);
 
             SampleUsersBean bean = new SampleUsersBean();
             bean.setId("12345678");
