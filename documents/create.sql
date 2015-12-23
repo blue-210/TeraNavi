@@ -66,7 +66,7 @@ create table tera_db.chat(chat_id int(8) primary key auto_increment,fk_user_id i
 						  foreign key(fk_user_id) references tera_db.users(user_id),
 						  foreign key(fk_topic_id) references tera_db.topic(topic_id))engine=InnoDB;
 #登録キー表
-create table tera_db.sign_up_keys(sign_up_key int(12) primary key auto_increment,key_status char(1) not null,index(sign_up_key));
+create table tera_db.sign_up_keys(sign_up_key int(12) primary key,key_status char(1) not null,index(sign_up_key));
 #ポリシー表
 create table tera_db.policy(policy_id int(10) primary key auto_increment,policy_date datetime,policy_body varchar(10000) not null,index(policy_id));
 #利用規約表
