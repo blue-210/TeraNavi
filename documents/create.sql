@@ -56,7 +56,7 @@ create table tera_db.cautions(caution_id int(10) primary key auto_increment,fk_u
 							  caution_body varchar(10000) not null,report_page_url varchar(400),index(caution_id),foreign key(fk_user_id) references tera_db.users(user_id),
 							  foreign key(fk_caution_user_id) references tera_db.users(user_id))engine=InnoDB;
 #トピック表
-create table tera_db.topic(topic_id int(10) primary key auto_increment,fk_community_id int(10),fk_create_user_id int(10),topic_name varchar(50) not null,
+create table tera_db.topics(topic_id int(10) primary key auto_increment,fk_community_id int(10),fk_create_user_id int(10),topic_name varchar(50) not null,
 						   topic_updatetime_date datetime,topic_created_date datetime,index(topic_id),
 						   foreign key(fk_community_id) references tera_db.communities(community_id),
 						   foreign key(fk_create_user_id) references tera_db.users(user_id))engine=InnoDB;
