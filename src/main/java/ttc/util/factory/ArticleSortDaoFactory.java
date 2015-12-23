@@ -4,7 +4,7 @@ import java.util.Properties;
 import java.io.IOException;
 
 import ttc.dao.AbstractDao;
-import ttc.dao.ArticleSearchDao;
+import ttc.dao.ArticleSortDao;
 
 import ttc.exception.IntegrationException;
 
