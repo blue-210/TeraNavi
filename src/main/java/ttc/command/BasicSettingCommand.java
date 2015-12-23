@@ -46,7 +46,7 @@ public class BasicSettingCommand extends AbstractCommand{
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("beisc");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
