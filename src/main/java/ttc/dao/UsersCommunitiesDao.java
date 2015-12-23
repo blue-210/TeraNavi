@@ -13,7 +13,7 @@ import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
 import ttc.exception.IntegrationException;
 
-public class CommunitiesDao implements AbstractDao{
+public class UsersCommunitiesDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
         return null;
@@ -30,35 +30,15 @@ public class CommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("insert into communities(");
-            sql.append("community_name,community_profile");
-            sql.append("community_icon_path,community_header_path");
-            sql.append("community_created_date,fk_user_name");
-            sql.append("community_delete_flag)");
-            sql.append(" values(?,?,?,?,?,?,?)");
+            sql.append("insert into community_members_list values(");
+            sql.append("?,?,?");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("commName"));
-            pst.setString(2,(String)map.get("commProfile"));
+            pst.setString(1,(String)map.get("userId"));
+            pst.setString(2,(String)map.get("commId"));
+            pst.setString(3,"0");
 
-            if(map.containsKey("commIcon")){
-                pst.setString(3,(String)map.get("commIcon"));
-            }else{
-                // デフォルト画像のパス
-                // プロパティファイルを使って書き換えられるようにするのもありかも
-                pst.setString(3,"/images/icon/icon.jpg");
-            }
-
-            if(map.containsKey("commHeader")){
-                pst.setString(4,(String)map.get("commHeader"));
-            }else{
-                pst.setString(4,"/images/header/header.jpg");
-            }
-
-            pst.setString(5,"sysdate");
-            pst.setString(6,(String)map.get("userName"));
-            pst.setString(7,"0");
 
             result = pst.executeUpdate();
 
