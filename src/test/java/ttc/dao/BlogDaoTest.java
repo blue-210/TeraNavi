@@ -16,12 +16,15 @@ import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.ext.mysql.MySqlConnection;
+import org.dbunit.ext.mysql.MySqlMetadataHandler;
+import org.dbunit.ext.mysql.MySqlDataTypeFactory;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import ttc.dao.MySqlJndiDatabaseTester;
+
 
 import ttc.dao.BlogDao;
 import ttc.bean.BlogBean;
-import ttc.sample.SampleUsersBean;
-import ttc.sample.SampleDaoTest;
 
 import java.util.HashMap;
 
@@ -43,24 +46,23 @@ public class BlogDaoTest {
             ds.setURL("jdbc:mysql://localhost:3306/tera_db");
             ic.bind("java:comp/env/jdbc/mysql", ds);
 
-            SampleUsersBean bean = new SampleUsersBean();
-            // bean.setId("12345678");
-            // bean.setName("ぶるー");
             // DBのセットアップ
             // データセットの取得
             Connection conn = null;
             IDatabaseConnection connection = null;
-            IDataSet dataset1 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("testdata.xls"));
             // IDataSet dataset2 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("users.xls"));
 
             // セットアップ
             // conn = MySqlConnectionManager.getInstance().getConnection();
-            connection =  new JndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
+            connection =  new MySqlJndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
 
+            IDataSet dataset1 = new XlsDataSet(BlogDaoTest.class.getClassLoader().getResourceAsStream("testdata.xls"));
+            // DatabaseOperation.REFRESH.execute(connection,dataset1);
             DatabaseOperation.CLEAN_INSERT.execute(connection,dataset1);
             // DatabaseOperation.CLEAN_INSERT.execute(connection,dataset2);
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

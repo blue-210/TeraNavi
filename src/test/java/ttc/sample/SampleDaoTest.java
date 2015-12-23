@@ -16,6 +16,10 @@ import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.ext.mysql.MySqlMetadataHandler;
+import org.dbunit.ext.mysql.MySqlDataTypeFactory;
+import ttc.dao.MySqlJndiDatabaseTester;
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class SampleDaoTest {
@@ -46,7 +50,9 @@ public class SampleDaoTest {
             IDataSet dataset = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("sampletestdata.xls"));
             // セットアップ
             // conn = MySqlConnectionManager.getInstance().getConnection();
-            connection =  new JndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
+            connection =  new MySqlJndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
+            connection.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY,new MySqlDataTypeFactory());
+            connection.getConfig().setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER, new MySqlMetadataHandler());
 
             DatabaseOperation.CLEAN_INSERT.execute(connection,dataset);
         }catch(Exception e){
