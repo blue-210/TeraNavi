@@ -20,7 +20,7 @@ import ttc.util.MySqlConnectionManager;
 import ttc.exception.NotLineException;
 
 
-public class UsersDao implements AbstractDao{
+public class ChatDao implements AbstractDao{
     PreparedStatement pst=null;
     Connection cn=null;
     ResultSet rs=null;
@@ -39,20 +39,16 @@ public class UsersDao implements AbstractDao{
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
-            sql.append("values(?,?,?,?,?,?,?,?,?,?)");
+            sql.append("insert into chat(fk_user_id,fk_topic_id,chat_body,chat_date,chat_delete_flag)");
+            sql.append("values(?,?,?,?,?)");
             pst=cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("loginId"));
-            pst.setString(2,(String)map.get("userName"));
-            pst.setString(3,(String)map.get("nameKana"));
-            pst.setString(4,(String)map.get("sex"));
-            pst.setString(5,(String)map.get("sexVisibleFlag"));
-            pst.setString(6,(String)map.get("birthDate"));
-            pst.setString(7,(String)map.get("mailAddress"));
-            pst.setString(8,(String)map.get("password"));
-            pst.setString(9,(String)map.get("quepstionId"));
-            pst.setString(10,(String)map.get("secretAnswer"));
+            pst.setString(1,(String)map.get("userId"));
+            pst.setString(2,(String)map.get("topicId"));
+            pst.setString(3,(String)map.get("chatBody"));
+            pst.setString(4,(String)map.get("chatDate"));
+            pst.setString(5,(String)map.get("chatDeleteFlag"));
+
 
             count = pst.executeUpdate();
         }catch(SQLException e){
