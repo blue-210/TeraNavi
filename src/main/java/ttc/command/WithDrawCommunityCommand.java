@@ -14,39 +14,27 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 
-public class CreateCommunityCommand extends AbstractCommand{
+public class WithDrawCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
 
-            params.put("commName",reqc.getParameter("commName")[0]);
-            params.put("commProfile",reqc.getParameter("commProfile")[0]);
-
-            String icon = (reqc.getParameter("commIcon")[0]);
-            if(icon!=null && icon.length()!=0){
-                params.put("commIcon",icon);
-            }
-
-            String header = (String)reqc.getParameter("commHeader")[0];
-            if(header != null && header.length() != 0){
-                params.put("commHeader",header);
-            }
-
-            params.put("userName",reqc.getParameter("userName")[0]);
+            params.put("userId",reqc.getParameter("userId")[0]);
+            params.put("commId",reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-            resc.setTarget("communityCreateResult");
+            resc.setTarget("communityWithDrawResult");
 
             return resc;
         }catch(IntegrationException e){

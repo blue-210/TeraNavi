@@ -20,7 +20,38 @@ public class UsersCommunitiesDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
-        return 0;
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql = new StringBuffer();
+            sql.append("delete from community_members_list where");
+            sql.append("fk_user_id=? and fk_community_id=?");
+
+            pst = cn.prepareStatement(new String(sql));
+
+            pst.setString(1,(String)map.get("userId"));
+            pst.setString(2,(String)map.get("commId"));
+
+
+            result = pst.executeUpdate();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
+
     }
 
     public int insert(Map map)throws IntegrationException{
@@ -31,7 +62,7 @@ public class UsersCommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into community_members_list values(");
-            sql.append("?,?,?");
+            sql.append("?,?,?)");
 
             pst = cn.prepareStatement(new String(sql));
 
