@@ -50,15 +50,15 @@ public class BlogDaoTest {
             // データセットの取得
             Connection conn = null;
             IDatabaseConnection connection = null;
-            IDataSet dataset1 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("Secret_questions.xls"));
-            IDataSet dataset2 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("users.xls"));
+            IDataSet dataset1 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("testdata.xls"));
+            // IDataSet dataset2 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("users.xls"));
 
             // セットアップ
             // conn = MySqlConnectionManager.getInstance().getConnection();
             connection =  new JndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
 
             DatabaseOperation.CLEAN_INSERT.execute(connection,dataset1);
-            DatabaseOperation.CLEAN_INSERT.execute(connection,dataset2);
+            // DatabaseOperation.CLEAN_INSERT.execute(connection,dataset2);
         }catch(Exception e){
             e.printStackTrace();
         }
