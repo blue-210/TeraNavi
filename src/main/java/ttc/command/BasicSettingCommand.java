@@ -1,0 +1,67 @@
+package ttc.command;
+
+import ttc.context.RequestContext;
+import ttc.context.ResponseContext;
+
+import ttc.util.MySqlConnectionManager;
+
+import ttc.exception.IntegrationException;
+import ttc.exception.BusinessLogicException;
+
+import java.util.Map;
+import java.util.HashMap;
+
+
+import ttc.util.factory.AbstractDaoFactory;
+import ttc.dao.AbstractDao;
+import ttc.bean.UserBean;
+
+public class BasicSettingCommand extends AbstractCommand{
+
+
+    public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
+        try{
+            RequestContext reqc = getRequestContext();
+
+
+            String userName=reqc.getParameter("userName")[0];
+            String nameKana=reqc.getParameter("nameKane")[0];
+            String sexVisibleFlag=reqc.getParameter("sexVisibleFlag")[0];
+            String mailAddress=reqc.getParameter("mailAddress")[0];
+            String headerPath=reqc.getParameter("headerPath")[0];
+            String iconPath=reqc.getParameter("iconPath")[0];
+            String profile=reqc.getParameter("profile")[0];
+
+
+
+
+            Map params = new HashMap();
+            params.put("userName",userName);
+            params.put("nameKana",nameKana);
+            params.put("sexVisibleFlag",sexVisibleFlag);
+            params.put("mailAddress",mailAddress);
+            params.put("headerPath",headerPath);
+            params.put("iconPath",iconPath);
+            params.put("profile",profile);
+
+
+            MySqlConnectionManager.getInstance().beginTransaction();
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("beisc");
+            AbstractDao dao = factory.getAbstractDao();
+            dao.insert(params);
+
+
+            MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+
+
+
+
+            resc.setTarget("SettingResult");
+
+            return resc;
+        }catch(IntegrationException e){
+            throw new BusinessLogicException(e.getMessage(),e);
+        }
+    }
+}
