@@ -66,23 +66,22 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  # Mavenのセットアップ
+  config.vm.provision "shell", path: "C:/GitHub/TeraNavi/documents/setup_maven.sh"
   config.vm.provision "shell", inline: <<-SHELL
     sudo yum update
     # インストール
     sudo yum install -y wget
-    sudo yum install -y java-1.7.0-openjdk
+    sudo yum install -y java-1.7.0-openjdk.x86_64
+    sudo yum install -y java-1.7.0-openjdk-devel.x86_64
     # apacheに関する設定
     sudo yum install -y httpd
     # MySQLに関する設定
     sudo yum install -y mysql-server
     sudo chkconfig mysqld on
     sudo service mysqld start
-    sudo mysql -u root -f < /vagrant_data/Documents/delete.sql
-    sudo mysql -u root -f < /vagrant_data/Documents/create.sql
-    # mavenを入れる
-    sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-    sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-    sudo yum install -y apache-maven
+    sudo mysql -u root -f < /vagrant_data/TeraNavi/documents/delete.sql
+    sudo mysql -u root -f < /vagrant_data/TeraNavi/documents/create.sql
     # tomcatに関する設定 最初だけコメント外してください。
     sudo wget http://ftp.kddilabs.jp/infosystems/apache/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz
     sudo tar zxvf apache-tomcat-7.0.67.tar.gz
@@ -90,14 +89,17 @@ Vagrant.configure(2) do |config|
     sudo mv -f apache-tomcat-7.0.67 tomcat7
     sudo mv -f tomcat7 /usr/lib
     sudo rm -r /usr/lib/tomcat7/webapps/
-    sudo cp -fp /vagrant_data/Documents/TeraNavi.xml /usr/lib/tomcat7/conf/Catalina/localhost\
     #  ApacheとTomcatの連携設定
-    sudo cp -fp /vagrant_data/Documents/httpd.conf /etc/httpd/conf/httpd.conf
+    sudo cp -fp /vagrant_data/TeraNavi/documents/httpd.conf /etc/httpd/conf/httpd.conf
     sudo useradd -m -d /home/tomcat tomcat
     sudo chown -R tomcat:tomcat /usr/lib/tomcat7
     sudo -u tomcat /usr/lib/tomcat7/bin/shutdown.sh
     sudo -u tomcat /usr/lib/tomcat7/bin/startup.sh
-    sudo cp -fp /vagrant_data/Documents/server.xml /usr/lib/tomcat7/conf/server.xml
+    sudo cp -fp /vagrant_data/TeraNavi/documents/server.xml /usr/lib/tomcat7/conf/server.xml
+    sudo cp -fp /vagrant_data/TeraNavi/documents/TeraNavi.xml /usr/lib/tomcat7/conf/Catalina/localhost/
     sudo service httpd restart
+    sudo service iptables stop
+    sudo chkconfig iptables off
+    sudo yum update
    SHELL
 end
