@@ -18,15 +18,15 @@ public class ArticleSortCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
 		try{
 			RequestContext reqc = getRequestContext();
-			String[] keywords=null;
+
 			String sortType = reqc.getParameter("sortType")[0];
-			String target = reqc.getParameter("target")[0];
+			//String target = reqc.getParameter("target")[0];
 
             Map params = new HashMap();
             params.put("sortType",sortType);
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("sort");
 			AbstractDao dao = factory.getAbstractDao();
 
 			MySqlConnectionManager.getInstance().commit();
