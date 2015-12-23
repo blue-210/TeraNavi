@@ -19,7 +19,7 @@ create table tera_db.users(user_id int(8) primary key auto_increment,login_id va
 						   user_header_path varchar(255) default 'WEB-INF/img/default_user_header.img',user_icon_path varchar(255) default 'WEB-INF/img/default_user_icon.img',
 						   blog_title varchar(200) default 'ようこそブログへ',blog_header_path varchar(255) default 'WEB-INF/img/default_blog_header.img',
 						   admin_flag char(1) not null,last_login_date char(8),admin_last_login_date char(8),user_status_flag char(1) not null,user_lock_start_date date,
-						   user_lock_end_date date,blog_explanation varchar(100),user_profile varchar(2000),blog_status_flag char(1) default '0',index(fk_secret_question_id),index(user_id),index(user_name),
+						   user_lock_end_date date,blog_explanation varchar(100),user_profile varchar(2000),blog_status_flag char(1) default '0',index(user_id),index(user_name),
 						   foreign key(fk_secret_question_id) references tera_db.secret_questions(secret_question_id))engine=InnoDB;
 #　コミュニティ表
 create table tera_db.communities(community_id int(10) primary key auto_increment,community_name varchar(50),community_profile varchar(400),
