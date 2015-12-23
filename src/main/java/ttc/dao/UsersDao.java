@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.sql.Date;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -81,6 +82,7 @@ public class UsersDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         int result=0;
         try{
             UserBean ub=new UserBean();
@@ -148,15 +150,19 @@ public class UsersDao implements AbstractDao{
             }
             //ユーザのロック開始の日にちを変更
             if(map.containsKey("lockStartDate")){
-                pst.setString(10,new SimpleDateFormat().parse((String)map.get("lockStartDate")));
+
+
+                pst.setDate(10,(Date)map.get("lockStartDate"));
             }else{
-                pst.setString(10,new SimpleDateFormat().parse(ub.getLockStartDate()));
+                //String型をjava.sql.Dateに直す
+                //pst.setDate(10,(Date)ub.getLockStartDate());
             }
             //ユーザのロック終了日を変更
             if(map.containsKey("lockEndDate")){
-                pst.setString(11,new SimpleDateFormat().parse((String)map.get("lockEndDate")));
+                pst.setDate(11,(Date)map.get("lockEndDate"));
             }else{
-                pst.setString(11,new SimpleDateFormat().parse(ub.getLockEndDate()));
+                //String型をjava.sql.Dateに直す
+                //pst.setDate(11,(Date)ub.getLockEndDate());
             }
             //ユーザの自己紹介を変更
             if(map.containsKey("profile")){
