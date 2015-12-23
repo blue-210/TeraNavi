@@ -41,7 +41,7 @@ sudo cat /etc/profile | grep "M2_HOME"
 if [ "$?" -eq 1 ]
 then
   echo "M2_HOME is noting So append /etc/profile"
-  sudo echo 'export M2_HOME=/usr/local/maven' >> /etc/profile
+  sudo echo 'export M2_HOME=/usr/local/tomcat' >> /etc/profile
   sudo echo 'export M2=$M2_HOME/bin' >> /etc/profile
   sudo echo 'export PATH=$M2:$PATH' >> /etc/profile
 else
