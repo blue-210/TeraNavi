@@ -33,7 +33,7 @@ create table tera_db.articles(article_id int(10) primary key auto_increment,fk_u
 #タグ表
 create table tera_db.tags(tag_id int(10) primary key auto_increment,tag_name varchar(30) not null,index(tag_id))engine=InnoDB;
 #記事タグ表
-create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id)references tera_db.articles(article_id),
+create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id) references tera_db.articles(article_id),
 									foreign key(fk_tag_id) references tera_db.tags(tag_id))engine=InnoDB;
 #コミュニティユーザーリスト表
 create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,

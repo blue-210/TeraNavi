@@ -6,26 +6,44 @@
   version="3.0">
 
    <!-- ランディングページ -->
-   <welcome-file-list>
-     <welcome-file>index.jsp</welcome-file>
-   </welcome-file-list>/
+   <!-- <welcome-file-list>
+     <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+   </welcome-file-list> -->
    <!-- Servlet&JSP -->
-   <!-- <servlet>
+   <servlet>
       <servlet-name>index</servlet-name>
       <jsp-file>/WEB-INF/jsp/index.jsp</jsp-file>
    </servlet>
    <servlet-mapping>
       <servlet-name>index</servlet-name>
       <url-pattern>/index</url-pattern>
+   </servlet-mapping>
+
+   <!-- <servlet>
+      <servlet-name>header</servlet-name>
+      <jsp-file>/WEB-INF/jsp/header.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>header</servlet-name>
+      <url-pattern>/index</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
+      <servlet-name>footer</servlet-name>
+      <jsp-file>/WEB-INF/jsp/footer.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>footer</servlet-name>
+      <url-pattern>/index</url-pattern>
    </servlet-mapping> -->
 
    <servlet>
       <servlet-name>FrontServlet</servlet-name>
-      <servlet-class>FrontServlet</servlet-class>
+      <servlet-class>ttc.FrontServlet</servlet-class>
    </servlet>
    <servlet-mapping>
       <servlet-name>FrontServlet</servlet-name>
-      <url-pattern>/</url-pattern>
+      <url-pattern>/front/*</url-pattern>
    </servlet-mapping>
 
    <!-- エラーページ -->

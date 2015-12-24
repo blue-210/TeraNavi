@@ -57,6 +57,7 @@ public class BlogDaoTest {
             connection =  new MySqlJndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
 
             IDataSet dataset1 = new XlsDataSet(BlogDaoTest.class.getClassLoader().getResourceAsStream("testdata.xls"));
+            System.out.println(dataset1);
             // DatabaseOperation.REFRESH.execute(connection,dataset1);
             DatabaseOperation.CLEAN_INSERT.execute(connection,dataset1);
             // DatabaseOperation.CLEAN_INSERT.execute(connection,dataset2);
