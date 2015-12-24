@@ -3,6 +3,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/ArticleSortDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CommentPostCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UserSearchDaoFactory.java
+/vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ArticleSortDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/context/ResponseContext.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/Bean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/ChatDao.java
@@ -20,8 +21,8 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/BlogDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/controller/WebApplicationController.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/CommandFactory.java
-/vagrant_data/TeraNavi/src/main/java/ttc/command/KeywordSearchCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/ResourceException.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/KeywordSearchCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/AbstractDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/ArticleSortCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/MySqlConnectionManager.java
@@ -44,8 +45,8 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommentsDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/CautionBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/SignUpKeyBean.java
-/vagrant_data/TeraNavi/src/main/java/ttc/command/ParticipationCommunityCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/RulesBean.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/ParticipationCommunityCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/TopicBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/UserBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/BasicSettingCommand.java

@@ -1,7 +1,6 @@
 <%@ page
    contentType="text/html ; charset=UTF-8"
    pageEncoding="UTF-8"
-   import="java.util.ArrayList, bean.ThreadBean, java.util.Iterator"
 %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <div class="container">
        <div class="row">
@@ -27,6 +26,6 @@
            </form>
        </div><!--end row-->
     </div><!--end container-->
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

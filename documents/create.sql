@@ -18,7 +18,7 @@ create table tera_db.users(user_id int(8) primary key auto_increment,login_id va
 						   password varchar(10) not null,fk_secret_question_id int(1),secret_answer varchar(100) not null,
 						   user_header_path varchar(255) default 'WEB-INF/img/default_user_header.img',user_icon_path varchar(255) default 'WEB-INF/img/default_user_icon.img',
 						   blog_title varchar(200) default 'ようこそブログへ',blog_header_path varchar(255) default 'WEB-INF/img/default_blog_header.img',
-						   admin_flag char(1) not null,last_login_date char(8),admin_last_login_date char(8),user_status_flag char(1) not null,user_lock_start_date date,
+						   admin_flag char(1) not null,last_login_date char(100),admin_last_login_date char(100),user_status_flag char(1) not null,user_lock_start_date date,
 						   user_lock_end_date date,blog_explanation varchar(100),user_profile varchar(2000),blog_status_flag char(1) default '0',index(user_id),index(user_name),
 						   foreign key(fk_secret_question_id) references tera_db.secret_questions(secret_question_id))engine=InnoDB;
 #　コミュニティ表
@@ -33,7 +33,7 @@ create table tera_db.articles(article_id int(10) primary key auto_increment,fk_u
 #タグ表
 create table tera_db.tags(tag_id int(10) primary key auto_increment,tag_name varchar(30) not null,index(tag_id))engine=InnoDB;
 #記事タグ表
-create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id)references tera_db.articles(article_id),
+create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id) references tera_db.articles(article_id),
 									foreign key(fk_tag_id) references tera_db.tags(tag_id))engine=InnoDB;
 #コミュニティユーザーリスト表
 create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,
