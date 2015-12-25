@@ -69,37 +69,6 @@ public class BlogDaoTest {
         }
     }
 
-    // // DBの自動採番をリセットする
-    // @After
-    // public void tearDown(){
-    //     try{
-    //         // System.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
-    //         // System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming");
-    //         // InitialContext ic = new InitialContext();
-    //         // ic.createSubcontext("java:");
-    //         // ic.createSubcontext("java:comp");
-    //         // ic.createSubcontext("java:comp/env");
-    //         // ic.createSubcontext("java:comp/env/jdbc");
-    //         // MysqlDataSource ds = new MysqlDataSource();
-    //         // ds.setUser("TERA_NAVI");
-    //         // ds.setPassword("tera");
-    //         // ds.setURL("jdbc:mysql://localhost:3306/tera_db");
-    //         // ic.bind("java:comp/env/jdbc/mysql", ds);
-    //
-    //         // DBのセットアップ
-    //         // データセットの取得
-    //         Connection conn = null;
-    //         IDatabaseConnection connection = null;
-    //         IDataSet dataset1 = new XlsDataSet(BlogDaoTest.class.getClassLoader().getResourceAsStream("userstestdata.xls"));
-    //         // セットアップ
-    //         connection =  new MySqlJndiDatabaseTester("java:comp/env/jdbc/mysql").getConnection();
-    //
-    //         DatabaseOperation.DELETE.execute(connection,dataset1);
-    //     }catch(Exception e){
-    //         e.printStackTrace();
-    //         System.out.println(e.getMessage());
-    //     }
-    // }
 
     @Test
     public void readでブログを一個取得する() throws Exception{
