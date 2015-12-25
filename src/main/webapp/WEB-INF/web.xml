@@ -19,24 +19,6 @@
       <url-pattern>/index</url-pattern>
    </servlet-mapping>
 
-   <!-- <servlet>
-      <servlet-name>header</servlet-name>
-      <jsp-file>/WEB-INF/jsp/header.jsp</jsp-file>
-   </servlet>
-   <servlet-mapping>
-      <servlet-name>header</servlet-name>
-      <url-pattern>/index</url-pattern>
-   </servlet-mapping>
-
-   <servlet>
-      <servlet-name>footer</servlet-name>
-      <jsp-file>/WEB-INF/jsp/footer.jsp</jsp-file>
-   </servlet>
-   <servlet-mapping>
-      <servlet-name>footer</servlet-name>
-      <url-pattern>/index</url-pattern>
-   </servlet-mapping> -->
-
    <servlet>
       <servlet-name>FrontServlet</servlet-name>
       <servlet-class>ttc.FrontServlet</servlet-class>
