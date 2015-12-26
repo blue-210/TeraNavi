@@ -52,6 +52,7 @@ public class BlogDaoTest {
             // データセットの取得
             Connection conn = null;
             IDatabaseConnection connection = null;
+
             // IDataSet dataset2 = new XlsDataSet(SampleDaoTest.class.getClassLoader().getResourceAsStream("users.xls"));
 
             // セットアップ
