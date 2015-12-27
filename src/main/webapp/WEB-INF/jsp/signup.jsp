@@ -26,13 +26,13 @@
     <div class="container">
        <div class="row">
            <h1>新規登録テストページ</h1>
-           <form action="/signup" method="post">
+           <form action="front/signup" method="post">
                ログインID <input type="text" name="loginId"><br>
                パスワード <input type="text" name="password"><br>
                ユーザ名 <input type="text" name="userName"><br>
                ふりがな <input type="text" name="nameKana"><br>
                性別 <input type="text" name="sex"><br>
-               性別の表示非表示 ・表示<input type="radio" name="sexVisibeFrag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
+               性別の表示非表示 ・表示<input type="radio" name="sexVisibleFlag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
                生年月日 <input type="date" name="birthDate"><br>
                MAilAddress <input type="text" name="mailAddress"><br>
                秘密の質問 <select name="quepstionId">
