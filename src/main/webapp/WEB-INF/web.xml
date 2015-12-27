@@ -28,6 +28,15 @@
       <url-pattern>/front/*</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+       <servlet-name>signup</servlet-name>
+       <jsp-file>/WEB-INF/jsp/signup.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>signup</servlet-name>
+       <url-pattern>/sign</url-pattern>
+   </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>

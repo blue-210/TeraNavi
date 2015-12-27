@@ -51,7 +51,8 @@ public class SignUpCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("SignUp");
+            resc.setResult("params");
+            resc.setTarget("signupResult");
 
             return resc;
         }catch(IntegrationException e){
