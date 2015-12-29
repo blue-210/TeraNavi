@@ -14,23 +14,19 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class KeywordSearchCommand extends AbstractCommand{
+public class ArticleSortCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
 		try{
 			RequestContext reqc = getRequestContext();
-			String[] keywords=null;
-			String keyword = reqc.getParameter("keyword")[0];
-			String target = reqc.getParameter("target")[0];
-			keywords=keyword.split(" ", 0);
 
-			Map params = new HashMap();
+			String sortType = reqc.getParameter("sortType")[0];
+			//String target = reqc.getParameter("target")[0];
 
-			for(int i=0;i<keywords.length;i++){
-				params.put("keyword"+i,keywords[i]);
-			}
+            Map params = new HashMap();
+            params.put("sortType",sortType);
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("sort");
 			AbstractDao dao = factory.getAbstractDao();
 
 			MySqlConnectionManager.getInstance().commit();
