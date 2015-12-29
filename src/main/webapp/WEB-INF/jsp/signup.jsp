@@ -31,7 +31,7 @@
                パスワード <input type="text" name="password"><br>
                ユーザ名 <input type="text" name="userName"><br>
                ふりがな <input type="text" name="nameKana"><br>
-               性別 <input type="text" name="sex"><br>
+               性別 ・女性<input type="radio" name="sex" value="f"> ・男性<input type="radio" name="sex" value="m"><br>
                性別の表示非表示 ・表示<input type="radio" name="sexVisibleFlag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
                生年月日 <input type="date" name="birthDate"><br>
                MAilAddress <input type="text" name="mailAddress"><br>
