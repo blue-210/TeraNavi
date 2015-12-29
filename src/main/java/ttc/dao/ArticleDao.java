@@ -16,6 +16,38 @@ import ttc.exception.IntegrationException;
 public class ArticleDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            MySqlConnectionManager.getInstance().beginTransaction();
+            StringBuffer sql = new StringBuffer();
+            sql.append("");
+            sql.append("");
+            sql.append("");
+            sql.append("where article_id = ?");
+
+            pst = cn.prepareStatement( new String(sql) );
+
+            pst.setString(1, (String)map.get("articleId"));
+
+            result = pst.executeQuery();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
         return new ArticleBean();
     }
 
@@ -63,7 +95,39 @@ public class ArticleDao implements AbstractDao{
     }
 
     public List readAll(Map map)throws IntegrationException{
-        return new ArrayList();
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            MySqlConnectionManager.getInstance().beginTransaction();
+            StringBuffer sql = new StringBuffer();
+            sql.append("");
+            sql.append("");
+            sql.append("");
+            sql.append("where user_id = ?");
+
+            pst = cn.prepareStatement( new String(sql) );
+
+            pst.setString(1, (String)map.get("userId"));
+
+            result = pst.executeQuery();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
+        return new ArticleBean();
     }
 
 }
