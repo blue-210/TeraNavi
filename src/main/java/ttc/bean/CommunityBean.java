@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CommunityBean implements Bean{
     private String id;
-    private String nanme;
+    private String name;
     private String profile;
     private String iconPath;
     private String headerPath;
@@ -31,19 +31,19 @@ public class CommunityBean implements Bean{
     }
 
     /**
-    * Returns value of nanme
+    * Returns value of name
     * @return
     */
-    public String getNanme() {
-    	return nanme;
+    public String getName() {
+    	return name;
     }
 
     /**
-    * Sets new value of nanme
+    * Sets new value of name
     * @param
     */
-    public void setNanme(String nanme) {
-    	this.nanme = nanme;
+    public void setName(String name) {
+    	this.name = name;
     }
 
     /**
