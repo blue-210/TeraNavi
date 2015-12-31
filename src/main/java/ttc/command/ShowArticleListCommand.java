@@ -14,38 +14,26 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ArticlePostCommand extends AbstractCommand{
+public class ShowArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
-
-            String title = reqc.getParameter("title")[0];
-
-            String body = reqc.getParameter("body")[0];
-
-            String date = reqc.getParameter("date")[0];
-
-            String status = reqc.getParameter("status")[0];
+            String articleId = reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("userId", userId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
-            params.put("status", status);
+            params.put("userId", articleId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+            resc.setTarget("showarticlelist");
 
             return resc;
 
