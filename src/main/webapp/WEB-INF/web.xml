@@ -37,6 +37,15 @@
        <url-pattern>/sign</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+       <servlet-name>articlepost</servlet-name>
+       <jsp-file>/WEB-INF/jsp/articlepost.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>articlepost</servlet-name>
+       <url-pattern>/writearticle</url-pattern>
+   </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>

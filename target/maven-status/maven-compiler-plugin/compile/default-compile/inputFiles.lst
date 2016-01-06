@@ -30,6 +30,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/UsersCommunitiesDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/BlogSearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/SecretQuestionBean.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/DraftArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/CommunitySearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/ApplicationException.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/ArticleBean.java
@@ -41,9 +42,11 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UsersDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/ShowArticleListCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UsersCommunitiesDaoFactory.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/CommunitySettingCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/UserSearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/CommunitiesDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/TagBean.java
+/vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ArticleDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommentsDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/CautionBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/SignUpKeyBean.java
