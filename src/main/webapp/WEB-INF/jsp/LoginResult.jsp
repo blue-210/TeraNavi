@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログイン</title>
+    <title>ログインリザルト</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,13 +25,11 @@
 
     <div class="container">
        <div class="row">
-           <h1>ログインテストページ</h1>
-           <form action="front/login" method="post">
-               ログインID <input type="text" name="loginId"><br>
-               パスワード <input type="text" name="password"><br>
-               <input type="submit" value="ログイン">
+           <h1>${session.loginUser.userName}さん、また合いましたね</h1>
 
-           </form>
+           <h1>ろぐさくっ！</h1>
+
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

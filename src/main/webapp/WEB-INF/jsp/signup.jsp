@@ -33,13 +33,14 @@
                ふりがな <input type="text" name="nameKana"><br>
                性別 ・女性<input type="radio" name="sex" value="f"> ・男性<input type="radio" name="sex" value="m"><br>
                性別の表示非表示 ・表示<input type="radio" name="sexVisibleFlag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
-               生年月日 <input type="date" name="birthDate"><br>
+               生年月日 <input type="text" name="birthDate"><br>
                MAilAddress <input type="text" name="mailAddress"><br>
                秘密の質問 <select name="quepstionId">
                    <option value="1">質問1</option>
                    <option value="2">質問2</option>
                </select><br>
-               秘密の質問の答え <input type="text" name="quepstionAnswer"><br>
+               秘密の質問の答え <input type="text" name="questionAnswer"><br>
+               <input type="hidden" name="adminFlag" value="0">
                <input type="submit" value="登録">
 
            </form>
