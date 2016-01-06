@@ -200,8 +200,10 @@ public class UsersDao implements AbstractDao{
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
-            sql.append("values(?,?,?,?,?,?,?,?,?,?)");
+            sql.append("insert into users(login_id,user_name,");
+            sql.append("user_name_kana,sex,sex_visible_flag,birth_date,");
+            sql.append("mail_address,password,fk_secret_question_id,secret_answer,admin_flag,user_status_flag) ");
+            sql.append("values(?,?,?,?,?,?,?,?,?,?,?,'0')");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("loginId"));
@@ -214,17 +216,19 @@ public class UsersDao implements AbstractDao{
             pst.setString(8,(String)map.get("password"));
             pst.setString(9,(String)map.get("quepstionId"));
             pst.setString(10,(String)map.get("secretAnswer"));
+            pst.setString(11,(String)map.get("adminFlag"));
 
             count = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{
                 if(pst!=null){
                     pst.close();
                 }
             }catch(SQLException e){
-                e.printStackTrace();
+                throw new IntegrationException(e.getMessage(),e);
             }
         }
         return count;
@@ -237,10 +241,10 @@ public class UsersDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
             sql.append("select user_id,login_id,user_name,user_name_kana,sex,sex_visible_flag");
-            sql.append(",birth_date,mali_address,password,user_header_path,user_icon_path,admin_flag,last_login_dete,");
+            sql.append(",birth_date,mail_address,password,user_header_path,user_icon_path,admin_flag,last_login_date,");
             sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
-            sql.append("user_profile from users");
-            sql.append(map.get("where"));
+            sql.append("user_profile from users ");
+            sql.append((String)map.get("where"));
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("value"));
