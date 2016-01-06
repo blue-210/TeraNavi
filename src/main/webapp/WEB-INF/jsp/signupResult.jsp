@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>テスト画面</title>
+    <title>登録結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,14 +25,11 @@
 
     <div class="container">
        <div class="row">
-           <h1>トップページだよ</h1>
-           <h1>CommentPostのテスト</h1>
-           <form action="compost" method="post">
-               <input type="text" name="userId"><br>
-               <input type="text" name="articleId"><br>
-               <input type="text" name="body"><br>
-               <input type="submit" value="test">
-           </form>
+           <h1>ようこそ${result.userName}さん!!</h1>
+
+           <p>
+               あなたのログインIDは「${result.loginId}」です
+           </p>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
