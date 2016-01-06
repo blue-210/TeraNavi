@@ -22,10 +22,10 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String messageId=reqc.getParameter("messageId")[0];
+            String sendUserId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("messageId", messageId);
+            params.put("sendUserId", sendUserId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 

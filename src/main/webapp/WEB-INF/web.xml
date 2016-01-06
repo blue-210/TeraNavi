@@ -46,6 +46,15 @@
        <url-pattern>/login</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+       <servlet-name>dmsend</servlet-name>
+       <jsp-file>/WEB-INF/jsp/dmsend.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>dmsend</servlet-name>
+       <url-pattern>/dmsend</url-pattern>
+   </servlet-mapping>
+
 
 
    <!-- エラーページ -->

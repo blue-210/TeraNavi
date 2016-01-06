@@ -77,6 +77,7 @@ public class DirectMessageReceiveDao implements AbstractDao{
             sql.append("where user_id = ?");
 
             pst = cn.prepareStatement(new String(sql));
+            pst.setInt(4, (Integer)map.get("sendUserId") );
 
             ResultSet rs = pst.executeQuery();
 
