@@ -138,7 +138,8 @@ public class ArticleDao implements AbstractDao{
             sql.setLength(0);//StringBuffer初期化
 
             //記事一覧の取得----------------------------------------------------------------------
-            sql.append("select article_id, article_title, article_body, article_created_date ");
+            sql.append("select article_id, article_title, article_body, ");
+            sql.append("to_char(article_created_date,'YYYY/MMDD日 HH24:MI:SS') ");
             sql.append("from articles ");
             sql.append("where fk_user_id = ? and article_status_flag = '0'");
 
@@ -191,7 +192,7 @@ public class ArticleDao implements AbstractDao{
             }
         }
 
-        return results;//ArrayListの1つ目にはBlogBeanが入ってます
+        return results;//ArrayListの1つ目にはUserBean、2つ目にはBlogBean、それ以降にArticleBeanが入ってます
     }
 
 }
