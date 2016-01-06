@@ -20,7 +20,40 @@ public class CommunitiesDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
-        return 0;
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql = new StringBuffer();
+            sql.append("update communities set ");
+            sql.append("community_name=?,community_profile=?,");
+            sql.append("community_icon_path=?,community_header_path=?,");
+            sql.append("community_delete_flag=? where community_id=?");
+            pst = cn.prepareStatement(new String(sql));
+
+            pst.setString(1,(String)map.get("communityName"));
+            pst.setString(2,(String)map.get("communityProfile"));
+            pst.setString(3,(String)map.get("iconPath"));
+            pst.setString(4,(String)map.get("headerPath"));
+            pst.setString(5,(String)map.get("deleteFlag"));
+            pst.setString(6,(String)map.get("communityId"));
+
+            result = pst.executeUpdate();
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
 
     public int insert(Map map)throws IntegrationException{
