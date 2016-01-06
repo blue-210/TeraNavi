@@ -14,9 +14,9 @@ public class WebRequestContext implements RequestContext{
 	public WebRequestContext(){}
 
 	public String getCommandPath(){
-		String servletPath = request.getServletPath();
+		String pathInfo = request.getPathInfo();
 
-		String commandPath = servletPath.substring(1);
+		String commandPath = pathInfo.substring(1);
 
 		return commandPath;
 	}
