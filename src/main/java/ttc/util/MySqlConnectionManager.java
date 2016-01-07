@@ -49,7 +49,7 @@ public class MySqlConnectionManager{
         }
     }
 
-    public void beginTransaction(){
+    public synchronized void beginTransaction(){
         if(connection == null){
             getConnection();
         }

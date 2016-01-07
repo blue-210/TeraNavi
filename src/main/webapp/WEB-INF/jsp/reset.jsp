@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿</title>
+    <title>パスワードリセット</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,13 +25,16 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事投稿ページ</h1>
-           <form action="front/articlepost" method="post">
-               ユーザーID <input type="text" name="userId"><br>
-               タイトル <input type="text" name="title"><br>
-               内容 <textarea name="body" rows="4" cols="40"></textarea><br>
-               公開日時 <input type="text" name="date" value="now"><br>
-               <input type="submit" value="登録">
+           <h1>リセットテストページ</h1>
+           <form action="front/resetAuthenticate" method="post">
+               ログインID <input type="text" name="loginId"><br>
+			   秘密の質問 <select name="questionNo">
+                   <option value="1">質問1</option>
+                   <option value="2">質問2</option>
+               </select><br>
+			   秘密の質問の答え <input type="text" name="questionAnswer"><br>
+               <input type="submit" value="パスワードリセット">
+
            </form>
        </div><!--end row-->
     </div><!--end container-->

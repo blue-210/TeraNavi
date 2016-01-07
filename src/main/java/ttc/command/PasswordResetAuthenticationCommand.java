@@ -11,48 +11,50 @@ import ttc.exception.BusinessLogicException;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 
-public class LogoutCommand extends AbstractCommand{
+public class PasswordResetAuthenticationCommand extends AbstractCommand{
 
 
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
-            Calendar c = Calendar.getInstance();
 
-            String userId=reqc.getParameter("userId")[0];
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            String date=sdf.format(c.getTime());
-
+            String loginId=reqc.getParameter("loginId")[0];
+			String questionNo = reqc.getParameter("questionNo")[0];
+			String questionAnswer = reqc.getParameter("questionAnswer")[0];
 
 
 
             Map params = new HashMap();
-            params.put("userId",userId);
-            params.put("lastLoginDate",date);
-
+            params.put("value",loginId);
+            params.put("where","where login_id=?");
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
 
+			UserBean ub = (UserBean)dao.read(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			System.out.println(questionNo.equals(ub.getQuestionNo()));
+			System.out.println(ub.getQuestionNo());
+
+			if(questionNo.equals(ub.getQuestionNo()) && questionAnswer.equals(ub.getSecretAnswer())){
+				resc.setResult(ub);
+				resc.setTarget("passResetPage");
+
+	            return resc;
+			}else{
+				throw new BusinessLogicException("入力内容が違います",null);
+			}
 
 
 
-            resc.setTarget("LogoutResult");
-
-            return resc;
         }catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }

@@ -12,7 +12,7 @@ public class UserBean implements Bean{
     private String birthDate;
     private String mailAddress;
     private String password;
-    private SecretQuestionBean question;
+    private String questionNo;
     private String secretAnswer;
     private String headerPath;
     private String iconPath;
@@ -176,16 +176,16 @@ public class UserBean implements Bean{
 	* Returns value of question
 	* @return
 	*/
-	public SecretQuestionBean getQuestion() {
-		return question;
+	public String getQuestionNo() {
+		return questionNo;
 	}
 
 	/**
 	* Sets new value of question
 	* @param
 	*/
-	public void setQuestion(SecretQuestionBean question) {
-		this.question = question;
+	public void setQuestionNo(String questionNo) {
+		this.questionNo = questionNo;
 	}
 
 	/**
