@@ -38,7 +38,16 @@
    </servlet-mapping>
 
    <servlet>
-       <servlet-name>login</servlet-name>
+       <servlet-name>articlepost</servlet-name>
+       <jsp-file>/WEB-INF/jsp/articlepost.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>articlepost</servlet-name>
+       <url-pattern>/articlepost</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
+        <servlet-name>login</servlet-name>
        <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
    </servlet>
    <servlet-mapping>
@@ -47,6 +56,7 @@
    </servlet-mapping>
 
    <servlet>
+
   	 <servlet-name>reset</servlet-name>
   	 <jsp-file>/WEB-INF/jsp/reset.jsp</jsp-file>
    </servlet>
@@ -54,6 +64,17 @@
   	 <servlet-name>reset</servlet-name>
   	 <url-pattern>/reset</url-pattern>
    </servlet-mapping>
+
+       <servlet-name>dmsend</servlet-name>
+       <jsp-file>/WEB-INF/jsp/dmsend.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>dmsend</servlet-name>
+       <url-pattern>/dmsend</url-pattern>
+   </servlet-mapping>
+
+
+
 
    <!-- エラーページ -->
    <!-- <error-page>

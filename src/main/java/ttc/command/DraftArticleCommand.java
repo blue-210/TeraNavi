@@ -14,7 +14,7 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ArticlePostCommand extends AbstractCommand{
+public class DraftArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
@@ -27,7 +27,7 @@ public class ArticlePostCommand extends AbstractCommand{
 
             String date = reqc.getParameter("date")[0];
 
-            String status = "0";
+            String status = "1";
 
             Map params = new HashMap();
             params.put("userId", userId);
@@ -45,7 +45,7 @@ public class ArticlePostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+            resc.setTarget("Draftarticle");
 
             return resc;
 

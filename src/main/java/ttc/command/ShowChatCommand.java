@@ -11,41 +11,32 @@ import ttc.exception.IntegrationException;
 import java.util.Map;
 import java.util.HashMap;
 
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ArticlePostCommand extends AbstractCommand{
+public class ShowChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
-
-            String title = reqc.getParameter("title")[0];
-
-            String body = reqc.getParameter("body")[0];
-
-            String date = reqc.getParameter("date")[0];
-
-            String status = "0";
+            String userId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
             params.put("userId", userId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
-            params.put("status", status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+            resc.setResult(dao.readAll(params));
+            resc.setTarget("chat");
 
             return resc;
 

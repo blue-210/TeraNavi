@@ -14,12 +14,12 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ArticlePostCommand extends AbstractCommand{
+public class EditArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
+            String userId = reqc.getParameter("articleId")[0];
 
             String title = reqc.getParameter("title")[0];
 
@@ -40,12 +40,12 @@ public class ArticlePostCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+            resc.setTarget("editarticle");
 
             return resc;
 
