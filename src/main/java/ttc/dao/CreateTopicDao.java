@@ -10,13 +10,13 @@ import java.sql.SQLException;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
-import ttc.bean.ArticleBean;
+import ttc.bean.TopicBean;
 import ttc.exception.IntegrationException;
 
-public class ArticleDao implements AbstractDao{
+public class CreateTopicDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
-        return new ArticleBean();
+        return new TopicBean();
     }
 
     public int update(Map map)throws IntegrationException{

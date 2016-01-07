@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ttc.bean.ArticleBean;
+import ttc.bean.TagBean;
 import ttc.bean.Bean;
 
 import ttc.exception.IntegrationException;
 
 import ttc.util.MySqlConnectionManager;
 
-public class ArticleSearchDao implements AbstractDao{
+public class TagSearchDao implements AbstractDao{
     public int insert(Map map)throws IntegrationException{
         return 0;
     }
@@ -39,16 +40,16 @@ public class ArticleSearchDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            StringBuffer tag_sql = new StringBuffer();
+            StringBuffer sql = new StringBuffer();
             sql.append("select tag_id,tag_name from tags where tag_name=?");
-            for(int i=1;i<keywords.length;i++){
+            for(int i=1;i<tags.length;i++){
                 sql.append(" and");
                 sql.append(" tag_name=? ");
             }
             for(int i=0;i<tags.length;i++){
                 pst.setString(i+1,tags[i]);
             }
-            pst = cn.prepareStatement(new String(tag_sql));
+            pst = cn.prepareStatement(new String(sql));
 
             ResultSet rs = pst.executeQuery();
 
