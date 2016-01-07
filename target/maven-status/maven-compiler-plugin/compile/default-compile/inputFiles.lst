@@ -32,6 +32,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/UsersCommunitiesDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/BlogSearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/SecretQuestionBean.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/DraftArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/CommunitySearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/ApplicationException.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/DirectMessageSendDaoFactory.java
