@@ -8,7 +8,7 @@
     <html>
         <head>
             <meta charset="UTF-8">
-            <title>トピック一覧</title>
+            <title>トピックページ</title>
             <!-- Latest compiled and minified CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -21,7 +21,7 @@
         <body>
             <%-- ヘッダー部分のHTMLを読み込み --%>
             <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-            <h1>>${session.community.name}のトピック一覧</h1>
+            <h1>>${session.topic.name}</h1>
 
             <c:forEach var="topic" items="topics">
                 <li class="list-group-item">

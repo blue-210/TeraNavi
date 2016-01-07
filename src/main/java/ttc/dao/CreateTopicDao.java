@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.TopicBean;
+import ttc.bean.UserBean;
 import ttc.exception.IntegrationException;
 
 public class CreateTopicDao implements AbstractDao{
@@ -63,7 +65,46 @@ public class CreateTopicDao implements AbstractDao{
     }
 
     public List readAll(Map map)throws IntegrationException{
-        return new ArrayList();
+        List result = new ArrayList();
+        PreparedStatement pst = null;
+        String comId= null;
+        comId=(String)map.get("communityId");
+
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            String sql="select topic_id,fk_create_user_id,topic_name,topic_update_date,topic_create_date,users.user_name from topic inner join users on topic.create_user_id=users.user_id where fk_community_Id=?";
+
+            pst.setString(1,comId);
+
+            pst = cn.prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()){
+                TopicBean topic = new TopicBean();
+                topic.setTopicId(rs.getString(1));
+                topic.setCreateUserId(rs.getString(2));
+                topic.setName(rs.getString(3));
+                topic.setUpdateDate(rs.getString(4));
+                topic.setCreateDate(rs.getString(5));
+                topic.setCreateUserName(rs.getString(6));
+                result.add(topic);
+            }
+
+        }catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
 
 }
