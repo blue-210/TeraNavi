@@ -43,11 +43,11 @@
    </servlet>
    <servlet-mapping>
        <servlet-name>articlepost</servlet-name>
-       <url-pattern>/writearticle</url-pattern>
+       <url-pattern>/articlepost</url-pattern>
    </servlet-mapping>
 
-
-   <servlet-name>login</servlet-name>
+   <servlet>
+        <servlet-name>login</servlet-name>
        <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
    </servlet>
    <servlet-mapping>
