@@ -46,7 +46,14 @@
        <url-pattern>/login</url-pattern>
    </servlet-mapping>
 
-
+   <servlet>
+  	 <servlet-name>reset</servlet-name>
+  	 <jsp-file>/WEB-INF/jsp/reset.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+  	 <servlet-name>reset</servlet-name>
+  	 <url-pattern>/reset</url-pattern>
+   </servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>

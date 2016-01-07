@@ -85,7 +85,7 @@ public class UsersDao implements AbstractDao{
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         int result=0;
         try{
-            UserBean ub=new UserBean();
+            UserBean ub=(UserBean)map.get("userbean");
             Connection cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
@@ -243,7 +243,7 @@ public class UsersDao implements AbstractDao{
             sql.append("select user_id,login_id,user_name,user_name_kana,sex,sex_visible_flag");
             sql.append(",birth_date,mail_address,password,user_header_path,user_icon_path,admin_flag,last_login_date,");
             sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
-            sql.append("user_profile from users ");
+            sql.append("fk_secret_question_id,user_profile,secret_answer from users ");
             sql.append((String)map.get("where"));
             pst = cn.prepareStatement(new String(sql));
 
@@ -269,7 +269,9 @@ public class UsersDao implements AbstractDao{
                 ub.setUserStatus(rs.getString(14));
                 ub.setLockEndDate(rs.getString(15));
                 ub.setLockStartDate(rs.getString(16));
-                ub.setProfile(rs.getString(17));
+				ub.setQuestionNo(rs.getString(17));
+                ub.setProfile(rs.getString(18));
+				ub.setSecretAnswer(rs.getString(19));
 
             }else{
                 throw new NotLineException("0行が選択されました",null);

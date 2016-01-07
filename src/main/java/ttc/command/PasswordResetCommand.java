@@ -11,46 +11,41 @@ import ttc.exception.BusinessLogicException;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 
-public class LogoutCommand extends AbstractCommand{
+public class PasswordResetCommand extends AbstractCommand{
 
 
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
-            RequestContext reqc = getRequestContext();
-            Calendar c = Calendar.getInstance();
+			RequestContext reqc = getRequestContext();
 
-            String userId=reqc.getParameter("userId")[0];
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            String date=sdf.format(c.getTime());
-
-
-
+			String loginId = reqc.getParameter("loginId")[0];
+			String password = reqc.getParameter("password")[0];
 
             Map params = new HashMap();
-            params.put("userId",userId);
-            params.put("lastLoginDate",date);
+			params.put("value",loginId);
+			params.put("where","where login_id=?");
 
+			params.put("password",password);
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            UserBean ub = (UserBean)dao.read(params);
 
+			params.put("userbean",ub);
+			dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
+			resc.setResult(params);
 
-
-            resc.setTarget("LogoutResult");
+            resc.setTarget("resetResult");
 
             return resc;
         }catch(IntegrationException e){
