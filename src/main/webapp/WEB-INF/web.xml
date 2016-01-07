@@ -65,6 +65,7 @@
   	 <url-pattern>/reset</url-pattern>
    </servlet-mapping>
 
+	<servlet>
        <servlet-name>dmsend</servlet-name>
        <jsp-file>/WEB-INF/jsp/dmsend.jsp</jsp-file>
    </servlet>
