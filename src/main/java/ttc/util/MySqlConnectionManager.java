@@ -11,6 +11,7 @@ public class MySqlConnectionManager{
     private static MySqlConnectionManager myInstance = null;
     private Connection connection = null;
 
+
     private MySqlConnectionManager(){}
 
     public static MySqlConnectionManager getInstance(){
@@ -24,12 +25,18 @@ public class MySqlConnectionManager{
         return myInstance;
     }
 
+	public static void destroy(){
+		// Connection is Closed対策
+		myInstance = null;
+	}
+
     public Connection getConnection(){
         if(connection == null){
             try{
                 InitialContext init = new InitialContext();
                 DataSource source = (DataSource)init.lookup("java:comp/env/jdbc/mysql");
                 connection = source.getConnection();
+				connection.setAutoCommit(false);
             }catch(NamingException e){
                 e.printStackTrace();
             }catch(SQLException e){
@@ -46,11 +53,14 @@ public class MySqlConnectionManager{
             }
         }catch(SQLException e){
             e.printStackTrace();
-        }
+        }finally{
+			destroy();
+		}
     }
 
-    public synchronized void beginTransaction(){
-        if(connection == null){
+    public void beginTransaction(){
+
+		if(connection == null){
             getConnection();
         }
         try{
