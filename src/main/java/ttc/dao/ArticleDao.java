@@ -124,7 +124,44 @@ public class ArticleDao implements AbstractDao{
     }
 
     public int update(Map map)throws IntegrationException{
-        return 0;
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            MySqlConnectionManager.getInstance().beginTransaction();
+            StringBuffer sql = new StringBuffer();
+            sql.append("update articles set ");
+            sql.append("article_title = '?', ");
+            sql.append("article_body = '?', ");
+            sql.append("article_created_date = ?, ");
+            sql.append("article_status_flag = '?' ");
+            sql.append("where article_id = ?");
+
+            pst = cn.prepareStatement( new String(sql) );
+
+            pst.setString(1, (String)map.get("title"));
+            pst.setString(2, (String)map.get("body"));
+            pst.setString(3, (String)map.get("date"));
+            pst.setString(4, (String)map.get("status"));
+            pst.setString(5, (String)map.get("articleId"));
+
+            result = pst.executeUpdate();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
 
     public int insert(Map map)throws IntegrationException{
@@ -138,7 +175,7 @@ public class ArticleDao implements AbstractDao{
             sql.append("insert into ");
             sql.append("articles(fk_user_id, article_title, article_body, ");
             sql.append("article_created_date, article_status_flag) ");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,'?','?',?,'?')");
 
             pst = cn.prepareStatement( new String(sql) );
 

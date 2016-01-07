@@ -85,7 +85,7 @@ public class UsersDao implements AbstractDao{
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         int result=0;
         try{
-            UserBean ub=new UserBean();
+            UserBean ub=(UserBean)map.get("userbean");
             Connection cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
@@ -243,7 +243,7 @@ public class UsersDao implements AbstractDao{
             sql.append("select user_id,login_id,user_name,user_name_kana,sex,sex_visible_flag");
             sql.append(",birth_date,mail_address,password,user_header_path,user_icon_path,admin_flag,last_login_date,");
             sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
-            sql.append("user_profile from users ");
+            sql.append("fk_secret_question_id,user_profile,secret_answer from users ");
             sql.append((String)map.get("where"));
             pst = cn.prepareStatement(new String(sql));
 
@@ -253,23 +253,25 @@ public class UsersDao implements AbstractDao{
 
             if(rs.next()){
 
-                ub.setId(rs.getString(1));
-                ub.setUserName(rs.getString(2));
-                ub.setNameKana(rs.getString(3));
-                ub.setSex(rs.getString(4));
-                ub.setSexVisibleFlag(rs.getString(5));
-                ub.setBirthDate(rs.getString(6));
-                ub.setMailAddress(rs.getString(7));
-                ub.setPassword(rs.getString(8));
-                ub.setHeaderPath(rs.getString(9));
-                ub.setIconPath(rs.getString(10));
-                ub.setAdminFlag(rs.getString(11));
-                ub.setLastLoginDate(rs.getString(12));
-                ub.setAdminLastLoginDate(rs.getString(13));
-                ub.setUserStatus(rs.getString(14));
-                ub.setLockEndDate(rs.getString(15));
-                ub.setLockStartDate(rs.getString(16));
-                ub.setProfile(rs.getString(17));
+                ub.setId(rs.getString("user_id"));
+                ub.setUserName(rs.getString("user_name"));
+                ub.setNameKana(rs.getString("user_name_kana"));
+                ub.setSex(rs.getString("sex"));
+                ub.setSexVisibleFlag(rs.getString("sex_visible_flag"));
+                ub.setBirthDate(rs.getString("birth_date"));
+                ub.setMailAddress(rs.getString("mail_address"));
+                ub.setPassword(rs.getString("password"));
+                ub.setHeaderPath(rs.getString("user_header_path"));
+                ub.setIconPath(rs.getString("user_icon_path"));
+                ub.setAdminFlag(rs.getString("admin_flag"));
+                ub.setLastLoginDate(rs.getString("last_login_date"));
+                ub.setAdminLastLoginDate(rs.getString("admin_last_login_date"));
+                ub.setUserStatus(rs.getString("user_status_flag"));
+                ub.setLockEndDate(rs.getString("user_lock_end_date"));
+                ub.setLockStartDate(rs.getString("user_lock_start_date"));
+				ub.setQuestionNo(rs.getString("fk_secret_question_id"));
+                ub.setProfile(rs.getString("user_profile"));
+				ub.setSecretAnswer(rs.getString("secret_answer"));
 
             }else{
                 throw new NotLineException("0行が選択されました",null);

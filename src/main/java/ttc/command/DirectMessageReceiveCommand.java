@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
 import ttc.exception.BusinessLogicException;
+import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -16,45 +16,32 @@ import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.UserBean;
 
-public class LogoutCommand extends AbstractCommand{
-
-
+public class DirectMessageReceiveCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
-            Calendar c = Calendar.getInstance();
 
-            String userId=reqc.getParameter("userId")[0];
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            String date=sdf.format(c.getTime());
-
-
-
+            String sendUserId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("userId",userId);
-            params.put("lastLoginDate",date);
-
+            params.put("sendUserId", sendUserId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
-            AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
 
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dm");
+            AbstractDao dao = factory.getAbstractDao();
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-
-
-
-            resc.setTarget("LogoutResult");
+            resc.setResult(dao.readAll(params));
+            resc.setTarget("showdm");
 
             return resc;
+
         }catch(IntegrationException e){
-            throw new BusinessLogicException(e.getMessage(),e);
+            throw new BusinessLogicException(e.getMessage(), e);
         }
     }
 }
