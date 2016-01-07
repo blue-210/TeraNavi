@@ -41,6 +41,9 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			System.out.println(questionNo.equals(ub.getQuestionNo()));
+			System.out.println(ub.getQuestionNo());
+
 			if(questionNo.equals(ub.getQuestionNo()) && questionAnswer.equals(ub.getSecretAnswer())){
 				resc.setResult(ub);
 				resc.setTarget("passResetPage");
