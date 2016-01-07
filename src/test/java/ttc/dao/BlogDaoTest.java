@@ -19,6 +19,9 @@ import org.dbunit.database.IDatabaseConnection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import ttc.dao.BlogDao;
+import ttc.bean.BlogBean;
+import ttc.sample.SampleUsersBean;
+import ttc.sample.SampleDaoTest;
 
 import java.util.HashMap;
 
@@ -62,7 +65,7 @@ public class BlogDaoTest {
     }
 
     @Test
-    public void readでユーザを1人取得できる() throws Exception{
+    public void readでブログを一個取得する() throws Exception{
         // 初期化
         BlogDao bdao = new BlogDao();
         BlogBean blog = null;
@@ -70,7 +73,7 @@ public class BlogDaoTest {
         HashMap param = new HashMap();
         param.put("userId","2");
         // 実行
-        blog = bdao.read(param);
+        blog = (BlogBean)bdao.read(param);
 
         // 検証
         assertThat(blog.getTitle(),is("くるっぽー"));

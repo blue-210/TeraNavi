@@ -14,6 +14,8 @@ import ttc.bean.Bean;
 import ttc.exception.IntegrationException;
 import ttc.util.MySqlConnectionManager;
 
+import ttc.exception.NotLineException;
+
 public class UsersDao implements AbstractDao{
     PreparedStatement pst=null;
     Connection cn=null;
@@ -85,7 +87,7 @@ public class UsersDao implements AbstractDao{
             cn=MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into users(login_id,user_name,user_name_kana,sex,sex_visible_flg,birth_date,mail_address,password,fk_secret_question_id,secret_answer)");
-            sql.append("values(?,?,?,?,?,?,?,?,?,?);");
+            sql.append("values(?,?,?,?,?,?,?,?,?,?)");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("loginId"));
@@ -119,39 +121,26 @@ public class UsersDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql=new StringBuffer();
+            sql.append("select user_id,user_name,password,user_icon_path from users");
+            sql.append(map.get("where"));
+            pst = cn.prepareStatement(new String(sql));
 
-            String sql = "select * from users where user_id=?";
-            pst = cn.prepareStatement(sql);
-
-            pst.setString(1,(String)map.get("userId"));
+            pst.setString(1,(String)map.get("loginId"));
 
             ResultSet rs = pst.executeQuery();
 
-            rs.next();
-            ub.setId(rs.getString(1));
-            ub.setLoginId(rs.getString(2));
-            ub.setUserName(rs.getString(3));
-            ub.setNameKana(rs.getString(4));
-            ub.setSex(rs.getString(5));
-            ub.setSexVisibleFlag(rs.getString(6));
-            ub.setBirthDate(rs.getString(7));
-            ub.setMailAddress(rs.getString(8));
-            ub.setPassword(rs.getString(9));
-            // あとでなおしてね
-            // ub.setQuestion(rs.getString(10));
-            ub.setSecretAnswer(rs.getString(11));
-            ub.setHeaderPath(rs.getString(12));
-            ub.setIconPath(rs.getString(13));
-            // ub.setTitle(rs.getString(14));
-            // ub.setHeadPhotoPath(rs.getString(15));
-            ub.setAdminFlag(rs.getString(16));
-            ub.setLastLoginDate(rs.getString(17));
-            ub.setAdminLastLoginDate(rs.getString(18));
-            ub.setUserStatus(rs.getString(19));
-            ub.setLockEndDate(rs.getString(20));
-            ub.setLockStartDate(rs.getString(21));
-            // ub.setBlogExplanation(rs.getString(22));
-            ub.setProfile(rs.getString(23));
+            if(rs.next()){
+
+                ub.setId(rs.getString(1));
+                ub.setUserName(rs.getString(2));
+                ub.setPassword(rs.getString(3));
+                ub.setIconPath(rs.getString(4));
+
+            }else{
+                throw new NotLineException("0行が選択されました",null);
+            };
+
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
         }finally{
