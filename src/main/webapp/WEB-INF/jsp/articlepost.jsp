@@ -29,7 +29,7 @@
            <form action="front/articlepost" method="post">
                ユーザーID <input type="text" name="userId"><br>
                タイトル <input type="text" name="title"><br>
-               内容 <input type="textarea" name="body"><br>
+               内容 <textarea name="body" rows="4" cols="40"></textarea><br>
                公開日時 <input type="text" name="date" value="now"><br>
                <input type="submit" value="登録">
            </form>
