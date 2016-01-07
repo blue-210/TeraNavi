@@ -43,13 +43,14 @@ public class DirectMessageSendCommand extends AbstractCommand{
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dmsend");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dm");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+            //福田案採用果たして動くのか・・・    
             resc.setTarget("/front/dmreceive");
 
             return resc;

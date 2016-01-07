@@ -4,12 +4,12 @@ import java.util.Properties;
 import java.io.IOException;
 
 import ttc.dao.AbstractDao;
-import ttc.dao.DirectMessageSendDao;
+import ttc.dao.DirectMessageDao;
 
 import ttc.exception.IntegrationException;
 
-public class DirectMessageSendDaoFactory extends AbstractDaoFactory{
+public class DirectMessageDaoFactory extends AbstractDaoFactory{
     public AbstractDao getAbstractDao(){
-        return new DirectMessageSendDao();
+        return new DirectMessageDao();
     }
 }

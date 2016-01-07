@@ -17,26 +17,26 @@ import java.text.SimpleDateFormat;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class DirectMessageReceiveCommand extends AbstractCommand{
+public class ShowChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String sendUserId=reqc.getParameter("userId")[0];
+            String userId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("sendUserId", sendUserId);
+            params.put("userId", userId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dm");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
             AbstractDao dao = factory.getAbstractDao();
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(dao.readAll(params));
-            resc.setTarget("showdm");
+            resc.setTarget("chat");
 
             return resc;
 
