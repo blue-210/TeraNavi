@@ -21,7 +21,7 @@
         <body>
             <%-- ヘッダー部分のHTMLを読み込み --%>
             <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-            <h1>>${session.community.name}のトピック一覧</h1>
+            <h1>トピック一覧</h1>
 
             <c:forEach var="topic" items="topics">
                 <li class="list-group-item">
@@ -29,10 +29,11 @@
                         <li class="media">
                             <a class="media-left" href="#">
                                 <img arc="">
+                                <p>${session.topic.createUserName}</p>
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading">${session.topic.name}</h4>
-                                ${session.topic.updateDate}
+                                <p>${session.topic.updateDate}</p>
                             </div>
                         </li>
                     </ul>
