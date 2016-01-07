@@ -27,7 +27,7 @@ public class ArticlePostCommand extends AbstractCommand{
 
             String date = reqc.getParameter("date")[0];
 
-            String status = reqc.getParameter("status")[0];
+            String status = "0";
 
             Map params = new HashMap();
             params.put("userId", userId);
@@ -40,7 +40,7 @@ public class ArticlePostCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.update(params);
+            dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
