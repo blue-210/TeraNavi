@@ -25,10 +25,10 @@
 
     <div class="container">
        <div class="row">
-           <h1>${result.userbean.name}さんのパスワードを変更しました</h1>
+           <h1>${result.userbean.userName}さんのパスワードを変更しました</h1>
 
            <p>
-               新しいパスワードは[ ${result.password} ]です
+               新しいパスワードは[ ${result.userbean.password} ]です
            </p>
        </div><!--end row-->
     </div><!--end container-->
