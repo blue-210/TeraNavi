@@ -25,9 +25,11 @@
 
     <div class="container">
        <div class="row">
-           <h1>${sessionScope.loginUser.userName}さん、また合いましたね</h1>
+           <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
 
            <h1>ろぐさくっ！</h1>
+
+           <h1>${sessionScope.loginUser.id}</h1>
 
 
        </div><!--end row-->
