@@ -15,7 +15,7 @@ import ttc.bean.TopicBean;
 import ttc.bean.UserBean;
 import ttc.exception.IntegrationException;
 
-public class CreateTopicDao implements AbstractDao{
+public class TopicDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
         return new TopicBean();
@@ -83,12 +83,12 @@ public class CreateTopicDao implements AbstractDao{
 
             while(rs.next()){
                 TopicBean topics = new TopicBean();
-                topic.setTopicId(rs.getString(1));
-                topic.setCreateUserId(rs.getString(2));
-                topic.setName(rs.getString(3));
-                topic.setUpdateDate(rs.getString(4));
-                topic.setCreateDate(rs.getString(5));
-                topic.setCreateUserName(rs.getString(6));
+                topics.setTopicId(rs.getString(1));
+                topics.setCreateUserId(rs.getString(2));
+                topics.setName(rs.getString(3));
+                topics.setUpdateDate(rs.getString(4));
+                topics.setCreateDate(rs.getString(5));
+                topics.setCreateUserName(rs.getString(6));
                 result.add(topics);
             }
 

@@ -16,7 +16,7 @@ import ttc.exception.IntegrationException;
 
 import ttc.util.MySqlConnectionManager;
 
-public class BlogSearchDao implements AbstractDao{
+public class KeyWordSearchDao implements AbstractDao{
     public int insert(Map map)throws IntegrationException{
         return 0;
     }

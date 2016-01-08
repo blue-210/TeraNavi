@@ -20,7 +20,6 @@ public class KeywordSearchCommand extends AbstractCommand{
 			RequestContext reqc = getRequestContext();
 			String[] keywords=null;
 			String keyword = reqc.getParameter("keyword")[0];
-			String target = reqc.getParameter("target")[0];
 			keywords=keyword.split(" ", 0);
 
 			Map params = new HashMap();
@@ -30,7 +29,7 @@ public class KeywordSearchCommand extends AbstractCommand{
 			}
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("keywordsearch");
 			AbstractDao dao = factory.getAbstractDao();
 
 			MySqlConnectionManager.getInstance().commit();

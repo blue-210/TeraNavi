@@ -20,7 +20,6 @@ public class TagSearchCommand extends AbstractCommand{
 			RequestContext reqc = getRequestContext();
 			String[] tags=null;
 			String tag = reqc.getParameter("tag")[0];
-			String target = reqc.getParameter("target")[0];
 			tags=tag.split(" ", 0);
 
 			Map params = new HashMap();
@@ -30,7 +29,7 @@ public class TagSearchCommand extends AbstractCommand{
 			}
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("tagsearch");
 			AbstractDao dao = factory.getAbstractDao();
 
 			MySqlConnectionManager.getInstance().commit();
