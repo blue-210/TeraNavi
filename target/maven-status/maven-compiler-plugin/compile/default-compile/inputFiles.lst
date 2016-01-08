@@ -1,5 +1,6 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/FrontServlet.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/LoginCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/dao/KeyWordSearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/ArticleSortDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CommentPostCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UserSearchDaoFactory.java
@@ -8,8 +9,8 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/TagSearchCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/context/ResponseContext.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/Bean.java
-/vagrant_data/TeraNavi/src/main/java/ttc/dao/TagSearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CreateTopicCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/dao/TagSearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/ChatDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/ArticleDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/context/RequestContext.java
@@ -37,7 +38,6 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/BlogSearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/PasswordResetAuthenticationCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/SecretQuestionBean.java
-/vagrant_data/TeraNavi/src/main/java/ttc/dao/CreateTopicDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/DraftArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/CommunitySearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/ApplicationException.java
@@ -83,6 +83,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/DirectMessageSendCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/PublicationRangeSettingCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/BlogDao.java
+/vagrant_data/TeraNavi/src/main/java/ttc/dao/TopicDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ChatDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/UsersDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/sample/SampleUsersBean.java
@@ -91,5 +92,4 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/LogoutCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ArticleSearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/context/WebRequestContext.java
-/vagrant_data/TeraNavi/src/main/java/ttc/dao/BlogSearchDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/BusinessLogicException.java
