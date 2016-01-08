@@ -1,6 +1,9 @@
-package ttc.context;
+﻿package ttc.context;
 
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +11,7 @@ import ttc.bean.UserBean;
 import ttc.exception.PresentationException;
 
 public class WebRequestContext implements RequestContext{
-	private Map parameters;
+	private Map parameters = new HashMap();
 	private HttpServletRequest request;
 
 	public WebRequestContext(){}
@@ -32,20 +35,29 @@ public class WebRequestContext implements RequestContext{
 	public void setRequest(Object request)throws PresentationException{
 		this.request = (HttpServletRequest) request;
 
-		parameters = this.request.getParameterMap();
 
-		/*セッションからユーザーIDをパラメーターに代入する処理-------------
-		 HttpSession session = this.request.getSession();
-		 UserBean ub = (UserBean)session.getAttribute("loginUser");
-		 String[] userId = new String[1];
-		 try{
-		 	userId[0] = ub.getId();
-		 }catch(NullPointerException e){
-		 	throw new PresentationException(e.getMessage(), e);
-		 }
-		 parameters.put("userId", userId);
-		 //---------------------------------------------------------
-		 */
+		Map requestParameters = this.request.getParameterMap();
+		Set keys = requestParameters.keySet();
+		Iterator ite = keys.iterator();
+		while(ite.hasNext()){
+			String key = (String)ite.next();
+			parameters.put(key, requestParameters.get(key));
+		}
+
+		HttpSession session = this.request.getSession();
+
+		if(session.getAttribute("loginUser") != null){
+			UserBean ub = (UserBean)session.getAttribute("loginUser");
+			System.out.println(ub.getId());
+			String[] userId = new String[1];
+			try{
+				userId[0] = ub.getId();
+				System.out.println("userId = "+userId[0]);
+				parameters.put("userId", userId);
+			}catch(NullPointerException e){
+			 	throw new PresentationException(e.getMessage(), e);
+			}
+		}
 
 	}
 }
