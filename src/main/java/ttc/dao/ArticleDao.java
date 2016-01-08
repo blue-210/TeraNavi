@@ -127,6 +127,7 @@ public class ArticleDao implements AbstractDao{
         PreparedStatement pst = null;
         int result = 0;
         try{
+            ArticleBean ab =(ArticleBean)map.get("articlebean");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             MySqlConnectionManager.getInstance().beginTransaction();
@@ -140,10 +141,30 @@ public class ArticleDao implements AbstractDao{
 
             pst = cn.prepareStatement( new String(sql) );
 
-            pst.setString(1, (String)map.get("title"));
-            pst.setString(2, (String)map.get("body"));
-            pst.setString(3, (String)map.get("date"));
+            //タイトルを変更
+            if(map.containsKey("title")){
+                pst.setString(1,(String)map.get("title"));
+            }else{
+                pst.setString(1,ab.getTitle());
+            }
+
+            //内容を変更
+            if(map.containsKey("body")){
+                pst.setString(2, (String)map.get("body"));
+            }else{
+                pst.setString(2,ab.getArticleBody());
+            }
+
+            //日時を変更
+            if(map.containsKey("date")){
+                pst.setString(3, (String)map.get("date"));
+            }else{
+                pst.setString(3,ab.getCreatedDate());
+            }
+
+
             pst.setString(4, (String)map.get("status"));
+
             pst.setString(5, (String)map.get("articleId"));
 
             result = pst.executeUpdate();
