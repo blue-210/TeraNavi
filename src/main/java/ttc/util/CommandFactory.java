@@ -15,9 +15,10 @@ public abstract class CommandFactory{
 		Properties prop = new Properties();
 
 		try{
-			prop.load(CommandFactory.class.getResourceAsStream("command.properties"));
+			prop.load(CommandFactory.class.getClassLoader().getResourceAsStream("command.properties"));
 
 			String name = prop.getProperty(rc.getCommandPath());
+			System.out.println(name);
 
 			Class c = Class.forName(name);
 

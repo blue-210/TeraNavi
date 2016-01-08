@@ -26,7 +26,7 @@ public class LogoutCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
             Calendar c = Calendar.getInstance();
 
-            String loginId=reqc.getParameter("userId")[0];
+            String userId=reqc.getParameter("userId")[0];
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             String date=sdf.format(c.getTime());
 
@@ -34,7 +34,7 @@ public class LogoutCommand extends AbstractCommand{
 
 
             Map params = new HashMap();
-            params.put("userId",loginId);
+            params.put("userId",userId);
             params.put("lastLoginDate",date);
 
 
@@ -50,7 +50,7 @@ public class LogoutCommand extends AbstractCommand{
 
 
 
-            resc.setTarget("LoginResult");
+            resc.setTarget("LogoutResult");
 
             return resc;
         }catch(IntegrationException e){
