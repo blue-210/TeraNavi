@@ -26,20 +26,25 @@ public class DeleteArticleCommand extends AbstractCommand{
             String status = "2";
 
             Map params = new HashMap();
-            params.put("articleId", articleId);
-            params.put("status", status);
 
-            MySqlConnectionManager.getInstance().beginTransaction();
+            params.put("status", status);
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            ArticleBean ab = (ArticleBean)dao.read(params);
 
-			params.put("articlebean",ab);
-            dao.update(params);
+            for(int i = 0; i < articleId.length; i++){
+                params.put("articleId", articleId[i]);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+                MySqlConnectionManager.getInstance().beginTransaction();
+
+                ArticleBean ab = (ArticleBean)dao.read(params);
+
+    			params.put("articlebean",ab);
+                dao.update(params);
+
+                MySqlConnectionManager.getInstance().commit();
+                MySqlConnectionManager.getInstance().closeConnection();
+            }
 
             resc.setTarget("deletearticle");
 
