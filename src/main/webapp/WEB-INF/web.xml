@@ -83,6 +83,22 @@
        <url-pattern>/dmsend</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>tagsearch</servlet-name>
+      <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>tagsearch</servlet-name>
+      <url-pattern>/tagsearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+     <servlet-name>tagsearch_show</servlet-name>
+     <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>tagsearch_show</servlet-name>
+     <url-pattern>/tagsearch_show</url-pattern>
+ </servlet-mapping>
 
 
 
