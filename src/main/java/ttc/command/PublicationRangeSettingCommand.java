@@ -16,14 +16,14 @@ import ttc.dao.AbstractDao;
 
 import ttc.bean.ArticleBean;
 
-public class DeleteArticleCommand extends AbstractCommand{
+public class PublicationRangeSettingCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
             String[] articleId = reqc.getParameter("articleId");
 
-            String status = "2";
+            String status = reqc.getParameter("status")[0];
 
             Map params = new HashMap();
 
@@ -46,7 +46,7 @@ public class DeleteArticleCommand extends AbstractCommand{
                 MySqlConnectionManager.getInstance().closeConnection();
             }
 
-            resc.setTarget("deletearticle");
+            resc.setTarget("publicationrangesetting");
 
             return resc;
 
