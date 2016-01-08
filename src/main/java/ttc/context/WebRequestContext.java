@@ -35,16 +35,17 @@ public class WebRequestContext implements RequestContext{
 		parameters = this.request.getParameterMap();
 
 		//セッションからユーザーIDをパラメーターに代入する処理-------------
-		// HttpSession session = this.request.getSession();
-		// UserBean ub = (UserBean)session.getAttribute("loginUser");
-		// String[] userId = new String[1];
-		// try{
-		// 	userId[0] = ub.getId();
-		// }catch(NullPointerException e){
-		// 	throw new PresentationException(e.getMessage(), e);
-		// }
-		// parameters.put("userId", userId);
-		//--------------------------------------------------------
+		 HttpSession session = this.request.getSession();
+		 UserBean ub = (UserBean)session.getAttribute("loginUser");
+		 String[] userId = new String[1];
+		 try{
+		 	userId[0] = ub.getId();
+		 }catch(NullPointerException e){
+		 	throw new PresentationException(e.getMessage(), e);
+		 }
+		 parameters.put("userId", userId);
+		 //---------------------------------------------------------
+
 
 	}
 }
