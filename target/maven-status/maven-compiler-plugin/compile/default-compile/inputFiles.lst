@@ -48,6 +48,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/BlogCreateCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommunitySearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/SignUpCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/FileUploadServlet.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UsersDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/EditArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/ShowArticleListCommand.java
@@ -80,6 +81,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CommentDeleteCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/CommentBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/DirectMessageSendCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/PublicationRangeSettingCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/BlogDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ChatDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/UsersDao.java
