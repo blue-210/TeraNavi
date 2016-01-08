@@ -74,6 +74,15 @@
        <url-pattern>/dmsend</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+         <servlet-name>chatwrite</servlet-name>
+         <jsp-file>/WEB-INF/jsp/chatwrite.jsp</jsp-file>
+     </servlet>
+     <servlet-mapping>
+         <servlet-name>chatwrite</servlet-name>
+         <url-pattern>/chatwrite</url-pattern>
+     </servlet-mapping>
+
 
 
 

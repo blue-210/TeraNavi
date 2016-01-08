@@ -17,26 +17,26 @@ import java.text.SimpleDateFormat;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ShowChatCommand extends AbstractCommand{
+public class GetRankingCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId=reqc.getParameter("userId")[0];
+            String userId=reqc.getParameter("")[0];
 
             Map params = new HashMap();
-            params.put("userId", userId);
+            params.put("", );
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("ranking");
             AbstractDao dao = factory.getAbstractDao();
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(dao.readAll(params));
-            resc.setTarget("chatresult");
+            resc.setTarget("ranking");
 
             return resc;
 
