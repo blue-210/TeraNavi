@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+	<script type="text/javascript" src="js/fileup.js"></script>
 
 
 
@@ -41,8 +41,9 @@
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
 	<script>
-		var ajaxSettings;
+		<!-- var ajaxSettings;
 		var ajax;
 		$(function(){
 
@@ -82,7 +83,7 @@
 		function onDragOver(event){
 			event.preventDefault();
 		}
-
+ -->
 
 	</script>
 </body>
