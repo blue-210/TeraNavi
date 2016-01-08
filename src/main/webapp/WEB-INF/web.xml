@@ -74,15 +74,6 @@
        <url-pattern>/dmsend</url-pattern>
    </servlet-mapping>
 
-   <servlet>
-      <servlet-name>blogcreate</servlet-name>
-      <jsp-file>/WEB-INF/jsp/blogcreate.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-      <servlet-name>blogcreate</servlet-name>
-      <url-pattern>/blogcreate</url-pattern>
-  </servlet-mapping>
-
 
 
 
