@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+import javax.servlet.http.HttpSession;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 import ttc.context.WebRequestContext;
@@ -42,7 +44,23 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletRequest req = (HttpServletRequest) reqc.getRequest();
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
-		req.setAttribute("result",resc.getResult());
+		String path = reqc.getCommandPath();
+
+
+
+		if(path.equals("login")){
+			System.out.println("ログイン成功");
+			HttpSession session = req.getSession(true);
+			session.setAttribute("loginUser",resc.getResult());
+		}else if(path.equals("logout")){
+			HttpSession session = req.getSession(true);
+			session.removeAttribute("loginUser");
+
+		}else{
+
+			req.setAttribute("result",resc.getResult());
+
+		}
 
 		RequestDispatcher rd = req.getRequestDispatcher(resc.getTarget());
 

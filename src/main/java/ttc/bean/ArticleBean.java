@@ -1,14 +1,14 @@
 package ttc.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleBean implements Bean{
     private String articleId;
     private String title;
     private String articleBody;
     private String createdDate;
-    private ArrayList tags;
-    private ArrayList comments;
+    private List tags;
+    private List comments;
 
 
     /**
@@ -79,7 +79,7 @@ public class ArticleBean implements Bean{
     * Returns value of tags
     * @return
     */
-    public ArrayList getTags() {
+    public List getTags() {
     	return tags;
     }
 
@@ -87,7 +87,7 @@ public class ArticleBean implements Bean{
     * Sets new value of tags
     * @param
     */
-    public void setTags(ArrayList tags) {
+    public void setTags(List tags) {
     	this.tags = tags;
     }
 
@@ -95,7 +95,7 @@ public class ArticleBean implements Bean{
     * Returns value of comments
     * @return
     */
-    public ArrayList getComments() {
+    public List getComments() {
     	return comments;
     }
 
@@ -103,7 +103,7 @@ public class ArticleBean implements Bean{
     * Sets new value of comments
     * @param
     */
-    public void setComments(ArrayList comments) {
+    public void setComments(List comments) {
     	this.comments = comments;
     }
 }
