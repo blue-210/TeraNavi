@@ -21,6 +21,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/exception/IntegrationException.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/CommentsDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CreateCommunityCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/DeleteArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/ArticlePostCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/BlogBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/BlogDaoFactory.java
@@ -44,8 +45,8 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommunitiesDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/WriteChatCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/DirectMessageDaoFactory.java
-/vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommunitySearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/BlogCreateCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommunitySearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/SignUpCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UsersDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/EditArticleCommand.java
