@@ -92,6 +92,14 @@
         	<version>5.5.23</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- ファイルアップロード関連 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
     </dependencies>
 
 
