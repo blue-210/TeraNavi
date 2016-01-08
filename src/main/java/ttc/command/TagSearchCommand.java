@@ -35,7 +35,7 @@ public class TagSearchCommand extends AbstractCommand{
 			MySqlConnectionManager.getInstance().commit();
 			MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setTarget("TagSerchResult");
+			resc.setTarget("tagsearch_show");
 			resc.setResult(dao.readAll(params));
 
 			return resc;

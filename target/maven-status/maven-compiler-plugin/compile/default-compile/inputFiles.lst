@@ -80,6 +80,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/CommentDeleteCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/bean/CommentBean.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/DirectMessageSendCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/command/PublicationRangeSettingCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/BlogDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/dao/TopicDao.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/ChatDaoFactory.java

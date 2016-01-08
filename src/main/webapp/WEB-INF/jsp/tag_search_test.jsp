@@ -25,9 +25,9 @@
 
     <div class="container">
        <div class="row">
-           <h1>ログインテストページ</h1>
+           <h1>タグ検索</h1>
            <form action="front/tagsearch" method="post">
-               ログインID <input type="text" name="tag"><br>
+               タグを検索 <input type="text" name="tag"><br>
                <input type="submit" value="検索">
 
            </form>

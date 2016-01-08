@@ -26,10 +26,10 @@
     <div class="container">
        <div class="row">
            <h1>タグ検索結果</h1>
-           <c:forEach var="user" items="${result}">
-               <p>
-                   ${user}
-               </p>
+           <c:forEach var="entry" items="${result}">
+               <c:forEach var="value" items="${[entry.key]}">
+                   ${value}
+               </c:forEach>
            </c:forEach>
            <p></p>
        </div><!--end row-->
