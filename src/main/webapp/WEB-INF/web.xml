@@ -29,6 +29,15 @@
    </servlet-mapping>
 
    <servlet>
+      <servlet-name>UploadServlet</servlet-name>
+      <servlet-class>ttc.FileUploadServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>UploadServlet</servlet-name>
+      <url-pattern>/upload</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
        <servlet-name>signup</servlet-name>
        <jsp-file>/WEB-INF/jsp/signup.jsp</jsp-file>
    </servlet>

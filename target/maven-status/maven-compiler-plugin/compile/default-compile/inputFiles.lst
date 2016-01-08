@@ -48,6 +48,7 @@
 /vagrant_data/TeraNavi/src/main/java/ttc/command/BlogCreateCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/CommunitySearchDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/SignUpCommand.java
+/vagrant_data/TeraNavi/src/main/java/ttc/FileUploadServlet.java
 /vagrant_data/TeraNavi/src/main/java/ttc/util/factory/UsersDaoFactory.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/EditArticleCommand.java
 /vagrant_data/TeraNavi/src/main/java/ttc/command/ShowArticleListCommand.java
