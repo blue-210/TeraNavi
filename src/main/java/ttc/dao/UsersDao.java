@@ -90,7 +90,7 @@ public class UsersDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
             sql.append("mail_address=?,password=?,user_header_path=?,user_icon_path=?,");
-            sql.append("last_login_dete=?,user_status_flag=?,user_lock_start_date=?,user_lock_end_date=?,");
+            sql.append("last_login_date=?,user_status_flag=?,user_lock_start_date=?,user_lock_end_date=?,");
             sql.append("user_profile=? where user_id=?");
             pst = cn.prepareStatement(new String(sql));
 
@@ -150,25 +150,21 @@ public class UsersDao implements AbstractDao{
             }
             //ユーザのロック開始の日にちを変更
             if(map.containsKey("lockStartDate")){
-
-
-                pst.setDate(10,(Date)map.get("lockStartDate"));
+                pst.setString(10,(String)map.get("lockStartDate"));
             }else{
-                //String型をjava.sql.Dateに直す
-                //pst.setDate(10,(Date)ub.getLockStartDate());
+                pst.setString(10,ub.getLockStartDate());
             }
             //ユーザのロック終了日を変更
             if(map.containsKey("lockEndDate")){
-                pst.setDate(11,(Date)map.get("lockEndDate"));
+                pst.setString(11,(String)map.get("lockEndDate"));
             }else{
-                //String型をjava.sql.Dateに直す
-                //pst.setDate(11,(Date)ub.getLockEndDate());
+                pst.setString(11,(String)ub.getLockEndDate());
             }
             //ユーザの自己紹介を変更
             if(map.containsKey("profile")){
-                pst.setString(6,(String)map.get("profile"));
+                pst.setString(12,(String)map.get("profile"));
             }else{
-                pst.setString(6,ub.getProfile());
+                pst.setString(12,ub.getProfile());
             }
 
 
@@ -253,25 +249,26 @@ public class UsersDao implements AbstractDao{
 
             if(rs.next()){
 
-                ub.setId(rs.getString(1));
-                ub.setUserName(rs.getString(2));
-                ub.setNameKana(rs.getString(3));
-                ub.setSex(rs.getString(4));
-                ub.setSexVisibleFlag(rs.getString(5));
-                ub.setBirthDate(rs.getString(6));
-                ub.setMailAddress(rs.getString(7));
-                ub.setPassword(rs.getString(8));
-                ub.setHeaderPath(rs.getString(9));
-                ub.setIconPath(rs.getString(10));
-                ub.setAdminFlag(rs.getString(11));
-                ub.setLastLoginDate(rs.getString(12));
-                ub.setAdminLastLoginDate(rs.getString(13));
-                ub.setUserStatus(rs.getString(14));
-                ub.setLockEndDate(rs.getString(15));
-                ub.setLockStartDate(rs.getString(16));
-				ub.setQuestionNo(rs.getString(17));
-                ub.setProfile(rs.getString(18));
-				ub.setSecretAnswer(rs.getString(19));
+                ub.setId(rs.getString("user_id"));
+				ub.setLoginId(rs.getString("login_id"));
+                ub.setUserName(rs.getString("user_name"));
+                ub.setNameKana(rs.getString("user_name_kana"));
+                ub.setSex(rs.getString("sex"));
+                ub.setSexVisibleFlag(rs.getString("sex_visible_flag"));
+                ub.setBirthDate(rs.getString("birth_date"));
+                ub.setMailAddress(rs.getString("mail_address"));
+                ub.setPassword(rs.getString("password"));
+                ub.setHeaderPath(rs.getString("user_header_path"));
+                ub.setIconPath(rs.getString("user_icon_path"));
+                ub.setAdminFlag(rs.getString("admin_flag"));
+                ub.setLastLoginDate(rs.getString("last_login_date"));
+                ub.setAdminLastLoginDate(rs.getString("admin_last_login_date"));
+                ub.setUserStatus(rs.getString("user_status_flag"));
+                ub.setLockEndDate(rs.getString("user_lock_end_date"));
+                ub.setLockStartDate(rs.getString("user_lock_start_date"));
+				ub.setQuestionNo(rs.getString("fk_secret_question_id"));
+                ub.setProfile(rs.getString("user_profile"));
+				ub.setSecretAnswer(rs.getString("secret_answer"));
 
             }else{
                 throw new NotLineException("0行が選択されました",null);

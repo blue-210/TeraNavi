@@ -13,48 +13,36 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.UserBean;
 
-public class PasswordResetAuthenticationCommand extends AbstractCommand{
-
-
+public class CreateTopicCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String loginId=reqc.getParameter("loginId")[0];
-			String questionNo = reqc.getParameter("questionNo")[0];
-			String questionAnswer = reqc.getParameter("questionAnswer")[0];
-
-
+            String communityId = reqc.getParameter("communityId")[0];
+            String userId = reqc.getParameter("userId")[0];
+            String topic_name = reqc.getParameter("topic_name")[0];
+            String update_date = reqc.getParameter("update_date")[0];
+            String create_date = reqc.getParameter("create_date")[0];
 
             Map params = new HashMap();
-            params.put("value",loginId);
-            params.put("where","where login_id=?");
+            params.put("communityId",communityId);
+            params.put("userId",userId);
+            params.put("topic_name",topic_name);
+            params.put("update_date",update_date);
+            params.put("create_date",create_date);
 
             MySqlConnectionManager.getInstance().beginTransaction();
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("topic");
             AbstractDao dao = factory.getAbstractDao();
-
-			UserBean ub = (UserBean)dao.read(params);
+            dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			System.out.println(questionNo.equals(ub.getQuestionNo()));
+            resc.setTarget("topic");
 
-			if(questionNo.equals(ub.getQuestionNo()) && questionAnswer.equals(ub.getSecretAnswer())){
-				System.out.println(ub.getLoginId());
-				resc.setResult(ub);
-				resc.setTarget("passResetPage");
-
-	            return resc;
-			}else{
-				throw new BusinessLogicException("入力内容が違います",null);
-			}
-
-
-
+            return resc;
         }catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
