@@ -110,6 +110,14 @@
 	    <url-pattern>/openBlog</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>blogsetting</servlet-name>
+		<jsp-file>/WEB-INF/jsp/blogSetting.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>blogsetting</servlet-name>
+		<url-pattern>/blogSetting</url-pattern>
+	</servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>
