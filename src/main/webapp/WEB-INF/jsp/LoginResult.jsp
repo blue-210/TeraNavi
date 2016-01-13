@@ -31,7 +31,7 @@
 
            <h1>${sessionScope.loginUser.id}</h1>
 
-		   <a href="logout">ログアウトしますよ</a>
+		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
 
 
        </div><!--end row-->
