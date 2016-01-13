@@ -45,7 +45,8 @@ public class ArticlePostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+			resc.setResult(params);
+            resc.setTarget("articlepostresult");
 
             return resc;
 

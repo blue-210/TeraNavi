@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿</title>
+    <title>記事投稿結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,60 +30,16 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事投稿ページ</h1>
+           <h1>投稿完了</h1>
            <form action="front/articlepost" method="post">
-               タイトル <input type="text" name="title"><br>
-               内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-               公開日時 <input type="text" name="date"><br>
-               <input type="submit" value="登録">
+               タイトル ${result.title}<br>
+               内容 <br><textarea rows="4" cols="40" wrap="hard" style="resize:none;">${result.body}</textarea><br>
+               公開日時 ${result.date}<br>
            </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-	<script>
-		<!-- var ajaxSettings;
-		var ajax;
-		$(function(){
 
-			ajaxSettings = {
-				type:'post',
-				url:'upload',
-				processData:false,
-				contentType:false,
-				cache:false,
-				dataType:'json',
-				success:function(data){
-					console.log("success");
-					var text = $("#tbody").val();
-					$("#tbody").val(text+"<br>"+data.result);
-				}
-			}
-
-		});
-
-		function onDrop(event){
-			var files = event.dataTransfer.files;
-
-			console.log("オンドロップ");
-
-			for(var i = 0;i < files.length;i++){
-				console.log("for");
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-		function onDragOver(event){
-			event.preventDefault();
-		}
- -->
-
-	</script>
 </body>
 </html>
