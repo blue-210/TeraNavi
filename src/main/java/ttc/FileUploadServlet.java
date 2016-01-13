@@ -49,7 +49,7 @@ public class FileUploadServlet extends HttpServlet{
 
 						item.write(new File(path+"/"+fileName));
 
-						resultPath="<img src='../img/"+fileName+"'>";
+						resultPath="<img src='/WEB-INF/img/"+fileName+"'>";
 					}
 				}
 
@@ -60,22 +60,12 @@ public class FileUploadServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 
-		System.out.println("Fileup1");
 
-		// req.setCharacterEncoding("UTF-8");
-		// Part part = req.getPart("file");
-		// String name = getFilename(part);
-		// part.write(name);
-		//
 		String responseJson = "{\"result\":\""+resultPath+"\"}";
 		res.setContentType("application/json;charset=UTF-8");
 
-		System.out.println("Fileup2");
-
 		PrintWriter writer = res.getWriter();
 		writer.print(responseJson);
-
-		System.out.println("Fileup3");
 
 		writer.flush();
 		writer.close();
