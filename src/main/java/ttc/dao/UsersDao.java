@@ -90,7 +90,7 @@ public class UsersDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
             sql.append("mail_address=?,password=?,user_header_path=?,user_icon_path=?,");
-            sql.append("last_login_dete=?,user_status_flag=?,user_lock_start_date=?,user_lock_end_date=?,");
+            sql.append("last_login_date=?,user_status_flag=?,user_lock_start_date=?,user_lock_end_date=?,");
             sql.append("user_profile=? where user_id=?");
             pst = cn.prepareStatement(new String(sql));
 
@@ -150,25 +150,21 @@ public class UsersDao implements AbstractDao{
             }
             //ユーザのロック開始の日にちを変更
             if(map.containsKey("lockStartDate")){
-
-
-                pst.setDate(10,(Date)map.get("lockStartDate"));
+                pst.setString(10,(String)map.get("lockStartDate"));
             }else{
-                //String型をjava.sql.Dateに直す
-                //pst.setDate(10,(Date)ub.getLockStartDate());
+                pst.setString(10,ub.getLockStartDate());
             }
             //ユーザのロック終了日を変更
             if(map.containsKey("lockEndDate")){
-                pst.setDate(11,(Date)map.get("lockEndDate"));
+                pst.setString(11,(String)map.get("lockEndDate"));
             }else{
-                //String型をjava.sql.Dateに直す
-                //pst.setDate(11,(Date)ub.getLockEndDate());
+                pst.setString(11,(String)ub.getLockEndDate());
             }
             //ユーザの自己紹介を変更
             if(map.containsKey("profile")){
-                pst.setString(6,(String)map.get("profile"));
+                pst.setString(12,(String)map.get("profile"));
             }else{
-                pst.setString(6,ub.getProfile());
+                pst.setString(12,ub.getProfile());
             }
 
 
@@ -254,6 +250,7 @@ public class UsersDao implements AbstractDao{
             if(rs.next()){
 
                 ub.setId(rs.getString("user_id"));
+				ub.setLoginId(rs.getString("login_id"));
                 ub.setUserName(rs.getString("user_name"));
                 ub.setNameKana(rs.getString("user_name_kana"));
                 ub.setSex(rs.getString("sex"));

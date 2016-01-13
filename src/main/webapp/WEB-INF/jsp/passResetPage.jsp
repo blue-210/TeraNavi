@@ -26,8 +26,8 @@
     <div class="container">
        <div class="row">
            <h1>リセットテストページ2</h1>
-           <form action="front/passReset" method="post">
-               新しいパスワード <input type="text" name="password"><br>
+           <form action="passReset" method="post">
+			   新しいパスワード <input type="text" name="password"><br>
 			   <input type="hidden" name="loginId" value="${result.loginId}">
                <input type="submit" value="パスワードを変更">
 

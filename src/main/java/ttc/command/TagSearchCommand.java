@@ -14,28 +14,28 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class KeywordSearchCommand extends AbstractCommand{
+public class TagSearchCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
 		try{
 			RequestContext reqc = getRequestContext();
-			String[] keywords=null;
-			String keyword = reqc.getParameter("keyword")[0];
-			keywords=keyword.split(" ", 0);
+			String[] tags=null;
+			String tag = reqc.getParameter("tag")[0];
+			tags=tag.split(" ", 0);
 
 			Map params = new HashMap();
 
-			for(int i=0;i<keywords.length;i++){
-				params.put("keyword"+i,keywords[i]);
+			for(int i=0;i<tags.length;i++){
+				params.put("tag"+i,tags[i]);
 			}
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("keywordsearch");
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("tagsearch");
 			AbstractDao dao = factory.getAbstractDao();
 
 			MySqlConnectionManager.getInstance().commit();
 			MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setTarget("SerchResult");
+			resc.setTarget("tagsearch_show");
 			resc.setResult(dao.readAll(params));
 
 			return resc;

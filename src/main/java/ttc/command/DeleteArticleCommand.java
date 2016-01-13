@@ -14,39 +14,39 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ArticlePostCommand extends AbstractCommand{
+import ttc.bean.ArticleBean;
+
+public class DeleteArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
+            String[] articleId = reqc.getParameter("articleId");
 
-            String title = reqc.getParameter("title")[0];
-
-            String body = reqc.getParameter("body")[0];
-
-            String date = reqc.getParameter("date")[0];
-
-            String status = "0";
+            String status = "2";
 
             Map params = new HashMap();
-            params.put("userId", userId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
-            params.put("status", status);
 
-            MySqlConnectionManager.getInstance().beginTransaction();
+            params.put("status", status);
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+            for(int i = 0; i < articleId.length; i++){
+                params.put("articleId", articleId[i]);
 
-			resc.setResult(params);
-            resc.setTarget("articlepostresult");
+                MySqlConnectionManager.getInstance().beginTransaction();
+
+                ArticleBean ab = (ArticleBean)dao.read(params);
+
+    			params.put("articlebean",ab);
+                dao.update(params);
+
+                MySqlConnectionManager.getInstance().commit();
+                MySqlConnectionManager.getInstance().closeConnection();
+            }
+
+            resc.setTarget("deletearticle");
 
             return resc;
 
