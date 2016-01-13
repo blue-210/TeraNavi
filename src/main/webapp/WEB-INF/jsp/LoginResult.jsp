@@ -29,7 +29,6 @@
 
            <h1>ろぐさくっ！</h1>
 
-           <h1>${sessionScope.loginUser.id}</h1>
 
 		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
 
