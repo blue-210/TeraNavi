@@ -32,10 +32,9 @@
        <div class="row">
            <h1>記事投稿ページ</h1>
            <form action="front/articlepost" method="post">
-               ユーザーID <input type="text" name="userId"><br>
                タイトル <input type="text" name="title"><br>
                内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-               公開日時 <input type="text" name="date" value="now"><br>
+               公開日時 <input type="text" name="date"><br>
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->
