@@ -44,14 +44,15 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletRequest req = (HttpServletRequest) reqc.getRequest();
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
-		String servletPath = req.getServletPath().substring(1);
+		String path = reqc.getCommandPath();
 
 
 
-		if(servletPath.equals("login")){
+		if(path.equals("login")){
+			System.out.println("ログイン成功");
 			HttpSession session = req.getSession(true);
 			session.setAttribute("loginUser",resc.getResult());
-		}else if(servletPath.equals("logout")){
+		}else if(path.equals("logout")){
 			HttpSession session = req.getSession(true);
 			session.removeAttribute("loginUser");
 
