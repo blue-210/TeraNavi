@@ -17,6 +17,8 @@ import ttc.dao.AbstractDao;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
+import ttc.bean.BlogBean;
+
 public class ArticlePostCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -35,18 +37,33 @@ public class ArticlePostCommand extends AbstractCommand{
 
             String status = "0";
 
-            Map params = new HashMap();
+			Map params = new HashMap();
             params.put("userId", userId);
             params.put("title", title);
             params.put("body", body);
             params.put("date", date);
             params.put("status", status);
 
+			// ブログが解説しているかどうかのチェック
+			MySqlConnectionManager.getInstance().beginTransaction();
+
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("blog");
+			AbstractDao dao = factory.getAbstractDao();
+			BlogBean blog = (BlogBean)dao.read(params);
+
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+
+			if(blog.getStatus().equals("0")){
+				throw new BusinessLogicException("ブログが開設されていません",null);
+			}
+
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
-            AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("article");
+            AbstractDao dao2 = factory2.getAbstractDao();
+            dao2.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
