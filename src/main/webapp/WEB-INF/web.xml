@@ -65,7 +65,6 @@
    </servlet-mapping>
 
    <servlet>
-
   	 <servlet-name>reset</servlet-name>
   	 <jsp-file>/WEB-INF/jsp/reset.jsp</jsp-file>
    </servlet>
@@ -84,6 +83,16 @@
    </servlet-mapping>
 
    <servlet>
+         <servlet-name>chatwrite</servlet-name>
+         <jsp-file>/WEB-INF/jsp/chatwrite.jsp</jsp-file>
+     </servlet>
+     <servlet-mapping>
+         <servlet-name>chatwrite</servlet-name>
+         <url-pattern>/chatwrite</url-pattern>
+     </servlet-mapping>
+
+<!--
+ <servlet>
       <servlet-name>tagsearch</servlet-name>
       <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
   </servlet>
@@ -99,6 +108,15 @@
      <servlet-name>tagsearch_show</servlet-name>
      <url-pattern>/tagsearch_show</url-pattern>
  </servlet-mapping>
+-->
+ <servlet>
+    <servlet-name>webtes</servlet-name>
+    <jsp-file>/WEB-INF/jsp/webTest.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>webtes</servlet-name>
+    <url-pattern>/webtes</url-pattern>
+</servlet-mapping>
 
 
 	<servlet>
