@@ -91,9 +91,41 @@
       <servlet-name>createcomm</servlet-name>
       <url-pattern>/createcomm</url-pattern>
   </servlet-mapping>
+  <servlet>
+      <servlet-name>tagsearch</servlet-name>
+      <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>tagsearch</servlet-name>
+      <url-pattern>/tagsearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+     <servlet-name>tagsearch_show</servlet-name>
+     <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>tagsearch_show</servlet-name>
+     <url-pattern>/tagsearch_show</url-pattern>
+ </servlet-mapping>
 
 
+	<servlet>
+    	<servlet-name>blogcreate</servlet-name>
+    	<jsp-file>/WEB-INF/jsp/openBlog.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>blogcreate</servlet-name>
+	    <url-pattern>/openBlog</url-pattern>
+	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>blogsetting</servlet-name>
+		<jsp-file>/WEB-INF/jsp/blogSetting.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>blogsetting</servlet-name>
+		<url-pattern>/blogSetting</url-pattern>
+	</servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>

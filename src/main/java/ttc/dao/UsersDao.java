@@ -229,6 +229,7 @@ public class UsersDao implements AbstractDao{
         }
         return count;
     }
+
     public Bean read(Map map) throws IntegrationException{
         UserBean ub = new UserBean();
         PreparedStatement pst = null;

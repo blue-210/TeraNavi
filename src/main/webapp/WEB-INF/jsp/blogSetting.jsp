@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿</title>
+    <title>ブログの設定</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,10 +30,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事投稿ページ</h1>
-           <form action="front/articlepost" method="post">
+           <h1>ブログ設定画面</h1>
+           <form action="front/blogSetting" method="post">
                タイトル <input type="text" name="title"><br>
-               内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
+               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
+			   説明文 <input type="text" name="explanation"><br>
+			   <input type="hidden" name="status" value="0">
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->
@@ -52,30 +54,49 @@
 				contentType:false,
 				cache:false,
 				dataType:'json',
-				success:function(data){
-					console.log("success");
-					var text = $("#tbody").val();
-					$("#tbody").val(text+"<br>"+data.result);
-				}
+
 			}
 
 		});
 
-		function onDrop(event){
+		function onDrop1(event){
 			var files = event.dataTransfer.files;
 
 
 			for(var i = 0;i < files.length;i++){
-
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = $("#head").val();
+					$("#head").val(text+data.result);
+				}
 				ajax = $.ajax(ajaxSettings);
 			}
 
 			event.preventDefault();
 		}
+
+		function onDrop2(event){
+			var files = event.dataTransfer.files;
+
+
+			for(var i = 0;i < files.length;i++){
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = $("#head").val();
+					$("#head").val(text+"<br>"+data.result);
+				}
+				ajax = $.ajax(ajaxSettings);
+			}
+
+			event.preventDefault();
+		}
+
 
 		function onDragOver(event){
 			event.preventDefault();
@@ -83,5 +104,6 @@
  -->
 
 	</script>
+
 </body>
 </html>

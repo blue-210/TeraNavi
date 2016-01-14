@@ -24,18 +24,41 @@ public class BlogDao implements AbstractDao{
     public int update(Map map)throws IntegrationException{
         PreparedStatement pst = null;
         int result = 0;
+		BlogBean bb = null;
 
         try{
+			if(map.containsKey("blogbean")){
+				bb = (BlogBean)map.get("blogbean");
+			}
 
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             String sql = "update users set blog_title=?,blog_header_path=?,blog_explanation=?,blog_status_flag=? where user_id=?";
             pst = cn.prepareStatement(sql);
 
-            pst.setString(1,(String)map.get("title"));
-            pst.setString(2,(String)map.get("headerPath"));
-            pst.setString(3,(String)map.get("explanation"));
-            pst.setString(4,(String)map.get("status"));
+            if(map.containsKey("title")){
+				pst.setString(1,(String)map.get("title"));
+			}else{
+				pst.setString(1,bb.getTitle());
+			}
+
+			if(map.containsKey("headerPath")){
+				pst.setString(2,(String)map.get("headerPath"));
+			}else{
+				pst.setString(2,bb.getHeaderPath());
+			}
+
+            if(map.containsKey("explanation")){
+				pst.setString(3,(String)map.get("explanation"));
+			}else{
+				pst.setString(3,bb.getExplanation());
+			}
+
+			if(map.containsKey("status")){
+				pst.setString(4,(String)map.get("status"));
+			}else{
+				pst.setString(4,"0");
+			}
             pst.setString(5,(String)map.get("userId"));
 
             result =  pst.executeUpdate();

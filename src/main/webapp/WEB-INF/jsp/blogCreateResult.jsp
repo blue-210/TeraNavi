@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログインリザルト</title>
+    <title>ブログ作成結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,10 +25,15 @@
 
     <div class="container">
        <div class="row">
-           <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
+           <h1>あなたのブログが作成されました</h1>
 
-           <h1>ろぐさくっ！</h1>
+           <h1>${result.title}</h1>
 
+		   ${result.headerPath}
+
+		   <p>
+		   	説明文 : ${result.explanation}
+		   </p>
 
 		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
 

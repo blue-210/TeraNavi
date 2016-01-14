@@ -14,6 +14,9 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 public class ArticlePostCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -25,7 +28,10 @@ public class ArticlePostCommand extends AbstractCommand{
 
             String body = reqc.getParameter("body")[0];
 
-            String date = reqc.getParameter("date")[0];
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+            String date = formatter.format(cal.getTime());
 
             String status = "0";
 
@@ -45,7 +51,8 @@ public class ArticlePostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("articlePost");
+			resc.setResult(params);
+            resc.setTarget("articlepostresult");
 
             return resc;
 

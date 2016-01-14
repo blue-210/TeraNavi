@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログインリザルト</title>
+    <title>タグ検索</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,14 +25,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
+           <h1>タグ検索</h1>
+           <form action="front/tagsearch" method="post">
+               タグを検索 <input type="text" name="tag"><br>
+               <input type="submit" value="検索">
 
-           <h1>ろぐさくっ！</h1>
-
-
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-
-
+           </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
