@@ -83,6 +83,15 @@
        <url-pattern>/dmsend</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>createcomm</servlet-name>
+      <jsp-file>/WEB-INF/jsp/CreateCommunity.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>createcomm</servlet-name>
+      <url-pattern>/createcomm</url-pattern>
+  </servlet-mapping>
+
 
 
 
