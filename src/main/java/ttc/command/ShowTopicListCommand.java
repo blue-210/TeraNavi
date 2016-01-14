@@ -11,32 +11,27 @@ import ttc.exception.IntegrationException;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ShowChatCommand extends AbstractCommand{
+public class ShowTopicListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
-
-            String userId=reqc.getParameter("userId")[0];
-
+            String communityId=reqc.getParameter("communityId")[0];
             Map params = new HashMap();
-            params.put("userId", userId);
+            params.put("communityId", communityId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("topic");
             AbstractDao dao = factory.getAbstractDao();
+            dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(dao.readAll(params));
-            resc.setTarget("chatresult");
+            resc.setTarget("topiclist");
 
             return resc;
 
