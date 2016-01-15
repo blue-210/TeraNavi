@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>登録結果</title>
+    <title>chatResult</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,11 +25,14 @@
 
     <div class="container">
        <div class="row">
-           <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
 
-           <p>
-               あなたのログインIDは「${sessionScope.loginUser.loginId}」です
-           </p>
+           <c:forEach var="obj" items="${result}">
+             chatBody<c:out value="${obj.chatBody}"/><br>
+           </c:forEach>
+
+
+
+
 
        </div><!--end row-->
     </div><!--end container-->

@@ -8,8 +8,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
     <meta charset="UTF-8">
-    <title>登録結果</title>
+
+    <title>マイページ</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,11 +27,33 @@
 
     <div class="container">
        <div class="row">
-           <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
+           <h1>マイページ</h1><br><br>
 
-           <p>
-               あなたのログインIDは「${sessionScope.loginUser.loginId}」です
-           </p>
+		   ${sessionScope.loginUser.headerPath}<h1>${sessionScope.loginUser.userName} さんのマイページです</h1>
+
+		   ${sessionScope.loginUser.iconPath}
+
+		   <h2>自己紹介文</h2>
+		   <textarea>${sessionScope.loginUser.profile}</textarea>
+
+		   <a href="userSetting">プロフィールを編集</a>
+
+           <div class="col-sm-3 col-xs-6">
+               <a href="articlepost">記事を投稿</a><br><br>
+               <a href="後でいれｔ">下書き</a><br><br>
+               <a href="blogSetting">ブログ設定</a><br><br>
+               <a href="後でいれｔ">コミュニティの管理</a><br><br>
+               <a href="後でいれｔ">コメント管理</a><br><br>
+               <a href="後でいれｔ">DM</a><br><br>
+               <a href="後でいれｔ">大会</a><br><br>
+           </div>
+           <div class="col-sm-3 col-xs-6">
+               <a href="openBlog">ブログ開設</a><br><br>
+               <a href="blogSetting">ブログ設定</a><br><br>
+               <a href="createcomm">コミュニティの作成</a><br><br>
+           </div>
+
+
 
        </div><!--end row-->
     </div><!--end container-->
