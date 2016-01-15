@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿</title>
+    <title>コミュニティ作成</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
+
 
 
 
@@ -30,18 +30,21 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事投稿ページ</h1>
-           <form action="front/articlepost" method="post">
-               タイトル <input type="text" name="title"><br>
-               内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
+           <h1>コミュニティ作成ページ</h1>
+           <form action="front/createcomm" method="post">
+                コミュニティ名<input type="text" name="commName"><br>
+               説明文 <input type="text" name="commProfile"><br>
+                コミュニティアイコン<input type="file" name="body" onchange="onDrop(event)"><br>
+                <input class="tbody" type="hidden" name="commIcon">
+               ヘッダ画像 <input type="file" name="date" onchange="onDrop(event)"><br>
+               <input class="tbody" type="hidden" name="commHeader">
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
 	<script>
-		<!-- var ajaxSettings;
+		var ajaxSettings;
 		var ajax;
 		$(function(){
 
@@ -54,8 +57,8 @@
 				dataType:'json',
 				success:function(data){
 					console.log("success");
-					var text = $("#tbody").val();
-					$("#tbody").val(text+"<br>"+data.result);
+					var text = $(".tbody").val();
+					$(".tbody").val(text+"<br>"+data.result);
 				}
 			}
 
@@ -64,9 +67,10 @@
 		function onDrop(event){
 			var files = event.dataTransfer.files;
 
+			console.log("オンドロップ");
 
 			for(var i = 0;i < files.length;i++){
-
+				console.log("for");
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
@@ -80,7 +84,7 @@
 		function onDragOver(event){
 			event.preventDefault();
 		}
- -->
+
 
 	</script>
 </body>

@@ -23,16 +23,15 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<img src="WEB-INF/img/sample.jpg" />
-
     <div class="container">
        <div class="row">
-           <h1>ログインテストページ</h1>
-           <form action="front/login" method="post">
-               ログインID <input type="text" name="loginId"><br>
-               パスワード <input type="text" name="password"><br>
-               <input type="submit" value="ログイン">
+           <h1>ChatTestPage</h1>
+            <form action="front/writechat" method="post">
 
+               topicId<input type="text" name="topicId"><br><br>
+               chatBody<input type="text" name="chatBody"><br>
+
+               <input type="submit" value="send">
            </form>
        </div><!--end row-->
     </div><!--end container-->
