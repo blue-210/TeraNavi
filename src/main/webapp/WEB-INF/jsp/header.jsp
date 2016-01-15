@@ -12,7 +12,7 @@
       </div><!--end navbar-header-->
 
       <ul class="nav navbar-nav navbar-right list-inline">
-         <li><a href="">新規登録</a><li>
+         <li><a href="sign">新規登録</a><li>
       </ul>
    </div>
 </nav><!--end container-->

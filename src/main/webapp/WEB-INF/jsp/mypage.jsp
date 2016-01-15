@@ -8,22 +8,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-        <META HTTP-EQUIV="refresh" content="2;URL=../top">
+
     <meta charset="UTF-8">
-    <title>ログアウト</title>
+
+    <title>マイページ</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
-
-
-
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -31,12 +27,25 @@
 
     <div class="container">
        <div class="row">
-           <h1>ログアウトしました</h1>
-           <h1>またね！！</h1>
+           <h1>マイページ</h1><br><br>
+
+           <div class="col-sm-3 col-xs-6">
+               <a href="articlepost">記事を投稿</a><br><br>
+               <a href="後でいれｔ">下書き</a><br><br>
+               <a href="blogSetting">ブログ設定</a><br><br>
+               <a href="後でいれｔ">コミュニティの管理</a><br><br>
+               <a href="後でいれｔ">コメント管理</a><br><br>
+               <a href="後でいれｔ">DM</a><br><br>
+               <a href="後でいれｔ">大会</a><br><br>
+           </div>
+           <div class="col-sm-3 col-xs-6">
+               <a href="openBlog">ブログ開設</a><br><br>
+               <a href="blogSetting">ブログ設定</a><br><br>
+               <a href="createcomm">コミュニティの作成</a><br><br>
+           </div>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
-
 </body>
 </html>
