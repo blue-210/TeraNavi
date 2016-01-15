@@ -29,6 +29,15 @@
        <div class="row">
            <h1>マイページ</h1><br><br>
 
+		   ${sessionScope.loginUser.headerPath}<h1>${sessionScope.loginUser.userName} さんのマイページです</h1>
+
+		   ${sessionScope.loginUser.iconPath}
+
+		   <h2>自己紹介文</h2>
+		   <textarea>${sessionScope.loginUser.profile}</textarea>
+
+		   <a href="userSetting">プロフィールを編集</a>
+
            <div class="col-sm-3 col-xs-6">
                <a href="articlepost">記事を投稿</a><br><br>
                <a href="後でいれｔ">下書き</a><br><br>
@@ -43,6 +52,8 @@
                <a href="blogSetting">ブログ設定</a><br><br>
                <a href="createcomm">コミュニティの作成</a><br><br>
            </div>
+
+
 
        </div><!--end row-->
     </div><!--end container-->
