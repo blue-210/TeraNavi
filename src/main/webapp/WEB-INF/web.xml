@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -109,6 +109,7 @@
     </servlet-mapping>
 
 
+
     <servlet>
         <servlet-name>topic</servlet-name>
         <jsp-file>/WEB-INF/jsp/topic.jsp</jsp-file>
@@ -127,6 +128,17 @@
         <url-pattern>/createtopic</url-pattern>
     </servlet-mapping>
 
+
+
+
+	<servlet>
+        <servlet-name>setting1</servlet-name>
+        <jsp-file>/WEB-INF/jsp/uesrSetting.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>setting1</servlet-name>
+        <url-pattern>/userSetting</url-pattern>
+    </servlet-mapping>
 
 
     <!-- <servlet>
