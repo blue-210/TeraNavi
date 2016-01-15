@@ -196,7 +196,7 @@ public class ArticleDao implements AbstractDao{
             sql.append("insert into ");
             sql.append("articles(fk_user_id, article_title, article_body, ");
             sql.append("article_created_date, article_status_flag) ");
-            sql.append("values(?,'?','?',?,'?')");
+            sql.append("values(?,?,?,?,?)");
 
             pst = cn.prepareStatement( new String(sql) );
 

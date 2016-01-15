@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>登録結果</title>
+    <title>トップページ</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -23,13 +23,15 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	<img src="WEB-INF/img/sample.jpg" />
+
     <div class="container">
        <div class="row">
-           <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
+           <h1>トップページ</h1>
+           <br><br>
+           <a href="login">ログイン画面</a><br><br>
+           <a href="mypage">マイページ</a><br><br>
 
-           <p>
-               あなたのログインIDは「${sessionScope.loginUser.loginId}」です
-           </p>
 
        </div><!--end row-->
     </div><!--end container-->

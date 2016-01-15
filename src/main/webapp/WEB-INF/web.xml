@@ -65,7 +65,6 @@
    </servlet-mapping>
 
    <servlet>
-
   	 <servlet-name>reset</servlet-name>
   	 <jsp-file>/WEB-INF/jsp/reset.jsp</jsp-file>
    </servlet>
@@ -82,23 +81,107 @@
        <servlet-name>dmsend</servlet-name>
        <url-pattern>/dmsend</url-pattern>
    </servlet-mapping>
+    <servlet>
+        <servlet-name>chatwrite</servlet-name>
+        <jsp-file>/WEB-INF/jsp/chatwrite.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chatwrite</servlet-name>
+        <url-pattern>/chatwrite</url-pattern>
+    </servlet-mapping>
 
-   <servlet>
-      <servlet-name>tagsearch</servlet-name>
-      <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-      <servlet-name>tagsearch</servlet-name>
-      <url-pattern>/tagsearch</url-pattern>
-  </servlet-mapping>
-  <servlet>
-     <servlet-name>tagsearch_show</servlet-name>
-     <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
- </servlet>
- <servlet-mapping>
-     <servlet-name>tagsearch_show</servlet-name>
-     <url-pattern>/tagsearch_show</url-pattern>
- </servlet-mapping>
+    <servlet>
+        <servlet-name>createcomm</servlet-name>
+        <jsp-file>/WEB-INF/jsp/CreateCommunity.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createcomm</servlet-name>
+        <url-pattern>/createcomm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>my</servlet-name>
+        <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>my</servlet-name>
+        <url-pattern>/mypage</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>topic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/topic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>topic</servlet-name>
+        <url-pattern>/topic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createtopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/createTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createtopic</servlet-name>
+        <url-pattern>/createtopic</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!-- <servlet>
+        <servlet-name>tagsearch</servlet-name>
+        <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tagsearch</servlet-name>
+        <url-pattern>/tagsearch</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>tagsearch_show</servlet-name>
+        <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tagsearch_show</servlet-name>
+        <url-pattern>/tagsearch_show</url-pattern>
+    </servlet-mapping> -->
+
+    <servlet>
+        <servlet-name>webtes</servlet-name>
+        <jsp-file>/WEB-INF/jsp/webTest.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webtes</servlet-name>
+        <url-pattern>/webtes</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+    	<servlet-name>blogcreate</servlet-name>
+    	<jsp-file>/WEB-INF/jsp/openBlog.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>blogcreate</servlet-name>
+	    <url-pattern>/openBlog</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>blogsetting</servlet-name>
+		<jsp-file>/WEB-INF/jsp/blogSetting.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>blogsetting</servlet-name>
+		<url-pattern>/blogSetting</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>top</servlet-name>
+		<jsp-file>/WEB-INF/jsp/top.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>top</servlet-name>
+		<url-pattern>/top</url-pattern>
+	</servlet-mapping>
+
 
 
 

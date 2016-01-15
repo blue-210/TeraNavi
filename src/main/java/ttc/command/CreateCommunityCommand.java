@@ -1,4 +1,4 @@
-package ttc.command;
+/*package ttc.command;
 
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
@@ -13,7 +13,8 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-
+import ttc.bean.UserBean;
+/*
 public class CreateCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -33,8 +34,9 @@ public class CreateCommunityCommand extends AbstractCommand{
             if(header != null && header.length() != 0){
                 params.put("commHeader",header);
             }
-
-            params.put("userName",reqc.getParameter("userName")[0]);
+            UserBean ub=new UserBean();
+            ub=(UserBean)reqc.getParameter("loginUser");
+            params.put("userName",ub.getName());
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -54,3 +56,4 @@ public class CreateCommunityCommand extends AbstractCommand{
         }
     }
 }
+*/
