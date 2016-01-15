@@ -25,11 +25,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>ようこそ${result.userName}さん!!</h1>
+           <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
 
            <p>
-               あなたのログインIDは「${result.loginId}」です
+               あなたのログインIDは「${sessionScope.loginUser.loginId}」です
            </p>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
