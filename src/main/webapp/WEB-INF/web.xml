@@ -108,6 +108,27 @@
         <url-pattern>/mypage</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>topic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/topic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>topic</servlet-name>
+        <url-pattern>/topic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createtopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/createTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createtopic</servlet-name>
+        <url-pattern>/createtopic</url-pattern>
+    </servlet-mapping>
+
+
+
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
         <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
