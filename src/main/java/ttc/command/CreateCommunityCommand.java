@@ -1,4 +1,4 @@
-package ttc.command;
+/*package ttc.command;
 
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
@@ -14,7 +14,7 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 import ttc.bean.UserBean;
-
+/*
 public class CreateCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -56,3 +56,4 @@ public class CreateCommunityCommand extends AbstractCommand{
         }
     }
 }
+*/
