@@ -35,8 +35,10 @@
 		   	説明文 : ${result.explanation}
 		   </p>
 
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
+           <h1>はじめての記事を投稿しちゃおう。</h1>
 
+		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
+           <a href="../articlepost">記事投稿しますね</a>
 
        </div><!--end row-->
     </div><!--end container-->

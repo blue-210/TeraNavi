@@ -30,6 +30,7 @@
            <p>
                あなたのログインIDは「${sessionScope.loginUser.loginId}」です
            </p>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
