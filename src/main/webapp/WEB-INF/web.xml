@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -108,6 +108,54 @@
         <url-pattern>/mypage</url-pattern>
     </servlet-mapping>
 
+
+
+    <servlet>
+        <servlet-name>topic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/topic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>topic</servlet-name>
+        <url-pattern>/topic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createtopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/createTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createtopic</servlet-name>
+        <url-pattern>/createtopic</url-pattern>
+    </servlet-mapping>
+
+
+   <servlet>
+      <servlet-name>createcom</servlet-name>
+      <jsp-file>/WEB-INF/jsp/createcommunity.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>createcom</servlet-name>
+      <url-pattern>/createcom</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+      <servlet-name>tagsearch</servlet-name>
+      <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>tagsearch</servlet-name>
+      <url-pattern>/tagsearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+     <servlet-name>tagsearch_show</servlet-name>
+     <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>tagsearch_show</servlet-name>
+     <url-pattern>/tagsearch_show</url-pattern>
+ </servlet-mapping>
+
+
 	<servlet>
         <servlet-name>setting1</servlet-name>
         <jsp-file>/WEB-INF/jsp/uesrSetting.jsp</jsp-file>
@@ -116,6 +164,7 @@
         <servlet-name>setting1</servlet-name>
         <url-pattern>/userSetting</url-pattern>
     </servlet-mapping>
+
 
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
