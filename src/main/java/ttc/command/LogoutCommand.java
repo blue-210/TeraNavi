@@ -27,7 +27,7 @@ public class LogoutCommand extends AbstractCommand{
             Calendar c = Calendar.getInstance();
 
             String userId=reqc.getParameter("userId")[0];
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String date=sdf.format(c.getTime());
 
 			Map params1 = new HashMap();
