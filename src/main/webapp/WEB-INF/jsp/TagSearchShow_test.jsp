@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログイン</title>
+    <title>タグ検索結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -23,17 +23,18 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<img src="img/sample.jpg" />
-
     <div class="container">
        <div class="row">
-           <h1>ログインテストページ</h1>
-           <form action="front/login" method="post">
-               ログインID <input type="text" name="loginId"><br>
-               パスワード <input type="text" name="password"><br>
-               <input type="submit" value="ログイン">
-
-           </form>
+           <h1>タグ検索結果</h1>
+           <c:forEach var="result" items="${result}">
+                <c:forEach var="result" items="${result}">
+                   ${result.user_result}
+                </c:forEach>
+                <c:forEach var="result" items="${result}">
+                   ${result.article_result}
+                </c:forEach>
+           </c:forEach>
+           <p></p>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

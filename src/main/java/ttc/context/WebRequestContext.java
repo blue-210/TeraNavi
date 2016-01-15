@@ -1,5 +1,6 @@
 package ttc.context;
 
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -34,6 +35,7 @@ public class WebRequestContext implements RequestContext{
 
 	public void setRequest(Object request)throws PresentationException{
 		this.request = (HttpServletRequest) request;
+
 
 		Map requestParameters = this.request.getParameterMap();
 		Set keys = requestParameters.keySet();
