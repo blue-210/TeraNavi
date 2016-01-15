@@ -99,6 +99,15 @@
         <url-pattern>/createcomm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>my</servlet-name>
+        <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>my</servlet-name>
+        <url-pattern>/mypage</url-pattern>
+    </servlet-mapping>
+
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
         <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
@@ -142,6 +151,18 @@
 		<servlet-name>blogsetting</servlet-name>
 		<url-pattern>/blogSetting</url-pattern>
 	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>top</servlet-name>
+		<jsp-file>/WEB-INF/jsp/top.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>top</servlet-name>
+		<url-pattern>/top</url-pattern>
+	</servlet-mapping>
+
+
+
 
    <!-- エラーページ -->
    <!-- <error-page>
