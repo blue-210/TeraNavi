@@ -29,7 +29,7 @@
        <div class="row">
 		   <img src="${sessionScope.loginUser.headerPath}" alt="" />
 
-		   <img src="${sessionScope.loginUser.iconPath}" alt="" /> ${sessionScope.loginUser.userName} さんのマイページです
+		   <img src="${sessionScope.loginUser.iconPath}" alt="" style="position:absolute;top:10%;left:20%;" /> ${sessionScope.loginUser.userName} さんのマイページです
 
 		   <h2>自己紹介文</h2>
 		   <textarea>${sessionScope.loginUser.profile}</textarea>
