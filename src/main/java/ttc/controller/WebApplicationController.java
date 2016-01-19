@@ -53,7 +53,6 @@ public class WebApplicationController implements ApplicationController{
 			session.setAttribute("loginUser",resc.getResult());
 		}else if(path.equals("basic")){
 			HttpSession session = req.getSession();
-			session.removeAttribute("loginUser");
 			session.setAttribute("loginUser",resc.getResult());
 		}else if(path.equals("logout")){
 			HttpSession session = req.getSession(true);
