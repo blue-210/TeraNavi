@@ -33,6 +33,7 @@
            <h1>コメント投稿ページ</h1>
            <form action="front/compost" method="post">
                内容 <input type="text" name="body"><br>
+               記事ID <input type="text" name="articleId"><br>
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->

@@ -230,12 +230,15 @@
 
     <servlet>
 		<servlet-name>compos</servlet-name>
-		<jsp-file>/WEB-INF/jsp/commentpost.jsp</jsp-file>
+		<jsp-file>/WEB-INF/jsp/commentPost.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>compos</servlet-name>
 		<url-pattern>/commentpost</url-pattern>
-		<servlet-name>showarticle</servlet-name>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showarticle</servlet-name>
 		<jsp-file>/WEB-INF/jsp/showArticle.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
@@ -251,7 +254,6 @@
 		<servlet-name>showarticlelist</servlet-name>
 		<url-pattern>/showArticleList</url-pattern>
 	</servlet-mapping>
-
 
 
 

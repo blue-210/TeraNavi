@@ -25,21 +25,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>コメントが投稿さえたよ</h1>
-
-           <h1>${result.title}</h1>
-
-		   ${result.headerPath}
-
-		   <p>
-		   	説明文 : ${result.explanation}
-		   </p>
-
-           <h1>はじめての記事を投稿しちゃおう。</h1>
-
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-           <a href="../articlepost">記事投稿しますね</a>
-
+           <h1>コメントが投稿さえたよ</h1><br><br>
+           <h1>コメント内容</h1>
+           <form action="front/compost" method="post">
+               内容 <br>${result.body}<br>
+               公開日時 ${result.date}<br>
+           </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

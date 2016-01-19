@@ -36,6 +36,7 @@ public class CommentPostCommand extends AbstractCommand{
             Map params = new HashMap();
             params.put("userId",userId);
             params.put("articleId",articleId);
+            params.put("date",date);
             params.put("body",body);
             params.put("status",status);
 
@@ -47,7 +48,7 @@ public class CommentPostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("comment");
+            resc.setTarget("commentPostResult");
 
             return resc;
         }catch(IntegrationException e){
