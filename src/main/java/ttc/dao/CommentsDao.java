@@ -28,7 +28,7 @@ public class CommentsDao implements AbstractDao{
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("articleId"));
-            pst.setString(2,"sysdate");
+            pst.setString(2,(String)map.get("date"));
             pst.setString(3,(String)map.get("userId"));
             pst.setString(4,(String)map.get("body"));
 
