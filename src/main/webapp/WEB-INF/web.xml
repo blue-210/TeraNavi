@@ -237,6 +237,15 @@
 		<url-pattern>/showArticle</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+		<servlet-name>showarticlelist</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticleList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticlelist</servlet-name>
+		<url-pattern>/showArticleList</url-pattern>
+	</servlet-mapping>
+
 
 
 
