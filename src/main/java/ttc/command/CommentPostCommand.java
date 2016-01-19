@@ -11,6 +11,9 @@ import ttc.exception.BusinessLogicException;
 import java.util.Map;
 import java.util.HashMap;
 
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
@@ -21,12 +24,21 @@ public class CommentPostCommand extends AbstractCommand{
 
             String userId = reqc.getParameter("userId")[0];
             String articleId = reqc.getParameter("articleId")[0];
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String date = formatter.format(cal.getTime());
+
             String body = reqc.getParameter("body")[0];
+
+            String status = "0";
 
             Map params = new HashMap();
             params.put("userId",userId);
             params.put("articleId",articleId);
+            params.put("date",date);
             params.put("body",body);
+            params.put("status",status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
@@ -36,7 +48,7 @@ public class CommentPostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("comment");
+            resc.setTarget("commentPostResult");
 
             return resc;
         }catch(IntegrationException e){
