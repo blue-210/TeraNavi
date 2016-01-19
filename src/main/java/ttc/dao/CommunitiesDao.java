@@ -64,11 +64,11 @@ public class CommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into communities(");
-            sql.append("community_name,community_profile");
-            sql.append("community_icon_path,community_header_path");
-            sql.append("community_created_date,fk_user_name");
-            sql.append("community_delete_flag)");
-            sql.append(" values(?,?,?,?,?,?,?)");
+            sql.append("community_name,community_profile,");
+            sql.append("community_icon_path,community_header_path,");
+            sql.append("community_created_date,fk_user_name,");
+            sql.append("community_delete_flag) ");
+            sql.append("values(?,?,?,?,sysdate(),?,'0')");
 
             pst = cn.prepareStatement(new String(sql));
 
@@ -89,9 +89,9 @@ public class CommunitiesDao implements AbstractDao{
                 pst.setString(4,"/images/header/header.jpg");
             }
 
-            pst.setString(5,"sysdate");
-            pst.setString(6,(String)map.get("userName"));
-            pst.setString(7,"0");
+
+            pst.setString(5,(String)map.get("userName"));
+
 
             result = pst.executeUpdate();
 
