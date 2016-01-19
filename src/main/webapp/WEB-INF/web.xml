@@ -228,6 +228,15 @@
 		<url-pattern>/top</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+		<servlet-name>showarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticle</servlet-name>
+		<url-pattern>/showArticle</url-pattern>
+	</servlet-mapping>
+
 
 
 

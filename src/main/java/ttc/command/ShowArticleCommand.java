@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.bean.ArticleBean;
 
 public class ShowArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -28,12 +29,14 @@ public class ShowArticleCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.read(params);
+            ArticleBean ab = (ArticleBean)dao.read(params);
+
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("showarticle");
+            resc.setResult(ab);
+            resc.setTarget("showArticleResult");
 
             return resc;
 
