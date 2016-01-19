@@ -29,7 +29,7 @@
 
            <h1>${result.title}</h1>
 
-		   ${result.headerPath}
+		   <img src="${result.headerPath}" alt="" />
 
 		   <p>
 		   	説明文 : ${result.explanation}

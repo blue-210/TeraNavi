@@ -78,7 +78,7 @@ public class BlogDaoTest {
         BlogBean blog = null;
 
         HashMap param = new HashMap();
-        param.put("userId",2);
+        param.put("userId","2");
         // 実行
         blog = (BlogBean)bdao.read(param);
 

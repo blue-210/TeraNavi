@@ -38,6 +38,7 @@ public class BasicSettingCommand extends AbstractCommand{
             Map params = new HashMap();
 			params.put("value",userId);
 			params.put("where","where user_id=?");
+			params.put("userId",userId);
 
             params.put("userName",userName);
             params.put("nameKana",nameKana);
@@ -50,16 +51,18 @@ public class BasicSettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            UserBean ub = (UserBean)dao.read(params);
+            UserBean beforeUb = (UserBean)dao.read(params);
 
-			params.put("userbean",ub);
+			params.put("userbean",beforeUb);
 			dao.update(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+
+			UserBean afterUb = (UserBean)dao.read(params);
+			resc.setResult(afterUb);
 
 
-			resc.setResult(ub);
+			MySqlConnectionManager.getInstance().commit();
+			MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setTarget("SettingResult");
 

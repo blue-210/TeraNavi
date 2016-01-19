@@ -38,6 +38,7 @@
                 <input class="tbody" type="hidden" name="commIcon">
                ヘッダ画像 <input type="file" name="date" onchange="onDrop(event)"><br>
                <input class="tbody" type="hidden" name="commHeader">
+                   <input type="hidden" name="userName" value="${sessionScope.loginUser.userName}">
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->
