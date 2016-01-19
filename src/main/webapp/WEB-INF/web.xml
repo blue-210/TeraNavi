@@ -165,6 +165,15 @@
         <url-pattern>/userSetting</url-pattern>
     </servlet-mapping>
 
+	<servlet>
+        <servlet-name>blogDelete</servlet-name>
+        <jsp-file>/WEB-INF/jsp/blogDelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>blogDelete</servlet-name>
+        <url-pattern>/blogDelete</url-pattern>
+    </servlet-mapping>
+
 
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>

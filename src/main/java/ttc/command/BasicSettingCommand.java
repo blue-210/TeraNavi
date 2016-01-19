@@ -59,7 +59,7 @@ public class BasicSettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-
+			resc.setResult(ub);
 
             resc.setTarget("SettingResult");
 

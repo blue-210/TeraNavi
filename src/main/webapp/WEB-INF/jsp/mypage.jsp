@@ -50,6 +50,7 @@
            <div class="col-sm-3 col-xs-6">
                <a href="openBlog">ブログ開設</a><br><br>
                <a href="blogSetting">ブログ設定</a><br><br>
+			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                <a href="createcomm">コミュニティの作成</a><br><br>
            </div>
 

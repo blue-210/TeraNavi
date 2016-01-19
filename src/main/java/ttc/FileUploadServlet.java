@@ -30,9 +30,11 @@ public class FileUploadServlet extends HttpServlet{
 
 		req.setCharacterEncoding("utf-8");
 
-		String path = getServletContext().getRealPath("WEB-INF/img");
+		String path = "/tmp";
 
 		String resultPath = null;
+
+		String hostName = req.getLocalName();
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload sfu = new ServletFileUpload(factory);
@@ -49,7 +51,7 @@ public class FileUploadServlet extends HttpServlet{
 
 						item.write(new File(path+"/"+fileName));
 
-						resultPath="<img src='/WEB-INF/img/"+fileName+"'>";
+						resultPath="<img src='http://"+hostName+"/TeraNavi/imgPath/"+fileName+"'>";
 					}
 				}
 

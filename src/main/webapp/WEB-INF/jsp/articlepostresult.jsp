@@ -33,7 +33,7 @@
            <h1>投稿完了</h1>
            <form action="front/articlepost" method="post">
                タイトル ${result.title}<br>
-               内容 <br><textarea rows="4" cols="40" wrap="hard" style="resize:none;">${result.body}</textarea><br>
+               内容 <br>${result.body}<br>
                公開日時 ${result.date}<br>
            </form>
        </div><!--end row-->
