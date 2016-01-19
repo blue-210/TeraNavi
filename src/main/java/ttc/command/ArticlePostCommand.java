@@ -31,9 +31,10 @@ public class ArticlePostCommand extends AbstractCommand{
             String body = reqc.getParameter("body")[0];
 
 			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
             String date = formatter.format(cal.getTime());
+            System.out.println(date);
 
             String status = "0";
 
