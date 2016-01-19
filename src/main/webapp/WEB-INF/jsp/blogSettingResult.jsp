@@ -32,7 +32,7 @@
            <h1>ブログ設定を変更しました</h1>
 
 		   タイトル : ${result.title}<br>
-		   ヘッダ画像 : ${result.headerPath}<br>
+		   ヘッダ画像 : <img src="${result.headerPath}" alt="" /><br>
 		   説明文 : ${result.explanation}
        </div><!--end row-->
     </div><!--end container-->

@@ -51,7 +51,7 @@ public class FileUploadServlet extends HttpServlet{
 
 						item.write(new File(path+"/"+fileName));
 
-						resultPath="<img src='http://"+hostName+"/TeraNavi/imgPath/"+fileName+"'>";
+						resultPath="http://"+hostName+"/TeraNavi/imgPath/"+fileName;
 					}
 				}
 

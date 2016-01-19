@@ -23,7 +23,6 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<img src="WEB-INF/img/sample.jpg" />
 
     <div class="container">
        <div class="row">
