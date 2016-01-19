@@ -23,19 +23,21 @@ public class CommentPostCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             String userId = reqc.getParameter("userId")[0];
-            System.out.println(userId);
             String articleId = reqc.getParameter("articleId")[0];
-System.out.println(articleId);
+
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String date = formatter.format(cal.getTime());
-System.out.println(date);
+
             String body = reqc.getParameter("body")[0];
-System.out.println(body);
+
+            String status = "0";
+
             Map params = new HashMap();
             params.put("userId",userId);
             params.put("articleId",articleId);
             params.put("body",body);
+            params.put("status",status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
