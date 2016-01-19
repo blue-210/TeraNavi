@@ -168,11 +168,12 @@ public class UsersDao implements AbstractDao{
             }
 
 
-            pst.setString(13,(String)map.get("userId"));
+            pst.setInt(13,Integer.parseInt((String)map.get("userId")));
 
 
             result = pst.executeUpdate();
 
+			System.out.println("\t処理件数 : "+result);
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();

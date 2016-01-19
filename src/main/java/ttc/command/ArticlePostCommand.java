@@ -39,11 +39,11 @@ public class ArticlePostCommand extends AbstractCommand{
             String status = "0";
 
 			Map params = new HashMap();
-            params.put("userId", userId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
-            params.put("status", status);
+            params.put("userId",userId);
+            params.put("title",title);
+            params.put("body",body);
+            params.put("date",date);
+            params.put("status",status);
 
 			// ブログが解説しているかどうかのチェック
 			MySqlConnectionManager.getInstance().beginTransaction();

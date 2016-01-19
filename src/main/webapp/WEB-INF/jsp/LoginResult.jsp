@@ -29,7 +29,7 @@
        <div class="row">
            <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
 
-           <h1>ろぐさくっ！</h1>
+           <a href="/TeraNavi/mypage"><h1>マイページはこちら</h1></a>
 
 
 		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>

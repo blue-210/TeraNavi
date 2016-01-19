@@ -27,11 +27,9 @@
 
     <div class="container">
        <div class="row">
-           <h1>マイページ</h1><br><br>
+		   <img src="${sessionScope.loginUser.headerPath}" alt="" />
 
-		   ${sessionScope.loginUser.headerPath}<h1>${sessionScope.loginUser.userName} さんのマイページです</h1>
-
-		   ${sessionScope.loginUser.iconPath}
+		   <img src="${sessionScope.loginUser.iconPath}" alt="" style="position:absolute;top:10%;left:20%;" /> ${sessionScope.loginUser.userName} さんのマイページです
 
 		   <h2>自己紹介文</h2>
 		   <textarea>${sessionScope.loginUser.profile}</textarea>
@@ -50,6 +48,7 @@
            <div class="col-sm-3 col-xs-6">
                <a href="openBlog">ブログ開設</a><br><br>
                <a href="blogSetting">ブログ設定</a><br><br>
+			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                <a href="createcomm">コミュニティの作成</a><br><br>
            </div>
 
