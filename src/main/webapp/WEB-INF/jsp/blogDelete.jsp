@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ブログ開設</title>
+    <title>ブログ閉鎖</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,12 +30,14 @@
 
     <div class="container">
        <div class="row">
-           <h1>ブログ開設ページ</h1>
-           <form action="front/blogCreate" method="post">
-               タイトル <input type="text" name="title"><br>
-               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
-			   説明文 <input type="text" name="explanation"><br>
-               <input type="submit" value="登録">
+           <h1>ブログ閉鎖ページ</h1>
+		   <h1>本当に閉鎖してもよろしいですか？</h1>
+           <form action="front/blogSetting" method="post">
+               <input type="hidden" name="title" value="Default">
+			   <input type="hidden" name="headerPath" value="Default">
+			   <input type="hidden" name="explanation" value="Default">
+			   <input type="hidden" name="status" value="0">
+               <button type="submit">YES</button><button type="button" onclick="history.back();">NO</button>
            </form>
        </div><!--end row-->
     </div><!--end container-->
