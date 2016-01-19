@@ -14,6 +14,8 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
+import ttc.bean.UserBean;
+
 public class SignUpCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -28,7 +30,8 @@ public class SignUpCommand extends AbstractCommand{
             String mailAddress=reqc.getParameter("mailAddress")[0];
             String password=reqc.getParameter("password")[0];
             String quepstionId=reqc.getParameter("quepstionId")[0];
-            String quepstionAnswer=reqc.getParameter("quepstionAnswer")[0];
+            String questionAnswer=reqc.getParameter("questionAnswer")[0];
+            String adminFlag = reqc.getParameter("adminFlag")[0];
 
             Map params = new HashMap();
             params.put("loginId",loginId);
@@ -40,7 +43,8 @@ public class SignUpCommand extends AbstractCommand{
             params.put("mailAddress",mailAddress);
             params.put("password",password);
             params.put("quepstionId",quepstionId);
-            params.put("quepstionAnswer",quepstionAnswer);
+            params.put("secretAnswer",questionAnswer);
+            params.put("adminFlag",adminFlag);
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
@@ -51,7 +55,18 @@ public class SignUpCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("SignUp");
+			UserBean ub = new UserBean();
+			ub.setLoginId(loginId);
+			ub.setUserName(userName);
+			ub.setNameKana(nameKana);
+			ub.setSex(sex);
+			ub.setSexVisibleFlag(sexVisibleFlag);
+			ub.setBirthDate(birthDate);
+			ub.setMailAddress(mailAddress);
+			ub.setAdminFlag(adminFlag);
+
+            resc.setResult(ub);
+            resc.setTarget("signupResult");
 
             return resc;
         }catch(IntegrationException e){

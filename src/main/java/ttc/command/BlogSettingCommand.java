@@ -28,7 +28,7 @@ public class BlogSettingCommand extends AbstractCommand{
 
             String explanation = reqc.getParameter("explanation")[0];
 
-            String status = reqc.getParameter("Status")[0];
+            String status = reqc.getParameter("status")[0];
 
             Map params = new HashMap();
             params.put("userId",userId);
@@ -46,7 +46,8 @@ public class BlogSettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("blogSet");
+			resc.setResult(params);
+            resc.setTarget("blogSettingResult");
 
             return resc;
         }catch(IntegrationException e){

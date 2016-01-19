@@ -23,9 +23,9 @@ public class BasicSettingCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-
+			String userId = reqc.getParameter("userId")[0];
             String userName=reqc.getParameter("userName")[0];
-            String nameKana=reqc.getParameter("nameKane")[0];
+            String nameKana=reqc.getParameter("nameKana")[0];
             String sexVisibleFlag=reqc.getParameter("sexVisibleFlag")[0];
             String mailAddress=reqc.getParameter("mailAddress")[0];
             String headerPath=reqc.getParameter("headerPath")[0];
@@ -36,6 +36,9 @@ public class BasicSettingCommand extends AbstractCommand{
 
 
             Map params = new HashMap();
+			params.put("value",userId);
+			params.put("where","where user_id=?");
+
             params.put("userName",userName);
             params.put("nameKana",nameKana);
             params.put("sexVisibleFlag",sexVisibleFlag);
@@ -44,12 +47,13 @@ public class BasicSettingCommand extends AbstractCommand{
             params.put("iconPath",iconPath);
             params.put("profile",profile);
 
-
             MySqlConnectionManager.getInstance().beginTransaction();
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("beisc");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            UserBean ub = (UserBean)dao.read(params);
 
+			params.put("userbean",ub);
+			dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

@@ -35,23 +35,25 @@ public class LoginCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
-
+            UserBean ub = (UserBean)dao.read(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            UserBean ub=new UserBean();
+
             if(password.equals(ub.getPassword())){
                 ub.setPassword("dummy");
                 ub.setSecretAnswer("dummy");
                 resc.setResult(ub);
+                resc.setTarget("LoginResult");
+
+                return resc;
+            }else{
+                throw new BusinessLogicException("パスワードが違います",null);
             }
 
 
-            resc.setTarget("LoginResult");
 
-            return resc;
         }catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }

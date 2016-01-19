@@ -26,22 +26,29 @@ public class LogoutCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
             Calendar c = Calendar.getInstance();
 
-            String loginId=reqc.getParameter("userId")[0];
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String userId=reqc.getParameter("userId")[0];
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String date=sdf.format(c.getTime());
 
+			Map params1 = new HashMap();
+			params1.put("where","where user_id = ?");
+			params1.put("value",userId);
 
 
+            Map params2 = new HashMap();
+            params2.put("userId",userId);
+            params2.put("lastLoginDate",date);
 
-            Map params = new HashMap();
-            params.put("userId",loginId);
-            params.put("lastLoginDate",date);
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+			UserBean ub = (UserBean)dao.read(params1);
+
+			params2.put("userbean",ub);
+
+            dao.update(params2);
 
 
             MySqlConnectionManager.getInstance().commit();
@@ -50,7 +57,7 @@ public class LogoutCommand extends AbstractCommand{
 
 
 
-            resc.setTarget("LoginResult");
+            resc.setTarget("LogoutResult");
 
             return resc;
         }catch(IntegrationException e){
