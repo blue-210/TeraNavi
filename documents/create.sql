@@ -36,7 +36,7 @@ create table tera_db.tags(tag_id int(10) primary key auto_increment,tag_name var
 create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id) references tera_db.articles(article_id),
 									foreign key(fk_tag_id) references tera_db.tags(tag_id))engine=InnoDB;
 #コミュニティユーザーリスト表
-create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,
+create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,community_withdrawal_flag char(1),
 											foreign key(fk_user_id) references tera_db.users(user_id),
 											foreign key(fk_community_id) references tera_db.communities(community_id))engine=InnoDB;
 #コメント表
