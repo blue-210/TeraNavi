@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コミュニティ作成完了</title>
+    <title>コミュニティ設定</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,14 +30,16 @@
 
     <div class="container">
        <div class="row">
-           <h1>作成完了</h1>
+           <h1>コミュニティ設定画面</h1>
 
-               コミュニティ名${result.commName}<br>
-              説明文 ${result.commProfile}<br>
-               コミュニティアイコン<img src='${sessionScope.loginUser.iconPath}'><br>
-
-              ヘッダ画像 <img src='${sessionScope.loginUser.headerPath}>'><br>
-
+           <form action="front/communitySetting" method="post">
+               コミュニティ名 <input type="text" name="commNAme"><br>
+               説明文<input type="text" name="commProfile"><br>
+               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
+               説明文 <input type="text" name="explanation"><br>
+               <input type="hidden" name="status" value="0">
+               <input type="submit" value="登録">
+           </form>
 
        </div><!--end row-->
     </div><!--end container-->
