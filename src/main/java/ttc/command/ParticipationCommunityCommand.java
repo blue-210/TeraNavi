@@ -28,8 +28,8 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
-            dao.update(params);
-
+            dao.insert(params);
+            
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 

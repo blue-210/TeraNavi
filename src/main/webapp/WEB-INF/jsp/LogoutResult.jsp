@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+        <META HTTP-EQUIV="refresh" content="2;URL=../top">
     <meta charset="UTF-8">
     <title>ログアウト</title>
     <!-- Latest compiled and minified CSS -->

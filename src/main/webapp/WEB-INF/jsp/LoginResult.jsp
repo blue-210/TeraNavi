@@ -8,8 +8,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
     <meta charset="UTF-8">
-    <title>ログインリザルト</title>
+
+    <title>ログイン</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -27,12 +29,11 @@
        <div class="row">
            <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
 
-           <h1>ろぐさくっ！</h1>
+           <a href="/TeraNavi/mypage"><h1>マイページはこちら</h1></a>
 
-           <h1>${sessionScope.loginUser.id}</h1>
 
 		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-
+        <a href="../top">Topへ</a>
 
        </div><!--end row-->
     </div><!--end container-->

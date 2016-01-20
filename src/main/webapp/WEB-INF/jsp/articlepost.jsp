@@ -34,7 +34,6 @@
            <form action="front/articlepost" method="post">
                タイトル <input type="text" name="title"><br>
                内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-               公開日時 <input type="text" name="date"><br>
                <input type="submit" value="登録">
            </form>
        </div><!--end row-->
@@ -65,10 +64,9 @@
 		function onDrop(event){
 			var files = event.dataTransfer.files;
 
-			console.log("オンドロップ");
 
 			for(var i = 0;i < files.length;i++){
-				console.log("for");
+
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);

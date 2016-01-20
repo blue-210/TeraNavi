@@ -28,11 +28,15 @@ public class FileUploadServlet extends HttpServlet{
 
 	public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException{
 
+		System.out.println("ファイルのアップロードを開始します");
+
 		req.setCharacterEncoding("utf-8");
 
-		String path = getServletContext().getRealPath("WEB-INF/img");
+		String path = "/tmp";
 
 		String resultPath = null;
+
+		String hostName = req.getLocalName();
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload sfu = new ServletFileUpload(factory);
@@ -49,33 +53,26 @@ public class FileUploadServlet extends HttpServlet{
 
 						item.write(new File(path+"/"+fileName));
 
-						resultPath="<img src='../img/"+fileName+"'>";
+						resultPath="http://"+hostName+"/TeraNavi/imgPath/"+fileName;
 					}
 				}
 
 			}
+
+
 		}catch(FileUploadException e){
-			e.printStackTrace();
+			throw new IOException(e.getMessage(),e);
 		}catch(Exception e){
-			e.printStackTrace();
+			throw new IOException(e.getMessage(),e);
 		}
 
-		System.out.println("Fileup1");
+		System.out.println("ファイルのアップロードを完了しました");
 
-		// req.setCharacterEncoding("UTF-8");
-		// Part part = req.getPart("file");
-		// String name = getFilename(part);
-		// part.write(name);
-		//
 		String responseJson = "{\"result\":\""+resultPath+"\"}";
 		res.setContentType("application/json;charset=UTF-8");
 
-		System.out.println("Fileup2");
-
 		PrintWriter writer = res.getWriter();
 		writer.print(responseJson);
-
-		System.out.println("Fileup3");
 
 		writer.flush();
 		writer.close();

@@ -26,8 +26,6 @@ public class DirectMessageSendCommand extends AbstractCommand{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             String date=sdf.format(c.getTime());
 
-            String messageId=reqc.getParameter("messageId")[0];
-
             String messageBody=reqc.getParameter("messageBody")[0];
 
             String sendUserId = reqc.getParameter("userId")[0];
@@ -35,7 +33,6 @@ public class DirectMessageSendCommand extends AbstractCommand{
             String receiveUserId=reqc.getParameter("receiveUserId")[0];
 
             Map params = new HashMap();
-            params.put("messageId", messageId);
             params.put("messageBody", messageBody);
             params.put("messageDate", date);
             params.put("sendUserId", sendUserId);
@@ -50,8 +47,8 @@ public class DirectMessageSendCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            //福田案採用果たして動くのか・・・    
-            resc.setTarget("/front/dmreceive");
+            //福田案採用果たして動くのか・・・
+            resc.setTarget("sendResult");
 
             return resc;
 

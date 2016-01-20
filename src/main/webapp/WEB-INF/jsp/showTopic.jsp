@@ -19,26 +19,12 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         </head>
         <body>
-            <%-- ヘッダー部分のHTMLを読み込み --%>
-            <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-            <h1>トピック一覧</h1>
 
-            <c:forEach var="topic" items="topics">
-                <li class="list-group-item">
-                    <ul class="media-list">
-                        <li class="media">
-                            <a class="media-left" href="#">
-                                <img arc="">
-                                <p>${session.topic.createUserName}</p>
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">${session.topic.name}</h4>
-                                <p>${session.topic.updateDate}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </c:forEach>
+			<form action="front/showTopic" method="post" name="showForm">
+				<input type="text" name="communityId" value="${result.communityId}">
+			</form>
+
+
             <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
         </body>
     </html>
