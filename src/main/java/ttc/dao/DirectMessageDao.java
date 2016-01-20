@@ -82,7 +82,6 @@ public class DirectMessageDao implements AbstractDao{
             ResultSet rs = pst.executeQuery();
 
             while(rs.next()){
-				System.out.println("DMを一件処理");
                 dmBean = new DirectMessageBean();
                 dmBean.setMessageId(rs.getString(1));
                 dmBean.setMessageBody(rs.getString(2));
