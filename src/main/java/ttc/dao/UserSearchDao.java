@@ -39,7 +39,7 @@ public class UserSearchDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             sql.append("select user_id,user_name,sex,user_icon_path,");
             sql.append("user_profile ");
-            sql.append("from users where user_name like ?");
+            sql.append("from users where user_name like '%' || ? || '%'");
 
             sql.append(" and user_status_flag=0");
 
@@ -47,7 +47,7 @@ public class UserSearchDao implements AbstractDao{
 			pst = cn.prepareStatement(new String(sql));
 
 
-			pst.setString(1,"'%"+keyword+"%'");
+			pst.setString(1,keyword);
 
             ResultSet rs = pst.executeQuery();
 

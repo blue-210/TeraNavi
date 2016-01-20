@@ -100,6 +100,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>commmem</servlet-name>
+        <jsp-file>/WEB-INF/jsp/communityMembers.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commmem</servlet-name>
+        <url-pattern>/joincomm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>my</servlet-name>
         <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
     </servlet>
@@ -272,6 +281,16 @@
 		<servlet-name>draftarticle</servlet-name>
 		<url-pattern>/draftArticle</url-pattern>
 	</servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>comdel</servlet-name>
+        <jsp-file>/WEB-INF/jsp/commentdelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comdel</servlet-name>
+        <url-pattern>/commentdelete</url-pattern>
+    </servlet-mapping>
 
 
 

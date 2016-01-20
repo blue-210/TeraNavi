@@ -29,9 +29,15 @@
 
     <div class="container">
        <div class="row">
-		   test
+
            <c:forEach var="item" items="${result}">
 		   		<c:out value="${item.userName}" /><br>
+				&nbsp;このユーザにDMを送る
+				<form action="dmsend" method="post">
+					&nbsp;&nbsp;本文:<input type="text" name="messageBody"><br>
+					<input type="hidden" name="receiveUserId" value="${item.id}">
+					<input type="submit" value="送信"><br><br>
+				</form>
 	   		</c:forEach>
        </div><!--end row-->
     </div><!--end container-->

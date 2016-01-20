@@ -9,15 +9,20 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コメント登録結果</title>
+    <title>コミュニティ設定</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/fileup.js"></script>
+
+
+
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -25,14 +30,21 @@
 
     <div class="container">
        <div class="row">
-           <h1>コメントが投稿さえたよ</h1><br><br>
-           <h1>コメント内容</h1>
-           <form action="front/compost" method="post">
-               内容 <br>${result.body}<br>
-               公開日時<br>${result.date}<br>
+           <h1>コミュニティ設定画面</h1>
+
+           <form action="front/communitySetting" method="post">
+               コミュニティ名 <input type="text" name="commNAme"><br>
+               説明文<input type="text" name="commProfile"><br>
+               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
+               説明文 <input type="text" name="explanation"><br>
+               <input type="hidden" name="status" value="0">
+               <input type="submit" value="登録">
            </form>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+
 </body>
 </html>
