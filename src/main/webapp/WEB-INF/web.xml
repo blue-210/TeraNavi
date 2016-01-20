@@ -264,6 +264,15 @@
 		<url-pattern>/userSearch</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+		<servlet-name>draftarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/draftArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>draftarticle</servlet-name>
+		<url-pattern>/draftArticle</url-pattern>
+	</servlet-mapping>
+
 
 
    <!-- エラーページ -->
