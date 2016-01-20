@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>送信</title>
+    <title>DM送信結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -23,15 +23,12 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	<h1>DMの送信に成功したよ！！！！！！！！！！！！！！！！！！！！！！！！！！</h1>
+
     <div class="container">
        <div class="row">
            <h1>DirectMailの送信</h1>
-           <form action="front/dmsend" method="post">
-               メッセージボディ<br><input type="textarea" name="messageBody" rows="10" cols="90"><br>
-               受け取るユーザのID<input type="text" name="receiveUserId"><br>
-
-               <input type="submit" value="送信">
-           </form>
+		   <a href="/TeraNavi/mypage">マイページにオドル</a>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
