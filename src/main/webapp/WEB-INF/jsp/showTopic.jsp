@@ -19,14 +19,9 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         </head>
         <body>
-            <%-- ヘッダー部分のHTMLを読み込み --%>
-            <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-            <h1>トピックを作成しました</h1>
 
-			<h1>トピック名 : ${result.topic_name}</h1>
-			<button type="button" onclick="document.showForm.submit();">トピックの一覧を表示</button>
-			<form action="showTopic" method="post" name="showForm">
-				<input type="hidden" name="communityId" value="${result.communityId}">
+			<form action="front/showTopic" method="post" name="showForm">
+				<input type="text" name="communityId" value="${result.communityId}">
 			</form>
 
 

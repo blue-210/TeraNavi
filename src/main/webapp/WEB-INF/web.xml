@@ -300,7 +300,14 @@
         <url-pattern>/commentdelete</url-pattern>
     </servlet-mapping>
 
-
+	<servlet>
+        <servlet-name>showTopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/showTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showTopic</servlet-name>
+        <url-pattern>/showTopic</url-pattern>
+    </servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>
