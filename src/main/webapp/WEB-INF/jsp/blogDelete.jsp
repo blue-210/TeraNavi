@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿</title>
+    <title>ブログ閉鎖</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,11 +30,14 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事投稿ページ</h1>
-           <form action="front/articlepost" method="post">
-               タイトル <input type="text" name="title"><br>
-               内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-               <input type="submit" value="登録">
+           <h1>ブログ閉鎖ページ</h1>
+		   <h1>本当に閉鎖してもよろしいですか？</h1>
+           <form action="front/blogSetting" method="post">
+               <input type="hidden" name="title" value="Default">
+			   <input type="hidden" name="headerPath" value="Default">
+			   <input type="hidden" name="explanation" value="Default">
+			   <input type="hidden" name="status" value="0">
+               <button type="submit">YES</button><button type="button" onclick="history.back();">NO</button>
            </form>
        </div><!--end row-->
     </div><!--end container-->
@@ -52,30 +55,49 @@
 				contentType:false,
 				cache:false,
 				dataType:'json',
-				success:function(data){
-					console.log("success");
-					var text = $("#tbody").val();
-					$("#tbody").val(text+"<br>"+data.result);
-				}
+
 			}
 
 		});
 
-		function onDrop(event){
+		function onDrop1(event){
 			var files = event.dataTransfer.files;
 
 
 			for(var i = 0;i < files.length;i++){
-
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = $("#head").val();
+					$("#head").val(text+data.result);
+				}
 				ajax = $.ajax(ajaxSettings);
 			}
 
 			event.preventDefault();
 		}
+
+		function onDrop2(event){
+			var files = event.dataTransfer.files;
+
+
+			for(var i = 0;i < files.length;i++){
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = $("#head").val();
+					$("#head").val(text+"<br>"+data.result);
+				}
+				ajax = $.ajax(ajaxSettings);
+			}
+
+			event.preventDefault();
+		}
+
 
 		function onDragOver(event){
 			event.preventDefault();
@@ -83,5 +105,6 @@
  -->
 
 	</script>
+
 </body>
 </html>

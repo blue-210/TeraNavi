@@ -8,9 +8,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-        <META HTTP-EQUIV="refresh" content="2;URL=../top">
     <meta charset="UTF-8">
-    <title>ログアウト</title>
+    <title>ブログの設定完了</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -20,7 +19,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
 
 
 
@@ -31,11 +29,15 @@
 
     <div class="container">
        <div class="row">
-           <h1>ログアウトしました</h1>
-           <h1>またね！！</h1>
+           <h1>ブログ設定を変更しました</h1>
+
+		   タイトル : ${result.title}<br>
+		   ヘッダ画像 : <img src="${result.headerPath}" alt="" /><br>
+		   説明文 : ${result.explanation}
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
 
 
 </body>

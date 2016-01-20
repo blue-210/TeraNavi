@@ -48,9 +48,11 @@ public class WebApplicationController implements ApplicationController{
 
 
 
-		if(path.equals("login")){
-			System.out.println("ログイン成功");
+		if(path.equals("login") || path.equals("signup")){
 			HttpSession session = req.getSession(true);
+			session.setAttribute("loginUser",resc.getResult());
+		}else if(path.equals("basic")){
+			HttpSession session = req.getSession();
 			session.setAttribute("loginUser",resc.getResult());
 		}else if(path.equals("logout")){
 			HttpSession session = req.getSession(true);

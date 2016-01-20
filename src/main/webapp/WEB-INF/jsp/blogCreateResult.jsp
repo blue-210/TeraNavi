@@ -25,18 +25,20 @@
 
     <div class="container">
        <div class="row">
-           <h1>あなたのブログが作成されました</h1>
+           <h1>${sessionScope.loginUser.userName}さんのブログが作成されました</h1>
 
            <h1>${result.title}</h1>
 
-		   ${result.headerPath}
+		   <img src="${result.headerPath}" alt="" />
 
 		   <p>
 		   	説明文 : ${result.explanation}
 		   </p>
 
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
+           <h1>はじめての記事を投稿しちゃおう。</h1>
 
+		   <a href="../articlepost">記事投稿しますね</a>
+		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
 
        </div><!--end row-->
     </div><!--end container-->
