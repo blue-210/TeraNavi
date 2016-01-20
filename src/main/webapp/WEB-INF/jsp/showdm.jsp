@@ -1,6 +1,7 @@
 <%@ page
    contentType="text/html ; charset=UTF-8"
    pageEncoding="UTF-8"
+   import="ttc.bean.ArticleBean"
 %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +10,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>送信</title>
+    <title>DM一覧表示</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,13 +26,26 @@
 
     <div class="container">
        <div class="row">
-           <h1>DirectMailの送信</h1>
-           <form action="front/dmsend" method="post">
-               メッセージボディ<br><input type="textarea" name="messageBody" rows="10" cols="90"><br>
-               受け取るユーザのID<input type="text" name="receiveUserId"><br>
 
-               <input type="submit" value="送信">
-           </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>内容</th>
+                    <th>受信日時</th>
+                    <th>送信先</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="dm" items="${result}">
+                <tr>
+                    <td> <c:out value="${dm.messageBody}"/> </td>
+                    <td> <c:out value="${dm.date}" /> </td>
+                    <td> <c:out value="${dm.toUserId}"/> </td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
