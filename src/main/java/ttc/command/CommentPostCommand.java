@@ -48,6 +48,7 @@ public class CommentPostCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+            resc.setResult(params);
             resc.setTarget("commentPostResult");
 
             return resc;
