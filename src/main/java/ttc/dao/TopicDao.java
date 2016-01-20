@@ -73,11 +73,15 @@ public class TopicDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql="select topic_id,fk_create_user_id,topic_name,topic_update_date,topic_create_date,users.user_name from topics inner join users on topic.create_user_id=users.user_id where fk_community_Id=?";
+            StringBuffer sql = new StringBuffer();
+			sql.append("select topic_id,fk_create_user_id,topic_name,topic_updatetime_date,");
+			sql.append("topic_created_date,users.user_name ");
+			sql.append("from topics inner join users");
+			sql.append(" on topics.fk_create_user_id=users.user_id where fk_community_Id=?");
 
-            pst.setString(1,comId);
+            pst = cn.prepareStatement(new String(sql));
 
-            pst = cn.prepareStatement(sql);
+			pst.setInt(1,Integer.parseInt(comId));
 
             ResultSet rs = pst.executeQuery();
 
