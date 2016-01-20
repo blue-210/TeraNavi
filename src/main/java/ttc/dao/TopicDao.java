@@ -34,8 +34,8 @@ public class TopicDao implements AbstractDao{
             MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
-            sql.append("topic(fk_community_id,fk_create_user_id,topic_name, ");
-            sql.append("topic_update_date,topic_create_date) ");
+            sql.append("topics(fk_community_id,fk_create_user_id,topic_name,");
+            sql.append("topic_updatetime_date,topic_created_date) ");
             sql.append("values(?,?,?,?,?)");
 
             pst = cn.prepareStatement( new String(sql) );
@@ -73,7 +73,7 @@ public class TopicDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql="select topic_id,fk_create_user_id,topic_name,topic_update_date,topic_create_date,users.user_name from topic inner join users on topic.create_user_id=users.user_id where fk_community_Id=?";
+            String sql="select topic_id,fk_create_user_id,topic_name,topic_update_date,topic_create_date,users.user_name from topics inner join users on topic.create_user_id=users.user_id where fk_community_Id=?";
 
             pst.setString(1,comId);
 
