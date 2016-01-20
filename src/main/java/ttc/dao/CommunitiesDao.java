@@ -16,7 +16,9 @@ import ttc.exception.IntegrationException;
 public class CommunitiesDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
+
         return null;
+
     }
 
     public int update(Map map)throws IntegrationException{
