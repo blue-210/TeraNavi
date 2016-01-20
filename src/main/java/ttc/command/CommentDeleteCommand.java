@@ -30,12 +30,11 @@ public class CommentDeleteCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
             AbstractDao dao = factory.getAbstractDao();
             dao.update(params);
-
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-            resc.setTarget("blogCreate");
+            resc.setTarget("commentdeleteresult");
 
             return resc;
         }catch(IntegrationException e){
