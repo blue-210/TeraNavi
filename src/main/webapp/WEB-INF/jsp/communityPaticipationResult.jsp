@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コミュニティ作成完了</title>
+    <title>コミュニティ参加完了</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,19 +30,11 @@
 
     <div class="container">
        <div class="row">
-           <h1>作成完了</h1>
+           <h1>参加しました</h1>
 
-               コミュニティ名${result.commName}<br>
-              説明文 ${result.commProfile}<br>
-               コミュニティアイコン<img src='${sessionScope.loginUser.iconPath}'><br>
 
-              ヘッダ画像 <img src='${sessionScope.loginUser.headerPath}>'><br>
 
 
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
-
-</body>
-</html>
