@@ -1,4 +1,4 @@
-#users•\
+#usersè¡¨
 INSERT INTO users(login_id,
 user_name,
 user_name_kana,
@@ -21,16 +21,16 @@ user_profile,
 blog_status_flag)
 VALUES(
 tsuchiya19,
-'“y‰®’q–ç',
-'‚Â‚¿‚â‚Æ‚à‚â',
+'åœŸå±‹æ™ºä¹Ÿ',
+'ã¤ã¡ã‚„ã¨ã‚‚ã‚„',
 m,
 0,
 '1995/02/11 20:20:20',
 'tt14@mail.com',
-'ŒàÎæ¶',
+'å‘‰çŸ³å…ˆç”Ÿ',
 '/images/(user_id)/header.jpg',
 '/images/(user_id)/icon.jpg',
-'‚Â‚¿‚âƒuƒƒO',
+'ã¤ã¡ã‚„ãƒ–ãƒ­ã‚°',
 '/images/default/header.jpg',
 0,
 '1995/02/11 20:20:30',
@@ -38,8 +38,8 @@ m,
 0,
 '2020/02/11 20:20:20',
 '2020/02/11 20:30:20',
-'‚±‚ÌƒuƒƒO‚ÍŠy‚µ‚¢',
-'ƒQ[ƒ€‚ªD‚«‚Å‚·',
+'ã“ã®ãƒ–ãƒ­ã‚°ã¯æ¥½ã—ã„',
+'ã‚²ãƒ¼ãƒ ãŒå¥½ãã§ã™',
 0);
 
 INSERT INTO users(login_id,
@@ -64,16 +64,16 @@ user_profile,
 blog_status_flag)
 VALUES(
 tsuchiya19,
-'“y‰®’q–ç',
-'‚Â‚¿‚â‚Æ‚à‚â',
+'åœŸå±‹æ™ºä¹Ÿ',
+'ã¤ã¡ã‚„ã¨ã‚‚ã‚„',
 f,
 1,
 '1995/02/11 20:20:20',
 'tt14@mail.com',
-'ŒàÎæ¶',
+'å‘‰çŸ³å…ˆç”Ÿ',
 '/images/(user_id)/header.jpg',
 '/images/(user_id)/icon.jpg',
-'‚Â‚¿‚âƒuƒƒO',
+'ã¤ã¡ã‚„ãƒ–ãƒ­ã‚°',
 '/images/default/header.jpg',
 1,
 '1995/02/11 20:20:30',
@@ -81,8 +81,8 @@ f,
 1,
 '2020/02/11 20:20:20',
 '2020/02/11 20:30:20',
-'‚±‚ÌƒuƒƒO‚ÍŠy‚µ‚¢',
-'ƒQ[ƒ€‚ªD‚«‚Å‚·',
+'ã“ã®ãƒ–ãƒ­ã‚°ã¯æ¥½ã—ã„',
+'ã‚²ãƒ¼ãƒ ãŒå¥½ãã§ã™',
 1);
 
 
@@ -109,16 +109,16 @@ user_profile,
 blog_status_flag)
 VALUES(
 tsuchiya19,
-'“y‰®’q–ç',
-'‚Â‚¿‚â‚Æ‚à‚â',
+'åœŸå±‹æ™ºä¹Ÿ',
+'ã¤ã¡ã‚„ã¨ã‚‚ã‚„',
 f,
 1,
 '1995/02/11 20:20:20',
 'tt14@mail.com',
-'ŒàÎæ¶',
+'å‘‰çŸ³å…ˆç”Ÿ',
 '/images/(user_id)/header.jpg',
 '/images/(user_id)/icon.jpg',
-'‚Â‚¿‚âƒuƒƒO',
+'ã¤ã¡ã‚„ãƒ–ãƒ­ã‚°',
 '/images/default/header.jpg',
 1,
 '1995/02/11 20:20:30',
@@ -126,8 +126,8 @@ f,
 2,
 '2020/02/11 20:20:20',
 '2020/02/11 20:30:20',
-'‚±‚ÌƒuƒƒO‚ÍŠy‚µ‚¢',
-'ƒQ[ƒ€‚ªD‚«‚Å‚·',
+'ã“ã®ãƒ–ãƒ­ã‚°ã¯æ¥½ã—ã„',
+'ã‚²ãƒ¼ãƒ ãŒå¥½ãã§ã™',
 1);
 
 
@@ -153,16 +153,16 @@ user_profile,
 blog_status_flag)
 VALUES(
 tsuchiya19,
-'“y‰®’q–ç',
-'‚Â‚¿‚â‚Æ‚à‚â',
+'åœŸå±‹æ™ºä¹Ÿ',
+'ã¤ã¡ã‚„ã¨ã‚‚ã‚„',
 f,
 1,
 '1995/02/11 20:20:20',
 'tt14@mail.com',
-'ŒàÎæ¶',
+'å‘‰çŸ³å…ˆç”Ÿ',
 '/images/(user_id)/header.jpg',
 '/images/(user_id)/icon.jpg',
-'‚Â‚¿‚âƒuƒƒO',
+'ã¤ã¡ã‚„ãƒ–ãƒ­ã‚°',
 '/images/default/header.jpg',
 1,
 '1995/02/11 20:20:30',
@@ -170,15 +170,15 @@ f,
 3,
 '2020/02/11 20:20:20',
 '2020/02/11 20:30:20',
-'‚±‚ÌƒuƒƒO‚ÍŠy‚µ‚¢',
-'ƒQ[ƒ€‚ªD‚«‚Å‚·',
+'ã“ã®ãƒ–ãƒ­ã‚°ã¯æ¥½ã—ã„',
+'ã‚²ãƒ¼ãƒ ãŒå¥½ãã§ã™',
 1);
 
 
-#secret_questions•\
-INSERT INTO secret_questions(seqret_question_body)VALUES('‚ ‚È‚½‚Ìæ¶‚ÍH');
+#secret_questionsè¡¨
+INSERT INTO secret_questions(seqret_question_body)VALUES('ã‚ãªãŸã®å…ˆç”Ÿã¯ï¼Ÿ');
 
-#communities•\
+#communitiesè¡¨
 INSERT INTO communities(
 community_name,
 community_profile,
@@ -187,8 +187,8 @@ community_header_path,
 community_created_date,
 community_delete_flag
 )VALUES(
-'ƒuƒ‰ƒbƒNƒoƒX‚ğ’Ş‚ë‚¤‚Ì‰ï',
-'ƒuƒ‰ƒbƒNƒoƒX‚ğ’Ş‚é‚½‚ß‚Ì’m¯‚ğ‹¤—L‚µ‚Ü‚·',
+'ãƒ–ãƒ©ãƒƒã‚¯ãƒã‚¹ã‚’é‡£ã‚ã†ã®ä¼š',
+'ãƒ–ãƒ©ãƒƒã‚¯ãƒã‚¹ã‚’é‡£ã‚‹ãŸã‚ã®çŸ¥è­˜ã‚’å…±æœ‰ã—ã¾ã™',
 '/images/(community_id)/icon/icon.jpg',
 '/images/(community_id)/header/header.jpg',
 '2001/02/11 20:30:20',
@@ -202,23 +202,23 @@ community_header_path,
 community_created_date,
 community_delete_flag
 )VALUES(
-'ƒuƒ‰ƒbƒNƒoƒX‚ğ’Ş‚ë‚¤‚Ì‰ï',
-'ƒuƒ‰ƒbƒNƒoƒX‚ğ’Ş‚é‚½‚ß‚Ì’m¯‚ğ‹¤—L‚µ‚Ü‚·',
+'ãƒ–ãƒ©ãƒƒã‚¯ãƒã‚¹ã‚’é‡£ã‚ã†ã®ä¼š',
+'ãƒ–ãƒ©ãƒƒã‚¯ãƒã‚¹ã‚’é‡£ã‚‹ãŸã‚ã®çŸ¥è­˜ã‚’å…±æœ‰ã—ã¾ã™',
 '/images/(community_id)/icon/icon.jpg',
 '/images/(community_id)/header/header.jpg',
 '2001/02/11 20:30:20',
 1);
 
 
-#articles•\
+#articlesè¡¨
 INSERT INTO articles(
 article_title,
 article_dody,
 article_created_date,
 article_status_flag)
 VALUES(
-'‚Â‚¿‚â‚Ô‚ë‚®',
-'‚Ú‚­‚ª‚ ‚Ì“y‰®‚¾‚æ',
+'ã¤ã¡ã‚„ã¶ã‚ã',
+'ã¼ããŒã‚ã®åœŸå±‹ã ã‚ˆ',
 '2004/02/11 20:30:20',
 0
 );
@@ -229,8 +229,8 @@ article_dody,
 article_created_date,
 article_status_flag)
 VALUES(
-'‚Â‚¿‚â‚Ô‚ë‚®',
-'‚Ú‚­‚ª‚ ‚Ì“y‰®‚¾‚æ',
+'ã¤ã¡ã‚„ã¶ã‚ã',
+'ã¼ããŒã‚ã®åœŸå±‹ã ã‚ˆ',
 '2004/02/11 20:30:20',
 1
 );
@@ -241,29 +241,29 @@ article_dody,
 article_created_date,
 article_status_flag)
 VALUES(
-'‚Â‚¿‚â‚Ô‚ë‚®',
-'‚Ú‚­‚ª‚ ‚Ì“y‰®‚¾‚æ',
+'ã¤ã¡ã‚„ã¶ã‚ã',
+'ã¼ããŒã‚ã®åœŸå±‹ã ã‚ˆ',
 '2004/02/11 20:30:20',
 2
 );
 
 
-#community_members_list•\
+#community_members_listè¡¨
 INSERT INTO community_members_list(community_admin_flag)VALUES(0);
 INSERT INTO community_members_list(community_admin_flag)VALUES(1);
 
 
-#tags•\
-INSERT INTO tags(tag_name) VALUES('ˆÉ“¡‰€');
+#tagsè¡¨
+INSERT INTO tags(tag_name) VALUES('ä¼Šè—¤åœ’');
 
 
-#comments•\
+#commentsè¡¨
 INSERT INTO comments(
 comment_date,
 comment_body,
 comment_delete_flag)VALUES(
 '2004/02/11 20:30:20',
-'Šy‚µ‚¢‚Å‚·‚Ë',
+'æ¥½ã—ã„ã§ã™ã­',
 1
 );
 
@@ -272,21 +272,21 @@ comment_date,
 comment_body,
 comment_delete_flag)VALUES(
 '2004/02/11 20:30:20',
-'Šy‚µ‚¢‚Å‚·‚Ë',
+'æ¥½ã—ã„ã§ã™ã­',
 2
 );
 
 
-#dm•\
+#dmè¡¨
 INSERT INTO direct_message(
 message_body,
 message_date)VALUES(
-'—V‚ñ‚Å[',
+'éŠã‚“ã§ãƒ¼',
 '2004/02/11 20:30:20'
 );
 
 
-#contacts•\
+#contactsè¡¨
 INSERT INTO contacts(
 contact_user_name,
 contact_title,
@@ -294,16 +294,16 @@ contact_body,
 contact_date,
 contact_address,
 contact_category)VALUES(
-'“y‰®’q–ç',
-'‚¨–â‚¢‡‚í‚¹‚Å‚·',
-'‚¨–â‚¢‡‚í‚¹‚µ‚Ü‚µ‚½',
+'åœŸå±‹æ™ºä¹Ÿ',
+'ãŠå•ã„åˆã‚ã›ã§ã™',
+'ãŠå•ã„åˆã‚ã›ã—ã¾ã—ãŸ',
 '2004/02/22 20:30:20'
 'tsuchiya@mail.com',
-'‚»‚Ì‘¼'
+'ãã®ä»–'
 );
 
 
-#cautions•\
+#cautionsè¡¨
 INSERT INTO cautions(
 caution_date,
 caution_title,
@@ -311,31 +311,31 @@ caution_body,
 report_page_url
 )VALUES(
 '2004/02/14 20:30:20'
-'Œx‚Å‚·',
-'Œx•¶‚Å‚·',
+'è­¦å‘Šã§ã™',
+'è­¦å‘Šæ–‡ã§ã™',
 'http://www.keikoku.com'
 );
 
 
-#topic•\
+#topicè¡¨
 INSERT INTO topic(
 topic_name,
 topic_update_date,
 topic_created_date
 )VALUES(
-'ˆÉ“¡‰€',
+'ä¼Šè—¤åœ’',
 '2004/02/14 20:30:20'
 '2004/02/13 20:30:20'
 );
 
 
-#chat•\
+#chatè¡¨
 INSERT INTO chat(
 chat_body,
 chat_date,
 chat_delete_flag
 )VALUES(
-'‚¨[‚¢‚¨’ƒ‚ª”ü–¡‚µ‚¢',
+'ãŠãƒ¼ã„ãŠèŒ¶ãŒç¾å‘³ã—ã„',
 '2002/02/14 20:30:20'
 0
 );
@@ -345,31 +345,31 @@ chat_body,
 chat_date,
 chat_delete_flag
 )VALUES(
-'‚¨[‚¢‚¨’ƒ‚ª”ü–¡‚µ‚¢',
+'ãŠãƒ¼ã„ãŠèŒ¶ãŒç¾å‘³ã—ã„',
 '2002/02/14 20:30:20'
 1
 );
 
 
-#sign_up_keys•\
+#sign_up_keysè¡¨
 INSERT INTO sign_up_keys(key_status)VALUES(0);
 INSERT INTO sign_up_keys(key_status)VALUES(1);
 
 
-#policy•\
+#policyè¡¨
 INSERT INTO policy(
 policy_date,
 policy_body)VALUES(
 '2002/02/14 20:30:20',
-'ƒvƒ‰ƒCƒoƒV[ƒ|ƒŠƒV[‚Å‚·'
+'ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼ãƒãƒªã‚·ãƒ¼ã§ã™'
 );
 
 
-#rules•\
+#rulesè¡¨
 INSERT INTO rules(
 rule_date,
 rule_body
 )VALUES(
 '2002/02/14 20:30:20',
-'‹K–ñ‚Å‚·'
+'è¦ç´„ã§ã™'
 );
