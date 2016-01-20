@@ -255,6 +255,15 @@
 		<url-pattern>/showArticleList</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>userSearch</servlet-name>
+		<jsp-file>/WEB-INF/jsp/userSearch.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userSearch</servlet-name>
+		<url-pattern>/userSearch</url-pattern>
+	</servlet-mapping>
+
 
 
    <!-- エラーページ -->

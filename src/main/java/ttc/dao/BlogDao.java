@@ -126,7 +126,7 @@ public class BlogDao implements AbstractDao{
 
             pst = cn.prepareStatement(sql);
 
-            pst.setString(1,(String)map.get("userId"));
+            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
 
             ResultSet rs = pst.executeQuery();
 
