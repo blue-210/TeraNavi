@@ -7,6 +7,7 @@ import java.util.Map;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
@@ -16,7 +17,40 @@ import ttc.exception.IntegrationException;
 public class UsersCommunitiesDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
-        return null;
+        CommunityBean cb=new CommunityBean();
+        PreparedStatement pst = null;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql=new StringBuffer();
+            sql.append("select community_id,community_name from communities where fk_user_name=?");
+
+            pst = cn.prepareStatement(new String(sql));
+
+            pst.setString(1,(String)map.get("userName"));
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+
+                cb.setId(rs.getString("community_name_id"));
+				cb.setName(rs.getString("community_name"));
+
+            }
+
+        }catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+        return cb;
+
     }
 
     public int update(Map map)throws IntegrationException{
@@ -26,13 +60,14 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("delete from community_members_list where");
+            sql.append("update community_members_list set community_withdrawal_flag='1' where ");
             sql.append("fk_user_id=? and fk_community_id=?");
 
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
+
 
 
             result = pst.executeUpdate();
@@ -62,13 +97,13 @@ public class UsersCommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into community_members_list values(");
-            sql.append("?,?,?)");
+            sql.append("?,?,'0','0')");
 
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-            pst.setString(3,"0");
+
 
 
             result = pst.executeUpdate();
