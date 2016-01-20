@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コメント登録結果</title>
+    <title>コメント削除してみる</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,12 +25,7 @@
 
     <div class="container">
        <div class="row">
-           <h1>コメントが投稿さえたよ</h1><br><br>
-           <h1>コメント内容</h1>
-           <form action="front/compost" method="post">
-               内容 <br>${result.body}<br>
-               公開日時<br>${result.date}<br>
-           </form>
+           <h1>消えました<br>二度と戻りません。</h1><br><br>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
