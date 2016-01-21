@@ -43,8 +43,8 @@ public class TopicDao implements AbstractDao{
             pst.setString(1, (String)map.get("communityId"));
             pst.setString(2, (String)map.get("userId"));
             pst.setString(3, (String)map.get("topic_name"));
-            pst.setString(4, (String)map.get("topic_update_date"));
-            pst.setString(5, (String)map.get("topic_create_date"));
+            pst.setString(4, (String)map.get("update_date"));
+            pst.setString(5, (String)map.get("create_date"));
 
             result = pst.executeUpdate();
 
