@@ -55,7 +55,7 @@ public class CreateCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(params);
+            
             resc.setTarget("communityCreateResult");
 
             return resc;
