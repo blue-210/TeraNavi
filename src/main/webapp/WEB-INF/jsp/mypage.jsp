@@ -50,6 +50,7 @@
                </form>
                <a href="後でいれｔ">大会</a><br><br>
                <a href="userSearch">ユーザの検索</a><br><br>
+               <a href="blogSearch">ブログの検索</a><br><br>
 
            </div>
            <div class="col-sm-3 col-xs-6">
