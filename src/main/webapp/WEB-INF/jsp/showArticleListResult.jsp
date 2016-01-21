@@ -17,6 +17,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
@@ -25,29 +26,48 @@
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <div class="container">
-       <div class="row">
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>タイトル</th>
-                    <th>内容</th>
-                    <th>投稿日時</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="article" items="${result}">
-                <tr>
-                    <td> <c:out value="${article.title}"/> </td>
-                    <td> <c:out value="${article.articleBody}" /> </td>
-                    <td> <c:out value="${article.createdDate}"/> </td>
-                </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
+        <div class="row">
+            <table class="table table-striped">
+               <thead>
+                   <tr>
+                       <th class="deletable"></th>
+                       <th>タイトル</th>
+                       <th>内容</th>
+                       <th>投稿日時</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <form name="form" method="post" action="/TeraNavi/front/deleteArticle">
+                       <input type="hidden" name="loginUserId" value="${sessionScope.loginUser.id}">
+                       <input type="hidden" name="articleUserId" value="${result[0].userId}">
+                       <c:forEach var="article" items="${result}">
+                       <tr>
+                           <td class="deletable"> <input type="checkbox" name="articleId" value="${article.articleId}"> </td>
+                           <td> <c:out value="${article.title}"/> </td>
+                           <td> <c:out value="${article.articleBody}" /> </td>
+                           <td> <c:out value="${article.createdDate}"/> </td>
+                       </tr>
+                       </c:forEach>
+                       <input class="deletable" type="submit" value="削除">
+                   </form>
+               </tbody>
+           </table>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    <script>
+        var loginUserId = document.form.loginUserId.value;
+        var articleUserId = document.form.articleUserId.value;
+        console.log(loginUserId);
+        console.log(articleUserId);
+
+        if(loginUserId != articleUserId){
+            $(".deletable").hide();
+        }
+
+
+    </script>
+
 </body>
 </html>

@@ -18,9 +18,10 @@ import ttc.dao.AbstractDao;
 public class ShowArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
+            String userId = reqc.getParameter("writerUserId")[0];
 
             Map params = new HashMap();
             params.put("userId", userId);
