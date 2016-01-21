@@ -100,6 +100,23 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>commmem</servlet-name>
+        <jsp-file>/WEB-INF/jsp/communityMembers.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commmem</servlet-name>
+        <url-pattern>/joincomm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>withDrawComm</servlet-name>
+        <jsp-file>/WEB-INF/jsp/withDrawComm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>withDrawComm</servlet-name>
+        <url-pattern>/withDrawComm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>my</servlet-name>
         <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
     </servlet>
@@ -165,6 +182,15 @@
         <url-pattern>/userSetting</url-pattern>
     </servlet-mapping>
 
+	<servlet>
+        <servlet-name>blogDelete</servlet-name>
+        <jsp-file>/WEB-INF/jsp/blogDelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>blogDelete</servlet-name>
+        <url-pattern>/blogDelete</url-pattern>
+    </servlet-mapping>
+
 
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
@@ -219,8 +245,69 @@
 		<url-pattern>/top</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+		<servlet-name>compos</servlet-name>
+		<jsp-file>/WEB-INF/jsp/commentPost.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>compos</servlet-name>
+		<url-pattern>/commentpost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticle</servlet-name>
+		<url-pattern>/showArticle</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>showarticlelist</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticleList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticlelist</servlet-name>
+		<url-pattern>/showArticleList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>userSearch</servlet-name>
+		<jsp-file>/WEB-INF/jsp/userSearch.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userSearch</servlet-name>
+		<url-pattern>/userSearch</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>draftarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/draftArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>draftarticle</servlet-name>
+		<url-pattern>/draftArticle</url-pattern>
+	</servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>comdel</servlet-name>
+        <jsp-file>/WEB-INF/jsp/commentdelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comdel</servlet-name>
+        <url-pattern>/commentdelete</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+        <servlet-name>showTopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/showTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showTopic</servlet-name>
+        <url-pattern>/showTopic</url-pattern>
+    </servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>

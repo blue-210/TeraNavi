@@ -44,11 +44,11 @@
 			   </div>
 
 			   <div id="icon" ondrop="onDrop2(event)" ondragover="onDragOver(event)">
-			   		ユーザアイコン <input id="iconPhoto" type="text" name="iconPath" value="sessionScope.loginUser.iconPath"><br>
+			   		ユーザアイコン <input id="iconPhoto" type="text" name="iconPath" value="${sessionScope.loginUser.iconPath}"><br>
 			   </div>
 
 			   自己紹介
-			   <textarea name="profile" rows="8" cols="40" values="sessionScope.loginUser.profile">
+			   <textarea name="profile" rows="8" cols="40" values="${sessionScope.loginUser.profile}">
 
 			   </textarea>
 

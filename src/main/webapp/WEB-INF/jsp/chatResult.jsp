@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>chatResult</title>
+    <title>チャット送信結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -23,17 +23,12 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	<h1>チャットの送信に成功したよ！！！！！！！！！！！！！！！！！！！！！！！！！！</h1>
+
     <div class="container">
        <div class="row">
-
-           <c:forEach var="obj" items="${result}">
-             chatBody<c:out value="${obj.chatBody}"/><br>
-           </c:forEach>
-
-
-
-
-
+           <h1>チャットの送信</h1>
+		   <a href="/TeraNavi/mypage">マイページにオドル</a>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
