@@ -318,6 +318,14 @@
       <error-code>404</error-code>
       <location>/error.jsp</location>
    </error-page> -->
+   <servlet>
+       <servlet-name>blogsearch</servlet-name>
+       <jsp-file>/WEB-INF/jsp/blogSearch.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>blogsearch</servlet-name>
+       <url-pattern>/blogSearch</url-pattern>
+   </servlet-mapping>
 
    <!-- フィルター -->
 </web-app>
