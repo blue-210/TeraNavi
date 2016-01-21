@@ -107,6 +107,14 @@
         <servlet-name>commmem</servlet-name>
         <url-pattern>/joincomm</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>withDrawComm</servlet-name>
+        <jsp-file>/WEB-INF/jsp/withDrawComm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>withDrawComm</servlet-name>
+        <url-pattern>/withDrawComm</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>my</servlet-name>

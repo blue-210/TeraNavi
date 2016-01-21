@@ -7,6 +7,7 @@ import java.util.Map;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
@@ -16,8 +17,39 @@ import ttc.exception.IntegrationException;
 public class CommunitiesDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
+        CommunityBean cb=new CommunityBean();
+        PreparedStatement pst = null;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql=new StringBuffer();
+            sql.append("select community_id,community_name from communities where fk_user_name");
 
-        return null;
+            pst = cn.prepareStatement(new String(sql));
+
+            pst.setString(1,(String)map.get("userName"));
+
+            ResultSet rs = pst.executeQuery();
+
+            if(rs.next()){
+
+                cb.setId(rs.getString("community_name_id"));
+				cb.setName(rs.getString("community_name"));
+
+            }
+
+        }catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+        return cb;
 
     }
 

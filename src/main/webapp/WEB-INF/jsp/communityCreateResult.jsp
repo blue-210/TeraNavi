@@ -32,8 +32,8 @@
        <div class="row">
            <h1>作成完了</h1>
 
-               コミュニティ名${result.commName}<br>
-              説明文 ${result.commProfile}<br>
+               コミュニティ名${sessionScope.loginUser.commName}<br>
+              説明文 ${sessionScope.loginUser.commName}<br>
                コミュニティアイコン<img src='${sessionScope.loginUser.iconPath}'><br>
 
               ヘッダ画像 <img src='${sessionScope.loginUser.headerPath}>'><br>

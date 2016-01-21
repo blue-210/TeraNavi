@@ -22,6 +22,7 @@
 
 			<form action="front/showTopic" method="post" name="showForm">
 				<input type="text" name="communityId" value="${result.communityId}">
+				<button type="submit" name="button">一覧表示</button>
 			</form>
 
 

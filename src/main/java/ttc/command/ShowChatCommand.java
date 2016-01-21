@@ -38,7 +38,8 @@ public class ShowChatCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(result);
+			params.put("chat",result);
+            resc.setResult(params);
             resc.setTarget("showchat");
 
             return resc;

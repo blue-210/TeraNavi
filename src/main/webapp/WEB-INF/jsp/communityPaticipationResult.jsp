@@ -30,7 +30,7 @@
 
     <div class="container">
        <div class="row">
-           <h1>参加しました</h1>
+           <h1>${result.commName}コミュニティに参加しました</h1>
 
 
 
