@@ -24,8 +24,8 @@ create table tera_db.users(user_id int(8) primary key auto_increment,login_id va
 #　コミュニティ表
 create table tera_db.communities(community_id int(10) primary key auto_increment,community_name varchar(50),community_profile varchar(400),
 								 community_icon_path varchar(255) default 'WEB-INF/img/default_community_icon.img',community_header_path varchar(255) default 'WEB-INF/img/default_community_header.img',
-								 community_created_date datetime,fk_user_name varchar(100),community_delete_flag char(1) not null,index(community_id),
-								 foreign key(fk_user_name) references tera_db.users(user_name))engine=InnoDB;
+								 community_created_date datetime,fk_user_id int(8),community_delete_flag char(1) not null,index(community_id),
+								 foreign key(fk_user_id) references tera_db.users(user_id))engine=InnoDB;
 #記事表
 create table tera_db.articles(article_id int(10) primary key auto_increment,fk_user_id int(8),article_title varchar(100) default 'こんにちは',
 							  article_body varchar(20000),article_created_date datetime,article_status_flag char(1) not null,index(article_id),
