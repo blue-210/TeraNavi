@@ -44,8 +44,13 @@
                <a href="後でいれｔ">コメント管理</a><br><br>
                <a href="dmsend">DMの送信</a><br><br>
 			   <a href="front/dmreceive">DMの受信</a><br><br>
+               <a href="chatwrite">チャット送信</a><br><br>
+               <form action="front/showchat" method="post">
+                   チャット受信<input type="text" name="topicId">
+               </form>
                <a href="後でいれｔ">大会</a><br><br>
-			   <a href="userSearch">ユーザの検索</a><br><br>
+               <a href="userSearch">ユーザの検索</a><br><br>
+
            </div>
            <div class="col-sm-3 col-xs-6">
                <a href="openBlog">ブログ開設</a><br><br>
