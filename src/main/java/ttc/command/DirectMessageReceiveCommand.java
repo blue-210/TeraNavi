@@ -10,12 +10,15 @@ import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+
+import ttc.bean.DirectMessageBean;
 
 public class DirectMessageReceiveCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -32,10 +35,14 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dm");
             AbstractDao dao = factory.getAbstractDao();
 
-            MySqlConnectionManager.getInstance().commit();
+			List result = dao.readAll(params);
+
+			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(dao.readAll(params));
+
+			resc.setResult(result);
+
             resc.setTarget("showdm");
 
             return resc;

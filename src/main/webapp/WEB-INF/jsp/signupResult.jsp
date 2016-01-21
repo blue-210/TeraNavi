@@ -27,9 +27,11 @@
        <div class="row">
            <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
 
-           <p>
+           <h1>
                あなたのログインIDは「${sessionScope.loginUser.loginId}」です
-           </p>
+           </h1>
+
+		   <a href="/TeraNavi/mypage"><h3>マイページはこちら</h3></a>
 
        </div><!--end row-->
     </div><!--end container-->

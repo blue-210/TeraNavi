@@ -14,6 +14,8 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 import ttc.bean.UserBean;
+import ttc.bean.CommunityBean;
+
 
 public class CreateCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -22,23 +24,32 @@ public class CreateCommunityCommand extends AbstractCommand{
 
             HashMap params = new HashMap();
 
+			String loginId=reqc.getParameter("userId")[0];
+
+			params.put("value",loginId);
+			params.put("where","where user_id=?");
             params.put("commName",reqc.getParameter("commName")[0]);
             params.put("commProfile",reqc.getParameter("commProfile")[0]);
 
             String icon = (reqc.getParameter("commIcon")[0]);
             if(icon!=null && icon.length()!=0){
                 params.put("commIcon",icon);
+            }else{
+                params.put("commIcon",null);
             }
 
             String header = (String)reqc.getParameter("commHeader")[0];
             if(header != null && header.length() != 0){
                 params.put("commHeader",header);
+            }else{
+                params.put("commHeader",null);
             }
-            UserBean ub=new UserBean();
 
-            String[] str=reqc.getParameter("loginUser");
-            ub.setUserName(str[0]);
-            params.put("userName",(String)ub.getUserName());
+            String userName=reqc.getParameter("userName")[0];
+            System.out.println("userName="+userName);
+            params.put("userName",userName);
+
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -46,9 +57,24 @@ public class CreateCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
+			AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("users");
+			dao = factory2.getAbstractDao();
+
+			UserBean user = (UserBean)dao.read(params);
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			CommunityBean community = new CommunityBean();
+
+			community.setName((String)params.get("commName"));
+			community.setProfile((String)params.get("commProfile"));
+			community.setIconPath((String)params.get("commIcon"));
+			community.setHeaderPath((String)params.get("commHeader"));
+
+			user.setCommunity(community);
+
+			resc.setResult(user);
 
             resc.setTarget("communityCreateResult");
 
