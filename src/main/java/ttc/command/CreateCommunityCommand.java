@@ -62,6 +62,7 @@ public class CreateCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+
 			CommunityBean community = new CommunityBean();
 
 			community.setName((String)params.get("commName"));
