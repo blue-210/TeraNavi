@@ -32,11 +32,11 @@
        <div class="row">
            <h1>作成完了</h1>
 
-               コミュニティ名${sessionScope.loginUser.commName}<br>
-              説明文 ${sessionScope.loginUser.commName}<br>
-               コミュニティアイコン<img src='${sessionScope.loginUser.iconPath}'><br>
+               コミュニティ名${sessionScope.loginUser.community.name}<br>
+              説明文 ${sessionScope.loginUser.community.profile}<br>
+               コミュニティアイコン<img src='${sessionScope.loginUser.community.iconPath}'><br>
 
-              ヘッダ画像 <img src='${sessionScope.loginUser.headerPath}>'><br>
+              ヘッダ画像 <img src='${sessionScope.loginUser.community.headerPath}>'><br>
 
 
        </div><!--end row-->
