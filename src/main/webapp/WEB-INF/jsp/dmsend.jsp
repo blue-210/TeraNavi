@@ -25,11 +25,10 @@
 
     <div class="container">
        <div class="row">
-           <h1>送信するぺーぢです</h1>
+           <h1>DirectMailの送信</h1>
            <form action="front/dmsend" method="post">
                メッセージボディ<br><input type="textarea" name="messageBody" rows="10" cols="90"><br>
-               送るユーザのID<input type="text" name="sendUserId">
-               受け取るユーザのID<input type="text" name="receiveUserId">
+               受け取るユーザのID<input type="text" name="receiveUserId"><br>
 
                <input type="submit" value="送信">
            </form>

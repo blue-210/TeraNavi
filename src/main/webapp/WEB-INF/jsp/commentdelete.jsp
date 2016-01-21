@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャット送信</title>
+    <title>コメント削除してみる</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,11 +25,11 @@
 
     <div class="container">
        <div class="row">
-           <h1>チャット送信</h1>
-           <form action="front/writechat" method="post">
-               チャット本文<br><input type="textarea" name="chatBody" rows="10" cols="90"><br>
-               topicID<input type="text" name="topicId"><br>
-               <input type="submit" value="送信">
+           <h1>コメントを削除するよ</h1><br><br>
+
+           <form action="front/comdel" method="post">
+               <h2>コメントID <input type="text" name="commentId"></h2><br>
+               <h2><input type="submit" value="登録"></h2>    
            </form>
        </div><!--end row-->
     </div><!--end container-->

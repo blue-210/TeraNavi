@@ -10,6 +10,7 @@ import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -22,21 +23,24 @@ public class ShowChatCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId=reqc.getParameter("userId")[0];
+            String topicId=reqc.getParameter("topicId")[0];
 
             Map params = new HashMap();
-            params.put("userId", userId);
+            params.put("topicId", topicId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
             AbstractDao dao = factory.getAbstractDao();
 
+			List result = dao.readAll(params);
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(dao.readAll(params));
-            resc.setTarget("chatresult");
+			params.put("chat",result);
+            resc.setResult(params);
+            resc.setTarget("showchat");
 
             return resc;
 

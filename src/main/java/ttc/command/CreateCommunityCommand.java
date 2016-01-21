@@ -14,6 +14,7 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 import ttc.bean.UserBean;
+import ttc.dao.UsersDao;
 
 public class CreateCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -28,17 +29,22 @@ public class CreateCommunityCommand extends AbstractCommand{
             String icon = (reqc.getParameter("commIcon")[0]);
             if(icon!=null && icon.length()!=0){
                 params.put("commIcon",icon);
+            }else{
+                params.put("commIcon",null);
             }
 
             String header = (String)reqc.getParameter("commHeader")[0];
             if(header != null && header.length() != 0){
                 params.put("commHeader",header);
+            }else{
+                params.put("commIcon",null);
             }
-            UserBean ub=new UserBean();
 
-            String[] str=reqc.getParameter("loginUser");
-            ub.setUserName(str[0]);
-            params.put("userName",(String)ub.getUserName());
+            String userName=reqc.getParameter("userName")[0];
+            System.out.println("userName="+userName);
+            params.put("userName",userName);
+
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -49,7 +55,7 @@ public class CreateCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-
+            
             resc.setTarget("communityCreateResult");
 
             return resc;

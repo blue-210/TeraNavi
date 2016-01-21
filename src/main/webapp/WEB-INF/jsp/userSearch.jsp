@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャット送信</title>
+    <title>ユーザ検索</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,10 +25,9 @@
 
     <div class="container">
        <div class="row">
-           <h1>チャット送信</h1>
-           <form action="front/writechat" method="post">
-               チャット本文<br><input type="textarea" name="chatBody" rows="10" cols="90"><br>
-               topicID<input type="text" name="topicId"><br>
+           <h1>テスト用のユーザ検索ページです</h1>
+           <form action="front/usearch" method="post">
+               <input type="text" name="keyword" value="">
                <input type="submit" value="送信">
            </form>
        </div><!--end row-->

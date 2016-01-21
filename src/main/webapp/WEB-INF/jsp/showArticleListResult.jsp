@@ -1,6 +1,7 @@
 <%@ page
    contentType="text/html ; charset=UTF-8"
    pageEncoding="UTF-8"
+   import="ttc.bean.ArticleBean"
 %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +10,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャット送信</title>
+    <title>記事一覧表示</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,12 +26,26 @@
 
     <div class="container">
        <div class="row">
-           <h1>チャット送信</h1>
-           <form action="front/writechat" method="post">
-               チャット本文<br><input type="textarea" name="chatBody" rows="10" cols="90"><br>
-               topicID<input type="text" name="topicId"><br>
-               <input type="submit" value="送信">
-           </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>内容</th>
+                    <th>投稿日時</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="article" items="${result}">
+                <tr>
+                    <td> <c:out value="${article.title}"/> </td>
+                    <td> <c:out value="${article.articleBody}" /> </td>
+                    <td> <c:out value="${article.createdDate}"/> </td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

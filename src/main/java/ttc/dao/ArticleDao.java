@@ -31,16 +31,19 @@ public class ArticleDao implements AbstractDao{
 
             //記事表からの取得----------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
-            sql.append("to_char(article_created_date,'YYYY/MMDD日 HH24:MI:SS') ");
-            sql.append("from articles");
-            sql.append("where article_id = ? and article_status_flag = 0");
+            sql.append("date_format(article_created_date,'%Y %m/%d %k:%i') ");
+            sql.append("from articles ");
+            sql.append("where article_id = ? and article_status_flag = '0'");
 
             pst = cn.prepareStatement( new String(sql) );
 
-            pst.setInt(1, (Integer)map.get("articleId") );
+            pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
+
+            System.out.println(sql);
 
             ResultSet rs = pst.executeQuery();
 
+            rs.next();
             ab.setArticleId( rs.getString(1) );
             ab.setTitle( rs.getString(2) );
             ab.setArticleBody( rs.getString(3) );
@@ -73,7 +76,7 @@ public class ArticleDao implements AbstractDao{
             List comments = new ArrayList();
             sql.append("select comment_id, fk_article_id, fk_user_id, ");
             sql.append("comment_body, ");
-            sql.append("to_char(comment_date,'YYYY/MMDD日 HH24:MI:SS') ");
+            sql.append("date_format(comment_date,'%Y %m/%d %k:%i') ");
             sql.append("from comments ");
             sql.append("where fk_article_id = ?");
             pst = cn.prepareStatement( new String(sql) );
@@ -83,7 +86,7 @@ public class ArticleDao implements AbstractDao{
                 CommentBean cb = new CommentBean();
                 cb.setCommentId( rs.getString(1) );
                 cb.setArticleId( rs.getString(2) );
-                String commentUserId = rs.getString(3);
+                int commentUserId = Integer.parseInt( rs.getString(3) );
                 cb.setCommentBody( rs.getString(4) );
                 cb.setCommentDate( rs.getString(5) );
 
@@ -93,7 +96,7 @@ public class ArticleDao implements AbstractDao{
                 sql2.append("from users ");
                 sql2.append("where user_id = ?");
                 PreparedStatement pst2 = cn.prepareStatement( new String(sql2) );
-                pst2.setString( 1, commentUserId );
+                pst2.setInt(1, commentUserId);
                 ResultSet rs2 = pst2.executeQuery();
                 while( rs2.next() ){
                     cb.setUserId( rs2.getString(1) );
@@ -133,10 +136,10 @@ public class ArticleDao implements AbstractDao{
             MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
             sql.append("update articles set ");
-            sql.append("article_title = '?', ");
-            sql.append("article_body = '?', ");
+            sql.append("article_title = ?, ");
+            sql.append("article_body = ?, ");
             sql.append("article_created_date = ?, ");
-            sql.append("article_status_flag = '?' ");
+            sql.append("article_status_flag = ? ");
             sql.append("where article_id = ?");
 
             pst = cn.prepareStatement( new String(sql) );
@@ -241,8 +244,9 @@ public class ArticleDao implements AbstractDao{
 
             pst = cn.prepareStatement( new String(sql) );
 
-            pst.setInt(1, (Integer)map.get("userId"));
+            pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
 
+            System.out.println(sql);
             ResultSet rs = pst.executeQuery();
             rs.next();
 
@@ -254,22 +258,25 @@ public class ArticleDao implements AbstractDao{
             bb.setHeaderPath( rs.getString(4) );
             bb.setExplanation( rs.getString(5) );
 
-            results.add(ub);
-            results.add(bb);
+            //results.add(ub);
+            //results.add(bb);
             //------------------------------------------------------------------
 
             sql.setLength(0);//StringBuffer初期化
 
             //記事一覧の取得----------------------------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
-            sql.append("to_char(article_created_date,'YYYY/MMDD日 HH24:MI:SS') ");
+            sql.append("date_format(article_created_date,'%Y %m/%d %k:%i') ");
             sql.append("from articles ");
-            sql.append("where fk_user_id = ? and article_status_flag = '0'");
+            sql.append("where fk_user_id = ? and article_status_flag = '0' ");
+            sql.append("order by article_created_date ");
 
             pst = cn.prepareStatement( new String(sql) );
 
-            pst.setInt(1, (Integer)map.get("userId"));
 
+            pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
+
+            System.out.println(sql);
             rs = pst.executeQuery();
 
             while( rs.next() ){
@@ -288,6 +295,7 @@ public class ArticleDao implements AbstractDao{
                 sql2.append("where fk_article_id = ?");
                 PreparedStatement pst2 = cn.prepareStatement( new String(sql2) );
                 pst2.setInt( 1, Integer.parseInt( ab.getArticleId() ) );
+                System.out.println(sql2);
                 ResultSet rs2 = pst2.executeQuery();
                 while( rs2.next() ){
                     TagBean tb = new TagBean();

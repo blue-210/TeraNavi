@@ -30,9 +30,7 @@ public class CreateTopicCommand extends AbstractCommand{
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String update_date = formatter.format(cal.getTime());
 
-            Calendar cal2 = Calendar.getInstance();
-			SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String create_date = formatter2.format(cal2.getTime());
+			String create_date = formatter.format(cal.getTime());
 
             Map params = new HashMap();
             params.put("communityId",communityId);
@@ -49,7 +47,8 @@ public class CreateTopicCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("topic");
+			resc.setResult(params);
+            resc.setTarget("topicCreateResult");
 
             return resc;
         }catch(IntegrationException e){

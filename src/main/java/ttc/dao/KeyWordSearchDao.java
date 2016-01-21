@@ -44,9 +44,9 @@ public class KeyWordSearchDao implements AbstractDao{
             for(int i=1;i<keywords.length;i++){
                 sql.append(" and");
                 sql.append(" blog_title like ");
-                sql.append("'%");
+                sql.append("'%'||");
                 sql.append("?");
-                sql.append("%'");
+                sql.append("||'%'");
             }
 
             for(int i=0;i<keywords.length;i++){
