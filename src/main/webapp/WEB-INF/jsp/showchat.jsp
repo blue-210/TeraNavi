@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="ch" items="${result}">
+                <c:forEach var="ch" items="${result.chat}">
                 <tr>
                     <td> <c:out value="${ch.body}"/> </td>
                     <td> <c:out value="${ch.date}" /> </td>
@@ -45,6 +45,13 @@
                 </c:forEach>
             </tbody>
         </table>
+
+		チャットを書き込む
+		<form action="writechat" method="post">
+			本文 <textarea name="chatBody" rows="10" cols="90"></textarea>
+			<input type="hidden" name="topicId" value="${result.topicId}">
+			<button type="submit" name="button">書き込む</button>
+		</form>
 
        </div><!--end row-->
     </div><!--end container-->
