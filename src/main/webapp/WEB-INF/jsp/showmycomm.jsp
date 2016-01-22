@@ -32,7 +32,7 @@
        <div class="row">
            <h1>作成したコミュニティ</h1>
                     <form action="front/commmy" method="post">
-                        <input type="hidden" name="groupBy" value=" ">
+                        <input type="hidden" name="groupBy" value="group By community_members_list.fk_community_id ">
                         <input type="hidden" name="where" value="communities.fk_user_id= ? and community_members_list.community_admin_flag=1 ">
                         <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
                         <input type="submit" value="作成したコミュ一覧">

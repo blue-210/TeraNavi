@@ -149,7 +149,7 @@ public class CommunitiesDao implements AbstractDao{
 
             StringBuffer selectSql=new StringBuffer();
             selectSql.append("select community_id from communities ");
-            selectSql.append("where fk_user_id = ?");
+            selectSql.append("where fk_user_id = ? order by community_id desc");
             pst1 = cn.prepareStatement(new String(selectSql));
             pst1.setString(1,(String)map.get("userId"));
             ResultSet rs = pst1.executeQuery();
@@ -198,14 +198,14 @@ public class CommunitiesDao implements AbstractDao{
 
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
-            sql.append("communities.community_profile,count(community_members_list.fk_community_id) from ");
+            sql.append("communities.community_profile,count(community_members_list.fk_user_id) from ");
             sql.append("communities join community_members_list where ");
             String where=(String)map.get("where");
             sql.append(where);
             String groupBy=(String)map.get("groupBy");
-            if(groupBy!= null && groupBy!=""){
-                sql.append(groupBy);
-            }
+
+            sql.append(groupBy);
+
             String sql1=new String(sql);
             System.out.println(sql1);
 

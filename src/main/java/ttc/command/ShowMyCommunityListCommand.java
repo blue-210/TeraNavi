@@ -30,11 +30,9 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             params.put("userId",userId);
 
             params.put("where",reqc.getParameter("where")[0]);
-            if(groupBy!=null && groupBy.length()!=0){
+
                 params.put("groupBy",groupBy);
-            }else{
-                params.put("groupBy"," ");
-            }
+
 
 
 

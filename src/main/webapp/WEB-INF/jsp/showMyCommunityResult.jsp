@@ -33,6 +33,7 @@
                        <th class="deletable"></th>
                        <th>コミュニティ名</th>
                        <th>紹介文</th>
+                        <th>メンバー数</th>
                    </tr>
                </thead>
                <tbody>
@@ -48,6 +49,7 @@
                            </td>
                            <td> <c:out value="${comm.name}" /> </td>
                            <td> <c:out value="${comm.profile}"/> </td>
+                           <td> <c:out value="${comm.countMember}"/> </td>
                        </tr>
                    </c:forEach>
 
