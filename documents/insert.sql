@@ -205,14 +205,14 @@ INSERT INTO communities(
     community_profile,
     community_icon_path,
     community_header_path,
-    community_created_date,
+    community_created_date,fk_user_id,
     community_delete_flag)
 VALUES(
     'ブラックバスを釣ろうの会',
     'ブラックバスを釣るための知識を共有します',
     '/images/(community_id)/icon/icon.jpg',
     '/images/(community_id)/header/header.jpg',
-    '2001/02/11 20:30:20',
+    '2001/02/11 20:30:20',2,
     0
 );
 
@@ -221,14 +221,14 @@ INSERT INTO communities(
     community_profile,
     community_icon_path,
     community_header_path,
-    community_created_date,
+    community_created_date,fk_user_id,
     community_delete_flag
 )VALUES(
-    'ブラックバスを釣ろうの会',
-    'ブラックバスを釣るための知識を共有します',
+    'ニジマスを釣ろうの会',
+    'ニジマスを釣るための知識を共有します',
     '/images/(community_id)/icon/icon.jpg',
     '/images/(community_id)/header/header.jpg',
-    '2001/02/11 20:30:20',
+    '2001/02/11 20:30:20',2,
     1
 );
 

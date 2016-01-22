@@ -31,7 +31,6 @@
                <thead>
                    <tr>
                        <th class="deletable"></th>
-                       <th>コミュニティID</th>
                        <th>コミュニティ名</th>
                        <th>紹介文</th>
                    </tr>

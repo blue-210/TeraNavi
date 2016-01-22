@@ -33,7 +33,7 @@
            <h1>作成したコミュニティ</h1>
                     <form action="front/commmy" method="post">
                         <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                        <input type="submit" value="表示">
+                        <input type="submit" value="作成したコミュ">
                    </form>
 
        </div><!--end row-->

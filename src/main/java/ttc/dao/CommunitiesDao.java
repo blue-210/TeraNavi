@@ -104,6 +104,8 @@ public class CommunitiesDao implements AbstractDao{
 
     public int insert(Map map)throws IntegrationException{
         PreparedStatement pst = null;
+        PreparedStatement pst1 = null;
+        PreparedStatement pst2 = null;
         int result = 0;
         try{
             Connection cn = null;
@@ -140,6 +142,31 @@ public class CommunitiesDao implements AbstractDao{
 
 
             result = pst.executeUpdate();
+
+
+            StringBuffer selectSql=new StringBuffer();
+            selectSql.append("select community_id from communities ");
+            selectSql.append("where fk_user_id = ?");
+            pst1 = cn.prepareStatement(new String(selectSql));
+            pst1.setString(1,(String)map.get("userId"));
+            ResultSet rs = pst1.executeQuery();
+            CommunityBean cb=new CommunityBean();
+            rs.next();
+			cb.setId(rs.getString("community_id"));
+            System.out.println("コミュid"+cb.getId());
+
+            StringBuffer insMemSql=new StringBuffer();
+            insMemSql.append("insert into community_members_list(fk_user_id,fk_community_id,");
+            insMemSql.append("community_admin_flag,community_withdrawal_flag) ");
+            insMemSql.append("values(?,?,'1','0')");
+
+            pst2 = cn.prepareStatement(new String(insMemSql));
+            pst2.setString(1,(String)map.get("userId"));
+            pst2.setString(2,cb.getId());
+
+
+            result=pst2.executeUpdate();
+            System.out.println("メンバーリストにインサート");
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
