@@ -26,7 +26,10 @@ public class ShowCommunityCommand extends AbstractCommand{
 
 
             String where=reqc.getParameter("where")[0];
-            params.put("where",where);
+            params.put("where","fk_"+where);
+            params.put("userId",reqc.getParameter("userId")[0]);
+            params.put("commId",reqc.getParameter("commId")[0]);
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -35,13 +38,8 @@ public class ShowCommunityCommand extends AbstractCommand{
             CommunityBean cb =(CommunityBean)dao.read(params);
 
 
-
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-
-
-
-
 
 
 			resc.setResult(cb);

@@ -20,29 +20,34 @@ public class CommunitiesDao implements AbstractDao{
         CommunityBean cb=new CommunityBean();
         PreparedStatement pst = null;
         try{
+            System.out.println("コミュのリロード");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
             sql.append("select community_id,community_name,community_profile,community_icon_path,community_header_path,");
-            sql.append("community_delete_flag from communities where ?");
+            sql.append("community_delete_flag from communities where ");
+            sql.append((String)map.get("where"));
 
-            pst = cn.prepareStatement(new String(sql));
+            String ssql=new String(sql);
 
-            pst.setString(1,(String)map.get("where"));
+            pst = cn.prepareStatement(new String(ssql));
 
+            System.out.println(ssql);
+            System.out.println((String)map.get("where"));
+
+
+            pst.setString(1,(String)map.get("userId"));
+            pst.setString(2,(String)map.get("commId"));
 
             ResultSet rs = pst.executeQuery();
 
-            if(rs.next()){
-
-                cb.setId(rs.getString("community_name_id"));
-				cb.setName(rs.getString("community_name"));
-                cb.setProfile(rs.getString("community_profile"));
-                cb.setHeaderPath(rs.getString("community_header_path"));
-                cb.setIconPath(rs.getString("community_icon_path"));
-                cb.setDeleteFlag(rs.getString("community_delete_flag"));
-
-            }
+            rs.next();
+			cb.setName(rs.getString("community_name"));
+            System.out.println("comName="+cb.getName());
+            cb.setProfile(rs.getString("community_profile"));
+            cb.setHeaderPath(rs.getString("community_header_path"));
+            cb.setIconPath(rs.getString("community_icon_path"));
+            cb.setDeleteFlag(rs.getString("community_delete_flag"));
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
