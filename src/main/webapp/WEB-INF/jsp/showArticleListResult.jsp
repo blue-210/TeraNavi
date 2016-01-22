@@ -42,13 +42,15 @@
                        <input type="hidden" name="articleUserId" value="${result[0].userId}">
                        <c:forEach var="article" items="${result}">
                        <tr>
-                           <td class="deletable"> <input type="checkbox" name="articleId" value="${article.articleId}"> </td>
-                           <td> <c:out value="${article.title}"/> </td>
+                           <td class="deletable"> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
+                           <td> <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
+                               <c:out value="${article.title}"/>
+                           </a> </td>
                            <td> <c:out value="${article.articleBody}" /> </td>
                            <td> <c:out value="${article.createdDate}"/> </td>
                        </tr>
                        </c:forEach>
-                       <input class="deletable" type="submit" value="削除">
+                       <button id="btnDelete" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
                    </form>
                </tbody>
            </table>
@@ -62,12 +64,26 @@
         console.log(loginUserId);
         console.log(articleUserId);
 
-        if(loginUserId != articleUserId){
+        if(loginUserId == articleUserId){
+            $(function() {
+                $("#btnDelete").attr("disabled","disabled");
+                $("#btnDelete").attr("class","btn-default btn-sm");
+                $(".chDelete").click(function() {
+                    if ($(this).prop("checked") == false) {
+                        $("#btnDelete").attr("disabled","disabled");
+                        $("#btnDelete").attr("class","btn-default btn-sm");
+                    }else{
+                        $("#btnDelete").removeAttr("disabled");
+                        $("#btnDelete").attr("class","btn-danger btn-sm");
+                    }
+                });
+            });
+        }else{
             $(".deletable").hide();
         }
 
 
-    </script>
 
+    </script
 </body>
 </html>
