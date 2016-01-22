@@ -27,8 +27,8 @@ public class CommunitySettingCommand extends AbstractCommand{
 
 
 
-            String communityName = reqc.getParameter("communityName")[0];
-            String communityProfile = reqc.getParameter("communityProfile")[0];
+            String communityName = reqc.getParameter("commName")[0];
+            String communityProfile = reqc.getParameter("profile")[0];
             String iconPath = reqc.getParameter("iconPath")[0];
             String headerPath = reqc.getParameter("headerPath")[0];
             String deleteFlag = reqc.getParameter("deleteFlag")[0];
@@ -40,36 +40,31 @@ public class CommunitySettingCommand extends AbstractCommand{
 			params.put("where","where user_id=?");
             params.put("communityName",communityName);
             params.put("communityProfile",communityProfile);
-            params.put("iconPath",iconPath);
-            params.put("headerPath",headerPath);
+
+            if(iconPath!=null && iconPath.length()!=0){
+                params.put("iconPath",iconPath);
+            }else{
+                params.put("iconPath","");
+            }
+            if(headerPath != null && headerPath.length() != 0){
+                params.put("headerPath",headerPath);
+            }else{
+                params.put("headerPath","");
+            }
             params.put("deleteFlag",deleteFlag);
-            params.put("communityId",communityId);
-            params.put("userId",userId);
+            params.put("commId",communityId);
+            params.put("userId",loginId);
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             dao.update(params);
-            AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("users");
-			dao = factory2.getAbstractDao();
-
-			UserBean user = (UserBean)dao.read(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-            CommunityBean community = new CommunityBean();
-
-			community.setName((String)params.get("commName"));
-			community.setProfile((String)params.get("commProfile"));
-			community.setIconPath((String)params.get("commIcon"));
-			community.setHeaderPath((String)params.get("commHeader"));
-
-			user.setCommunity(community);
 
 			resc.setResult(params);
-
-
-
             resc.setTarget("communitySettingResult");
 
             return resc;

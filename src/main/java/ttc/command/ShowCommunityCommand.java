@@ -36,7 +36,7 @@ public class ShowCommunityCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
-
+            cb.setId(reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

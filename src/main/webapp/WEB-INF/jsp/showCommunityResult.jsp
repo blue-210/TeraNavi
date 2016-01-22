@@ -31,16 +31,47 @@
     <div class="container">
        <div class="row">
            <h1>コミュ詳細</h1>
-               <p>コミュニティ名:${result.name}</p>
-              説明文 ${result.profile}<br>
-               コミュニティアイコン<img src='${result.iconPath}'><br>
+            <form action="commSetting" method="post">
+                <p id="commid">${result.id}</p>
+                <p id="userId">${sessionScope.loginUser.id}</p>
+                <p class="bun"> コミュニティ名:<div id="name">${result.name}</div></p>
+                <p class="bun"> 説明文 <div id="profile">${result.profile}</div></p>
+                <p class="bun">  コミュニティアイコン<div id="iconPath"><img src='${result.iconPath}'></div></p>
+                <p class="bun">  ヘッダ画像 <div id="headerPath"> <img src='${result.headerPath}'></div></p>
+                <p class="bun"><button id="dd">編集</button></p>
 
-              ヘッダ画像 <img src='${result.headerPath}'><br>
+                <p id="sub"></p>
+            </form>
 
 
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    <script>
+    $(document).ready(function(){
+        $("#dd").click(function(){
+            var id=$('#commid').text();
+            var userid=$('#userId').text();
+            var name=$('#name').text();
+            var profile=$('#profile').text();
+            var iconPath=$('#iconPath').text();
+            var headerPath=$('#headerPath').text();
+            var del='0';
+            $('.bun').remove();
+            $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
+            $('#profile').html('紹介文：<input type="text" name="profile" value="'+profile+'">');
+            $('#iconPath').html('アイコン画像：<input type="text" name="iconPath" value="'+iconPath+'">');
+            $('#headerPath').html('ヘッダ画像<input type="text" name="headerPath" value="'+headerPath+'">');
+            console.log(id);
+            console.log(del);
+            $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
+            $('#commid').html('<input type="hidden" name="communityId" value="'+id+'">');
+            $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
+            $('#sub').html('<input type="submit" value="変更">');
+        });
+    });
+    </script>
 
 
 </body>
