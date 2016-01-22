@@ -308,6 +308,15 @@
         <url-pattern>/showTopic</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>editarticle</servlet-name>
+        <jsp-file>/WEB-INF/jsp/editArticle.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editarticle</servlet-name>
+        <url-pattern>/editArticle</url-pattern>
+    </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>
