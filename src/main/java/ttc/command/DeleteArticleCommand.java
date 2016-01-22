@@ -10,18 +10,23 @@ import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
 import ttc.bean.ArticleBean;
+import ttc.bean.UserBean;
 
 public class DeleteArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("DeleteArticleCommand");
             RequestContext reqc = getRequestContext();
 
             String[] articleId = reqc.getParameter("articleId");
+
+            String loginUserId = reqc.getParameter("loginUserId")[0];
 
             String status = "2";
 
@@ -34,6 +39,7 @@ public class DeleteArticleCommand extends AbstractCommand{
 
             for(int i = 0; i < articleId.length; i++){
                 params.put("articleId", articleId[i]);
+                System.out.println("parameterArticleId="+articleId[i]);
 
                 MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -42,11 +48,15 @@ public class DeleteArticleCommand extends AbstractCommand{
     			params.put("articlebean",ab);
                 dao.update(params);
 
+                params.put("userId", loginUserId);
+                ArrayList al = (ArrayList)dao.readAll( params );
+                resc.setResult(al);
+
                 MySqlConnectionManager.getInstance().commit();
                 MySqlConnectionManager.getInstance().closeConnection();
             }
 
-            resc.setTarget("deletearticle");
+            resc.setTarget("showArticleListResult");
 
             return resc;
 
