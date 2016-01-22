@@ -74,6 +74,7 @@ public class CreateCommunityCommand extends AbstractCommand{
 
 			resc.setResult(user);
 
+
             resc.setTarget("communityCreateResult");
 
             return resc;
