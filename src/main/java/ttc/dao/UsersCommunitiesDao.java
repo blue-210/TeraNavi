@@ -23,17 +23,19 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
-            sql.append("select community_id,community_name from communities where fk_user_id=?");
+            sql.append("select community_id,community_name from communities where fk_user_id=? and community_id=?");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("userId"));
+            pst.setInt(1, Integer.parseInt((String)map.get("userId")));
+            pst.setInt(2, Integer.parseInt((String)map.get("commId")));
+
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
 
-                cb.setId(rs.getString("community_name_id"));
+                cb.setId(rs.getString("community_id"));
 				cb.setName(rs.getString("community_name"));
 
             }
