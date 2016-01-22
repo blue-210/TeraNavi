@@ -45,11 +45,8 @@ public class CreateCommunityCommand extends AbstractCommand{
                 params.put("commHeader",null);
             }
 
-            String userName=reqc.getParameter("userName")[0];
-            System.out.println("userName="+userName);
-            params.put("userName",userName);
-
-
+            String userId=reqc.getParameter("userId")[0];
+            params.put("userId",userId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -64,6 +61,7 @@ public class CreateCommunityCommand extends AbstractCommand{
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
+
 
 			CommunityBean community = new CommunityBean();
 
