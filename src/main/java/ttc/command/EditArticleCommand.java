@@ -23,15 +23,22 @@ public class EditArticleCommand extends AbstractCommand{
 
             String articleId = reqc.getParameter("articleId")[0];
             String title = reqc.getParameter("title")[0];
+            System.out.println(title);
             String body = reqc.getParameter("body")[0];
-            String date = reqc.getParameter("date")[0];
             String status = "0";
 
             Map params = new HashMap();
             params.put("articleId", articleId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
+            if(title.equals("変更しない")){
+
+            }else{
+                params.put("title", title);
+            }
+            if(body.equals("変更しない")){
+
+            }else{
+                params.put("body", body);
+            }
             params.put("status", status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
@@ -46,7 +53,7 @@ public class EditArticleCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("editarticle");
+            resc.setTarget("editArticleResult");
 
             return resc;
 
