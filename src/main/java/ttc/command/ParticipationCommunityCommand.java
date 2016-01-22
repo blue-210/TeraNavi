@@ -32,8 +32,8 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-            para.put("userName",reqc.getParameter("userName"));
-            CommunityBean cb =(CommunityBean)dao.read(para);
+
+            CommunityBean cb =(CommunityBean)dao.read(params);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 

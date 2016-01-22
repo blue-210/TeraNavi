@@ -58,6 +58,7 @@
                <a href="blogSetting">ブログ設定</a><br><br>
 			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                <a href="createcomm">コミュニティの作成</a><br><br>
+               <a href="joincomm">コミュニティの参加</a><br><br>
            </div>
 
 
