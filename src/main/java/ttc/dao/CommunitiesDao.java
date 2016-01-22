@@ -195,12 +195,24 @@ public class CommunitiesDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "select community_id,community_name,community_profile from communities where fk_user_id=?";
 
+            StringBuffer sql=new StringBuffer();
+            sql.append("select communities.community_id,communities.community_name,");
+            sql.append("communities.community_profile,count(community_members_list.fk_community_id) from ");
+            sql.append("communities join community_members_list where ");
+            String where=(String)map.get("where");
+            sql.append(where);
+            String groupBy=(String)map.get("groupBy");
+            if(groupBy!= null && groupBy!=""){
+                sql.append(groupBy);
+            }
+            String sql1=new String(sql);
+            System.out.println(sql1);
 
-            pst = cn.prepareStatement(sql);
+            pst = cn.prepareStatement(sql1);
 
-            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
+            pst.setString(1,(String)map.get("userId"));
+
 
             ResultSet rs = pst.executeQuery();
 
@@ -209,6 +221,7 @@ public class CommunitiesDao implements AbstractDao{
                 cb.setId(rs.getString(1));
                 cb.setName(rs.getString(2));
                 cb.setProfile(rs.getString(3));
+                cb.setCountMember(rs.getInt(4));
 
                 result.add(cb);
             }

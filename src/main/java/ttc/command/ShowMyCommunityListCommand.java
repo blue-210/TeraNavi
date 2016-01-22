@@ -24,10 +24,19 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
-
+            String groupBy=reqc.getParameter("groupBy")[0];
 
             String userId=reqc.getParameter("userId")[0];
             params.put("userId",userId);
+
+            params.put("where",reqc.getParameter("where")[0]);
+            if(groupBy!=null && groupBy.length()!=0){
+                params.put("groupBy",groupBy);
+            }else{
+                params.put("groupBy"," ");
+            }
+
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
