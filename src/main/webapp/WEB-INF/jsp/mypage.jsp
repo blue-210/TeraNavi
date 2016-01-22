@@ -40,7 +40,7 @@
                <a href="articlepost">記事を投稿</a><br><br>
                <a href="後でいれｔ">下書き</a><br><br>
                <a href="blogSetting">ブログ設定</a><br><br>
-               <a href="後でいれｔ">コミュニティの管理</a><br><br>
+               <a href="commmy">コミュニティの管理</a><br><br>
                <a href="後でいれｔ">コメント管理</a><br><br>
                <a href="dmsend">DMの送信</a><br><br>
 			   <a href="front/dmreceive">DMの受信</a><br><br>

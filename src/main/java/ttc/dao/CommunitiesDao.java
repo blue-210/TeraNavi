@@ -23,11 +23,13 @@ public class CommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
-            sql.append("select community_id,community_name from communities where fk_user_id");
+            sql.append("select community_id,community_name,community_profile,community_icon_path,community_header_path,");
+            sql.append("community_delete_flag from communities where ?");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("userId"));
+            pst.setString(1,(String)map.get("where"));
+
 
             ResultSet rs = pst.executeQuery();
 
@@ -35,6 +37,10 @@ public class CommunitiesDao implements AbstractDao{
 
                 cb.setId(rs.getString("community_name_id"));
 				cb.setName(rs.getString("community_name"));
+                cb.setProfile(rs.getString("community_profile"));
+                cb.setHeaderPath(rs.getString("community_header_path"));
+                cb.setIconPath(rs.getString("community_icon_path"));
+                cb.setDeleteFlag(rs.getString("community_delete_flag"));
 
             }
 
@@ -63,7 +69,7 @@ public class CommunitiesDao implements AbstractDao{
             sql.append("update communities set ");
             sql.append("community_name=?,community_profile=?,");
             sql.append("community_icon_path=?,community_header_path=?,");
-            sql.append("community_delete_flag=? where community_id=?");
+            sql.append("community_delete_flag=? where community_id=? and fk_user_id=?");
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("communityName"));
@@ -72,6 +78,7 @@ public class CommunitiesDao implements AbstractDao{
             pst.setString(4,(String)map.get("headerPath"));
             pst.setString(5,(String)map.get("deleteFlag"));
             pst.setString(6,(String)map.get("communityId"));
+            pst.setString(7,(String)map.get("userId"));
 
             result = pst.executeUpdate();
         }catch(SQLException e){
@@ -147,7 +154,43 @@ public class CommunitiesDao implements AbstractDao{
     }
 
     public List readAll(Map map)throws IntegrationException{
-        return null;
+        List result = new ArrayList();
+        PreparedStatement pst = null;
+
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            String sql = "select community_id,community_name,community_profile from communities where fk_user_id=?";
+
+
+            pst = cn.prepareStatement(sql);
+
+            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
+
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()){
+                CommunityBean cb = new CommunityBean();
+                cb.setId(rs.getString(1));
+                cb.setName(rs.getString(2));
+                cb.setProfile(rs.getString(3));
+
+                result.add(cb);
+            }
+
+        }catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
 
 }

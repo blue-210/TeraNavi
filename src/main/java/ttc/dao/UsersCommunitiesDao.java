@@ -35,7 +35,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             if(rs.next()){
 
-                cb.setId(rs.getString("community_name_id"));
+                cb.setId(rs.getString("community_id"));
 				cb.setName(rs.getString("community_name"));
 
             }

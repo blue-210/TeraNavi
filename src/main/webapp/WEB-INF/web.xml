@@ -116,6 +116,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>commmy</servlet-name>
+        <jsp-file>/WEB-INF/jsp/showmycomm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commmy</servlet-name>
+        <url-pattern>/commmy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>commset</servlet-name>
+        <jsp-file>/WEB-INF/jsp/communitySetting.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commset</servlet-name>
+        <url-pattern>/commsetting</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>my</servlet-name>
         <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
     </servlet>
