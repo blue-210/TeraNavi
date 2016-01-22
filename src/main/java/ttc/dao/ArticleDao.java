@@ -139,7 +139,6 @@ public class ArticleDao implements AbstractDao{
             sql.append("update articles set ");
             sql.append("article_title = ?, ");
             sql.append("article_body = ?, ");
-            sql.append("article_created_date = ?, ");
             sql.append("article_status_flag = ? ");
             sql.append("where article_id = ?");
 
@@ -159,17 +158,9 @@ public class ArticleDao implements AbstractDao{
                 pst.setString(2,ab.getArticleBody());
             }
 
-            //日時を変更
-            if(map.containsKey("date")){
-                pst.setString(3, (String)map.get("date"));
-            }else{
-                pst.setString(3,ab.getCreatedDate());
-            }
+            pst.setString(3, (String)map.get("status"));
 
-
-            pst.setString(4, (String)map.get("status"));
-
-            pst.setString(5, (String)map.get("articleId"));
+            pst.setInt( 4, Integer.parseInt( (String)map.get("articleId") ) );
 
             result = pst.executeUpdate();
 

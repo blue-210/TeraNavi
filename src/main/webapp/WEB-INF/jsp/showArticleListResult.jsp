@@ -34,6 +34,7 @@
                        <th>タイトル</th>
                        <th>内容</th>
                        <th>投稿日時</th>
+                       <!-- <th class="deletable"></th> -->
                    </tr>
                </thead>
                <tbody>
@@ -48,9 +49,10 @@
                            </a> </td>
                            <td> <c:out value="${article.articleBody}" /> </td>
                            <td> <c:out value="${article.createdDate}"/> </td>
+                           <!-- <td class="deletable"> <a href="/TeraNavi/deletArticle">編集</a> </td> -->
                        </tr>
                        </c:forEach>
-                       <button id="btnDelete" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
+                       <button id="btnDelete" class="deletable" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
                    </form>
                </tbody>
            </table>
@@ -84,6 +86,6 @@
 
 
 
-    </script
+    </script>
 </body>
 </html>
