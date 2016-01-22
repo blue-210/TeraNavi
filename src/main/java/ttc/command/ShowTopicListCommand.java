@@ -10,6 +10,7 @@ import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -26,11 +27,12 @@ public class ShowTopicListCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("topic");
             AbstractDao dao = factory.getAbstractDao();
-            dao.readAll(params);
+            List result = dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			resc.setResult(result);
             resc.setTarget("topiclist");
 
             return resc;

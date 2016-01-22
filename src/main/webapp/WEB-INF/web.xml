@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
-
    <!-- ランディングページ -->
    <!-- <welcome-file-list>
      <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
@@ -100,6 +99,23 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>commmem</servlet-name>
+        <jsp-file>/WEB-INF/jsp/communityMembers.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commmem</servlet-name>
+        <url-pattern>/joincomm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>withDrawComm</servlet-name>
+        <jsp-file>/WEB-INF/jsp/withDrawComm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>withDrawComm</servlet-name>
+        <url-pattern>/withDrawComm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>my</servlet-name>
         <jsp-file>/WEB-INF/jsp/mypage.jsp</jsp-file>
     </servlet>
@@ -107,6 +123,54 @@
         <servlet-name>my</servlet-name>
         <url-pattern>/mypage</url-pattern>
     </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>topic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/topic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>topic</servlet-name>
+        <url-pattern>/topic</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createtopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/createTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createtopic</servlet-name>
+        <url-pattern>/createtopic</url-pattern>
+    </servlet-mapping>
+
+
+   <servlet>
+      <servlet-name>createcom</servlet-name>
+      <jsp-file>/WEB-INF/jsp/createcommunity.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>createcom</servlet-name>
+      <url-pattern>/createcom</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+      <servlet-name>tagsearch</servlet-name>
+      <jsp-file>/WEB-INF/jsp/tag_search_test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>tagsearch</servlet-name>
+      <url-pattern>/tagsearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+     <servlet-name>tagsearch_show</servlet-name>
+     <jsp-file>/WEB-INF/jsp/TagSearchShow_test.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+     <servlet-name>tagsearch_show</servlet-name>
+     <url-pattern>/tagsearch_show</url-pattern>
+ </servlet-mapping>
+
 
 	<servlet>
         <servlet-name>setting1</servlet-name>
@@ -116,6 +180,16 @@
         <servlet-name>setting1</servlet-name>
         <url-pattern>/userSetting</url-pattern>
     </servlet-mapping>
+
+	<servlet>
+        <servlet-name>blogDelete</servlet-name>
+        <jsp-file>/WEB-INF/jsp/blogDelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>blogDelete</servlet-name>
+        <url-pattern>/blogDelete</url-pattern>
+    </servlet-mapping>
+
 
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
@@ -170,8 +244,69 @@
 		<url-pattern>/top</url-pattern>
 	</servlet-mapping>
 
+    <servlet>
+		<servlet-name>compos</servlet-name>
+		<jsp-file>/WEB-INF/jsp/commentPost.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>compos</servlet-name>
+		<url-pattern>/commentpost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticle</servlet-name>
+		<url-pattern>/showArticle</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>showarticlelist</servlet-name>
+		<jsp-file>/WEB-INF/jsp/showArticleList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showarticlelist</servlet-name>
+		<url-pattern>/showArticleList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>userSearch</servlet-name>
+		<jsp-file>/WEB-INF/jsp/userSearch.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userSearch</servlet-name>
+		<url-pattern>/userSearch</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>draftarticle</servlet-name>
+		<jsp-file>/WEB-INF/jsp/draftArticle.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>draftarticle</servlet-name>
+		<url-pattern>/draftArticle</url-pattern>
+	</servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>comdel</servlet-name>
+        <jsp-file>/WEB-INF/jsp/commentdelete.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comdel</servlet-name>
+        <url-pattern>/commentdelete</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+        <servlet-name>showTopic</servlet-name>
+        <jsp-file>/WEB-INF/jsp/showTopic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showTopic</servlet-name>
+        <url-pattern>/showTopic</url-pattern>
+    </servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>
@@ -182,6 +317,14 @@
       <error-code>404</error-code>
       <location>/error.jsp</location>
    </error-page> -->
+   <servlet>
+       <servlet-name>blogsearch</servlet-name>
+       <jsp-file>/WEB-INF/jsp/blogSearch.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>blogsearch</servlet-name>
+       <url-pattern>/blogSearch</url-pattern>
+   </servlet-mapping>
 
    <!-- フィルター -->
 </web-app>
