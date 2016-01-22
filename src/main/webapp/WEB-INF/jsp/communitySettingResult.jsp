@@ -31,8 +31,8 @@
     <div class="container">
        <div class="row">
            <h1>コミュニティの変更完了！</h1>
-                    コミュニティ名：${result.name}<br>
-                    紹介文：${result.profile}<br>
+                    コミュニティ名：${result.communityName}<br>
+                    紹介文：${result.communityProfile}<br>
                     アイコン<img src="${result.iconPath}"><br>
                     ヘッダ<img src="${result.headerPath}"><br>
                     <p>上記で変更しました。</p>

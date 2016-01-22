@@ -85,7 +85,7 @@ public class CommunitiesDao implements AbstractDao{
             pst.setString(4,(String)map.get("headerPath"));
             pst.setString(5,(String)map.get("deleteFlag"));
             pst.setString(6,(String)map.get("commId"));
-            
+
 
 
             result = pst.executeUpdate();
