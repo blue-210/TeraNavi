@@ -24,18 +24,18 @@ INSERT INTO users(
     user_profile,
     blog_status_flag)
 VALUES(
-    'tsuchiya19',
-    '土屋智也',
-    'つちやともや',
+    'test1',
+    'つば九朗',
+    'つばくろう',
     'm',
     0,
     '1995/02/11 20:20:20',
     'tt14@mail.com',
-    'qwerty',
+    'tuba',
     '呉石先生',
     '/images/(user_id)/header.jpg',
     '/images/(user_id)/icon.jpg',
-    'つちやブログ',
+    'つばくろブログ',
     '/images/default/header.jpg',
     0,
     '1995/02/11 20:20:30',
@@ -44,7 +44,7 @@ VALUES(
     '2020/02/11 20:20:20',
     '2020/02/11 20:30:20',
     'このブログは楽しい',
-    'ゲームが好きです',
+    '酒が好きです',
     0
 );
 
@@ -73,18 +73,18 @@ INSERT INTO users(
     blog_status_flag
     )
 VALUES(
-    'tsuchiya20',
-    '土屋智也',
-    'つちやともや',
+    'test2',
+    '手須太郎',
+    'てすたろう',
     'f',
     1,
     '1995/02/11 20:20:20',
     'tt15@mail.com',
-    'qwerty',
+    'tes',
     '呉石先生',
     '/images/(user_id)/header.jpg',
     '/images/(user_id)/icon.jpg',
-    'つちやブログ',
+    'てすブログ',
     '/images/default/header.jpg',
     1,
     '1995/02/11 20:20:30',
@@ -93,7 +93,7 @@ VALUES(
     '2020/02/11 20:20:20',
     '2020/02/11 20:30:20',
     'このブログは楽しい',
-    'ゲームが好きです',
+    'てｓとが好きです',
     1
 );
 
@@ -121,18 +121,18 @@ INSERT INTO users(
     user_profile,
     blog_status_flag)
 VALUES(
-    'tsuchiya21',
-    '土屋智也',
-    'つちやともや',
+    'test3',
+    '小山次郎',
+    'こやまじろう',
     'f',
     1,
     '1995/02/11 20:20:20',
     'tt16@mail.com',
-    'qwerty',
+    'koyazi',
     '呉石先生',
     '/images/(user_id)/header.jpg',
     '/images/(user_id)/icon.jpg',
-    'つちやブログ',
+    'こやブログ',
     '/images/default/header.jpg',
     1,
     '1995/02/11 20:20:30',
@@ -141,7 +141,7 @@ VALUES(
     '2020/02/11 20:20:20',
     '2020/02/11 20:30:20',
     'このブログは楽しい',
-    'ゲームが好きです',
+    '小山学園が好きです',
     1
 );
 
@@ -170,14 +170,14 @@ INSERT INTO users(
     user_profile,
     blog_status_flag)
 VALUES(
-    'tsuchiya22',
-    '土屋智也',
-    'つちやともや',
-    'f',
+    'test4',
+    'Cave johnson',
+    'ケイブジョンソン',
+    'm',
     1,
     '1995/02/11 20:20:20',
     'tt17@mail.com',
-    'qwerty',
+    'potal',
     '呉石先生',
     '/images/(user_id)/header.jpg',
     '/images/(user_id)/icon.jpg',
@@ -190,7 +190,7 @@ VALUES(
     '2020/02/11 20:20:20',
     '2020/02/11 20:30:20',
     'このブログは楽しい',
-    'ゲームが好きです',
+    'Aperture Sciencが好きです',
     1
 );
 

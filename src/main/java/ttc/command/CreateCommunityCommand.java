@@ -48,8 +48,6 @@ public class CreateCommunityCommand extends AbstractCommand{
             String userId=reqc.getParameter("userId")[0];
             params.put("userId",userId);
 
-
-
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
