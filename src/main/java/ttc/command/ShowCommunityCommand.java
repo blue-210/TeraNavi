@@ -24,11 +24,7 @@ public class ShowCommunityCommand extends AbstractCommand{
 
             HashMap params = new HashMap();
 
-
-            String where=reqc.getParameter("where")[0];
-
-            params.put("where","where fk_"+where);
-            params.put("userId",reqc.getParameter("userId")[0]);
+            params.put("where","where community_id=? and community_delete_flag=0");
             params.put("commId",reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();

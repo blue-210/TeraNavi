@@ -30,9 +30,34 @@
     <div class="container">
        <div class="row">
 
-           <c:forEach var="item" items="${result}">
-		   		コミュニティ名 : <c:out value="${item.name}" /><br>
-	   		</c:forEach>
+           <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th class="deletable"></th>
+                      <th>コミュニティ名</th>
+                      <th>紹介文</th>
+                       <th>メンバー数</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <c:forEach var="comm" items="${result}">
+                      <tr>
+                          <td class="deletable">
+                              <form action="showcomm" method="post" name="showForm">
+                                   <input type="hidden" name="commId" value="${comm.id}">
+                                   <input type="submit" id="showCom" value="詳細へ"></input>
+                               </form>
+                          </td>
+                          <td> <c:out value="${comm.name}" /> </td>
+                          <td> <c:out value="${comm.profile}"/> </td>
+                          <td> <c:out value="${comm.countMember}"/> </td>
+                      </tr>
+                  </c:forEach>
+
+
+              </tbody>
+          </table>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

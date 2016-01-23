@@ -41,9 +41,7 @@
                        <tr>
                            <td class="deletable">
                                <form action="showcomm" method="post" name="showForm">
-                                   <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                       <input type="hidden" name="commId" value="${comm.id}">
-                                <input type="hidden" name="where" value="user_id=? and community_id=?">
+                                    <input type="hidden" name="commId" value="${comm.id}">
                                     <input type="submit" id="showCom" value="詳細へ"></input>
                                 </form>
                            </td>

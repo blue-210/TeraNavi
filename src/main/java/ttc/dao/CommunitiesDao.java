@@ -20,24 +20,23 @@ public class CommunitiesDao implements AbstractDao{
         CommunityBean cb=new CommunityBean();
         PreparedStatement pst = null;
         try{
-            System.out.println("コミュのリロード");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
             sql.append("select community_id,community_name,community_profile,community_icon_path,community_header_path,");
-            sql.append("community_delete_flag from communities where ");
-            sql.append((String)map.get("where"));
+            sql.append("community_delete_flag from communities ");
+
+            if(map.containsKey("where")){
+                sql.append((String)map.get("where"));
+            }
 
             String ssql=new String(sql);
 
             pst = cn.prepareStatement(new String(ssql));
 
-            System.out.println(ssql);
-            System.out.println((String)map.get("where"));
-
-
-            pst.setString(1,(String)map.get("userId"));
-            pst.setString(2,(String)map.get("commId"));
+            if(map.containsKey("commId")){
+                pst.setString(1,(String)map.get("commId"));
+            }
 
             ResultSet rs = pst.executeQuery();
 
