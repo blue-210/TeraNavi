@@ -31,26 +31,27 @@
                <thead>
                    <tr>
                        <th class="deletable"></th>
-                       <th>コミュニティID</th>
                        <th>コミュニティ名</th>
                        <th>紹介文</th>
+                        <th>メンバー数</th>
                    </tr>
                </thead>
                <tbody>
                    <c:forEach var="comm" items="${result}">
                        <tr>
                            <td class="deletable">
-                               <button type="button" onclick="document.showForm.submit();">詳細へ</button>
-
-
-                           </a> </td>
+                               <form action="showcomm" method="post" name="showForm">
+                                   <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                       <input type="hidden" name="commId" value="${comm.id}">
+                                <input type="hidden" name="where" value="user_id=? and community_id=?">
+                                    <input type="submit" id="showCom" value="詳細へ"></input>
+                                </form>
+                           </td>
                            <td> <c:out value="${comm.name}" /> </td>
                            <td> <c:out value="${comm.profile}"/> </td>
+                           <td> <c:out value="${comm.countMember}"/> </td>
                        </tr>
                    </c:forEach>
-                   <form action="showcomm" method="post" name="showForm">
-                       <input type="hidden" name="where" value="user_id=${sessionScope.loginUser.id} and community_id=${comm.id}">
-                   </form>
 
 
                </tbody>
