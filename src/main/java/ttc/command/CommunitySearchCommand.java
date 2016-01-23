@@ -13,48 +13,35 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.UserBean;
-import ttc.bean.CommunityBean;
-import java.util.ArrayList;
+import java.util.List;
 
-
-public class ShowMyCommunityListCommand extends AbstractCommand{
+public class CommunitySearchCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
-            String groupBy=reqc.getParameter("groupBy")[0];
 
-            String userId=reqc.getParameter("userId")[0];
-            params.put("value",userId);
+            String keyword = reqc.getParameter("keyword")[0];
 
-            params.put("where",reqc.getParameter("where")[0]);
+            String where = "where community_name like ? and community_delete_flag=0";
 
-            params.put("groupBy",groupBy);
+            params.put("where",where);
 
-
-
+            params.put("value",keyword);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            ArrayList results=(ArrayList)dao.readAll(params);
-
-
+            List result =dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			resc.setResult(result);
 
-
-
-
-
-			resc.setResult(results);
-
-            resc.setTarget("showMyCommunityResult");
+            resc.setTarget("communitySearchResult");
 
             return resc;
         }catch(IntegrationException e){

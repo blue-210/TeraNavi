@@ -199,19 +199,25 @@ public class CommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
             sql.append("communities.community_profile,count(community_members_list.fk_user_id) from ");
-            sql.append("communities join community_members_list where ");
-            String where=(String)map.get("where");
-            sql.append(where);
-            String groupBy=(String)map.get("groupBy");
+            sql.append("communities join community_members_list ");
 
-            sql.append(groupBy);
+            boolean flag = map.containsKey("where");
 
-            String sql1=new String(sql);
-            System.out.println(sql1);
+            if(flag){
+                sql.append((String)map.get("where"));
+            }
 
-            pst = cn.prepareStatement(sql1);
+            if(map.containsKey("gourpBy")){
+                String groupBy=(String)map.get("groupBy");
 
-            pst.setString(1,(String)map.get("userId"));
+               sql.append(groupBy);
+            }
+
+            pst = cn.prepareStatement(new String(sql));
+
+            if(flag){
+                pst.setString(1,(String)map.get("value"));
+            }
 
 
             ResultSet rs = pst.executeQuery();

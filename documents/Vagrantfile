@@ -40,6 +40,7 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # C:\\GitHub\\TeraNaviの部分は各自の環境に合わせて変えてください。
   config.vm.synced_folder "C:\\GitHub\\TeraNavi", "/vagrant_data/TeraNavi"
+  config.vm.synced_folder "C:\\GitHub\\TeraNaviAdmin", "/vagrant_data/TeraNaviAdmin"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
