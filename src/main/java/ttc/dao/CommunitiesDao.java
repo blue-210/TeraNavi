@@ -160,12 +160,22 @@ public class CommunitiesDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "select community_id,community_name,community_profile from communities where fk_user_id=?";
 
+            StringBuffer sql = new StringBuffer();
+            sql.append("select community_id,community_name,community_profile");
+            sql.append(" from communities ");
 
-            pst = cn.prepareStatement(sql);
+            boolean flag = map.containsKey("where");
 
-            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
+            if(flag){
+                sql.append((String)map.get("where"));
+            }
+
+            pst = cn.prepareStatement(new String(sql));
+
+            if(flag){
+                pst.setString(1,(String)map.get("value"));
+            }
 
             ResultSet rs = pst.executeQuery();
 

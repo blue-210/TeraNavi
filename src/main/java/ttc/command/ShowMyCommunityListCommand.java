@@ -27,7 +27,8 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
 
 
             String userId=reqc.getParameter("userId")[0];
-            params.put("userId",userId);
+            params.put("value",userId);
+            params.put("where","where fk_user_id=?");
 
             MySqlConnectionManager.getInstance().beginTransaction();
 

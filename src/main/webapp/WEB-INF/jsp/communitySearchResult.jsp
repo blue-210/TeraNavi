@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿結果</title>
+    <title>検索結果</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,7 +19,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/search.js"></script>
 
 
 
@@ -30,15 +29,14 @@
 
     <div class="container">
        <div class="row">
-           <h1>投稿完了</h1>
-           <form action="front/articlepost" method="post">
-               タイトル ${result.title}<br>
-               内容 <br>${result.body}<br>
-               公開日時 ${result.date}<br>
-           </form>
+
+           <c:forEach var="item" items="${result}">
+		   		コミュニティ名 : <c:out value="${item.name}" /><br>
+	   		</c:forEach>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
 
 
 </body>

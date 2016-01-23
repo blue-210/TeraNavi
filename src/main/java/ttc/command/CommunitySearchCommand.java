@@ -13,42 +13,35 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.UserBean;
-import ttc.bean.CommunityBean;
-import java.util.ArrayList;
+import java.util.List;
 
-public class ShowCommunityCommand extends AbstractCommand{
+public class CommunitySearchCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
 
+            String keyword = reqc.getParameter("keyword")[0];
 
-            String where=reqc.getParameter("where")[0];
-            
+            String where = "where community_name like ? and community_delete_flag=0";
 
             params.put("where",where);
+
+            params.put("value",keyword);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            CommunityBean cb =(CommunityBean)dao.read(params);
-
-
+            List result =dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			resc.setResult(result);
 
-
-
-
-
-			resc.setResult(cb);
-
-            resc.setTarget("showCommunityResult");
+            resc.setTarget("communitySearchResult");
 
             return resc;
         }catch(IntegrationException e){
