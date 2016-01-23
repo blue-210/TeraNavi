@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ユーザ検索</title>
+    <title>検索</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -40,10 +40,11 @@
            <form method="post" action="front/usearch" id="sform">
                <select id="target">
                    <option value="usearch" selected>ユーザ</option>
-                   <option value="commsearch">コミュニティ</option>
+                   <option value="commList">コミュニティ</option>
                    <option value="keywordsearch">ブログ</option>
                </select>
                <input type="text" name="keyword" value="">
+                <input type="hidden" name="intention" value="search">
                <input type="submit" value="送信">
            </form>
        </div><!--end row-->

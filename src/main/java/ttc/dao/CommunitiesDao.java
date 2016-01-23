@@ -199,7 +199,8 @@ public class CommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
             sql.append("communities.community_profile,count(community_members_list.fk_user_id) from ");
-            sql.append("communities join community_members_list ");
+            sql.append("communities left outer join community_members_list ");
+            sql.append("on communities.community_id=community_members_list.fk_community_id ");
 
             boolean flag = map.containsKey("where");
 
@@ -207,15 +208,11 @@ public class CommunitiesDao implements AbstractDao{
                 sql.append((String)map.get("where"));
             }
 
-            if(map.containsKey("gourpBy")){
-                String groupBy=(String)map.get("groupBy");
-
-               sql.append(groupBy);
-            }
+            sql.append(" group by communities.community_id");
 
             pst = cn.prepareStatement(new String(sql));
 
-            if(flag){
+            if(map.containsKey("value")){
                 pst.setString(1,(String)map.get("value"));
             }
 
