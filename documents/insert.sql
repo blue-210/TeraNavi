@@ -271,9 +271,6 @@ VALUES(
 );
 
 
-#community_members_list表
-INSERT INTO community_members_list(community_admin_flag)VALUES(0);
-INSERT INTO community_members_list(community_admin_flag)VALUES(1);
 
 
 #tags表
