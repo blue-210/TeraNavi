@@ -32,13 +32,14 @@
        <div class="row">
            <h1>コミュ詳細</h1>
             <form action="commSetting" method="post">
-                <p id="commid">${result.id}</p>
-                <p id="userId">${sessionScope.loginUser.id}</p>
+                <p id="commid" style="display:none">${result.id}</p>
+                <p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
+                <p id="createId" style="display:none">${result.createUserId}</p>
                 <p class="bun"> コミュニティ名:<div id="name">${result.name}</div></p>
                 <p class="bun"> 説明文 <div id="profile">${result.profile}</div></p>
                 <p class="bun">  コミュニティアイコン<div id="iconPath"><img src='${result.iconPath}'></div></p>
                 <p class="bun">  ヘッダ画像 <div id="headerPath"> <img src='${result.headerPath}'></div></p>
-                <p class="bun"><button id="dd">編集</button></p>
+                <p class="bun"><button id="dd" style="display:none">編集</button></p>
 
                 <p id="sub"></p>
             </form>
@@ -50,6 +51,12 @@
 
     <script>
     $(document).ready(function(){
+        var flag = $("#userId").text() == $("#createId").text();
+        if(flag){
+            $("#dd").removeAttr("style")
+        }
+
+
         $("#dd").click(function(){
             var id=$('#commid').text();
             var userid=$('#userId').text();

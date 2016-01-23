@@ -13,6 +13,7 @@ public class CommunityBean implements Bean{
     private int countMember;
     private ArrayList members;
     private ArrayList topics;
+    private String createUserId;
 
 
     /**
@@ -164,5 +165,13 @@ public class CommunityBean implements Bean{
     }
     public int getCountMember(){
         return countMember;
+    }
+
+    public void setCreateUserId(String userId){
+        createUserId = userId;
+    }
+
+    public String getCreateUserId(){
+        return createUserId;
     }
 }
