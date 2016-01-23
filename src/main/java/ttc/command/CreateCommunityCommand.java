@@ -35,14 +35,14 @@ public class CreateCommunityCommand extends AbstractCommand{
             if(icon!=null && icon.length()!=0){
                 params.put("commIcon",icon);
             }else{
-                params.put("commIcon",null);
+                params.put("commIcon","");
             }
 
             String header = (String)reqc.getParameter("commHeader")[0];
             if(header != null && header.length() != 0){
                 params.put("commHeader",header);
             }else{
-                params.put("commHeader",null);
+                params.put("commHeader","");
             }
 
             String userId=reqc.getParameter("userId")[0];
