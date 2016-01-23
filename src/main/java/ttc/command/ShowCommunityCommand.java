@@ -26,24 +26,20 @@ public class ShowCommunityCommand extends AbstractCommand{
 
 
             String where=reqc.getParameter("where")[0];
-            
 
-            params.put("where",where);
+            params.put("where","where fk_"+where);
+            params.put("userId",reqc.getParameter("userId")[0]);
+            params.put("commId",reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
-
-
+            cb.setId(reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-
-
-
-
 
 
 			resc.setResult(cb);
