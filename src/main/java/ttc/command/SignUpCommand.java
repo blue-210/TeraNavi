@@ -50,12 +50,13 @@ public class SignUpCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            int userId = dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			UserBean ub = new UserBean();
+            ub.setId(String.valueOf(userId));
 			ub.setLoginId(loginId);
 			ub.setUserName(userName);
 			ub.setNameKana(nameKana);
