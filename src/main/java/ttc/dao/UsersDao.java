@@ -44,7 +44,6 @@ public class UsersDao implements AbstractDao{
             }
 
             pst=cn.prepareStatement(new String(sql));
-            rs=pst.executeQuery();
 
             pst.setString(1,(String)map.get("userStatus"));
 
@@ -52,6 +51,7 @@ public class UsersDao implements AbstractDao{
                 pst.setString(2,(String)map.get("value"));
             }
 
+            rs=pst.executeQuery();
             while(rs.next()){
                 UserBean ub=new UserBean();
 

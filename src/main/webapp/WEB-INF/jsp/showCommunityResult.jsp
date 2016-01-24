@@ -43,8 +43,26 @@
 
                 <p id="sub"></p>
             </form>
+            <h5>コミュニティのmember</h5>
+            <table class="table table-striped">
 
 
+
+               <thead>
+                   <c:forEach var="member" items="${result.members}">
+
+                       <tr>
+                         <th>
+                           <c:out value="${member.iconPath}" /><br>
+                           <c:out value="${member.userName}"/><br>
+                        </th>
+                       </tr>
+                   </c:forEach>
+                    </thead>
+
+
+               </tbody>
+           </table>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
