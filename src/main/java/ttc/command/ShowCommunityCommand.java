@@ -34,6 +34,22 @@ public class ShowCommunityCommand extends AbstractCommand{
             CommunityBean cb =(CommunityBean)dao.read(params);
             cb.setId(reqc.getParameter("commId")[0]);
 
+
+
+
+            AbstractDaoFactory fact=AbstractDaoFactory.getFactory("users");
+            AbstractDao abdao= fact.getAbstractDao();
+            ArrayList memebers=new ArrayList();
+
+            params.put("where"," and fk_community_id=?");
+            params.put("join"," join community_members_list on users.user_id = fk_user_id ");
+
+            params.put("value",reqc.getParameter("commId")[0]);
+            params.put("userStatus","0");
+
+            cb.setMembers((ArrayList)abdao.readAll(params));
+
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
