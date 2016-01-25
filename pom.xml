@@ -112,6 +112,17 @@
         	<artifactId>javax.websocket-api</artifactId>
         	<version>1.0</version>
         </dependency>
+        <!-- ロガー -->
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
 
     </dependencies>
 
