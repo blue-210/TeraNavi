@@ -36,8 +36,14 @@ public class ShowMemberListCommand extends AbstractCommand{
 
             params.put("value",reqc.getParameter("commId")[0]);
             params.put("userStatus","0");
+            HashMap para=new HashMap();
 
-            List result = abdao.readAll(params);
+            para.put("where","where community_id=?");
+            para.put("commId",reqc.getParameter("commId")[0]);
+
+            HashMap result=new HashMap();
+            result.put("value",reqc.getParameter("commId")[0]);
+             result.put("members",abdao.readAll(params));
 
 
             MySqlConnectionManager.getInstance().commit();
