@@ -58,11 +58,16 @@
                         </th>
                        </tr>
                    </c:forEach>
-                    </thead>
-
+                </thead>
 
                </tbody>
            </table>
+		   <p onclick="document.memberForm.submit();">
+			   メンバーの一覧を取得
+		   </p>
+		   <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
+			   <input type="hidden" name="commId" value="${result.id}">
+		   </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
