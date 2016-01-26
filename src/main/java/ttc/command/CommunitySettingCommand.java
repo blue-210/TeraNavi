@@ -54,7 +54,7 @@ public class CommunitySettingCommand extends AbstractCommand{
             params.put("deleteFlag",deleteFlag);
             params.put("commId",communityId);
             params.put("userId",loginId);
-            params.put("del",reqc.getParameter("del")[0]);
+
             params.put("target",(String)reqc.getParameter("target")[0]);
 
 

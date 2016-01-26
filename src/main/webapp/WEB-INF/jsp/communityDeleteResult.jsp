@@ -30,7 +30,7 @@
 
     <div class="container">
        <div class="row">
-           <h1>${result.name}を削除しました</h1>
+           <h1>コミュニティを削除しました</h1>
 
 
        </div><!--end row-->
