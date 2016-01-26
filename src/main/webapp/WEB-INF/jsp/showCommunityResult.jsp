@@ -88,16 +88,18 @@
             var iconPath=$('#iconPath').text();
             var headerPath=$('#headerPath').text();
             var del='0';
+            var target='communitySettingResult'
             $('.bun').remove();
             $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
-            $('#profile').html('紹介文：<input type="text" name="profile" value="'+profile+'">');
+            $('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
             $('#iconPath').html('アイコン画像：<input type="text" name="iconPath" value="'+iconPath+'">');
             $('#headerPath').html('ヘッダ画像<input type="text" name="headerPath" value="'+headerPath+'">');
             console.log(id);
             console.log(del);
             $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
-            $('#commid').html('<input type="hidden" name="communityId" value="'+id+'">');
+            $('#commid').html('<input type="hidden" name="commId" value="'+id+'">');
             $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
+            $('#commid').append('<input type="hidden" name="target" value="'+target+'">');
             $('#sub').html('<input type="submit" value="変更">');
         });
     });

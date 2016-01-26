@@ -28,11 +28,11 @@ public class CommunitySettingCommand extends AbstractCommand{
 
 
             String communityName = reqc.getParameter("commName")[0];
-            String communityProfile = reqc.getParameter("profile")[0];
+            String communityProfile = reqc.getParameter("commProfile")[0];
             String iconPath = reqc.getParameter("iconPath")[0];
             String headerPath = reqc.getParameter("headerPath")[0];
             String deleteFlag = reqc.getParameter("deleteFlag")[0];
-            String communityId = reqc.getParameter("communityId")[0];
+            String communityId = reqc.getParameter("commId")[0];
             String userId=reqc.getParameter("userId")[0];
 
             HashMap params = new HashMap();
@@ -55,6 +55,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             params.put("commId",communityId);
             params.put("userId",loginId);
 
+            params.put("target",(String)reqc.getParameter("target")[0]);
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
@@ -64,8 +66,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setResult(params);
-            resc.setTarget("communitySettingResult");
+			    resc.setResult(params);
+                resc.setTarget((String)params.get("target"));
 
             return resc;
         }catch(IntegrationException e){
