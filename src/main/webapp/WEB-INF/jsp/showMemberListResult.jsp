@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>作成したコミュ</title>
+    <title>コミュニティメンバー</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -30,23 +30,40 @@
 
     <div class="container">
        <div class="row">
-           <h1>作成したコミュニティ</h1>
-                    <form action="front/commmy" method="post">
-                        <input type="hidden" name="groupBy" value="group By community_members_list.fk_community_id ">
-                        <input type="hidden" name="where" value="communities.fk_user_id= ? and community_members_list.community_admin_flag=1 ">
-                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                        <input type="submit" value="作成したコミュ一覧">
-                   </form>
-                   <form action="front/commmy" method="post">
-                       <input type="hidden" name="groupBy" value="groupBy community_members_list.fk_community_id ">
-                        <input type="hidden" name="where" value="community_members_list.community_admin_flag=0 ">
-                       <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                       <input type="submit" value="参加しているコミュ一覧">
-                  </form>
+           <p><button id="dd">権限付与</button></p>
+           <form action="commGra" method="post">
+               <thead>
 
+                   <c:forEach var="member" items="${result.members}">
+
+                       <tr>
+                         <th>
+
+                           <c:out value="${member.iconPath}" /><br>
+                           <c:out value="${member.userName}"/><br>
+                           <input type="hidden" name="targetNo" value="${member.id}">
+                               <input type="hidden" name="communityId" value="${result.value}">
+                           <div class="check"></div>
+                        </th>
+                       </tr>
+                   </c:forEach>
+                </thead>
+                <p id="sub"></p>
+            </form>
+
+               </tbody>
+           </table>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+        $("#dd").click(function(){
+            $('.check').append('<input type="checkbox">');
+            $('#sub').append('<input type="submit" value="確定">');
+        });
+    </script>
+
+
 
 
 </body>

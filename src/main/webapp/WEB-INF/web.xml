@@ -116,12 +116,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>commmy</servlet-name>
+        <servlet-name>commMy</servlet-name>
         <jsp-file>/WEB-INF/jsp/showmycomm.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>commmy</servlet-name>
-        <url-pattern>/commmy</url-pattern>
+        <servlet-name>commMy</servlet-name>
+        <url-pattern>/commMy</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -290,12 +290,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>userSearch</servlet-name>
-		<jsp-file>/WEB-INF/jsp/userSearch.jsp</jsp-file>
+		<servlet-name>search</servlet-name>
+		<jsp-file>/WEB-INF/jsp/search.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>userSearch</servlet-name>
-		<url-pattern>/userSearch</url-pattern>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 
     <servlet>
@@ -344,14 +344,7 @@
       <error-code>404</error-code>
       <location>/error.jsp</location>
    </error-page> -->
-   <servlet>
-       <servlet-name>blogsearch</servlet-name>
-       <jsp-file>/WEB-INF/jsp/blogSearch.jsp</jsp-file>
-   </servlet>
-   <servlet-mapping>
-       <servlet-name>blogsearch</servlet-name>
-       <url-pattern>/blogSearch</url-pattern>
-   </servlet-mapping>
+
 
    <!-- フィルター -->
 </web-app>
