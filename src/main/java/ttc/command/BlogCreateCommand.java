@@ -33,7 +33,7 @@ public class BlogCreateCommand extends AbstractCommand{
             params.put("title",title);
             params.put("headerPath",headerPath);
             params.put("explanation",explanation);
-            params.put("status",1);
+            params.put("status","1");
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -44,8 +44,9 @@ public class BlogCreateCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			resc.setResult(params);
 
-            resc.setTarget("blogCreate");
+            resc.setTarget("blogCreateResult");
 
             return resc;
         }catch(IntegrationException e){

@@ -24,8 +24,8 @@ create table tera_db.users(user_id int(8) primary key auto_increment,login_id va
 #　コミュニティ表
 create table tera_db.communities(community_id int(10) primary key auto_increment,community_name varchar(50),community_profile varchar(400),
 								 community_icon_path varchar(255) default 'WEB-INF/img/default_community_icon.img',community_header_path varchar(255) default 'WEB-INF/img/default_community_header.img',
-								 community_created_date datetime,fk_user_name varchar(100),community_delete_flag char(1) not null,index(community_id),
-								 foreign key(fk_user_name) references tera_db.users(user_name))engine=InnoDB;
+								 community_created_date datetime,fk_user_id int(8),community_delete_flag char(1) not null,index(community_id),
+								 foreign key(fk_user_id) references tera_db.users(user_id))engine=InnoDB;
 #記事表
 create table tera_db.articles(article_id int(10) primary key auto_increment,fk_user_id int(8),article_title varchar(100) default 'こんにちは',
 							  article_body varchar(20000),article_created_date datetime,article_status_flag char(1) not null,index(article_id),
@@ -36,7 +36,7 @@ create table tera_db.tags(tag_id int(10) primary key auto_increment,tag_name var
 create table tera_db.articles_tags(fk_article_id int(10),fk_tag_id int(10),foreign key (fk_article_id) references tera_db.articles(article_id),
 									foreign key(fk_tag_id) references tera_db.tags(tag_id))engine=InnoDB;
 #コミュニティユーザーリスト表
-create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,
+create table tera_db.community_members_list(fk_user_id int(10),fk_community_id int(10),community_admin_flag char(1) not null,community_withdrawal_flag char(1),
 											foreign key(fk_user_id) references tera_db.users(user_id),
 											foreign key(fk_community_id) references tera_db.communities(community_id))engine=InnoDB;
 #コメント表
@@ -66,7 +66,7 @@ create table tera_db.chat(chat_id int(8) primary key auto_increment,fk_user_id i
 						  foreign key(fk_user_id) references tera_db.users(user_id),
 						  foreign key(fk_topic_id) references tera_db.topics(topic_id))engine=InnoDB;
 #登録キー表
-create table tera_db.sign_up_keys(sign_up_key int(12) primary key,key_status char(1) not null,index(sign_up_key));
+create table tera_db.sign_up_keys(sign_up_key varchar(140) primary key,key_status char(1) not null,index(sign_up_key));
 #ポリシー表
 create table tera_db.policy(policy_id int(10) primary key auto_increment,policy_date datetime,policy_body varchar(10000) not null,index(policy_id));
 #利用規約表

@@ -10,6 +10,7 @@ import ttc.exception.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -17,23 +18,25 @@ import ttc.dao.AbstractDao;
 public class ShowArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            String articleId = reqc.getParameter("userId")[0];
+            String userId = reqc.getParameter("writerUserId")[0];
 
             Map params = new HashMap();
-            params.put("userId", articleId);
+            params.put("userId", userId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.readAll(params);
+            ArrayList results = (ArrayList)dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("showarticlelist");
+            resc.setResult(results);
+            resc.setTarget("showArticleListResult");
 
             return resc;
 

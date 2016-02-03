@@ -10,6 +10,7 @@ import ttc.exception.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -18,26 +19,26 @@ public class KeywordSearchCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
 		try{
 			RequestContext reqc = getRequestContext();
-			String[] keywords=null;
+
 			String keyword = reqc.getParameter("keyword")[0];
-			String target = reqc.getParameter("target")[0];
+			String[] keywords = null;
 			keywords=keyword.split(" ", 0);
 
 			Map params = new HashMap();
 
-			for(int i=0;i<keywords.length;i++){
-				params.put("keyword"+i,keywords[i]);
-			}
+			params.put("keywords",keywords);
 
 			MySqlConnectionManager.getInstance().beginTransaction();
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("keywordsearch");
 			AbstractDao dao = factory.getAbstractDao();
+
+			List result = dao.readAll(params);
 
 			MySqlConnectionManager.getInstance().commit();
 			MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setTarget("SerchResult");
-			resc.setResult(dao.readAll(params));
+			resc.setResult(result);
+			resc.setTarget("searchresult");
 
 			return resc;
 		}catch(IntegrationException e){

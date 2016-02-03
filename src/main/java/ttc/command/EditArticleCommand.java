@@ -14,38 +14,46 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
+import ttc.bean.ArticleBean;
+
 public class EditArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("articleId")[0];
-
+            String articleId = reqc.getParameter("articleId")[0];
             String title = reqc.getParameter("title")[0];
-
+            System.out.println(title);
             String body = reqc.getParameter("body")[0];
-
-            String date = reqc.getParameter("date")[0];
-
             String status = "0";
 
             Map params = new HashMap();
-            params.put("userId", userId);
-            params.put("title", title);
-            params.put("body", body);
-            params.put("date", date);
+            params.put("articleId", articleId);
+            if(title.equals("変更しない")){
+
+            }else{
+                params.put("title", title);
+            }
+            if(body.equals("変更しない")){
+
+            }else{
+                params.put("body", body);
+            }
             params.put("status", status);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
+            ArticleBean ab = (ArticleBean)dao.read(params);
+
+			params.put("articlebean",ab);
             dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("editarticle");
+            resc.setTarget("editArticleResult");
 
             return resc;
 

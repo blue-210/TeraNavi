@@ -14,6 +14,8 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
+import ttc.bean.UserBean;
+
 public class SignUpCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
@@ -48,12 +50,23 @@ public class SignUpCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+            int userId = dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(params);
+			UserBean ub = new UserBean();
+            ub.setId(String.valueOf(userId));
+			ub.setLoginId(loginId);
+			ub.setUserName(userName);
+			ub.setNameKana(nameKana);
+			ub.setSex(sex);
+			ub.setSexVisibleFlag(sexVisibleFlag);
+			ub.setBirthDate(birthDate);
+			ub.setMailAddress(mailAddress);
+			ub.setAdminFlag(adminFlag);
+
+            resc.setResult(ub);
             resc.setTarget("signupResult");
 
             return resc;

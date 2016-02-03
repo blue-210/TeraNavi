@@ -25,11 +25,14 @@
 
     <div class="container">
        <div class="row">
-           <h1>ようこそ${result.userName}さん!!</h1>
+           <h1>ようこそ${sessionScope.loginUser.userName}さん!!</h1>
 
-           <p>
-               あなたのログインIDは「${result.loginId}」です
-           </p>
+           <h1>
+               あなたのログインIDは「${sessionScope.loginUser.loginId}」です
+           </h1>
+
+		   <a href="/TeraNavi/mypage"><h3>マイページはこちら</h3></a>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

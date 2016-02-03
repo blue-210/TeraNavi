@@ -13,6 +13,8 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
+import ttc.bean.CommunityBean;
+import ttc.bean.UserBean;
 
 public class ParticipationCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -20,6 +22,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
+            HashMap para=new HashMap();
 
             params.put("userId",reqc.getParameter("userId")[0]);
             params.put("commId",reqc.getParameter("commId")[0]);
@@ -28,12 +31,17 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
-            dao.update(params);
+            dao.insert(params);
 
+
+            CommunityBean cb =(CommunityBean)dao.read(params);
+
+            params.put("community",cb);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-
-
+            UserBean ub=new UserBean();
+            ub.setCommunity(cb);
+            resc.setResult(params);
             resc.setTarget("communityPaticipationResult");
 
             return resc;
