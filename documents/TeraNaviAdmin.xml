@@ -1,7 +1,7 @@
 <Context
-    path="/TeraNavi"
+    path="/TeraNaviAdmin"
     reloadable="true"
-    docBase="/vagrant_data/TeraNavi/target/TeraNavi"
+    docBase="/vagrant_data/TeraNaviAdmin/target/TeraNaviAdmin"
 	aliases="/imgPath=/tmp">
     <Resource
         name="jdbc/mysql"
@@ -9,7 +9,6 @@
         type="javax.sql.DataSource"
         username="TERA_NAVI"
         password="tera"
-        driverClassName="net.sf.log4jdbc.DriverSpy"
-        url="jdbc:log4jdbc:mysql://localhost/tera_db"
-    />
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost/tera_db"/>
 </Context>

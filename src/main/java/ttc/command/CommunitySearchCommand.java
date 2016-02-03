@@ -8,40 +8,44 @@ import ttc.util.MySqlConnectionManager;
 import ttc.exception.BusinessLogicException;
 import ttc.exception.IntegrationException;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-public class ShowArticleListCommand extends AbstractCommand{
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+
+public class CommunitySearchCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
-            System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("writerUserId")[0];
+            HashMap params = new HashMap();
 
-            Map params = new HashMap();
-            params.put("userId", userId);
+            String keyword = reqc.getParameter("keyword")[0];
+
+            String where = "where community_name like ? and community_delete_flag=0";
+
+            params.put("where",where);
+
+            params.put("value",keyword);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            ArrayList results = (ArrayList)dao.readAll(params);
+            List result =dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(results);
-            resc.setTarget("showArticleListResult");
+			resc.setResult(result);
+
+            resc.setTarget("communitySearchResult");
 
             return resc;
-
         }catch(IntegrationException e){
-            throw new BusinessLogicException(e.getMessage(), e);
+            throw new BusinessLogicException(e.getMessage(),e);
         }
     }
 }

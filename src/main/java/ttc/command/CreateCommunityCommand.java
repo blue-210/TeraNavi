@@ -35,21 +35,18 @@ public class CreateCommunityCommand extends AbstractCommand{
             if(icon!=null && icon.length()!=0){
                 params.put("commIcon",icon);
             }else{
-                params.put("commIcon",null);
+                params.put("commIcon","");
             }
 
             String header = (String)reqc.getParameter("commHeader")[0];
             if(header != null && header.length() != 0){
                 params.put("commHeader",header);
             }else{
-                params.put("commHeader",null);
+                params.put("commHeader","");
             }
 
-            String userName=reqc.getParameter("userName")[0];
-            System.out.println("userName="+userName);
-            params.put("userName",userName);
-
-
+            String userId=reqc.getParameter("userId")[0];
+            params.put("userId",userId);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -65,6 +62,7 @@ public class CreateCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+
 			CommunityBean community = new CommunityBean();
 
 			community.setName((String)params.get("commName"));
@@ -75,6 +73,7 @@ public class CreateCommunityCommand extends AbstractCommand{
 			user.setCommunity(community);
 
 			resc.setResult(user);
+
 
             resc.setTarget("communityCreateResult");
 

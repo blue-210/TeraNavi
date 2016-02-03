@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事投稿結果</title>
+    <title>作成したコミュ</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/search.js"></script>
+	<script type="text/javascript" src="js/fileup.js"></script>
 
 
 
@@ -30,12 +30,20 @@
 
     <div class="container">
        <div class="row">
-           <h1>投稿完了</h1>
-           <form action="front/articlepost" method="post">
-               タイトル ${result.title}<br>
-               内容 <br>${result.body}<br>
-               公開日時 ${result.date}<br>
-           </form>
+           <h1>作成したコミュニティ</h1>
+                    <form action="front/commmy" method="post">
+                        <input type="hidden" name="groupBy" value="group By community_members_list.fk_community_id ">
+                        <input type="hidden" name="where" value="communities.fk_user_id= ? and community_members_list.community_admin_flag=1 ">
+                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                        <input type="submit" value="作成したコミュ一覧">
+                   </form>
+                   <form action="front/commmy" method="post">
+                       <input type="hidden" name="groupBy" value="groupBy community_members_list.fk_community_id ">
+                        <input type="hidden" name="where" value="community_members_list.community_admin_flag=0 ">
+                       <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                       <input type="submit" value="参加しているコミュ一覧">
+                  </form>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

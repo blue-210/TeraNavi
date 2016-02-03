@@ -14,6 +14,7 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 import ttc.bean.CommunityBean;
+import ttc.bean.UserBean;
 
 public class ParticipationCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -32,12 +33,15 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-            para.put("userName",reqc.getParameter("userName"));
-            CommunityBean cb =(CommunityBean)dao.read(para);
+
+            CommunityBean cb =(CommunityBean)dao.read(params);
+
+            params.put("community",cb);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-
-            resc.setResult(para);
+            UserBean ub=new UserBean();
+            ub.setCommunity(cb);
+            resc.setResult(params);
             resc.setTarget("communityPaticipationResult");
 
             return resc;

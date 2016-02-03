@@ -23,17 +23,19 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
-            sql.append("select community_id,community_name from communities where fk_user_name=?");
+            sql.append("select community_id,community_name from communities where fk_user_id=? and community_id=?");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("userName"));
+            pst.setInt(1, Integer.parseInt((String)map.get("userId")));
+            pst.setInt(2, Integer.parseInt((String)map.get("commId")));
+
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
 
-                cb.setId(rs.getString("community_name_id"));
+                cb.setId(rs.getString("community_id"));
 				cb.setName(rs.getString("community_name"));
 
             }
@@ -60,13 +62,16 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("update community_members_list set community_withdrawal_flag='1' where ");
-            sql.append("fk_user_id=? and fk_community_id=?");
+            System.out.println("メンバーアップデート");
+            sql.append("update community_members_list set ");
+            sql.append(map.get("target")+" where ");
+            sql.append("fk_user_id=? and fk_community_id=? ");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("userId"));
+            pst.setString(1,(String)map.get("targetNo"));
             pst.setString(2,(String)map.get("commId"));
+            System.out.println("targetNo="+map.get("targetNo"));
 
 
 

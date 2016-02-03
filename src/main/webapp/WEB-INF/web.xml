@@ -5,9 +5,19 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
    <!-- ランディングページ -->
-   <!-- <welcome-file-list>
+   <welcome-file-list>
      <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
-   </welcome-file-list> -->
+   </welcome-file-list>
+
+   <!-- 共通設定 -->
+   <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-prelude>/WEB-INF/jsp/config.jsp</include-prelude>
+        </jsp-property-group>
+    </jsp-config>
+
    <!-- Servlet&JSP -->
    <servlet>
       <servlet-name>index</servlet-name>
@@ -113,6 +123,24 @@
     <servlet-mapping>
         <servlet-name>withDrawComm</servlet-name>
         <url-pattern>/withDrawComm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>commMy</servlet-name>
+        <jsp-file>/WEB-INF/jsp/showmycomm.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commMy</servlet-name>
+        <url-pattern>/commMy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>commset</servlet-name>
+        <jsp-file>/WEB-INF/jsp/communitySetting.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commset</servlet-name>
+        <url-pattern>/commsetting</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -272,12 +300,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>userSearch</servlet-name>
-		<jsp-file>/WEB-INF/jsp/userSearch.jsp</jsp-file>
+		<servlet-name>search</servlet-name>
+		<jsp-file>/WEB-INF/jsp/search.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>userSearch</servlet-name>
-		<url-pattern>/userSearch</url-pattern>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 
     <servlet>
@@ -308,6 +336,15 @@
         <url-pattern>/showTopic</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>editarticle</servlet-name>
+        <jsp-file>/WEB-INF/jsp/editArticle.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editarticle</servlet-name>
+        <url-pattern>/editArticle</url-pattern>
+    </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>
@@ -317,14 +354,7 @@
       <error-code>404</error-code>
       <location>/error.jsp</location>
    </error-page> -->
-   <servlet>
-       <servlet-name>blogsearch</servlet-name>
-       <jsp-file>/WEB-INF/jsp/blogSearch.jsp</jsp-file>
-   </servlet>
-   <servlet-mapping>
-       <servlet-name>blogsearch</servlet-name>
-       <url-pattern>/blogSearch</url-pattern>
-   </servlet-mapping>
+
 
    <!-- フィルター -->
 </web-app>
