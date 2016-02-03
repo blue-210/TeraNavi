@@ -56,7 +56,24 @@
    </servlet-mapping>
 
    <servlet>
+        <servlet-name>adminlogin</servlet-name>
+       <jsp-file>/WEB-INF/jsp/adminlogin.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>adminlogin</servlet-name>
+       <url-pattern>/adminlogin</url-pattern>
+   </servlet-mapping>
 
+   <servlet>
+      <servlet-name>adminloginresult</servlet-name>
+      <jsp-file>/WEB-INF/jsp/adminloginResult.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>adminloginresult</servlet-name>
+      <url-pattern>/adminloginresult</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
   	 <servlet-name>reset</servlet-name>
   	 <jsp-file>/WEB-INF/jsp/reset.jsp</jsp-file>
    </servlet>
