@@ -48,7 +48,9 @@
           <div class="tab-pane active" id="top">
               <div class="section">
                 <div class="container">
-                  <h1 class="text-warning col-md-offset-1">新着記事</h1>
+                    <div class="row col-md-10 col-md-offset-1">
+                      <h1 class="text-warning">新着記事</h1>
+                    </div>
 					<c:forEach var="article" items="${result.article}">
 						<div class="row col-md-10 col-md-offset-1 well">
 							<div class="col-md-2">
@@ -87,7 +89,7 @@
             </div>
         </div>
         <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
-        <div class="tab-pane" id="community"></div>
+        <div class="tab-pane" id="community"> <jsp:include page="/WEB-INF/jsp/topcommunity.jsp"/> </div>
         <div class="tab-pane" id="tag"></div>
         <div class="tab-pane" id="mypage"></div>
     </div><!-- tab-content -->
