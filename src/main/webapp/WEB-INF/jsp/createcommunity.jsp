@@ -26,6 +26,8 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	<!--
+ 
     <div class="container">
        <div class="row">
            <h1>コミュニティ作成ページ</h1>
@@ -39,8 +41,97 @@
                    <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
                <input type="submit" value="登録">
            </form>
-       </div><!--end row-->
-    </div><!--end container-->
+       </div>
+    </div>
+	
+	-->
+	
+	
+	
+	
+	<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+			<form role="form" action="/TeraNavi/front/createcomm" method="post" id="commForm">
+              <div class="form-group">
+                <label class="control-label" for="exampleInputEmail1">コミュニティ名</label>
+                <input class="form-control" id="exampleInputEmail1" name="commName">
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="exampleInputPassword1">紹介文</label>
+                <textarea class="form-control" id="exampleInputPassword1" rows="4" name="commProfile"></textarea>
+              </div>アイコン
+              <div class="col-md-12 text-left">
+                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                width="50px" height="50px">
+              </div>
+              <br>
+              <button type="submit" class="btn btn-default">ファイルを選択</button>
+              <input type="hidden" name="commIcon">
+			  <br>
+              <br>ヘッダ画像
+              <br>
+              <div class="col-md-12 text-left">
+                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                width="50px" height="50px">
+              </div>
+              <button type="submit" class="btn btn-default">ファイルを選択</button>
+              <br>
+              <br>
+              <br>
+			  <input class="tbody" type="hidden" name="commHeader">
+			  
+			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+              <div class="text-center">
+                <button type="button" class="btn btn-primary" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
+				
+				
+				<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
+                <!--モーダルがあったところ-->
+              </div>
+            </form>
+
+            <!-- モーダルウィンドウの中身 -->
+            <div class="fade modal text-justify" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">確認画面</h4>
+                  </div>
+                  <div class="modal-body">
+                    <img src="cat34.jpg" width="350" height="60" id="mHeader"><br>
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                      <h1 id="mtitle">タイトルを入れるよ</h1>
+                      <h2 id="mProfile">コミュニティ紹介文</h2>
+                      <p></p>
+                      <!-- アイコン -->
+                      <div class="col-xs-4">
+                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+                        class="center-block img-circle img-responsive" width="150" height="150" id="mIcon">設定したアイコン
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+					  <button type="submit" class="btn btn-block btn-primary" form="commForm">OK</button>
+					  <button type="submit" class="btn btn-block btn-primary" data-dismiss="modal">閉じる</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- モーダル閉じるやつだよ -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+	
+
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	<script>
 		var ajaxSettings;
@@ -60,6 +151,10 @@
 					$(".tbody").val(text+"<br>"+data.result);
 				}
 			}
+			
+			$("#csubmit").on("click",function(){
+				
+			});
 
 		});
 
