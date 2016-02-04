@@ -86,7 +86,7 @@
 				</form>
             </div>
         </div>
-        <div class="tab-pane" id="blog"></div>
+        <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
         <div class="tab-pane" id="community"></div>
         <div class="tab-pane" id="tag"></div>
         <div class="tab-pane" id="mypage"></div>
