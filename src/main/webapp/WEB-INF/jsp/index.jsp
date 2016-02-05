@@ -33,7 +33,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-            <a class="btn btn-lg btn-warning text-center" href="/TeraNavi/top">TeraNaviへ</a>
+            <a class="btn btn-lg btn-warning text-center" href="/TeraNavi/front/top">TeraNaviへ</a>
           </div>
         </div>
       </div>

@@ -48,7 +48,9 @@
           <div class="tab-pane active" id="top">
               <div class="section">
                 <div class="container">
-                  <h1 class="text-warning col-md-offset-1">新着記事</h1>
+                    <div class="row col-md-10 col-md-offset-1">
+                      <h1 class="text-warning">新着記事</h1>
+                    </div>
 					<c:forEach var="article" items="${result.article}">
 						<div class="row col-md-10 col-md-offset-1 well">
 							<div class="col-md-2">
@@ -57,10 +59,10 @@
 							  <a href=""><h3 class="text-center text-muted">ユーザ名</h3></a>
 							</div>
 							<div class="col-md-7">
-							  <a href=""><h2 class="text-muted">${article.title}</h2></a>
-							  <p>${article.articleBody}</p>
+							  <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
+							  <p>${article.articleBody}...</p>
 							  <div class="text-right">
-								<a class="btn btn-warning">続きを読む</a>
+								<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -71,28 +73,6 @@
 							</div>
 						</div>
 					</c:forEach>
-			        <h1 class="text-warning col-md-offset-3">お気に入りユーザーの新着記事</h1>
-					<div class="row col-md-10 col-md-offset-1 well">
-						<div class="col-md-2">
-						<br>
-						<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-						<a href=""><h3 class="text-center text-muted">ユーザ名</h3></a>
-					</div>
-					<div class="col-md-7">
-						<a href=""><h2 class="text-muted">記事タイトル</h2></a>
-						<p>記事の本文記事の本文記事の本文記事の本文記事の本文 記事の本文記事の本文記事の本文記事の本文記事の本文 記事の本文記事の本文記事の本文記事の本文記事の本文
-                      ...</p>
-						<div class="text-right">
-							<a class="btn btn-warning">続きを読む</a>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<br><br>
-						<p>投稿日時 2016年2月1日</p>
-						<br>
-						<p>コメント数 2</p>
-					</div>
-					</div>
 				</div>
 				<br>
 				<br>
@@ -108,8 +88,8 @@
 				</form>
             </div>
         </div>
-        <div class="tab-pane" id="blog"></div>
-        <div class="tab-pane" id="community"></div>
+        <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
+        <div class="tab-pane" id="community"> <jsp:include page="/WEB-INF/jsp/topcommunity.jsp"/> </div>
         <div class="tab-pane" id="tag"></div>
         <div class="tab-pane" id="mypage"></div>
     </div><!-- tab-content -->

@@ -8,12 +8,12 @@
          <ul class="list-unstyled list-inline text-right">
             <li><a href="top">TOP</a></li>
             <li><a href="rule.jsp">注意事項</a></li>
-            <li><a data-toggle="modal" href="#div-modal">お問い合わせ</a></li>
+            <li><a data-toggle="modal" href="#contact-modal">お問い合わせ</a></li>
          </ul>
          <p class="text-center text-muted"><small></small></p>
 
 
-        <div id="div-modal" class="modal fade">
+        <div id="contact-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
