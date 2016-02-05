@@ -24,7 +24,7 @@
                         <form action="/TeraNavi/front/sendContact" method="post">
                             お名前&nbsp;&nbsp;<input type="text" name="name"><br>
                             件名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="title"><br>
-                            E-mail &nbsp;&nbsp;&nbsp;<input type="text" name="mail"><br>
+                            E-mail &nbsp;&nbsp;&nbsp;<input type="text" name="address"><br>
                             カテゴリ  <input type="" name="category"><br>
                             本文  <textarea name="body" cols="40"></textarea><br>
                             <input type="submit" value="送信する">
