@@ -8,7 +8,7 @@
 <nav id="header" class="navbar navbar-default" role="navigation">
    <div class="container">
       <div class="navbar-header">
-         <a href="#" class="navbar-brand">TeraNavi</a>
+         <a href="/TeraNavi/front/top" class="navbar-brand">TeraNavi</a>
       </div><!--end navbar-header-->
 
       <ul class="nav navbar-nav navbar-right list-inline">
