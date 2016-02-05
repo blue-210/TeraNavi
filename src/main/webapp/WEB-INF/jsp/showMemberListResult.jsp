@@ -30,29 +30,49 @@
 
     <div class="container">
        <div class="row">
-           <p><button id="dd">権限付与</button></p>
            <form action="commGra" method="post">
-               <thead>
+				<header>
+					<img src="${result.community.headerPath}" id="headimg">
+					<img class="pull-left" src="${result.community.iconPath}" width="200px" height="200px" id="icon">
+					<h1 id="comname" class="col-md-8 text-center">${result.community.name}</h1>
+				</header>
 
-                   <c:forEach var="member" items="${result.members}">
+				<p><button id="dd">権限付与</button></p>
+				<!--なぜかコンテナ入れないと下のカラムがずれる-->
+				<div class="container"></div>
+				<div class="container">
+					<div class="row text-center">
+					  <h1>メンバー一覧</h1>
+					  <div class="col-xs-10 col-xs-offset-1 text-center">
+							
+				
+				
+						<div class="row">
+						<c:forEach var="member" items="${result.members}">
+								  
 
-                       <tr>
-                         <th>
-
-                           <c:out value="${member.iconPath}" /><br>
-                           <c:out value="${member.userName}"/><br>
-                           <input type="hidden" name="targetNo" value="${member.id}">
-                               <input type="hidden" name="communityId" value="${result.value}">
-                           <div class="check"></div>
-                        </th>
-                       </tr>
-                   </c:forEach>
-                </thead>
+							  <div class="col-md-3 text-center">
+								<img src="${member.iconPath}" class="img-responsive">
+								<h4>${member.userName}</h4>
+								<input type="hidden" name="targetNo" value="${member.id}">
+								<input type="hidden" name="communityId" value="${result.value}">
+								<div class="check"></div>
+							  </div>
+								  
+					   
+						</c:forEach>
+						</div>
+							   
+		
+						</div>
+					</div>
+				</div>
+							   
                 <p id="sub"></p>
             </form>
 
-               </tbody>
-           </table>
+		   
+		   
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

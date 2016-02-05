@@ -13,7 +13,7 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.UserBean;
+import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
 import java.util.List;
 import java.util.ArrayList;
@@ -43,8 +43,18 @@ public class ShowMemberListCommand extends AbstractCommand{
 
             HashMap result=new HashMap();
             result.put("value",reqc.getParameter("commId")[0]);
-             result.put("members",abdao.readAll(params));
+            result.put("members",abdao.readAll(params));
+			
+			fact = AbstractDaoFactory.getFactory("community");
+			abdao = fact.getAbstractDao();
+			Map params2 = new HashMap();
+			
+			params2.put("where","where community_id=? and community_delete_flag=0");
+            params2.put("commId",reqc.getParameter("commId")[0]);
 
+			Bean comm = abdao.read(params2);
+			
+			result.put("community",comm);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
