@@ -43,41 +43,129 @@
 
                 <p id="sub"></p>
             </form>
+            <h5>コミュニティのmember</h5>
+            <table class="table table-striped">
 
 
+
+               <thead>
+                   <c:forEach var="member" items="${result.members}">
+
+                       <tr>
+                         <th>
+                           <c:out value="${member.iconPath}" /><br>
+                           <c:out value="${member.userName}"/><br>
+                        </th>
+                       </tr>
+                   </c:forEach>
+                </thead>
+
+               </tbody>
+           </table>
+		   <p onclick="document.memberForm.submit();">
+			   メンバーの一覧を取得
+		   </p>
+		   <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
+			   <input type="hidden" name="commId" value="${result.id}">
+		   </form>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
-    $(document).ready(function(){
-        var flag = $("#userId").text() == $("#createId").text();
-        if(flag){
-            $("#dd").removeAttr("style")
-        }
+		var ajaxSettings;
+		var ajax;
+		$(function(){
+
+			ajaxSettings = {
+				type:'post',
+				url:'/TeraNavi/upload',
+				processData:false,
+				contentType:false,
+				cache:false,
+				dataType:'json',
+
+			}
+			
+			
+			var flag = $("#userId").text() == $("#createId").text();
+			if(flag){
+				$("#dd").removeAttr("style")
+			}
 
 
-        $("#dd").click(function(){
-            var id=$('#commid').text();
-            var userid=$('#userId').text();
-            var name=$('#name').text();
-            var profile=$('#profile').text();
-            var iconPath=$('#iconPath').text();
-            var headerPath=$('#headerPath').text();
-            var del='0';
-            $('.bun').remove();
-            $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
-            $('#profile').html('紹介文：<input type="text" name="profile" value="'+profile+'">');
-            $('#iconPath').html('アイコン画像：<input type="text" name="iconPath" value="'+iconPath+'">');
-            $('#headerPath').html('ヘッダ画像<input type="text" name="headerPath" value="'+headerPath+'">');
-            console.log(id);
-            console.log(del);
-            $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
-            $('#commid').html('<input type="hidden" name="communityId" value="'+id+'">');
-            $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
-            $('#sub').html('<input type="submit" value="変更">');
-        });
-    });
+			$("#dd").click(function(){
+				var id=$('#commid').text();
+				var userid=$('#userId').text();
+				var name=$('#name').text();
+				var profile=$('#profile').text();
+				var iconPath=$('#iconPath').text();
+				var headerPath=$('#headerPath').text();
+				var del='0';
+				var target='communitySettingResult'
+				$('.bun').remove();
+				$('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
+				$('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
+				$('#iconPath').html('アイコン画像：<input id="iconPhoto" ondrop="onDrop2(event)" ondragover="onDragOver(event)" type="text" name="iconPath" value="'+iconPath+'">');
+				$('#headerPath').html('ヘッダ画像<input id="headPhoto" ondrop="onDrop1(event)" ondragover="onDragOver(event)" type="text" name="headerPath" value="'+headerPath+'">');
+				console.log(id);
+				console.log(del);
+				$('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
+				$('#commid').html('<input type="hidden" name="commId" value="'+id+'">');
+				$('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
+				$('#commid').append('<input type="hidden" name="target" value="'+target+'">');
+				$('#sub').html('<input type="submit" value="変更">');
+			});
+
+		});
+
+		function onDrop1(event){
+			var files = event.dataTransfer.files;
+
+
+			for(var i = 0;i < files.length;i++){
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = "";
+					$("#headPhoto").val(text+data.result);
+				}
+				ajax = $.ajax(ajaxSettings);
+			}
+
+			event.preventDefault();
+		}
+
+		function onDrop2(event){
+			var files = event.dataTransfer.files;
+
+
+			for(var i = 0;i < files.length;i++){
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.success = function(data){
+					var text = "";
+					$("#iconPhoto").val(text+data.result);
+				}
+				ajax = $.ajax(ajaxSettings);
+			}
+
+			event.preventDefault();
+		}
+
+
+		function onDragOver(event){
+			event.preventDefault();
+		}
+	
+		
+		
+		
+		
     </script>
 
 

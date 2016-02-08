@@ -31,6 +31,7 @@
                <thead>
                    <tr>
                        <th class="deletable"></th>
+                       <th class="deletable"></th>
                        <th>コミュニティ名</th>
                        <th>紹介文</th>
                         <th>メンバー数</th>
@@ -43,6 +44,18 @@
                                <form action="showcomm" method="post" name="showForm">
                                     <input type="hidden" name="commId" value="${comm.id}">
                                     <input type="submit" id="showCom" value="詳細へ"></input>
+                                </form>
+                           </td>
+                           <td>
+                               <form action="commSetting" method="post" name="showDel">
+                                       <input type="hidden" name="commId" value="${comm.id}">
+                                       <input type="hidden" name="commName" value="${comm.name}">
+                                       <input type="hidden" name="commProfile" value="${comm.profile}">
+                                       <input type="hidden" name="headerPath" value="${comm.headerPath}">
+                                       <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
+                                       <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                       <input type="hidden" name="del" value="del">
+                                    <input type="submit" id="showDel" value="削除"></input>
                                 </form>
                            </td>
                            <td> <c:out value="${comm.name}" /> </td>

@@ -1,9 +1,15 @@
+<%@ page
+   contentType="text/html ; charset=UTF-8"
+   pageEncoding="UTF-8"
+%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>記事一覧表示</title>
+    <title>管理者ログイン</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,10 +25,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>記事一覧表示のユーザー入力ページ</h1>
-           <form action="front/showArticleList" method="post">
-               ユーザーID（数字のやつ） <input type="text" name="writerUserId"><br>
-               <input type="submit" value="表示">
+           <h1>管理者ログインページ</h1>
+           <form action="front/adminlogin" method="post">
+               ログインID <input type="text" name="loginId"><br>
+               パスワード <input type="text" name="password"><br>
+               <input type="submit" value="ログイン">
+
            </form>
        </div><!--end row-->
     </div><!--end container-->
