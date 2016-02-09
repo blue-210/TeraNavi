@@ -96,7 +96,7 @@
 					list.append("<h1>リスト</h1>");
 					for(var i = 0;i < data.list.length;i++){
 						var date = data.list[i].date.slice(0,10);
-						list.append("<li><p onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
+						list.append("<li><a onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</a></li>");
 
 					}
 					
@@ -134,7 +134,7 @@
 					for(var i = 0;i < data.list.length;i++){
 						
 						var date = data.list[i].date.slice(0,10);
-						list.append("<li><p onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
+						list.append("<li><a onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</a></li>");
 						if(data.list[i].id==nowId){
 							$("#list ul li:last").css("border-style","groove");
 						}
