@@ -53,9 +53,9 @@
 				processData:false,
 				contentType:false,
 				cache:false,
-				dataType:'json',
+				dataType:'json'
 
-			}
+			};
 
 		});
 
