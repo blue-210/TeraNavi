@@ -11,36 +11,46 @@
     <meta charset="UTF-8">
     <title>プライバシーポリシー</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/TeraNavi/css/policy.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<body class="hidden-md" data-spy="scroll">
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="container">
-       <div class="row">
-		   
-           <div id="main">
-			   
+	
+	<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+			<h1>プライバシーポリシー最新版</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-1">
+            <div id="main">
+				<h1>少々お待ちください</h1>
 		   </div>
-		   
-		   
-		   <div id="list">
-			   
+          </div>
+          <div class="col-md-2">
+            <div id="list">
+				<ul>
+				</ul>
 		   </div>
-       </div><!--end row-->
-    </div><!--end container-->
+          </div>
+        </div>
+      </div>
+    </div>
 	
 	
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
@@ -58,18 +68,19 @@
 				success:function(data){
 					
 					var main = $("#main");
-					var list = $("#list");
+					var list = $("#list ul");
 					
 					main.empty();
 					list.empty();
 		
-					main.append("<h1>プライバシーポリシー</h1>");
+					
 					main.append("<p>"+data.main.date+"</p>");
 					main.append("<p>"+data.main.body+"</p>");
 
 					list.append("<h1>リスト</h1>");
 					for(var i = 0;i < data.list.length;i++){
-						list.append("<p onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+data.list[i].date+"</p>");
+						var date = data.list[i].date.slice(0,10);
+						list.append("<li><p onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
 
 					}
 				}
