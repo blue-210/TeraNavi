@@ -65,25 +65,8 @@
 				type:'post',
 				url:'/TeraNavi/front/TermsDisplay',
 				dataType:'json',
-				data:null,
-				success:function(data){
-					
-					var main = $("#main");
-					var list = $("#list");
-					
-					main.empty();
-					list.empty();
-		
-					main.append("<h1>利用規約</h1>");
-					main.append("<p>"+data.main.date+"</p>");
-					main.append("<p>"+data.main.body+"</p>");
-
-					list.append("<h1>リスト</h1>");
-					for(var i = 0;i < data.list.length;i++){
-						list.append("<p onclick='loadRuleId(\""+data.list[i].id+"\")'>"+data.list[i].date+"</p>");
-
-					}
-				}
+				data:null
+				
 			};
 			
 			loadRule();
@@ -111,7 +94,7 @@
 				list.append("<h1>リスト</h1>");
 				for(var i = 0;i < data.list.length;i++){
 					var date = data.list[i].date.slice(0,10);
-					list.append("<p onclick='loadRuleId(\""+data.list[i].id+"\")'>"+date+"</p>");
+					list.append("<li><p onclick='loadRuleId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
 				}
 				
 				$("#list ul li:first").css("border-style","groove");
@@ -147,7 +130,7 @@
 				for(var i = 0;i < data.list.length;i++){
 					
 					var date = data.list[i].date.slice(0,10);
-					list.append("<li><p onclick='loadPolicyId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
+					list.append("<li><p onclick='loadRuleId(\""+data.list[i].id+"\")'>"+date+"</p></li>");
 					if(data.list[i].id==nowId){
 						$("#list ul li:last").css("border-style","groove");
 					}
