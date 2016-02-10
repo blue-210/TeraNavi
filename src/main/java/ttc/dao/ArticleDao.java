@@ -31,7 +31,7 @@ public class ArticleDao implements AbstractDao{
 
             //記事表からの取得----------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
-            sql.append("article_created_date ");
+            sql.append("article_created_date,fk_user_id ");
             sql.append("from articles ");
             sql.append("where article_id = ?");
 
@@ -48,6 +48,7 @@ public class ArticleDao implements AbstractDao{
             ab.setTitle( rs.getString(2) );
             ab.setArticleBody( rs.getString(3) );
             ab.setCreatedDate( rs.getString(4) );
+            ab.setUserId(rs.getString(5));
             //------------------------------------------------------------------
 
             sql.setLength(0);//StringBuffer初期化

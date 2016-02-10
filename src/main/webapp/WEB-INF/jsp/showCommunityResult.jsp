@@ -68,104 +68,73 @@
 		   <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
 			   <input type="hidden" name="commId" value="${result.id}">
 		   </form>
+           <h5>トピックリスト</h5>
+           <table class="table table-striped">
+
+               <thead>
+                   <tr>
+                       <th>
+                           <p>作成したトピック</p>
+                       </th>
+                   </tr>
+              <tbody>
+
+                  <form action="showchat" method="post">
+                  <c:forEach var="topics" items="${result.topics}">
+                      <tr>
+                        <td><c:out value="${topics.name}" /><br></td>
+                          <td><c:out value="${topics.updateDate}"/><br></td>
+                          <td><c:out value="${topics.topicCreater}"/><br></td>
+
+                              <td><input type="hidden" name="topicId" value="${topics.topicId}">
+                                  <input type="submit" value="詳細"></td>
+                      </tr>
+                  </c:forEach>
+              </form>
+              </tbody>
+          </table>
+          <form action="showTopic" method="post" name="showForm">
+				<input type="hidden" name="communityId" value="${result.id}">
+                <input type="submit" value="more">
+		</form>
+
+
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
-		var ajaxSettings;
-		var ajax;
-		$(function(){
-
-			ajaxSettings = {
-				type:'post',
-				url:'/TeraNavi/upload',
-				processData:false,
-				contentType:false,
-				cache:false,
-				dataType:'json',
-
-			}
-			
-			
-			var flag = $("#userId").text() == $("#createId").text();
-			if(flag){
-				$("#dd").removeAttr("style")
-			}
+    $(document).ready(function(){
+        var flag = $("#userId").text() == $("#createId").text();
+        if(flag){
+            $("#dd").removeAttr("style")
+        }
 
 
-			$("#dd").click(function(){
-				var id=$('#commid').text();
-				var userid=$('#userId').text();
-				var name=$('#name').text();
-				var profile=$('#profile').text();
-				var iconPath=$('#iconPath').text();
-				var headerPath=$('#headerPath').text();
-				var del='0';
-				var target='communitySettingResult'
-				$('.bun').remove();
-				$('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
-				$('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
-				$('#iconPath').html('アイコン画像：<input id="iconPhoto" ondrop="onDrop2(event)" ondragover="onDragOver(event)" type="text" name="iconPath" value="'+iconPath+'">');
-				$('#headerPath').html('ヘッダ画像<input id="headPhoto" ondrop="onDrop1(event)" ondragover="onDragOver(event)" type="text" name="headerPath" value="'+headerPath+'">');
-				console.log(id);
-				console.log(del);
-				$('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
-				$('#commid').html('<input type="hidden" name="commId" value="'+id+'">');
-				$('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
-				$('#commid').append('<input type="hidden" name="target" value="'+target+'">');
-				$('#sub').html('<input type="submit" value="変更">');
-			});
-
-		});
-
-		function onDrop1(event){
-			var files = event.dataTransfer.files;
-
-
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = "";
-					$("#headPhoto").val(text+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-		function onDrop2(event){
-			var files = event.dataTransfer.files;
-
-
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = "";
-					$("#iconPhoto").val(text+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-
-		function onDragOver(event){
-			event.preventDefault();
-		}
-	
-		
-		
-		
-		
+        $("#dd").click(function(){
+            var id=$('#commid').text();
+            var userid=$('#userId').text();
+            var name=$('#name').text();
+            var profile=$('#profile').text();
+            var iconPath=$('#iconPath').text();
+            var headerPath=$('#headerPath').text();
+            var del='0';
+            var target='communitySettingResult'
+            $('.bun').remove();
+            $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
+            $('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
+            $('#iconPath').html('アイコン画像：<input type="text" name="iconPath" value="'+iconPath+'">');
+            $('#headerPath').html('ヘッダ画像<input type="text" name="headerPath" value="'+headerPath+'">');
+            console.log(id);
+            console.log(del);
+            $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
+            $('#commid').html('<input type="hidden" name="commId" value="'+id+'">');
+            $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
+            $('#commid').append('<input type="hidden" name="target" value="'+target+'">');
+            $('#sub').html('<input type="submit" value="変更">');
+        });
+    });
     </script>
 
 
