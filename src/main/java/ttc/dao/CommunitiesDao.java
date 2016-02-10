@@ -212,7 +212,7 @@ public class CommunitiesDao implements AbstractDao{
 			if(map.containsKey("sort")){
 				sql.append((String)map.get("sort"));
 			}
-			
+
             pst = cn.prepareStatement(new String(sql));
 
             if(map.containsKey("value")){
