@@ -115,6 +115,8 @@
          			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                         <a href="createcomm">コミュニティの作成</a><br><br>
                         <a href="joincomm">コミュニティの参加</a><br><br>
+                        <a href="createtopic">トピックの作成</a><br><br>
+                        <a href="showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
 
@@ -122,6 +124,7 @@
            </div><!--end row-->
         </div><!--end container-->
     </div><!--end section-->
+    
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
