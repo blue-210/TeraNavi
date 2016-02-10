@@ -16,6 +16,7 @@ public class CommunityBean implements Bean{
     private String createUserId;
 
 
+
     /**
     * Returns value of id
     * @return
@@ -174,4 +175,5 @@ public class CommunityBean implements Bean{
     public String getCreateUserId(){
         return createUserId;
     }
+
 }

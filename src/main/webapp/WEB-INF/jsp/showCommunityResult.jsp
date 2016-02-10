@@ -68,6 +68,38 @@
 		   <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
 			   <input type="hidden" name="commId" value="${result.id}">
 		   </form>
+           <h5>トピックリスト</h5>
+           <table class="table table-striped">
+
+               <thead>
+                   <tr>
+                       <th>
+                           <p>作成したトピック</p>
+                       </th>
+                   </tr>
+              <tbody>
+
+                  <form action="showchat" method="post">
+                  <c:forEach var="topics" items="${result.topics}">
+                      <tr>
+                        <td><c:out value="${topics.name}" /><br></td>
+                          <td><c:out value="${topics.updateDate}"/><br></td>
+                          <td><c:out value="${topics.topicCreater}"/><br></td>
+
+                              <td><input type="hidden" name="topicId" value="${topics.topicId}">
+                                  <input type="submit" value="詳細"></td>
+                      </tr>
+                  </c:forEach>
+              </form>
+              </tbody>
+          </table>
+          <form action="showTopic" method="post" name="showForm">
+				<input type="hidden" name="communityId" value="${result.id}">
+                <input type="submit" value="more">
+		</form>
+
+
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
