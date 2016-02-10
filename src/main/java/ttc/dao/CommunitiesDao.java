@@ -148,7 +148,7 @@ public class CommunitiesDao implements AbstractDao{
 
             StringBuffer selectSql=new StringBuffer();
             selectSql.append("select community_id from communities ");
-            selectSql.append("where fk_user_id = ? and community_delete_flag=0 order by community_id desc");
+            selectSql.append("where fk_user_id = ? order by community_id desc");
             pst1 = cn.prepareStatement(new String(selectSql));
             pst1.setString(1,(String)map.get("userId"));
             ResultSet rs = pst1.executeQuery();

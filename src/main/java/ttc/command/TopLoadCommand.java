@@ -72,6 +72,7 @@ public class TopLoadCommand extends AbstractCommand{
 			dao = factory.getAbstractDao();
 
 			Map param2 = new HashMap();
+			param2.put("where","Where community_delete_flag=0 ");
 			param2.put("sort", " order by communities.community_created_date desc ");
 			List communities = dao.readAll(param2);
 
