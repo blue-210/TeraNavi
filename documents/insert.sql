@@ -926,7 +926,7 @@ INSERT INTO community_members_list(
 )VALUES(
     1,
     1,
-    0,
+    1,
     0
 );
 
@@ -938,9 +938,9 @@ INSERT INTO community_members_list(
     -- 退会フラグ。通常は0、退会は1
     community_withdrawal_flag
 )VALUES(
+    3,
     2,
-    2,
-    0,
+    1,
     0
 );
 

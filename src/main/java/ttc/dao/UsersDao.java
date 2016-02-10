@@ -269,7 +269,9 @@ public class UsersDao implements AbstractDao{
             sql.append("select user_id,login_id,user_name,user_name_kana,sex,sex_visible_flag");
             sql.append(",birth_date,mail_address,password,user_header_path,user_icon_path,admin_flag,last_login_date,");
             sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
-            sql.append("fk_secret_question_id,user_profile,secret_answer from users ");
+            sql.append("fk_secret_question_id,user_profile,secret_answer,community_members_list.community_admin_flag ");
+            sql.append("from users join community_members_list ");
+            sql.append("on users.user_id=community_members_list.fk_user_id ");
             sql.append((String)map.get("where"));
             pst = cn.prepareStatement(new String(sql));
 
@@ -299,6 +301,7 @@ public class UsersDao implements AbstractDao{
 				ub.setQuestionNo(rs.getString("fk_secret_question_id"));
                 ub.setProfile(rs.getString("user_profile"));
 				ub.setSecretAnswer(rs.getString("secret_answer"));
+                ub.setCommunityAdminFlag(rs.getString("community_admin_flag"));
 
             }else{
                 throw new NotLineException("0行が選択されました",null);
