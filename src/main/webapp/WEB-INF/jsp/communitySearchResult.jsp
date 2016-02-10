@@ -28,43 +28,77 @@
     <div class="container">
         <div class="row">
             <table class="table table-striped">
-               <thead>
-                   <tr>
-                       <th class="deletable"></th>
-                       <th class="deletable"></th>
-                       <th>コミュニティ名</th>
-                       <th>紹介文</th>
+                <thead>
+                    <tr>
+                        <th class="deletable"></th>
+                        <th class="deletable"></th>
+                        <th>コミュニティ名</th>
+                        <th>紹介文</th>
                         <th>メンバー数</th>
-                   </tr>
-               </thead>
-               <tbody>
-                   <c:forEach var="comm" items="${result}">
-                       <tr>
-                           <td class="deletable">
-                               <form action="showcomm" method="post" name="showForm">
-                                    <input type="hidden" name="commId" value="${comm.id}">
-                                    <input type="submit" id="showCom" value="詳細へ"></input>
-                                </form>
-                           </td>
-                           <td>
-                               <form action="commSetting" method="post" name="showDel">
-                                       <input type="hidden" name="commId" value="${comm.id}">
-                                       <input type="hidden" name="commName" value="${comm.name}">
-                                       <input type="hidden" name="commProfile" value="${comm.profile}">
-                                       <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                       <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                       <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                       <input type="hidden" name="del" value="del">
-                                    <input type="submit" id="showDel" value="削除"></input>
-                                </form>
-                           </td>
-                           <td> <c:out value="${comm.name}" /> </td>
-                           <td> <c:out value="${comm.profile}"/> </td>
-                           <td> <c:out value="${comm.countMember}"/> </td>
-                       </tr>
-                   </c:forEach>
-
-
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            ${sessionScope.loginUser.communityAdminFlag}
+                            <c:choose>
+                                <c:when test="${sessionScope.loginUser.communityAdminFlag eq 1}">
+                                    <h1>作成したコミュニティ</h1>
+                                </c:when>
+                                <c:otherwise>
+                                    <h1>参加したコミュニティ</h1>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:forEach var="comm" items="${result}">
+                            <c:choose>
+                                <c:when test="${sessionScope.loginUser.communityAdminFlag eq 1}">
+                                    <td class="deletable">
+                                        <form action="showcomm" method="post" name="showForm">
+                                            <input type="hidden" name="commId" value="${comm.id}"></input>
+                                            <input type="submit" id="showCom" value="詳細へ"></input>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="commSetting" method="post" name="showDel">
+                                            <input type="hidden" name="commId" value="${comm.id}">
+                                            <input type="hidden" name="commName" value="${comm.name}">
+                                            <input type="hidden" name="commProfile" value="${comm.profile}">
+                                            <input type="hidden" name="headerPath" value="${comm.headerPath}">
+                                            <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
+                                            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                            <input type="hidden" name="del" value="del">
+                                            <input type="submit" id="showDel" value="削除"></input>
+                                        </form>
+                                    </td>
+                                    <td> <c:out value="${comm.name}" /> </td>
+                                    <td> <c:out value="${comm.profile}"/> </td>
+                                    <td> <c:out value="${comm.countMember}"/> </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class="deletable">
+                                        <form action="showcomm" method="post" name="showForm">
+                                            <input type="hidden" name="commId" value="${comm.id}"></input>
+                                            <input type="submit" id="showCom" value="詳細へ"></input>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="commSetting" method="post" name="showDel">
+                                            <input type="hidden" name="commId" value="${comm.id}">
+                                            <input type="hidden" name="commName" value="${comm.name}">
+                                            <input type="hidden" name="commProfile" value="${comm.profile}">
+                                            <input type="hidden" name="headerPath" value="${comm.headerPath}">
+                                            <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
+                                            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                            <input type="hidden" name="del" value="del">
+                                            <input type="submit" id="showDel" value="退会"></input>
+                                        </form>
+                                    </td>
+                                    <td> <c:out value="${comm.name}" /> </td>
+                                    <td> <c:out value="${comm.profile}"/> </td>
+                                    <td> <c:out value="${comm.countMember}"/> </td>
+                                </c:otherwise>
+                            </c:choose>
+                        </tr>
+                    </c:forEach>
                </tbody>
            </table>
        </div><!--end row-->
