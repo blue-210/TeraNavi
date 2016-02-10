@@ -725,6 +725,24 @@ INSERT INTO communities(
     fk_user_id,
     community_delete_flag
 )VALUES(
+    'テラカフェ公式コミュ',
+    'テラカフェの公式コミュニティです！',
+    '/images/(community_id)/icon/icon.jpg',
+    '/images/(community_id)/header/header.jpg',
+    '2001/02/11 20:30:20',
+    2,
+    0
+);
+
+INSERT INTO communities(
+    community_name,
+    community_profile,
+    community_icon_path,
+    community_header_path,
+    community_created_date,
+    fk_user_id,
+    community_delete_flag
+)VALUES(
     'くらもちを讃える会',
     'くらもちお嬢を讃える会です。',
     '/images/(community_id)/icon/icon.jpg',
@@ -771,6 +789,132 @@ INSERT INTO communities(
     0
 );
 
+-- community_member_list
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    6,
+    3,
+    1,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    7,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    8,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    9,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    10,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    11,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    12,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    13,
+    3,
+    0,
+    0
+);
+
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id,
+    -- 一般ユーザは0, 管理者は1
+    community_admin_flag,
+    -- 退会フラグ。通常は0、退会は1
+    community_withdrawal_flag
+)VALUES(
+    14,
+    3,
+    0,
+    0
+);
 
 #articles表
 -- article_status_flagは公開→0 下書き→1 削除→2
