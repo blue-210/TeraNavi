@@ -13,10 +13,10 @@
               <a href=""><h3 class="text-center text-muted">ユーザ名</h3></a>
             </div>
             <div class="col-md-7">
-              <a href=""><h2 class="text-muted">記事タイトル</h2></a>
+              <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
               <p>${article.articleBody}...</p>
               <div class="text-right">
-                <a class="btn btn-warning">続きを読む</a>
+                <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
             </div>
             <div class="col-md-3">
@@ -48,7 +48,7 @@
                 </div>
               </div><!--アイコンとユーザー名の領域おわり-->
               <div class="row"><!--ブログ名と紹介文の領域-->
-                <h1 class="text-center">${blog.title}</h1>
+                <h1 class="text-center"><a href=""><h2 class="text-muted">${blog.title}</h2></a></h1>
                 <p class="text-center">${blog.explanation}</p>
               </div><!--ブログ名と紹介文の領域おわり-->
           </div><!--ブログ一件の領域おわり-->
