@@ -96,6 +96,13 @@ Vagrant.configure(2) do |config|
     sudo touch /log/sql.log
     sudo chown -R tomcat:tomcat /log/sql.log
     sudo chmod 770 /log/sql.log
+    # デフォルト画像フォルダ
+    sudo mkdir -p /tmp/default
+    sudo chown -R tomcat:tomcat /tmp
+    sudo chmod 770 /tmp/default
+    sudo cp -fp /vagrant_data/TeraNavi/documents/default_user_icon.jpg /tmp/default/
+    sudo cp -fp /vagrant_data/TeraNavi/documents/TeraNavi_logo.png /tmp/default/
+
     # tomcatに関する設定
     # if "archived tomcat file" is noting
     if [ ! -d /usr/lib/tomcat7 ]
