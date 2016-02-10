@@ -131,7 +131,7 @@ VALUES(
     'koyazi',
     '呉石先生',
     '/images/(user_id)/header.jpg',
-    '/TeraNavi/imgPath/default/default_user_icon.jpg',
+        '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'こやブログ',
     '/images/default/header.jpg',
     0,
