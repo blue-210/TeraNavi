@@ -958,7 +958,6 @@ INSERT INTO community_members_list(
     0
 );
 
-
 #articles表
 -- article_status_flagは公開→0 下書き→1 削除→2
 INSERT INTO articles(
@@ -1024,8 +1023,6 @@ VALUES(
     '2004/02/11 20:30:20',
     2
 );
-
-
 
 
 #tags表

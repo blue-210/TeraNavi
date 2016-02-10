@@ -16,10 +16,17 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
+    <script type="text/javascript" src="js/fileup.js"></script>
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
+    rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 
 
 
@@ -45,12 +52,8 @@
             </form>
             <h5>コミュニティのmember</h5>
             <table class="table table-striped">
-
-
-
                <thead>
                    <c:forEach var="member" items="${result.members}">
-
                        <tr>
                          <th>
                            <c:out value="${member.iconPath}" /><br>
@@ -59,7 +62,6 @@
                        </tr>
                    </c:forEach>
                 </thead>
-
                </tbody>
            </table>
 		   <p onclick="document.memberForm.submit();">
@@ -111,7 +113,6 @@
             $("#dd").removeAttr("style")
         }
 
-
         $("#dd").click(function(){
             var id=$('#commid').text();
             var userid=$('#userId').text();
@@ -135,8 +136,86 @@
             $('#sub').html('<input type="submit" value="変更">');
         });
     });
+        var ajaxSettings;
+        var ajax;
+        $(function(){
+
+            ajaxSettings = {
+                type:'post',
+                url:'/TeraNavi/upload',
+                processData:false,
+                contentType:false,
+                cache:false,
+                dataType:'json',
+            }
+
+            var flag = $("#userId").text() == $("#createId").text();
+            if(flag){
+                $("#dd").removeAttr("style")
+            }
+
+            $("#dd").click(function(){
+                var id=$('#commid').text();
+                var userid=$('#userId').text();
+                var name=$('#name').text();
+                var profile=$('#profile').text();
+                var iconPath=$('#iconPath').text();
+                var headerPath=$('#headerPath').text();
+                var del='0';
+                var target='communitySettingResult'
+                $('.bun').remove();
+                $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
+                $('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
+                $('#iconPath').html('アイコン画像：<input id="iconPhoto" ondrop="onDrop2(event)" ondragover="onDragOver(event)" type="text" name="iconPath" value="'+iconPath+'">');
+                $('#headerPath').html('ヘッダ画像<input id="headPhoto" ondrop="onDrop1(event)" ondragover="onDragOver(event)" type="text" name="headerPath" value="'+headerPath+'">');
+                console.log(id);
+                console.log(del);
+                $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');
+                $('#commid').html('<input type="hidden" name="commId" value="'+id+'">');
+                $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
+                $('#commid').append('<input type="hidden" name="target" value="'+target+'">');
+                $('#sub').html('<input type="submit" value="変更">');
+            });
+        });
+
+        function onDrop1(event){
+            var files = event.dataTransfer.files;
+
+            for(var i = 0;i < files.length;i++){
+                var f = files[i];
+                var formData = new FormData();
+                formData.append("file",f);
+                ajaxSettings.data = formData;
+                ajaxSettings.success = function(data){
+                    var text = "";
+                    $("#headPhoto").val(text+data.result);
+                }
+                ajax = $.ajax(ajaxSettings);
+            }
+            event.preventDefault();
+        }
+
+        function onDrop2(event){
+            var files = event.dataTransfer.files;
+
+            for(var i = 0;i < files.length;i++){
+                var f = files[i];
+                var formData = new FormData();
+                formData.append("file",f);
+                ajaxSettings.data = formData;
+                ajaxSettings.success = function(data){
+                    var text = "";
+                    $("#iconPhoto").val(text+data.result);
+                }
+                ajax = $.ajax(ajaxSettings);
+            }
+
+            event.preventDefault();
+        }
+
+        function onDragOver(event){
+            event.preventDefault();
+        }
     </script>
-
-
 </body>
 </html>
