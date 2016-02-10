@@ -21,15 +21,21 @@
                   <div class="modal-content">
                       <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h1>ログイン</h1>
+                          <h1 class="text-center">ログイン</h1>
                       </div>
                       <div class="modal-body">
                           <form action="/TeraNavi/front/login" method="post">
-                              ログインID <input type="text" name="loginId"><br>
-                              パスワード <input type="password" name="password"><br>
-                              <input type="submit" value="ログイン">
+                              <div class="form-group">
+                                  <label class="control-label" for="exampleInputId">ログインID</label>
+                                  <input class="form-control" name="loginId" type="text">
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label" for="exampleInputPass">パスワード</label>
+                                  <input class="form-control" name="password" type="password">
+                              </div>
+                              <button type="submit" class="btn btn-default pull-right">送信する</button>
                           </form>
-                          <a href="/TeraNavi/reset">パスワード忘れ</a>
+                          <a href="/TeraNavi/reset">パスワードを忘れた方はこちら</a>
                       </div>
                       <div class="modal-footer"></div>
                   </div><!--end moal-content-->
