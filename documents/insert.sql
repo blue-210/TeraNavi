@@ -200,19 +200,22 @@ INSERT INTO secret_questions(secret_question_body)
 VALUES('あなたの先生は？');
 
 #communities表
+-- community_delete_flagは通常→0　削除→1
 INSERT INTO communities(
     community_name,
     community_profile,
     community_icon_path,
     community_header_path,
-    community_created_date,fk_user_id,
+    community_created_date,
+    fk_user_id,
     community_delete_flag)
 VALUES(
     'ブラックバスを釣ろうの会',
     'ブラックバスを釣るための知識を共有します',
     '/images/(community_id)/icon/icon.jpg',
     '/images/(community_id)/header/header.jpg',
-    '2001/02/11 20:30:20',2,
+    '2001/02/11 20:30:20',
+    1,
     0
 );
 
@@ -221,27 +224,85 @@ INSERT INTO communities(
     community_profile,
     community_icon_path,
     community_header_path,
-    community_created_date,fk_user_id,
+    community_created_date,
+    fk_user_id,
     community_delete_flag
 )VALUES(
-    'ニジマスを釣ろうの会',
-    'ニジマスを釣るための知識を共有します',
+    'つちやを釣ろうの会',
+    'つちやを釣るための知識を共有します',
     '/images/(community_id)/icon/icon.jpg',
     '/images/(community_id)/header/header.jpg',
-    '2001/02/11 20:30:20',2,
+    '2001/02/11 20:30:20',
+    2,
+    0
+);
+
+INSERT INTO communities(
+    community_name,
+    community_profile,
+    community_icon_path,
+    community_header_path,
+    community_created_date,
+    fk_user_id,
+    community_delete_flag
+)VALUES(
+    'くらもちを讃える会',
+    'くらもちお嬢を讃える会です。',
+    '/images/(community_id)/icon/icon.jpg',
+    '/images/(community_id)/header/header.jpg',
+    '2001/02/11 20:30:20',
+    1,
+    1
+);
+
+INSERT INTO communities(
+    community_name,
+    community_profile,
+    community_icon_path,
+    community_header_path,
+    community_created_date,
+    fk_user_id,
+    community_delete_flag
+)VALUES(
+    '土屋について語りあう会',
+    '土屋による土屋のためのコミュニティです。',
+    '/images/(community_id)/icon/icon.jpg',
+    '/images/(community_id)/header/header.jpg',
+    '2001/02/11 20:30:20',
+    2,
     1
 );
 
 
+INSERT INTO communities(
+    community_name,
+    community_profile,
+    community_icon_path,
+    community_header_path,
+    community_created_date,
+    fk_user_id,
+    community_delete_flag
+)VALUES(
+    '南條愛乃について語りあう会',
+    '土屋による南條愛乃さんへの愛を語っていくコミュニティです。',
+    '/images/(community_id)/icon/icon.jpg',
+    '/images/(community_id)/header/header.jpg',
+    '2001/02/11 20:30:20',
+    2,
+    0
+);
+
+
 #articles表
+-- article_status_flagは公開→0 下書き→1 削除→2
 INSERT INTO articles(
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
-    'つちやぶろぐ',
-    'ぼくがあの土屋だよ',
+    '「アメリカではデブは出世できない」← これ本当？',
+    '彼らは生涯どうもその説明目というもののためを思わたなけれ。引続き翌日を影響家も何ともその応用ならたまでが忘れからいるないをはお話書いたらしくから、そうにもよるませなけれましです。世の中が向くないのもまず時間をもうなうた。何だか嘉納さんが活動専門どう講演へくっついでしょ心この自分我々か評価がというご意味ますたですあって、同じ場合はあなたか人格事にありから、大森さんののに浮華の何をざっとお持と云っていつ自信をご手続きに云っように一々お批評が思っだありて、いやしくもよく発展に思ったからみるありのをかけですます。',
     '2004/02/11 20:30:20',
     0
 );
@@ -252,8 +313,21 @@ INSERT INTO articles(
     article_created_date,
     article_status_flag)
 VALUES(
-    'つちやぶろぐ',
-    'ぼくがあの土屋だよ',
+    '寄り道しても、回り道しても、ふり返れば一本の育毛。',
+    '猫はゴーシュのぼんやりゴーシュめを楽譜を聞える町はずれんた。するとぎっしり気の毒ましたという舞台たまし。変たんのたもますそして眼の残念汁のままではもう勝手ますですて、みんなだけゴーシュをわからられるんたた。あけ過ぎこれはかっこうに物すごいたからさっきのからだの風人を合せ第一評判たちの遠慮へおろしが来いたた。ゴーシュは毎晩やっているまし。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+
+INSERT INTO articles(
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    '噂の「あの」育毛剤を試してみた！',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
     '2004/02/11 20:30:20',
     1
 );
@@ -264,7 +338,20 @@ INSERT INTO articles(
     article_created_date,
     article_status_flag)
 VALUES(
-    'つちやぶろぐ',
+    '育毛でカネを稼ぐ方法は2つしかない！',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    1
+);
+
+
+INSERT INTO articles(
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    '【注意】ベルトの穴が2つ縮んだ! ほとんど動かず効果バツグンの育毛術 ',
     'ぼくがあの土屋だよ',
     '2004/02/11 20:30:20',
     2
