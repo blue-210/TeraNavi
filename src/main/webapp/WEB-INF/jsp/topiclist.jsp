@@ -34,18 +34,21 @@
 		   			<tr>
 		   				<th>トピック名</th>
 						<th>作成者</th>
-						<th>最終更新日時</th>
+						<th>最終更新日時</th><a href="showchat?topicId=${item.topicId}">
 		   			</tr>
 		   		</thead>
 				<tbody>
+                    <form action="showchat" method="post">
 					<c:forEach var="item" items="${result}">
 					<tr>
-						<td><a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a></td>
+                        <td><input type="hidden" name="topicId" value="${item.topicId}">
+                            <input type="submit" value="詳細"></td>
+						<td><c:out value="${item.name}" /></td>
 						<td><c:out value="${item.createUserName}" /></td>
 						<td><c:out value="${item.updateDate}" /></td>
 					</tr>
 					</c:forEach>
-
+                </form>
 				</tbody>
 		   </table>
        </div><!--end row-->
