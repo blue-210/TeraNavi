@@ -34,7 +34,17 @@ public class ShowCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
             cb.setId(reqc.getParameter("commId")[0]);
+            List listx = new ArrayList();
+            List topicList = cb.getTopics();
+            if(topicList.size()>5){
+                for(int i = 0;i < 5;i++){
+                    listx.add(topicList.get(i));
+                }
+            }else{
+                listx=topicList;
+            }
 
+            cb.setTopics((ArrayList)listx);
 
 
 
