@@ -37,41 +37,17 @@
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <header>
-        <img src='コムヘッダー入れる' id="headimg"></span></p>
-        <p class="bun"><span id="iconPath"><img class="pull-left" src='コムアイコンパス入れる'width="200px" height="200px" id="icon"></span></p>
-        <p class="bun"><span id="name" class="col-md-8 text-center">コミュネーム入れる</span>
+        <img src='${result[0].communityIconPath}' id="headimg"></span></p>
+            <p class="bun"><span id="iconPath"><img class="pull-left" src='${result[0].headerPath}'width="200px" height="200px" id="icon"></span></p>
+        <p class="bun"><span id="name" class="col-md-8 text-center">${result[0].communityName}</span>
     </header>
     <div class="container">
-       <div class="row">
-		   <table class="table table-striped">
-		   		<thead>
-		   			<tr>
-		   				<th>トピック名</th>
-						<th>作成者</th>
-						<th>最終更新日時</th><a href="showchat?topicId=${item.topicId}">
-		   			</tr>
-		   		</thead>
-				<tbody>
-                    <form action="showchat" method="post">
-					<c:forEach var="item" items="${result}">
-					<tr>
-                        <td><input type="hidden" name="topicId" value="${item.topicId}">
-                            <input type="submit" value="詳細"></td>
-						<td><c:out value="${item.name}" /></td>
-						<td><c:out value="${item.createUserName}" /></td>
-						<td><c:out value="${item.updateDate}" /></td>
-					</tr>
-					</c:forEach>
-                </form>
-				</tbody>
-		   </table>
-       </div><!--end row-->
         <div class="row">
             <div class="col-xs-10">
                 <c:forEach var="item" items="${result}">
                     <div class="row" id="topiclist">
                             <div class="col-md-3">
-                            <img src="あとで入れる予定" id="topicIcon">
+                            <img src="${item.userIconPath}" id="topicIcon">
                                 <p>
                                     <c:out value="${item.createUserName}" />
                                 </p>
@@ -80,7 +56,6 @@
                             <h4 id="title" class="text-left">
                                 <a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a>
                             </h4>
-                            <p class="text-left">○分前（後で値をとってくる予定）</p>
                         </div>
                         <div class="col-md-2">
                             <p id="date">
@@ -98,7 +73,7 @@
                 <div class="fade modal text-justify" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form action="front/createtopic" method="post">
+                            <form action="/TeraNavi/front/createtopic" method="post">
 
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

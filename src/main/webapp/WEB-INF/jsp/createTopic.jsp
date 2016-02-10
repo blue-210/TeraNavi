@@ -31,7 +31,7 @@
     <div class="container">
        <div class="row">
            <h1>トピック作成ページ</h1>
-           <form action="front/createtopic" method="post">
+           <form action="/TeraNavi/front/createtopic" method="post">
 			   コミュニティID <input type="text" name="communityId" value=""><br>
                トピック名<input type="text" name="topic_name"><br>
                <input type="submit" value="登録">
