@@ -37,7 +37,7 @@
                   <a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
                 </li>
                 <li>
-                  <a href="#mypage" data-toggle="tab" class="text-warning">マイページ</a>
+                  <a href="/TeraNavi/mypage" class="text-warning">マイページ</a>
                 </li>
               </ul>
             </div>
@@ -91,7 +91,6 @@
         <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
         <div class="tab-pane" id="community"> <jsp:include page="/WEB-INF/jsp/topcommunity.jsp"/> </div>
         <div class="tab-pane" id="tag"> <jsp:include page="/WEB-INF/jsp/toptag.jsp"/> </div>
-        <div class="tab-pane" id="mypage"></div>
     </div><!-- tab-content -->
 
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
