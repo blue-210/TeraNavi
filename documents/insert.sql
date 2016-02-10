@@ -89,7 +89,7 @@ VALUES(
     1,
     '1995/02/11 20:20:30',
     '1995/02/11 20:20:40',
-    1,
+    0,
     '2020/02/11 20:20:20',
     '2020/02/11 20:30:20',
     'このブログは楽しい',
@@ -232,7 +232,13 @@ INSERT INTO communities(
     1
 );
 
-
+INSERT INTO community_members_list(
+    fk_user_id,
+    fk_community_id
+)VALUES(
+    2,
+    1
+);
 #articles表
 INSERT INTO articles(
     article_title,
@@ -269,8 +275,6 @@ VALUES(
     '2004/02/11 20:30:20',
     2
 );
-
-
 
 
 #tags表
