@@ -10,6 +10,9 @@ public class TopicBean implements Bean{
     private String updateDate;
     private String createDate;
     private ArrayList chat;
+    private String topicCreater;
+
+
 
 
     /**
@@ -122,5 +125,16 @@ public class TopicBean implements Bean{
     */
     public void setChat(ArrayList chat) {
     	this.chat = chat;
+    }
+    public String getTopicCreater() {
+    	return topicCreater;
+    }
+
+    /**
+    * Sets new value of topics
+    * @param
+    */
+    public void setTopicCreater(String topicMember) {
+    	this.topicCreater= topicMember;
     }
 }

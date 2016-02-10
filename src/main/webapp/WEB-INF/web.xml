@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -362,6 +362,24 @@
         <servlet-name>editarticle</servlet-name>
         <url-pattern>/editArticle</url-pattern>
     </servlet-mapping>
+
+	<servlet>
+       <servlet-name>policy</servlet-name>
+       <jsp-file>/WEB-INF/jsp/showPolicy.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>policy</servlet-name>
+       <url-pattern>/showPolicy</url-pattern>
+   </servlet-mapping>
+
+	<servlet>
+       <servlet-name>rule</servlet-name>
+       <jsp-file>/WEB-INF/jsp/showRule.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>rule</servlet-name>
+       <url-pattern>/showRule</url-pattern>
+   </servlet-mapping>
 
    <!-- エラーページ -->
    <!-- <error-page>

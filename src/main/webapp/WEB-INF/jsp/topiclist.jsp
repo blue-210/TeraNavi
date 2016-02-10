@@ -42,6 +42,30 @@
         <p class="bun"><span id="name" class="col-md-8 text-center">コミュネーム入れる</span>
     </header>
     <div class="container">
+       <div class="row">
+		   <table class="table table-striped">
+		   		<thead>
+		   			<tr>
+		   				<th>トピック名</th>
+						<th>作成者</th>
+						<th>最終更新日時</th><a href="showchat?topicId=${item.topicId}">
+		   			</tr>
+		   		</thead>
+				<tbody>
+                    <form action="showchat" method="post">
+					<c:forEach var="item" items="${result}">
+					<tr>
+                        <td><input type="hidden" name="topicId" value="${item.topicId}">
+                            <input type="submit" value="詳細"></td>
+						<td><c:out value="${item.name}" /></td>
+						<td><c:out value="${item.createUserName}" /></td>
+						<td><c:out value="${item.updateDate}" /></td>
+					</tr>
+					</c:forEach>
+                </form>
+				</tbody>
+		   </table>
+       </div><!--end row-->
         <div class="row">
             <div class="col-xs-10">
                 <c:forEach var="item" items="${result}">
@@ -70,7 +94,6 @@
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                     新しいトピックを作成
                 </a>
-
                 <!-- モーダルウィンドウの中身 -->
                 <div class="fade modal text-justify" id="myModal">
                     <div class="modal-dialog">

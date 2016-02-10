@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ttc.bean;
 
-public class RulesBean implements Bean{
-    private String id;
-    private String date;
-    private String body;
+/**
+ *
+ * @author Masaki
+ */
+public class PolicyBean implements Bean{
+	private String id;
+	private String date;
+	private String body;
 
 	/**
 	 * @return the id
@@ -46,7 +55,6 @@ public class RulesBean implements Bean{
 	public void setBody(String body) {
 		this.body = body;
 	}
-
-    
+	
 	
 }
