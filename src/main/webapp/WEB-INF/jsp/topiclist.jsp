@@ -40,7 +40,7 @@
 				<tbody>
 					<c:forEach var="item" items="${result}">
 					<tr>
-						<td><c:out value="${item.name}" /></td>
+						<td><a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a></td>
 						<td><c:out value="${item.createUserName}" /></td>
 						<td><c:out value="${item.updateDate}" /></td>
 					</tr>

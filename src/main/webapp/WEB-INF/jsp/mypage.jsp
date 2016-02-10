@@ -40,18 +40,24 @@
                <a href="articlepost">記事を投稿</a><br><br>
                <a href="後でいれｔ">下書き</a><br><br>
                <a href="blogSetting">ブログ設定</a><br><br>
-               <a href="後でいれｔ">コミュニティの管理</a><br><br>
+               <a href="commmy">コミュニティの管理</a><br><br>
                <a href="後でいれｔ">コメント管理</a><br><br>
                <a href="dmsend">DMの送信</a><br><br>
 			   <a href="front/dmreceive">DMの受信</a><br><br>
+               <a href="chatwrite">チャット送信</a><br><br>
+               <form action="front/showchat" method="post">
+                   チャット受信<input type="text" name="topicId">
+               </form>
                <a href="後でいれｔ">大会</a><br><br>
-			   <a href="userSearch">ユーザの検索</a><br><br>
+               <a href="search">検索</a><br><br>
+
            </div>
            <div class="col-sm-3 col-xs-6">
                <a href="openBlog">ブログ開設</a><br><br>
                <a href="blogSetting">ブログ設定</a><br><br>
 			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                <a href="createcomm">コミュニティの作成</a><br><br>
+               <a href="joincomm">コミュニティの参加</a><br><br>
            </div>
 
 

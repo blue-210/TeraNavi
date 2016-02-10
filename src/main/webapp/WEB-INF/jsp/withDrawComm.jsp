@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コミュニティ設定</title>
+    <title>コミュニティ退会</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,7 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
+
 
 
 
@@ -30,21 +30,12 @@
 
     <div class="container">
        <div class="row">
-           <h1>コミュニティ設定画面</h1>
-
-           <form action="front/communitySetting" method="post">
-               コミュニティ名 <input type="text" name="commNAme"><br>
-               説明文<input type="text" name="commProfile"><br>
-               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
-               説明文 <input type="text" name="explanation"><br>
-               <input type="hidden" name="status" value="0">
+           <h1>コミュニティ退会ぺージ</h1>
+           <form action="front/withDrawComm" method="post">
+                コミュニティid<input type="text" name="commId"><br>
                <input type="submit" value="登録">
            </form>
-
        </div><!--end row-->
     </div><!--end container-->
-    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
-
 </body>
 </html>

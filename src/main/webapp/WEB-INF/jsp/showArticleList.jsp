@@ -1,9 +1,3 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -27,7 +21,7 @@
        <div class="row">
            <h1>記事一覧表示のユーザー入力ページ</h1>
            <form action="front/showArticleList" method="post">
-               ユーザーID（数字のやつ） <input type="text" name="userId"><br>
+               ユーザーID（数字のやつ） <input type="text" name="writerUserId"><br>
                <input type="submit" value="表示">
            </form>
        </div><!--end row-->
