@@ -56,7 +56,7 @@
                    </li>
                    <br><br><br><br>
                    <li>
-                     <a href="#leave">退会</a>
+                     <a href="/TeraNavi/wirhdraw">退会</a>
                    </li>
                  </ul>
                 </div>
