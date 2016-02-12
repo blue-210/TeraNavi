@@ -14,6 +14,7 @@ import ttc.bean.CommunityBean;
 
 import java.util.Map;
 import java.util.HashMap;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class WithDrawCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -43,7 +44,9 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             resc.setTarget("communityWithDrawResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

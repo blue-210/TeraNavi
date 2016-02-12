@@ -16,6 +16,7 @@ import java.util.HashMap;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import java.util.ArrayList;
+import ttc.exception.Business.ParameterInvalidException;
 
 
 public class ShowMyCommunityListCommand extends AbstractCommand{
@@ -52,7 +53,9 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             resc.setTarget("showMyCommunityResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

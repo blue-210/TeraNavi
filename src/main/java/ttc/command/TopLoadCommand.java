@@ -23,6 +23,7 @@ import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.exception.Business.ParameterInvalidException;
 /**
  *
  * @author Masaki
@@ -96,7 +97,9 @@ public class TopLoadCommand extends AbstractCommand{
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }
