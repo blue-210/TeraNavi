@@ -270,7 +270,7 @@ public class UsersDao implements AbstractDao{
             sql.append(",birth_date,mail_address,password,user_header_path,user_icon_path,admin_flag,last_login_date,");
             sql.append("admin_last_login_date,user_status_flag,user_lock_end_date,user_lock_start_date,");
             sql.append("fk_secret_question_id,user_profile,secret_answer,community_members_list.community_admin_flag ");
-            sql.append("from users join community_members_list ");
+            sql.append("from users left outer join community_members_list ");
             sql.append("on users.user_id=community_members_list.fk_user_id ");
             sql.append((String)map.get("where"));
             pst = cn.prepareStatement(new String(sql));
