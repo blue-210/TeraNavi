@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.Integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import java.util.ArrayList;
+import ttc.exception.Business.ParameterInvalidException;
 
 
 public class ShowMyCommunityListCommand extends AbstractCommand{
@@ -52,7 +53,9 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             resc.setTarget("showMyCommunityResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

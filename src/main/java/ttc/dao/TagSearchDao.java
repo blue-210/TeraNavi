@@ -13,7 +13,7 @@ import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
 import ttc.bean.Bean;
 
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 import ttc.util.MySqlConnectionManager;
 
