@@ -33,43 +33,61 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+       <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+       <form action="commSetting" method="post">
+           <header>
+               <p class="bun"><span id="headerPath"><img src='${result.headerPath}' id="headimg"></span></p>
+               <p class="bun"><span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"></span></p>
+               <p class="bun"><span id="name" class="col-md-8 text-center">${result.name}</span>
+               <p class="bun"><button class="col-md-2 text-center" id="dd" style="display:none">編集</button></p>
+               <p id="sub"></p>
 
-    <div class="container">
-       <div class="row">
-           <h1>コミュ詳細</h1>
-            <form action="commSetting" method="post">
-                <p id="commid" style="display:none">${result.id}</p>
-                <p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
-                <p id="createId" style="display:none">${result.createUserId}</p>
-                <p class="bun"> コミュニティ名:<div id="name">${result.name}</div></p>
-                <p class="bun"> 説明文 <div id="profile">${result.profile}</div></p>
-                <p class="bun">  コミュニティアイコン<div id="iconPath"><img src='${result.iconPath}'></div></p>
-                <p class="bun">  ヘッダ画像 <div id="headerPath"> <img src='${result.headerPath}'></div></p>
-                <p class="bun"><button id="dd" style="display:none">編集</button></p>
 
-                <p id="sub"></p>
-            </form>
-            <h5>コミュニティのmember</h5>
-            <table class="table table-striped">
-               <thead>
-                   <c:forEach var="member" items="${result.members}">
-                       <tr>
-                         <th>
-                           <c:out value="${member.iconPath}" /><br>
-                           <c:out value="${member.userName}"/><br>
-                        </th>
-                       </tr>
-                   </c:forEach>
-                </thead>
-               </tbody>
-           </table>
-		   <p onclick="document.memberForm.submit();">
-			   メンバーの一覧を取得
-		   </p>
-		   <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
-			   <input type="hidden" name="commId" value="${result.id}">
-		   </form>
+           </header>
+           <div class="section">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-xs-10">
+                           <h1 class="text-primary">コミュニティ紹介文</h1>
+                           <p id="commid" style="display:none">${result.id}</p>
+                           <p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
+                           <p id="createId" style="display:none">${result.createUserId}</p>
+
+                           <p class="bun"><span id="profile">${result.profile}</p></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </form>
+
+       <div class="section">
+           <div class="container">
+               <div class="row">
+                   <div class="col-xs-10 col-xs-offset-1">
+                       <h1 class="text-center text-primary">メンバー</h1>
+                   </div>
+               </div>
+
+               <c:forEach var="member" items="${result.members}">
+                   <div class="col-md-3">
+                       <img src="${member.iconPath}" class="center-block img-circle img-responsive">
+                       <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
+                   </div>
+               </c:forEach>
+           </div>
+       </div>
+
+       <p onclick="document.memberForm.submit();">
+           メンバーの一覧を取得
+       </p>
+       <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
+           <input type="hidden" name="commId" value="${result.id}">
+       </form>
+
+
+
+
+
            <h5>トピックリスト</h5>
            <table class="table table-striped">
 

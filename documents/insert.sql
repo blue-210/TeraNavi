@@ -691,8 +691,8 @@ INSERT INTO communities(
 VALUES(
     'ブラックバスを釣ろうの会',
     'ブラックバスを釣るための知識を共有します',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     0
@@ -709,8 +709,8 @@ INSERT INTO communities(
 )VALUES(
     'つちやを釣ろうの会',
     'つちやを釣るための知識を共有します',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -727,8 +727,8 @@ INSERT INTO communities(
 )VALUES(
     'テラカフェ公式コミュ',
     'テラカフェの公式コミュニティです！',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -745,8 +745,8 @@ INSERT INTO communities(
 )VALUES(
     'くらもちを讃える会',
     'くらもちお嬢を讃える会です。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     1
@@ -763,8 +763,8 @@ INSERT INTO communities(
 )VALUES(
     '土屋について語りあう会',
     '土屋による土屋のためのコミュニティです。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     1
@@ -782,8 +782,8 @@ INSERT INTO communities(
 )VALUES(
     '南條愛乃について語りあう会',
     '土屋による南條愛乃さんへの愛を語っていくコミュニティです。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -926,7 +926,7 @@ INSERT INTO community_members_list(
 )VALUES(
     1,
     1,
-    0,
+    1,
     0
 );
 
@@ -938,9 +938,9 @@ INSERT INTO community_members_list(
     -- 退会フラグ。通常は0、退会は1
     community_withdrawal_flag
 )VALUES(
+    3,
     2,
-    2,
-    0,
+    1,
     0
 );
 
