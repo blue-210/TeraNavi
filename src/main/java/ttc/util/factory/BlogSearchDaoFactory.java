@@ -10,7 +10,7 @@ import java.io.IOException;
 
 // import ttc.dao.BlogSearchDao;
 
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 // public class BlogSearchDaoFactory extends AbstractDaoFactory{
 //     public AbstractDao getAbstractDao(){

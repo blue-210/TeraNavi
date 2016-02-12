@@ -14,7 +14,7 @@ import ttc.bean.Bean;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import ttc.bean.TopicBean;
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 
 public class CommunitiesDao implements AbstractDao{

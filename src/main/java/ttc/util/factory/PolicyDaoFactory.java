@@ -6,7 +6,7 @@ import java.io.IOException;
 import ttc.dao.AbstractDao;
 import ttc.dao.PolicyDao;
 
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 public class PolicyDaoFactory extends AbstractDaoFactory{
     public AbstractDao getAbstractDao(){

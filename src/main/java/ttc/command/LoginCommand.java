@@ -5,9 +5,9 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
-import ttc.exception.BusinessLogicException;
-import ttc.exception.PasswordInvalidException;
+import ttc.exception.Integration.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.Business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;

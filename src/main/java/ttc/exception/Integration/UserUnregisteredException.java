@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ttc.exception;
+package ttc.exception.Integration;
 
 /**
  *
  * @author Masaki
  */
-public class PasswordInvalidException extends BusinessLogicException{
-	public PasswordInvalidException(String mess,Throwable t){
+public class UserUnregisteredException extends IntegrationException{
+	public UserUnregisteredException(String mess,Throwable t){
 		super(mess,t);
 	}
 }
