@@ -7,6 +7,7 @@ import ttc.util.MySqlConnectionManager;
 
 import ttc.exception.IntegrationException;
 import ttc.exception.BusinessLogicException;
+import ttc.exception.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class LoginCommand extends AbstractCommand{
 
                 return resc;
             }else{
-                throw new BusinessLogicException("パスワードが違います",null);
+                throw new PasswordInvalidException("パスワードが違います",null);
             }
 
 
