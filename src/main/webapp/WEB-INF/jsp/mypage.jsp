@@ -1,9 +1,3 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -55,7 +49,7 @@
                     </li>
                     <br><br><br><br>
                     <li>
-                      <a href="#leave">退会</a>
+                      <a href="/TeraNavi/withdraw">退会</a>
                     </li>
                   </ul>
                 </div>
