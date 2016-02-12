@@ -17,6 +17,7 @@ import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import java.util.ArrayList;
 import java.util.List;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class ShowCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -82,7 +83,9 @@ public class ShowCommunityCommand extends AbstractCommand{
             resc.setTarget("showCommunityResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

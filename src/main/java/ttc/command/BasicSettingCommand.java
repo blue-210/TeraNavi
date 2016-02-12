@@ -15,6 +15,7 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class BasicSettingCommand extends AbstractCommand{
 
@@ -67,7 +68,9 @@ public class BasicSettingCommand extends AbstractCommand{
             resc.setTarget("SettingResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

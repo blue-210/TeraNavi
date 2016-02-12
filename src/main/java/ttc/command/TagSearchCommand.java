@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class TagSearchCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -39,6 +40,8 @@ public class TagSearchCommand extends AbstractCommand{
 			resc.setResult(dao.readAll(params));
 
 			return resc;
+		}catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
 				throw new BusinessLogicException(e.getMessage(),e);
 		}

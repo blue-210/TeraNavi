@@ -1,0 +1,21 @@
+.footer{
+	background-color:#41495A;
+	color:#fff;
+}
+a, a:hover, a:visited, a:link, a:active {
+	color: #FFFFFF;
+}
+#twitter_icon{
+	float:left;
+	width:110px;
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+#facebook_icon{
+	float:left;
+	width:110px;
+	padding:0px;
+	margin:0px;
+	border:0px;
+}

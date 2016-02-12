@@ -30,19 +30,7 @@
                 </li>
               </ul>
             </div>
-            <!-- 残り8列はコンテンツ表示部分として使う -->
-            <div class="col-md-8">
-                <div class="tab-content" style="margin-top:10px">
-                  <div class="tab-pane active" id="mypage">マイページ</div>
-                  <div class="tab-pane" id="articlepost">記事を書く</div>
-                  <div class="tab-pane" id="draftarticle">下書き一覧</div>
-                  <div class="tab-pane" id="blogsetting">ブログ設定</div>
-                  <div class="tab-pane" id="communitymanage">コミュニティ管理</div>
-                  <div class="tab-pane" id="directmessage">ディーエム</div>
-                  <div class="tab-pane" id="leave">退会</div>
-                </div>
-            </div>
-        </div>
+        </div><!-- row -->
     </div><!-- contener -->
 </div> <!-- section -->
 

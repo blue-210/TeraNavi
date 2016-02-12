@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.HashMap;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
+import ttc.exception.Business.ParameterInvalidException;
 
 
 public class CreateCommunityCommand extends AbstractCommand{
@@ -78,7 +79,9 @@ public class CreateCommunityCommand extends AbstractCommand{
             resc.setTarget("communityCreateResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

@@ -16,6 +16,8 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 
+import ttc.exception.Business.ParameterInvalidException;
+
 public class LoginCommand extends AbstractCommand{
 
 
@@ -55,7 +57,9 @@ public class LoginCommand extends AbstractCommand{
 
 
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

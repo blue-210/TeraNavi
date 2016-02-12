@@ -17,6 +17,7 @@ import ttc.dao.AbstractDao;
 
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class DeleteArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -60,7 +61,9 @@ public class DeleteArticleCommand extends AbstractCommand{
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }
