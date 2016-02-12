@@ -9,7 +9,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コミュ詳細</title>
+    <title>コミュニティ詳細</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -83,43 +83,31 @@
        <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
            <input type="hidden" name="commId" value="${result.id}">
        </form>
-
-
-
-
-
-           <h5>トピックリスト</h5>
-           <table class="table table-striped">
-
-               <thead>
-                   <tr>
-                       <th>
-                           <p>作成したトピック</p>
-                       </th>
-                   </tr>
-              <tbody>
-
-                  <form action="showchat" method="post">
-                  <c:forEach var="topics" items="${result.topics}">
-                      <tr>
-                        <td><c:out value="${topics.name}" /><br></td>
-                          <td><c:out value="${topics.updateDate}"/><br></td>
-                          <td><c:out value="${topics.topicCreater}"/><br></td>
-
-                              <td><input type="hidden" name="topicId" value="${topics.topicId}">
-                                  <input type="submit" value="詳細"></td>
-                      </tr>
-                  </c:forEach>
-              </form>
-              </tbody>
-          </table>
-          <form action="showTopic" method="post" name="showForm">
-				<input type="hidden" name="communityId" value="${result.id}">
-                <input type="submit" value="more">
-		</form>
-
-
-
+       <div class="container">
+           <div class="row">
+               <div class="col-xs-10 col-xs-offset-1">
+                   <c:forEach var="item" items="${result.topics}">
+                       <div class="row" id="topiclist">
+                               <div class="col-md-3">
+                               <img src="${item.userIconPath}" id="topicIcon">
+                                   <p>
+                                       <c:out value="${item.createUserName}" />
+                                   </p>
+                           </div>
+                           <div class="col-md-7">
+                               <h4 id="title" class="text-left">
+                                   <a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a>
+                               </h4>
+                           </div>
+                           <div class="col-md-2">
+                               <p id="date">
+                                   <c:out value="${item.updateDate}" />
+                               </p>
+                           </div>
+                       </div>
+                   </c:forEach>
+               </div>
+           </div>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
