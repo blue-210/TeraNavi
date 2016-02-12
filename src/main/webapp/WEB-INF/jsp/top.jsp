@@ -25,7 +25,7 @@
             <div class="col-xs-10 col-xs-offset-1">
               <ul class="lead nav nav-justified nav-tabs">
                 <li class="active">
-                  <a href="#top" data-toggle="tab" class="text-warning">TOP</a>
+                  <a href="TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
                 </li>
                 <li>
                   <a href="#blog" data-toggle="tab" class="text-warning">ブログ</a>
@@ -74,18 +74,6 @@
 						</div>
 					</c:forEach>
 				</div>
-				<br>
-				<br>
-				<a href="login">ログイン画面</a>
-				<br>
-				<br>
-				<a href="mypage">マイページ</a>
-				<br>
-				<br>
-				<a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
-				<form action="/TeraNavi/front/commList" method="post" name="comForm">
-					<input type="hidden" name="intention" value="list">
-				</form>
             </div>
         </div>
         <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
@@ -94,6 +82,25 @@
     </div><!-- tab-content -->
 
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    <script>
+        $(document).ready(function() {
+            // #(ハッシュ)指定されたタブを表示する
+            var hashTabName = document.location.hash;
+            if (hashTabName) {
+                $('.nav-tabs a[href=' + hashTabName + ']').tab('show');
+
+                event.preventDefault();
+
+                // 所定の位置までスクロールする
+                var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
+                $('html, body').stop().animate({
+                    scrollTop: 0
+                }, 2000);
+            }
+
+        });
+    </script>
 
 </body>
 </html>

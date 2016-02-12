@@ -5,9 +5,9 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
-import ttc.exception.BusinessLogicException;
-import ttc.exception.PasswordInvalidException;
+import ttc.exception.Integration.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.Business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -15,6 +15,8 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
+
+import ttc.exception.Business.ParameterInvalidException;
 
 public class LoginCommand extends AbstractCommand{
 
@@ -55,7 +57,9 @@ public class LoginCommand extends AbstractCommand{
 
 
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }
