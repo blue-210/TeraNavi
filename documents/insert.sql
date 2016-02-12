@@ -1086,11 +1086,14 @@ INSERT INTO contacts(
 
 #cautions表
 INSERT INTO cautions(
+    fk_user_id,
+    fk_caution_user_id,
     caution_date,
     caution_title,
     caution_body,
     report_page_url
 )VALUES(
+    1,2,
     '2004/02/14 20:30:20',
     '警告です',
     '警告文です',
