@@ -1,5 +1,3 @@
-		<link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
-
 		<nav class="navbar navbar-default" id="header_bar">
 			<div class="container-fluid">
 				<div class="navbar-header" >
@@ -9,7 +7,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#" id="logo">
+					<a class="navbar-brand" href="#">
 						<img class="logo" src="/TeraNavi/img/logo.png">
 					</a>
 				</div>

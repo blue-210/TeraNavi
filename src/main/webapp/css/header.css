@@ -1,5 +1,6 @@
-#logo{
-	padding-top:5px;
+.logo{
+	width:100px;
+	height:51px;
 }
 #search_box{
 	width:300px;
@@ -17,7 +18,7 @@
 }
 #search_logo{
 	font-size:26px;
-	
+
 }
 #bell_logo{
 	padding-top:6px;
