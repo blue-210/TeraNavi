@@ -10,6 +10,7 @@ public class ArticleBean implements Bean{
     private String createdDate;
     private List tags;
     private List comments;
+    private String userName;
 
 	/**
 	* Returns value of articleId
@@ -121,5 +122,21 @@ public class ArticleBean implements Bean{
 	*/
 	public void setComments(List comments) {
 		this.comments = comments;
+	}
+
+	/**
+	* Returns value of userName
+	* @return
+	*/
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	* Sets new value of userName
+	* @param
+	*/
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
