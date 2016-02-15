@@ -87,6 +87,10 @@
          			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                         <a href="createcomm">コミュニティの作成</a><br><br>
                         <a href="joincomm">コミュニティの参加</a><br><br>
+                        <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
+                        <form action="/TeraNavi/front/commList" method="post" name="comForm">
+                            <input type="hidden" name="intention" value="list">
+                        </form>
                     </div>
                 </div>
 
