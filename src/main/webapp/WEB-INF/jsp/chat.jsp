@@ -11,11 +11,11 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">	</head>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="../css/chat.css" rel="stylesheet" type="text/css">
+		<link href="/TeraNavi/css/chat.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="header_image">
-			<img src="../img/header.jpg" width="100%" height="400px" />
+			<img src="/TeraNavi/img/header.jpg" width="100%" height="400px" />
 			<div id="header_icon">
 				<img id="icon_image" src="/TeraNavi/img/icon.jpg">
 			</div>
@@ -30,10 +30,10 @@
 					<div class="col-md-1"></div>
 					<div class="col-md-5">
 			            <div class="box">
-			            	<p id="content">君は実に馬鹿だなぁ</p>
+			            	<p id="content">君は実に馬鹿だなぁ馬鹿だなぁ君は実に馬鹿だなぁ</p>
 					     </div>
 					     <div id="account">
-					     	<img src="../img/account.jpg">
+					     	<img src="/TeraNavi/img/account.jpg">
 					     </div>
 			        </div>
 			        <div class="container-fluid">
@@ -43,7 +43,7 @@
 					            	<p id="other_content">君は実に馬鹿だなぁ君は実に馬鹿だなぁ君は実に馬鹿だなぁ君は実に馬鹿だなぁ君は実に馬鹿だなぁ</p>
 							     </div>
 							     <div id="other_account">
-							     	<img src="../img/account.jpg">
+							     	<img src="/TeraNavi/img/account.jpg">
 							     </div>
 							</div>
 							<div class="col-md-1"></div>

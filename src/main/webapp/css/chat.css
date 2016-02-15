@@ -3,13 +3,14 @@
 }
 body{
 	background-color:#A4C6FF;
-} 
+}
 .wrapper{
 	padding: 30px;
 	position: relative;
 }
 
 .box {
+	margin-left: 30px;
 	display: inline-block;
 	position: relative;
 	background: #00CC00;
@@ -30,7 +31,7 @@ body{
 	margin-bottom: 20px;
 	border-radius: 50px;
 	color:#000;
-	margin-left:20%;
+	margin-left:13%;
 }
 .box:after {
 	content: '';
@@ -42,7 +43,8 @@ body{
 	background: #A4C6FF;
 	bottom: -20px;
 	left: 50px;
-	margin-left:75%;
+	margin-left:58%;
+
 }
 .other_box:after {
 	content: '';
@@ -55,6 +57,7 @@ body{
 	bottom: -20px;
 	left: 50px;
 	margin-left:-16%;
+	float: right;
 }
 
 .box:before {
@@ -67,7 +70,7 @@ body{
 	background: #00CC00;
 	bottom: -15px;
 	left: 35px;
-	margin-left:75%;
+	margin-left:55%;
 }
 .other_box:before {
 	content: '';
@@ -105,7 +108,7 @@ body{
 	z-index:1;
 }
 #header_icon{
-	
+
 	width:144px;
 	height144px;
 }
@@ -116,11 +119,11 @@ body{
 	border-width:5px;
 	border-color:#fff;
  	border-style: solid;
- 	
+
 	width:154px;
 	height:154px;
 	position:absolute;
-	
+
 }
 #comunity_title{
 	position: absolute;
