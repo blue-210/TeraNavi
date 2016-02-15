@@ -15,6 +15,7 @@ public class TopicBean implements Bean{
     private String headerPath;
     private String userIconPath;
     private String communityName;
+    private String communityId;
 
 	/**
 	* Returns value of topicId
@@ -206,5 +207,21 @@ public class TopicBean implements Bean{
 	*/
 	public void setCommunityName(String communityName) {
 		this.communityName = communityName;
+	}
+
+	/**
+	* Returns value of communityId
+	* @return
+	*/
+	public String getCommunityId() {
+		return communityId;
+	}
+
+	/**
+	* Sets new value of communityId
+	* @param
+	*/
+	public void setCommunityId(String communityId) {
+		this.communityId = communityId;
 	}
 }

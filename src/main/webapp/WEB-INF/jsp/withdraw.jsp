@@ -30,7 +30,7 @@
                 <div class="col-md-2">
                   <ul class="nav nav-pills nav-stacked well">
                     <li>
-                      <a href="/TeraNavi/mypage">マイページ</a>
+                      <a href="/TeraNavi/front/mypage">マイページ</a>
                     </li>
                     <li>
                       <a href="/TeraNavi/articlepost">記事を書く</a>
