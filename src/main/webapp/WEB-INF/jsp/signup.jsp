@@ -172,7 +172,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="key">登録キーを入力してください</label>
-						<input type="text" id="fKey" form="signForm" class="form-control">
+						<input type="text" name="signKey" id="fKey" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>

@@ -7,7 +7,7 @@ import java.util.Properties;
 
 import ttc.context.RequestContext;
 import ttc.command.AbstractCommand;
-import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.business.BusinessLogicException;
 
 public abstract class CommandFactory{
 	public static AbstractCommand getCommand(RequestContext rc)throws BusinessLogicException{
