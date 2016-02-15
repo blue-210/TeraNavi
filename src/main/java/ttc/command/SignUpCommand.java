@@ -30,10 +30,15 @@ public class SignUpCommand extends AbstractCommand{
             String birthDate=reqc.getParameter("birthDate")[0];
             String mailAddress=reqc.getParameter("mailAddress")[0];
             String password=reqc.getParameter("password")[0];
-            String quepstionId=reqc.getParameter("quepstionId")[0];
+            String quepstionId=reqc.getParameter("questionId")[0];
             String questionAnswer=reqc.getParameter("questionAnswer")[0];
             String adminFlag = reqc.getParameter("adminFlag")[0];
 
+			if(birthDate.length()>8){
+				String[] dcash = birthDate.split("-");
+				birthDate = dcash[0]+dcash[1]+dcash[2];
+			}
+			
             Map params = new HashMap();
             params.put("loginId",loginId);
             params.put("userName",userName);
