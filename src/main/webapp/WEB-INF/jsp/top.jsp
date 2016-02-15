@@ -37,7 +37,7 @@
                   <a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
                 </li>
                 <li>
-                  <a href="/TeraNavi/mypage" class="text-warning">マイページ</a>
+                  <a href="/TeraNavi/front/mypage" class="text-warning">マイページ</a>
                 </li>
               </ul>
             </div>
@@ -88,11 +88,6 @@
 
 
         $(document).ready(function() {
-
-            var articleBody = $("#beforeArticleBody").text();
-            var slicedArticleBody = articleBody.slice(0,30);
-            console.log(slicedArticleBody);
-            $("#articleBody").text(slicedArticleBody);
 
             // #(ハッシュ)指定されたタブを表示する
             var hashTabName = document.location.hash;
