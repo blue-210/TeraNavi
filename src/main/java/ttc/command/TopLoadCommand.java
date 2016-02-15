@@ -93,7 +93,7 @@ public class TopLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
-			/*ブログタブで表示する学科ごとの新着記事の取得
+			//ブログタブで表示する学科ごとの新着記事の取得
 			factory = AbstractDaoFactory.getFactory("users");
 			dao = factory.getAbstractDao();
 			Map param3 = new HashMap();
@@ -113,7 +113,6 @@ public class TopLoadCommand extends AbstractCommand{
 				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
 			}
 			result.put( "department", sliceArticleBody(departmentArticles) );
-			*/
 
 
 			MySqlConnectionManager.getInstance().commit();
