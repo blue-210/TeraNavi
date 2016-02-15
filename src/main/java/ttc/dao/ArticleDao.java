@@ -109,7 +109,8 @@ public class ArticleDao implements AbstractDao{
                 //---------------------------------------------------------------
             }
             ab.setComments(comments);
-            //------------------------------------------------------------------
+            ab.setCommentCount(comments.size());
+			//------------------------------------------------------------------
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();

@@ -41,7 +41,7 @@ public class ArticleSortDao implements AbstractDao{
 
             if(sortType=="0"){
                 //新着順に並び替え
-                sql.append("select article_id,article_title,article_body,article_created_date, user_name ");
+                sql.append("select article_id,article_title,article_body,article_created_date, ");
                 sql.append("fk_user_id, user_name ");
                 sql.append("from articles join users on articles.fk_user_id = users.user_id ");
                 sql.append("order by article_created_date desc");
@@ -49,13 +49,17 @@ public class ArticleSortDao implements AbstractDao{
             }
             else if(sortType=="1"){
                 //古い順に並び替え
-                sql.append("select article_id,article_title,article_body,article_created_date ");
-                sql.append("from articles order by article_created_date asc");
+                sql.append("select article_id,article_title,article_body,article_created_date,");
+                sql.append("fk_user_id, user_name ");
+                sql.append("from articles join users on articles.fk_user_id = users.user_id ");
+                sql.append("order by article_created_date asc");
             }
             pst = cn.prepareStatement(new String(sql));
 
             ResultSet rs = pst.executeQuery();
-
+			
+			StringBuffer sql2 = new StringBuffer();
+			sql2.append("select count(*) from comments where fk_article_id = ?");
             while(rs.next()){
                 ArticleBean article = new ArticleBean();
                 article.setArticleId(rs.getString(1));
@@ -64,7 +68,16 @@ public class ArticleSortDao implements AbstractDao{
                 article.setCreatedDate(rs.getString(4));
                 article.setUserId(rs.getString(5));
                 article.setUserName(rs.getString(6));
-                result.add(article);
+                
+				pst = cn.prepareStatement(new String(sql2));
+				pst.setString(1,article.getArticleId());
+				ResultSet rs2 = pst.executeQuery();
+				rs2.next();
+				article.setCommentCount(Integer.parseInt(rs2.getString(1)));
+				
+				result.add(article);
+				
+				
             }
 
         }catch(SQLException e){

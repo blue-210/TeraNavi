@@ -24,7 +24,7 @@
               <br>
               <p>投稿日時 ${article.createdDate}</p>
               <br>
-              <p>コメント数 2</p>
+              <p>コメント数 ${article.commentCount}</p>
             </div>
           </div>
       </c:forEach>

@@ -5,50 +5,55 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.business.BusinessLogicException;
 import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.ArticleBean;
+import ttc.bean.UserBean;
+
 import ttc.exception.business.ParameterInvalidException;
 
-public class ShowArticleCommand extends AbstractCommand{
+public class WithdrawCommand extends AbstractCommand{
+
+
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String articleId = reqc.getParameter("articleId")[0];
+            String userId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("articleId", articleId);
+            params.put("value",userId);
+            params.put("where","where user_id=?");
+
 
             MySqlConnectionManager.getInstance().beginTransaction();
-
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
-            ArticleBean ab = (ArticleBean)dao.read(params);
-
-			factory = AbstractDaoFactory.getFactory("comment");
-			dao = factory.getAbstractDao();
+            UserBean ub = (UserBean)dao.read(params);
 			
+			params.put("userbean",ub);
+			params.put("userStatus", "3");
+			params.put("userId",ub.getId());
+			dao.update(params);
 			
-
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
+			
+			resc.setTarget("withdrawResult");
 
-            resc.setResult(ab);
-            resc.setTarget("showArticleResult");
+			return resc;
 
-            return resc;
 
         }catch(NullPointerException e){
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
-            throw new BusinessLogicException(e.getMessage(), e);
+            throw new BusinessLogicException(e.getMessage(),e);
         }
     }
 }

@@ -37,10 +37,10 @@
                 <div class="col-md-2">
                  <ul class="nav nav-pills nav-stacked well">
                    <li>
-                     <a href="/TeraNavi/mypage">マイページ</a>
+                     <a href="/TeraNavi/front/mypage">マイページ</a>
                    </li>
                    <li class="active">
-                     <a href="/TeraNavi/articlepost">記事を書く</a>
+                     <a href="#">記事を書く</a>
                    </li>
                    <li>
                      <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>

@@ -1,17 +1,10 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 
     <meta charset="UTF-8">
 
-    <title>ログイン</title>
+    <title>退会</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -27,13 +20,8 @@
 
     <div class="container">
        <div class="row">
-           <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
-
-           <a href="/TeraNavi/front/mypage"><h1>マイページはこちら</h1></a>
-
-
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-        <a href="/TeraNavi/front/top">Topへ</a>
+		   <h1>退会しました</h1>
+        <a href="../top">Topへ</a>
 
        </div><!--end row-->
     </div><!--end container-->
