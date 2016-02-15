@@ -30,7 +30,7 @@
                 <div class="col-md-2">
                   <ul class="nav nav-pills nav-stacked well">
                     <li class="active">
-                      <a href="#mypage">マイページ</a>
+                      <a href="#">マイページ</a>
                     </li>
                     <li>
                       <a href="/TeraNavi/articlepost">記事を書く</a>
@@ -81,30 +81,17 @@
                             <h1 class="text-warning">投稿した記事</h1>
                             <table class="table table-striped">
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>記事タイトル</td>
-                                  <td>2016-11-22 20:30:20</td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>記事タイトル</td>
-                                  <td>2016-11-22 20:30:20</td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>記事タイトル</td>
-                                  <td>2016-11-22 20:30:20</td>
-                                </tr>
+                                <c:forEach var="article" items="${result.article}">
+                                    <tr>
+                                      <td>
+                                        <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                        style="width:50px;height:50px;">
+                                      </td>
+                                      <td>${article.title}</td>
+                                      <td>${article.createdDate}</td>
+                                    </tr>
+                                    <tr>
+                                </c:forEach>
                               </tbody>
                             </table>
                             <a class="btn btn-warning pull-right">もっと見る</a>　
