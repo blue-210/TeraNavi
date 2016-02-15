@@ -91,6 +91,8 @@
                         <form action="/TeraNavi/front/commList" method="post" name="comForm">
                             <input type="hidden" name="intention" value="list">
                         </form>
+                        <a href="createtopic">トピックの作成</a><br><br>
+                        <a href="showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
 
