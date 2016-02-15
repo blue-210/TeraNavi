@@ -21,7 +21,7 @@
 							<a href="#"><img src="/TeraNavi/img/facebook_alt.png"><p>Facebook</p></a>
 						</div>
 						<div id="twitter_icon">
-							<a href="#"><img src="/TeraNavi/WEB-INF/img/twitter_alt.png" width="35px" height="32px"><p>Twitter</p></a>
+							<a href="#"><img src="/TeraNavi/img/twitter_alt.png" width="35px" height="32px"><p>Twitter</p></a>
 						</div>
 					</div>
 				</div>

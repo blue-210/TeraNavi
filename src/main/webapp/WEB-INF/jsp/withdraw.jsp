@@ -87,7 +87,7 @@
                           </div>
                           <div class="modal-body">
                             <p class="text-center">本当に退会しますか？</p>
-                            <a class="btn btn-lg btn-primary" href="">Yes</a>
+                            <a class="btn btn-lg btn-primary" href="/TeraNavi/front/withdraw">Yes</a>
                             <a class="btn btn-lg btn-primary" href="/TeraNavi/front/top">No</a>
                           </div>
                           <div class="modal-footer"></div>
