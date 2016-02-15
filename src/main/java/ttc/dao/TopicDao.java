@@ -76,7 +76,7 @@ public class TopicDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
 			sql.append("select topic_id,fk_create_user_id,topic_name,topic_updatetime_date,");
 			sql.append("topic_created_date,users.user_name,");
-            sql.append("communities.community_header_path,communities.community_icon_path,communities.community_name,users.user_icon_path ");
+            sql.append("communities.community_header_path,communities.community_icon_path,communities.community_name,users.user_icon_path,communities.community_id ");
 			sql.append("from topics inner join users ");
 			sql.append(" on topics.fk_create_user_id=users.user_id ");
             sql.append("join communities on communities.community_id=topics.fk_community_id ");
@@ -101,7 +101,7 @@ public class TopicDao implements AbstractDao{
                 topics.setCommunityIconPath(rs.getString(8));
                 topics.setCommunityName(rs.getString(9));
                 topics.setUserIconPath(rs.getString(10));
-
+                topics.setCommunityId(rs.getString(11));
                 result.add(topics);
             }
 
