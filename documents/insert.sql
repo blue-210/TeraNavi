@@ -1264,15 +1264,47 @@ INSERT INTO cautions(
 
 #topic表
 INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
     topic_name,
     topic_updatetime_date,
     topic_created_date
 )VALUES(
+    1,
+    5,
     '伊藤園',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
 
+INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
+    topic_name,
+    topic_updatetime_date,
+    topic_created_date
+)VALUES(
+    1,
+    5,
+    '伊藤園',
+
+    '2004/02/14 20:30:20',
+    '2004/02/13 20:30:20'
+);
+
+INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
+    topic_name,
+    topic_updatetime_date,
+    topic_created_date
+)VALUES(
+    2,
+    5,
+    '伊藤園',
+    '2004/02/14 20:30:20',
+    '2004/02/13 20:30:20'
+);
 
 #chat表
 INSERT INTO chat(

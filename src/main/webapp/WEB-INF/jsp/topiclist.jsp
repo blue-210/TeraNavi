@@ -73,8 +73,6 @@
                 <div class="fade modal text-justify" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form action="/TeraNavi/front/createtopic" method="post">
-
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
@@ -82,19 +80,19 @@
                                     <h4 class="modal-title">新規トピック作成</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-2"></div>
                                     <div class="col-xs-10">
                                         <h1>新しいトピック名</h1>
-                                        <input type="text" size="50" name="topic_name">
-                                        <!--コミュニティIDを取得-->
-                                        <input type="text" name="communityId" value=""><br>
-
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="submit" name="" value="作成する">
-                                </div>
-                            </form>
+                                        <form action="/TeraNavi/front/createtopic" method="post">
+                                            <input type="text" size="50" name="topic_name">
+                                                ${result[0]}
+                                                <input type="hidden" name="communityId" value="${result[0].communityId}">
+                                            </div>
+                                        </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" name="" value="作成する">
+                                    </form>
+                            </div>
                         </div>
                     </div>
                 </div>

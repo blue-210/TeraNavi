@@ -41,9 +41,8 @@
                <p class="bun"><span id="name" class="col-md-8 text-center">${result.name}</span>
                <p class="bun"><button class="col-md-2 text-center" id="dd" style="display:none">編集</button></p>
                <p id="sub"></p>
-
-
            </header>
+
            <div class="section">
                <div class="container">
                    <div class="row">
@@ -134,8 +133,8 @@
             $('.bun').remove();
             $('#name').html('コミュニティ名：<input type="text" name="commName" value="'+name+'">');
             $('#profile').html('紹介文：<input type="text" name="commProfile" value="'+profile+'">');
-            $('#iconPath').html('アイコン画像：<input type="text" name="iconPath" value="'+iconPath+'">');
-            $('#headerPath').html('ヘッダ画像<input type="text" name="headerPath" value="'+headerPath+'">');
+            $('#iconPath').html('アイコン画像：<input type="file" name="iconPath" value="'+iconPath+'">');
+            $('#headerPath').html('ヘッダ画像<input type="file" name="headerPath" value="'+headerPath+'">');
             console.log(id);
             console.log(del);
             $('#userId').html('<input type="hidden" name="userId" value="'+userid+'">');

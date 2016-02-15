@@ -73,7 +73,7 @@
                         <div class="col-md-12">
                             <br>
                             <p style="position:relative margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
-                            <a href="userSetting" class="btn btn-default pull-right">編集</a>
+                            <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">編集</a>
                         </div>
                     </div>
                     <div class="row">
@@ -87,40 +87,22 @@
                                         <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
                                         style="width:50px;height:50px;">
                                       </td>
-                                      <td>${article.title}</td>
+                                      <td>
+                                          <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><p class="text-muted">${article.title}</p></a>
+                                      </td>
                                       <td>${article.createdDate}</td>
                                     </tr>
                                     <tr>
                                 </c:forEach>
                               </tbody>
                             </table>
-                            <a class="btn btn-warning pull-right">もっと見る</a>　
+                            <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}" class="btn btn-warning pull-right">もっと見る</a>　
                             <br>
                             <br>
                             <br>
                             <h1 class="text-warning">参加中のコミュニティ</h1>
                             <table class="table table-striped">
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>コミュにティ名</td>
-                                  <td>
-                                    <a class="btn btn-danger pull-right">退会</a>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>コミュにティ名</td>
-                                  <td>
-                                    <a class="btn btn-danger pull-right">退会</a>
-                                  </td>
-                                </tr>
                                 <tr>
                                   <td>
                                     <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
@@ -139,29 +121,29 @@
 
                     <div class="col-sm-3 col-xs-6">
                         <a href="後でいれｔ">下書き</a><br><br>
-                        <a href="blogSetting">ブログ設定</a><br><br>
-                        <a href="commmy">コミュニティの管理</a><br><br>
-                        <a href="dmsend">DMの送信</a><br><br>
-         			   <a href="front/dmreceive">DMの受信</a><br><br>
-                        <a href="chatwrite">チャット送信</a><br><br>
-                        <form action="front/showchat" method="post">
+                        <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
+                        <a href="/TeraNavi/commmy">コミュニティの管理</a><br><br>
+                        <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
+         			   <a href="/TeraNavi/front/dmreceive">DMの受信</a><br><br>
+                        <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
+                        <form action="/TeraNavi/front/showchat" method="post">
                             チャット受信<input type="text" name="topicId">
                         </form>
-                        <a href="search">検索</a><br><br>
+                        <a href="/TeraNavi/search">検索</a><br><br>
 
                     </div>
                     <div class="col-sm-3 col-xs-6">
-                        <a href="openBlog">ブログ開設</a><br><br>
-                        <a href="blogSetting">ブログ設定</a><br><br>
-         			   <a href="blogDelete">ブログ閉鎖</a><br><br>
-                        <a href="createcomm">コミュニティの作成</a><br><br>
-                        <a href="joincomm">コミュニティの参加</a><br><br>
+                        <a href="/TeraNavi/openBlog">ブログ開設</a><br><br>
+                        <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
+         			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
+                        <a href="/TeraNavi/createcomm">コミュニティの作成</a><br><br>
+                        <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
                         <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
                         <form action="/TeraNavi/front/commList" method="post" name="comForm">
                             <input type="hidden" name="intention" value="list">
                         </form><br>
-                        <a href="createtopic">トピックの作成</a><br><br>
-                        <a href="showTopic">トピックの一覧</a><br><br>
+                        <a href="/TeraNavi/createtopic">トピックの作成</a><br><br>
+                        <a href="/TeraNavi/showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
 

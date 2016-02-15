@@ -103,7 +103,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="mail">メールアドレス確認</label>
-						<input type="mail" name="mailAddress" class="form-control">
+						<input type="mail" name="mailAddress" id="fMail2" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -136,7 +136,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="pass">パスワード確認</label>
-						<input type="password" name="password" form="signForm" class="form-control">
+						<input type="password" id="fPassword2" name="password" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -180,7 +180,7 @@
 			</div>
 
 			<input type="hidden" name="adminFlag" form="signForm" value="0">
-            <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal" data-target="#signup-modal">確認</button>
+            <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal">確認</button>
 			</div>
 		</form>
 
@@ -225,33 +225,45 @@
 	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	  <script>
 	  	$("#signsubmit").on("click", function() {
-			$("#sName").empty();
-			$("#sKana").empty();
-			$("#sSex").empty();
-			$("#sBirth").empty();
-			$("#sMail").empty();
-			$("#sId").empty();
-			$("#sPass").empty();
-			$("#sQuestion").empty();
-			$("#sAnswer").empty();
-			$("#sKey").empty();
-			
-			$("#sName").append($("#fName").val());
-	  		$("#sKana").append($("#fNameKana").val());
-			var cSex = $("input[name='sex']:checked").val();
-			if(cSex == 'f'){
-				cSex = '女';
-			}else if (cSex=='m') {
-				cSex='男';
+			if($("#fMail").val()==$("#fMail2").val()){
+				if($("#fPassword").val()==$("#fPassword2").val()){
+					
+					$("#sName").empty();
+					$("#sKana").empty();
+					$("#sSex").empty();
+					$("#sBirth").empty();
+					$("#sMail").empty();
+					$("#sId").empty();
+					$("#sPass").empty();
+					$("#sQuestion").empty();
+					$("#sAnswer").empty();
+					$("#sKey").empty();
+
+					$("#sName").append($("#fName").val());
+					$("#sKana").append($("#fNameKana").val());
+					var cSex = $("input[name='sex']:checked").val();
+					if(cSex == 'f'){
+						cSex = '女';
+					}else if (cSex=='m') {
+						cSex='男';
+					}
+					$("#sSex").append(cSex);
+					$("#sBirth").append($("#fBirthday").val());
+					$("#sMail").append($("#fMail").val());
+					$("#sId").append($("#fLoginId").val());
+					$("#sPass").append($("#fPassword").val());
+					$("#sQuestion").append($("#fQuestionId option:selected").text());
+					$("#sAnswer").append($("#fAnswer").val());
+					$("#sKey").append($("#fKey").val());
+					
+					$("#signup-modal").modal("show");
+				}else{
+					alert("パスワードとパスワードの確認が一致しません");
+				}
+			}else{
+				alert("メールアドレスとメールアドレスの確認が一致しません");
 			}
-	  		$("#sSex").append(cSex);
-	  		$("#sBirth").append($("#fBirthday").val());
-	  		$("#sMail").append($("#fMail").val());
-	  		$("#sId").append($("#fLoginId").val());
-	  		$("#sPass").append($("#fPassword").val());
-	  		$("#sQuestion").append($("#fQuestionId option:selected").text());
-	  		$("#sAnswer").append($("#fAnswer").val());
-	  		$("#sKey").append($("#fKey").val());
+		
 	  	});
 	  </script>
 </body>
