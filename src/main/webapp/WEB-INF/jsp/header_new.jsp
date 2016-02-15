@@ -29,7 +29,7 @@
 						<input type="text" class="form-control">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="submit" id="search_btn">
-								<i class='glyphicon glyphicon-search'></i>
+								<i class="fa fa-bell"></i>
 							</button>
 						</span>
 					</div>
