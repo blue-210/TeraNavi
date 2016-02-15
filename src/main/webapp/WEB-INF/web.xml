@@ -381,6 +381,15 @@
        <url-pattern>/showRule</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>withdraw</servlet-name>
+      <jsp-file>/WEB-INF/jsp/withdraw.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>withdraw</servlet-name>
+      <url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>
