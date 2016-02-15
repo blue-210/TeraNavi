@@ -4,7 +4,7 @@
         <h1 class="text-warning">各科新着記事</h1>
       </div>
 
-        <c:forEach var="article" items="${result.article}">
+        <c:forEach var="article" items="${result.department}">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
