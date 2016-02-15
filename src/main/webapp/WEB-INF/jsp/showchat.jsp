@@ -31,17 +31,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>お名前</th>
                     <th>内容</th>
                     <th>受信日時</th>
-                    <th>お名前</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="ch" items="${result}">
                   <tr>
+                      <td> <c:out value="${ch.userName}"/> </td>
                       <td> <c:out value="${ch.body}"/> </td>
                       <td> <c:out value="${ch.date}" /> </td>
-                      <td> <c:out value="${ch.userName}"/> </td>
                   </tr>
                 </c:forEach>
             </tbody>
@@ -49,9 +49,8 @@
 
 		<label>チャットを書き込む</label>
 			<p>本文</p>
-             ${result[0]}
             <textarea name="chatBody" rows="10" cols="90"></textarea>
-			<input type="hidden" name="topicId" value="${result.topicId}">
+			<input type="hidden" name="topicId" value="${result[0].fkTopicId}">
 			<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 			<button id="chatwrite" type="button" name="button">書き込む</button>
        </div><!--end row-->
