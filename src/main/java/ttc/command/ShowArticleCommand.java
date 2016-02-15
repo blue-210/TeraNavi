@@ -32,6 +32,10 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
 
+			factory = AbstractDaoFactory.getFactory("comment");
+			dao = factory.getAbstractDao();
+			
+			
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
