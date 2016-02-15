@@ -1,0 +1,47 @@
+#logo{
+	padding-top:5px;
+}
+#search_box{
+	width:300px;
+	padding-top:7px;
+}
+#dropdown{;
+	padding-top:7px;
+	margin-left:200px;
+}
+#input{
+	width:350px;
+}
+#header_bar{
+	background-color:#FF9966;
+}
+#search_logo{
+	font-size:26px;
+	
+}
+#bell_logo{
+	padding-top:6px;
+	margin-left:30px;
+	font-size:35px;
+}
+#account_img{
+	width:32px;
+	height:32px;
+	margin-top:-25px;
+	margin-left:20px;
+}
+
+#navbarEexample3 {
+	float:left;
+}
+div.socialicons {
+	float:left;
+}
+#uname{
+	padding-left:20px;
+	padding-top:10px;
+	color:#fff;
+	font-size:20px;
+	width:300px;
+	float:right;
+}

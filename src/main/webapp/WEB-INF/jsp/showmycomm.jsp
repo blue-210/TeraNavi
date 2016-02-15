@@ -39,7 +39,7 @@
                    </form>
                    <form action="front/commmy" method="post">
                        <input type="hidden" name="groupBy" value="groupBy community_members_list.fk_community_id ">
-                        <input type="hidden" name="where" value="community_members_list.community_admin_flag=0 ">
+                        <input type="hidden" name="where" value="community_members_listssss.fk_user_id= ? and community_members_list.community_admin_flag=0 ">
                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
                        <input type="submit" value="参加しているコミュ一覧">
                   </form>

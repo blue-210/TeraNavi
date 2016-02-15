@@ -14,6 +14,7 @@ public class CommunityBean implements Bean{
     private ArrayList members;
     private ArrayList topics;
     private String createUserId;
+	private String adminFlag;
 
 
 
@@ -175,5 +176,19 @@ public class CommunityBean implements Bean{
     public String getCreateUserId(){
         return createUserId;
     }
+
+	/**
+	 * @return the adminFlag
+	 */
+	public String getAdminFlag() {
+		return adminFlag;
+	}
+
+	/**
+	 * @param adminFlag the adminFlag to set
+	 */
+	public void setAdminFlag(String adminFlag) {
+		this.adminFlag = adminFlag;
+	}
 
 }

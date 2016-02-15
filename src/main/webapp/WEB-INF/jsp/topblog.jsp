@@ -10,7 +10,7 @@
               <br>
               <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
               class="img-responsive">
-              <a href=""><h3 class="text-center text-muted">ユーザ名</h3></a>
+              <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>

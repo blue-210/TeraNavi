@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import ttc.dao.AbstractDao;
 
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 public abstract class AbstractDaoFactory{
     public static AbstractDaoFactory getFactory(String key)throws IntegrationException{

@@ -210,3 +210,9 @@ create table tera_db.rules(
 	rule_body varchar(10000) not null,
 	index(rule_id)
 )engine=InnoDB;
+
+
+create table tera_db.admin_mail_acount(
+	mail_address varchar(200),
+	password varchar(100)
+);

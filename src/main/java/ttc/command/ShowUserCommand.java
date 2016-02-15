@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
-import ttc.exception.BusinessLogicException;
+import ttc.exception.Integration.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -19,6 +19,7 @@ import ttc.bean.UserBean;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class ShowUserCommand extends AbstractCommand{
 
@@ -45,7 +46,9 @@ public class ShowUserCommand extends AbstractCommand{
             resc.setTarget("ShowUserResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }
