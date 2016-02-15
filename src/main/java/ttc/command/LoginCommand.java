@@ -5,9 +5,9 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Integration.IntegrationException;
-import ttc.exception.Business.BusinessLogicException;
-import ttc.exception.Business.PasswordInvalidException;
+import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
 
 public class LoginCommand extends AbstractCommand{
 

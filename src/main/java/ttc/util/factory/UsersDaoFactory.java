@@ -7,7 +7,7 @@ import ttc.dao.AbstractDao;
 import ttc.dao.UsersDao;
 
 
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.integration.IntegrationException;
 
 public class UsersDaoFactory extends AbstractDaoFactory{
     public AbstractDao getAbstractDao(){

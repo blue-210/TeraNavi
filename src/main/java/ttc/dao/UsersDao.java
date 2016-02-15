@@ -14,11 +14,11 @@ import java.sql.SQLException;
 
 import ttc.bean.UserBean;
 import ttc.bean.Bean;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.integration.IntegrationException;
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Integration.AddressDuplicationException;
-import ttc.exception.Integration.UserUnregisteredException;
+import ttc.exception.integration.AddressDuplicationException;
+import ttc.exception.integration.UserUnregisteredException;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class UsersDao implements AbstractDao{
