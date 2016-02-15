@@ -51,7 +51,40 @@ public class SignUpKeysDao implements AbstractDao{
         
     }
     public int update(Map map)throws IntegrationException{
-        return 0;
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            MySqlConnectionManager.getInstance().beginTransaction();
+            StringBuffer sql = new StringBuffer();
+            sql.append("update sign_up_keys set ");
+            sql.append("key_status = 1 ");
+            sql.append("where sign_up_key = ?");
+
+            pst = cn.prepareStatement( new String(sql) );
+
+            //タイトルを変更
+            
+            pst.setString(1,(String)map.get("key"));
+
+            result = pst.executeUpdate();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
     }
     public Bean read(Map map)throws IntegrationException{
         PreparedStatement pst = null;

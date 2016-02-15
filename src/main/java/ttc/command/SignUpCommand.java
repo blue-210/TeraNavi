@@ -46,17 +46,14 @@ public class SignUpCommand extends AbstractCommand{
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("signKey");
-            AbstractDao dao = factory.getAbstractDao();
+            AbstractDao dao2 = factory.getAbstractDao();
             
 			Map kParam = new HashMap();
 			kParam.put("key",hash);
-			dao.read(kParam);
-			
-			
-			
+			dao2.read(kParam);
 			
 			factory = AbstractDaoFactory.getFactory("users");
-			dao = factory.getAbstractDao();
+			AbstractDao dao = factory.getAbstractDao();
 			
             Map params = new HashMap();
             params.put("loginId",loginId);
@@ -72,7 +69,9 @@ public class SignUpCommand extends AbstractCommand{
             params.put("adminFlag",adminFlag);
 			int userId = dao.insert(params);
 			
-            MySqlConnectionManager.getInstance().commit();
+			dao2.update(kParam);
+            
+			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 			
 			UserBean ub = new UserBean();
@@ -85,6 +84,7 @@ public class SignUpCommand extends AbstractCommand{
 			ub.setBirthDate(birthDate);
 			ub.setMailAddress(mailAddress);
 			ub.setAdminFlag(adminFlag);
+			
 
             resc.setResult(ub);
             resc.setTarget("signupResult");
