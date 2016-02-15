@@ -10,7 +10,9 @@
                   <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
               </div><!--コミュニティヘッダ画像の領域おわり-->
               <div class="row"><!--コミュニティ名と紹介文の領域-->
-                <a href=""><h3 class="text-center text-muted">${community.name}</h3></a>
+                <a href="/TeraNavi/front/showcomm?commId=${community.id}">
+                    <h3 class="text-center text-muted">${community.name}</h3>
+                </a>
                 <p class="text-center">${community.profile}</p>
               </div><!--コミュニティ名と紹介文の領域おわり-->
               <div class="row text-right"><!-- 参加するボタンの領域 -->
@@ -34,7 +36,9 @@
                   class="img-responsive">
               </div><!--コミュニティヘッダ画像の領域おわり-->
               <div class="row"><!--コミュニティ名と紹介文の領域-->
-                <a href=""><h3 class="text-center text-muted">${community.name}</h3></a>
+                <a href="/TeraNavi/front/showcomm?commId=${community.id}">
+                    <h3 class="text-center text-muted">${community.name}</h3>
+                </a>
                 <p class="text-center">${community.profile}</p>
               </div><!--コミュニティ名と紹介文の領域おわり-->
               <div class="row text-right"><!-- 参加するボタンの領域 -->
@@ -58,7 +62,10 @@
                   class="img-responsive">
               </div><!--コミュニティヘッダ画像の領域おわり-->
               <div class="row"><!--コミュニティ名と紹介文の領域-->
-                <a href=""><h3 class="text-center text-muted">${community.name}</h3></a>
+                <a href=href="/TeraNavi/front/showcomm?commId=${community.id}">
+                    <h3 class="text-center text-muted">${community.name}</h3>
+                </a>
+
                 <p class="text-center">${community.profile}</p>
               </div><!--コミュニティ名と紹介文の領域おわり-->
               <div class="row text-right"><!-- 参加するボタンの領域 -->
