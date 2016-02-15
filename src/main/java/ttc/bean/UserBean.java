@@ -29,7 +29,7 @@ public class UserBean implements Bean{
 	private CommunityBean community;
 
 
-    /**
+	/**
 	* Returns value of id
 	* @return
 	*/
@@ -46,7 +46,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Returns value of loginName
+	* Returns value of loginId
 	* @return
 	*/
 	public String getLoginId() {
@@ -54,7 +54,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Sets new value of loginName
+	* Sets new value of loginId
 	* @param
 	*/
 	public void setLoginId(String loginId) {
@@ -174,7 +174,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Returns value of question
+	* Returns value of questionNo
 	* @return
 	*/
 	public String getQuestionNo() {
@@ -182,7 +182,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Sets new value of question
+	* Sets new value of questionNo
 	* @param
 	*/
 	public void setQuestionNo(String questionNo) {
@@ -397,11 +397,19 @@ public class UserBean implements Bean{
 		this.directMessageList = directMessageList;
 	}
 
-	public void setCommunity(CommunityBean community){
-		this.community = community;
+	/**
+	* Returns value of community
+	* @return
+	*/
+	public CommunityBean getCommunity() {
+		return community;
 	}
 
-	public CommunityBean getCommunity(){
-		return community;
+	/**
+	* Sets new value of community
+	* @param
+	*/
+	public void setCommunity(CommunityBean community) {
+		this.community = community;
 	}
 }

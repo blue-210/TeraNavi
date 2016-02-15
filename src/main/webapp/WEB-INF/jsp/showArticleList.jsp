@@ -21,7 +21,7 @@
        <div class="row">
            <h1>記事一覧表示のユーザー入力ページ</h1>
            <form action="front/showArticleList" method="post">
-               ユーザーID（数字のやつ） <input type="text" name="writerUserId"><br>
+               ユーザーID（数字のやつ） <input type="text" name="userId"><br>
                <input type="submit" value="表示">
            </form>
        </div><!--end row-->

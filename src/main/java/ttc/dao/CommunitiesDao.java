@@ -14,7 +14,7 @@ import ttc.bean.Bean;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import ttc.bean.TopicBean;
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 
 public class CommunitiesDao implements AbstractDao{
@@ -228,7 +228,8 @@ public class CommunitiesDao implements AbstractDao{
 
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
-            sql.append("communities.community_profile,count(community_members_list.fk_user_id),communities.fk_user_id from ");
+            sql.append("communities.community_profile,count(community_members_list.fk_user_id),communities.fk_user_id,");
+			sql.append("community_members_list.community_admin_flag from ");
             sql.append("communities left outer join community_members_list ");
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
 
@@ -260,6 +261,7 @@ public class CommunitiesDao implements AbstractDao{
                 cb.setProfile(rs.getString(3));
                 cb.setCountMember(rs.getInt(4));
                 cb.setCreateUserId(rs.getString(5));
+				cb.setAdminFlag(rs.getString(6));
 
                 result.add(cb);
             }

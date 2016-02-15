@@ -131,7 +131,7 @@ VALUES(
     'koyazi',
     '呉石先生',
     '/images/(user_id)/header.jpg',
-    '/TeraNavi/imgPath/default/default_user_icon.jpg',
+        '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'こやブログ',
     '/images/default/header.jpg',
     0,
@@ -691,8 +691,8 @@ INSERT INTO communities(
 VALUES(
     'ブラックバスを釣ろうの会',
     'ブラックバスを釣るための知識を共有します',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     0
@@ -709,8 +709,8 @@ INSERT INTO communities(
 )VALUES(
     'つちやを釣ろうの会',
     'つちやを釣るための知識を共有します',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -727,8 +727,8 @@ INSERT INTO communities(
 )VALUES(
     'テラカフェ公式コミュ',
     'テラカフェの公式コミュニティです！',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -745,8 +745,8 @@ INSERT INTO communities(
 )VALUES(
     'くらもちを讃える会',
     'くらもちお嬢を讃える会です。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     1
@@ -763,8 +763,8 @@ INSERT INTO communities(
 )VALUES(
     '土屋について語りあう会',
     '土屋による土屋のためのコミュニティです。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     1
@@ -782,8 +782,8 @@ INSERT INTO communities(
 )VALUES(
     '南條愛乃について語りあう会',
     '土屋による南條愛乃さんへの愛を語っていくコミュニティです。',
-    '/images/(community_id)/icon/icon.jpg',
-    '/images/(community_id)/header/header.jpg',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -926,7 +926,7 @@ INSERT INTO community_members_list(
 )VALUES(
     1,
     1,
-    0,
+    1,
     0
 );
 
@@ -938,9 +938,9 @@ INSERT INTO community_members_list(
     -- 退会フラグ。通常は0、退会は1
     community_withdrawal_flag
 )VALUES(
+    3,
     2,
-    2,
-    0,
+    1,
     0
 );
 
@@ -958,15 +958,16 @@ INSERT INTO community_members_list(
     0
 );
 
-
 #articles表
 -- article_status_flagは公開→0 下書き→1 削除→2
 INSERT INTO articles(
+    fk_user_id,
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
+    1,
     '「アメリカでは土屋は出世できない」← これ本当？',
     '彼らは生涯どうもその説明目というもののためを思わたなけれ。引続き翌日を影響家も何ともその応用ならたまでが忘れからいるないをはお話書いたらしくから、そうにもよるませなけれましです。世の中が向くないのもまず時間をもうなうた。何だか嘉納さんが活動専門どう講演へくっついでしょ心この自分我々か評価がというご意味ますたですあって、同じ場合はあなたか人格事にありから、大森さんののに浮華の何をざっとお持と云っていつ自信をご手続きに云っように一々お批評が思っだありて、いやしくもよく発展に思ったからみるありのをかけですます。',
     '2004/02/11 20:30:20',
@@ -974,11 +975,13 @@ VALUES(
 );
 
 INSERT INTO articles(
+    fk_user_id,
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
+    12,
     '寄り道しても、回り道しても、ふり返れば一本の育毛。',
     '猫はゴーシュのぼんやりゴーシュめを楽譜を聞える町はずれんた。するとぎっしり気の毒ましたという舞台たまし。変たんのたもますそして眼の残念汁のままではもう勝手ますですて、みんなだけゴーシュをわからられるんたた。あけ過ぎこれはかっこうに物すごいたからさっきのからだの風人を合せ第一評判たちの遠慮へおろしが来いたた。ゴーシュは毎晩やっているまし。',
     '2004/02/11 20:30:20',
@@ -987,11 +990,13 @@ VALUES(
 
 
 INSERT INTO articles(
+    fk_user_id,
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
+    2,
     '土屋について語るときに僕の語ること',
     'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
     '2004/02/11 20:30:20',
@@ -999,11 +1004,13 @@ VALUES(
 );
 
 INSERT INTO articles(
+    fk_user_id,
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
+    4,
     '貧困と土屋 - 格差社会を考えるヒント　',
     'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
     '2004/02/11 20:30:20',
@@ -1012,19 +1019,170 @@ VALUES(
 
 
 INSERT INTO articles(
+    fk_user_id,
     article_title,
     article_body,
     article_created_date,
     article_status_flag)
 VALUES(
+    2,
     'ゼロから始めるテクニカルカレッジ活用術',
     'パンは間の練習うち屋から糸に歩き勢たない。それからまっすぐ気の毒ないますという鼻でた。いいかげんですでんましはましでは舞台の気の毒汁の所をはどうか生意気たでしと、こればかり助けから過ぎがっことでしだ。
-
 ひるますぎこれは小麦に情ないないながらはじめの椅子のふしぎ会が云っ第十うそ弾の病気をしょっながら直しだで。けちも前弾けて来た。弓も一叫びセロのようとなりて出した。',
     '2004/02/11 20:30:20',
     2
 );
 
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    13,
+    'テストでーた',
+    'パンは間の練習うち屋から糸に歩き勢たない。それからまっすぐ気の毒ないますという鼻でた。いいかげんですでんましはましでは舞台の気の毒汁の所をはどうか生意気たでしと、こればかり助けから過ぎがっことでしだ。
+    ひるますぎこれは小麦に情ないないながらはじめの椅子のふしぎ会が云っ第十うそ弾の病気をしょっながら直しだで。けちも前弾けて来た。弓も一叫びセロのようとなりて出した。',
+    '2004/02/11 20:30:20',
+    2
+);
+
+-- 各科ごとの記事
+-- 情報6
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    6,
+    '情報処理ブログ移行しました！',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- 建築監督
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    7,
+    '建築監督、初投稿',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- 建築
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    8,
+    'ロマネスク様式',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- 建築夜間
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    9,
+    '夜の学校で学ぶ建築',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- インテリア
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    10,
+    'センスはロジックだ',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- ゲーム
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    11,
+    'サイン、コサイン、タンジェント？',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- web
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    12,
+    'フォトショップ入門',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- 環境
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    13,
+    '就活スタート！～企業研究会開催～',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
+
+-- バイオ
+INSERT INTO articles(
+    fk_user_id,
+    article_title,
+    article_body,
+    article_created_date,
+    article_status_flag)
+VALUES(
+    14,
+    'バイオカフェのご案内',
+    'それでまた皆客に入っのも実際容易とありたので、その世間にはしましてという人間に悟っていんな。そのうち人のためこの方向は何末がいうですかと向さんに集まっました、専門のほかうに対するご下宿たなかっませて、私立の時の泰平と前くらいの責任を今しとしまうて、それほどの今をもつれてこういうところをもしするなけれたとしゃべっない事たけれども、怪しからたでてしっかりお個性なれますのなたで。',
+    '2004/02/11 20:30:20',
+    0
+);
 
 
 
@@ -1089,11 +1247,14 @@ INSERT INTO contacts(
 
 #cautions表
 INSERT INTO cautions(
+    fk_user_id,
+    fk_caution_user_id,
     caution_date,
     caution_title,
     caution_body,
     report_page_url
 )VALUES(
+    1,2,
     '2004/02/14 20:30:20',
     '警告です',
     '警告文です',

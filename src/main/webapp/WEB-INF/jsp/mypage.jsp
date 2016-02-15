@@ -1,9 +1,3 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -24,62 +18,40 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="section">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-              <ul class="lead nav nav-justified nav-tabs">
-                <li>
-                  <a href="/TeraNavi/front/top" class="text-warning">TOP</a>
-                </li>
-                <li>
-                  <a href="/TeraNavi/front/top#blog" class="text-warning">ブログ</a>
-                </li>
-                <li>
-                  <a href="/TeraNavi/front/top#community" class="text-warning">コミュニティ</a>
-                </li>
-                <li>
-                  <a href="top.html#tag" class="text-warning">タグ</a>
-                </li>
-                <li class="active">
-                  <a class="text-warning">マイページ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-    </div>
+    <%-- トップのナビゲーションを読み込み --%>
+    <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
     <div class="section">
         <div class="container">
-           <div class="row">
+            <div class="row">
+
 
                 <!-- 4列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                 <ul class="nav nav-pills nav-stacked well">
-                   <li class="active">
-                     <a href="#mypage">マイページ</a>
-                   </li>
-                   <li>
-                     <a href="/TeraNavi/articlepost">記事を書く</a>
-                   </li>
-                   <li>
-                     <a href="#draftarticle">下書き一覧</a>
-                   </li>
-                   <li>
-                     <a href="#blogsetting">ブログ設定</a>
-                   </li>
-                   <li>
-                     <a href="#communitymanage">コミュニティ管理</a>
-                   </li>
-                   <li>
-                     <a href="#directmessage">DM</a>
-                   </li>
-                   <br><br><br><br>
-                   <li>
-                     <a href="#leave">退会</a>
-                   </li>
-                 </ul>
+                  <ul class="nav nav-pills nav-stacked well">
+                    <li class="active">
+                      <a href="#mypage">マイページ</a>
+                    </li>
+                    <li>
+                      <a href="/TeraNavi/articlepost">記事を書く</a>
+                    </li>
+                    <li>
+                      <a href="#draftarticle">下書き一覧</a>
+                    </li>
+                    <li>
+                      <a href="#blogsetting">ブログ設定</a>
+                    </li>
+                    <li>
+                      <a href="#communitymanage">コミュニティ管理</a>
+                    </li>
+                    <li>
+                      <a href="#directmessage">DM</a>
+                    </li>
+                    <br><br><br><br>
+                    <li>
+                      <a href="/TeraNavi/withdraw">退会</a>
+                    </li>
+                  </ul>
                 </div>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
@@ -115,8 +87,6 @@
          			   <a href="blogDelete">ブログ閉鎖</a><br><br>
                         <a href="createcomm">コミュニティの作成</a><br><br>
                         <a href="joincomm">コミュニティの参加</a><br><br>
-                        <a href="createtopic">トピックの作成</a><br><br>
-                        <a href="showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
 
@@ -124,7 +94,6 @@
            </div><!--end row-->
         </div><!--end container-->
     </div><!--end section-->
-    
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
