@@ -381,6 +381,15 @@
        <url-pattern>/showRule</url-pattern>
    </servlet-mapping>
 
+   <servlet>
+      <servlet-name>withdraw</servlet-name>
+      <jsp-file>/WEB-INF/jsp/withdraw.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>withdraw</servlet-name>
+      <url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+
    <!-- エラーページ -->
    <!-- <error-page>
       <error-type>javax.servlet.ServletException</error-type>
@@ -393,4 +402,20 @@
 
 
    <!-- フィルター -->
+
+  <!-- <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>LoginFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/LoginFilter</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/LoginFilter</url-pattern>
+</filter-mapping>-->
+
 </web-app>
