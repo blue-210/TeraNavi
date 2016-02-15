@@ -5,18 +5,19 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.Integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.UserBean;
+import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
 import java.util.List;
 import java.util.ArrayList;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class ShowMemberListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -43,8 +44,18 @@ public class ShowMemberListCommand extends AbstractCommand{
 
             HashMap result=new HashMap();
             result.put("value",reqc.getParameter("commId")[0]);
-             result.put("members",abdao.readAll(params));
+            result.put("members",abdao.readAll(params));
+			
+			fact = AbstractDaoFactory.getFactory("community");
+			abdao = fact.getAbstractDao();
+			Map params2 = new HashMap();
+			
+			params2.put("where","where community_id=? and community_delete_flag=0");
+            params2.put("commId",reqc.getParameter("commId")[0]);
 
+			Bean comm = abdao.read(params2);
+			
+			result.put("community",comm);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
@@ -55,7 +66,9 @@ public class ShowMemberListCommand extends AbstractCommand{
             resc.setTarget("showMemberListResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

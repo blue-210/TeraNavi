@@ -101,10 +101,13 @@ create table tera_db.articles_tags(
 create table tera_db.community_members_list(
 	fk_user_id int(10),
 	fk_community_id int(10),
+	-- 一般ユーザは0, 管理者は1
 	community_admin_flag char(1) not null,
+	-- 退会フラグ。通常は0、退会は1
 	community_withdrawal_flag char(1),
 	foreign key(fk_user_id) references tera_db.users(user_id),
-	foreign key(fk_community_id) references tera_db.communities(community_id)
+	foreign key(fk_community_id) references tera_db.communities(community_id),
+	primary key(fk_user_id,fk_community_id)
 )engine=InnoDB;
 
 #コメント表
@@ -207,3 +210,9 @@ create table tera_db.rules(
 	rule_body varchar(10000) not null,
 	index(rule_id)
 )engine=InnoDB;
+
+
+create table tera_db.admin_mail_acount(
+	mail_address varchar(200),
+	password varchar(100)
+);

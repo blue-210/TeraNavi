@@ -47,20 +47,18 @@
 	-->
 	
 	
-	
-	
 	<div class="section">
       <div class="container">
         <div class="row">
           <div class="col-xs-10 col-xs-offset-1">
 			<form role="form" action="/TeraNavi/front/createcomm" method="post" id="commForm">
               <div class="form-group">
-                <label class="control-label" for="exampleInputEmail1">コミュニティ名</label>
-                <input class="form-control" id="exampleInputEmail1" name="commName">
+                <label class="control-label" for="name">コミュニティ名</label>
+                <input class="form-control" id="name" name="commName">
               </div>
               <div class="form-group">
-                <label class="control-label" for="exampleInputPassword1">紹介文</label>
-                <textarea class="form-control" id="exampleInputPassword1" rows="4" name="commProfile"></textarea>
+                <label class="control-label" for="profile">紹介文</label>
+                <textarea class="form-control" id="profile" rows="4" name="commProfile"></textarea>
               </div>アイコン
               <div class="col-md-12 text-left">
                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
@@ -68,7 +66,7 @@
               </div>
               <br>
               <button type="submit" class="btn btn-default">ファイルを選択</button>
-              <input type="hidden" name="commIcon">
+              <input id="icon" type="hidden" name="commIcon">
 			  <br>
               <br>ヘッダ画像
               <br>
@@ -80,7 +78,7 @@
               <br>
               <br>
               <br>
-			  <input class="tbody" type="hidden" name="commHeader">
+			  <input id="header" type="hidden" name="commHeader">
 			  
 			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
               <div class="text-center">
@@ -106,8 +104,8 @@
                     <img src="cat34.jpg" width="350" height="60" id="mHeader"><br>
                     <div class="col-xs-1"></div>
                     <div class="col-xs-10">
-                      <h1 id="mtitle">タイトルを入れるよ</h1>
-                      <h2 id="mProfile">コミュニティ紹介文</h2>
+                      <h1 id="mTitle"></h1>
+                      <h2 id="mProfile"></h2>
                       <p></p>
                       <!-- アイコン -->
                       <div class="col-xs-4">
@@ -153,7 +151,11 @@
 			}
 			
 			$("#csubmit").on("click",function(){
-				
+				$("#mHeader").attr("src",$("#header").val());
+				$("#mTitle").append($("#name").val());
+				$("#mProfile").append($("#profile").val());
+				$("#mIcon").attr("src",$("#icon").val());
+				console.log("Modal Open");
 			});
 
 		});

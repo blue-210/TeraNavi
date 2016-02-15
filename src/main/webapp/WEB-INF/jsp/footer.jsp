@@ -3,35 +3,61 @@
    pageEncoding="UTF-8"
 %>
 
-   <footer class="footer">
+<nav id="footer" class="navbar navbar-default" role="navigation">
+   <footer class="footer container-fluid">
       <div class="container">
-         <ul class="list-unstyled list-inline text-right">
-            <li><a href="top">TOP</a></li>
-            <li><a href="rule.jsp">注意事項</a></li>
-            <li><a data-toggle="modal" href="#div-modal">お問い合わせ</a></li>
+         <ul class="nav nav-pills nav-stacked list-inline">
+            <li><h2>TeraNaviについて</h2></li>
+            <li><a href="rule.jsp">利用規約</a></li>
+            <li><a data-toggle="modal" href="#contact-modal">お問い合わせ</a></li>
+            <li><a href="">よくある質問</a></li>
          </ul>
+         <ul class="nav nav-pills nav-stacked text-center">
+             <li><h2>運営元について</h2></li>
+             <li><a href="http://www.tera-house.ac.jp/">学校法人 小山学園</a></li>
+             <li><a href="">プライバシーポリシー</a></li>
+         </ul>>
          <p class="text-center text-muted"><small></small></p>
 
 
-        <div id="div-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h1>お問い合わせ</h1>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post">
-                            お名前  <input type="text" name=""><br>
-                            件名   <input type="text" name=""><br>
-                            E-mail  <input type="text" name=""><br>
-                            カテゴリ  <input type=""><br>
-                            本文  <textarea name="body" cols="40"></textarea><br>
-                            <input type="submit" value="送信する">
-                        </form>
-                    </div>
-                    <div class="modal-footer"></div>
-                </div><!--end moal-content-->
-            </div><!--end modal-dialog-->
-      </div><!--end modal-->
-   </footer><!--end footer-->
+
+		<div id="contact-modal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h1 class="text-center">お問い合わせ</h1>
+					</div>
+					<div class="modal-body">
+						<form action="/TeraNavi/front/sendContact" method="post">
+							<div class="form-group">
+								<label class="control-label" for="exampleInputName">お名前</label>
+								<input class="form-control" name="name" type="text">
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="exampleInputTitle">件名</label>
+								<input class="form-control" name="title" type="text">
+							</div>
+							<div class="form-group">
+								<label class="control-label">メールアドレス</label>
+								<input class="form-control" type="email" name="address">
+							</div>
+							<div class="form-group">
+								<label class="control-label">カテゴリ</label>
+								<select class="form-control" name="category">
+								  <option>サイトについて</option>
+								  <option>その他</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label">本文</label>
+								<textarea class="form-control" name="body"></textarea>
+							</div>
+							<button type="submit" class="btn btn-default pull-right">送信する</button>
+						</form>
+					</div>
+					<div class="modal-footer"></div>
+				</div><!--end moal-content-->
+			</div><!--end modal-dialog-->
+		</div><!--end modal-->
+	</footer><!--end footer-->

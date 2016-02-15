@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.Integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.exception.Business.ParameterInvalidException;
 
 public class ShowArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -21,7 +22,7 @@ public class ShowArticleListCommand extends AbstractCommand{
             System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("writerUserId")[0];
+            String userId = reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
             params.put("userId", userId);
@@ -40,7 +41,9 @@ public class ShowArticleListCommand extends AbstractCommand{
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }

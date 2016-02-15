@@ -16,7 +16,7 @@ import ttc.bean.UserBean;
 import ttc.bean.BlogBean;
 import ttc.bean.TagBean;
 import ttc.bean.CommentBean;
-import ttc.exception.IntegrationException;
+import ttc.exception.Integration.IntegrationException;
 
 public class ArticleDao implements AbstractDao{
 
@@ -31,7 +31,7 @@ public class ArticleDao implements AbstractDao{
 
             //記事表からの取得----------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
-            sql.append("article_created_date ");
+            sql.append("article_created_date,fk_user_id ");
             sql.append("from articles ");
             sql.append("where article_id = ?");
 
@@ -48,6 +48,7 @@ public class ArticleDao implements AbstractDao{
             ab.setTitle( rs.getString(2) );
             ab.setArticleBody( rs.getString(3) );
             ab.setCreatedDate( rs.getString(4) );
+            ab.setUserId(rs.getString(5));
             //------------------------------------------------------------------
 
             sql.setLength(0);//StringBuffer初期化
@@ -234,9 +235,11 @@ public class ArticleDao implements AbstractDao{
             sql.append("from users ");
             sql.append("where user_id = ?");
 
+
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
+
 
             System.out.println(sql);
             ResultSet rs = pst.executeQuery();
@@ -260,14 +263,19 @@ public class ArticleDao implements AbstractDao{
             //記事一覧の取得----------------------------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
             sql.append("article_created_date, ");
-            sql.append("fk_user_id ");
-            sql.append("from articles ");
+            sql.append("fk_user_id, user_name ");
+            sql.append("from articles join users ");
+            sql.append("on articles.fk_user_id = users.user_id ");
             sql.append("where fk_user_id = ? and article_status_flag = '0' ");
-            sql.append("order by article_created_date ");
+            sql.append("order by article_created_date desc");
+
+            if(map.containsKey("option")){
+                sql.append((String)map.get("option"));
+            }
 
             pst = cn.prepareStatement( new String(sql) );
 
-
+            System.out.println(sql);
             pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
 
             System.out.println(sql);
@@ -280,6 +288,7 @@ public class ArticleDao implements AbstractDao{
                 ab.setArticleBody( rs.getString(3) );
                 ab.setCreatedDate( rs.getString(4) );
                 ab.setUserId( rs.getString(5) );
+                ab.setUserName( rs.getString(6) );
 
                 List tags = new ArrayList();
                 //記事一件あたりのタグを取得-----------------------------------------

@@ -1,51 +1,235 @@
 <%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
+	contentType="text/html ; charset=UTF-8"
+	pageEncoding="UTF-8"
 %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- saved from url=(0069)file:///C:/GitHub/TeraNavi/src/main/webapp/WEB-INF/design/signUp.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>新規登録</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<title>新規登録</title>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
-    <%-- ヘッダー部分のHTMLを読み込み --%>
-    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+	<%-- ヘッダー部分のHTMLを読み込み --%>
+	<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="container">
-       <div class="row">
-           <h1>新規登録テストページ</h1>
-           <form action="front/signup" method="post">
-               ログインID <input type="text" name="loginId"><br>
-               パスワード <input type="text" name="password"><br>
-               ユーザ名 <input type="text" name="userName"><br>
-               ふりがな <input type="text" name="nameKana"><br>
-               性別 ・女性<input type="radio" name="sex" value="f"> ・男性<input type="radio" name="sex" value="m"><br>
-               性別の表示非表示 ・表示<input type="radio" name="sexVisibleFlag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
-               生年月日 <input type="text" name="birthDate"><br>
-               MAilAddress <input type="text" name="mailAddress"><br>
-               秘密の質問 <select name="quepstionId">
-                   <option value="1">質問1</option>
-                   <option value="2">質問2</option>
-               </select><br>
-               秘密の質問の答え <input type="text" name="questionAnswer"><br>
-               <input type="hidden" name="adminFlag" value="0">
-               <input type="submit" value="登録">
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<h1 class="text-center">新規登録</h1><br />
+				<form action="front/signup" method="post" class="text-center">
+				<!-- ここから -->
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="pull-left control-label" for="name">お名前</label>
+						<input type="text" id="fName" name="userName" placeholder="田中太郎" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+				<!-- ここまででひとつのインプットを構成する -->
+				</form>
+			</div><!--end of row-->
 
-           </form>
-       </div><!--end row-->
-    </div><!--end container-->
-    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="furi">ふりがな</label>
+						<input type="text" id="fNameKana" name="nameKana" placeholder="たなかたろう" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="sex" id="fSex">性別</label>
+						男性<input type="radio" name="sex" value="m">
+						女性<input type="radio" name="sex" value="f">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="birthday">生年月日</label>
+						<input type="date" id="fBirthday" name="birthDate" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="mail">メールアドレス</label>
+						<input type="mail" id="fMail" name="mailAddress" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="mail">メールアドレス確認</label>
+						<input type="mail" name="mailAddress" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="login">ログインID</label>
+						<input type="text" id="fLoginId" name="loginId" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="pass">パスワード</label>
+						<input type="password" id="fPassword" name="password" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="pass">パスワード確認</label>
+						<input type="password" name="password" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="question">秘密の質問</label>
+						<select name="questionId" id="fQuestionId" class="form-control">
+							<option value="1">質問1</option>
+							<option value="2">質問2</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="answer">回答</label>
+						<input type="text" id="fAnswer" name="questionAnswer" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="key">登録キーを入力してください</label>
+						<input type="signUpKey" id="fKey" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<input type="hidden" name="adminFlag" value="0">
+            <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal" data-target="#signup-modal">確認</button>
+			</div>
+		</form>
+
+		<!-- モーダルウィンドウの中身 -->
+        <div class="fade modal text-justify" id="signup-modal">
+        	<div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+            	  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title">新規登録</h4>
+                </div>
+
+				<div class="modal-body">
+					<div class="col-xs-1"></div>
+                    <div class="col-xs-10">
+                        <h2 id="sName"></h2>
+                        <h2 id="sKana"></h2>
+                        <h2 id="sSex"></h2>
+                        <h2 id="sBirth"></h2>
+                        <h2 id="sMail"></h2>
+                        <h2 id="sId"></h2>
+                        <h2 id="sPass"></h2>
+                        <h2 id="sQuestion"></h2>
+                        <h2 id="sAnswer"></h2>
+                        <h2 id="sKey"></h2>
+                        <p></p>
+                    </div>
+                </div>
+
+				<div class="modal-footer">
+                	<button type="submit" class="btn btn-block btn-primary" form="">登録</button>
+                    <button type="submit" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
+                </div>
+              </div>
+            </div>
+         </div>
+          <!-- モーダル閉じるやつだよ -->
+	  </div>
+
+	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+	  <script>
+	  	$("#signsubmit").on("click", function() {
+
+			$("#sName").append($("#fName").val());
+	  		$("#sKana").append($("#fNameKana").val());
+			var cSex = $("input[name='sex']:checked").val();
+			if(cSex == 'f'){
+				cSex = '女';
+			}else if (cSex=='m') {
+				cSex='男';
+			}
+	  		$("#sSex").append(cSex);
+	  		$("#sBirth").append($("#fBirthday").val());
+	  		$("#sMail").append($("#fMail").val());
+	  		$("#sId").append($("#fLoginId").val());
+	  		$("#sPass").append($("#fPassword").val());
+	  		$("#sQuestion").append($("#fQuestionId option:selected").text());
+	  		$("#sAnswer").append($("#fAnswer").val());
+	  		$("#sKey").append($("#fKey").val());
+	  	});
+	  </script>
 </body>
 </html>
