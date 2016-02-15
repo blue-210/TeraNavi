@@ -1,6 +1,6 @@
-package ttc.exception.Integration;
+package ttc.exception.integration;
 
-import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.business.BusinessLogicException;
 
 public class IntegrationException extends BusinessLogicException{
     public IntegrationException(String mess,Throwable t){

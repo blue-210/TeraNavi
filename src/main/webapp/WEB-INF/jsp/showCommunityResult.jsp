@@ -106,7 +106,10 @@
                            </div>
                        </div>
                    </c:forEach>
-               </div>
+                   <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
+                       <h2 class="text-muted">トピックリスト</h2>
+                   </a>
+              </div>
            </div>
        </div><!--end row-->
     </div><!--end container-->

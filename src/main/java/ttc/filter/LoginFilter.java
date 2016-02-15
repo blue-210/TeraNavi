@@ -3,38 +3,31 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import ttc.bean.UserBean;
 
 public class LoginFilter implements Filter{
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain){
+  public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain){
     try{
-      String target = ((HttpServletRequest)request).getRequestURI();
+           System.out.println("ログインチェック");
 
-      HttpSession session = ((HttpServletRequest)request).getSession();
+           // セッションが存在しない場合NULLを返す
+           HttpSession session = ((HttpServletRequest)req).getSession();
 
-      if (session == null){
-        /* まだ認証されていない */
-        session = ((HttpServletRequest)request).getSession(true);
-        session.setAttribute("target", target);
+           if(session.getAttribute("loginUser") != null){
+               // セッションがNULLでなければ、通常どおりの遷移
+               chain.doFilter(req, res);
+           }else{
+               // セッションがNullならば、ログイン画面へ飛ばす
+               RequestDispatcher dispatcher = req.getRequestDispatcher("/login");
+               dispatcher.forward(req,res);
+           }
 
-        ((HttpServletResponse)response).sendRedirect("/login");
-      }else{
-        Object loginCheck = session.getAttribute("login");
-        if (loginCheck == null){
-          /* まだ認証されていない */
-          session.setAttribute("target", target);
-          ((HttpServletResponse)response).sendRedirect("/login");
-        }
-      }
 
-      chain.doFilter(request, response);
     }catch (ServletException se){
     }catch (IOException e){
     }
-  }
 
-  public void init(FilterConfig filterConfig) throws ServletException{
   }
-
-  public void destroy(){
-  }
+  public void init(FilterConfig config) throws ServletException{}
+  public void destroy(){}
 }

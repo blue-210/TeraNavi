@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Integration.IntegrationException;
-import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -14,8 +14,10 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
+import ttc.bean.SignKeyBean;
 import ttc.bean.UserBean;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
+import ttc.util.UniqueKeyGenerator;
 
 public class SignUpCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -30,10 +32,29 @@ public class SignUpCommand extends AbstractCommand{
             String birthDate=reqc.getParameter("birthDate")[0];
             String mailAddress=reqc.getParameter("mailAddress")[0];
             String password=reqc.getParameter("password")[0];
-            String quepstionId=reqc.getParameter("quepstionId")[0];
+            String quepstionId=reqc.getParameter("questionId")[0];
             String questionAnswer=reqc.getParameter("questionAnswer")[0];
             String adminFlag = reqc.getParameter("adminFlag")[0];
+			String signKey = reqc.getParameter("signKey")[0];
 
+			if(birthDate.length()>8){
+				String[] dcash = birthDate.split("-");
+				birthDate = dcash[0]+dcash[1]+dcash[2];
+			}
+			
+			String hash = UniqueKeyGenerator.getHashCode(signKey);
+
+            MySqlConnectionManager.getInstance().beginTransaction();
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("signKey");
+            AbstractDao dao2 = factory.getAbstractDao();
+            
+			Map kParam = new HashMap();
+			kParam.put("key",hash);
+			dao2.read(kParam);
+			
+			factory = AbstractDaoFactory.getFactory("users");
+			AbstractDao dao = factory.getAbstractDao();
+			
             Map params = new HashMap();
             params.put("loginId",loginId);
             params.put("userName",userName);
@@ -46,16 +67,13 @@ public class SignUpCommand extends AbstractCommand{
             params.put("quepstionId",quepstionId);
             params.put("secretAnswer",questionAnswer);
             params.put("adminFlag",adminFlag);
-
-
-            MySqlConnectionManager.getInstance().beginTransaction();
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
-            AbstractDao dao = factory.getAbstractDao();
-            int userId = dao.insert(params);
-
-            MySqlConnectionManager.getInstance().commit();
+			int userId = dao.insert(params);
+			
+			dao2.update(kParam);
+            
+			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-
+			
 			UserBean ub = new UserBean();
             ub.setId(String.valueOf(userId));
 			ub.setLoginId(loginId);
@@ -66,6 +84,7 @@ public class SignUpCommand extends AbstractCommand{
 			ub.setBirthDate(birthDate);
 			ub.setMailAddress(mailAddress);
 			ub.setAdminFlag(adminFlag);
+			
 
             resc.setResult(ub);
             resc.setTarget("signupResult");

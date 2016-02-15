@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Business.BusinessLogicException;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -17,7 +17,7 @@ import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import java.util.ArrayList;
 import java.util.List;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ShowCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{

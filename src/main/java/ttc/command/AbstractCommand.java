@@ -3,7 +3,7 @@ package ttc.command;
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
-import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.business.BusinessLogicException;
 
 public abstract class AbstractCommand{
 	private RequestContext reqContext;
