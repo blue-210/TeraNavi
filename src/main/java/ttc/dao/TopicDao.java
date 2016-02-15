@@ -96,7 +96,6 @@ public class TopicDao implements AbstractDao{
                 topics.setUpdateDate(rs.getString(4));
                 topics.setCreateDate(rs.getString(5));
                 topics.setCreateUserName(rs.getString(6));
-
                 topics.setHeaderPath(rs.getString(7));
                 topics.setCommunityIconPath(rs.getString(8));
                 topics.setCommunityName(rs.getString(9));
