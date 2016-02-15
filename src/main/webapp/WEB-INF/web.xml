@@ -403,19 +403,13 @@
 
    <!-- フィルター -->
 
-  <!-- <filter>
-    <filter-name>LoginFilter</filter-name>
-    <filter-class>LoginFilter</filter-class>
-  </filter>
-
-  <filter-mapping>
-    <filter-name>AuthFilter</filter-name>
-    <url-pattern>/LoginFilter</url-pattern>
-  </filter-mapping>
-
-  <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
-    <url-pattern>/LoginFilter</url-pattern>
-</filter-mapping>-->
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/mypage</url-pattern>
+    </filter-mapping>
 
 </web-app>

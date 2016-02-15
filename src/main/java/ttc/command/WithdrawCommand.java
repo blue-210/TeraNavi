@@ -18,43 +18,36 @@ import ttc.bean.UserBean;
 
 import ttc.exception.business.ParameterInvalidException;
 
-public class LoginCommand extends AbstractCommand{
+public class WithdrawCommand extends AbstractCommand{
 
 
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
-            String loginId=reqc.getParameter("loginId")[0];
-            String password=reqc.getParameter("password")[0];
-
-
+            String userId=reqc.getParameter("userId")[0];
 
             Map params = new HashMap();
-            params.put("value",loginId);
-            params.put("where","where login_id=?");
+            params.put("value",userId);
+            params.put("where","where user_id=?");
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
             UserBean ub = (UserBean)dao.read(params);
-
+			
+			params.put("userbean",ub);
+			params.put("userStatus", "3");
+			params.put("userId",ub.getId());
+			dao.update(params);
+			
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
+			
+			resc.setTarget("withdrawResult");
 
-
-            if(password.equals(ub.getPassword())){
-                ub.setPassword("dummy");
-                ub.setSecretAnswer("dummy");
-                resc.setResult(ub);
-                resc.setTarget("LoginResult");
-
-                return resc;
-            }else{
-                throw new PasswordInvalidException("パスワードが違います",null);
-            }
-
+			return resc;
 
 
         }catch(NullPointerException e){

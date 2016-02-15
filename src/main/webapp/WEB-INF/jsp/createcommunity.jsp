@@ -151,11 +151,15 @@
 			}
 			
 			$("#csubmit").on("click",function(){
+				$("#mTitle").empty();
+				$("#mProfile").empty();
+				
+				
 				$("#mHeader").attr("src",$("#header").val());
 				$("#mTitle").append($("#name").val());
 				$("#mProfile").append($("#profile").val());
 				$("#mIcon").attr("src",$("#icon").val());
-				console.log("Modal Open");
+				
 			});
 
 		});
