@@ -27,13 +27,13 @@
 		<div class="container">
 			<div class="row">
 				<h1 class="text-center">新規登録</h1><br />
-				<form action="front/signup" method="post" class="text-center">
+				<form id="signForm" action="front/signup" method="post" class="text-center">
 				<!-- ここから -->
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="pull-left control-label" for="name">お名前</label>
-						<input type="text" id="fName" name="userName" placeholder="田中太郎" class="form-control">
+						<input type="text" form="signForm" id="fName" name="userName" placeholder="田中太郎" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -46,7 +46,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="furi">ふりがな</label>
-						<input type="text" id="fNameKana" name="nameKana" placeholder="たなかたろう" class="form-control">
+						<input type="text" form="signForm" id="fNameKana" name="nameKana" placeholder="たなかたろう" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -57,8 +57,20 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="sex" id="fSex">性別</label>
-						男性<input type="radio" name="sex" value="m">
-						女性<input type="radio" name="sex" value="f">
+						男性<input form="signForm" type="radio" name="sex" value="m">
+						女性<input form="signForm" type="radio" name="sex" value="f">
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="sexVisibleFlag" id="fSexVisible">性別の表示/非表示</label>
+						表示<input form="signForm" type="radio" name="sexVisibleFlag" value="0" checked="true">
+						非表示<input form="signForm" type="radio" name="sexVisibleFlag" value="1">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -69,7 +81,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="birthday">生年月日</label>
-						<input type="date" id="fBirthday" name="birthDate" class="form-control">
+						<input type="date" form="signForm" id="fBirthday" name="birthDate" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -80,7 +92,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="mail">メールアドレス</label>
-						<input type="mail" id="fMail" name="mailAddress" class="form-control">
+						<input type="mail" form="signForm" id="fMail" name="mailAddress" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -102,7 +114,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="login">ログインID</label>
-						<input type="text" id="fLoginId" name="loginId" class="form-control">
+						<input type="text" id="fLoginId" form="signForm" name="loginId" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -113,7 +125,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="pass">パスワード</label>
-						<input type="password" id="fPassword" name="password" class="form-control">
+						<input type="password" id="fPassword" form="signForm" name="password" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -124,7 +136,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="pass">パスワード確認</label>
-						<input type="password" name="password" class="form-control">
+						<input type="password" name="password" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -135,8 +147,8 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="question">秘密の質問</label>
-						<select name="questionId" id="fQuestionId" class="form-control">
-							<option value="1">質問1</option>
+						<select name="questionId" form="signForm" id="fQuestionId" class="form-control">
+							<option value="1" selected="true">質問1</option>
 							<option value="2">質問2</option>
 						</select>
 					</div>
@@ -149,7 +161,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="answer">回答</label>
-						<input type="text" id="fAnswer" name="questionAnswer" class="form-control">
+						<input type="text" id="fAnswer" form="signForm" name="questionAnswer" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -160,13 +172,14 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="key">登録キーを入力してください</label>
-						<input type="signUpKey" id="fKey" class="form-control">
+						<input type="text" name="signKey" id="fKey" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
+				
 			</div>
 
-			<input type="hidden" name="adminFlag" value="0">
+			<input type="hidden" name="adminFlag" form="signForm" value="0">
             <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal" data-target="#signup-modal">確認</button>
 			</div>
 		</form>
@@ -200,8 +213,8 @@
                 </div>
 
 				<div class="modal-footer">
-                	<button type="submit" class="btn btn-block btn-primary" form="">登録</button>
-                    <button type="submit" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
+                	<button type="submit" class="btn btn-block btn-primary" form="signForm">登録</button>
+                    <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
                 </div>
               </div>
             </div>
@@ -212,7 +225,17 @@
 	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	  <script>
 	  	$("#signsubmit").on("click", function() {
-
+			$("#sName").empty();
+			$("#sKana").empty();
+			$("#sSex").empty();
+			$("#sBirth").empty();
+			$("#sMail").empty();
+			$("#sId").empty();
+			$("#sPass").empty();
+			$("#sQuestion").empty();
+			$("#sAnswer").empty();
+			$("#sKey").empty();
+			
 			$("#sName").append($("#fName").val());
 	  		$("#sKana").append($("#fNameKana").val());
 			var cSex = $("input[name='sex']:checked").val();
