@@ -26,7 +26,7 @@
             <div class="row">
 
 
-                <!-- 4列をサイドメニューに割り当て -->
+                <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
                   <ul class="nav nav-pills nav-stacked well">
                     <li class="active">
@@ -56,28 +56,110 @@
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
-                    <img src="${sessionScope.loginUser.headerPath}" alt="" />
 
-         		   <img src="${sessionScope.loginUser.iconPath}" alt="" style="position:absolute;top:10%;left:20%;" /> ${sessionScope.loginUser.userName} さんのマイページです
 
-         		   <h2>自己紹介文</h2>
-         		   <textarea>${sessionScope.loginUser.profile}</textarea>
-
-         		   <a href="userSetting">プロフィールを編集</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="${sessionScope.loginUser.headerPath}" style="width:100%; height:200px">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="${sessionScope.loginUser.iconPath}" style="width:130px; height:130px; position:relative; bottom:180px;">
+                            <h3 style="position:relative; margin-top:-170px;">${sessionScope.loginUser.userName}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <p style="position:relative margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
+                            <a href="userSetting" class="btn btn-default pull-right">編集</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-warning">投稿した記事</h1>
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>記事タイトル</td>
+                                  <td>2016-11-22 20:30:20</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>記事タイトル</td>
+                                  <td>2016-11-22 20:30:20</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>記事タイトル</td>
+                                  <td>2016-11-22 20:30:20</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <a class="btn btn-warning pull-right">もっと見る</a>　
+                            <br>
+                            <br>
+                            <br>
+                            <h1 class="text-warning">参加中のコミュニティ</h1>
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>コミュにティ名</td>
+                                  <td>
+                                    <a class="btn btn-danger pull-right">退会</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>コミュにティ名</td>
+                                  <td>
+                                    <a class="btn btn-danger pull-right">退会</a>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>コミュにティ名</td>
+                                  <td>
+                                    <a class="btn btn-danger pull-right">退会</a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <a class="btn btn-warning pull-right">もっと見る</a>
+                        </div>
+                    </div>
 
                     <div class="col-sm-3 col-xs-6">
-                        <a href="articlepost">記事を投稿</a><br><br>
                         <a href="後でいれｔ">下書き</a><br><br>
                         <a href="blogSetting">ブログ設定</a><br><br>
                         <a href="commmy">コミュニティの管理</a><br><br>
-                        <a href="後でいれｔ">コメント管理</a><br><br>
                         <a href="dmsend">DMの送信</a><br><br>
          			   <a href="front/dmreceive">DMの受信</a><br><br>
                         <a href="chatwrite">チャット送信</a><br><br>
                         <form action="front/showchat" method="post">
                             チャット受信<input type="text" name="topicId">
                         </form>
-                        <a href="後でいれｔ">大会</a><br><br>
                         <a href="search">検索</a><br><br>
 
                     </div>
