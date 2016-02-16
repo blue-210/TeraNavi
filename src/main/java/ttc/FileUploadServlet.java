@@ -20,6 +20,7 @@ import java.io.File;
 
 import java.util.List;
 import java.util.Iterator;
+import ttc.util.ImageResizer;
 
 public class FileUploadServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException{
@@ -38,6 +39,18 @@ public class FileUploadServlet extends HttpServlet{
 
 		String hostName = req.getLocalName();
 
+		int width = 0;
+		int height = 0;
+		
+		String info = req.getPathInfo();
+		if(info != null && info.equals("header")){
+			width = 1500;
+			height = 500;
+		}else{
+			width = 400;
+			height = 400;
+		}
+		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload sfu = new ServletFileUpload(factory);
 		try{
@@ -49,11 +62,13 @@ public class FileUploadServlet extends HttpServlet{
 				if(!item.isFormField()){
 					String fileName = item.getName();
 					if((fileName!=null)&&(!fileName.equals(""))){
-						fileName = (new File(fileName)).getName();
-
+						File target = new File(fileName);
+						fileName = target.getName();
+						
 						item.write(new File(path+"/"+fileName));
-
-						resultPath="http://"+hostName+"/TeraNavi/imgPath/"+fileName;
+						
+						String result=ImageResizer.doResize(new File(path+"/"+fileName), width, height,path+"/"+fileName);
+						resultPath="http://"+hostName+"/TeraNavi/imgPath/"+result;
 					}
 				}
 
