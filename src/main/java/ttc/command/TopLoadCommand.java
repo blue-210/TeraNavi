@@ -7,15 +7,14 @@ package ttc.command;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Business.BusinessLogicException;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -27,7 +26,7 @@ import ttc.bean.UserBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
 /**
  *
  * @author Masaki
@@ -93,7 +92,7 @@ public class TopLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
-			/*ブログタブで表示する学科ごとの新着記事の取得
+			//ブログタブで表示する学科ごとの新着記事の取得
 			factory = AbstractDaoFactory.getFactory("users");
 			dao = factory.getAbstractDao();
 			Map param3 = new HashMap();
@@ -113,7 +112,6 @@ public class TopLoadCommand extends AbstractCommand{
 				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
 			}
 			result.put( "department", sliceArticleBody(departmentArticles) );
-			*/
 
 
 			MySqlConnectionManager.getInstance().commit();

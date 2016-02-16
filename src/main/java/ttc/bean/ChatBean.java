@@ -8,6 +8,15 @@ public class ChatBean implements Bean{
     private String body;
     private String date;
     private String deleteFlag;
+    private String fkTopicId;
+
+    public String getFkTopicId(){
+        return fkTopicId;
+    }
+
+    public void setFkTopicId(String fkTopicId){
+        this.fkTopicId = fkTopicId;
+    }
 
 
     /**

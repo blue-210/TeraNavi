@@ -5,11 +5,13 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Integration.IntegrationException;
-import ttc.exception.Business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -17,7 +19,7 @@ import java.text.SimpleDateFormat;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
 
 public class WriteChatCommand extends AbstractCommand{
 
@@ -25,7 +27,6 @@ public class WriteChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
-
 
             String userId=reqc.getParameter("userId")[0];
             String topicId=reqc.getParameter("topicId")[0];
@@ -36,10 +37,6 @@ public class WriteChatCommand extends AbstractCommand{
             String date=sdf.format(c.getTime());
 
             String chatDeleteFlag="0";
-
-
-
-
 
             Map params = new HashMap();
             params.put("userId",userId);
@@ -53,10 +50,14 @@ public class WriteChatCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
+            List result = new ArrayList();
+            result = dao.readAll(params);
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setTarget("chatResult");
+            resc.setResult(result);
+            //resc.setTarget("showchat");
 
             return resc;
         }catch(NullPointerException e){

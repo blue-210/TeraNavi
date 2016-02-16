@@ -11,6 +11,7 @@ public class ArticleBean implements Bean{
     private List tags;
     private List comments;
     private String userName;
+	private int commentCount;
 
 	/**
 	* Returns value of articleId
@@ -138,5 +139,19 @@ public class ArticleBean implements Bean{
 	*/
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	/**
+	 * @return the commentCount
+	 */
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	/**
+	 * @param commentCount the commentCount to set
+	 */
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 }

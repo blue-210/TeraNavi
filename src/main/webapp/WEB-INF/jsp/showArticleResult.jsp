@@ -62,7 +62,7 @@
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">2</i>
+            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.commentCount}</i>
             <i class="-o fa fa-3x fa-fw fa-twitter text-primary" style="color:#55ACEE; margin-right:5%;"></i>
             <i class="-o fa fa-3x fa-facebook-square fa-fw" style="color:#3b5998; margin-right:10%;"></i>
             <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
@@ -103,28 +103,29 @@
               <hr>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-1 col-md-offset-2">
-              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-              <a href="#"><p class="text-center">ユーザ名</p></a>
-            </div>
-            <div class="col-md-7">
-              <p>2016年02月12日 04:52</p>
-              <p>コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文 コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文
-                コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文コメントの本文</p>
-              <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
-            	<i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i>
-            </a>
-              <ul class="dropdown-menu dropdown-menu-right">
-                <li>
-                  <a href="#">このコメントを通報する</a>
-                </li>
-                <li>
-                  <a href="#">このユーザを通報する</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <c:forEach var="comment" items="${result.comments}">
+			  <div class="row">
+				<div class="col-md-1 col-md-offset-2">
+				  <img src="comment.iconPath" class="img-responsive">
+				  <a href="#"><p class="text-center">comment.userName</p></a>
+				</div>
+				<div class="col-md-7">
+				  <p>${comment.commentDate}</p>
+				  <p>${comment.commentBody}</p>
+				  <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
+					<i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i>
+				</a>
+				  <ul class="dropdown-menu dropdown-menu-right">
+					<li>
+					  <a href="#">このコメントを通報する</a>
+					</li>
+					<li>
+					  <a href="#">このユーザを通報する</a>
+					</li>
+				  </ul>
+				</div>
+			  </div>
+		  </c:forEach>
         </div>
       </div>
     </div>
