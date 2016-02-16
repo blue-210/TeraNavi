@@ -122,7 +122,7 @@
                     <div class="col-sm-3 col-xs-6">
                         <a href="後でいれｔ">下書き</a><br><br>
                         <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
-                        <a href="/TeraNavi/commmy">コミュニティの管理</a><br><br>
+                        <a href="/TeraNavi/commMy">コミュニティの管理</a><br><br>
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
          			   <a href="/TeraNavi/front/dmreceive">DMの受信</a><br><br>
                         <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>

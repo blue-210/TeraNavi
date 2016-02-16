@@ -48,16 +48,18 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletRequest req = (HttpServletRequest) reqc.getRequest();
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
+		req.setAttribute("result",resc.getResult());
+		
 		String path = reqc.getCommandPath();
 
 		boolean flag = false;
-		
+
 		try{
 			flag = req.getParameter("ajax").equals("true");
 		}catch(Exception e){
-			
+
 		}
-		
+
 		if(flag){
 			try{
 				res.setContentType("application/json;charset=UTF-8");
@@ -74,6 +76,7 @@ public class WebApplicationController implements ApplicationController{
 			}else if(path.equals("logout")){
 				HttpSession session = req.getSession(true);
 				session.removeAttribute("loginUser");
+				session.invalidate();
 
 			}else{
 
