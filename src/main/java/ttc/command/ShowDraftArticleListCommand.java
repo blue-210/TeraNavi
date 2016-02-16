@@ -16,7 +16,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.exception.business.ParameterInvalidException;
 
-public class ShowArticleListCommand extends AbstractCommand{
+public class ShowDraftArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             System.out.println("ShowArticleListCommand");
@@ -26,7 +26,7 @@ public class ShowArticleListCommand extends AbstractCommand{
 
             Map params = new HashMap();
             params.put("userId", userId);
-            params.put("flag", "0");
+            params.put("flag", "1");
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -38,7 +38,7 @@ public class ShowArticleListCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(results);
-            resc.setTarget("showArticleListResult");
+            resc.setTarget("showDraftArticleList");
 
             return resc;
 

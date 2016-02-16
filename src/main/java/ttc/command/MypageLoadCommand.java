@@ -42,6 +42,7 @@ public class MypageLoadCommand extends AbstractCommand{
 			AbstractDao dao = factory.getAbstractDao();
 			Map param = new HashMap();
 			param.put("userId", userId);
+			param.put("flag", "0");
 			List articles = dao.readAll(param);
 
 			if(articles.size() <= 3){
