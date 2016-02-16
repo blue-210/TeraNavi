@@ -13,7 +13,7 @@ $(function(){
         })
         .done(function(data){
             $("textarea").val("");
-            $("tbody").empty();
+            $(".col-md-5").empty();
             // JSON形式で返ってきたものから中身を取り出して表示するサンプル
             for(var i in data){
                 var userId = data[i].userId;
@@ -23,8 +23,9 @@ $(function(){
                 var date = data[i].date;
 
                 console.log(i + " " + userId + " " + body);
-                $("tbody")
-                .append("<tr><td>" + userName + "</td><td>" + body + "</td><td>" + date + "</td></tr>");
+                $(".col-md-5").append("<div class=\"box\"><p class=\"content\">" + userName + body + date + "</p></div>");
+
+                $(".col-md-5").append("<img class=\"account\" src=\"" + iconPath + "\"/>");
             }
         })
         .fail(function(data){
