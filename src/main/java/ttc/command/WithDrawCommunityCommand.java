@@ -22,25 +22,25 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
-            HashMap para=new HashMap();
+            HashMap result = new HashMap();
 
             params.put("userId",reqc.getParameter("userId")[0]);
             params.put("commId",reqc.getParameter("commId")[0]);
-
+			params.put("target",reqc.getParameter("target")[0]);
+			
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
             dao.update(params);
 
-            para.put("userName",reqc.getParameter("userName"));
-            CommunityBean cb =(CommunityBean)dao.read(para);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			
 
-            para.put("commName",cb.getName());
-            resc.setResult(para);
+            result.put("commName",reqc.getParameter("commName")[0]);
+            resc.setResult(result);
             resc.setTarget("communityWithDrawResult");
 
             return resc;

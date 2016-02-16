@@ -69,11 +69,8 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("targetNo"));
+            pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-            System.out.println("targetNo="+map.get("targetNo"));
-
-
 
             result = pst.executeUpdate();
 

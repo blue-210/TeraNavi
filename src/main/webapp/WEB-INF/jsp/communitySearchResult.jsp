@@ -81,14 +81,10 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="commSetting" method="post" name="showDel">
+                                        <form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
                                             <input type="hidden" name="commId" value="${comm.id}">
                                             <input type="hidden" name="commName" value="${comm.name}">
-                                            <input type="hidden" name="commProfile" value="${comm.profile}">
-                                            <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                            <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                            <input type="hidden" name="del" value="del">
+											<input type="hidden" name="target" values="community_withdrawal_flag=1">
                                             <input type="submit" id="showDel" value="退会"></input>
                                         </form>
                                     </td>
