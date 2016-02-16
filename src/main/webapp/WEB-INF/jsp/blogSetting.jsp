@@ -61,14 +61,20 @@
 
                 <div calss="col-md-8">
 
-                       <h1>ブログ設定画面</h1>
+                            <h1>ブログ設定画面</h1>
+
                        <form action="front/blogSetting" method="post">
-                           タイトル <input type="text" name="title"><br>
-                           ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
-            			   説明文 <input type="text" name="explanation"><br>
-            			   <input type="hidden" name="status" value="0">
-                           <input type="submit" value="登録">
+                           <div class="col-xs-4">
+                               タイトル <input type="text" name="title" class="form-control"><br>
+                               説明文 <textarea rows="3" class="form-control" name="explanation"></textarea><br>
+                               ヘッダ画像 <input id="head" type="text" class="form-control" name="headerPath" ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
+
+            			            <input id="status" type="hidden" name="status" value="1">
+                                <input type="submit" value="確認">
+                            </div>
                        </form>
+
+
 
                </div>
 
@@ -135,6 +141,9 @@
 		function onDragOver(event){
 			event.preventDefault();
 		}
+
+
+
  -->
 
 	</script>
