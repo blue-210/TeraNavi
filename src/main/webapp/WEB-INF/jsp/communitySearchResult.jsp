@@ -84,7 +84,7 @@
                                         <form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
                                             <input type="hidden" name="commId" value="${comm.id}">
                                             <input type="hidden" name="commName" value="${comm.name}">
-											<input type="hidden" name="target" values="community_withdrawal_flag=1">
+											<input type="hidden" name="target" value="community_withdrawal_flag=1">
                                             <input type="submit" id="showDel" value="退会"></input>
                                         </form>
                                     </td>

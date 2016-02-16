@@ -24,9 +24,12 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             HashMap params = new HashMap();
             HashMap result = new HashMap();
 
+			String target = reqc.getParameter("target")[0];
+			System.err.println(target);
+			
             params.put("userId",reqc.getParameter("userId")[0]);
             params.put("commId",reqc.getParameter("commId")[0]);
-			params.put("target",reqc.getParameter("target")[0]);
+			params.put("target",target);
 			
             MySqlConnectionManager.getInstance().beginTransaction();
 
