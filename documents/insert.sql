@@ -1272,22 +1272,7 @@ INSERT INTO topics(
 )VALUES(
     1,
     5,
-    '伊藤園',
-    '2004/02/14 20:30:20',
-    '2004/02/13 20:30:20'
-);
-
-INSERT INTO topics(
-    fk_community_id,
-    fk_create_user_id,
-    topic_name,
-    topic_updatetime_date,
-    topic_created_date
-)VALUES(
-    1,
-    5,
-    '伊藤園',
-
+    '伊藤園1',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
@@ -1301,27 +1286,93 @@ INSERT INTO topics(
 )VALUES(
     2,
     5,
+    '伊藤園2',
+
+    '2004/02/14 20:30:20',
+    '2004/02/13 20:30:20'
+);
+
+INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
+    topic_name,
+    topic_updatetime_date,
+    topic_created_date
+)VALUES(
+    3,
+    5,
+    '伊藤園3',
+    '2004/02/14 20:30:20',
+    '2004/02/13 20:30:20'
+);
+
+INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
+    topic_name,
+    topic_updatetime_date,
+    topic_created_date
+)VALUES(
+    4,
+    5,
     '伊藤園',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
 
+INSERT INTO topics(
+    fk_community_id,
+    fk_create_user_id,
+    topic_name,
+    topic_updatetime_date,
+    topic_created_date
+)VALUES(
+    5,
+    5,
+    '伊藤園',
+    '2004/02/14 20:30:20',
+    '2004/02/13 20:30:20'
+);
+
+
 #chat表
 INSERT INTO chat(
+    fk_user_id,
+    fk_topic_id,
     chat_body,
     chat_date,
     chat_delete_flag
 )VALUES(
+    5,
+    1,
     'おーいお茶が美味しい',
     '2002/02/14 20:30:20',
     0
 );
 
 INSERT INTO chat(
+    fk_user_id,
+    fk_topic_id,
     chat_body,
     chat_date,
     chat_delete_flag
 )VALUES(
+    4,
+    2,
+    'おーいお茶が美味しい',
+    '2002/02/14 20:30:20',
+    1
+);
+
+INSERT INTO chat(
+    fk_user_id,
+    fk_topic_id,
+    chat_body,
+    chat_date,
+    chat_delete_flag
+)VALUES(
+    5,
+    2,
     'おーいお茶が美味しい',
     '2002/02/14 20:30:20',
     1

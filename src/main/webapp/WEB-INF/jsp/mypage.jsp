@@ -36,10 +36,10 @@
                       <a href="/TeraNavi/articlepost">記事を書く</a>
                     </li>
                     <li>
-                      <a href="#draftarticle">下書き一覧</a>
+                        <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
                     </li>
                     <li>
-                      <a href="#blogsetting">ブログ設定</a>
+                      <a href="/TeraNavi/blogSetting">ブログ設定</a>
                     </li>
                     <li>
                       <a href="#communitymanage">コミュニティ管理</a>
@@ -122,7 +122,7 @@
                     <div class="col-sm-3 col-xs-6">
                         <a href="後でいれｔ">下書き</a><br><br>
                         <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
-                        <a href="/TeraNavi/commmy">コミュニティの管理</a><br><br>
+                        <a href="/TeraNavi/commMy">コミュニティの管理</a><br><br>
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
          			   <a href="/TeraNavi/front/dmreceive">DMの受信</a><br><br>
                         <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>

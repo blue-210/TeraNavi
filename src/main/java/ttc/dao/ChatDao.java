@@ -36,9 +36,10 @@ public class ChatDao implements AbstractDao{
             MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 
-            sql.append("select chat_id,fk_user_id,fk_topic_id,chat_body,chat_date ");
-            sql.append("from chat ");
-            sql.append("where fk_topic_id = ?");
+            sql.append("select c.chat_id, u.user_name, u.user_id, u.user_icon_path, c.chat_body, c.chat_date, t.topic_id ");
+            sql.append("from chat c JOIN users u ON c.fk_user_id = u.user_id ");
+            sql.append("JOIN topics t ON t.topic_id = c.fk_topic_id ");
+            sql.append("where t.topic_id = ?");
 
             pst = cn.prepareStatement(new String(sql));
             pst.setString(1,(String)map.get("topicId"));
@@ -49,9 +50,11 @@ public class ChatDao implements AbstractDao{
                 chatBean = new ChatBean();
                 chatBean.setChatId(rs.getString(1));
                 chatBean.setUserName(rs.getString(2));
-                chatBean.setIconPath(rs.getString(3));
-                chatBean.setBody(rs.getString(4));
-                chatBean.setDate(rs.getString(5));
+                chatBean.setUserId(rs.getString(3));
+                chatBean.setIconPath(rs.getString(4));
+                chatBean.setBody(rs.getString(5));
+                chatBean.setDate(rs.getString(6));
+                chatBean.setFkTopicId(rs.getString(7));
                 result.add(chatBean);
             }
 
@@ -68,7 +71,6 @@ public class ChatDao implements AbstractDao{
         }
 
         return result;
-
     }
 
     public int update(Map map)throws IntegrationException{
