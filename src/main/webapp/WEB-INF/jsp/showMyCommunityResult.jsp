@@ -25,6 +25,8 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	
+	<input type="hidden" id="target" value="${result.target}">
     <div class="container">
         <div class="row">
             <table class="table table-striped">
@@ -38,7 +40,7 @@
                    </tr>
                </thead>
                <tbody>
-                   <c:forEach var="comm" items="${result}">
+                   <c:forEach var="comm" items="${result.list}">
                        <tr>
                            <td class="deletable">
                                <form action="showcomm" method="post" name="showForm">
@@ -47,16 +49,19 @@
                                 </form>
                            </td>
                            <td>
-                               <form action="commSetting" method="post" name="showDel">
-                                       <input type="hidden" name="commId" value="${comm.id}">
-                                       <input type="hidden" name="commName" value="${comm.name}">
-                                       <input type="hidden" name="commProfile" value="${comm.profile}">
-                                       <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                       <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                       <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                       <input type="hidden" name="del" value="del">
-                                    <input type="submit" id="showDel" value="削除"></input>
-                                </form>
+							   <div class="edit">
+									<form action="commSetting" method="post" name="showDel">
+											<input type="hidden" name="commId" value="${comm.id}">
+											<input type="hidden" name="commName" value="${comm.name}">
+											<input type="hidden" name="commProfile" value="${comm.profile}">
+											<input type="hidden" name="headerPath" value="${comm.headerPath}">
+											<input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
+											<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+											<input type="hidden" name="del" value="del">
+										 <input type="submit" id="showDel" value="削除"></input>
+									 </form>
+								   
+							   </div>
                            </td>
                            <td> <c:out value="${comm.name}" /> </td>
                            <td> <c:out value="${comm.profile}"/> </td>
@@ -71,6 +76,13 @@
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-
+	<script>
+		$(function(){
+			var target = $("#target").val();
+			if(target == "comm"){
+				$(".edit").css("display","none");
+			}
+		});
+	</script>
 </body>
 </html>
