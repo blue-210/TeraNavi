@@ -89,6 +89,7 @@
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url="/TeraNavi/upload/header";
 				ajaxSettings.success = function(data){
 					var text = "";
 					$("#headPhoto").val(text+data.result);
@@ -108,6 +109,7 @@
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url="/TeraNavi/upload";
 				ajaxSettings.success = function(data){
 					var text = "";
 					$("#iconPhoto").val(text+data.result);
