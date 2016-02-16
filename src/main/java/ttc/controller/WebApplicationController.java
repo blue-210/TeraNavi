@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 
 import java.io.PrintWriter;
 
+import ttc.bean.UserBean;
+
 public class WebApplicationController implements ApplicationController{
 
 	public RequestContext getRequest(Object request)throws PresentationException{
@@ -78,6 +80,11 @@ public class WebApplicationController implements ApplicationController{
 				session.removeAttribute("loginUser");
 				session.invalidate();
 
+			}else if(path.equals("blogCreate")){
+				HttpSession session = req.getSession(true);
+				UserBean user = (UserBean)session.getAttribute("loginUser");
+				user.setBlogStatus("1");
+				session.setAttribute("loginUser", user);
 			}else{
 
 				req.setAttribute("result",resc.getResult());
