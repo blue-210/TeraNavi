@@ -46,7 +46,7 @@
                      <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
                    </li>
                    <li>
-                     <a href="#blogsetting">ブログ設定</a>
+                     <a href="/TeraNavi/blogSetting">ブログ設定</a>
                    </li>
                    <li>
                      <a href="#communitymanage">コミュニティ管理</a>
