@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.DirectMessageBean;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.integration.IntegrationException;
 
 public class DirectMessageDao implements AbstractDao{
 

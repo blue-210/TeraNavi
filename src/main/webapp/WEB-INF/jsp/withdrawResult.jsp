@@ -1,15 +1,10 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
     <meta charset="UTF-8">
-    <title>チャット送信</title>
+
+    <title>退会</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -25,12 +20,9 @@
 
     <div class="container">
        <div class="row">
-           <h1>チャット送信</h1>
-           <form action="front/writechat" method="post">
-               チャット本文<br><input type="textarea" name="chatBody" rows="10" cols="90"><br>
-               topicID<input type="text" name="topicId"><br>
-               <input type="submit" value="送信">
-           </form>
+		   <h1>退会しました</h1>
+        <a href="../top">Topへ</a>
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

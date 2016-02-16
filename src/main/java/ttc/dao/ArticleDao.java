@@ -16,7 +16,7 @@ import ttc.bean.UserBean;
 import ttc.bean.BlogBean;
 import ttc.bean.TagBean;
 import ttc.bean.CommentBean;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.integration.IntegrationException;
 
 public class ArticleDao implements AbstractDao{
 
@@ -109,7 +109,8 @@ public class ArticleDao implements AbstractDao{
                 //---------------------------------------------------------------
             }
             ab.setComments(comments);
-            //------------------------------------------------------------------
+            ab.setCommentCount(comments.size());
+			//------------------------------------------------------------------
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();

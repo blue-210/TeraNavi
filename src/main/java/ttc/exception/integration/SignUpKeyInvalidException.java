@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ttc.exception.Integration;
+package ttc.exception.integration;
 
 /**
  *
  * @author Masaki
  */
-public class AddressDuplicationException extends IntegrationException{
-	public AddressDuplicationException(String mess,Throwable t){
+public class SignUpKeyInvalidException extends IntegrationException{
+	public SignUpKeyInvalidException(String mess,Throwable t){
 		super(mess,t);
 	}
 }

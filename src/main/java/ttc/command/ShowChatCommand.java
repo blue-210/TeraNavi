@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Business.BusinessLogicException;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -17,7 +17,8 @@ import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.bean.ChatBean;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ShowChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -39,8 +40,16 @@ public class ShowChatCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			params.put("chat",result);
-            resc.setResult(params);
+            // 投稿が一度もない場合
+            if(result.size() == 0){
+                System.out.println("投稿がないときの場合"+topicId);
+                ChatBean bean = new ChatBean();
+                bean.setFkTopicId(topicId);
+                result.add(bean);
+                resc.setResult(result);
+            }else{
+                resc.setResult(result);
+            }
             resc.setTarget("showchat");
 
             return resc;

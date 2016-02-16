@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.Business.BusinessLogicException;
-import ttc.exception.Integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.ArticleBean;
-import ttc.exception.Business.ParameterInvalidException;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ShowArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -32,6 +32,10 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
 
+			factory = AbstractDaoFactory.getFactory("comment");
+			dao = factory.getAbstractDao();
+			
+			
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

@@ -1,4 +1,4 @@
-package ttc.exception.Business;
+package ttc.exception.business;
 
 import ttc.exception.PresentationException;
 
