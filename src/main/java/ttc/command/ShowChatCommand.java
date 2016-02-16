@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.bean.ChatBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class ShowChatCommand extends AbstractCommand{
@@ -40,8 +41,12 @@ public class ShowChatCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             // 投稿が一度もない場合
-            if(result == null){
-                resc.setResult(params);
+            if(result.size() == 0){
+                System.out.println("投稿がないときの場合"+topicId);
+                ChatBean bean = new ChatBean();
+                bean.setFkTopicId(topicId);
+                result.add(bean);
+                resc.setResult(result);
             }else{
                 resc.setResult(result);
             }
