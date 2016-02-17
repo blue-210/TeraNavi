@@ -39,11 +39,10 @@
                    </tr>
                </thead>
                <tbody>
-                   <h1>作成したコミュニティa</h1>
+                   <h1>作成したコミュニティ</h1>
+
                         <c:forEach var="comm" items="${result.list}">
-                            <tr>
                             <c:if test="${comm.adminFlag eq 1}">
-                                <td class="deletable">
                                 <div class="edit">
                                      <form action="commSetting" method="post" name="showDel">
                                              <input type="hidden" name="commId" value="${comm.id}">
@@ -56,14 +55,7 @@
                                           <input type="submit" id="showDel" value="削除"></input>
                                       </form>
                                 </div>
-                            </td>
-                                <td> <c:out value="${comm.name}" /> </td>
-                                <td> <c:out value="${comm.profile}"/> </td>
-                                <td> <c:out value="${comm.countMember}"/> </td>
-
                             </c:if>
-                        </tr>
-
                         </c:forEach>
                     </tr>
 
