@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.ArticleBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class CautionUserCommand extends AbstractCommand{

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.TopicBean;
-import ttc.bean.UserBean;
+
 import ttc.exception.integration.IntegrationException;
 
 public class TopicDao implements AbstractDao{

@@ -21,7 +21,7 @@ public class CommunitySearchCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            HashMap params = new HashMap();
+            Map params = new HashMap();
 
             String keyword = reqc.getParameter("keyword")[0];
 
