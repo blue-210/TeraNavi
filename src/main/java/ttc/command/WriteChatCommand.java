@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class WriteChatCommand extends AbstractCommand{

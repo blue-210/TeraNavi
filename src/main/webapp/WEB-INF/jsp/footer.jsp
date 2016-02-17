@@ -1,8 +1,3 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
 <nav id="footer" class="navbar navbar-default" role="navigation">
    <footer class="footer container-fluid">
       <div class="container">
@@ -16,10 +11,8 @@
              <li><h2>運営元について</h2></li>
              <li><a href="http://www.tera-house.ac.jp/">学校法人 小山学園</a></li>
              <li><a href="">プライバシーポリシー</a></li>
-         </ul>>
+         </ul>
          <p class="text-center text-muted"><small></small></p>
-
-
 
 		<div id="contact-modal" class="modal fade">
 			<div class="modal-dialog">
@@ -55,12 +48,11 @@
 							</div>
 							<button type="button" id="contactBtn" class="btn btn-default pull-right">送信する</button>
 						</form>
-						
+
 					</div>
 					<div class="modal-footer"></div>
 				</div><!--end moal-content-->
 			</div><!--end modal-dialog-->
 		</div><!--end modal-->
 	</footer><!--end footer-->
-	
 	<script src='/TeraNavi/js/ContactSend.js'></script>

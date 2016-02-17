@@ -13,50 +13,37 @@
     <title>作成したコミュニティ</title>
     <!-- Latest compiled and minified CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
-
-	<input type="hidden" id="target" value="${result.target}">
-
-    <div class="container">
-        <div class="row">
+    <div class="section">
+        <div class="container">
             <div class="col-xs-10 col-xs-offset-1">
-                <h1>作成したコミュニティ</h1>
+                <h1 class="text-warning">作成したコミュニティ</h1>
+            </div>
                 <c:forEach var="comm" items="${result.list}">
                     <c:if test="${comm.adminFlag eq 1}">
-                        <!--<div class="deletable">
-                            <form action="showcomm" method="post" name="showForm">
-                                <input type="hidden" name="commId" value="${comm.id}">
-                                <input type="submit" id="showCom" value="詳細へ"></input>
-                            </form>
-                        -->
-                        <div class="row">
-                            <div class="col-md-1">
+                        <div class="row col-md-10 col-md-offset-1 well">
+                            <div class="col-md-2">
                                 <img src="${comm.iconPath}" id="topicIcon">
                             </div>
-                            <div class="col-md-4">
-                                <h4 id="title" class="text-left">
-                                    <a href="showcomm?commId=${comm.id}"><c:out value="${comm.name}" /></a>
-                                </h4>
+                            <div class="col-md-7">
+                                <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
+                                    <h2 class="text-muted">${comm.name}</h2>
+                                </a>
+                                <p id="articleBody">${comm.profile}...</p>
                             </div>
-                            <div class="col-md-5">
-                                <h4 id="title" class="text-left">
-                                    <c:out value="${comm.profile}" /></a>
-                                </h4>
-                            </div>
-
-                        <!--
-                        <p><c:out value="${comm.name}" /><c:out value="${comm.profile}"/><c:out value="${comm.countMember}"/></p>
-                    -->
                             <div class="col-md-2">
                                 <div class="edit">
                                     <form action="commSetting" method="post" name="showDel">
@@ -74,33 +61,23 @@
                         </div>
                     </c:if>
                 </c:forEach>
-            </div>
 
             <div class="col-xs-10 col-xs-offset-1">
-                <h1>参加しているコミュニティ</h1>
+                <h1 class="text-warning">参加しているコミュニティ</h1>
+            </div>
                 <c:forEach var="comm2" items="${result.list}">
                     <c:if test="${comm2.adminFlag ne 1}">
-                        <!--<div class="deletable">
-                            <form action="showcomm" method="post" name="showForm">
-                                <input type="hidden" name="commId" value="${comm2.id}">
-                                <input type="submit" id="showCom" value="詳細へ"></input>
-                            </form>
-                        </div>
-                        -->
-                        <div class="row">
-                            <div class="col-md-1">
+                        <div class="row col-md-10 col-md-offset-1 well">
+                            <div class="col-md-2">
                                 <img src="${comm2.iconPath}" id="topicIcon">
                             </div>
-                            <div class="col-md-4">
-                                <h4 id="title" class="text-left">
-                                    <a href="showcomm?commId=${comm2.id}"><c:out value="${comm2.name}" /></a>
-                                </h4>
+                            <div class="col-md-7">
+                                <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
+                                    <h2 class="text-muted">${comm2.name}</h2>
+                                </a>
+                                <p id="articleBody">${comm2.profile}...</p>
                             </div>
-                            <div class="col-md-5">
-                                <h4 id="title" class="text-left">
-                                    <c:out value="${comm2.profile}" /></a>
-                                </h4>
-                            </div>
+
                             <div class="col-md-2">
                                 <form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
                                     <input type="hidden" name="commId" value="${comm.id}">
@@ -110,24 +87,10 @@
                                 </form>
                             </div>
                         </div>
-                        <!--
-                        <p><c:out value="${comm2.name}" /><c:out value="${comm2.profile}"/><c:out value="${comm2.countMember}"/></p>
-                        -->
                     </c:if>
                 </c:forEach>
             </div>
-        </div><!--end container-->
-    </div><!--end row-->
+        </div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
-	<!--<script>
-		$(function(){
-			var target = $("#target").val();
-			if(target == "comm"){
-				$(".edit").css("display","none");
-			}
-		});
-	</script>
--->
 </body>
 </html>

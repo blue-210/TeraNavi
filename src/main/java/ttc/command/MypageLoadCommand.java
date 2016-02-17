@@ -3,7 +3,7 @@ package ttc.command;
 
 
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import ttc.bean.ArticleBean;
-import ttc.bean.UserBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;

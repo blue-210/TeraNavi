@@ -16,7 +16,6 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
 import ttc.bean.ArticleBean;
-import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class DeleteArticleCommand extends AbstractCommand{

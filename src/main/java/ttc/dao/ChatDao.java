@@ -1,11 +1,9 @@
 package ttc.dao;
 
-import java.text.SimpleDateFormat;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import java.sql.Date;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,8 +14,6 @@ import ttc.bean.ChatBean;
 import ttc.bean.Bean;
 import ttc.exception.integration.IntegrationException;
 import ttc.util.MySqlConnectionManager;
-
-import ttc.exception.NotLineException;
 
 
 public class ChatDao implements AbstractDao{
