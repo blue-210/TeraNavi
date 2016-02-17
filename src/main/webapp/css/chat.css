@@ -56,7 +56,7 @@ body{
 	background: #A4C6FF;
 	bottom: -20px;
 	left: 50px;
-	margin-left:-16%;
+	margin-left:-20%;
 	float: right;
 }
 
@@ -84,20 +84,27 @@ body{
 	left: 35px;
 	margin-left:-10%;
 }
-#content{
+.content{
 	padding-left:20px;
 	padding-top:20px;
 	padding-bottom:10px;
 	padding-right:10px;
 }
-#other_content{
+.other_content{
 	padding-left:20px;
 	padding-top:20px;
 	padding-bottom:10px;
 	padding-right:10px;
 }
-#account{
+.account{
+	width:64px;
+	height:64px;
 	margin-left:70%;
+}
+.other_account{
+	margin-right: 100%;
+	width:64px;
+	height:64px;
 }
 #dm_footer input{
 	margin-top:10px;
@@ -105,6 +112,7 @@ body{
 	height:40px;
 }
 #header_image{
+	margin-top:0px;
 	z-index:1;
 }
 #header_icon{
@@ -130,4 +138,24 @@ body{
 	top: 320px;
 	left:220px;
 	color:#fff;
+}
+#submit_button{
+	width:100%;
+	height:50px;
+}
+#chatwrite{
+	width:100%;
+	height:50px;
+	padding:0px;
+	margin:0px;
+}
+#chatBody{
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	margin-bottom:-20px;
+}
+.navbar{
+	margin-bottom:0px;
 }
