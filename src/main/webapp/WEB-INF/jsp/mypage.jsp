@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                      <a href="#directmessage">DM</a>
+                      <a href="/TeraNavi/front/showDmList">DM</a>
                     </li>
                     <br><br><br><br>
                     <li>
@@ -133,21 +133,10 @@
                     </div>
 
                     <div class="col-sm-3 col-xs-6">
-                        <a href="後でいれｔ">下書き</a><br><br>
-                        <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
-                        <a href="/TeraNavi/commMy">コミュニティの管理</a><br><br>
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
-         			   <a href="/TeraNavi/front/showDmList">DM一覧表示</a><br><br>
-					   <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
-                        <form action="/TeraNavi/front/showchat" method="post">
-                            チャット受信<input type="text" name="topicId">
-                        </form>
                         <a href="/TeraNavi/search">検索</a><br><br>
-
                     </div>
                     <div class="col-sm-3 col-xs-6">
-                        <a href="/TeraNavi/openBlog">ブログ開設</a><br><br>
-                        <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
          			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
                         <a href="/TeraNavi/createcomm">コミュニティの作成</a><br><br>
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
@@ -155,7 +144,6 @@
                         <form action="/TeraNavi/front/commList" method="post" name="comForm">
                             <input type="hidden" name="intention" value="list">
                         </form><br>
-                        <a href="/TeraNavi/createtopic">トピックの作成</a><br><br>
                         <a href="/TeraNavi/showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
