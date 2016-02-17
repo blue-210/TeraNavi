@@ -1,0 +1,15 @@
+<Context
+    path="/TeraNaviAdmin"
+    reloadable="true"
+    docBase="/vagrant_data/TeraNaviAdmin/target/TeraNaviAdmin"
+	aliases="/imgPath=/tmp">
+    <Resource
+        name="jdbc/mysql"
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="TERA_NAVI"
+        password="tera"
+        driverClassName="net.sf.log4jdbc.DriverSpy"
+        url="jdbc:log4jdbc:mysql://localhost/tera_db"
+    />
+</Context>

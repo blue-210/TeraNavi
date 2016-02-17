@@ -1,13 +1,15 @@
 <Context
     path="/TeraNavi"
     reloadable="true"
-    docBase="/vagrant_data/target/TeraNavi">
-    <!-- <Resource
-        name=""
+    docBase="/vagrant_data/TeraNavi/target/TeraNavi"
+	aliases="/imgPath=/tmp">
+    <Resource
+        name="jdbc/mysql"
         auth="Container"
         type="javax.sql.DataSource"
-        username=""
-        password=""
-        driverClassName=""
-        url=""/> -->
+        username="TERA_NAVI"
+        password="tera"
+        driverClassName="net.sf.log4jdbc.DriverSpy"
+        url="jdbc:log4jdbc:mysql://localhost/tera_db"
+    />
 </Context>

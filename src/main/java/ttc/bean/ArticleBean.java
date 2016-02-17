@@ -1,13 +1,17 @@
 package ttc.bean;
-public class ArticleBean implements Bean{
-  private String articleId;
-  private String blogId;
-  private String title;
-  private String articleBody;
-  private String createDate;
-  private String tags;
-  private ArrayList comments;
 
+import java.util.List;
+
+public class ArticleBean implements Bean{
+    private String articleId;
+    private String userId;
+    private String title;
+    private String articleBody;
+    private String createdDate;
+    private List tags;
+    private List comments;
+    private String userName;
+	private int commentCount;
 
 	/**
 	* Returns value of articleId
@@ -26,19 +30,19 @@ public class ArticleBean implements Bean{
 	}
 
 	/**
-	* Returns value of blogId
+	* Returns value of userId
 	* @return
 	*/
-	public String getBlogId() {
-		return blogId;
+	public String getUserId() {
+		return userId;
 	}
 
 	/**
-	* Sets new value of blogId
+	* Sets new value of userId
 	* @param
 	*/
-	public void setBlogId(String blogId) {
-		this.blogId = blogId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -74,26 +78,26 @@ public class ArticleBean implements Bean{
 	}
 
 	/**
-	* Returns value of createDate
+	* Returns value of createdDate
 	* @return
 	*/
-	public String getCreateDate() {
-		return createDate;
+	public String getCreatedDate() {
+		return createdDate;
 	}
 
 	/**
-	* Sets new value of createDate
+	* Sets new value of createdDate
 	* @param
 	*/
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	/**
 	* Returns value of tags
 	* @return
 	*/
-	public String getTags() {
+	public List getTags() {
 		return tags;
 	}
 
@@ -101,7 +105,7 @@ public class ArticleBean implements Bean{
 	* Sets new value of tags
 	* @param
 	*/
-	public void setTags(String tags) {
+	public void setTags(List tags) {
 		this.tags = tags;
 	}
 
@@ -109,7 +113,7 @@ public class ArticleBean implements Bean{
 	* Returns value of comments
 	* @return
 	*/
-	public ArrayList getComments() {
+	public List getComments() {
 		return comments;
 	}
 
@@ -117,7 +121,37 @@ public class ArticleBean implements Bean{
 	* Sets new value of comments
 	* @param
 	*/
-	public void setComments(ArrayList comments) {
+	public void setComments(List comments) {
 		this.comments = comments;
+	}
+
+	/**
+	* Returns value of userName
+	* @return
+	*/
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	* Sets new value of userName
+	* @param
+	*/
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the commentCount
+	 */
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	/**
+	 * @param commentCount the commentCount to set
+	 */
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 }

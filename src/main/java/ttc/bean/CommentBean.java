@@ -1,10 +1,13 @@
 package ttc.bean;
-public class CommentBean implements Bean{
-  private String commentId;
-  private String articleId;
-  private String userId;
-  private String commentBody;
 
+public class CommentBean implements Bean{
+    private String commentId;
+    private String articleId;
+    private String userId;
+    private String userName;
+    private String iconPath;
+    private String commentBody;
+    private String commentDate;
 
 	/**
 	* Returns value of commentId
@@ -55,6 +58,38 @@ public class CommentBean implements Bean{
 	}
 
 	/**
+	* Returns value of userName
+	* @return
+	*/
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	* Sets new value of userName
+	* @param
+	*/
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	* Returns value of iconPath
+	* @return
+	*/
+	public String getIconPath() {
+		return iconPath;
+	}
+
+	/**
+	* Sets new value of iconPath
+	* @param
+	*/
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
+	}
+
+	/**
 	* Returns value of commentBody
 	* @return
 	*/
@@ -68,5 +103,21 @@ public class CommentBean implements Bean{
 	*/
 	public void setCommentBody(String commentBody) {
 		this.commentBody = commentBody;
+	}
+
+	/**
+	* Returns value of commentDate
+	* @return
+	*/
+	public String getCommentDate() {
+		return commentDate;
+	}
+
+	/**
+	* Sets new value of commentDate
+	* @param
+	*/
+	public void setCommentDate(String commentDate) {
+		this.commentDate = commentDate;
 	}
 }

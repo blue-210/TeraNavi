@@ -1,0 +1,68 @@
+#title{
+padding-top: 5px;
+}
+#headimg{
+width:100%;
+height:250px;
+}
+#comname{
+position: relative;
+bottom: 100px;
+background-color: rgba(255,255,255,0.7);
+}
+#icon{
+position: relative;
+bottom: 220px;
+}
+
+#userimage{
+width:40%;
+height:10%;
+}
+
+#date{
+padding-top: 50px;
+}
+#topicIcon{
+width:70px;
+height:70px;
+}
+
+#topiclist{
+border: medium solid #ff00ff;
+}
+#createtopic{
+padding-top: 20px;
+}
+#joincom{
+border: medium solid #ff00ff;
+}
+#slide{
+	height:30px;
+}
+#showwdel{
+width:100px;
+height:50px;
+margin-top: 10px;
+}
+#comname{
+position: relative;
+bottom: 100px;
+background-color: rgba(255,255,255,0.7);
+}
+#name{
+	position: relative;
+	bottom: 100px;
+	background-color: rgba(255,255,255,0.7);
+	font-size: 60px;
+}
+#dd{
+	position: relative;
+	bottom: 40px;
+	font-size: 15px;
+}
+
+#userimage{
+width:40%;
+height:10%;
+}
