@@ -76,7 +76,7 @@
                                 <input id="status" type="hidden" name="status" value="1">
                         </c:when>
                         <c:otherwise>
-                            <h1>ブログ作成</h1>
+                            <h1>ブログ開設</h1>
                             <form id="blogCreate" action="front/blogCreate" method="post">
                                 <input id="status" type="hidden" name="status" value="0">
                         </c:otherwise>
