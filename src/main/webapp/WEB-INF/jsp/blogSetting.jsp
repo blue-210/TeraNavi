@@ -42,9 +42,18 @@
                    <li>
                      <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
                    </li>
-                   <li class="active">
-                     <a href="#blogsetting">ブログ設定</a>
-                   </li>
+                   <c:choose>
+                       <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                           <li class="active">
+                               <a href="#blogsetting">ブログ設定</a>
+                           </li>
+                       </c:when>
+                       <c:otherwise>
+                           <li class="active">
+                               <a href="#blogsetting">ブログ開設</a>
+                           </li>
+                       </c:otherwise>
+                   </c:choose>
                    <li>
                      <a href="#communitymanage">コミュニティ管理</a>
                    </li>
@@ -60,21 +69,80 @@
 
 
                 <div calss="col-md-8">
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <h1>ブログ設定</h1>
+                            <form id="blogSetting" action="front/blogSetting" method="post">
+                                <input id="status" type="hidden" name="status" value="1">
+                        </c:when>
+                        <c:otherwise>
+                            <h1>ブログ作成</h1>
+                            <form id="blogCreate" action="front/blogCreate" method="post">
+                                <input id="status" type="hidden" name="status" value="0">
+                        </c:otherwise>
+                    </c:choose>
 
-                            <h1>ブログ設定画面</h1>
 
-                       <form action="front/blogSetting" method="post">
+                           <div class="col-xs-1"></div>
                            <div class="col-xs-4">
-                               タイトル <input type="text" name="title" class="form-control"><br>
-                               説明文 <textarea rows="3" class="form-control" name="explanation"></textarea><br>
-                               ヘッダ画像 <input id="head" type="text" class="form-control" name="headerPath" ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
-
-            			            <input id="status" type="hidden" name="status" value="1">
-                                <input type="submit" value="確認">
+                               タイトル<input type="text" name="title" class="form-control" id="bodyTitle"><br>
+                               説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation"></textarea><br>
+                               <div class="col-md-12 text-left">
+                                 <img id="preHeader" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                                 width="50px" height="50px">
+                               </div>
+                               ヘッダー画像<input type='file' value="ファイル選択" id='blogHeaderFile' onchange="fileUpHeader();">
+                               <input type="hidden" name="headerPath" id="headerPathHidden">
+                               <div class="col-xs-3"></div>
+                                <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal">確認</button>
                             </div>
                        </form>
+                   </div>
+                   <!-- モーダルウィンドウの中身 -->
+                   <div class="fade modal text-justify" id="blog-modal">
+                       <div class="modal-dialog">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                             <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">×</span>
+                             </button>
+                             <c:choose>
+                                 <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                     <h4 class="modal-title">ブログ設定</h4>
+                                 </c:when>
+                                 <c:otherwise>
+                                     <h4 class="modal-title">ブログ開設</h4>
+                                 </c:otherwise>
+                             </c:choose>
+                            </div>
+
+                           <div class="modal-body">
+                               <div class="col-xs-1"></div>
+                               <div class="col-xs-10">
+                                   <h2>タイトル</h2><h5 id="title"></h5>
+                                   <h2>説明文</h2><h5 id="explanation"></h5>
+                                   <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+                                   class="center-block img-circle img-responsive" width="150" height="150" id="blogHeader">
+                                   <p></p>
+                               </div>
+                           </div>
+
+                           <div class="modal-footer">
+                               <c:choose>
+                                   <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                       <button type="submit" class="btn btn-block btn-primary" form="blogSetting">設定する</button>
+                                   </c:when>
+                                   <c:otherwise>
+                                       <button type="submit" class="btn btn-block btn-primary" form="blogCreate">開設する</button>
+                                   </c:otherwise>
+                               </c:choose>
 
 
+                               <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
 
                </div>
 
@@ -141,6 +209,39 @@
 		function onDragOver(event){
 			event.preventDefault();
 		}
+
+        // 画像アップロード関連
+        function fileUpHeader(){
+			var files = document.getElementById("blogHeaderFile").files;
+
+			for(var i = 0;i < files.length;i++){
+				console.log("for");
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
+				ajaxSettings.success = function(data){
+					$("#headerPathHidden").val(data.result);
+					$("#preHeader").attr("src",data.result);
+				}
+
+ 				ajax = $.ajax(ajaxSettings);
+			}
+		}
+
+        $("#blogSubmit").on("click", function() {
+            $("#title").empty();
+            $("#explanation").empty();
+            $("#blogHeader").empty();
+
+
+            $("#title").append($("#bodyTitle").val());
+            $("#explanation").append($("#bodyExplanation").val());
+            $("#blogHeader").attr("src",$("#headerPathHidden").val());
+
+            $("#blog-modal").modal("show");
+        });
 
 
 
