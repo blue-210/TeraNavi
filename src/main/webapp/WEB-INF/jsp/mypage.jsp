@@ -42,7 +42,9 @@
                       <a href="/TeraNavi/blogSetting">ブログ設定</a>
                     </li>
                     <li>
-                      <a href="#communitymanage">コミュニティ管理</a>
+                        <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">
+                          コミュニティ管理
+                        </a>
                     </li>
                     <li>
                       <a href="#directmessage">DM</a>
@@ -124,8 +126,8 @@
                         <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
                         <a href="/TeraNavi/commMy">コミュニティの管理</a><br><br>
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
-         			   <a href="/TeraNavi/front/dmreceive">DMの受信</a><br><br>
-                        <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
+         			   <a href="/TeraNavi/front/showDmList">DM一覧表示</a><br><br>
+					   <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
                         <form action="/TeraNavi/front/showchat" method="post">
                             チャット受信<input type="text" name="topicId">
                         </form>

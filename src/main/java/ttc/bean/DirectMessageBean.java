@@ -4,6 +4,7 @@ public class DirectMessageBean implements Bean{
     private String messageId;
     private String toUserId;
     private String fromUserId;
+	private String fromUserName;
     private String messageBody;
     private String date;
 
@@ -86,4 +87,18 @@ public class DirectMessageBean implements Bean{
     public void setDate(String date) {
     	this.date = date;
     }
+
+	/**
+	 * @return the fromUserName
+	 */
+	public String getFromUserName() {
+		return fromUserName;
+	}
+
+	/**
+	 * @param fromUserName the fromUserName to set
+	 */
+	public void setFromUserName(String fromUserName) {
+		this.fromUserName = fromUserName;
+	}
 }
