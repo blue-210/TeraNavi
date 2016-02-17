@@ -36,7 +36,7 @@
               説明文 ${sessionScope.loginUser.community.profile}<br>
                コミュニティアイコン<img src='${sessionScope.loginUser.community.iconPath}'><br>
 
-              ヘッダ画像 <img src='${sessionScope.loginUser.community.headerPath}>'><br>
+              ヘッダ画像 <img src='${sessionScope.loginUser.community.headerPath}'><br>
 
 
        </div><!--end row-->
