@@ -126,8 +126,8 @@
                         <a href="/TeraNavi/blogSetting">ブログ設定</a><br><br>
                         <a href="/TeraNavi/commMy">コミュニティの管理</a><br><br>
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
-         			   <a href="/TeraNavi/front/dmreceive">DMの受信</a><br><br>
-                        <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
+         			   <a href="/TeraNavi/front/showDmList">DM一覧表示</a><br><br>
+					   <a href="/TeraNavi/chatwrite">チャット送信</a><br><br>
                         <form action="/TeraNavi/front/showchat" method="post">
                             チャット受信<input type="text" name="topicId">
                         </form>
