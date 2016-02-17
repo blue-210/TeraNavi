@@ -25,26 +25,6 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
-	<!--
- 
-    <div class="container">
-       <div class="row">
-           <h1>コミュニティ作成ページ</h1>
-           <form action="front/createcomm" method="post">
-                コミュニティ名<input type="text" name="commName"><br>
-               説明文 <input type="text" name="commProfile"><br>
-                コミュニティアイコン<input type="file" name="body" onchange="onDrop(event)"><br>
-                <input class="tbody" type="hidden" name="commIcon">
-               ヘッダ画像 <input type="file" name="date" onchange="onDrop(event)"><br>
-               <input class="tbody" type="hidden" name="commHeader">
-                   <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-               <input type="submit" value="登録">
-           </form>
-       </div>
-    </div>
-	
-	-->
 	
 	
 	<div class="section">
@@ -61,24 +41,23 @@
                 <textarea class="form-control" id="profile" rows="4" name="commProfile"></textarea>
               </div>アイコン
               <div class="col-md-12 text-left">
-                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                <img id="preIcon" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                 width="50px" height="50px">
               </div>
               <br>
-              <button type="submit" class="btn btn-default">ファイルを選択</button>
+              <input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
               <input id="icon" type="hidden" name="commIcon">
 			  <br>
               <br>ヘッダ画像
               <br>
               <div class="col-md-12 text-left">
-                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                <img id="preHeader" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
                 width="50px" height="50px">
               </div>
-              <button type="submit" class="btn btn-default">ファイルを選択</button>
+              <input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
               <br>
               <br>
-              <br>
-			  <input id="header" type="hidden" name="commHeader">
+			  <input id="headerParh" type="text" name="commHeader">
 			  
 			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
               <div class="text-center">
@@ -138,16 +117,11 @@
 
 			ajaxSettings = {
 				type:'post',
-				url:'upload',
+				url:'/TeraNavi/upload',
 				processData:false,
 				contentType:false,
 				cache:false,
-				dataType:'json',
-				success:function(data){
-					console.log("success");
-					var text = $(".tbody").val();
-					$(".tbody").val(text+"<br>"+data.result);
-				}
+				dataType:'json'
 			}
 			
 			$("#csubmit").on("click",function(){
@@ -155,7 +129,7 @@
 				$("#mProfile").empty();
 				
 				
-				$("#mHeader").attr("src",$("#header").val());
+				$("#mHeader").attr("src",$("#headerPath").val());
 				$("#mTitle").append($("#name").val());
 				$("#mProfile").append($("#profile").val());
 				$("#mIcon").attr("src",$("#icon").val());
@@ -164,10 +138,8 @@
 
 		});
 
-		function onDrop(event){
-			var files = event.dataTransfer.files;
-
-			console.log("オンドロップ");
+		function fileUpIcon(){
+			var files = document.getElementById("iconFile").files;
 
 			for(var i = 0;i < files.length;i++){
 				console.log("for");
@@ -175,16 +147,37 @@
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
-				ajax = $.ajax(ajaxSettings);
+				ajaxSettings.url = "/TeraNavi/upload";
+				ajaxSettings.success = function(data){
+					$("#icon").val(data.result);
+					$("#preIcon").attr("src",data.result);
+				}
+				
+ 				ajax = $.ajax(ajaxSettings);
 			}
+			
+		}
+		
+		function fileUpHeader(){
+			var files = document.getElementById("headerFile").files;
 
-			event.preventDefault();
+			for(var i = 0;i < files.length;i++){
+				console.log("for");
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
+				ajaxSettings.success = function(data){
+					$("#headerPath").val(data.result);
+					$("#preHeader").attr("src",data.result);
+				}
+				
+ 				ajax = $.ajax(ajaxSettings);
+			}
 		}
 
-		function onDragOver(event){
-			event.preventDefault();
-		}
-
+		
 
 	</script>
 </body>
