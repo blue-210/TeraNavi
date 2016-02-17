@@ -8,49 +8,44 @@ import ttc.util.MySqlConnectionManager;
 import ttc.exception.business.BusinessLogicException;
 import ttc.exception.integration.IntegrationException;
 
-import ttc.util.factory.AbstractDaoFactory;
-import ttc.dao.AbstractDao;
-import ttc.bean.CommunityBean;
-
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
+
+import ttc.util.factory.AbstractDaoFactory;
+import ttc.dao.AbstractDao;
 import ttc.exception.business.ParameterInvalidException;
 
-public class WithDrawCommunityCommand extends AbstractCommand{
+public class ShowDraftArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            HashMap params = new HashMap();
-            HashMap result = new HashMap();
+            String userId = reqc.getParameter("writeUserId")[0];
 
-			String target = reqc.getParameter("target")[0];
-			System.err.println(target);
-			
-            params.put("userId",reqc.getParameter("userId")[0]);
-            params.put("commId",reqc.getParameter("commId")[0]);
-			params.put("target",target);
-			
+            Map params = new HashMap();
+            params.put("userId", userId);
+            params.put("flag", "1");
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            dao.update(params);
+            ArrayList results = (ArrayList)dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			
-
-            result.put("commName",reqc.getParameter("commName")[0]);
-            resc.setResult(result);
-            resc.setTarget("communityWithDrawResult");
+            resc.setResult(results);
+            resc.setTarget("showDraftArticleList");
 
             return resc;
+
         }catch(NullPointerException e){
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
-            throw new BusinessLogicException(e.getMessage(),e);
+            throw new BusinessLogicException(e.getMessage(), e);
         }
     }
 }

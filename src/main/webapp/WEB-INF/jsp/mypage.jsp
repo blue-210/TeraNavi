@@ -36,7 +36,7 @@
                       <a href="/TeraNavi/articlepost">記事を書く</a>
                     </li>
                     <li>
-                      <a href="#draftarticle">下書き一覧</a>
+                        <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
                     </li>
                     <li>
                       <a href="/TeraNavi/blogSetting">ブログ設定</a>

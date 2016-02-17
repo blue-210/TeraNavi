@@ -39,7 +39,7 @@ public class KeywordSearchCommand extends AbstractCommand{
 			MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(result);
-			resc.setTarget("searchresult");
+			resc.setTarget("blogSearchResult");
 
 			return resc;
 		}catch(NullPointerException e){
