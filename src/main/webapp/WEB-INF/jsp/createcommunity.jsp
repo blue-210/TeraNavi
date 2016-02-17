@@ -57,7 +57,7 @@
               <input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
               <br>
               <br>
-			  <input id="headerParh" type="text" name="commHeader">
+			  <input id="commHeaderPath" type="hidden" name="commHeader">
 			  
 			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
               <div class="text-center">
@@ -129,7 +129,7 @@
 				$("#mProfile").empty();
 				
 				
-				$("#mHeader").attr("src",$("#headerPath").val());
+				$("#mHeader").attr("src",$("#commHeaderPath").val());
 				$("#mTitle").append($("#name").val());
 				$("#mProfile").append($("#profile").val());
 				$("#mIcon").attr("src",$("#icon").val());
@@ -169,7 +169,7 @@
 				ajaxSettings.data = formData;
 				ajaxSettings.url = "/TeraNavi/upload/header";
 				ajaxSettings.success = function(data){
-					$("#headerPath").val(data.result);
+					$("#commHeaderPath").val(data.result);
 					$("#preHeader").attr("src",data.result);
 				}
 				
