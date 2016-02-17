@@ -10,7 +10,7 @@ import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -32,7 +32,7 @@ public class ShowArticleListCommand extends AbstractCommand{
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            ArrayList results = (ArrayList)dao.readAll(params);
+            List results = dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
