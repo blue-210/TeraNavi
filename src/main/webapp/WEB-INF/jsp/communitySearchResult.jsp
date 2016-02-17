@@ -10,7 +10,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>作成したコミュニティ</title>
+    <title>コミュニティ一覧</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -20,84 +20,46 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
+
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="deletable"></th>
-                        <th class="deletable"></th>
-                        <th>コミュニティ名</th>
-                        <th>紹介文</th>
-                        <th>メンバー数</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr>
-                            ${sessionScope.loginUser.communityAdminFlag}
-                            <c:choose>
-                                <c:when test="${sessionScope.loginUser.communityAdminFlag eq 1}">
-                                    <h1>作成したコミュニティ</h1>
-                                </c:when>
-                                <c:otherwise>
-                                    <h1>参加したコミュニティ</h1>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:forEach var="comm" items="${result}">
-                            <c:choose>
-                                <c:when test="${sessionScope.loginUser.communityAdminFlag eq 1}">
-                                    <td class="deletable">
-                                        <form action="showcomm" method="post" name="showForm">
-                                            <input type="hidden" name="commId" value="${comm.id}"></input>
-                                            <input type="submit" id="showCom" value="詳細へ"></input>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="commSetting" method="post" name="showDel">
-                                            <input type="hidden" name="commId" value="${comm.id}">
-                                            <input type="hidden" name="commName" value="${comm.name}">
-                                            <input type="hidden" name="commProfile" value="${comm.profile}">
-                                            <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                            <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                            <input type="hidden" name="del" value="del">
-                                            <input type="submit" id="showDel" value="削除"></input>
-                                        </form>
-                                    </td>
-                                    <td> <c:out value="${comm.name}" /> </td>
-                                    <td> <c:out value="${comm.profile}"/> </td>
-                                    <td> <c:out value="${comm.countMember}"/> </td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td class="deletable">
-                                        <form action="showcomm" method="post" name="showForm">
-                                            <input type="hidden" name="commId" value="${comm.id}"></input>
-                                            <input type="submit" id="showCom" value="詳細へ"></input>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
-                                            <input type="hidden" name="commId" value="${comm.id}">
-                                            <input type="hidden" name="commName" value="${comm.name}">
-											<input type="hidden" name="target" value="community_withdrawal_flag=1">
-                                            <input type="submit" id="showDel" value="退会"></input>
-                                        </form>
-                                    </td>
-                                    <td> <c:out value="${comm.name}" /> </td>
-                                    <td> <c:out value="${comm.profile}"/> </td>
-                                    <td> <c:out value="${comm.countMember}"/> </td>
-                                </c:otherwise>
-                            </c:choose>
-                        </tr>
-                    </c:forEach>
-               </tbody>
-           </table>
-       </div><!--end row-->
+            <div class="col-xs-10 col-xs-offset-1">
+                <c:forEach var="comm" items="${result}">
+                    <div class="row" id="communityList">
+                        <div class="col-md-1">
+                            <img src="${comm.iconPath}" id="topicIcon">
+                        </div>
+                        <!--
+                            <div class="col-md-2">
+                            <form action="showcomm" method="post" name="showForm">
+                                <input type="hidden" name="commId" value="${comm.id}"></input>
+                                <input type="submit" id="showCom" value="詳細へ"></input>
+                            </form>
+                        -->
+                        <div class="col-md-5">
+                            <h4 id="title" class="text-left">
+                                <a href="showcomm?commId=${comm.id}"><c:out value="${comm.name}" /></a>
+                            </h4>
+                        </div>
+                        <div class="col-md-5">
+                            <h4 id="title" class="text-left">
+                                <c:out value="${comm.profile}" /></a>
+                            </h4>
+                        </div>
+                        <div class="col-md-1">
+                            <h4 id="title" class="text-left">
+                                <c:out value="${comm.countMember}" /></a>
+                            </h4>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
