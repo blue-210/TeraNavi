@@ -83,8 +83,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <br>
-                            <p style="position:relative margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
+
+                            <p style="position:relative; margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
                             <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+
                         </div>
                     </div>
                     <div class="row">
