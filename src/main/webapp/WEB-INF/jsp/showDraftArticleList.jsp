@@ -29,18 +29,27 @@
                 <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
                   <ul class="nav nav-pills nav-stacked well">
-                    <li class="active">
-                      <a href="#">下書き一覧</a>
+                    <li>
+                      <a href="/TeraNavi/front/mypage">マイページ</a>
                     </li>
                     <li>
                       <a href="/TeraNavi/articlepost">記事を書く</a>
                     </li>
-                    <li>
+                    <li class="active">
                       <a href="#">下書き一覧</a>
                     </li>
-                    <li>
-                      <a href="#blogsetting">ブログ設定</a>
-                    </li>
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <li>
+                                <a href="/TeraNavi/blogSetting">ブログ設定</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="active">
+                                <a href="/TeraNavi/blogSetting">ブログ開設</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                     <li>
                       <a href="#communitymanage">コミュニティ管理</a>
                     </li>
