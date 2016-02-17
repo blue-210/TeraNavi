@@ -47,7 +47,7 @@
                            <td> <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
                                <c:out value="${article.title}"/>
                            </a> </td>
-                           <td> <c:out value="${article.articleBody}" /> </td>
+                           <td> ${article.articleBody} </td>
                            <td> <c:out value="${article.createdDate}"/> </td>
                            <!-- <td class="deletable"> <a href="/TeraNavi/deletArticle">編集</a> </td> -->
                        </tr>

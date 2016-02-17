@@ -40,7 +40,7 @@
                      <a href="/TeraNavi/articlepost">記事を書く</a>
                    </li>
                    <li>
-                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
+                     <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
                    </li>
                    <c:choose>
                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">

@@ -13,9 +13,6 @@ import ttc.dao.AbstractDao;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.UserBean;
-import ttc.bean.CommunityBean;
-import java.util.ArrayList;
 import ttc.exception.business.ParameterInvalidException;
 
 

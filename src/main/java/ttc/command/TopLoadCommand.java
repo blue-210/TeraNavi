@@ -6,8 +6,7 @@
 package ttc.command;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
@@ -139,6 +138,7 @@ public class TopLoadCommand extends AbstractCommand{
 			String articleBody = ab.getArticleBody();
 			if(articleBody.length() > 30){
 				ab.setArticleBody( articleBody.substring(0,30) );
+				System.out.println(articleBody.substring(0,30));
 			}
 			newArticles.add(ab);
 		}
