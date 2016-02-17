@@ -23,7 +23,7 @@
 
 	<h5 class="page-title">検索結果</h5>
     <hr id="hr" class="hr">
-    <p class="p-level">ユーザの検索結果です</p>
+    <p class="p-level">ブログの検索結果です</p>
     
     <br>
     <div class="section">
@@ -31,17 +31,12 @@
 		<c:forEach var="item" items="${result}">
 			<div class="row">
 			  <div class="col-md-3">
-				<img src="${item.iconPath}" class="img-responsive">
+				<img src="${item.headerPath}" class="img-responsive">
 			  </div>
 			  <div class="col-md-9">
-				<h1>${item.userName}</h1>
-				<h3>${item.nameKana}</h3>
-				<p>${item.profile}<br>
-					<form action="dmsend" method="post">
-						&nbsp;&nbsp;本文:<input type="text" name="messageBody"><br>
-						<input type="hidden" name="receiveUserId" value="${item.id}">
-						<input type="submit" value="送信"><br><br>
-					</form>
+				<h1>${item.title}</h1>
+				<h3></h3>
+				<p>${item.explanation}<br>
 				</p>
 			  </div>
 			</div>

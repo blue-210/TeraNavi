@@ -43,7 +43,7 @@
                      <a href="#">記事を書く</a>
                    </li>
                    <li>
-                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}>下書き一覧</a>
+                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}">下書き一覧</a>
                    </li>
                    <li>
                      <a href="/TeraNavi/blogSetting">ブログ設定</a>

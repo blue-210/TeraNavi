@@ -39,7 +39,7 @@
                    </form>
                    <form action="front/commmy" method="post">
                        <input type="hidden" name="groupBy" value="groupBy community_members_list.fk_community_id ">
-                       <input type="hidden" name="where" value="community_members_list.fk_user_id= ? and communities.community_delete_flag=0">
+                       <input type="hidden" name="where" value="community_members_list.fk_user_id= ? and communities.community_delete_flag=0 and community_members_list.community_withdrawal_flag=0 ">
                        <input type="hidden" name="target" value="comm">
 					   <input type="submit" value="参加しているコミュ一覧">
                   </form>

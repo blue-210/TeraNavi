@@ -8,7 +8,7 @@
       <div class="container">
          <ul class="nav nav-pills nav-stacked list-inline">
             <li><h2>TeraNaviについて</h2></li>
-            <li><a href="rule.jsp">利用規約</a></li>
+            <li><a href="/TeraNavi/showRule">利用規約</a></li>
             <li><a data-toggle="modal" href="#contact-modal">お問い合わせ</a></li>
             <li><a href="">よくある質問</a></li>
          </ul>

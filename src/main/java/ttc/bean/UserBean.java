@@ -27,7 +27,8 @@ public class UserBean implements Bean{
     private String communityAdminFlag;
     private ArrayList directMessageList;
 	private CommunityBean community;
-
+	private String blogStatus;
+	
 
 	/**
 	* Returns value of id
@@ -411,5 +412,19 @@ public class UserBean implements Bean{
 	*/
 	public void setCommunity(CommunityBean community) {
 		this.community = community;
+	}
+
+	/**
+	 * @return the blogStatus
+	 */
+	public String getBlogStatus() {
+		return blogStatus;
+	}
+
+	/**
+	 * @param blogStatus the blogStatus to set
+	 */
+	public void setBlogStatus(String blogStatus) {
+		this.blogStatus = blogStatus;
 	}
 }
