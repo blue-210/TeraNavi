@@ -52,9 +52,11 @@ public class CommunitiesDao implements AbstractDao{
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
 
-            String sqlx="SELECT topic_id,fk_create_user_id,topic_name,topic_updatetime_date from topics where fk_community_id=?";
-
-            pst=cn.prepareStatement(sqlx);
+            StringBuffer sqlx = new StringBuffer();
+			sqlx.append("SELECT topic_id,fk_create_user_id,topic_name,topic_updatetime_date,user_name ");
+			sqlx.append("from topics join users on fk_create_user_id = user_id where fk_community_id=?");
+			
+            pst=cn.prepareStatement(new String(sqlx));
             pst.setString(1,(String)map.get("commId"));
             ResultSet rsx=pst.executeQuery();
             ArrayList topics=new ArrayList();
@@ -65,14 +67,7 @@ public class CommunitiesDao implements AbstractDao{
                 tb.setTopicId(rsx.getString("topic_id"));
                 tb.setName(rsx.getString("topic_name"));
                 tb.setUpdateDate(rsx.getString("topic_updatetime_date"));
-                String sqly="SELECT user_name from users where user_id="+rsx.getString("fk_create_user_id");
-                pst=cn.prepareStatement(sqly);
-                ResultSet rsy=pst.executeQuery();
-                rsy.next();
-                ub.setUserName(rsy.getString("user_name"));
-                String name=ub.getUserName();
-                System.out.println(name+tb.getTopicId());
-                tb.setTopicCreater(name);
+                tb.setTopicCreater(rsx.getString("user_name"));
                 topics.add(tb);
 
             }
