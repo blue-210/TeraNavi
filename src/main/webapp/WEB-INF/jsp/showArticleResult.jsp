@@ -20,6 +20,7 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));</script>
 
+
      <%-- ヘッダー部分のHTMLを読み込み --%>
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
@@ -72,20 +73,10 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.commentCount}</i>
-            <%-- <i class="-o fa fa-3x fa-fw fa-twitter text-primary" style="color:#55ACEE; margin-right:5%;"></i> --%>
+
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-dnt="true">ツイート</a>
-            <script>
-                !function(d,s,id){
-                    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-                    if(!d.getElementById(id)){
-                        js=d.createElement(s);
-                        js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-                        fjs.parentNode.insertBefore(js,fjs);
-                    }
-                }(document, 'script', 'twitter-wjs');
-            </script>
             <%-- 下のdata-hrefはサイトのURLに変更してください --%>
-            <div class="fb-like" data-href="http://192.168.33.10/TeraNavi/index.html" data-width="130px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-width="130px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 
             <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
         	<i class="-o -square fa fa-3x fa-ellipsis-h fa-fw text-muted"></i>
@@ -172,7 +163,16 @@
             $('#cauBody').append('<input type="hidden" name="url" value="location.href">');
             $('#sub').html('<input type="submit" value="この記事を警告">');
         });
-
+    </script>
+    <script>
+        !function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+            if(!d.getElementById(id)){
+                js=d.createElement(s);
+                js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js,fjs);
+            }
+        }(document, 'script', 'twitter-wjs');
     </script>
 
 </body>
