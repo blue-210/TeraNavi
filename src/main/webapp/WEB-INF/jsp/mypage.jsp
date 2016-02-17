@@ -38,9 +38,18 @@
                     <li>
                         <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
                     </li>
-                    <li>
-                      <a href="/TeraNavi/blogSetting">ブログ設定</a>
-                    </li>
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <li>
+                                <a href="/TeraNavi/blogSetting">ブログ設定</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="active">
+                                <a href="/TeraNavi/blogSetting">ブログ開設</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                     <li>
                         <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">
                           コミュニティ管理
@@ -75,7 +84,7 @@
                         <div class="col-md-12">
                             <br>
                             <p style="position:relative margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
-                            <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">編集</a>
+                            <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
                         </div>
                     </div>
                     <div class="row">
