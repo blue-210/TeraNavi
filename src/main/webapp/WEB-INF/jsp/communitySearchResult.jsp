@@ -26,14 +26,16 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-                <c:forEach var="comm" items="${result}">
-                    <div class="row" id="communityList">
-                        <div class="col-md-1">
-                            <img src="${comm.iconPath}" id="topicIcon">
-                        </div>
+    <div class="section">
+        <div class="container">
+            <div class="row col-md-10 col-md-offset-1">
+                <h1 class="text-warning">コミュニティ一覧</h1>
+            </div>
+            <c:forEach var="comm" items="${result}">
+                <div class="row col-md-10 col-md-offset-1 well">
+                    <div class="col-md-2">
+                        <img src="${comm.iconPath}" id="topicIcon">
+                    </div>
                         <!--
                             <div class="col-md-2">
                             <form action="showcomm" method="post" name="showForm">
@@ -41,22 +43,36 @@
                                 <input type="submit" id="showCom" value="詳細へ"></input>
                             </form>
                         -->
-                        <div class="col-md-5">
+                    <div class="col-md-7">
+                        <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
+                            <h2 class="text-muted">${comm.name}</h2>
+                        </a>
+                        <p　id="articleBody">${comm.profile}...</p>
+
+                        <!--
                             <h4 id="title" class="text-left">
                                 <a href="showcomm?commId=${comm.id}"><c:out value="${comm.name}" /></a>
                             </h4>
-                        </div>
+                        -->
+                    </div><!--
                         <div class="col-md-5">
                             <h4 id="title" class="text-left">
                                 <c:out value="${comm.profile}" /></a>
                             </h4>
-                        </div>
-                        <div class="col-md-1">
+                        </div>-->
+                    <div class="text-right">
+                        <a class="btn btn-warning" href="/TeraNavi/front/showcomm?commId=${comm.id}">
+                            続きを読む
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
                             <h4 id="title" class="text-left">
                                 <c:out value="${comm.countMember}" /></a>
                             </h4>
                         </div>
                     </div>
+                    
                 </c:forEach>
             </div>
         </div><!--end row-->
