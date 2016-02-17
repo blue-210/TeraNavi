@@ -57,9 +57,10 @@ public class SendContactCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			Map result = new HashMap();
+			result.put("userName","userName");
 			
-			
-            resc.setTarget("ContactResult");
+			resc.setResult(result);
 
             return resc;
         }catch(NullPointerException e){

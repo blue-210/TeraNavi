@@ -11,11 +11,8 @@ public class TopicBean implements Bean{
     private String createDate;
     private ArrayList chat;
     private String topicCreater;
-    private String communityIconPath;
-    private String headerPath;
     private String userIconPath;
-    private String communityName;
-    private String communityId;
+    
 
 	/**
 	* Returns value of topicId
@@ -149,34 +146,7 @@ public class TopicBean implements Bean{
 	* Returns value of communityIconPath
 	* @return
 	*/
-	public String getCommunityIconPath() {
-		return communityIconPath;
-	}
-
-	/**
-	* Sets new value of communityIconPath
-	* @param
-	*/
-	public void setCommunityIconPath(String communityIconPath) {
-		this.communityIconPath = communityIconPath;
-	}
-
-	/**
-	* Returns value of headerPath
-	* @return
-	*/
-	public String getHeaderPath() {
-		return headerPath;
-	}
-
-	/**
-	* Sets new value of headerPath
-	* @param
-	*/
-	public void setHeaderPath(String headerPath) {
-		this.headerPath = headerPath;
-	}
-
+	
 	/**
 	* Returns value of userIconPath
 	* @return
@@ -197,31 +167,5 @@ public class TopicBean implements Bean{
 	* Returns value of communityName
 	* @return
 	*/
-	public String getCommunityName() {
-		return communityName;
-	}
-
-	/**
-	* Sets new value of communityName
-	* @param
-	*/
-	public void setCommunityName(String communityName) {
-		this.communityName = communityName;
-	}
-
-	/**
-	* Returns value of communityId
-	* @return
-	*/
-	public String getCommunityId() {
-		return communityId;
-	}
-
-	/**
-	* Sets new value of communityId
-	* @param
-	*/
-	public void setCommunityId(String communityId) {
-		this.communityId = communityId;
-	}
+	
 }

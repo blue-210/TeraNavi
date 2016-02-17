@@ -37,14 +37,14 @@
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <header>
-        <img src='${result[0].communityIconPath}' id="headimg"></span></p>
-            <p class="bun"><span id="iconPath"><img class="pull-left" src='${result[0].headerPath}'width="200px" height="200px" id="icon"></span></p>
-        <p class="bun"><span id="name" class="col-md-8 text-center">${result[0].communityName}</span>
+        <img src='${result.iconPath}' id="headimg"></span></p>
+            <p class="bun"><span id="iconPath"><img class="pull-left" src='${result.headerPath}'width="200px" height="200px" id="icon"></span></p>
+        <p class="bun"><span id="name" class="col-md-8 text-center">${result.name}</span>
     </header>
     <div class="container">
         <div class="row">
             <div class="col-xs-10">
-                <c:forEach var="item" items="${result}">
+                <c:forEach var="item" items="${result.topics}">
                     <div class="row" id="topiclist">
                             <div class="col-md-3">
                             <img src="${item.userIconPath}" id="topicIcon">
@@ -85,8 +85,7 @@
                                         <h1>新しいトピック名</h1>
                                         <form action="/TeraNavi/front/createtopic" method="post">
                                             <input type="text" size="50" name="topic_name">
-                                                ${result[0]}
-                                                <input type="hidden" name="communityId" value="${result[0].communityId}">
+                                                <input type="hidden" name="communityId" value="${result.id}">
                                             </div>
                                         </div>
                                     <div class="modal-footer">

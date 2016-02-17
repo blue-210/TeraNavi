@@ -421,6 +421,7 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/mypage</url-pattern>
+        <url-pattern>/front/mypage</url-pattern>
     </filter-mapping>
 
 </web-app>

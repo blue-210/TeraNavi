@@ -22,6 +22,7 @@ $(function(){
                 var body = data[i].body;
                 var date = data[i].date;
 
+
                 console.log(i + " " + userId + " " + body);
                 $(".col-md-5").append("<div class=\"box\"><p class=\"content\">" + userName + body + date + "</p></div>");
 

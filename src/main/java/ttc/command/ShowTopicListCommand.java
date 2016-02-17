@@ -10,7 +10,7 @@ import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
+import ttc.bean.CommunityBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -22,18 +22,21 @@ public class ShowTopicListCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
             String communityId=reqc.getParameter("communityId")[0];
             Map params = new HashMap();
-            params.put("communityId", communityId);
+
+            params.put("where","where community_id=? and community_delete_flag=0");
+            params.put("commId",reqc.getParameter("communityId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
-
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("topic");
+            
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            List result = dao.readAll(params);
+            CommunityBean cb =(CommunityBean)dao.read(params);
+            cb.setId(reqc.getParameter("communityId")[0]);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setResult(result);
+			resc.setResult(cb);
             resc.setTarget("topiclist");
 
             return resc;
