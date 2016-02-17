@@ -12,13 +12,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-import ttc.bean.DirectMessageBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class DirectMessageReceiveCommand extends AbstractCommand{

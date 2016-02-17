@@ -7,7 +7,6 @@ import ttc.util.MySqlConnectionManager;
 
 import ttc.exception.integration.IntegrationException;
 import ttc.exception.business.BusinessLogicException;
-import ttc.exception.business.PasswordInvalidException;
 
 import java.util.Map;
 import java.util.HashMap;

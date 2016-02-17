@@ -60,7 +60,7 @@
 							</div>
 							<div class="col-md-7">
 							  <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-							  <p　id="articleBody">${article.articleBody}...</p>
+							  <p　id="articleBody"><c:out value="${article.articleBody}" />...</p>
 							  <div class="text-right">
 								<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 								</div>

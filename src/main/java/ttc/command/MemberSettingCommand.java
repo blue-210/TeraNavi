@@ -13,8 +13,7 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.UserBean;
-import ttc.bean.CommunityBean;
+
 import ttc.exception.business.ParameterInvalidException;
 
 
@@ -26,10 +25,6 @@ public class MemberSettingCommand extends AbstractCommand{
 
             String loginId=reqc.getParameter("userId")[0];
 
-
-
-
-
             String[] targetNo=reqc.getParameter("targetNo");
             String communityId = reqc.getParameter("communityId")[0];
             String userId=reqc.getParameter("userId")[0];
@@ -38,7 +33,7 @@ public class MemberSettingCommand extends AbstractCommand{
 
 
 
-            HashMap params = new HashMap();
+            Map params = new HashMap();
 
 
             params.put("commId",communityId);

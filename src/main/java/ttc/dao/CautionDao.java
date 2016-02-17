@@ -1,7 +1,7 @@
 package ttc.dao;
 
 import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 
 import java.sql.Connection;
@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ttc.bean.BlogBean;
 import ttc.bean.Bean;
 
 import ttc.exception.integration.IntegrationException;

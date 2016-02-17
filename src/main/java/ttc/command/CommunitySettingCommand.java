@@ -35,6 +35,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             String deleteFlag = reqc.getParameter("deleteFlag")[0];
             String communityId = reqc.getParameter("commId")[0];
             String userId=reqc.getParameter("userId")[0];
+            String nowIconPath=reqc.getParameter("nowIconPath")[0];
+            String nowHeaderPath=reqc.getParameter("nowHeaderPath")[0];
 
             HashMap params = new HashMap();
             params.put("value",loginId);
@@ -45,12 +47,12 @@ public class CommunitySettingCommand extends AbstractCommand{
             if(iconPath!=null && iconPath.length()!=0){
                 params.put("iconPath",iconPath);
             }else{
-                params.put("iconPath","");
+                params.put("iconPath",nowIconPath);
             }
             if(headerPath != null && headerPath.length() != 0){
                 params.put("headerPath",headerPath);
             }else{
-                params.put("headerPath","");
+                params.put("headerPath",nowHeaderPath);
             }
             params.put("deleteFlag",deleteFlag);
             params.put("commId",communityId);
