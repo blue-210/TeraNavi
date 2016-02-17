@@ -14,13 +14,6 @@
 		<link href="/TeraNavi/css/chat.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div id="header_image">
-			<img src="/TeraNavi/img/header.jpg" width="100%" height="400px" />
-			<div id="header_icon">
-				<img id="icon_image" src="/TeraNavi/img/icon.jpg">
-			</div>
-			<h2 id="comunity_title">チャットルーム</p>
-		</div>
 		<div class="container-fluid">
 			<div class="wrapper">
 	            <div class="row">

@@ -43,10 +43,10 @@
                      <a href="#">記事を書く</a>
                    </li>
                    <li>
-                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
+                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}">下書き一覧</a>
                    </li>
                    <li>
-                     <a href="#blogsetting">ブログ設定</a>
+                     <a href="/TeraNavi/blogSetting">ブログ設定</a>
                    </li>
                    <li>
                      <a href="#communitymanage">コミュニティ管理</a>
@@ -65,7 +65,14 @@
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div calss="col-md-8">
                     <h1>記事投稿ページ</h1>
-                    <form action="front/articlepost" method="post">
+                    <form action="/TeraNavi/front/articlepost" method="post">
+                        タイトル <input type="text" name="title"><br>
+                        内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
+                        <input type="submit" value="投稿">
+                    </form>
+
+                    <h1>下書き</h1>
+                    <form action="/TeraNavi/front/draftArticle" method="post">
                         タイトル <input type="text" name="title"><br>
                         内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
                         <input type="submit" value="投稿">

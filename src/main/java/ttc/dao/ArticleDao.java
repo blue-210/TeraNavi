@@ -267,7 +267,7 @@ public class ArticleDao implements AbstractDao{
             sql.append("fk_user_id, user_name ");
             sql.append("from articles join users ");
             sql.append("on articles.fk_user_id = users.user_id ");
-            sql.append("where fk_user_id = ? and article_status_flag = '0' ");
+            sql.append("where fk_user_id = ? and article_status_flag = ? ");
             sql.append("order by article_created_date desc");
 
             if(map.containsKey("option")){
@@ -276,8 +276,9 @@ public class ArticleDao implements AbstractDao{
 
             pst = cn.prepareStatement( new String(sql) );
 
-            System.out.println(sql);
             pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
+            pst.setInt(2, Integer.parseInt( (String)map.get("flag") ));
+
 
             System.out.println(sql);
             rs = pst.executeQuery();

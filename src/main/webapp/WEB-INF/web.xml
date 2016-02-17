@@ -54,7 +54,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>UploadServlet</servlet-name>
-      <url-pattern>/upload</url-pattern>
+      <url-pattern>/upload/*</url-pattern>
    </servlet-mapping>
 
    <servlet>
@@ -421,6 +421,7 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/mypage</url-pattern>
+        <url-pattern>/front/mypage</url-pattern>
     </filter-mapping>
 
 </web-app>

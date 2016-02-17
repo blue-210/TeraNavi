@@ -12,42 +12,33 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-
-import ttc.bean.DirectMessageBean;
 import ttc.exception.business.ParameterInvalidException;
 
-public class DirectMessageReceiveCommand extends AbstractCommand{
+public class ShowDraftArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("ShowArticleListCommand");
             RequestContext reqc = getRequestContext();
 
-            String userId=reqc.getParameter("userId")[0];
-			String sendUser = reqc.getParameter("sendUserId")[0];
-			
+            String userId = reqc.getParameter("writeUserId")[0];
+
             Map params = new HashMap();
-			
-            params.put("receiveUserId",userId);
-			params.put("sendUserId",sendUser);
+            params.put("userId", userId);
+            params.put("flag", "1");
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("dm");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
+            List results = dao.readAll(params);
 
-			List result = dao.readAll(params);
-
-			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-
-			resc.setResult(result);
-
-            resc.setTarget("showdm");
+            resc.setResult(results);
+            resc.setTarget("showDraftArticleList");
 
             return resc;
 
