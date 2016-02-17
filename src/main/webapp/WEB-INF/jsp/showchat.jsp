@@ -51,7 +51,7 @@
                                             <c:out value="${ch.userName}"/>
                                         </p>
                                     </div>
-                                    <img class="account" src="/TeraNavi/img/account.jpg">
+                                    <img class="account" src="${sessionScope.loginUser.iconPath}">
                                 </div>
                             </div>
                         </c:when>
@@ -65,7 +65,7 @@
                                              <c:out value="${ch.userName}"/>
                                          </p>
                                       </div>
-                                      <img class="other_account" src="/TeraNavi/img/account.jpg">
+                                      <img class="other_account" src="${sessionScope.loginUser.iconPath}">
                                  </div>
                                  <div class="col-md-1"></div>
                                  <div class="col-md-6"></div>
