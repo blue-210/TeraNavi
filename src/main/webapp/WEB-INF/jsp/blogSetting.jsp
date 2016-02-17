@@ -122,7 +122,7 @@
                                    <h2>タイトル</h2><h5 id="title"></h5>
                                    <h2>説明文</h2><h5 id="explanation"></h5>
                                    <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-                                   class="center-block img-circle img-responsive" width="150" height="150" id="blogHeader">
+                                   class="img-rounded" width="200" height="150" id="blogHeader">
                                    <p></p>
                                </div>
                            </div>
@@ -167,48 +167,7 @@
 
 		});
 
-		function onDrop1(event){
-			var files = event.dataTransfer.files;
 
-
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-		function onDrop2(event){
-			var files = event.dataTransfer.files;
-
-
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+"<br>"+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-
-		function onDragOver(event){
-			event.preventDefault();
-		}
 
         // 画像アップロード関連
         function fileUpHeader(){
