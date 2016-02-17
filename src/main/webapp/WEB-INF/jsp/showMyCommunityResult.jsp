@@ -42,7 +42,7 @@
                    <h1>作成したコミュニティ</h1>
 
                         <c:forEach var="comm" items="${result.list}">
-                            <c:if test="${comm.adminFlag eq 1}">
+                            <c:if test="${comm.adminFlag eq '1'}">
                                 <div class="edit">
                                      <form action="commSetting" method="post" name="showDel">
                                              <input type="hidden" name="commId" value="${comm.id}">
@@ -56,12 +56,13 @@
                                       </form>
                                 </div>
                             </c:if>
+                            <td>${comm.adminFlag}</td>
                         </c:forEach>
                     </tr>
                     <h1>参加しているコミュニティ</h1>
                         <c:forEach var="comm2" items="${result.list}">
                             <tr>
-                            <c:if test="${comm.adminFlag ne 1}">
+                            <c:if test="${comm.adminFlag ne '1'}">
                                 <td class="deletable">
                                     <form action="showcomm" method="post" name="showForm">
                                          <input type="hidden" name="commId" value="${comm.id}">
@@ -71,6 +72,7 @@
                                 <td> <c:out value="${comm2.name}" /> </td>
                                 <td> <c:out value="${comm2.profile}"/> </td>
                                 <td> <c:out value="${comm2.countMember}"/> </td>
+                                <td>${comm.adminFlag}</td>
                             </c:if>
                         </tr>
                     </c:forEach>
