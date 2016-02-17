@@ -14,12 +14,15 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.ArticleBean;
+import ttc.bean.BlogBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class ShowArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
+
+            Map result = new HashMap();
 
             String articleId = reqc.getParameter("articleId")[0];
 
@@ -31,16 +34,24 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
+            result.put("article", ab);
 
-			factory = AbstractDaoFactory.getFactory("comment");
-			dao = factory.getAbstractDao();
-			
-			
+
+            Map params2 = new HashMap();
+            params2.put("userId", ab.getUserId());
+
+            MySqlConnectionManager.getInstance().beginTransaction();
+
+            factory = AbstractDaoFactory.getFactory("blog");
+            dao = factory.getAbstractDao();
+            BlogBean bb = (BlogBean)dao.read(params2);
+            result.put("blog", bb);
+
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(ab);
+            resc.setResult(result);
             resc.setTarget("showArticleResult");
 
             return resc;

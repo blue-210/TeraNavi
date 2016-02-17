@@ -31,8 +31,10 @@ public class ArticleDao implements AbstractDao{
 
             //記事表からの取得----------------------------------------------------
             sql.append("select article_id, article_title, article_body, ");
-            sql.append("article_created_date,fk_user_id ");
-            sql.append("from articles ");
+            sql.append("article_created_date,fk_user_id, ");
+            sql.append("user_name, user_icon_path ");
+            sql.append("from articles join users ");
+            sql.append("on articles.fk_user_id = users.user_id ");
             sql.append("where article_id = ?");
 
             pst = cn.prepareStatement( new String(sql) );
@@ -49,11 +51,13 @@ public class ArticleDao implements AbstractDao{
             ab.setArticleBody( rs.getString(3) );
             ab.setCreatedDate( rs.getString(4) );
             ab.setUserId(rs.getString(5));
+            ab.setUserName(rs.getString(6));
+            ab.setIconPath(rs.getString(7));
             //------------------------------------------------------------------
 
             sql.setLength(0);//StringBuffer初期化
 
-            //タグの取得---------------------------------------------------------
+            /*タグの取得---------------------------------------------------------
             List tags = new ArrayList();
             sql.append("select tag_id, tag_name ");
             sql.append("from articles_tags join tags ");
@@ -69,9 +73,9 @@ public class ArticleDao implements AbstractDao{
                 tags.add(tb);
             }
             ab.setTags(tags);
-            //------------------------------------------------------------------
+            ------------------------------------------------------------------*/
 
-            sql.setLength(0);//StringBuffer初期化
+            //sql.setLength(0);//StringBuffer初期化
 
             //コメントの取得-------------------------------------------------------
             List comments = new ArrayList();
