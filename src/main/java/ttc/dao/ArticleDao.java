@@ -166,8 +166,9 @@ public class ArticleDao implements AbstractDao{
 
             pst.setString(3, (String)map.get("status"));
 
-            pst.setInt( 4, Integer.parseInt( (String)map.get("articleId") ) );
+            pst.setInt(4, Integer.parseInt( (String)map.get("articleId") ) );
 
+            System.out.println(sql);
             result = pst.executeUpdate();
 
         }catch(SQLException e){
@@ -296,6 +297,7 @@ public class ArticleDao implements AbstractDao{
                 ab.setUserId( rs.getString(5) );
                 ab.setUserName( rs.getString(6) );
 
+                /*
                 List tags = new ArrayList();
                 //記事一件あたりのタグを取得-----------------------------------------
                 StringBuffer sql2 = new StringBuffer();
@@ -315,6 +317,7 @@ public class ArticleDao implements AbstractDao{
                 }
                 //---------------------------------------------------------------
                 ab.setTags(tags);
+                */
 
                 results.add(ab);
             }
