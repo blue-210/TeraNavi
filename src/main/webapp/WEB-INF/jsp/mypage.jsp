@@ -45,7 +45,7 @@
                             </li>
                         </c:when>
                         <c:otherwise>
-                            <li class="active">
+                            <li>
                                 <a href="/TeraNavi/blogSetting">ブログ開設</a>
                             </li>
                         </c:otherwise>
@@ -140,10 +140,7 @@
          			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
                         <a href="/TeraNavi/createcomm">コミュニティの作成</a><br><br>
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
-                        <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
-                        <form action="/TeraNavi/front/commList" method="post" name="comForm">
-                            <input type="hidden" name="intention" value="list">
-                        </form><br>
+                        <a href="/TeraNavi/front/commList?intention=list">コミュニティ一覧</a><br><br>
                         <a href="/TeraNavi/showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
