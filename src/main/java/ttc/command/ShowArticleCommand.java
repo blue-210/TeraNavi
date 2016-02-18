@@ -49,21 +49,19 @@ public class ShowArticleCommand extends AbstractCommand{
                 ArticleBean article = (ArticleBean)articles.get(i);
                 if( articleId.equals( article.getArticleId() ) ){
                     index = i;
+                    break;
                 }
             }
             int preArticleId = -1, nextArticleId =-1;
-            System.out.println("index"+index);
             if(index > 0){
                 System.out.println("index > 0");
                 ArticleBean nextArticle = (ArticleBean)articles.get(index-1);
                 nextArticleId = Integer.parseInt( nextArticle.getArticleId() );
-                System.out.println("nextArticle="+nextArticleId);
             }
             if(index+1 <  articles.size() && index > -1 ){
                 System.out.println("index not last");
                 ArticleBean preArticle = (ArticleBean)articles.get(index+1);
                 preArticleId = Integer.parseInt( preArticle.getArticleId() );
-                System.out.println("preArticle="+preArticleId);
             }
             result.put("previous", preArticleId);
             result.put("next", nextArticleId);
