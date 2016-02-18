@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta charset=UTF-8">
-        <titleロジックエラー</title>
+        <title>ロジックエラー</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -31,7 +31,7 @@
 				   <p>*このページが何度も表示されてしまう場合は、下記の「エラー内容」を添付のうえお問い合わせフォームから連絡をお願いします</p>
 				   
 				   エラー内容:<br>
-				   <textarea readonly="true" cols="100" rows="7"><%=exception.getMessage() %></textarea><br>
+				   <textarea readonly="true" cols="100" rows="7"><%=exception.toString() %></textarea><br>
 				   
 
 				   
