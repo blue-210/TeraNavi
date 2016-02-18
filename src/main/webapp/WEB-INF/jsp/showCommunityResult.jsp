@@ -42,8 +42,8 @@
               <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
                   <button type="button" id="edit" class="col-md-2 text-center">編集</button>
               </c:if>
-               <div id="changeName"></div>
-               <div id="changeProfile"></div>
+               <div id="iconButton"></div>
+               <div id="headerButton"></div>
                <p id="sub"></p>
            </header>
 
@@ -136,7 +136,7 @@
                            class="img-rounded" width="200" height="150" id="commHeader">
                              <h2>アイコン画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
                              class="center-block img-circle img-responsive" width="150" height="150" id="commIcon">
-                           <p></p>
+
                        </div>
                    </div>
 
@@ -155,20 +155,20 @@
         var ajaxSettings;
         var ajax;
         $(function(){
-            //
-            // ajaxSettings = {
-            //     type:'post',
-            //     url:'/TeraNavi/upload',
-            //     processData:false,
-            //     contentType:false,
-            //     cache:false,
-            //     dataType:'json',
-            // }
 
-            // var flag = $("#userId").text() == $("#createId").text();
-            // if(flag){
-            //     $("#dd").removeAttr("style")
-            // }
+            ajaxSettings = {
+                type:'post',
+                url:'/TeraNavi/upload',
+                processData:false,
+                contentType:false,
+                cache:false,
+                dataType:'json',
+            }
+
+            var flag = $("#userId").text() == $("#createId").text();
+            if(flag){
+                $("#dd").removeAttr("style")
+            }
 
             $("#edit").click(function(){
                 var id=$('#commid');
@@ -178,17 +178,21 @@
                 var iconPath="${result.iconPath}";
                 var headerPath="${result.headerPath}";
                 var del='0';
-                var target='communitySettingResult';
-                // $('.bun').remove();
-                // $("#changeName").html('コミュニティ名：<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
-                // $("#changeProfile").html('紹介文：<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
+                var target='';
+                var button=document.getElementById('edit');
+
+                $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
+                $("#name").css('background-color','transparent');
+                $("#name").css('font-size','8px');
+                $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
                 $("#headerPath").removeClass().addClass("changeEffect");
 
-                $("#headerPath").append('ヘッダ画像<input type="file" value="ファイル選択" id="headerFile">');
-                // $("#headerPath").append('<input id="commHeaderPath" type="hidden" name="headerPath"><br');
-                $("#iconPath").html('アイコン画像：<div class="col-md-12 text-left"><img id="preIcon" src="'+iconPath+'" width="50px" height="50px"><br>');
-                $("#iconPath").append('<input type="file" value="ファイル選択" id="iconFile" onchange="fileUpIcon();"><input id="icon" type="hidden" name="iconPath"><br>');
-
+                $("#headerButton").html('<input type="file" value="ヘッダー画像を選択" id="headerFile">');
+                $("#headerButton").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
+                $("#iconPath").removeClass().addClass("changeEffect");
+                $("#iconButton").html('<input type="file" value="アイコン画像を選択" id="iconFile">');
+                $("#iconButton").append('<input id="icon" type="hidden" name="iconPath">');
+                button.style.visibility="hidden";
                 console.log(id);
                 console.log(del);
                 $('#userId').html('<input type="hidden" name="userId" value="'+userid.text()+'">');
@@ -231,7 +235,20 @@
             // Blob URLの作成
             src = window.URL.createObjectURL( file ) ;
             $("#headimg").attr("src", src);
+            fileUpHeader();
         });
+
+        $(document).on("change","#iconFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+            $("#icon").attr("src", src);
+            fileUpIcon();
+        });
+
 
 		function fileUpHeader(){
 			var files = document.getElementById("headerFile").files;
@@ -260,8 +277,8 @@
 
             $("#modalName").append($("#commName").val());
             $("#modalProfile").append($("#profile").val());
-            $("#commHeader").attr("src",$("#commHeaderPath").val());
-            $("#commIcon").attr("src",$("#icon").val());
+            $("#commHeader").attr("src",$("#headimg").attr("src"));
+            $("#commIcon").attr("src",$("#icon").attr("src"));
 
             $("#communitySetting-modal").modal("show");
         });
