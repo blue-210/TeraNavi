@@ -107,7 +107,7 @@
                                 </c:forEach>
                               </tbody>
                             </table>
-                            <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}" class="btn btn-warning pull-right">もっと見る</a>　
+                            <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}" class="btn btn-warning pull-right">もっと見る</a>　
                             <br>
                             <br>
                             <br>
