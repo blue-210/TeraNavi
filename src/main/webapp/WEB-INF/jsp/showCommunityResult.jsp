@@ -36,10 +36,12 @@
        <jsp:include page="/WEB-INF/jsp/header.jsp"/>
        <form action="commSetting" method="post" id="setting" >
            <header>
-              <span id="headerPath"> <p class="bun"><img src='${result.headerPath}' id="headimg"></p></span>
-              <span id="iconPath"> <p class="bun"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"></p></span>
-              <p class="bun"><span id="name" class="col-md-8 text-center">${result.name}</span>
-               <p class="bun"> <button class="col-md-2 text-center" id="dd" style="display:none">編集</button></p>
+              <span id="headerPath"><img src='${result.headerPath}' id="headimg"></span>
+              <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"></span>
+              <span id="name" class="col-md-8 text-center">${result.name}</span>
+              <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
+                  <button type="button" id="edit" class="col-md-2 text-center">編集</button>
+              </c:if>
                <div id="changeName"></div>
                <div id="changeProfile"></div>
                <p id="sub"></p>
@@ -75,12 +77,14 @@
                        <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
                    </div>
                </c:forEach>
+               <div class="col-xs-10 col-xs-offset-1">
+                   <button onclick="document.memberForm.submit();">
+                       メンバーの一覧を取得
+                   </button
+               </div>
            </div>
        </div>
 
-       <p onclick="document.memberForm.submit();">
-           メンバーの一覧を取得
-       </p>
        <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
            <input type="hidden" name="commId" value="${result.id}">
        </form>
@@ -151,22 +155,22 @@
         var ajaxSettings;
         var ajax;
         $(function(){
+            //
+            // ajaxSettings = {
+            //     type:'post',
+            //     url:'/TeraNavi/upload',
+            //     processData:false,
+            //     contentType:false,
+            //     cache:false,
+            //     dataType:'json',
+            // }
 
-            ajaxSettings = {
-                type:'post',
-                url:'/TeraNavi/upload',
-                processData:false,
-                contentType:false,
-                cache:false,
-                dataType:'json',
-            }
+            // var flag = $("#userId").text() == $("#createId").text();
+            // if(flag){
+            //     $("#dd").removeAttr("style")
+            // }
 
-            var flag = $("#userId").text() == $("#createId").text();
-            if(flag){
-                $("#dd").removeAttr("style")
-            }
-
-            $("#dd").click(function(){
+            $("#edit").click(function(){
                 var id=$('#commid');
                 var userid=$('#userId');
                 var name=$('#name');
@@ -175,11 +179,13 @@
                 var headerPath="${result.headerPath}";
                 var del='0';
                 var target='communitySettingResult';
-                $('.bun').remove();
-                $("#changeName").html('コミュニティ名：<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
-                $("#changeProfile").html('紹介文：<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
-                $("#headerPath").html('ヘッダ画像 <div class="col-md-12 text-left"><img id="preHeader" src="'+headerPath+'" width="50px" height="50px"</div><input type="file" value="ファイル選択" id="headerFile" onchange="fileUpHeader();"><br>');
-                $("#headerPath").append('<input id="commHeaderPath" type="hidden" name="headerPath"><br>');
+                // $('.bun').remove();
+                // $("#changeName").html('コミュニティ名：<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
+                // $("#changeProfile").html('紹介文：<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
+                $("#headerPath").removeClass().addClass("changeEffect");
+
+                $("#headerPath").append('ヘッダ画像<input type="file" value="ファイル選択" id="headerFile">');
+                // $("#headerPath").append('<input id="commHeaderPath" type="hidden" name="headerPath"><br');
                 $("#iconPath").html('アイコン画像：<div class="col-md-12 text-left"><img id="preIcon" src="'+iconPath+'" width="50px" height="50px"><br>');
                 $("#iconPath").append('<input type="file" value="ファイル選択" id="iconFile" onchange="fileUpIcon();"><input id="icon" type="hidden" name="iconPath"><br>');
 
@@ -216,6 +222,16 @@
 			}
 
 		}
+
+        $(document).on("change","#headerFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+            $("#headimg").attr("src", src);
+        });
 
 		function fileUpHeader(){
 			var files = document.getElementById("headerFile").files;
