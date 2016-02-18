@@ -39,6 +39,8 @@
                    <!-- 自分 -->
                 <c:forEach var="ch" items="${result}">
                     <c:choose>
+                        <c:when test="${empty ch.body}">
+                        </c:when>
                         <c:when test="${sessionScope.loginUser.id eq ch.userId}">
                             <div class="row">
                                 <div class="col-md-6"></div>
