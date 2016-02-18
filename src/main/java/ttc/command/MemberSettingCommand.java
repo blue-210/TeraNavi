@@ -41,7 +41,7 @@ public class MemberSettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
-            System.out.println("これからアップ");
+            
             for(int i=0;i<targetNo.length;i++){
                 params.put("userId",targetNo[i]);
                 dao.update(params);
