@@ -69,3 +69,7 @@ height:10%;
 #communityList{
 border: medium solid #B22222;
 }
+
+.changeEffect{
+	opacity: 0.6;
+}
