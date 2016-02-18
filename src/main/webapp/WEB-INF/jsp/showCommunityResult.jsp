@@ -19,7 +19,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/fileup.js"></script>
 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet" type="text/css">
@@ -38,38 +37,43 @@
     <form action="commSetting" method="post" id="setting" >
         <header>
               <span id="headerPath"><img src='${result.headerPath}' id="headimg"></span>
-              <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"></span>
+              <div class="col-xs-1"></div>
+              <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"> </span>
+              <div id="iconButton"></div>
+
               <span id="name" class="col-md-8 text-center">${result.name}</span>
               <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-                  <button type="button" id="edit" class="col-md-2 text-center">編集</button>
+                  <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
               </c:if>
-               <div id="iconButton"></div>
-               <div id="headerButton"></div>
-               <p id="sub"></p>
+
+<<<<<<< HEAD
+
            </header>
+           <br>
+           <div class="section">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-xs-10">
+                           <h1 class="text-primary">コミュニティ紹介文</h1>
+                           <p id="commid" style="display:none">${result.id}</p>
+                           <p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
+                           <p id="createId" style="display:none">${result.createUserId}</p>
 
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-10">
-                        <h1 class="text-primary">コミュニティ紹介文</h1>
-                        <p id="commid" style="display:none">${result.id}</p>
-                        <p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
-                        <p id="createId" style="display:none">${result.createUserId}</p>
-                        <p class="bun"><span id="profile">${result.profile}</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+                           <p class="bun"><span id="profile">${result.profile}</span></p>
+                           <p id="sub"></p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </form>
 
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                    <h1 class="text-center text-primary">メンバー</h1>
-                </div>
-            </div>
+       <div class="section">
+           <div class="container">
+               <div class="row">
+                   <div class="col-xs-10 col-xs-offset-1">
+                       <h1 class="text-center text-primary">メンバー</h1>
+                   </div>
+               </div>
 
 
             <c:forEach var="member" items="${result.members}">
@@ -180,10 +184,6 @@
                 dataType:'json',
             }
 
-            var flag = $("#userId").text() == $("#createId").text();
-            if(flag){
-                $("#dd").removeAttr("style")
-            }
 
             $("#edit").click(function(){
                 var id=$('#commid');
@@ -193,23 +193,24 @@
                 var iconPath="${result.iconPath}";
                 var headerPath="${result.headerPath}";
                 var del='0';
-                var target='';
-                var button=document.getElementById('edit');
+                var target='showCommunityResult';
+                var button=$('#editButton');
 
                 $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
                 $("#name").css('background-color','transparent');
                 $("#name").css('font-size','8px');
                 $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
                 $("#headerPath").removeClass().addClass("changeEffect");
-
-                $("#headerButton").html('<input type="file" value="ヘッダー画像を選択" id="headerFile">');
-                $("#headerButton").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
                 $("#iconPath").removeClass().addClass("changeEffect");
-                $("#iconButton").html('<input type="file" value="アイコン画像を選択" id="iconFile">');
+
+                $("#iconButton").append('<input type="file" value="アイコン画像を選択" id="iconFile">');
                 $("#iconButton").append('<input id="icon" type="hidden" name="iconPath">');
-                button.style.visibility="hidden";
-                console.log(id);
-                console.log(del);
+                $("#headerButton").append('<input type="file" value="ヘッダー画像を選択" id="headerFile">');
+                $("#headerButton").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
+
+
+                button.hide();
+
                 $('#userId').html('<input type="hidden" name="userId" value="'+userid.text()+'">');
                 $('#commid').html('<input type="hidden" name="commId" value="'+id.text()+'">');
                 $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
