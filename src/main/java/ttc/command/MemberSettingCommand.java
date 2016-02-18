@@ -23,11 +23,9 @@ public class MemberSettingCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String loginId=reqc.getParameter("userId")[0];
-
-            String[] targetNo=reqc.getParameter("targetNo");
+            String[] targetNo=reqc.getParameter("targetUser");
             String communityId = reqc.getParameter("communityId")[0];
-            String userId=reqc.getParameter("userId")[0];
+            
 
             String target="community_admin_flag=1";
 
@@ -37,7 +35,6 @@ public class MemberSettingCommand extends AbstractCommand{
 
 
             params.put("commId",communityId);
-            params.put("userId",loginId);
             params.put("target",target);
 
 
@@ -46,7 +43,7 @@ public class MemberSettingCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             System.out.println("これからアップ");
             for(int i=0;i<targetNo.length;i++){
-                params.put("targetNo",targetNo[i]);
+                params.put("userId",targetNo[i]);
                 dao.update(params);
             }
 
