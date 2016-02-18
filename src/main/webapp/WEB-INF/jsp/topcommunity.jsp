@@ -16,7 +16,9 @@
                 <p class="text-center">${community.profile}</p>
               </div><!--コミュニティ名と紹介文の領域おわり-->
               <div class="row text-right"><!-- 参加するボタンの領域 -->
-                  <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
+                  <a class="btn btn-warning" href="/TeraNavi/front/showcomm?commId=${community.id}">
+                      参加するyo
+                  </a>
             </div><!-- 参加するボタンの領域おわり -->
           </div><!--コミュニティ一件の領域おわり-->
         </c:forEach>

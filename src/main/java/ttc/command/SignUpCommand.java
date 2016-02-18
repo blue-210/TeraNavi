@@ -14,7 +14,6 @@ import java.util.HashMap;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-import ttc.bean.SignKeyBean;
 import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 import ttc.util.UniqueKeyGenerator;

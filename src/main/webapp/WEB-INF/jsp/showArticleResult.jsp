@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${result.title}</title>
+    <title>${result.article.title}</title>
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -25,17 +25,36 @@
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <header>
-      <img src="https://unsplash.imgix.net/photo-1420708392410-3c593b80d416?w=1024&amp;q=50&amp;fm=jpg&amp;s=db450320d7ee6de66c24c9b0bf2de3c6" id="headimg" width="100%" height="40%">
+      <div class="row">
+          <div class="col-md-12">
+              <img src="${result.blog.headerPath}" style="width:100%; height:250px">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
+                  ${result.blog.title}</span>
+              </p>
+
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <img src="${result.article.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+              <h3 style="position:relative; margin-top:-100px; margin-left:50px;">${result.article.userName}</h3>
+          </div>
+      </div>
     </header>
+
     <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center">${result.title}</h1>
-            <p class="text-left">${result.createdDate}</p>
+            <h1 class="text-center">${result.article.title}</h1>
+            <p class="text-left">${result.article.createdDate}</p>
             <br>
             <br>
-            <p class="text-left">${result.articleBody}</p>
+            <p class="text-left">${result.article.articleBody}</p>
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
@@ -50,15 +69,23 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <ul class="pager">
-              <li class="previous">
-                <a href="#" style="font-weight:bold">＜前の記事へ</a>
-              </li>
+              <c:choose>
+                  <c:when test="${result.previous >= 0}">
+                      <li class="previous">
+                        <a href="/TeraNavi/front/showArticle?articleId=${result.previous}" style="font-weight:bold">＜前の記事へ</a>
+                      </li>
+                  </c:when>
+              </c:choose>
               <li>
                 <a href="#" style="font-weight:bold">ブログTOPへ</a>
               </li>
-              <li class="next">
-                <a href="#" style="font-weight:bold">次の記事へ＞</a>
-              </li>
+              <c:choose>
+                  <c:when test="${result.next >= 0}">
+                      <li class="next">
+                        <a href="/TeraNavi/front/showArticle?articleId=${result.next}" style="font-weight:bold">次の記事へ＞</a>
+                      </li>
+                  </c:when>
+              </c:choose>
             </ul>
           </div>
         </div>

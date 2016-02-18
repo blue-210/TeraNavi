@@ -11,6 +11,7 @@ public class ArticleBean implements Bean{
     private List tags;
     private List comments;
     private String userName;
+    private String iconPath;
 	private int commentCount;
 
 	/**
@@ -142,15 +143,33 @@ public class ArticleBean implements Bean{
 	}
 
 	/**
-	 * @return the commentCount
-	 */
+	* Returns value of iconPath
+	* @return
+	*/
+	public String getIconPath() {
+		return iconPath;
+	}
+
+	/**
+	* Sets new value of iconPath
+	* @param
+	*/
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
+	}
+
+	/**
+	* Returns value of commentCount
+	* @return
+	*/
 	public int getCommentCount() {
 		return commentCount;
 	}
 
 	/**
-	 * @param commentCount the commentCount to set
-	 */
+	* Sets new value of commentCount
+	* @param
+	*/
 	public void setCommentCount(int commentCount) {
 		this.commentCount = commentCount;
 	}

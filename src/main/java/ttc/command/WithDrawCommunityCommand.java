@@ -10,7 +10,6 @@ import ttc.exception.integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.CommunityBean;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -21,8 +20,8 @@ public class WithDrawCommunityCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            HashMap params = new HashMap();
-            HashMap result = new HashMap();
+            Map params = new HashMap();
+            Map result = new HashMap();
 
 			String target = reqc.getParameter("target")[0];
 			System.err.println(target);
