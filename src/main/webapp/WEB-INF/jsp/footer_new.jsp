@@ -72,4 +72,5 @@
 						</div><!--end modal-->
 					</div>
 				</footer>
-				<script src='/TeraNavi/js/ContactSend.js'></script>
+
+			<script src='/TeraNavi/js/ContactSend.js'></script>
