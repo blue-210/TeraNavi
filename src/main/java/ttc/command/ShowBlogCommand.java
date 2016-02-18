@@ -13,44 +13,37 @@ import java.util.HashMap;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
-import ttc.bean.ArticleBean;
-import ttc.bean.BlogBean;
+import ttc.bean.Bean;
 import ttc.exception.business.ParameterInvalidException;
 
-public class ShowArticleCommand extends AbstractCommand{
+public class ShowBlogCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
+			String target = "";
 
-            Map result = new HashMap();
-
-            String articleId = reqc.getParameter("articleId")[0];
-
+			try{
+				//ログインユーザ以外のブログ情報を取得したい場合はtargetパラメータからIDを取得する
+				target = reqc.getParameter("targetId")[0];
+			}catch(NullPointerException e){
+				//それ以外の場合はログインユーザのIDを取得
+				target = reqc.getParameter("userId")[0];
+			}
+			
             Map params = new HashMap();
-            params.put("articleId", articleId);
-
+			params.put("target", target);
+			
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("blog");
             AbstractDao dao = factory.getAbstractDao();
-            ArticleBean ab = (ArticleBean)dao.read(params);
-            result.put("article", ab);
-
-
-            Map params2 = new HashMap();
-            params2.put("userId", ab.getUserId());
-
-            factory = AbstractDaoFactory.getFactory("blog");
-            dao = factory.getAbstractDao();
-            BlogBean bb = (BlogBean)dao.read(params2);
-            result.put("blog", bb);
-
+            Bean bean = dao.read(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(result);
-            resc.setTarget("showArticleResult");
+            resc.setResult(bean);
+            resc.setTarget("showBlogResult");
 
             return resc;
 
