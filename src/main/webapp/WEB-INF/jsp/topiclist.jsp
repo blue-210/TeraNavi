@@ -43,7 +43,7 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-xs-10">
+            <div class="col-md-10">
                 <c:forEach var="item" items="${result.topics}">
                     <div class="row" id="topiclist">
                             <div class="col-md-3">
@@ -80,8 +80,8 @@
                                     <h4 class="modal-title">新規トピック作成</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="col-xs-2"></div>
-                                    <div class="col-xs-10">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
                                         <h1>新しいトピック名</h1>
                                         <form action="/TeraNavi/front/createtopic" method="post">
                                             <input type="text" size="50" name="topic_name">
