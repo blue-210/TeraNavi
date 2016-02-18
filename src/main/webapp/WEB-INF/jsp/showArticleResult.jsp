@@ -25,17 +25,19 @@
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
     <header>
-      <img src="https://unsplash.imgix.net/photo-1420708392410-3c593b80d416?w=1024&amp;q=50&amp;fm=jpg&amp;s=db450320d7ee6de66c24c9b0bf2de3c6" id="headimg" width="100%" height="40%">
+      <img src="${result.blog.headerPath}" id="headimg" width="100%" height="40%">
+      ${result.article.iconPath}
+      ${result.blog.title}
     </header>
     <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center">${result.title}</h1>
-            <p class="text-left">${result.createdDate}</p>
+            <h1 class="text-center">${result.article.title}</h1>
+            <p class="text-left">${result.article.createdDate}</p>
             <br>
             <br>
-            <p class="text-left">${result.articleBody}</p>
+            <p class="text-left">${result.article.articleBody}</p>
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
