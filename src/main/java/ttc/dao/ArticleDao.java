@@ -79,11 +79,12 @@ public class ArticleDao implements AbstractDao{
 
             //コメントの取得-------------------------------------------------------
             List comments = new ArrayList();
-            sql.append("select comment_id, fk_article_id, fk_user_id, ");
-            sql.append("comment_body, ");
-            sql.append("comment_date ");
-            sql.append("from comments ");
-            sql.append("where fk_article_id = ?");
+            sql.append("select comment_id,fk_article_id,");
+            sql.append("comment_body,");
+            sql.append("comment_date,");
+            sql.append("user_id,user_name,user_icon_path ");
+            sql.append("from comments join users on user_id=fk_user_id ");
+            sql.append("where fk_article_id=?");
             pst = cn.prepareStatement( new String(sql) );
             pst.setInt( 1, Integer.parseInt( ab.getArticleId() ) );
             rs = pst.executeQuery();
@@ -91,26 +92,12 @@ public class ArticleDao implements AbstractDao{
                 CommentBean cb = new CommentBean();
                 cb.setCommentId( rs.getString(1) );
                 cb.setArticleId( rs.getString(2) );
-                int commentUserId = Integer.parseInt( rs.getString(3) );
-                cb.setCommentBody( rs.getString(4) );
-                cb.setCommentDate( rs.getString(5) );
-
-                //コメントしたユーザの情報取得----------------------------------------
-                StringBuffer sql2 = new StringBuffer();
-                sql2.append("select user_id, user_name, user_icon_path ");
-                sql2.append("from users ");
-                sql2.append("where user_id = ?");
-                PreparedStatement pst2 = cn.prepareStatement( new String(sql2) );
-                pst2.setInt(1, commentUserId);
-                ResultSet rs2 = pst2.executeQuery();
-                while( rs2.next() ){
-                    cb.setUserId( rs2.getString(1) );
-                    cb.setUserName( rs2.getString(2) );
-                    cb.setIconPath( rs2.getString(3) );
-
-                    comments.add(cb);
-                }
-                //---------------------------------------------------------------
+                cb.setCommentBody( rs.getString(3) );
+                cb.setCommentDate( rs.getString(4) );
+                cb.setUserId( rs.getString(5) );
+                cb.setUserName( rs.getString(6) );
+                cb.setIconPath( rs.getString(7) );
+                comments.add(cb);
             }
             ab.setComments(comments);
             ab.setCommentCount(comments.size());
