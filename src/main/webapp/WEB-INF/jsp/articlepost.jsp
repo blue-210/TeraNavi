@@ -22,9 +22,6 @@
 	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
     <style>
-        body {
-        padding-top: 20px;
-        }
         span.icon-button {
         padding-left: 38px;
         }
@@ -113,7 +110,7 @@
 
                     <form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
                         <div class="form-group">
-                            <div class="input-group">
+                            <div class="input-group col-md-8">
                                 <label class="control-label">タイトル</label>
                                 <input type="text" name="title" class="form-control">
                             </div>
