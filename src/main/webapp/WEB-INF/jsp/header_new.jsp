@@ -1,6 +1,6 @@
 		<link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 
-		<nav class="navbar navbar-default" id="header_bar">
+		<nav class="navbar navbar-default navbar-fixed-top" id="header_bar">
 			<div class="container-fluid">
 				<div class="navbar-header" >
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample3">
@@ -40,7 +40,7 @@
 					<span class="glyphicon glyphicon-bell" width="auto" height="40px" id="bell_logo"></span>
 					<img id="account_img" src="/TeraNavi/img/account.jpg">
 					<div id="uname">
-						<p>ブアカーオ・ホープラムックさん</p>
+						<p>${sessionScope.loginUser.userName}</p>
 					</div>
 				</div>
 			</div>
