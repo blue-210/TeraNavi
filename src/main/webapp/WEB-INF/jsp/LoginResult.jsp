@@ -32,8 +32,8 @@
            <a href="/TeraNavi/front/mypage"><h1>マイページはこちら</h1></a>
 
 
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-        <a href="/TeraNavi/front/top">Topへ</a>
+		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a><br>
+			<a href="/TeraNavi/front/top">Topへ</a>
 
        </div><!--end row-->
     </div><!--end container-->
