@@ -17,7 +17,7 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/header_new.jsp"/>
 
     <div class="section">
         <div class="container">
@@ -81,7 +81,7 @@
         <div class="tab-pane" id="tag"> <jsp:include page="/WEB-INF/jsp/toptag.jsp"/> </div>
     </div><!-- tab-content -->
 
-    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer_new.jsp"/>
 
     <script>
 
