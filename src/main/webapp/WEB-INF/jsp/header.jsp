@@ -9,9 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#" id="logo">
-				<img class="logo" src="/TeraNavi/img/logo.png">
-			</a>
+			<a href="/TeraNavi/front/top" class="navbar-brand"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 		</div>
 		<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
 			<div class="input-group">
