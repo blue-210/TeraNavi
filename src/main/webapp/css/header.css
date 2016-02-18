@@ -36,8 +36,15 @@ body{
 	padding-top: 10px;
 }
 
-#searchbutton{
-	padding: 0px;
+.searchbutton{
+	/*padding: 0px;
 	width: 34px;
-	height: 34px;
+	height: 100%;*/
+	/*position: relative;
+	font-size: 0;
+	white-space: nowrap;
+	width: 1%;
+	white-space: nowrap;
+	vertical-align: middle;
+	display: table-cell;*/
 }

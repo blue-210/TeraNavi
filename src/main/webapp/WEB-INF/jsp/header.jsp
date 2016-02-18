@@ -22,7 +22,7 @@
 					</ul>
 				</div><!-- /btn-group -->
 				<input type="text" class="form-control">
-				<span class="input-group-btn searchbutton">
+				<span class="input-group-btn">
 					<button type="submit" class="btn btn-default"><i class='fa fa-search'></i></button>
 				</span>
 			</div><!-- /input-group -->
@@ -37,8 +37,8 @@
 							<span>${sessionScope.loginUser.userName}さん<b class="caret"></b></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">マイページ</a></li>
-							<li><a href="#">ログアウト</a></li>
+							<li><a href="/TeraNavi/front/mypage">マイページ</a></li>
+							<li><a href="/TeraNavi/front/logout">ログアウト</a></li>
 						</ul>
 					</li>
 				</c:when>
@@ -47,34 +47,33 @@
 						<li><a href="/TeraNavi/sign">新規登録</a><li>
 						<li><a data-toggle="modal" href="#div-modal">ログイン</a><li>
 					</ul>
+					<div id="div-modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h1 class="text-center">ログイン</h1>
+								</div>
+								<div class="modal-body">
+									<form action="/TeraNavi/front/login" method="post">
+										<div class="form-group">
+											<label class="control-label" for="exampleInputId">ログインID</label>
+											<input class="form-control" name="loginId" type="text">
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="exampleInputPass">パスワード</label>
+											<input class="form-control" name="password" type="password">
+										</div>
+										<button type="submit" class="btn btn-default pull-right">送信する</button>
+									</form>
+									<a href="/TeraNavi/reset">パスワードを忘れた方はこちら</a>
+								</div>
+								<div class="modal-footer"></div>
+							</div><!--end moal-content-->
+						</div><!--end modal-dialog-->
+					</div><!--end modal-->
 				</c:otherwise>
 			</c:choose>
 		</ul>
 	</div>
 </nav>
-
-<div id="div-modal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h1 class="text-center">ログイン</h1>
-			</div>
-			<div class="modal-body">
-				<form action="/TeraNavi/front/login" method="post">
-					<div class="form-group">
-						<label class="control-label" for="exampleInputId">ログインID</label>
-						<input class="form-control" name="loginId" type="text">
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="exampleInputPass">パスワード</label>
-						<input class="form-control" name="password" type="password">
-					</div>
-					<button type="submit" class="btn btn-default pull-right">送信する</button>
-				</form>
-				<a href="/TeraNavi/reset">パスワードを忘れた方はこちら</a>
-			</div>
-			<div class="modal-footer"></div>
-		</div><!--end moal-content-->
-	</div><!--end modal-dialog-->
-</div><!--end modal-->
