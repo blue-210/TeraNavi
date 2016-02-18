@@ -84,7 +84,7 @@
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 		</div>
 		<div id="submit_button">
-			<button id="chatwrite" type="button" name="button">送信</button>
+			<button id="chatwrite" type="button" name="button">submit</button>
 		</div>
     <div id="footer">
     	<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
