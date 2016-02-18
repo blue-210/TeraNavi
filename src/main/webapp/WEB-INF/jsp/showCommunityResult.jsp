@@ -75,12 +75,14 @@
                        <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
                    </div>
                </c:forEach>
+               <div class="col-xs-10 col-xs-offset-1">
+                   <button onclick="document.memberForm.submit();">
+                       メンバーの一覧を取得
+                   </button
+               </div>
            </div>
        </div>
 
-       <p onclick="document.memberForm.submit();">
-           メンバーの一覧を取得
-       </p>
        <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
            <input type="hidden" name="commId" value="${result.id}">
        </form>
