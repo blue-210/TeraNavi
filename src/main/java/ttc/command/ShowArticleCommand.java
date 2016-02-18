@@ -40,8 +40,6 @@ public class ShowArticleCommand extends AbstractCommand{
             Map params2 = new HashMap();
             params2.put("userId", ab.getUserId());
 
-            MySqlConnectionManager.getInstance().beginTransaction();
-
             factory = AbstractDaoFactory.getFactory("blog");
             dao = factory.getAbstractDao();
             BlogBean bb = (BlogBean)dao.read(params2);
