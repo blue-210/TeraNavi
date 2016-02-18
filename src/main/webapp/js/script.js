@@ -22,11 +22,13 @@ $(function(){
                 var body = data[i].body;
                 var date = data[i].date;
 
-
-                console.log(i + " " + userId + " " + body);
-                $(".col-md-5").append("<div class=\"box\"><p class=\"content\">" + userName + body + date + "</p></div>");
-
-                $(".col-md-5").append("<img class=\"account\" src=\"" + iconPath + "\"/>");
+                if(userId == $("input[name=userId]").val()){
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6\"></div><div class=\"col-md-1\"></div><div class=\"col-md-5\"><div class=\"box\"><p class=\"content\">" + userName + body + date + "</p></div><img class=\"account\" src=\"" + iconPath + "\"/></div></div>"
+                    );
+                }else{
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-5\"><div class=\"other_box\"><p class=\"other_content\">" + userName + body + date + "</p></div><img class=\"other_account\" src=\"" + iconPath + "\"/></div><div class=\"col-md-5\"></div><div class=\"col-md-1\"></div></div>"
+                    );
+                }
             }
         })
         .fail(function(data){
