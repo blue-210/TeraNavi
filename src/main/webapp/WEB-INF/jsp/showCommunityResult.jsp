@@ -32,9 +32,10 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-       <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-       <form action="commSetting" method="post" id="setting" >
-           <header>
+
+    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <form action="commSetting" method="post" id="setting" >
+        <header>
               <span id="headerPath"><img src='${result.headerPath}' id="headimg"></span>
               <div class="col-xs-1"></div>
               <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"> </span>
@@ -45,6 +46,7 @@
                   <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
               </c:if>
 
+<<<<<<< HEAD
 
            </header>
            <br>
@@ -73,53 +75,67 @@
                    </div>
                </div>
 
-               <c:forEach var="member" items="${result.members}">
-                   <div class="col-md-3">
-                       <img src="${member.iconPath}" class="center-block img-circle img-responsive">
-                       <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
-                   </div>
-               </c:forEach>
-               <div class="col-xs-10 col-xs-offset-1">
-                   <button onclick="document.memberForm.submit();">
-                       メンバーの一覧を取得
-                   </button
-               </div>
-           </div>
-       </div>
 
-       <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
-           <input type="hidden" name="commId" value="${result.id}">
-       </form>
-       <div class="container">
-           <div class="row">
-               <div class="col-xs-10 col-xs-offset-1">
-                   <c:forEach var="item" items="${result.topics}">
-                       <div class="row" id="topiclist">
-                               <div class="col-md-3">
-                               <img src="${item.userIconPath}" id="topicIcon">
-                                   <p>
-                                       <c:out value="${item.createUserName}" />
-                                   </p>
-                           </div>
-                           <div class="col-md-7">
-                               <h4 id="title" class="text-left">
-                                   <a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a>
-                               </h4>
-                           </div>
-                           <div class="col-md-2">
+            <c:forEach var="member" items="${result.members}">
+                <div class="col-md-3">
+                    <img src="${member.iconPath}" class="center-block img-circle img-responsive">
+                    <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
+                </div>
+            </c:forEach>
+
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="col-xs-10"></div>
+                <div class="col-xs-2">
+                <button type="button" class="btn btn-default" onclick="document.memberForm.submit();">
+                    メンバーの一覧を取得
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
+                    <input type="hidden" name="commId" value="${result.id}">
+                </form>
+
+                <div class="col-xs-10 col-xs-offset-1">
+                    <c:forEach var="item" items="${result.topics}">
+                        <div class="row col-md-10 col-md-offset-1 well">
+                            <div class="col-md-2">
+                                <img src="${item.userIconPath}" id="topicIcon">
+                                <p>
+                                    <c:out value="${item.createUserName}" />
+                                </p>
+                            </div>
+
+                            <div class="col-md-7">
+                                <a href="showchat?topicId=${item.topicId}">
+                                    <h2 class="text-muted">${item.name}</h2>
+                                </a>
+                            </div>
+
+                            <div class="col-md-2">
                                <p id="date">
                                    <c:out value="${item.updateDate}" />
                                </p>
-                           </div>
-                       </div>
-                   </c:forEach>
-                   <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
-                       <h2 class="text-muted">トピックリスト</h2>
-                   </a>
-              </div>
-           </div>
-           <!--モーダルウインドウの中身-->
-           <div class="fade modal text-justify" id="communitySetting-modal">
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
+                        <h2>トピックリスト</h2>
+                    </a>
+                </div>
+            </div>
+
+                       <!--モーダルウインドウの中身-->
+           <!--<div class="fade modal text-justify" id="communitySetting-modal">
                <div class="modal-dialog">
                  <div class="modal-content">
                    <div class="modal-header">
@@ -148,9 +164,10 @@
                    </div>
                  </div>
                </div>
-            </div>
+           </div>-->
        </div><!--end row-->
     </div><!--end container-->
+</div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
