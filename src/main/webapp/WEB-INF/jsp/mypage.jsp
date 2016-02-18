@@ -32,14 +32,14 @@
                     <li class="active">
                       <a href="#">マイページ</a>
                     </li>
-                    <li>
-                      <a href="/TeraNavi/articlepost">記事を書く</a>
-                    </li>
-                    <li>
-                        <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-                    </li>
                     <c:choose>
                         <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <li>
+                              <a href="/TeraNavi/articlepost">記事を書く</a>
+                            </li>
+                            <li>
+                                <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
+                            </li>
                             <li>
                                 <a href="/TeraNavi/blogSetting">ブログ設定</a>
                             </li>
@@ -83,10 +83,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <br>
-
-                            <p style="position:relative; margin-top:200px;" class="well">${sessionScope.loginUser.profile}</p>
+                            <p style="position:relative;" class="well">${sessionScope.loginUser.profile}</p>
                             <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
-
                         </div>
                     </div>
                     <div class="row">
@@ -140,7 +138,10 @@
          			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
                         <a href="/TeraNavi/createcomm">コミュニティの作成</a><br><br>
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
-                        <a href="/TeraNavi/front/commList?intention=list">コミュニティ一覧</a><br><br>
+                        <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
+                        <form action="/TeraNavi/front/commList" method="post" name="comForm">
+                            <input type="hidden" name="intention" value="list">
+                        </form><br>
                         <a href="/TeraNavi/showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
