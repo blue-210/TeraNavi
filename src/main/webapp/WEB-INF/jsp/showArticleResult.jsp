@@ -99,7 +99,7 @@
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.commentCount}</i>
+            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
 
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-dnt="true">ツイート</a>
             <%-- 下のdata-hrefはサイトのURLに変更してください --%>
@@ -126,12 +126,13 @@
         </div>
         <div class="row">
           <div class="col-md-1 col-md-offset-2">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive">
           </div>
           <div class="col-md-7">
-            <form class="form-horizontal" role="form">
+            <form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
               <div class="form-group">
-                <textarea class="form-control" id="inputEmail3" placeholder="コメントを書く"></textarea>
+                <textarea name="body" class="form-control" placeholder="コメントを書く"></textarea>
+                <input type="hidden" name="articleId" value="${result.article.articleId}">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-default pull-right">投稿</button>
@@ -143,11 +144,11 @@
               <hr>
             </div>
           </div>
-          <c:forEach var="comment" items="${result.comments}">
+          <c:forEach var="comment" items="${result.article.comments}">
 			  <div class="row">
 				<div class="col-md-1 col-md-offset-2">
-				  <img src="comment.iconPath" class="img-responsive">
-				  <a href="#"><p class="text-center">comment.userName</p></a>
+				  <img src="${comment.iconPath}" class="img-responsive">
+				  <a href="#"><p class="text-center">${comment.userName}</p></a>
 				</div>
 				<div class="col-md-7">
 				  <p>${comment.commentDate}</p>
@@ -165,6 +166,11 @@
 				  </ul>
 				</div>
 			  </div>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <hr>
+                </div>
+              </div>
 		  </c:forEach>
         </div>
       </div>
