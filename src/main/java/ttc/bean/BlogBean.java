@@ -1,12 +1,12 @@
 package ttc.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BlogBean implements Bean{
     private String headerPath;
     private String title;
     private String explanation;
-    private ArrayList articles;
+    private List articles;
 	private String status;
 
 
@@ -62,7 +62,7 @@ public class BlogBean implements Bean{
     * Returns value of articles
     * @return
     */
-    public ArrayList getArticles() {
+    public List getArticles() {
     	return articles;
     }
 
@@ -70,7 +70,7 @@ public class BlogBean implements Bean{
     * Sets new value of articles
     * @param
     */
-    public void setArticles(ArrayList articles) {
+    public void setArticles(List articles) {
     	this.articles = articles;
     }
 
