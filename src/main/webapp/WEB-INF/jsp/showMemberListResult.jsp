@@ -45,15 +45,13 @@
                     <div class="row text-center">
                         <div class="col-xs-10">
                             <h1>メンバー一覧</h1>
-
                             <div class="row">
                                 <c:forEach var="member" items="${result.members}">
                                     <div class="col-md-3">
                                         <img src="${member.iconPath}" class="img-responsive">
                                         <h4>${member.userName}</h4>
-                                        <input type="hidden" name="targetNo" value="${member.id}">
+                                        <input type="hidden" name="targetUser" value="${member.id}">
 								        <input type="hidden" name="communityId" value="${result.value}">
-
                                         <div class="check"></div>
                                     </div>
                                 </c:forEach>
@@ -69,7 +67,7 @@
 
 
     <script>
-        $("#dd").click(function(){
+        $(function(){
             $('.check').append('<input type="checkbox">');
             $('#sub').append('<input type="submit" value="確定">');
         });

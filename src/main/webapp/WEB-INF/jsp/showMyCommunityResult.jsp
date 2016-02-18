@@ -113,7 +113,7 @@
                                     <img src="${comm2.iconPath}" id="topicIcon">
                                 </div>
                                 <div class="col-md-7">
-                                    <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
+                                    <a href="/TeraNavi/front/showcomm?commId=${comm2.id}">
                                         <h2 class="text-muted">${comm2.name}</h2>
                                     </a>
                                     <p id="articleBody">${comm2.profile}...</p>

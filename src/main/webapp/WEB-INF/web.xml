@@ -11,8 +11,8 @@
    
    
    <error-page>
-		<exception-type>ttc.exception.business.BusinessLogicException</exception-type>
-		<location>/WEB-INF/jsp/exception/BusinessExceptionPage.jsp</location>
+		<exception-type>ttc.exception.ApplicationException</exception-type>
+		<location>/WEB-INF/jsp/exception/ApplicationExceptionPage.jsp</location>
 	</error-page>
 
 
