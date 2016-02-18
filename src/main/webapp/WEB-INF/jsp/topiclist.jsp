@@ -44,6 +44,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
+                <h1>トピック</h1>
                 <c:forEach var="item" items="${result.topics}">
                     <div class="row" id="topiclist">
                             <div class="col-md-3">
