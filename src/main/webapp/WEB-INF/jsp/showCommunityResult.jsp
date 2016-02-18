@@ -36,17 +36,30 @@
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
     <form action="commSetting" method="post" id="setting" >
         <header>
-              <span id="headerPath"><img src='${result.headerPath}' id="headimg"></span>
-              <div class="col-xs-1"></div>
-              <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"> </span>
-              <div id="iconButton"></div>
+            <div class="row">
+                <div class="col-md-12">
 
-              <span id="name" class="col-md-8 text-center">${result.name}</span>
-              <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-                  <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
-              </c:if>
+                    <span id="headerPath"><img src="${result.headerPath}" style="width:100%; height:250px" id="headimg"></span>
 
-<<<<<<< HEAD
+                    <div id="headerButton"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div class="col-md-5">
+                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span id="iconPath"><img id="icon" src="${result.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></span>
+                    <div id="iconButton"></div>
+            </div>
+            <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
+                <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
+            </c:if>
 
            </header>
            <br>
@@ -135,7 +148,7 @@
             </div>
 
                        <!--モーダルウインドウの中身-->
-           <!--<div class="fade modal text-justify" id="communitySetting-modal">
+           <div class="fade modal text-justify" id="communitySetting-modal">
                <div class="modal-dialog">
                  <div class="modal-content">
                    <div class="modal-header">
@@ -164,7 +177,7 @@
                    </div>
                  </div>
                </div>
-           </div>-->
+           </div>
        </div><!--end row-->
     </div><!--end container-->
 </div>
@@ -193,18 +206,18 @@
                 var iconPath="${result.iconPath}";
                 var headerPath="${result.headerPath}";
                 var del='0';
-                var target='showCommunityResult';
+                var target='communitySettingResult';
                 var button=$('#editButton');
 
-                $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
+                $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName" maxlength="25"><br>');
                 $("#name").css('background-color','transparent');
                 $("#name").css('font-size','8px');
                 $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
                 $("#headerPath").removeClass().addClass("changeEffect");
-                $("#iconPath").removeClass().addClass("changeEffect");
+                $("#icon").addClass("changeEffect");
 
                 $("#iconButton").append('<input type="file" value="アイコン画像を選択" id="iconFile">');
-                $("#iconButton").append('<input id="icon" type="hidden" name="iconPath">');
+                $("#iconButton").append('<input id="comIconPath" type="hidden" name="iconPath">');
                 $("#headerButton").append('<input type="file" value="ヘッダー画像を選択" id="headerFile">');
                 $("#headerButton").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
 
@@ -234,8 +247,8 @@
 				ajaxSettings.data = formData;
 				ajaxSettings.url = "/TeraNavi/upload";
 				ajaxSettings.success = function(data){
-					$("#icon").val(data.result);
-					$("#preIcon").attr("src",data.result);
+					$("#comIconPath").val(data.result);
+					$("#icon").attr("src", data.result);
 				}
 
  				ajax = $.ajax(ajaxSettings);
@@ -261,7 +274,7 @@
 
             // Blob URLの作成
             src = window.URL.createObjectURL( file ) ;
-            $("#icon").attr("src", src);
+
             fileUpIcon();
         });
 
@@ -292,7 +305,7 @@
             $("#commIcon").empty();
 
             $("#modalName").append($("#commName").val());
-            $("#modalProfile").append($("#profile").val());
+            $("#modalProfile").append($("#profile").text());
             $("#commHeader").attr("src",$("#headimg").attr("src"));
             $("#commIcon").attr("src",$("#icon").attr("src"));
 
