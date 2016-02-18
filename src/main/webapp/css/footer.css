@@ -1,6 +1,7 @@
 .footer{
+	margin-top: 20px;
 	position: absolute;
-	bottom: 0;
+	margin-bottom: 0px;
 	width: 100%;
 	background-color:#ddd;
 }
