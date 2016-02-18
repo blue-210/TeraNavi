@@ -61,8 +61,8 @@
                             </h4>
                         </div>-->
                     <div class="text-right">
-                        <a class="btn btn-warning" href="/TeraNavi/front/showcomm?commId=${comm.id}">
-                            続きを読む
+                        <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${comm.id}">
+                            参加する
                         </a>
                     </div>
 
@@ -72,7 +72,7 @@
                             </h4>
                         </div>
                     </div>
-                    
+
                 </c:forEach>
             </div>
         </div><!--end row-->
