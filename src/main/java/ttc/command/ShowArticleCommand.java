@@ -10,6 +10,7 @@ import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -39,12 +40,40 @@ public class ShowArticleCommand extends AbstractCommand{
 
             Map params2 = new HashMap();
             params2.put("userId", ab.getUserId());
+            params2.put("flag", "0");
+
+            //前後の記事IDを調べる　なければ-1 ----------------------------------
+            List articles = dao.readAll(params2);
+            int index = -1;
+            for(int i=0; i<articles.size(); i++){
+                ArticleBean article = (ArticleBean)articles.get(i);
+                if( articleId.equals( article.getArticleId() ) ){
+                    index = i;
+                }
+            }
+            int preArticleId = -1, nextArticleId =-1;
+            System.out.println("index"+index);
+            if(index > 0){
+                System.out.println("index > 0");
+                ArticleBean nextArticle = (ArticleBean)articles.get(index-1);
+                nextArticleId = Integer.parseInt( nextArticle.getArticleId() );
+                System.out.println("nextArticle="+nextArticleId);
+            }
+            if(index+1 <  articles.size() && index > -1 ){
+                System.out.println("index not last");
+                ArticleBean preArticle = (ArticleBean)articles.get(index+1);
+                preArticleId = Integer.parseInt( preArticle.getArticleId() );
+                System.out.println("preArticle="+preArticleId);
+            }
+            result.put("previous", preArticleId);
+            result.put("next", nextArticleId);
+            //----------------------------------------------------------------
+
 
             factory = AbstractDaoFactory.getFactory("blog");
             dao = factory.getAbstractDao();
             BlogBean bb = (BlogBean)dao.read(params2);
             result.put("blog", bb);
-
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
