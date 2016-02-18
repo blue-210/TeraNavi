@@ -1,12 +1,8 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
 
 		<link href="/TeraNavi/css/footer.css" rel="stylesheet" type="text/css">
-		<script src='/TeraNavi/js/footerFixed.js'></script>
+		<%-- <script src='/TeraNavi/js/footerFixed.js'></script> --%>
 
-		<nav id="footer" class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default" role="navigation">
 				<footer class="footer container-fluid">
 					<div class="row">
 						<div class="col-md-3">
@@ -72,4 +68,5 @@
 						</div><!--end modal-->
 					</div>
 				</footer>
+            </nav>
 				<script src='/TeraNavi/js/ContactSend.js'></script>
