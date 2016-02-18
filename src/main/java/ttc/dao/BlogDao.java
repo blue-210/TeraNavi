@@ -151,7 +151,7 @@ public class BlogDao implements AbstractDao{
 				blog.setStatus(rs.getString(4));
 				
 				sql.setLength(0);
-				sql.append("SELECT article_id,article_title,article_body,article_created_flag,article_status_flag ");
+				sql.append("SELECT article_id,article_title,article_body,article_created_date,article_status_flag ");
 				sql.append("from articles where fk_user_id=?");
 				if(map.containsKey("article_status")){
 					sql.append(map.get("article_status"));
