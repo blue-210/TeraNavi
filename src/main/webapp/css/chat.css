@@ -14,15 +14,29 @@
    position: relative;
 }
 .box {
+	margin-right:20%;
+   display: inline-block;
    position: relative;
-   background: #ccc;
-   height: 70px;
-   max-width:400px;
+   background: #FF9933;
+   height: auto;
    min-width:20px;
+   max-width:400px;
    margin-bottom: 20px;
    border-radius: 50px;
+   color:#fff;
 }
-
+.other_box {
+	display: inline-block;
+	position: relative;
+	background: #EEEEEE;
+	max-width:400px;
+	min-width:20px;
+	height:auto;
+	margin-bottom: 20px;
+	border-radius: 50px;
+	color:#000;
+	margin-left:13%;
+}
 .box:after {
    content: '';
    position: absolute;
@@ -42,22 +56,11 @@
    width: 50px;
    border-radius: 25px;
    z-index: -1;
-   background: #ccc;
+   background: #FF9933;
    bottom: -15px;
    left: 35px;
 }
-.other_box {
-	display: inline-block;
-	position: relative;
-	background: #EEEEEE;
-	max-width:400px;
-	min-width:20px;
-	height:auto;
-	margin-bottom: 20px;
-	border-radius: 50px;
-	color:#000;
-	margin-left:13%;
-}
+
 .other_box:after {
 	content: '';
 	position: absolute;
@@ -65,10 +68,10 @@
 	width: 50px;
 	border-radius: 25px;
 	z-index: -1;
-	background: #eee;
-	bottom: -45px;
+	background: #fff;
+	bottom: -15px;
 	left: 50px;
-	margin-left:10%;
+	margin-left:-17%;
 	float: right;
 }
 .other_box:before {
@@ -78,10 +81,10 @@
 	width: 60px;
 	border-radius: 25px;
 	z-index: -1;
-	background: #fff;
-	bottom: -45px;
+	background: #eee;
+	bottom: -14px;
 	left: 35px;
-	margin-left:5%;
+	margin-left:-10%;
 }
 .content{
 	padding-left:20px;
@@ -99,6 +102,7 @@
 	width:64px;
 	height:64px;
 	margin-left:70%;
+	margin-bottom: 20px;
 }
 .other_account{
 	margin-right: 100%;
@@ -187,4 +191,18 @@
 	width:100%;
 	margin:0px;
 	width:420px;
+}
+#forms{
+	width: 80%;
+	float:left;
+	margin-left:5%;
+	margin-bottom: 40px;
+}
+#submit_button{
+	float:left;
+	margin-bottom:40px;
+	width:40px;
+}
+#footer{
+	margin-top: 30px;
 }
