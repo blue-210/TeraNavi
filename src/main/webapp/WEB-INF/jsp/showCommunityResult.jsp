@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="col-md-7">
-                                <a href="showchat?topicId=${item.topicId}">
+                                <a href="showchat?topicId=${item.topicId}&communityId=${result.id}">
                                     <h2 class="text-muted">${item.name}</h2>
                                 </a>
                             </div>
