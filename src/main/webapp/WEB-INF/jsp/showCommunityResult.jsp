@@ -223,7 +223,7 @@
 
 
                 button.hide();
-
+                <!-- 下は隠し要素-->
                 $('#userId').html('<input type="hidden" name="userId" value="'+userid.text()+'">');
                 $('#commid').html('<input type="hidden" name="commId" value="'+id.text()+'">');
                 $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
