@@ -68,14 +68,17 @@
                 </div>
 
 
+
                 <div calss="col-md-8">
                     <c:choose>
                         <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <div class="col-md-1"></div>
                             <h1>ブログ設定</h1>
-                            <form id="blogSetting" action="front/blogSetting" method="post">
+                            <form id="blogSetting" action="/TeraNavi/front/blogSetting" method="post">
                                 <input id="status" type="hidden" name="status" value="1">
                         </c:when>
                         <c:otherwise>
+                            <div class="col-md-1"></div>
                             <h1>ブログ開設</h1>
                             <form id="blogCreate" action="front/blogCreate" method="post">
                                 <input id="status" type="hidden" name="status" value="0">
@@ -83,20 +86,25 @@
                     </c:choose>
 
 
-                           <div class="col-xs-1"></div>
-                           <div class="col-xs-4">
+                           <div class="col-md-1"></div>
+                           <div class="col-md-6">
                                タイトル<input type="text" name="title" class="form-control" id="bodyTitle"><br>
                                説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation"></textarea><br>
-                               <div class="col-md-12 text-left">
-                                 <img id="preHeader" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                                 width="50px" height="50px">
-                               </div>
-                               ヘッダー画像<input type='file' value="ファイル選択" id='blogHeaderFile' onchange="fileUpHeader();">
-                               <input type="hidden" name="headerPath" id="headerPathHidden">
-                               <div class="col-xs-3"></div>
-                                <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal">確認</button>
+                               <label>ヘッダー画像</label>
+                                   <div class="col-md-12 text-left">
+                                     <img id="preHeader" src="${result.headerPath}">
+                                   </div>
+                               <label>
+                                   <p>画像を選択</p>
+                                   <input type='file'  style="display:none;" value="ファイル選択" id='blogHeaderFile' onchange="fileUpHeader();">
+                               </label>
+                                <input type="hidden" name="headerPath" id="headerPathHidden">
+                               <div class="col-md-3">
+                                    <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:500px;">確認</button>
+                                </div>
                             </div>
                        </form>
+
                    </div>
                    <!-- モーダルウィンドウの中身 -->
                    <div class="fade modal text-justify" id="blog-modal">
