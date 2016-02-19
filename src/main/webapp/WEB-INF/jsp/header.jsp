@@ -41,8 +41,8 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right list-inline">
-						<li><a href="/TeraNavi/sign">新規登録</a><li>
-						<li><a data-toggle="modal" href="#loginmodal">ログイン</a><li>
+						<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+						<li><a class="headermenu" data-toggle="modal" href="#loginmodal">ログイン</a><li>
 					</ul>
 				</c:otherwise>
 			</c:choose>
