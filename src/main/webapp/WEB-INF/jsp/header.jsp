@@ -10,22 +10,20 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="/TeraNavi/front/top" class="navbar-brand"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
+			<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 		</div>
-		<div id="searchform">
+		<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
 			<select id="target">
 				<option value="usearch" selected>ユーザ</option>
 				<option value="commList">コミュニティ</option>
 				<option value="keywordsearch">ブログ</option>
 			</select>
-			<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
-				<input type="text"  name="keyword">
-				<input type="hidden" name="intention" value="search">
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
-				</span>
-			</form>
-		</div>
+			<input type="text"  name="keyword">
+			<input type="hidden" name="intention" value="search">
+			<span>
+				<button type="submit" class="btn btn-default" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
+			</span>
+		</form>
 		<i class="fa fa-bell-o" id="bell_logo"></i>
 		<ul class="nav pull-right">
 			<c:choose>
