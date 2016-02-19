@@ -13,15 +13,13 @@
 		</div>
 		<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
 			<div class="input-group">
-				<div class="input-group-btn">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">ユーザ<span class="caret"></span></button>
-					<ul class="dropdown-menu" role="menu">
-						<li role="presentation"><a href="#">ブログ</a></li>
-						<li role="presentation"><a href="#">記事</a></li>
-						<li role="presentation"><a href="#">コミュニティ</a></li>
-					</ul>
-				</div><!-- /btn-group -->
-				<input type="text" class="form-control">
+				<select id="target">
+					<option value="usearch" selected>ユーザ</option>
+					<option value="commList">コミュニティ</option>
+					<option value="keywordsearch">ブログ</option>
+				</select>
+				<input type="text"  name="keyword" class="form-control">
+				<input type="hidden" name="intention" value="search">
 				<span class="input-group-btn">
 					<button type="submit" class="btn btn-default"><i class='fa fa-search'></i></button>
 				</span>
