@@ -81,7 +81,7 @@
         <div class="tab-pane" id="tag"> <jsp:include page="/WEB-INF/jsp/toptag.jsp"/> </div>
     </div><!-- tab-content -->
 
-    <jsp:include page="/WEB-INF/jsp/footer_new.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
 

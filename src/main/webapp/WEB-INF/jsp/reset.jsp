@@ -38,6 +38,6 @@
            </form>
        </div><!--end row-->
     </div><!--end container-->
-    <jsp:include page="/WEB-INF/jsp/footer_new.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

@@ -180,7 +180,7 @@
 			</div>
 
 			<input type="hidden" name="adminFlag" form="signForm" value="0">
-            <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal">確認</button>
+            <button type="submit" class="btn btn-primary pull-right" id="signsubmit" data-toggle="modal">確認</button>
 			</div>
 		</form>
 

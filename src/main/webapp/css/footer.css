@@ -1,7 +1,4 @@
 .footer{
-	position: absolute;
-	bottom: 0;
-	width: 100%;
 	background-color:#ddd;
 }
 a, a:hover, a:visited, a:link, a:active {
