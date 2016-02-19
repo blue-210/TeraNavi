@@ -34,6 +34,7 @@
 		</div>
 		<h2 id="comunity_title">チャットルーム</p>
 	</div>
+    <div id="chat_room">
         <div class="container-fluid">
 			<div class="wrapper">
                    <!-- 自分 -->
@@ -83,10 +84,11 @@
 				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 				<input type="hidden" name="communityId" value="${result.community.id}">
-		</div>
-		<div id="submit_button">
-			<button id="chatwrite" type="button" name="button">送信</button>
-		</div>
+                <div id="submit_button">
+            		<button id="chatwrite" type="button" name="button">送信</button>
+            	</div>
+        </div>
+    </div>
     <div id="footer">
     	<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	</div>
