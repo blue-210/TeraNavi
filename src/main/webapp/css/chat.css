@@ -1,30 +1,34 @@
-*{
-	box-sizing: border-box;
+#chat_area{
+	background-color:#fff;
+	border-left: 1px;
+	border-right: 1px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-style: solid;
 }
-body{
-	background-color:#A4C6FF;
+* {
+	 box-sizing: border-box;
 }
-.wrapper{
-	padding: 30px;
-	position: relative;
+ .wrapper {
+   padding: 30px;
+   position: relative;
 }
-
 .box {
-	margin-left: 30px;
-	display: inline-block;
-	position: relative;
-	background: #00CC00;
-	max-width:400px;
-	min-width:20px;
-	height:auto;
-	margin-bottom: 20px;
-	border-radius: 50px;
-	color:#fff;
+	margin-right:20%;
+   display: inline-block;
+   position: relative;
+   background: #FF9933;
+   height: auto;
+   min-width:20px;
+   max-width:400px;
+   margin-bottom: 20px;
+   border-radius: 50px;
+   color:#fff;
 }
 .other_box {
 	display: inline-block;
 	position: relative;
-	background: #fff;
+	background: #EEEEEE;
 	max-width:400px;
 	min-width:20px;
 	height:auto;
@@ -34,18 +38,29 @@ body{
 	margin-left:13%;
 }
 .box:after {
-	content: '';
-	position: absolute;
-	height: 50px;
-	width: 50px;
-	border-radius: 25px;
-	z-index: -1;
-	background: #A4C6FF;
-	bottom: -20px;
-	left: 50px;
-	margin-left:58%;
-
+   content: '';
+   position: absolute;
+   height: 50px;
+   width: 50px;
+   border-radius: 25px;
+   z-index: -1;
+   background: #fff;
+   bottom: -20px;
+   left: 50px;
 }
+
+.box:before {
+   content: '';
+   position: absolute;
+   height: 50px;
+   width: 50px;
+   border-radius: 25px;
+   z-index: -1;
+   background: #FF9933;
+   bottom: -15px;
+   left: 35px;
+}
+
 .other_box:after {
 	content: '';
 	position: absolute;
@@ -53,24 +68,11 @@ body{
 	width: 50px;
 	border-radius: 25px;
 	z-index: -1;
-	background: #A4C6FF;
-	bottom: -20px;
-	left: 50px;
-	margin-left:-20%;
-	float: right;
-}
-
-.box:before {
-	content: '';
-	position: absolute;
-	height: 50px;
-	width: 60px;
-	border-radius: 25px;
-	z-index: -1;
-	background: #00CC00;
+	background: #fff;
 	bottom: -15px;
-	left: 35px;
-	margin-left:55%;
+	left: 50px;
+	margin-left:-17%;
+	float: right;
 }
 .other_box:before {
 	content: '';
@@ -79,10 +81,10 @@ body{
 	width: 60px;
 	border-radius: 25px;
 	z-index: -1;
-	background: #fff;
-	bottom: -15px;
+	background: #eee;
+	bottom: -14px;
 	left: 35px;
-	margin-left:-9%;
+	margin-left:-10%;
 }
 .content{
 	padding-left:20px;
@@ -100,6 +102,7 @@ body{
 	width:64px;
 	height:64px;
 	margin-left:70%;
+	margin-bottom: 20px;
 }
 .other_account{
 	margin-right: 100%;
@@ -107,6 +110,7 @@ body{
 	height:64px;
 }
 #dm_footer input{
+
 	margin-top:10px;
 	width:100%;
 	height:40px;
@@ -139,15 +143,14 @@ body{
 	left:220px;
 	color:#fff;
 }
-#submit_button{
-	width:100%;
-	height:50px;
-}
 #chatwrite{
 	width:100%;
 	height:50px;
 	padding:0px;
 	margin:0px;
+}
+#chat_area{
+	margin-bottom: 30px;
 }
 #chatBody{
 	width:100%;
@@ -158,4 +161,48 @@ body{
 }
 .navbar{
 	margin-bottom:0px;
+}
+#header{
+}
+#footer{
+
+}
+.form-group{
+	margin-left: 10%;
+	width:400px;
+}
+.input-group{
+	width:545px;
+}
+#Input_control{
+	width:100%;
+}
+#submit_button{
+	float: right;
+}
+#input_area{
+	width:86.5%;
+	float:left;
+}
+.form-control{
+	width:100%;
+}
+.form-inline{
+	width:100%;
+	margin:0px;
+	width:420px;
+}
+#forms{
+	width: 80%;
+	float:left;
+	margin-left:5%;
+	margin-bottom: 40px;
+}
+#submit_button{
+	float:left;
+	margin-bottom:40px;
+	width:40px;
+}
+#footer{
+	margin-top: 30px;
 }

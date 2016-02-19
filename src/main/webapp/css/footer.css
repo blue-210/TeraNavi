@@ -5,9 +5,7 @@
 	width: 100%;
 	background-color:#ddd;
 }
-a, a:hover, a:visited, a:link, a:active {
-	color: #EEE;
-}
+
 #twitter_icon{
 	float:left;
 	width:110px;
@@ -22,12 +20,3 @@ a, a:hover, a:visited, a:link, a:active {
 	margin:0px;
 	border:0px;
 }
-
-/*.container {
-  width: auto;
-  max-width: 680px;
-  padding: 0 15px;
-}*/
-/*.container .text-muted {
-  margin: 20px 0;
-}*/

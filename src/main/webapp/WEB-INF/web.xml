@@ -8,8 +8,8 @@
    <welcome-file-list>
      <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
    </welcome-file-list>
-   
-   
+
+
    <error-page>
 		<exception-type>ttc.exception.ApplicationException</exception-type>
 		<location>/WEB-INF/jsp/exception/ApplicationExceptionPage.jsp</location>
@@ -254,6 +254,15 @@
         <url-pattern>/blogDelete</url-pattern>
     </servlet-mapping>
 
+    <!-- websocketサンプル -->
+    <servlet>
+        <servlet-name>websocket</servlet-name>
+        <jsp-file>/WEB-INF/jsp/websocket_sample/ws.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>websocket</servlet-name>
+        <url-pattern>/websocket</url-pattern>
+    </servlet-mapping>
 
     <!-- <servlet>
         <servlet-name>tagsearch</servlet-name>
@@ -430,6 +439,6 @@
         <url-pattern>/mypage</url-pattern>
         <url-pattern>/front/mypage</url-pattern>
     </filter-mapping>
-	
-	
+
+
 </web-app>
