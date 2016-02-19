@@ -28,16 +28,16 @@
     	<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 	</div>
 	<div id="header_image">
-		<img src="/TeraNavi/img/header.jpg" width="100%" height="400px" />
+		<img src="${result.community.headerPath}" width="100%" height="400px" />
 		<div id="header_icon">
-			<img id="icon_image" src="/TeraNavi/img/icon.jpg">
+			<img id="icon_image" src="${result.community.iconPath}">
 		</div>
 		<h2 id="comunity_title">チャットルーム</p>
 	</div>
         <div class="container-fluid">
 			<div class="wrapper">
                    <!-- 自分 -->
-                <c:forEach var="ch" items="${result}">
+                <c:forEach var="ch" items="${result.chat}">
                     <c:choose>
                         <c:when test="${empty ch.body}">
                         </c:when>
@@ -80,8 +80,9 @@
 	</div>
 		<div id="dm_footer">
 				<textarea id="chatBody" name="chatBody"></textarea>
-				<input type="hidden" name="topicId" value="${result[0].fkTopicId}">
+				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+				<input type="hidden" name="communityId" value="${result.community.id}">
 		</div>
 		<div id="submit_button">
 			<button id="chatwrite" type="button" name="button">送信</button>
