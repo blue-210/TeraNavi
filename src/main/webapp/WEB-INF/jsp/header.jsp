@@ -1,4 +1,5 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
+<script src="/TeraNavi/js/search.js"></script>
 
 <nav class="navbar navbar-default navbar-fixed-top" id="header_bar">
 	<div class="container-fluid">

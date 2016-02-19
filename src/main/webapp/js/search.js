@@ -7,6 +7,6 @@
 $(function(){
 	$(document).on("change","#target",function(){
         var target = $("#target option:selected").attr("value");
-        ("#sform").attr("action","/TeraNavi/front/"+target);
+        $("#sform").attr("action","/TeraNavi/front/"+target);
     });
 });
