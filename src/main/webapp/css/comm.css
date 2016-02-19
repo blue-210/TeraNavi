@@ -14,6 +14,16 @@ background-color: rgba(255,255,255,0.7);
 position: relative;
 bottom: 220px;
 }
+#iconButton{
+	position: relative;
+	bottom: 100px;
+	margin-left: 15px;
+}
+#headerButton{
+	position: relative;
+	margin-left: 80%;
+	bottom: 22px;
+}
 
 #userimage{
 width:40%;
@@ -50,15 +60,10 @@ position: relative;
 bottom: 100px;
 background-color: rgba(255,255,255,0.7);
 }
-#name{
+
+#editButton{
 	position: relative;
-	bottom: 100px;
-	background-color: rgba(255,255,255,0.7);
-	font-size: 60px;
-}
-#dd{
-	position: relative;
-	bottom: 40px;
+	bottom: 85px;
 	font-size: 15px;
 }
 
@@ -72,4 +77,5 @@ border: medium solid #B22222;
 
 .changeEffect{
 	opacity: 0.6;
+
 }

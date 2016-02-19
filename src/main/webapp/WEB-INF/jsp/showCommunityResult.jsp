@@ -19,7 +19,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/fileup.js"></script>
 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
     rel="stylesheet" type="text/css">
@@ -33,20 +32,37 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-       <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-       <form action="commSetting" method="post" id="setting" >
-           <header>
-              <span id="headerPath"><img src='${result.headerPath}' id="headimg"></span>
-              <span id="iconPath"><img class="pull-left" src='${result.iconPath}'width="200px" height="200px" id="icon"></span>
-              <span id="name" class="col-md-8 text-center">${result.name}</span>
-              <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-                  <button type="button" id="edit" class="col-md-2 text-center">編集</button>
-              </c:if>
-               <div id="changeName"></div>
-               <div id="changeProfile"></div>
-               <p id="sub"></p>
-           </header>
 
+    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <form action="commSetting" method="post" id="setting" >
+        <header>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <span id="headerPath"><img src="${result.headerPath}" style="width:100%; height:250px" id="headimg"></span>
+
+                    <div id="headerButton"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"></div>
+                <div class="col-md-5">
+                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span id="iconPath"><img id="icon" src="${result.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></span>
+                    <div id="iconButton"></div>
+            </div>
+            <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
+                <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
+            </c:if>
+
+           </header>
+           <br>
            <div class="section">
                <div class="container">
                    <div class="row">
@@ -57,6 +73,7 @@
                            <p id="createId" style="display:none">${result.createUserId}</p>
 
                            <p class="bun"><span id="profile">${result.profile}</span></p>
+                           <p id="sub"></p>
                        </div>
                    </div>
                </div>
@@ -71,52 +88,66 @@
                    </div>
                </div>
 
-               <c:forEach var="member" items="${result.members}">
-                   <div class="col-md-3">
-                       <img src="${member.iconPath}" class="center-block img-circle img-responsive">
-                       <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
-                   </div>
-               </c:forEach>
-               <div class="col-xs-10 col-xs-offset-1">
-                   <button onclick="document.memberForm.submit();">
-                       メンバーの一覧を取得
-                   </button
-               </div>
-           </div>
-       </div>
 
-       <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
-           <input type="hidden" name="commId" value="${result.id}">
-       </form>
-       <div class="container">
-           <div class="row">
-               <div class="col-xs-10 col-xs-offset-1">
-                   <c:forEach var="item" items="${result.topics}">
-                       <div class="row" id="topiclist">
-                               <div class="col-md-3">
-                               <img src="${item.userIconPath}" id="topicIcon">
-                                   <p>
-                                       <c:out value="${item.createUserName}" />
-                                   </p>
-                           </div>
-                           <div class="col-md-7">
-                               <h4 id="title" class="text-left">
-                                   <a href="showchat?topicId=${item.topicId}"><c:out value="${item.name}" /></a>
-                               </h4>
-                           </div>
-                           <div class="col-md-2">
+            <c:forEach var="member" items="${result.members}">
+                <div class="col-md-3">
+                    <img src="${member.iconPath}" class="center-block img-circle img-responsive">
+                    <h3 class="text-center"><c:out value="${member.userName}" /> </h3>
+                </div>
+            </c:forEach>
+
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="col-xs-10"></div>
+                <div class="col-xs-2">
+                <button type="button" class="btn btn-default" onclick="document.memberForm.submit();">
+                    メンバーの一覧を取得
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
+                    <input type="hidden" name="commId" value="${result.id}">
+                </form>
+
+                <div class="col-xs-10 col-xs-offset-1">
+                    <c:forEach var="item" items="${result.topics}">
+                        <div class="row col-md-10 col-md-offset-1 well">
+                            <div class="col-md-2">
+                                <img src="${item.userIconPath}" id="topicIcon">
+                                <p>
+                                    <c:out value="${item.createUserName}" />
+                                </p>
+                            </div>
+
+                            <div class="col-md-7">
+                                <a href="showchat?topicId=${item.topicId}">
+                                    <h2 class="text-muted">${item.name}</h2>
+                                </a>
+                            </div>
+
+                            <div class="col-md-2">
                                <p id="date">
                                    <c:out value="${item.updateDate}" />
                                </p>
-                           </div>
-                       </div>
-                   </c:forEach>
-                   <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
-                       <h2 class="text-muted">トピックリスト</h2>
-                   </a>
-              </div>
-           </div>
-           <!--モーダルウインドウの中身-->
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
+                        <h2>トピックリスト</h2>
+                    </a>
+                </div>
+            </div>
+
+                       <!--モーダルウインドウの中身-->
            <div class="fade modal text-justify" id="communitySetting-modal">
                <div class="modal-dialog">
                  <div class="modal-content">
@@ -136,7 +167,7 @@
                            class="img-rounded" width="200" height="150" id="commHeader">
                              <h2>アイコン画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
                              class="center-block img-circle img-responsive" width="150" height="150" id="commIcon">
-                           <p></p>
+
                        </div>
                    </div>
 
@@ -146,29 +177,26 @@
                    </div>
                  </div>
                </div>
-            </div>
+           </div>
        </div><!--end row-->
     </div><!--end container-->
+</div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
         var ajaxSettings;
         var ajax;
         $(function(){
-            //
-            // ajaxSettings = {
-            //     type:'post',
-            //     url:'/TeraNavi/upload',
-            //     processData:false,
-            //     contentType:false,
-            //     cache:false,
-            //     dataType:'json',
-            // }
 
-            // var flag = $("#userId").text() == $("#createId").text();
-            // if(flag){
-            //     $("#dd").removeAttr("style")
-            // }
+            ajaxSettings = {
+                type:'post',
+                url:'/TeraNavi/upload',
+                processData:false,
+                contentType:false,
+                cache:false,
+                dataType:'json',
+            }
+
 
             $("#edit").click(function(){
                 var id=$('#commid');
@@ -179,18 +207,23 @@
                 var headerPath="${result.headerPath}";
                 var del='0';
                 var target='communitySettingResult';
-                // $('.bun').remove();
-                // $("#changeName").html('コミュニティ名：<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName"><br>');
-                // $("#changeProfile").html('紹介文：<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
+                var button=$('#editButton');
+
+                $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName" maxlength="25"><br>');
+                $("#name").css('background-color','transparent');
+                $("#name").css('font-size','8px');
+                $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
                 $("#headerPath").removeClass().addClass("changeEffect");
+                $("#icon").addClass("changeEffect");
 
-                $("#headerPath").append('ヘッダ画像<input type="file" value="ファイル選択" id="headerFile">');
-                // $("#headerPath").append('<input id="commHeaderPath" type="hidden" name="headerPath"><br');
-                $("#iconPath").html('アイコン画像：<div class="col-md-12 text-left"><img id="preIcon" src="'+iconPath+'" width="50px" height="50px"><br>');
-                $("#iconPath").append('<input type="file" value="ファイル選択" id="iconFile" onchange="fileUpIcon();"><input id="icon" type="hidden" name="iconPath"><br>');
+                $("#iconButton").append('<input type="file" value="アイコン画像を選択" id="iconFile">');
+                $("#iconButton").append('<input id="comIconPath" type="hidden" name="iconPath">');
+                $("#headerButton").append('<input type="file" value="ヘッダー画像を選択" id="headerFile">');
+                $("#headerButton").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
 
-                console.log(id);
-                console.log(del);
+
+                button.hide();
+
                 $('#userId').html('<input type="hidden" name="userId" value="'+userid.text()+'">');
                 $('#commid').html('<input type="hidden" name="commId" value="'+id.text()+'">');
                 $('#commid').append('<input type="hidden" name="deleteFlag" value="'+del+'">');
@@ -214,8 +247,8 @@
 				ajaxSettings.data = formData;
 				ajaxSettings.url = "/TeraNavi/upload";
 				ajaxSettings.success = function(data){
-					$("#icon").val(data.result);
-					$("#preIcon").attr("src",data.result);
+					$("#comIconPath").val(data.result);
+					$("#icon").attr("src", data.result);
 				}
 
  				ajax = $.ajax(ajaxSettings);
@@ -231,7 +264,20 @@
             // Blob URLの作成
             src = window.URL.createObjectURL( file ) ;
             $("#headimg").attr("src", src);
+            fileUpHeader();
         });
+
+        $(document).on("change","#iconFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+
+            fileUpIcon();
+        });
+
 
 		function fileUpHeader(){
 			var files = document.getElementById("headerFile").files;
@@ -259,9 +305,9 @@
             $("#commIcon").empty();
 
             $("#modalName").append($("#commName").val());
-            $("#modalProfile").append($("#profile").val());
-            $("#commHeader").attr("src",$("#commHeaderPath").val());
-            $("#commIcon").attr("src",$("#icon").val());
+            $("#modalProfile").append($("#profile").text());
+            $("#commHeader").attr("src",$("#headimg").attr("src"));
+            $("#commIcon").attr("src",$("#icon").attr("src"));
 
             $("#communitySetting-modal").modal("show");
         });

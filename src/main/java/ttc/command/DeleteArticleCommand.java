@@ -49,6 +49,7 @@ public class DeleteArticleCommand extends AbstractCommand{
                 dao.update(params);
 
                 params.put("userId", loginUserId);
+                params.put("flag", "0");
                 ArrayList al = (ArrayList)dao.readAll( params );
                 resc.setResult(al);
 

@@ -37,7 +37,7 @@
     <div class="container">
        <div class="row">
            <h1>テスト用の検索ページです</h1>
-           <form method="post" action="front/usearch" id="sform">
+           <form method="post" action="/TeraNavi/front/usearch" id="sform">
                <select id="target">
                    <option value="usearch" selected>ユーザ</option>
                    <option value="commList">コミュニティ</option>
