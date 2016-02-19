@@ -12,18 +12,20 @@
 			</button>
 			<a href="/TeraNavi/front/top" class="navbar-brand"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 		</div>
-		<select id="target">
-			<option value="usearch" selected>ユーザ</option>
-			<option value="commList">コミュニティ</option>
-			<option value="keywordsearch">ブログ</option>
-		</select>
-		<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
-			<input type="text"  name="keyword" class="form-control">
-			<input type="hidden" name="intention" value="search">
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default"><i class='fa fa-search'></i></button>
-			</span>
-		</form>
+		<div id="searchform">
+			<select id="target">
+				<option value="usearch" selected>ユーザ</option>
+				<option value="commList">コミュニティ</option>
+				<option value="keywordsearch">ブログ</option>
+			</select>
+			<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
+				<input type="text"  name="keyword">
+				<input type="hidden" name="intention" value="search">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
+				</span>
+			</form>
+		</div>
 		<i class="fa fa-bell-o" id="bell_logo"></i>
 		<ul class="nav pull-right">
 			<c:choose>
