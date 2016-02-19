@@ -78,7 +78,7 @@
 			</div>
 		</div>
 	</div>
-		<div id="dm_footer">
+		<div id="forms">
 				<textarea id="chatBody" name="chatBody"></textarea>
 				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
