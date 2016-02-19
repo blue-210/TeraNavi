@@ -1,38 +1,37 @@
+  <ul class="nav nav-pills nav-stacked well">
+    <li id="mypageTab">
+      <a href="/TeraNavi/front/mypage">マイページ</a>
+    </li>
+    <c:choose>
+        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+            <li id="articlePostTab">
+              <a href="/TeraNavi/articlepost">記事を書く</a>
+            </li>
+            <li id="draftArticleTab">
+                <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
+            </li>
+            <li id="blogSettingTab">
+                <a href="/TeraNavi/blogSetting">ブログ設定</a>
+            </li>
+        </c:when>
+        <c:otherwise>
+            <li id="openBlogTab">
+                <a href="/TeraNavi/blogSetting">ブログ開設</a>
+            </li>
+        </c:otherwise>
+    </c:choose>
+    <li id="commMgrTab">
+      <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+    </li>
+    <li id="dmTab">
+      <a href="/TeraNavi/front/showDmList">DM</a>
+    </li>
+    <br><br><br><br>
+    <li id="withdrawTab">
+      <a href="/TeraNavi/withdraw">退会</a>
+    </li>
+  </ul>
 
-
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <!-- 4列をサイドメニューに割り当て -->
-            <div class="col-md-2">
-              <ul class="nav nav-pills nav-stacked well">
-                <li class="active">
-                  <a href="#mypage">マイページ</a>
-                </li>
-                <li>
-                  <a href="/TeraNavi/articlepost">記事を書く</a>
-                </li>
-                <li>
-                  <a href="#draftarticle">下書き一覧</a>
-                </li>
-                <li>
-                  <a href="#blogsetting">ブログ設定</a>
-                </li>
-                <li>
-                  <a href="#communitymanage">コミュニティ管理</a>
-                </li>
-                <li>
-                  <a href="#directmessage">DM</a>
-                </li>
-                <br><br><br><br>
-                <li>
-                  <a href="#leave">退会</a>
-                </li>
-              </ul>
-            </div>
-        </div><!-- row -->
-    </div><!-- contener -->
-</div> <!-- section -->
 
 <form name="form">
     <input type="hidden" name="loginUserId" value="${sessionScope.loginUser.id}">

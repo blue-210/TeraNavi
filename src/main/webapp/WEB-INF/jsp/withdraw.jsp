@@ -28,30 +28,10 @@
 
                 <!-- 4列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                  <ul class="nav nav-pills nav-stacked well">
-                    <li>
-                      <a href="/TeraNavi/front/mypage">マイページ</a>
-                    </li>
-                    <li>
-                      <a href="/TeraNavi/articlepost">記事を書く</a>
-                    </li>
-                    <li>
-                      <a href="#draftarticle">下書き一覧</a>
-                    </li>
-                    <li>
-                      <a href="#blogsetting">ブログ設定</a>
-                    </li>
-                    <li>
-                      <a href="#communitymanage">コミュニティ管理</a>
-                    </li>
-                    <li>
-                      <a href="#directmessage">DM</a>
-                    </li>
-                    <br><br><br><br>
-                    <li class="active">
-                      <a href="#">退会</a>
-                    </li>
-                  </ul>
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#withdrawTab").attr("class","active");
+                    </script>
                 </div>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
