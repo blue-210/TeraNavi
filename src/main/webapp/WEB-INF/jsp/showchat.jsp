@@ -44,34 +44,34 @@
                         </c:when>
                         <c:when test="${sessionScope.loginUser.id eq ch.userId}">
                             <div class="row">
-                                <div class="col-md-6"></div>
+                                <div class="col-md-5"></div>
                                 <div class="col-md-1"></div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="box">
                                         <p class="content">
                                             <c:out value="${ch.body}"/><br>
-                                            <c:out value="${ch.date}" />
-                                            <c:out value="${ch.userName}"/>
                                         </p>
                                     </div>
+                                    <p class="Mydate"><c:out value="${ch.date}" /><p>
                                     <img class="account" src="${sessionScope.loginUser.iconPath}">
+                                    <p class="Myusername"><c:out value="${ch.userName}"/></p>
                                 </div>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                      <div class="other_box">
                                          <p class="other_content">
                                              <c:out value="${ch.body}"/><br>
-                                             <c:out value="${ch.date}" />
-                                             <c:out value="${ch.userName}"/>
                                          </p>
                                       </div>
+                                      <p class="date"><c:out value="${ch.date}" /><p>
                                       <img class="other_account" src="${sessionScope.loginUser.iconPath}">
+                                      <p class="username"><c:out value="${ch.userName}"/></p>
                                  </div>
                                  <div class="col-md-1"></div>
-                                 <div class="col-md-6"></div>
+                                 <div class="col-md-5"></div>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -80,7 +80,10 @@
 		</div>
 	</div>
 		<div id="forms">
-				<textarea id="chatBody" name="chatBody"></textarea>
+                <div id="camera_space">
+                    <span><img id="camera_logo" src="/TeraNavi/img/camera.png" width="41.6px" height="41.6px"></span>
+                </div>
+                <textarea id="chatBody" name="chatBody"></textarea>
 				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 				<input type="hidden" name="communityId" value="${result.community.id}">
