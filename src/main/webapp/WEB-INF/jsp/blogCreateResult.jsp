@@ -29,39 +29,11 @@
        <div class="row">
            <!-- 2列をサイドメニューに割り当て -->
            <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked well">
-              <li>
-                <a href="/TeraNavi/front/mypage">マイページ</a>
-              </li>
-              <li>
-                <a href="/TeraNavi/articlepost">記事を書く</a>
-              </li>
-              <li>
-                <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
-              </li>
-              <c:choose>
-                  <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-                      <li class="active">
-                          <a href="#blogsetting">ブログ設定</a>
-                      </li>
-                  </c:when>
-                  <c:otherwise>
-                      <li class="active">
-                          <a href="#blogsetting">ブログ開設</a>
-                      </li>
-                  </c:otherwise>
-              </c:choose>
-              <li>
-                <a href="#communitymanage">コミュニティ管理</a>
-              </li>
-              <li>
-                <a href="#directmessage">DM</a>
-              </li>
-              <br><br><br><br>
-              <li>
-                <a href="/TeraNavi/wirhdraw">退会</a>
-              </li>
-            </ul>
+               <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+             </div>
+             <script>
+               $("blogSettingTab").attr("class","active");
+             </script>
             </div>
                <h1>${sessionScope.loginUser.userName}さんのブログが作成されました</h1>
 
@@ -75,8 +47,8 @@
 
                <h1>はじめての記事を投稿しちゃおう。</h1>
 
-    		   <a href="../articlepost">記事投稿しますね</a>
-    		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
+    		   <a href="TeraNavi/articlepost">記事投稿しますね</a>
+    		   <a href="/TeraNavi/front/logout" style="font-size:18px;">ログアウトしますよ</a>
 
             </div>
 

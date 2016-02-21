@@ -25,37 +25,45 @@
         <div class="container">
             <div class="row">
 
+<c:choose>
+<c:when test="${sessionScope.loginUser.id eq result.user.id}">
+
 
                 <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
                   <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
-                  <script>
-                    $("#mypageTab").attr("class","active");
-                  </script>
-
-                  </script>
                 </div>
+                <script>
+                  $("#mypageTab").attr("class","active");
+                </script>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
+</c:when>
+<c:otherwise>
 
+                <div class="col-md-8 col-md-offset-2">
 
+</c:otherwise>
+</c:choose>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="${sessionScope.loginUser.headerPath}" style="width:100%; height:200px">
+                            <img src="${result.user.headerPath}" style="width:100%; height:200px">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="${sessionScope.loginUser.iconPath}" style="width:130px; height:130px; position:relative; bottom:180px;">
-                            <h3 style="position:relative; margin-top:-170px;">${sessionScope.loginUser.userName}</h3>
+                            <img src="${result.user.iconPath}" style="width:130px; height:130px; position:relative; bottom:100px; margin-left:20px">
+                            <h3 style="position:relative; margin-top:-100px; margin-left:20px;">${result.user.userName}</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <br>
-                            <p style="position:relative;" class="well">${sessionScope.loginUser.profile}</p>
-                            <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                            <p style="position:relative;" class="well">${result.user.profile}</p>
+                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                            </c:if>
                         </div>
                     </div>
                     <div class="row">

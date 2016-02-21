@@ -1,6 +1,6 @@
   <ul class="nav nav-pills nav-stacked well">
     <li id="mypageTab">
-      <a href="/TeraNavi/front/mypage">マイページ</a>
+      <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
     </li>
     <c:choose>
         <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
