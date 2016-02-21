@@ -1,7 +1,7 @@
 body{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	color: #777 !important;
-	padding-top: 40px;
+	padding-top: 60px;
 }
 
 #sform{
@@ -55,6 +55,12 @@ body{
 	-moz-border-radius-bottomleft: 4px;
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	-moz-border-radius-bottomright: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
 	border: 1px solid #cccccc;
 	line-height: 1.42857143;
 	color: #777;
@@ -65,8 +71,6 @@ body{
 	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	border-left: 0px;
-	border-right: 0px;
 	border-top-style: none;
 	border-style:solid;
 	border-width: 1px;
