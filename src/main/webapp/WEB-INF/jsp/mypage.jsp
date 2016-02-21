@@ -25,66 +25,45 @@
         <div class="container">
             <div class="row">
 
+<c:choose>
+<c:when test="${sessionScope.loginUser.id eq result.user.id}">
+
 
                 <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                  <ul class="nav nav-pills nav-stacked well">
-                    <li class="active">
-                      <a href="#">マイページ</a>
-                    </li>
-                    <c:choose>
-                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-                            <li>
-                              <a href="/TeraNavi/articlepost">記事を書く</a>
-                            </li>
-                            <li>
-                                <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-                            </li>
-                            <li>
-                                <a href="/TeraNavi/blogSetting">ブログ設定</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li>
-                                <a href="/TeraNavi/blogSetting">ブログ開設</a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                    <li>
-                        <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">
-                          コミュニティ管理
-                        </a>
-                    </li>
-                    <li>
-                      <a href="/TeraNavi/front/showDmList">DM</a>
-                    </li>
-                    <br><br><br><br>
-                    <li>
-                      <a href="/TeraNavi/withdraw">退会</a>
-                    </li>
-                  </ul>
+                  <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
                 </div>
+                <script>
+                  $("#mypageTab").attr("class","active");
+                </script>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
+</c:when>
+<c:otherwise>
 
+                <div class="col-md-8 col-md-offset-2">
 
+</c:otherwise>
+</c:choose>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="${sessionScope.loginUser.headerPath}" style="width:100%; height:200px">
+                            <img src="${result.user.headerPath}" style="width:100%; height:200px">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="${sessionScope.loginUser.iconPath}" style="width:130px; height:130px; position:relative; bottom:180px;">
-                            <h3 style="position:relative; margin-top:-170px;">${sessionScope.loginUser.userName}</h3>
+                            <img src="${result.user.iconPath}" style="width:130px; height:130px; position:relative; bottom:100px; margin-left:20px">
+                            <h3 style="position:relative; margin-top:-100px; margin-left:20px;">${result.user.userName}</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <br>
-                            <p style="position:relative;" class="well">${sessionScope.loginUser.profile}</p>
-                            <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                            <p style="position:relative;" class="well">${result.user.profile}</p>
+                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                            </c:if>
                         </div>
                     </div>
                     <div class="row">

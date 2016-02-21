@@ -34,7 +34,7 @@
 							<span>${sessionScope.loginUser.userName}さん<b class="caret"></b></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/TeraNavi/front/mypage">マイページ</a></li>
+							<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
 							<li><a href="/TeraNavi/front/logout">ログアウト</a></li>
 						</ul>
 					</li>

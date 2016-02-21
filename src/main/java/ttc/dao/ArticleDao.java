@@ -233,8 +233,6 @@ public class ArticleDao implements AbstractDao{
 
             pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
 
-
-            System.out.println(sql);
             ResultSet rs = pst.executeQuery();
             rs.next();
 
@@ -271,8 +269,6 @@ public class ArticleDao implements AbstractDao{
             pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
             pst.setInt(2, Integer.parseInt( (String)map.get("flag") ));
 
-
-            System.out.println(sql);
             rs = pst.executeQuery();
 
             while( rs.next() ){
@@ -323,7 +319,7 @@ public class ArticleDao implements AbstractDao{
             }
         }
 
-        return results;//ArrayListの1つ目にはUserBean、2つ目にはBlogBean、それ以降にArticleBeanが入ってます
+        return results;
     }
 
 }
