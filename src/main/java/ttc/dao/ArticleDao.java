@@ -53,18 +53,16 @@ public class ArticleDao implements AbstractDao{
             ab.setUserId(rs.getString(5));
             ab.setUserName(rs.getString(6));
             ab.setIconPath(rs.getString(7));
-            //------------------------------------------------------------------
-
+            
             sql.setLength(0);//StringBuffer初期化
 
-            /*タグの取得---------------------------------------------------------
             List tags = new ArrayList();
             sql.append("select tag_id, tag_name ");
             sql.append("from articles_tags join tags ");
             sql.append("on fk_tag_id = tag_id ");
             sql.append("where fk_article_id = ?");
             pst = cn.prepareStatement( new String(sql) );
-            pst.setInt( 1, Integer.parseInt( ab.getArticleId() ) );
+            pst.setString( 1,ab.getArticleId() );
             rs = pst.executeQuery();
             while( rs.next() ){
                 TagBean tb = new TagBean();
@@ -73,12 +71,9 @@ public class ArticleDao implements AbstractDao{
                 tags.add(tb);
             }
             ab.setTags(tags);
-            ------------------------------------------------------------------*/
-
-            //sql.setLength(0);//StringBuffer初期化
-
-            //コメントの取得-------------------------------------------------------
-            List comments = new ArrayList();
+           
+			sql.setLength(0);
+			List comments = new ArrayList();
             sql.append("select comment_id,fk_article_id,");
             sql.append("comment_body,");
             sql.append("comment_date,");
@@ -194,8 +189,35 @@ public class ArticleDao implements AbstractDao{
             pst.setString(3, (String)map.get("body"));
             pst.setString(4, (String)map.get("date"));
             pst.setString(5, (String)map.get("status"));
-
+			
             result = pst.executeUpdate();
+			
+			
+			sql.setLength(0);
+			sql.append("select article_id from articles where article_title=? and article_created_date=? and fk_user_id=?");
+			pst=cn.prepareStatement(new String(sql));
+			pst.setString(1,(String)map.get("title"));
+			pst.setString(2,(String)map.get("date"));
+			pst.setString(3,(String)map.get("userId"));
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			String articleId = rs.getString(1);
+			
+			if(map.containsKey("tags")){
+				String[] tags = (String[])map.get("tags");
+				sql.setLength(0);
+				sql.append("insert into articles_tags values(?,?)");
+				for(int i = 0;i < tags.length;i++){
+					pst = cn.prepareStatement(new String(sql));
+					pst.setString(1,articleId);
+					pst.setString(2,tags[i]);
+					
+					pst.executeUpdate();
+				}
+				
+			}
+
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
