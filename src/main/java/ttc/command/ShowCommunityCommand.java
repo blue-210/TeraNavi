@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -17,6 +17,7 @@ import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
 import java.util.ArrayList;
 import java.util.List;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ShowCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -34,7 +35,17 @@ public class ShowCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
             cb.setId(reqc.getParameter("commId")[0]);
+            List listx = new ArrayList();
+            List topicList = cb.getTopics();
+            if(topicList.size()>5){
+                for(int i = 0;i < 5;i++){
+                    listx.add(topicList.get(i));
+                }
+            }else{
+                listx=topicList;
+            }
 
+            cb.setTopics((ArrayList)listx);
 
 
 
@@ -72,7 +83,9 @@ public class ShowCommunityCommand extends AbstractCommand{
             resc.setTarget("showCommunityResult");
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

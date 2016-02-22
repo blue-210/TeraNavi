@@ -2,23 +2,34 @@
 padding-top: 5px;
 }
 #headimg{
-width:100%;
-height:30%;
+	width:100%;
+	height:250px;
+	position:relative;
 }
-#comname{
+#comName{
 position: relative;
 bottom: 100px;
-background-color: rgba(255,255,255,0.7);
+
 }
 #icon{
 position: relative;
-bottom: 200px;
+bottom: 220px;
+}
+#iconFile{
+	position: relative;
+	bottom: 100px;
+	margin-left: 15px;
+}
+#headerFile{
+	position: relative;
+	bottom: 22px;
 }
 
 #userimage{
 width:40%;
 height:10%;
 }
+
 #date{
 padding-top: 50px;
 }
@@ -39,26 +50,63 @@ border: medium solid #ff00ff;
 #slide{
 	height:30px;
 }
-#deletebutton{
+#showwdel{
 width:100px;
 height:50px;
 margin-top: 10px;
 }
-#headimg{
-width:100%;
-height:50%;
-}
-#comname{
-position: relative;
-bottom: 100px;
-background-color: rgba(255,255,255,0.7);
-}
-#icon{
-position: relative;
-bottom: 200px;
+
+
+#editButton{
+	position: relative;
+	bottom: 85px;
+	font-size: 15px;
 }
 
 #userimage{
 width:40%;
 height:10%;
+}
+#communityList{
+border: medium solid #B22222;
+}
+
+.changeEffectHead{
+	position:absolute;
+	top:8px;
+	left:0px;
+	width:100%;
+	height:240px;
+	font-size: 45px;
+	text-align: right;
+	vertical-align: middle;
+	color: #ffd;
+
+
+}
+.changeEffectHead:hover{
+	box-shadow: 0 0 0 8px #88E8FF ;
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.3);
+}
+
+.changeEffectIcon{
+	position:absolute;
+	margin-top:	-110px;
+	left:70px;
+	width:6.5%;
+	height:125px;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: middle;
+	color: #ffd;
+}
+.changeEffectIcon:hover{
+	box-shadow: 0 0 0 8px #88E8FF ;
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.3);
+}
+
+#headerText{
+	margin-right: 70px;
 }

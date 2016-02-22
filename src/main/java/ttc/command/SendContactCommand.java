@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import ttc.exception.business.ParameterInvalidException;
 
 
 public class SendContactCommand extends AbstractCommand{
@@ -56,12 +57,15 @@ public class SendContactCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			Map result = new HashMap();
+			result.put("userName","userName");
 			
-			
-            resc.setTarget("ContactResult");
+			resc.setResult(result);
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

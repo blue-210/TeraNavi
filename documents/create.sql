@@ -34,10 +34,10 @@ create table tera_db.users(
 	password varchar(10) not null,
 	fk_secret_question_id int(1),
 	secret_answer varchar(100) not null,
-	user_header_path varchar(255) default 'WEB-INF/img/default_user_header.img',
-	user_icon_path varchar(255) default 'WEB-INF/img/default_user_icon.img',
+	user_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	user_icon_path varchar(255) default '/TeraNavi/imgPath/default/default_user_icon.jpg',
 	blog_title varchar(200) default 'ようこそブログへ',
-	blog_header_path varchar(255) default 'WEB-INF/img/default_blog_header.img',
+	blog_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	-- 通常ユーザ→0, 管理者→1, 建築監督→2, 建築→3, 建築夜間→4, インテリア→5、ゲーム→6、情報処理→7、Web→8、環境→9、バイオ→10、師岡→11
 	admin_flag char(2) not null,
 	last_login_date char(100),
@@ -60,8 +60,8 @@ create table tera_db.communities(
 	community_id int(10) primary key auto_increment,
 	community_name varchar(50),
 	community_profile varchar(400),
-	community_icon_path varchar(255) default 'WEB-INF/img/default_community_icon.img',
-	community_header_path varchar(255) default 'WEB-INF/img/default_community_header.img',
+	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_created_date datetime,fk_user_id int(8),
 	-- 通常→0　削除→1
 	community_delete_flag char(1) not null,
@@ -106,7 +106,8 @@ create table tera_db.community_members_list(
 	-- 退会フラグ。通常は0、退会は1
 	community_withdrawal_flag char(1),
 	foreign key(fk_user_id) references tera_db.users(user_id),
-	foreign key(fk_community_id) references tera_db.communities(community_id)
+	foreign key(fk_community_id) references tera_db.communities(community_id),
+	primary key(fk_user_id,fk_community_id)
 )engine=InnoDB;
 
 #コメント表
@@ -209,3 +210,9 @@ create table tera_db.rules(
 	rule_body varchar(10000) not null,
 	index(rule_id)
 )engine=InnoDB;
+
+
+create table tera_db.admin_mail_acount(
+	mail_address varchar(200),
+	password varchar(100)
+);

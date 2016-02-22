@@ -1,22 +1,18 @@
 package ttc.dao;
 
 import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
+
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
-import ttc.bean.ArticleBean;
-import ttc.bean.UserBean;
-import ttc.bean.BlogBean;
-import ttc.bean.TagBean;
-import ttc.bean.CommentBean;
-import ttc.exception.IntegrationException;
+
+import ttc.exception.integration.IntegrationException;
 
 public class ContactDao implements AbstractDao{
 

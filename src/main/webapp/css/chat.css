@@ -1,0 +1,217 @@
+#chat_area{
+	background-color:#fff;
+	border-left: 1px;
+	border-right: 1px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-style: solid;
+}
+* {
+	 box-sizing: border-box;
+}
+ .wrapper {
+   padding: 30px;
+   position: relative;
+}
+.box {
+	float:right;
+	margin-right:20%;
+   display: inline-block;
+   position: relative;
+   background: #FF9933;
+   height: auto;
+   min-width:20px;
+   max-width:400px;
+   margin-bottom: 20px;
+   border-radius: 50px;
+   color:#fff;
+}
+.other_box {
+	display: inline-block;
+	position: relative;
+	background: #EEEEEE;
+	max-width:400px;
+	min-width:20px;
+	height:auto;
+	margin-bottom: 20px;
+	border-radius: 50px;
+	color:#000;
+	margin-left:13%;
+}
+.box:after {
+   content: '';
+   position: absolute;
+   height: 50px;
+   width: 50px;
+   border-radius: 25px;
+   z-index: -1;
+   background: #fff;
+   bottom: -20px;
+   right: 20px;
+}
+
+.box:before {
+   content: '';
+   position: absolute;
+   height: 50px;
+   width: 50px;
+   border-radius: 25px;
+   z-index: -1;
+   background: #FF9933;
+   bottom: -15px;
+   right: 35px;
+}
+
+.other_box:after {
+	content: '';
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	z-index: -1;
+	background: #fff;
+	bottom: -15px;
+	left: 5px;
+}
+.other_box:before {
+	content: '';
+	position: absolute;
+	height: 50px;
+	width: 60px;
+	border-radius: 25px;
+	z-index: -1;
+	background: #eee;
+	bottom: -14px;
+	left: 10px;
+}
+.content{
+	padding-left:20px;
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-right:10px;
+}
+.other_content{
+	padding-left:20px;
+	padding-top:20px;
+	padding-bottom:10px;
+	padding-right:10px;
+}
+.account{
+	width:64px;
+	height:64px;
+	margin-left:70%;
+	margin-bottom: 20px;
+}
+.other_account{
+	margin-right: 100%;
+	width:64px;
+	height:64px;
+}
+#icon_image{
+	position: absolute;
+	top: 230px;
+	left:60px;
+	border-width:5px;
+	border-color:#fff;
+ 	border-style: solid;
+
+	width:154px;
+	height:154px;
+	position:absolute;
+
+}
+#comunity_title{
+	position: absolute;
+	top: 320px;
+	left:220px;
+	color:#fff;
+}
+#chatwrite{
+	float:right;
+	width:100%;
+	height:41.6px;
+	padding:0px;
+	margin:0px;
+}
+#chat_area{
+	margin-bottom: 30px;
+}
+#chatBody{
+	width:74%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	margin-bottom:-20px;
+	float:none;
+}
+.navbar{
+	margin-bottom:0px;
+}
+#header{
+}
+#footer{
+
+}
+.form-group{
+	margin-left: 10%;
+	width:400px;
+}
+.input-group{
+	width:545px;
+}
+#Input_control{
+	width:100%;
+}
+#submit_button{
+	float: right;
+}
+#input_area{
+	width:86.5%;
+	float:left;
+}
+#forms{
+	bottom:105px;
+	width: 80%;
+	float:left;
+	margin-left:12%;
+}
+#camera_space{
+	width:41.6px;
+	height:41.6px;
+	float:left;
+	margin-right: 10px;
+}
+#submit_button{
+	height:41.6px;
+	float:right;
+	margin-bottom:40px;
+	width:20%;
+}
+#footer{
+	margin-top: 80px;
+}
+#chat_room{
+	width:80%;
+	margin-left:12%;
+	border-left: 1px;
+	border-right: 1px;
+	border-top: 0px;
+	border-bottom: 0px;
+	border-style: solid;
+}
+.date{
+	float:right;
+	margin-top: 30px;
+}
+.Mydate{
+	float:left;
+	margin-top: 30px;
+}
+.username{
+	left:5px;
+
+}
+.Myusername{
+	margin-left:78%;
+	margin-top:-18px;
+}

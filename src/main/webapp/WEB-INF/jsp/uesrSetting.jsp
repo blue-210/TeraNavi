@@ -39,18 +39,18 @@
 			   性別の表示非表示 ・表示<input type="radio" name="sexVisibleFlag" value="0" checked="true"> ・非表示<input type="radio" name="sexVisibleFlag" value="1"><br>
 			   メールアドレス <input type="text" name="mailAddress" value="${sessionScope.loginUser.mailAddress}"><br>
 
-			   <div id="head" ondrop="onDrop1(event)" ondragover="onDragOver(event)">
-			   		ヘッダ画像 <input id="headPhoto" type="text" name="headerPath" value="${sessionScope.loginUser.headerPath}"><br>
+			   <div id="head">
+			   		ヘッダ画像 <input type="file" id="accountHeaderFile" onchange="fileUpHeader()">
+					<input id="headPhoto" type="hidden" name="headerPath" value="${sessionScope.loginUser.headerPath}"><br>
 			   </div>
 
-			   <div id="icon" ondrop="onDrop2(event)" ondragover="onDragOver(event)">
-			   		ユーザアイコン <input id="iconPhoto" type="text" name="iconPath" value="${sessionScope.loginUser.iconPath}"><br>
+			   <div id="icon">
+			   		ユーザアイコン <input type="file" id="accountIconFile" onchange="fileUpIcon()">
+					<input id="iconPhoto" type="hidden" name="iconPath" value="${sessionScope.loginUser.iconPath}"><br>
 			   </div>
 
 			   自己紹介
-			   <textarea name="profile" rows="8" cols="40" values="${sessionScope.loginUser.profile}">
-
-			   </textarea>
+			   <textarea name="profile" rows="8" cols="40">${sessionScope.loginUser.profile}</textarea>
 
 			   <input type="submit" value="変更">
 		   </form>
@@ -70,61 +70,55 @@
 
 			ajaxSettings = {
 				type:'post',
-				url:'upload',
+				url:'/TeraNavi/upload',
 				processData:false,
 				contentType:false,
 				cache:false,
-				dataType:'json',
-
+				dataType:'json'
 			}
+			
+			
 
 		});
 
-		function onDrop1(event){
-			var files = event.dataTransfer.files;
-
-
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = "";
-					$("#headPhoto").val(text+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-		function onDrop2(event){
-			var files = event.dataTransfer.files;
-
+		function fileUpIcon(){
+			var files = document.getElementById("accountIconFile").files;
 
 			for(var i = 0;i < files.length;i++){
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload";
 				ajaxSettings.success = function(data){
-					var text = "";
-					$("#iconPhoto").val(text+data.result);
+					$("#iconPhoto").val(data.result);
 				}
-				ajax = $.ajax(ajaxSettings);
+				
+ 				ajax = $.ajax(ajaxSettings);
 			}
+			
+		}
+		
+		function fileUpHeader(){
+			var files = document.getElementById("accountHeaderFile").files;
 
-			event.preventDefault();
+			for(var i = 0;i < files.length;i++){
+				console.log("for");
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
+				ajaxSettings.success = function(data){
+					$("#headPhoto").val(data.result);
+				}
+				
+ 				ajax = $.ajax(ajaxSettings);
+			}
 		}
 
-
-		function onDragOver(event){
-			event.preventDefault();
-		}
-
+		
 
 	</script>
-
 </body>
 </html>

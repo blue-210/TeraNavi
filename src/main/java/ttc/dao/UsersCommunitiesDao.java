@@ -1,7 +1,7 @@
 package ttc.dao;
 
 import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
-import ttc.exception.IntegrationException;
+import ttc.exception.integration.IntegrationException;
 
 public class UsersCommunitiesDao implements AbstractDao{
 
@@ -64,16 +64,13 @@ public class UsersCommunitiesDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             System.out.println("メンバーアップデート");
             sql.append("update community_members_list set ");
-            sql.append(map.get("target")+" where ");
-            sql.append("fk_user_id=? and fk_community_id=? ");
+			sql.append(map.get("target"));
+            sql.append(" where fk_user_id=? and fk_community_id=?");
 
             pst = cn.prepareStatement(new String(sql));
 
-            pst.setString(1,(String)map.get("targetNo"));
+            pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-            System.out.println("targetNo="+map.get("targetNo"));
-
-
 
             result = pst.executeUpdate();
 

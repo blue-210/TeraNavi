@@ -8,39 +8,49 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
     <title>検索結果</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/TeraNavi/css/search.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="container">
-       <div class="row">
-
-           <c:forEach var="item" items="${result}">
-		   		<c:out value="${item.userName}" /><br>
-				&nbsp;このユーザにDMを送る
-				<form action="dmsend" method="post">
-					&nbsp;&nbsp;本文:<input type="text" name="messageBody"><br>
-					<input type="hidden" name="receiveUserId" value="${item.id}">
-					<input type="submit" value="送信"><br><br>
-				</form>
-	   		</c:forEach>
-       </div><!--end row-->
-    </div><!--end container-->
+	<h5 class="page-title">検索結果</h5>
+    <hr id="hr" class="hr">
+    <p class="p-level">ユーザの検索結果です</p>
+    
+    <br>
+    <div class="section">
+      <div class="container">
+		<c:forEach var="item" items="${result}">
+			<div class="row">
+			  <div class="col-md-3">
+				<img src="${item.iconPath}" class="img-responsive">
+			  </div>
+			  <div class="col-md-9">
+				<h1>${item.userName}</h1>
+				<h3>${item.nameKana}</h3>
+				<p>${item.profile}<br>
+					<form action="dmsend" method="post">
+						&nbsp;&nbsp;本文:<input type="text" name="messageBody"><br>
+						<input type="hidden" name="receiveUserId" value="${item.id}">
+						<input type="submit" value="送信"><br><br>
+					</form>
+				</p>
+			  </div>
+			</div>
+			
+			
+	   	</c:forEach>
+      </div>
+    </div>
+	
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 

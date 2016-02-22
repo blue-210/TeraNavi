@@ -1,10 +1,6 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,6 +9,7 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <title>TeraNavi TOP</title>
 </head>
 <body>
@@ -25,7 +22,7 @@
             <div class="col-xs-10 col-xs-offset-1">
               <ul class="lead nav nav-justified nav-tabs">
                 <li class="active">
-                  <a href="#top" data-toggle="tab" class="text-warning">TOP</a>
+                  <a href="TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
                 </li>
                 <li>
                   <a href="#blog" data-toggle="tab" class="text-warning">ブログ</a>
@@ -37,7 +34,7 @@
                   <a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
                 </li>
                 <li>
-                  <a href="/TeraNavi/mypage" class="text-warning">マイページ</a>
+                  <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
                 </li>
               </ul>
             </div>
@@ -55,12 +52,12 @@
 						<div class="row col-md-10 col-md-offset-1 well">
 							<div class="col-md-2">
 							  <br>
-							  <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-							  <a href=""><h3 class="text-center text-muted">ユーザ名</h3></a>
+							  <img src="${article.iconPath}" class="img-responsive">
+							  <a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
 							</div>
 							<div class="col-md-7">
 							  <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-							  <p>${article.articleBody}...</p>
+							  <p　id="articleBody"><c:out value="${article.articleBody}" />...</p>
 							  <div class="text-right">
 								<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 								</div>
@@ -69,23 +66,11 @@
 								<br><br>
 								<p>投稿日時 ${article.createdDate}</p>
 								<br>
-								<p>コメント数 2</p>
+								<p>コメント数 ${article.commentCount}</p>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
-				<br>
-				<br>
-				<a href="login">ログイン画面</a>
-				<br>
-				<br>
-				<a href="mypage">マイページ</a>
-				<br>
-				<br>
-				<a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
-				<form action="/TeraNavi/front/commList" method="post" name="comForm">
-					<input type="hidden" name="intention" value="list">
-				</form>
             </div>
         </div>
         <div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
@@ -94,6 +79,29 @@
     </div><!-- tab-content -->
 
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    <script>
+
+
+
+        $(document).ready(function() {
+
+            // #(ハッシュ)指定されたタブを表示する
+            var hashTabName = document.location.hash;
+            if (hashTabName) {
+                $('.nav-tabs a[href=' + hashTabName + ']').tab('show');
+
+                event.preventDefault();
+
+                // 所定の位置までスクロールする
+                var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
+                $('html, body').stop().animate({
+                    scrollTop: 0
+                }, 2000);
+            }
+
+        });
+    </script>
 
 </body>
 </html>

@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import ttc.bean.BlogBean;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ArticlePostCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -30,12 +31,14 @@ public class ArticlePostCommand extends AbstractCommand{
 
             String body = reqc.getParameter("body")[0];
 
+			String[] tags = null;
+			//タグはチェックボックス等で複数来る事を想定してます
+			
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
             String date = formatter.format(cal.getTime());
-            System.out.println(date);
-
+            
             String status = "0";
 
 			Map params = new HashMap();
@@ -45,6 +48,17 @@ public class ArticlePostCommand extends AbstractCommand{
             params.put("date",date);
             params.put("status",status);
 
+			try{
+				//tagパラメータがあるかのチェック、jsp変更前の例外防止
+				tags =reqc.getParameter("tag");
+				
+				if(tags.length > 0){
+					params.put("tags",tags);
+				}
+			}catch(NullPointerException e){
+				System.out.println("tagパラメータなし");
+			}
+			
 			// ブログが解説しているかどうかのチェック
 			MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -52,29 +66,28 @@ public class ArticlePostCommand extends AbstractCommand{
 			AbstractDao dao = factory.getAbstractDao();
 			BlogBean blog = (BlogBean)dao.read(params);
 
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
 			if(blog.getStatus().equals("0")){
 				throw new BusinessLogicException("ブログが開設されていません",null);
 			}
 
 
-            MySqlConnectionManager.getInstance().beginTransaction();
-
-            AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("article");
-            AbstractDao dao2 = factory2.getAbstractDao();
-            dao2.insert(params);
+            factory = AbstractDaoFactory.getFactory("article");
+            dao = factory.getAbstractDao();
+            dao.insert(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+			
+			
 			resc.setResult(params);
             resc.setTarget("articlepostresult");
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }

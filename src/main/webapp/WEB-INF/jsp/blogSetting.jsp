@@ -10,16 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <title>ブログの設定</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/fileup.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
 
 
@@ -27,19 +23,113 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+    <%-- トップのナビゲーションを読み込み --%>
+    <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
-    <div class="container">
-       <div class="row">
-           <h1>ブログ設定画面</h1>
-           <form action="front/blogSetting" method="post">
-               タイトル <input type="text" name="title"><br>
-               ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
-			   説明文 <input type="text" name="explanation"><br>
-			   <input type="hidden" name="status" value="0">
-               <input type="submit" value="登録">
-           </form>
-       </div><!--end row-->
-    </div><!--end container-->
+    <div class="section">
+        <div class="container">
+           <div class="row">
+
+                <!-- 2列をサイドメニューに割り当て -->
+                <div class="col-md-2">
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
+
+                    </script>
+                </div>
+
+
+
+                <div calss="col-md-8">
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <div class="col-md-1"></div>
+                            <h1>ブログ設定</h1>
+                            <form id="blogSetting" action="/TeraNavi/front/blogSetting" method="post">
+                                <input id="status" type="hidden" name="status" value="1">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col-md-1"></div>
+                            <h1>ブログ開設</h1>
+                            <form id="blogCreate" action="front/blogCreate" method="post">
+                                <input id="status" type="hidden" name="status" value="0">
+                        </c:otherwise>
+                    </c:choose>
+
+
+                           <div class="col-md-1"></div>
+                           <div class="col-md-6">
+                               タイトル<input type="text" name="title" class="form-control" id="bodyTitle"><br>
+                               説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation"></textarea><br>
+                               <label>ヘッダー画像</label>
+                                   <div class="col-md-12 text-left">
+                                     <img id="preHeader" src="${result.headerPath}">
+                                   </div>
+                               <label>
+                                   <p>画像を選択</p>
+                                   <input type='file'  style="display:none;" value="ファイル選択" id='blogHeaderFile' onchange="fileUpHeader();">
+                               </label>
+                                <input type="hidden" name="headerPath" id="headerPathHidden">
+                               <div class="col-md-3">
+                                    <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:500px;">確認</button>
+                                </div>
+                            </div>
+                       </form>
+
+                   </div>
+                   <!-- モーダルウィンドウの中身 -->
+                   <div class="fade modal text-justify" id="blog-modal">
+                       <div class="modal-dialog">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                             <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">×</span>
+                             </button>
+                             <c:choose>
+                                 <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                     <h4 class="modal-title">ブログ設定</h4>
+                                 </c:when>
+                                 <c:otherwise>
+                                     <h4 class="modal-title">ブログ開設</h4>
+                                 </c:otherwise>
+                             </c:choose>
+                            </div>
+
+                           <div class="modal-body">
+                               <div class="col-xs-1"></div>
+                               <div class="col-xs-10">
+                                   <h2>タイトル</h2><h5 id="title"></h5>
+                                   <h2>説明文</h2><h5 id="explanation"></h5>
+                                   <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+                                   class="img-rounded" width="200" height="150" id="blogHeader">
+                                   <p></p>
+                               </div>
+                           </div>
+
+                           <div class="modal-footer">
+                               <c:choose>
+                                   <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                       <button type="submit" class="btn btn-block btn-primary" form="blogSetting">設定する</button>
+                                   </c:when>
+                                   <c:otherwise>
+                                       <button type="submit" class="btn btn-block btn-primary" form="blogCreate">開設する</button>
+                                   </c:otherwise>
+                               </c:choose>
+
+
+                               <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
+
+               </div>
+
+           </div><!--end row-->
+       </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 	<script>
@@ -59,48 +149,43 @@
 
 		});
 
-		function onDrop1(event){
-			var files = event.dataTransfer.files;
 
+
+        // 画像アップロード関連
+        function fileUpHeader(){
+			var files = document.getElementById("blogHeaderFile").files;
 
 			for(var i = 0;i < files.length;i++){
+				console.log("for");
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
 				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+data.result);
+					$("#headerPathHidden").val(data.result);
+					$("#preHeader").attr("src",data.result);
 				}
-				ajax = $.ajax(ajaxSettings);
+
+ 				ajax = $.ajax(ajaxSettings);
 			}
-
-			event.preventDefault();
 		}
 
-		function onDrop2(event){
-			var files = event.dataTransfer.files;
+        $("#blogSubmit").on("click", function() {
+            $("#title").empty();
+            $("#explanation").empty();
+            $("#blogHeader").empty();
 
 
-			for(var i = 0;i < files.length;i++){
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+"<br>"+data.result);
-				}
-				ajax = $.ajax(ajaxSettings);
-			}
+            $("#title").append($("#bodyTitle").val());
+            $("#explanation").append($("#bodyExplanation").val());
+            $("#blogHeader").attr("src",$("#headerPathHidden").val());
 
-			event.preventDefault();
-		}
+            $("#blog-modal").modal("show");
+        });
 
 
-		function onDragOver(event){
-			event.preventDefault();
-		}
+
  -->
 
 	</script>

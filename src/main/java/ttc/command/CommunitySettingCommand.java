@@ -5,8 +5,8 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
-import ttc.exception.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -15,6 +15,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
+import ttc.exception.business.ParameterInvalidException;
 
 
 
@@ -34,6 +35,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             String deleteFlag = reqc.getParameter("deleteFlag")[0];
             String communityId = reqc.getParameter("commId")[0];
             String userId=reqc.getParameter("userId")[0];
+            String nowIconPath=reqc.getParameter("nowIconPath")[0];
+            String nowHeaderPath=reqc.getParameter("nowHeaderPath")[0];
 
             HashMap params = new HashMap();
             params.put("value",loginId);
@@ -44,12 +47,12 @@ public class CommunitySettingCommand extends AbstractCommand{
             if(iconPath!=null && iconPath.length()!=0){
                 params.put("iconPath",iconPath);
             }else{
-                params.put("iconPath","");
+                params.put("iconPath",nowIconPath);
             }
             if(headerPath != null && headerPath.length() != 0){
                 params.put("headerPath",headerPath);
             }else{
-                params.put("headerPath","");
+                params.put("headerPath",nowHeaderPath);
             }
             params.put("deleteFlag",deleteFlag);
             params.put("commId",communityId);
@@ -70,7 +73,9 @@ public class CommunitySettingCommand extends AbstractCommand{
                 resc.setTarget((String)params.get("target"));
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

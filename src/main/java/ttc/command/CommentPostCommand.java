@@ -5,17 +5,19 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.IntegrationException;
-import ttc.exception.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.exception.business.ParameterInvalidException;
 
 public class CommentPostCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -44,15 +46,17 @@ public class CommentPostCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
+			List result = dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(params);
-            resc.setTarget("commentPostResult");
+            resc.setResult(result);
 
             return resc;
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }
     }

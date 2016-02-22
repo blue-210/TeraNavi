@@ -1,12 +1,7 @@
 package ttc.util.factory;
 
-import java.util.Properties;
-import java.io.IOException;
-
 import ttc.dao.AbstractDao;
 import ttc.dao.KeyWordSearchDao;
-
-import ttc.exception.IntegrationException;
 
 public class KeywordSearchDaoFactory extends AbstractDaoFactory{
     public AbstractDao getAbstractDao(){

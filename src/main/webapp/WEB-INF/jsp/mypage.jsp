@@ -1,9 +1,3 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -24,99 +18,109 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="section">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-              <ul class="lead nav nav-justified nav-tabs">
-                <li>
-                  <a href="/TeraNavi/front/top" class="text-warning">TOP</a>
-                </li>
-                <li>
-                  <a href="/TeraNavi/front/top#blog" class="text-warning">ブログ</a>
-                </li>
-                <li>
-                  <a href="/TeraNavi/front/top#community" class="text-warning">コミュニティ</a>
-                </li>
-                <li>
-                  <a href="top.html#tag" class="text-warning">タグ</a>
-                </li>
-                <li class="active">
-                  <a class="text-warning">マイページ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-    </div>
+    <%-- トップのナビゲーションを読み込み --%>
+    <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
     <div class="section">
         <div class="container">
-           <div class="row">
+            <div class="row">
 
-                <!-- 4列をサイドメニューに割り当て -->
+<c:choose>
+<c:when test="${sessionScope.loginUser.id eq result.user.id}">
+
+
+                <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                 <ul class="nav nav-pills nav-stacked well">
-                   <li class="active">
-                     <a href="#mypage">マイページ</a>
-                   </li>
-                   <li>
-                     <a href="/TeraNavi/articlepost">記事を書く</a>
-                   </li>
-                   <li>
-                     <a href="#draftarticle">下書き一覧</a>
-                   </li>
-                   <li>
-                     <a href="#blogsetting">ブログ設定</a>
-                   </li>
-                   <li>
-                     <a href="#communitymanage">コミュニティ管理</a>
-                   </li>
-                   <li>
-                     <a href="#directmessage">DM</a>
-                   </li>
-                   <br><br><br><br>
-                   <li>
-                     <a href="#leave">退会</a>
-                   </li>
-                 </ul>
+                  <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
                 </div>
+                <script>
+                  $("#mypageTab").attr("class","active");
+                </script>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
-                    <img src="${sessionScope.loginUser.headerPath}" alt="" />
+</c:when>
+<c:otherwise>
 
-         		   <img src="${sessionScope.loginUser.iconPath}" alt="" style="position:absolute;top:10%;left:20%;" /> ${sessionScope.loginUser.userName} さんのマイページです
+                <div class="col-md-8 col-md-offset-2">
 
-         		   <h2>自己紹介文</h2>
-         		   <textarea>${sessionScope.loginUser.profile}</textarea>
-
-         		   <a href="userSetting">プロフィールを編集</a>
+</c:otherwise>
+</c:choose>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="${result.user.headerPath}" style="width:100%; height:200px">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="${result.user.iconPath}" style="width:130px; height:130px; position:relative; bottom:100px; margin-left:20px">
+                            <h3 style="position:relative; margin-top:-100px; margin-left:20px;">${result.user.userName}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <p style="position:relative;" class="well">${result.user.profile}</p>
+                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                            </c:if>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-warning">投稿した記事</h1>
+                            <table class="table table-striped">
+                              <tbody>
+                                <c:forEach var="article" items="${result.article}">
+                                    <tr>
+                                      <td>
+                                        <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                        style="width:50px;height:50px;">
+                                      </td>
+                                      <td>
+                                          <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><p class="text-muted">${article.title}</p></a>
+                                      </td>
+                                      <td>${article.createdDate}</td>
+                                    </tr>
+                                    <tr>
+                                </c:forEach>
+                              </tbody>
+                            </table>
+                            <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}" class="btn btn-warning pull-right">もっと見る</a>　
+                            <br>
+                            <br>
+                            <br>
+                            <h1 class="text-warning">参加中のコミュニティ</h1>
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
+                                    style="width:50px;height:50px;">
+                                  </td>
+                                  <td>コミュにティ名</td>
+                                  <td>
+                                    <a class="btn btn-danger pull-right">退会</a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <a class="btn btn-warning pull-right">もっと見る</a>
+                        </div>
+                    </div>
 
                     <div class="col-sm-3 col-xs-6">
-                        <a href="articlepost">記事を投稿</a><br><br>
-                        <a href="後でいれｔ">下書き</a><br><br>
-                        <a href="blogSetting">ブログ設定</a><br><br>
-                        <a href="commmy">コミュニティの管理</a><br><br>
-                        <a href="後でいれｔ">コメント管理</a><br><br>
-                        <a href="dmsend">DMの送信</a><br><br>
-         			   <a href="front/dmreceive">DMの受信</a><br><br>
-                        <a href="chatwrite">チャット送信</a><br><br>
-                        <form action="front/showchat" method="post">
-                            チャット受信<input type="text" name="topicId">
-                        </form>
-                        <a href="後でいれｔ">大会</a><br><br>
-                        <a href="search">検索</a><br><br>
-
+                        <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
                     </div>
                     <div class="col-sm-3 col-xs-6">
-                        <a href="openBlog">ブログ開設</a><br><br>
-                        <a href="blogSetting">ブログ設定</a><br><br>
-         			   <a href="blogDelete">ブログ閉鎖</a><br><br>
-                        <a href="createcomm">コミュニティの作成</a><br><br>
-                        <a href="joincomm">コミュニティの参加</a><br><br>
-                        <a href="createtopic">トピックの作成</a><br><br>
-                        <a href="showTopic">トピックの一覧</a><br><br>
+         			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
+                        <a href="/TeraNavi/createcomm">コミュニティの作成</a><br><br>
+                        <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
+                        <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
+                        <form action="/TeraNavi/front/commList" method="post" name="comForm">
+                            <input type="hidden" name="intention" value="list">
+                        </form><br>
+                        <a href="/TeraNavi/showTopic">トピックの一覧</a><br><br>
                     </div>
                 </div>
 
@@ -124,7 +128,6 @@
            </div><!--end row-->
         </div><!--end container-->
     </div><!--end section-->
-    
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

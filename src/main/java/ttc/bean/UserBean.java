@@ -27,9 +27,10 @@ public class UserBean implements Bean{
     private String communityAdminFlag;
     private ArrayList directMessageList;
 	private CommunityBean community;
+	private String blogStatus;
+	
 
-
-    /**
+	/**
 	* Returns value of id
 	* @return
 	*/
@@ -46,7 +47,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Returns value of loginName
+	* Returns value of loginId
 	* @return
 	*/
 	public String getLoginId() {
@@ -54,7 +55,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Sets new value of loginName
+	* Sets new value of loginId
 	* @param
 	*/
 	public void setLoginId(String loginId) {
@@ -174,7 +175,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Returns value of question
+	* Returns value of questionNo
 	* @return
 	*/
 	public String getQuestionNo() {
@@ -182,7 +183,7 @@ public class UserBean implements Bean{
 	}
 
 	/**
-	* Sets new value of question
+	* Sets new value of questionNo
 	* @param
 	*/
 	public void setQuestionNo(String questionNo) {
@@ -397,11 +398,33 @@ public class UserBean implements Bean{
 		this.directMessageList = directMessageList;
 	}
 
-	public void setCommunity(CommunityBean community){
+	/**
+	* Returns value of community
+	* @return
+	*/
+	public CommunityBean getCommunity() {
+		return community;
+	}
+
+	/**
+	* Sets new value of community
+	* @param
+	*/
+	public void setCommunity(CommunityBean community) {
 		this.community = community;
 	}
 
-	public CommunityBean getCommunity(){
-		return community;
+	/**
+	 * @return the blogStatus
+	 */
+	public String getBlogStatus() {
+		return blogStatus;
+	}
+
+	/**
+	 * @param blogStatus the blogStatus to set
+	 */
+	public void setBlogStatus(String blogStatus) {
+		this.blogStatus = blogStatus;
 	}
 }

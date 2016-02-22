@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 
 import java.io.PrintWriter;
 
+import ttc.bean.UserBean;
+
 public class WebApplicationController implements ApplicationController{
 
 	public RequestContext getRequest(Object request)throws PresentationException{
@@ -48,16 +50,18 @@ public class WebApplicationController implements ApplicationController{
 		HttpServletRequest req = (HttpServletRequest) reqc.getRequest();
 		HttpServletResponse res = (HttpServletResponse) resc.getResponse();
 
+		req.setAttribute("result",resc.getResult());
+		
 		String path = reqc.getCommandPath();
 
 		boolean flag = false;
-		
+
 		try{
 			flag = req.getParameter("ajax").equals("true");
 		}catch(Exception e){
-			
+
 		}
-		
+
 		if(flag){
 			try{
 				res.setContentType("application/json;charset=UTF-8");
@@ -74,7 +78,13 @@ public class WebApplicationController implements ApplicationController{
 			}else if(path.equals("logout")){
 				HttpSession session = req.getSession(true);
 				session.removeAttribute("loginUser");
+				session.invalidate();
 
+			}else if(path.equals("blogCreate")){
+				HttpSession session = req.getSession(true);
+				UserBean user = (UserBean)session.getAttribute("loginUser");
+				user.setBlogStatus("1");
+				session.setAttribute("loginUser", user);
 			}else{
 
 				req.setAttribute("result",resc.getResult());

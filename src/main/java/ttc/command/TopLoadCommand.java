@@ -6,23 +6,26 @@
 package ttc.command;
 
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
+
+import ttc.bean.ArticleBean;
+import ttc.bean.UserBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.exception.business.ParameterInvalidException;
 /**
  *
  * @author Masaki
@@ -34,9 +37,9 @@ public class TopLoadCommand extends AbstractCommand{
 
 			Map result = new HashMap();
 
-			// ブログが解説しているかどうかのチェック
 			MySqlConnectionManager.getInstance().beginTransaction();
 
+			//TOPで表示する新着記事の取得
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("sort");
 			AbstractDao dao = factory.getAbstractDao();
 			Map param1 = new HashMap();
@@ -44,14 +47,15 @@ public class TopLoadCommand extends AbstractCommand{
 			List articles = dao.readAll(param1);
 
 			if(articles.size() <= 6){
-				result.put("article", articles);
+				result.put("article", sliceArticleBody(articles));
 			}else{
 				List nArticles = new ArrayList();
 				for(int i = 0;i < 6;i++){
 					nArticles.add(articles.get(i));
 				}
-				result.put("article",nArticles);
+				result.put("article",sliceArticleBody(nArticles));
 			}
+
 
 			factory = AbstractDaoFactory.getFactory("blog");
 			dao = factory.getAbstractDao();
@@ -87,6 +91,29 @@ public class TopLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
+			//ブログタブで表示する学科ごとの新着記事の取得
+			factory = AbstractDaoFactory.getFactory("users");
+			dao = factory.getAbstractDao();
+			Map param3 = new HashMap();
+			param3.put("userStatus","0");
+			param3.put("where"," and admin_flag > ?");
+			param3.put("value","1");
+			List users = dao.readAll(param3);
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
+			List departmentArticles = new ArrayList();
+			for(int i=0; i<users.size(); i++){
+				UserBean ub = (UserBean)users.get(i);
+				Map param = new HashMap();
+				param.put( "userId", ub.getId() );
+				param.put( "flag", "0" );
+				param.put( "option", " limit 1 " );
+				List departmentArticle = dao.readAll(param);
+				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
+			}
+			result.put( "department", sliceArticleBody(departmentArticles) );
+
+
 			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
@@ -96,8 +123,25 @@ public class TopLoadCommand extends AbstractCommand{
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }
+
+	//記事本文を30文字で切る
+	private static List sliceArticleBody(List articles){
+		List newArticles = new ArrayList();
+		for(int i=0; i<articles.size(); i++){
+			ArticleBean ab = (ArticleBean)articles.get(i);
+			String articleBody = ab.getArticleBody();
+			if(articleBody.length() > 30){
+				ab.setArticleBody( articleBody.substring(0,30) );
+				System.out.println(articleBody.substring(0,30));
+			}
+			newArticles.add(ab);
+		}
+		return newArticles;
+	}
 }

@@ -5,18 +5,19 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.BusinessLogicException;
-import ttc.exception.IntegrationException;
+import ttc.exception.business.BusinessLogicException;
+import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
+import ttc.bean.Bean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.bean.ChatBean;
+import ttc.exception.business.ParameterInvalidException;
 
 public class ShowChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -24,10 +25,12 @@ public class ShowChatCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             String topicId=reqc.getParameter("topicId")[0];
-
+			String communityId = reqc.getParameter("communityId")[0];
+			
             Map params = new HashMap();
             params.put("topicId", topicId);
-
+			
+			
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
@@ -35,16 +38,40 @@ public class ShowChatCommand extends AbstractCommand{
 
 			List result = dao.readAll(params);
 
+			factory = AbstractDaoFactory.getFactory("community");
+			dao = factory.getAbstractDao();
+			
+			params = new HashMap();
+			params.put( "commId", communityId);
+			params.put("where","where community_id=? and community_delete_flag=0");
+			
+			Bean community = dao.read(params);
+			
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			params.put("chat",result);
-            resc.setResult(params);
-            resc.setTarget("showchat");
+			
+            // 投稿が一度もない場合
+            if(result.isEmpty()){
+                ChatBean bean = new ChatBean();
+                bean.setFkTopicId(topicId);
+                result.add(bean);
+                
+            }
+			
+			Map resultMap = new HashMap();
+			resultMap.put("chat",result);
+			resultMap.put("community",community);
+            
+			resc.setResult(resultMap);
+            
+			resc.setTarget("showchat");
 
             return resc;
 
-        }catch(IntegrationException e){
+        }catch(NullPointerException e){
+			throw new ParameterInvalidException("入力内容が足りません", e);
+		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }
     }
