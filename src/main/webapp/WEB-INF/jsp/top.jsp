@@ -34,7 +34,7 @@
                   <a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
                 </li>
                 <li>
-                  <a href="/TeraNavi/front/mypage" class="text-warning">マイページ</a>
+                  <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
                 </li>
               </ul>
             </div>
@@ -52,8 +52,8 @@
 						<div class="row col-md-10 col-md-offset-1 well">
 							<div class="col-md-2">
 							  <br>
-							  <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-							  <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+							  <img src="${article.iconPath}" class="img-responsive">
+							  <a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
 							</div>
 							<div class="col-md-7">
 							  <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>

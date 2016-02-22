@@ -15,9 +15,18 @@
             <li>
               <a href="/TeraNavi/front/top#tag" class="text-warning">タグ</a>
             </li>
+<c:choose>
+<c:when test="${sessionScope.loginUser.id eq result.user.id}">
             <li class="active">
-              <a class="text-warning">マイページ</a>
+              <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
             </li>
+</c:when>
+<c:otherwise>
+            <li>
+              <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
+            </li>
+</c:otherwise>
+</c:choose>
           </ul>
         </div>
       </div>

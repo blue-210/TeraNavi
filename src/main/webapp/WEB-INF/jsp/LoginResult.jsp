@@ -22,19 +22,19 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="http://malsup.github.io/jquery.blockUI.js"></script>
-	
+
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
 	<script>
-		$.blockUI({ 
-				fadeIn: 1000, 
-				timeout:   2000, 
-				onBlock: function() { 
-					location.href="/TeraNavi/front/mypage";
-				} 
-		});  
+		$.blockUI({
+				fadeIn: 1000,
+				timeout:   2000,
+				onBlock: function() {
+					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}";
+				}
+		});
 	</script>
-    
+
 </body>
 </html>
