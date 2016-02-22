@@ -107,7 +107,7 @@ public class TopLoadCommand extends AbstractCommand{
 				Map param = new HashMap();
 				param.put( "userId", ub.getId() );
 				param.put( "flag", "0" );
-				param.put( "option", " limit 1 " );
+				param.put( "option", "limit 1 " );
 				List departmentArticle = dao.readAll(param);
 				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
 			}
