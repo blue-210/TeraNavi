@@ -38,10 +38,10 @@
     <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="${result.headerPath}" style="width:100%; height:250px" id="headimg">
-                    <label for="headerFile" id="headerPath">
-                            <input type="file" id="headerFile" style="display:none">
-                    </label>
+                    <img src="${result.headerPath}" id="headimg">
+                        <label for="headerFile" id="headerPath">
+                                <input type="file" id="headerFile" style="display:none">
+                        </label>
                 </div>
             </div>
             <div class="row">
@@ -54,10 +54,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <span id="iconPath">
-                        <img id="icon" src="${result.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
-                        <input type="file" value="アイコン画像を選択" id="iconFile" style="display: none">
-                    </span>
+                        <img id="icon" src="${result.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
+                            <label for="iconFile" id="iconPath">
+                                    <input type="file" id="iconFile" style="display:none">
+                            </label>
                 </div>
             </div>
             <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
@@ -211,13 +211,13 @@
                 var button=$('#editButton');
 
                 $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName" maxlength="25"><br>');
-                $("#name").css('background-color','transparent');
-                $("#name").css('font-size','8px');
+
                 $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
-                $("#headerPath").append("<p class=\"changeEffectHead\">ヘッダー画像を選択</p>");
+                $("#headerPath").append('<p id="headerText">ヘッダー画像を選択</p>');
                 $("#headerPath").addClass("changeEffectHead");
                 // $("#headimg").addClass("changeEffectHead");
-                $("#icon").removeClass().addClass("changeEffectIcon");
+                $("#iconPath").append('<p>アイコン画像を選択</p>');
+                $("#iconPath").addClass("changeEffectIcon");
 
                 // $("#iconFile").show();
                 $("#iconFile").append('<input id="comIconPath" type="hidden" name="iconPath">');
