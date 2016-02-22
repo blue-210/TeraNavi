@@ -64,7 +64,7 @@
                                タイトル<input type="text" name="title" class="form-control" id="bodyTitle" value="${result.title}"><br>
                                説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.explanation}</textarea><br>
                                <p>ヘッダー画像</p>
-                               <img src="${result.headerPath}" id="headimg"　width="300px" height="150px">
+                               <img src="${result.headerPath}" id="headimg"　width="500px" height="150px" id="headimg">
                                 <input type="file" id="headerFile">
                                 <input type="hidden" name="headerPath" id="headerPathHidden">
                                <div class="col-md-3">
@@ -93,8 +93,7 @@
                             </div>
 
                            <div class="modal-body">
-                               <div class="col-xs-1"></div>
-                               <div class="col-xs-10">
+                               <div class="col-md-10">
                                    <h2>タイトル</h2><h5 id="title"></h5>
                                    <h2>説明文</h2><h5 id="explanation"></h5>
                                    <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
@@ -184,7 +183,7 @@
 
             $("#title").append($("#bodyTitle").val());
             $("#explanation").append($("#bodyExplanation").val());
-            $("#blogHeader").attr("src",$("#headerPathHidden").val());
+            $("#blogHeader").attr("src",$("#headimg").attr("src"));
 
             $("#blog-modal").modal("show");
         });
