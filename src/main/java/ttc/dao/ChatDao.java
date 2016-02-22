@@ -14,7 +14,7 @@ import ttc.bean.ChatBean;
 import ttc.bean.Bean;
 import ttc.exception.integration.IntegrationException;
 import ttc.util.MySqlConnectionManager;
-
+import ttc.util.DateConversion;
 
 public class ChatDao implements AbstractDao{
     PreparedStatement pst=null;
@@ -49,7 +49,7 @@ public class ChatDao implements AbstractDao{
                 chatBean.setUserId(rs.getString(3));
                 chatBean.setIconPath(rs.getString(4));
                 chatBean.setBody(rs.getString(5));
-                chatBean.setDate(rs.getString(6));
+                chatBean.setDate(DateConversion.doFormatTime(rs.getString(6)));
                 chatBean.setFkTopicId(rs.getString(7));
                 result.add(chatBean);
             }

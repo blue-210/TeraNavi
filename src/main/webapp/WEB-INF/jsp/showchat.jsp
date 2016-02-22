@@ -28,47 +28,50 @@
     	<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 	</div>
 	<div id="header_image">
-		<img src="/TeraNavi/img/header.jpg" width="100%" height="400px" />
+		<img src="${result.community.headerPath}" width="100%" height="400px" />
 		<div id="header_icon">
-			<img id="icon_image" src="/TeraNavi/img/icon.jpg">
+			<img id="icon_image" src="${result.community.iconPath}">
 		</div>
 		<h2 id="comunity_title">チャットルーム</p>
 	</div>
+    <div id="chat_room">
         <div class="container-fluid">
 			<div class="wrapper">
                    <!-- 自分 -->
-                <c:forEach var="ch" items="${result}">
+                <c:forEach var="ch" items="${result.chat}">
                     <c:choose>
+                        <c:when test="${empty ch.body}">
+                        </c:when>
                         <c:when test="${sessionScope.loginUser.id eq ch.userId}">
                             <div class="row">
-                                <div class="col-md-6"></div>
+                                <div class="col-md-5"></div>
                                 <div class="col-md-1"></div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="box">
                                         <p class="content">
                                             <c:out value="${ch.body}"/><br>
-                                            <c:out value="${ch.date}" />
-                                            <c:out value="${ch.userName}"/>
                                         </p>
                                     </div>
+                                    <p class="Mydate"><c:out value="${ch.date}" /><p>
                                     <img class="account" src="${sessionScope.loginUser.iconPath}">
+                                    <p class="Myusername"><c:out value="${ch.userName}"/></p>
                                 </div>
                             </div>
                         </c:when>
                         <c:otherwise>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                      <div class="other_box">
                                          <p class="other_content">
                                              <c:out value="${ch.body}"/><br>
-                                             <c:out value="${ch.date}" />
-                                             <c:out value="${ch.userName}"/>
                                          </p>
                                       </div>
+                                      <p class="date"><c:out value="${ch.date}" /><p>
                                       <img class="other_account" src="${sessionScope.loginUser.iconPath}">
+                                      <p class="username"><c:out value="${ch.userName}"/></p>
                                  </div>
                                  <div class="col-md-1"></div>
-                                 <div class="col-md-6"></div>
+                                 <div class="col-md-5"></div>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -76,14 +79,19 @@
 			</div>
 		</div>
 	</div>
-		<div id="dm_footer">
-				<textarea id="chatBody" name="chatBody"></textarea>
-				<input type="hidden" name="topicId" value="${result[0].fkTopicId}">
+		<div id="forms">
+                <div id="camera_space">
+                    <span><img id="camera_logo" src="/TeraNavi/img/camera.png" width="41.6px" height="41.6px"></span>
+                </div>
+                <textarea id="chatBody" name="chatBody"></textarea>
+				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-		</div>
-		<div id="submit_button">
-			<button id="chatwrite" type="button" name="button">送信</button>
-		</div>
+				<input type="hidden" name="communityId" value="${result.community.id}">
+                <div id="submit_button">
+            		<button id="chatwrite" type="button" name="button">送信</button>
+            	</div>
+        </div>
+    </div>
     <div id="footer">
     	<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	</div>

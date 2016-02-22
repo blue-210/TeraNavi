@@ -32,8 +32,8 @@
         </div>
       </div>
     </div>
-	
-	
+
+
 	<div class="section">
       <div class="container">
         <div class="row">
@@ -51,8 +51,8 @@
         </div>
       </div>
     </div>
-	
-	
+
+
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 	<script>
@@ -66,9 +66,9 @@
 				url:'/TeraNavi/front/TermsDisplay',
 				dataType:'json',
 				data:null
-				
+
 			};
-			
+
 			loadRule();
 
 		});
@@ -79,16 +79,16 @@
 				ajax:"true",
 				target:"rule"
 			};
-			
+
 			ajaxSettings.success = function(data){
-					
+
 				var main = $("#main");
 				var list = $("#list ul");
-					
+
 				main.empty();
 				list.empty();
-	
-					
+
+
 				main.append("<p>"+data.main.date+"</p>");
 				main.append("<p>"+data.main.body+"</p>");
 				list.append("<h1>リスト</h1>");
@@ -96,14 +96,14 @@
 					var date = data.list[i].date.slice(0,10);
 					list.append("<li><a onclick='loadRuleId(\""+data.list[i].id+"\")'>"+date+"</a></li>");
 				}
-				
+
 				$("#list ul li:first").css("border-style","groove");
 			}
 
 			ajax = $.ajax(ajaxSettings);
-			
+
 		}
-		
+
 		function loadRuleId(id){
 			nowId = id;
 
@@ -113,31 +113,31 @@
 				id:id,
 				where:" WHERE rule_id = ?"
 			};
-			
+
 			ajaxSettings.success = function(data){
-					
+
 				var main = $("#main");
 				var list = $("#list ul");
-				
+
 				main.empty();
 				list.empty();
-		
-					
+
+
 				main.append("<p>"+data.main.date+"</p>");
-				main.append("<p>"+data.main.body+"</p>");
+				main.append(data.main.body);
 
 				list.append("<h1>リスト</h1>");
 				for(var i = 0;i < data.list.length;i++){
-					
+
 					var date = data.list[i].date.slice(0,10);
 					list.append("<li><a onclick='loadRuleId(\""+data.list[i].id+"\")'>"+date+"</a></li>");
 					if(data.list[i].id==nowId){
 						$("#list ul li:last").css("border-style","groove");
 					}
-					
+
 				}
 			}
-			
+
 			ajax = $.ajax(ajaxSettings);
 		}
 

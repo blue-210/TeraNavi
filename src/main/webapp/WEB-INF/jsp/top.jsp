@@ -1,10 +1,6 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,6 +9,7 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <title>TeraNavi TOP</title>
 </head>
 <body>
@@ -37,7 +34,7 @@
                   <a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
                 </li>
                 <li>
-                  <a href="/TeraNavi/front/mypage" class="text-warning">マイページ</a>
+                  <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
                 </li>
               </ul>
             </div>
@@ -55,8 +52,8 @@
 						<div class="row col-md-10 col-md-offset-1 well">
 							<div class="col-md-2">
 							  <br>
-							  <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-							  <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+							  <img src="${article.iconPath}" class="img-responsive">
+							  <a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
 							</div>
 							<div class="col-md-7">
 							  <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>

@@ -1,10 +1,11 @@
 .footer{
-	background-color:#41495A;
-	color:#fff;
+	margin-top: 20px;
+	position: absolute;
+	margin-bottom: 0px;
+	width: 100%;
+	background-color:#ddd;
 }
-a, a:hover, a:visited, a:link, a:active {
-	color: #FFFFFF;
-}
+
 #twitter_icon{
 	float:left;
 	width:110px;

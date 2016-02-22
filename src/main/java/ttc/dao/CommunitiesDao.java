@@ -44,6 +44,7 @@ public class CommunitiesDao implements AbstractDao{
             ResultSet rs = pst.executeQuery();
 
             rs.next();
+			cb.setId(rs.getString("community_id"));
 			cb.setName(rs.getString("community_name"));
             System.out.println("comName="+cb.getName());
             cb.setProfile(rs.getString("community_profile"));

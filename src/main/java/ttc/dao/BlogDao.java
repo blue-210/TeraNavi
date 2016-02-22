@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ttc.bean.ArticleBean;
 
 import ttc.bean.BlogBean;
 import ttc.bean.Bean;
@@ -131,21 +132,51 @@ public class BlogDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "select blog_title,blog_header_path,blog_explanation,blog_status_flag from users where user_id=?";
+            StringBuffer sql = new StringBuffer();
+			sql.append("select blog_title,blog_header_path,blog_explanation,blog_status_flag ");
+			sql.append("from users where user_id=? and blog_status_flag=1");
 
-            pst = cn.prepareStatement(sql);
+            pst = cn.prepareStatement(new String(sql));
 
-            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
+			String target = (String)map.get("userId");
+            pst.setString(1,target);
 
             ResultSet rs = pst.executeQuery();
 
-            rs.next();
+            if(rs.next()){
+				blog = new BlogBean();
+				blog.setTitle(rs.getString(1));
+				blog.setHeaderPath(rs.getString(2));
+				blog.setExplanation(rs.getString(3));
+				blog.setStatus(rs.getString(4));
+				blog.setUserId(target);
+				
+				sql.setLength(0);
+				sql.append("SELECT article_id,article_title,article_body,article_created_date,article_status_flag ");
+				sql.append("from articles where fk_user_id=?");
+				if(map.containsKey("article_status")){
+					sql.append(map.get("article_status"));
+				}
+				
+				pst = cn.prepareStatement(new String(sql));
+				
+				pst.setString(1,target);
+				ResultSet rsA = pst.executeQuery();
+				
+				List articles = new ArrayList();
+				while(rsA.next()){
+					ArticleBean article = new ArticleBean();
+					article.setArticleId(rsA.getString(1));
+					article.setTitle(rsA.getString(2));
+					article.setArticleBody(rsA.getString(3));
+					article.setCreatedDate(rs.getString(4));
+					articles.add(article);
+				}
+				blog.setArticles(articles);
+				
+			}
+			
 
-            blog = new BlogBean();
-            blog.setTitle(rs.getString(1));
-            blog.setHeaderPath(rs.getString(2));
-            blog.setExplanation(rs.getString(3));
-			blog.setStatus(rs.getString(4));
 
 
         }catch(SQLException e){
