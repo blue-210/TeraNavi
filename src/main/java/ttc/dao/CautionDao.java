@@ -28,7 +28,6 @@ public class CautionDao implements AbstractDao{
             sql.append("cautions(fk_user_id,fk_caution_user_id,caution_date,caution_title,caution_body,report_page_url)");
             sql.append("values(?,?,sysdate(),?,?,?)");
             pst=cn.prepareStatement(new String(sql));
-            System.out.println("警告insert");
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("cautionUserId"));
@@ -40,6 +39,7 @@ public class CautionDao implements AbstractDao{
             count = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
+			throw new IntegrationException(e.getMessage(), e);
         }finally{
             try{
                 if(pst!=null){

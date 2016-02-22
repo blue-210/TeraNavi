@@ -52,7 +52,7 @@ public class CautionUserCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(params);
-            resc.setTarget("cautionuserresult");
+
 
             return resc;
 
