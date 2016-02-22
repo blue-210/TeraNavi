@@ -38,7 +38,6 @@
                       $("#openBlogTab").attr("class","active");
                     </script>
 
-                    </script>
                 </div>
 
 
@@ -62,16 +61,11 @@
 
                            <div class="col-md-1"></div>
                            <div class="col-md-6">
-                               タイトル<input type="text" name="title" class="form-control" id="bodyTitle"><br>
-                               説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation"></textarea><br>
-                               <label>ヘッダー画像</label>
-                                   <div class="col-md-12 text-left">
-                                     <img id="preHeader" src="${result.headerPath}">
-                                   </div>
-                               <label>
-                                   <p>画像を選択</p>
-                                   <input type='file'  style="display:none;" value="ファイル選択" id='blogHeaderFile' onchange="fileUpHeader();">
-                               </label>
+                               タイトル<input type="text" name="title" class="form-control" id="bodyTitle" value="${result.title}"><br>
+                               説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.explanation}</textarea><br>
+                               <p>ヘッダー画像</p>
+                               <img src="${result.headerPath}" id="headimg"　width="300px" height="150px">
+                                <input type="file" id="headerFile">
                                 <input type="hidden" name="headerPath" id="headerPathHidden">
                                <div class="col-md-3">
                                     <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:500px;">確認</button>
@@ -133,7 +127,7 @@
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 	<script>
-		<!-- var ajaxSettings;
+		var ajaxSettings;
 		var ajax;
 		$(function(){
 
@@ -153,7 +147,7 @@
 
         // 画像アップロード関連
         function fileUpHeader(){
-			var files = document.getElementById("blogHeaderFile").files;
+			var files = document.getElementById("HeaderFile").files;
 
 			for(var i = 0;i < files.length;i++){
 				console.log("for");
@@ -164,12 +158,23 @@
 				ajaxSettings.url = "/TeraNavi/upload/header";
 				ajaxSettings.success = function(data){
 					$("#headerPathHidden").val(data.result);
-					$("#preHeader").attr("src",data.result);
+					$("#headimg").attr("src",data.result);
 				}
 
  				ajax = $.ajax(ajaxSettings);
 			}
 		}
+
+        $(document).on("change","#headerFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+            $("#headimg").attr("src", src);
+            fileUpHeader();
+        });
 
         $("#blogSubmit").on("click", function() {
             $("#title").empty();
@@ -183,10 +188,24 @@
 
             $("#blog-modal").modal("show");
         });
+        function fileUpHeader(){
+			var files = document.getElementById("headerFile").files;
 
+			for(var i = 0;i < files.length;i++){
+				console.log("for");
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
+				ajaxSettings.success = function(data){
+					$("#headerPathHidden").val(data.result);
+					$("#headerFile").attr("src",data.result);
+				}
 
-
- -->
+ 				ajax = $.ajax(ajaxSettings);
+			}
+		}
 
 	</script>
 

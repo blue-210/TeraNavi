@@ -34,7 +34,8 @@
              <script>
                $("blogSettingTab").attr("class","active");
              </script>
-            </div>
+             <div calss="col-md-8">
+
                <h1>${sessionScope.loginUser.userName}さんのブログが作成されました</h1>
 
                <h1>${result.title}</h1>
