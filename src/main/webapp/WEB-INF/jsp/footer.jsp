@@ -12,7 +12,7 @@
 						<div class="col-md-4">
 							<h3>運営元について</h3>
 								<a href="http://www.tera-house.ac.jp/"><p>学校法人 小山学園</p></a>
-								<a href="#"><p>プライバシーポリシー</p></a>
+								<a href="/TeraNavi/showPolicy"><p>プライバシーポリシー</p></a>
 						</div>
 						<div class="col-md-4">
 							<h3>ソーシャル公式アカウント</h3>
