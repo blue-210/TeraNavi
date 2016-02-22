@@ -10,18 +10,18 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="/TeraNavi/front/top" class="navbar-brand"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
+			<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 		</div>
-		<select id="target">
-			<option value="usearch" selected>ユーザ</option>
-			<option value="commList">コミュニティ</option>
-			<option value="keywordsearch">ブログ</option>
-		</select>
 		<form method="post" action="/TeraNavi/front/usearch" id="sform" role="search">
-			<input type="text"  name="keyword" class="form-control">
+			<select id="target">
+				<option value="usearch" selected>ユーザ</option>
+				<option value="commList">コミュニティ</option>
+				<option value="keywordsearch">ブログ</option>
+			</select>
+			<input type="text"  name="keyword">
 			<input type="hidden" name="intention" value="search">
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default"><i class='fa fa-search'></i></button>
+			<span>
+				<button type="submit" class="btn btn-default" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
 			</span>
 		</form>
 		<i class="fa fa-bell-o" id="bell_logo"></i>
@@ -34,15 +34,15 @@
 							<span>${sessionScope.loginUser.userName}さん<b class="caret"></b></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/TeraNavi/front/mypage">マイページ</a></li>
+							<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
 							<li><a href="/TeraNavi/front/logout">ログアウト</a></li>
 						</ul>
 					</li>
 				</c:when>
 				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right list-inline">
-						<li><a href="/TeraNavi/sign">新規登録</a><li>
-						<li><a data-toggle="modal" href="#loginmodal">ログイン</a><li>
+						<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+						<li><a class="headermenu" data-toggle="modal" href="#loginmodal">ログイン</a><li>
 					</ul>
 				</c:otherwise>
 			</c:choose>
