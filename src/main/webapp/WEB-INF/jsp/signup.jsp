@@ -63,7 +63,7 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
@@ -176,7 +176,7 @@
 					</div>
 				</div>
 				<div class="col-md-3"></div>
-				
+
 			</div>
 
 			<input type="hidden" name="adminFlag" form="signForm" value="0">
@@ -227,7 +227,7 @@
 	  	$("#signsubmit").on("click", function() {
 			if($("#fMail").val()==$("#fMail2").val()){
 				if($("#fPassword").val()==$("#fPassword2").val()){
-					
+
 					$("#sName").empty();
 					$("#sKana").empty();
 					$("#sSex").empty();
@@ -255,7 +255,7 @@
 					$("#sQuestion").append($("#fQuestionId option:selected").text());
 					$("#sAnswer").append($("#fAnswer").val());
 					$("#sKey").append($("#fKey").val());
-					
+
 					$("#signup-modal").modal("show");
 				}else{
 					alert("パスワードとパスワードの確認が一致しません");
@@ -263,7 +263,7 @@
 			}else{
 				alert("メールアドレスとメールアドレスの確認が一致しません");
 			}
-		
+
 	  	});
 	  </script>
 </body>
