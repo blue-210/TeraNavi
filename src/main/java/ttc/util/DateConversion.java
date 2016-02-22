@@ -15,7 +15,7 @@ public abstract class DateConversion{
             e.printStackTrace();
         }
 
-        String dateTimeStr = new SimpleDateFormat("MM/dd").format(dateTime);
+        String dateTimeStr = new SimpleDateFormat("HH:mm").format(dateTime);
         return dateTimeStr;
     }
 
