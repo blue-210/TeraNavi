@@ -42,7 +42,7 @@ public class ArticleSortDao implements AbstractDao{
             if(sortType=="0"){
                 //新着順に並び替え
                 sql.append("select article_id,article_title,article_body,article_created_date, ");
-                sql.append("fk_user_id, user_name ");
+                sql.append("fk_user_id, user_name, user_icon_path ");
                 sql.append("from articles join users on articles.fk_user_id = users.user_id ");
                 sql.append("where article_status_flag = 0 ");
                 sql.append("order by article_created_date desc");
@@ -70,6 +70,7 @@ public class ArticleSortDao implements AbstractDao{
                 article.setCreatedDate(rs.getString(4));
                 article.setUserId(rs.getString(5));
                 article.setUserName(rs.getString(6));
+                article.setIconPath(rs.getString(7));
 
 				pst = cn.prepareStatement(new String(sql2));
 				pst.setString(1,article.getArticleId());

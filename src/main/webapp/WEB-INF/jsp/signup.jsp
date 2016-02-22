@@ -32,7 +32,7 @@
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="pull-left control-label" for="name">お名前</label>
+						<label class="pull-left control-label"  for="name">お名前</label>
 						<input type="text" form="signForm" id="fName" name="userName" placeholder="田中太郎" class="form-control">
 					</div>
 				</div>
@@ -180,7 +180,11 @@
 			</div>
 
 			<input type="hidden" name="adminFlag" form="signForm" value="0">
+<<<<<<< HEAD
             <button type="submit" class="btn btn-primary pull-right" id="signsubmit" data-toggle="modal">確認</button>
+=======
+            <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal" style="margin-left:850px;">確認</button>
+>>>>>>> refs/remotes/blue-210/master
 			</div>
 		</form>
 
@@ -198,16 +202,52 @@
 				<div class="modal-body">
 					<div class="col-xs-1"></div>
                     <div class="col-xs-10">
-                        <h2 id="sName"></h2>
-                        <h2 id="sKana"></h2>
-                        <h2 id="sSex"></h2>
-                        <h2 id="sBirth"></h2>
-                        <h2 id="sMail"></h2>
-                        <h2 id="sId"></h2>
-                        <h2 id="sPass"></h2>
-                        <h2 id="sQuestion"></h2>
-                        <h2 id="sAnswer"></h2>
-                        <h2 id="sKey"></h2>
+						<h2 id="sName"></h2>
+					   <h2 id="sKana"></h2>
+					   <h2 id="sSex"></h2>
+					   <h2 id="sBirth"></h2>
+					   <h2 id="sMail"></h2>
+					   <h2 id="sId"></h2>
+					   <h2 id="sPass"></h2>
+					   <h2 id="sQuestion"></h2>
+					   <h2 id="sAnswer"></h2>
+					   <h2 id="sKey"></h2>
+						<label>名前</label>
+                        <h3 id="sName"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>かな</label>
+	                    <h3 id="sKana"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>性別</label>
+                        <h3 id="sSex"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>生年月日</label>
+                        <h3 id="sBirth"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>メール</label>
+                        <h3 id="sMail"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>ログインID</label>
+                        <h3 id="sId"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>パスワード</label>
+                        <h3 id="sPass"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>秘密の質問</label>
+                        <h3 id="sQuestion"></h3>
+						<hr size="1" color="#fffff">
+
+						<label>秘密の回答</label>
+                        <h3 id="sAnswer"></h3>
+						<hr size="1" color="#fffff">
+                        <!--<h2 id="sKey"></label>-->
                         <p></p>
                     </div>
                 </div>

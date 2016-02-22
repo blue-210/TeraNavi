@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import ttc.bean.UserBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -29,16 +30,34 @@ public class MypageLoadCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
+            String loginUserId = reqc.getParameter("userId")[0];
+            String paramUserId = reqc.getParameter("paramUserId")[0];
+
+			String userId = "-1";
+			if( loginUserId.equals(paramUserId) ){
+				userId = loginUserId;
+			}else{
+				userId = paramUserId;
+			}
 
             Map result = new HashMap();
 
 			MySqlConnectionManager.getInstance().beginTransaction();
 
-			//TOPで表示する新着記事の取得
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+
+			//ユーザー情報の取得
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
 			AbstractDao dao = factory.getAbstractDao();
 			Map param = new HashMap();
+			param.put("where", "where user_id = ?");
+			param.put("value", userId);
+			UserBean ub = (UserBean)dao.read(param);
+			result.put("user", ub);
+
+
+			//新着記事の取得
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
 			param.put("userId", userId);
 			param.put("flag", "0");
 			List articles = dao.readAll(param);
