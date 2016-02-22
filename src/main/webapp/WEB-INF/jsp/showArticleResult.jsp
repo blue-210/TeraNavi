@@ -93,15 +93,17 @@
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h2>
-              <a class="label label-warning">タグ名</a>
-              <a class="label label-warning">タグ名</a>
-            </h2>
+            
+			 <p>
+				<c:forEach var="tag" items="${result.article.tags}">
+					<a class="label label-warning">${tag.name}</a>
+				</c:forEach>
+            </p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
+            <i id="commentCount" class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
 
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-dnt="true">ツイート</a>
             <%-- 下のdata-hrefはサイトのURLに変更してください --%>
@@ -125,7 +127,6 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <hr>
-            <hr>
           </div>
         </div>
         <div class="row">
@@ -135,11 +136,10 @@
           <div class="col-md-7">
             <form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
               <div class="form-group">
-                <textarea name="body" class="form-control" placeholder="コメントを書く"></textarea>
-                <input type="hidden" name="articleId" value="${result.article.articleId}">
+                <textarea name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-default pull-right">投稿</button>
+                <button type="button" id="commentSubmit" class="btn btn-default pull-right">投稿</button>
               </div>
             </form>
           </div>
@@ -148,6 +148,7 @@
               <hr>
             </div>
           </div>
+		<div id="commentPostDiv">
           <c:forEach var="comment" items="${result.article.comments}">
 			  <div class="row">
 				<div class="col-md-1 col-md-offset-2">
@@ -176,6 +177,8 @@
                 </div>
               </div>
 		  </c:forEach>
+		</div>
+		<div>
         </div>
 			  
 		<div id="cautionModal" class="modal fade">
@@ -236,5 +239,6 @@
     </script>
 
 	<script src="/TeraNavi/js/articleCaution.js"></script>
+	<script src="/TeraNavi/js/commentPost.js"></script>
 </body>
 </html>

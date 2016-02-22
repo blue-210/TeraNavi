@@ -38,8 +38,7 @@ public class ArticlePostCommand extends AbstractCommand{
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
             String date = formatter.format(cal.getTime());
-            System.out.println(date);
-
+            
             String status = "0";
 
 			Map params = new HashMap();
