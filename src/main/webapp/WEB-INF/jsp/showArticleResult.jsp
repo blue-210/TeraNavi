@@ -24,6 +24,8 @@
      <%-- ヘッダー部分のHTMLを読み込み --%>
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	 <input type="hidden" value="${result.article.articleId}" id="primaryArticleId">
+	 
     <header>
       <div class="row">
           <div class="col-md-12">
@@ -110,10 +112,12 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li>
-                <a href="#">この記事を通報する</a>
+                <a id="cautionArticle">この記事を通報する</a>
+				
               </li>
               <li>
-                <a href="#">この記事を書いたユーザを通報する</a>
+                <a id="cautionUser">この記事を書いたユーザを通報する</a>
+				
               </li>
             </ul>
           </div>
@@ -158,10 +162,10 @@
 				</a>
 				  <ul class="dropdown-menu dropdown-menu-right">
 					<li>
-					  <a href="#">このコメントを通報する</a>
+					  <a onclick="commentCaution('${comment.userId}')">このコメントを通報する</a>
 					</li>
 					<li>
-					  <a href="#">このユーザを通報する</a>
+					  <a onclick="commentUserCaution('${comment.userId}')">このユーザを通報する</a>
 					</li>
 				  </ul>
 				</div>
@@ -173,19 +177,42 @@
               </div>
 		  </c:forEach>
         </div>
+			  
+		<div id="cautionModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h1 class="text-center" id="moHead">通報</h1>
+					</div>
+					<div id="cautionM" class="modal-body">
+						<div class="form-group">
+							<form action="/TeraNavi/front/caution" method="post" id="cautionForm">
+								<input class="form-control" id="uiCaution" form="cautionForm" type="hidden" name="cautionUserId" value="${result.blog.userId}">
+								<input class="form-control" form="cautionForm" id="targetUrl" type="hidden" name="url" value="<%=request.getRequestURI()%>">
+								<div class="form-group">
+									<label class="control-label">タイトル</label>
+									<input class="form-control" id="cautionTitle" form="cautionForm" type="text" name="cautionTitle">
+								</div>
+								<div class="form-group">
+									<label class="control-label">本文</label>
+									<textarea class="form-control" id="cautionBody" form="cautionForm" name="cautionBody"></textarea>
+								</div>
+								<button id="cautionSubmit" type="button" form="cautionForm" class="btn btn-default pull-right">送信する</button>
+							</form>
+						
+						</div>
+
+					</div>
+					<div class="modal-footer"></div>
+					</div><!--end moal-content-->
+				</div><!--end modal-dialog-->
+			</div><!--end modal-->
+			  
       </div>
     </div>
 
-    <!--警告する関連 -->
-        <p class="bun"><button id="dd">警告する</button></p>
-        <form action="caution" method="post">
-            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-            <input type="hidden" name="cautionUserId" value="${result.userId}">
-            <p id="cauTile"></p>
-            <p id="cauBody"></p>
-            <p id="sub"></p>
-        </form>
-
+  
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
@@ -208,5 +235,6 @@
         }(document, 'script', 'twitter-wjs');
     </script>
 
+	<script src="/TeraNavi/js/articleCaution.js"></script>
 </body>
 </html>

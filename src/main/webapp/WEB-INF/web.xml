@@ -137,7 +137,7 @@
 
     <servlet>
         <servlet-name>createcomm</servlet-name>
-        <jsp-file>/WEB-INF/jsp/CreateCommunity.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/createCommunity.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>createcomm</servlet-name>
@@ -209,14 +209,17 @@
     </servlet-mapping>
 
 
-   <servlet>
+<!--
+	??????????????????????
+	<servlet>
       <servlet-name>createcom</servlet-name>
-      <jsp-file>/WEB-INF/jsp/createcommunity.jsp</jsp-file>
+      <jsp-file>/WEB-INF/jsp/createCommunity.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
       <servlet-name>createcom</servlet-name>
       <url-pattern>/createcom</url-pattern>
   </servlet-mapping>
+-->
 
    <servlet>
       <servlet-name>tagsearch</servlet-name>

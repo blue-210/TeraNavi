@@ -149,6 +149,7 @@ public class BlogDao implements AbstractDao{
 				blog.setHeaderPath(rs.getString(2));
 				blog.setExplanation(rs.getString(3));
 				blog.setStatus(rs.getString(4));
+				blog.setUserId(target);
 				
 				sql.setLength(0);
 				sql.append("SELECT article_id,article_title,article_body,article_created_date,article_status_flag ");

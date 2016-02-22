@@ -8,7 +8,7 @@ public class BlogBean implements Bean{
     private String explanation;
     private List articles;
 	private String status;
-
+	private String userId;
 
     /**
     * Returns value of headerPath
@@ -80,5 +80,19 @@ public class BlogBean implements Bean{
 
 	public String getStatus(){
 		return status;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }
