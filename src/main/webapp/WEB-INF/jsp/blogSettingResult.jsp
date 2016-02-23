@@ -40,13 +40,24 @@
 
                <div calss="col-md-8">
                    <h1>ブログ設定を変更しました</h1>
+                   <p>３秒後にマイページに飛びます</p>
                 </div>
             </div>
 
         </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
 
+        setTimeout(function(){
+            window.location.href = './mypage?paramUserId=${sessionScope.loginUser.id}';
+        }, 3000);
+
+    });
+
+
+    </script>
 
 
 </body>
