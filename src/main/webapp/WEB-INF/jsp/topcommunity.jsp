@@ -1,6 +1,7 @@
 <div class="section">
     <div class="container">
       <div class="row col-md-10 col-md-offset-1">
+          <a class="btn btn-warning btn-lg" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
           <h1 class="text-warning">人気コミュニティ</h1>
       </div>
       <div class="row col-md-10 col-md-offset-1">
