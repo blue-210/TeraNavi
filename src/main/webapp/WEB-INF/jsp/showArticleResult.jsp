@@ -42,8 +42,10 @@
       </div>
       <div class="row">
           <div class="col-md-12">
-              <img src="${result.article.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
-              <h3 style="position:relative; margin-top:-100px; margin-left:50px;">${result.article.userName}</h3>
+              <img src="${result.article.iconPath}" class="img-thmbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+              <h3 style="position:relative; margin-top:-100px; margin-left:50px;">
+                  <a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
+              </h3>
           </div>
       </div>
     </header>
@@ -60,9 +62,18 @@
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
-            <c:forEach var="contents" items="${result.archives}">
-                <a href="#"><p class="text-center">${contents.date}(${contents.count})</p></a>
-            </c:forEach>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                月を選択 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <c:forEach var="contents" items="${result.archives}">
+                    <li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.article.userId}&scope=${contents.year}${contents.month}">
+                        ${contents.year}年${contents.month}月(${contents.count})
+                    </a></li>
+                </c:forEach>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="row">

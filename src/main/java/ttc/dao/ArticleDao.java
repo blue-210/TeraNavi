@@ -248,7 +248,8 @@ public class ArticleDao implements AbstractDao{
 
             if( map.containsKey("archive") ){
                 //月別アーカイブ用--------------------------------------------------------
-                sql.append("select date_format(article_created_date, '%Y-%m'), ");
+                sql.append("select date_format(article_created_date, '%Y'), ");
+                sql.append("date_format(article_created_date, '%m'), ");
                 sql.append("count(*) ");
                 sql.append("from articles ");
                 sql.append("where fk_user_id = ? ");
@@ -260,11 +261,12 @@ public class ArticleDao implements AbstractDao{
                 rs = pst.executeQuery();
                 while( rs.next() ){
                     Map contents = new HashMap();
-                    contents.put("date", rs.getString(1) );
-                    contents.put("count", rs.getString(2) );
+                    contents.put("year", rs.getString(1) );
+                    contents.put("month", rs.getString(2) );
+                    contents.put("count", rs.getString(3) );
                     results.add( contents );
                 }
-
+                //-----------------------------------------------------------------------
             }
             else{
                 //ブログ情報の取得----------------------------------------------------
@@ -303,6 +305,11 @@ public class ArticleDao implements AbstractDao{
                 sql.append("from articles join users ");
                 sql.append("on articles.fk_user_id = users.user_id ");
                 sql.append("where fk_user_id = ? and article_status_flag = ? ");
+
+                if(map.containsKey("where")){
+                    sql.append((String)map.get("where"));
+                }
+
                 sql.append("order by article_created_date desc ");
 
                 if(map.containsKey("option")){
@@ -312,7 +319,7 @@ public class ArticleDao implements AbstractDao{
                 pst = cn.prepareStatement( new String(sql) );
 
                 pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
-                pst.setInt(2, Integer.parseInt( (String)map.get("flag") ));
+                pst.setString(2, (String)map.get("flag") );
 
                 rs = pst.executeQuery();
 

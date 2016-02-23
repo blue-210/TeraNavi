@@ -23,10 +23,19 @@ public class ShowArticleListCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             String userId = reqc.getParameter("writeUserId")[0];
+            String scope = reqc.getParameter("scope")[0];//期間指定（ない場合は-1）
+
 
             Map params = new HashMap();
             params.put("userId", userId);
             params.put("flag", "0");
+
+            //期間を指定する場合はwhere句に無理やり追加
+            if( scope.equals("-1") ){
+
+            }else{
+                params.put("where", "and date_format(article_created_date, '%Y%m')="+scope+" ");
+            }
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
