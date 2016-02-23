@@ -61,12 +61,12 @@
 
                            <div class="col-md-1"></div>
                            <div class="col-md-6">
-                               タイトル<input type="text" name="title" class="form-control" id="bodyTitle" value="${result.title}"><br>
+                               タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.title}"><br>
                                説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.explanation}</textarea><br>
                                <p>ヘッダー画像</p>
-                               <img src="${result.headerPath}" id="headimg"　width="500px" height="150px" id="headimg">
+                               <img src="${result.headerPath}" width="555px" height="150px" id="headimg">
                                 <input type="file" id="headerFile">
-                                <input type="hidden" name="headerPath" id="headerPathHidden">
+                                <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.headerPath}">
                                <div class="col-md-3">
                                     <button class="btn btn-info" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:500px;">確認</button>
                                 </div>
@@ -145,24 +145,7 @@
 
 
         // 画像アップロード関連
-        function fileUpHeader(){
-			var files = document.getElementById("HeaderFile").files;
 
-			for(var i = 0;i < files.length;i++){
-				console.log("for");
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajaxSettings.url = "/TeraNavi/upload/header";
-				ajaxSettings.success = function(data){
-					$("#headerPathHidden").val(data.result);
-					$("#headimg").attr("src",data.result);
-				}
-
- 				ajax = $.ajax(ajaxSettings);
-			}
-		}
 
         $(document).on("change","#headerFile",function(){
             var file = this.files[0];
@@ -181,7 +164,7 @@
             $("#blogHeader").empty();
 
 
-            $("#title").append($("#bodyTitle").val());
+            $("#title").append($("#blogTitle").val());
             $("#explanation").append($("#bodyExplanation").val());
             $("#blogHeader").attr("src",$("#headimg").attr("src"));
 
