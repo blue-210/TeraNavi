@@ -54,6 +54,8 @@ public class MypageLoadCommand extends AbstractCommand{
 			UserBean ub = (UserBean)dao.read(param);
 			result.put("user", ub);
 
+			param.remove("where");
+
 
 			//新着記事の取得
 			factory = AbstractDaoFactory.getFactory("article");
