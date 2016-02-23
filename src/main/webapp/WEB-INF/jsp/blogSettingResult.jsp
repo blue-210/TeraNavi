@@ -40,7 +40,9 @@
 
                <div calss="col-md-8">
                    <h1>ブログ設定を変更しました</h1>
-                   <p>３秒後にマイページに飛びます</p>
+                   <p>３秒後にマイページに飛びます<br>
+                       戻らに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+
                 </div>
             </div>
 
