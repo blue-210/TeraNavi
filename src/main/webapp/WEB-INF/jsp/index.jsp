@@ -17,6 +17,7 @@
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
     rel="stylesheet" type="text/css">
     <title>TeraNavi</title>
+	<link rel="SHORTCUT ICON" href="/TeraNavi/img/favicon.ico">
   </head>
 
   <body>
