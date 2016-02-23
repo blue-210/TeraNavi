@@ -62,7 +62,8 @@ create table tera_db.communities(
 	community_profile varchar(400),
 	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-	community_created_date datetime,fk_user_id int(8),
+	community_created_date datetime,
+	fk_user_id int(8),
 	-- 通常→0　削除→1
 	community_delete_flag char(1) not null,
 	index(community_id),
