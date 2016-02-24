@@ -30,8 +30,7 @@
                 <div class="col-md-2">
                     <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
                     <script>
-                      $("#blogSettingTab").attr("class","active");
-                      $("#openBlogTab").attr("class","active");
+                      $("#articlePostTab").attr("class","active");
                     </script>
 
                 </div>
