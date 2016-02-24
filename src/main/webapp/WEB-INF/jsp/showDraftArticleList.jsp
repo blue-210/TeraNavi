@@ -28,39 +28,12 @@
 
                 <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                  <ul class="nav nav-pills nav-stacked well">
-                    <li>
-                      <a href="/TeraNavi/front/mypage">マイページ</a>
-                    </li>
-                    <li>
-                      <a href="/TeraNavi/articlepost">記事を書く</a>
-                    </li>
-                    <li class="active">
-                      <a href="#">下書き一覧</a>
-                    </li>
-                    <c:choose>
-                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-                            <li>
-                                <a href="/TeraNavi/blogSetting">ブログ設定</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="active">
-                                <a href="/TeraNavi/blogSetting">ブログ開設</a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                    <li>
-                      <a href="#communitymanage">コミュニティ管理</a>
-                    </li>
-                    <li>
-                      <a href="#directmessage">DM</a>
-                    </li>
-                    <br><br><br><br>
-                    <li>
-                      <a href="/TeraNavi/withdraw">退会</a>
-                    </li>
-                  </ul>
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
+
                 </div>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->

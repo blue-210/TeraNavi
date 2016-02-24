@@ -34,21 +34,17 @@
              <script>
                $("blogSettingTab").attr("class","active");
              </script>
-            </div>
-               <h1>${sessionScope.loginUser.userName}さんのブログが作成されました</h1>
+             <div calss="col-md-8">
+                   <div class="col-md-1"></div>
+                   <div class="col-md-6">
+                       <h1>${sessionScope.loginUser.userName}さんの<br>${result.title}が作成されました</h1>
 
-               <h1>${result.title}</h1>
+                       <h1>はじめての記事を投稿しちゃおう。</h1>
 
-    		   <img src="${result.headerPath}" alt="" />
+                       <a class="btn btn-warning btn-lg" href="/TeraNavi/articlepost" role="button">記事を作成する</a>
+                   </div>
 
-    		   <p>
-    		   	説明文 : ${result.explanation}
-    		   </p>
 
-               <h1>はじめての記事を投稿しちゃおう。</h1>
-
-    		   <a href="TeraNavi/articlepost">記事投稿しますね</a>
-    		   <a href="/TeraNavi/front/logout" style="font-size:18px;">ログアウトしますよ</a>
 
             </div>
 

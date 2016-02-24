@@ -25,54 +25,41 @@
     <jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
     <div class="section">
-    <div class="container">
-       <div class="row">
-           <!-- 2列をサイドメニューに割り当て -->
-           <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked well">
-              <li>
-                <a href="/TeraNavi/front/mypage">マイページ</a>
-              </li>
-              <li>
-                <a href="/TeraNavi/articlepost">記事を書く</a>
-              </li>
-              <li>
-                <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
-              </li>
-              <c:choose>
-                  <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-                      <li class="active">
-                          <a href="#blogsetting">ブログ設定</a>
-                      </li>
-                  </c:when>
-                  <c:otherwise>
-                      <li class="active">
-                          <a href="#blogsetting">ブログ開設</a>
-                      </li>
-                  </c:otherwise>
-              </c:choose>
-              <li>
-                <a href="#communitymanage">コミュニティ管理</a>
-              </li>
-              <li>
-                <a href="#directmessage">DM</a>
-              </li>
-              <br><br><br><br>
-              <li>
-                <a href="/TeraNavi/wirhdraw">退会</a>
-              </li>
-            </ul>
-            </div>
+        <div class="container">
+           <div class="row">
+
+                <!-- 2列をサイドメニューに割り当て -->
+                <div class="col-md-2">
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
+
+                </div>
 
                <div calss="col-md-8">
                    <h1>ブログ設定を変更しました</h1>
+                   <p>３秒後にマイページに飛びます<br>
+                       戻らに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+
                 </div>
             </div>
 
         </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
 
+        setTimeout(function(){
+            window.location.href = './mypage?paramUserId=${sessionScope.loginUser.id}';
+        }, 3000);
+
+    });
+
+
+    </script>
 
 
 </body>

@@ -88,16 +88,16 @@ public class BlogDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-			
+
 			sql.append("select blog_title,");
 			sql.append("blog_header_path,blog_explanation ");
 			sql.append("from users where blog_status_flag = 1");
-			
+
 			if(map.containsKey("sort")){
 				sql.append((String)map.get("sort"));
 			}
-			
-			
+
+
             pst = cn.prepareStatement(new String(sql));
 
             ResultSet rs = pst.executeQuery();
@@ -149,19 +149,20 @@ public class BlogDao implements AbstractDao{
 				blog.setHeaderPath(rs.getString(2));
 				blog.setExplanation(rs.getString(3));
 				blog.setStatus(rs.getString(4));
-				
+				blog.setUserId(target);
+
 				sql.setLength(0);
 				sql.append("SELECT article_id,article_title,article_body,article_created_date,article_status_flag ");
 				sql.append("from articles where fk_user_id=?");
 				if(map.containsKey("article_status")){
 					sql.append(map.get("article_status"));
 				}
-				
+
 				pst = cn.prepareStatement(new String(sql));
-				
+
 				pst.setString(1,target);
 				ResultSet rsA = pst.executeQuery();
-				
+
 				List articles = new ArrayList();
 				while(rsA.next()){
 					ArticleBean article = new ArticleBean();
@@ -172,9 +173,9 @@ public class BlogDao implements AbstractDao{
 					articles.add(article);
 				}
 				blog.setArticles(articles);
-				
+
 			}
-			
+
 
 
 

@@ -24,6 +24,8 @@
      <%-- ヘッダー部分のHTMLを読み込み --%>
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+	 <input type="hidden" value="${result.article.articleId}" id="primaryArticleId">
+
     <header>
       <div class="row">
           <div class="col-md-12">
@@ -40,8 +42,10 @@
       </div>
       <div class="row">
           <div class="col-md-12">
-              <img src="${result.article.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
-              <h3 style="position:relative; margin-top:-100px; margin-left:50px;">${result.article.userName}</h3>
+              <img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+              <h3 style="position:relative; margin-top:-100px; margin-left:50px;">
+                  <a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
+              </h3>
           </div>
       </div>
     </header>
@@ -58,12 +62,18 @@
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
-            <h4>2016</h4>
-            <a href="#"><p class="text-center">2月(2)</p></a>
-            <a href="#"><p class="text-center">1月(4)</p></a>
-            <h4>2015</h4>
-            <a href="#"><p class="text-center">12月(5)</p></a>
-            <a href="#"><p class="text-center">11月(1)</p></a>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                月を選択 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <c:forEach var="contents" items="${result.archives}">
+                    <li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.article.userId}&scope=${contents.year}${contents.month}">
+                        ${contents.year}年${contents.month}月(${contents.count})
+                    </a></li>
+                </c:forEach>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -91,15 +101,17 @@
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h2>
-              <a class="label label-warning">タグ名</a>
-              <a class="label label-warning">タグ名</a>
-            </h2>
+
+			 <p>
+				<c:forEach var="tag" items="${result.article.tags}">
+					<a class="label label-warning">${tag.name}</a>
+				</c:forEach>
+            </p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <i class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
+            <i id="commentCount" class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
 
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-dnt="true">ツイート</a>
             <%-- 下のdata-hrefはサイトのURLに変更してください --%>
@@ -110,10 +122,12 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li>
-                <a href="#">この記事を通報する</a>
+                <a id="cautionArticle">この記事を通報する</a>
+
               </li>
               <li>
-                <a href="#">この記事を書いたユーザを通報する</a>
+                <a id="cautionUser">この記事を書いたユーザを通報する</a>
+
               </li>
             </ul>
           </div>
@@ -121,21 +135,19 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <hr>
-            <hr>
           </div>
         </div>
         <div class="row">
           <div class="col-md-1 col-md-offset-2">
-            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive">
+            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive img-thumbnail">
           </div>
           <div class="col-md-7">
             <form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
               <div class="form-group">
-                <textarea name="body" class="form-control" placeholder="コメントを書く"></textarea>
-                <input type="hidden" name="articleId" value="${result.article.articleId}">
+                <textarea name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-default pull-right">投稿</button>
+                <button type="button" id="commentSubmit" class="btn btn-default pull-right">投稿</button>
               </div>
             </form>
           </div>
@@ -144,10 +156,11 @@
               <hr>
             </div>
           </div>
+		<div id="commentPostDiv">
           <c:forEach var="comment" items="${result.article.comments}">
 			  <div class="row">
 				<div class="col-md-1 col-md-offset-2">
-				  <img src="${comment.iconPath}" class="img-responsive">
+				  <img src="${comment.iconPath}" class="img-responsive img-thumbnail">
 				  <a href="#"><p class="text-center">${comment.userName}</p></a>
 				</div>
 				<div class="col-md-7">
@@ -158,10 +171,10 @@
 				</a>
 				  <ul class="dropdown-menu dropdown-menu-right">
 					<li>
-					  <a href="#">このコメントを通報する</a>
+					  <a onclick="commentCaution('${comment.userId}')">このコメントを通報する</a>
 					</li>
 					<li>
-					  <a href="#">このユーザを通報する</a>
+					  <a onclick="commentUserCaution('${comment.userId}')">このユーザを通報する</a>
 					</li>
 				  </ul>
 				</div>
@@ -172,19 +185,44 @@
                 </div>
               </div>
 		  </c:forEach>
+		</div>
+		<div>
         </div>
+
+		<div id="cautionModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h1 class="text-center" id="moHead">通報</h1>
+					</div>
+					<div id="cautionM" class="modal-body">
+						<div class="form-group">
+							<form action="/TeraNavi/front/caution" method="post" id="cautionForm">
+								<input class="form-control" id="uiCaution" form="cautionForm" type="hidden" name="cautionUserId" value="${result.blog.userId}">
+								<input class="form-control" form="cautionForm" id="targetUrl" type="hidden" name="url" value="<%=request.getRequestURI()%>">
+								<div class="form-group">
+									<label class="control-label">タイトル</label>
+									<input class="form-control" id="cautionTitle" form="cautionForm" type="text" name="cautionTitle">
+								</div>
+								<div class="form-group">
+									<label class="control-label">本文</label>
+									<textarea class="form-control" id="cautionBody" form="cautionForm" name="cautionBody"></textarea>
+								</div>
+								<button id="cautionSubmit" type="button" form="cautionForm" class="btn btn-default pull-right">送信する</button>
+							</form>
+
+						</div>
+
+					</div>
+					<div class="modal-footer"></div>
+					</div><!--end moal-content-->
+				</div><!--end modal-dialog-->
+			</div><!--end modal-->
+
       </div>
     </div>
 
-    <!--警告する関連 -->
-        <p class="bun"><button id="dd">警告する</button></p>
-        <form action="caution" method="post">
-            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-            <input type="hidden" name="cautionUserId" value="${result.userId}">
-            <p id="cauTile"></p>
-            <p id="cauBody"></p>
-            <p id="sub"></p>
-        </form>
 
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
@@ -208,5 +246,7 @@
         }(document, 'script', 'twitter-wjs');
     </script>
 
+	<script src="/TeraNavi/js/articleCaution.js"></script>
+	<script src="/TeraNavi/js/commentPost.js"></script>
 </body>
 </html>

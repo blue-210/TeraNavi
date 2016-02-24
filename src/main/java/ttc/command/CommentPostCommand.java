@@ -10,6 +10,7 @@ import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -45,12 +46,12 @@ public class CommentPostCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
+			List result = dao.readAll(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(params);
-            resc.setTarget("commentPostResult");
+            resc.setResult(result);
 
             return resc;
         }catch(NullPointerException e){
