@@ -82,7 +82,7 @@ public class DirectMessageDao implements AbstractDao{
 			}
 			
 			if(map.containsKey("group")){
-				sql.append(" and message_date in (select MAX(message_date) from direct_messages group by fk_send_user_id)");
+				sql.append(" and message_date in (select MAX(message_date) from direct_messages group by fk_send_user_id) group by fk_send_user_id");
 			}
 			
 			
