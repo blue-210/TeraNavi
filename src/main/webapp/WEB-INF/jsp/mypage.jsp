@@ -126,16 +126,25 @@
                             <h1 class="text-warning">参加中のコミュニティ</h1>
                             <table class="table table-striped">
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                    style="width:50px;height:50px;">
-                                  </td>
-                                  <td>コミュにティ名</td>
-                                  <td>
-                                    <a class="btn btn-danger pull-right">退会</a>
-                                  </td>
-                                </tr>
+								  <c:forEach var="community" items="${sessionScope.myCommunities}">
+									<tr>
+										<td>
+										  <img src="${community.iconPath}"
+										  style="width:50px;height:50px;">
+										</td>
+										<td>${community.name}</td>
+										<td>
+										<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
+											<input type="hidden" name="commId" value="${community.id}">
+											<input type="hidden" name="commName" value="${community.name}">
+											<input type="hidden" name="target" value="community_withdrawal_flag=1">
+											<a type="submit" class="btn btn-danger pull-right">退会</a>
+										</form>
+										</td>
+									</tr>
+									  
+								  </c:forEach>
+								  
                               </tbody>
                             </table>
                             <a class="btn btn-warning pull-right">もっと見る</a>

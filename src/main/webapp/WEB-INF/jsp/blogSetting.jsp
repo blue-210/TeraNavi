@@ -97,7 +97,7 @@
                                    <h2>タイトル</h2><h5 id="title"></h5>
                                    <h2>説明文</h2><h5 id="explanation"></h5>
                                    <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-                                   class="img-rounded" width="200" height="150" id="blogHeader">
+                                   class="img-rounded" width="450" height="150" id="blogHeader">
                                    <p></p>
                                </div>
                            </div>
