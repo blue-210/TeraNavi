@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-5">
-                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
                     </p>
                 </div>
                 <div class="col-md-4"></div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-                <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
+                <button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
             </c:if>
 
            <br>
@@ -98,7 +98,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-default" onclick="document.memberForm.submit();">
+                        <button type="button" class="btn btn-warning" onclick="document.memberForm.submit();">
                             メンバーの一覧を取得
                         </button>
                     </div>
@@ -167,16 +167,16 @@
                                <h2>説明文</h2>
                                <h5 id="modalProfile"></h5>
                                <h2>ヘッダー画像</h2>
-                               <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-rounded" width="450" height="150" id="commHeader">
+                               <img src="" class="img-rounded" width="450" height="150" id="commHeader">
                                <h2>アイコン画像</h2>
-                               <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-thumbnail" width="110" height="150" id="commIcon">
+                               <img src="" class="img-thumbnail" width="110" height="150" id="commIcon">
                            </div>
                            <div class="col-md-1"></div>
                        </div>
                    </div>
                    <div class="modal-footer">
-                       <button type="submit" class="btn btn-primary" form="setting">設定する</button>
-                       <button type="button" class="btn btn-primary" data-dismiss="modal">キャンセル</button>
+                       <button type="submit" class="btn btn-warning" form="setting">設定する</button>
+                       <button type="button" class="btn btn-warning" data-dismiss="modal">キャンセル</button>
                    </div>
                  </div>
                </div>
@@ -219,6 +219,7 @@
                 // $("#headimg").addClass("changeEffectHead");
                 $("#iconPath").append('<p id="changeEffectIconText">アイコン画像を選択</p>');
                 $("#iconPath").addClass("changeEffectIcon");
+                $("#edit").css("display","none");
 
                 // $("#iconFile").show();
                 $("#iconFile").append('<input id="comIconPath" type="hidden" name="iconPath">');
@@ -234,7 +235,7 @@
                 $('#commid').append('<input type="hidden" name="target" value="'+target+'">');
                 $('#commid').append('<input type="hidden" name="nowIconPath" value="'+iconPath+'">');
                 $('#commid').append('<input type="hidden" name="nowHeaderPath" value="'+headerPath+'">');
-                $('#sub').html('<button class="btn btn-info" type="button" id="commSubmit" data-toggle="modal">確認</button>');
+                $('#sub').html('<button class="btn btn-warning btn-lg" type="button" id="commSubmit" data-toggle="modal">確認</button>');
             });
         });
 

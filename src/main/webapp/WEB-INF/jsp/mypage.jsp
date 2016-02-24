@@ -134,7 +134,7 @@
 											<input type="hidden" name="commId" value="${community.id}">
 											<input type="hidden" name="commName" value="${community.name}">
 											<input type="hidden" name="target" value="community_withdrawal_flag=1">
-											<a type="submit" class="btn btn-danger pull-right">退会</a>
+											<button type="submit" class="btn btn-danger pull-right">退会</button>
 										</form>
 										</td>
 									</tr>

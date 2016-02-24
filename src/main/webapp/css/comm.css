@@ -57,10 +57,11 @@ margin-top: 10px;
 }
 
 
-#editButton{
+#edit{
 	position: relative;
-	bottom: 85px;
-	font-size: 15px;
+	bottom: 150px;
+	margin-left: 90%;
+	font-size: 22px;
 }
 
 #userimage{
