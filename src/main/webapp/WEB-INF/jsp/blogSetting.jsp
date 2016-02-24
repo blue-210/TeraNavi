@@ -62,7 +62,7 @@
                            <div class="col-md-1"></div>
                            <div class="col-md-6">
 
-                            
+
                                <c:choose>
                                    <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
                                        タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.title}"><br>
@@ -80,7 +80,7 @@
                                 <input type="file" id="headerFile">
                                 <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.headerPath}">
                                <div class="col-md-3">
-                                    <button class="btn btn-warning" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:500px;">確認</button>
+                                    <button class="btn btn-warning" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:485px;">確認</button>
                                 </div>
                             </div>
                        </form>

@@ -59,7 +59,7 @@
 
 			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
               <div class="text-center">
-                <button type="button" class="btn btn-primary" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
+                <button type="button" class="btn btn-warning" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
 
 
 				<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
