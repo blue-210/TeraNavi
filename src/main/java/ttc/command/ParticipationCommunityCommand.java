@@ -43,7 +43,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             UserBean ub=new UserBean();
             ub.setCommunity(cb);
             resc.setResult(params);
-            resc.setTarget("communityPaticipationResult");
+            resc.setTarget("showCommunityResult");
 
             return resc;
         }catch(NullPointerException e){
