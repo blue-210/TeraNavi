@@ -15,8 +15,7 @@ import ttc.bean.Bean;
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
 import ttc.bean.BlogBean;
-import ttc.bean.TagBean;
-import ttc.bean.CommentBean;
+
 import ttc.exception.integration.IntegrationException;
 
 public class ArticleDao implements AbstractDao{
@@ -36,11 +35,24 @@ public class ArticleDao implements AbstractDao{
             sql.append("user_name, user_icon_path ");
             sql.append("from articles join users ");
             sql.append("on articles.fk_user_id = users.user_id ");
-            sql.append("where article_id = ?");
 
-            pst = cn.prepareStatement( new String(sql) );
+			
+			if(map.containsKey("whereNo")){
+				String whereNo = (String)map.get("whereNo");
+				if(whereNo.equals("1")){
+					sql.append("where article_title=? and article_created_date=? and fk_user_id=?");
+					pst = cn.prepareStatement( new String(sql) );
+					pst.setString(1, (String)map.get("title"));
+					pst.setString(2, (String)map.get("date"));
+					pst.setString(3, (String)map.get("userId"));
+				}
+			}else{
+				sql.append("where article_id = ?");
+				pst = cn.prepareStatement( new String(sql) );
+				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
+				
+			}
 
-            pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
 
             System.out.println(sql);
 
@@ -54,49 +66,6 @@ public class ArticleDao implements AbstractDao{
             ab.setUserId(rs.getString(5));
             ab.setUserName(rs.getString(6));
             ab.setIconPath(rs.getString(7));
-
-            sql.setLength(0);//StringBuffer初期化
-
-            List tags = new ArrayList();
-            sql.append("select tag_id, tag_name ");
-            sql.append("from articles_tags join tags ");
-            sql.append("on fk_tag_id = tag_id ");
-            sql.append("where fk_article_id = ?");
-            pst = cn.prepareStatement( new String(sql) );
-            pst.setString( 1,ab.getArticleId() );
-            rs = pst.executeQuery();
-            while( rs.next() ){
-                TagBean tb = new TagBean();
-                tb.setId( rs.getString(1) );
-                tb.setName( rs.getString(2) );
-                tags.add(tb);
-            }
-            ab.setTags(tags);
-
-			sql.setLength(0);
-			List comments = new ArrayList();
-            sql.append("select comment_id,fk_article_id,");
-            sql.append("comment_body,");
-            sql.append("comment_date,");
-            sql.append("user_id,user_name,user_icon_path ");
-            sql.append("from comments join users on user_id=fk_user_id ");
-            sql.append("where fk_article_id=?");
-            pst = cn.prepareStatement( new String(sql) );
-            pst.setInt( 1, Integer.parseInt( ab.getArticleId() ) );
-            rs = pst.executeQuery();
-            while( rs.next() ){
-                CommentBean cb = new CommentBean();
-                cb.setCommentId( rs.getString(1) );
-                cb.setArticleId( rs.getString(2) );
-                cb.setCommentBody( rs.getString(3) );
-                cb.setCommentDate( rs.getString(4) );
-                cb.setUserId( rs.getString(5) );
-                cb.setUserName( rs.getString(6) );
-                cb.setIconPath( rs.getString(7) );
-                comments.add(cb);
-            }
-            ab.setComments(comments);
-            ab.setCommentCount(comments.size());
 			//------------------------------------------------------------------
 
         }catch(SQLException e){
@@ -192,33 +161,6 @@ public class ArticleDao implements AbstractDao{
             pst.setString(5, (String)map.get("status"));
 
             result = pst.executeUpdate();
-
-
-			sql.setLength(0);
-			sql.append("select article_id from articles where article_title=? and article_created_date=? and fk_user_id=?");
-			pst=cn.prepareStatement(new String(sql));
-			pst.setString(1,(String)map.get("title"));
-			pst.setString(2,(String)map.get("date"));
-			pst.setString(3,(String)map.get("userId"));
-
-			ResultSet rs = pst.executeQuery();
-			rs.next();
-			String articleId = rs.getString(1);
-
-			if(map.containsKey("tags")){
-				String[] tags = (String[])map.get("tags");
-				sql.setLength(0);
-				sql.append("insert into articles_tags values(?,?)");
-				for(int i = 0;i < tags.length;i++){
-					pst = cn.prepareStatement(new String(sql));
-					pst.setString(1,articleId);
-					pst.setString(2,tags[i]);
-
-					pst.executeUpdate();
-				}
-
-			}
-
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
