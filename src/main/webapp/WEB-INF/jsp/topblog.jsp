@@ -8,9 +8,8 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-              class="img-responsive">
-              <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+              <img src="${article.iconPath}" class="img-responsive img-thumbnail">
+              <h3 class="text-center"><a class=" text-muted" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">${article.userName}</a></h3>
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
@@ -44,7 +43,7 @@
               <div class="row"><!--アイコンとユーザー名の領域-->
                 <div class="col-md-5">
                   <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                  class="img-responsive">
+                  class="img-responsive img-thumbnail">
                 </div>
                 <div class="col-md-7">
                   <a href=""><h2 class="text-center text-muted">ユーザ名</h2></a>

@@ -86,7 +86,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="${result.user.iconPath}" style="width:130px; height:130px; position:relative; bottom:100px; margin-left:20px">
+                            <img src="${result.user.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:100px; margin-left:20px">
                             <h3 style="position:relative; margin-top:-100px; margin-left:20px;">${result.user.userName}</h3>
                         </div>
                     </div>
@@ -107,10 +107,6 @@
                                 <c:forEach var="article" items="${result.article}">
                                     <tr>
                                       <td>
-                                        <img src="https://unsplash.imgix.net/photo-1421986527537-888d998adb74?w=1024&amp;q=50&amp;fm=jpg&amp;s=e633562a1da53293c4dc391fd41ce41d"
-                                        style="width:50px;height:50px;">
-                                      </td>
-                                      <td>
                                           <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><p class="text-muted">${article.title}</p></a>
                                       </td>
                                       <td>${article.createdDate}</td>
@@ -129,7 +125,7 @@
 								  <c:forEach var="community" items="${sessionScope.myCommunities}">
 									<tr>
 										<td>
-										  <img src="${community.iconPath}"
+										  <img src="${community.iconPath}" class="img-thumbnail"
 										  style="width:50px;height:50px;">
 										</td>
 										<td>${community.name}</td>
@@ -142,9 +138,9 @@
 										</form>
 										</td>
 									</tr>
-									  
+
 								  </c:forEach>
-								  
+
                               </tbody>
                             </table>
                             <a class="btn btn-warning pull-right">もっと見る</a>

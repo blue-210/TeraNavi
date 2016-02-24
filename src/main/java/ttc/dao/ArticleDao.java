@@ -301,7 +301,7 @@ public class ArticleDao implements AbstractDao{
                 //記事一覧の取得----------------------------------------------------------------------
                 sql.append("select article_id, article_title, article_body, ");
                 sql.append("article_created_date, ");
-                sql.append("fk_user_id, user_name ");
+                sql.append("fk_user_id, user_name, user_icon_path ");
                 sql.append("from articles join users ");
                 sql.append("on articles.fk_user_id = users.user_id ");
                 sql.append("where fk_user_id = ? and article_status_flag = ? ");
@@ -331,6 +331,7 @@ public class ArticleDao implements AbstractDao{
                     ab.setCreatedDate( rs.getString(4) );
                     ab.setUserId( rs.getString(5) );
                     ab.setUserName( rs.getString(6) );
+                    ab.setIconPath( rs.getString(7) );
 
                     /*
                     List tags = new ArrayList();
