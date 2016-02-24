@@ -42,7 +42,7 @@
       </div>
       <div class="row">
           <div class="col-md-12">
-              <img src="${result.article.iconPath}" class="img-thmbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+              <img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
               <h3 style="position:relative; margin-top:-100px; margin-left:50px;">
                   <a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
               </h3>
@@ -139,7 +139,7 @@
         </div>
         <div class="row">
           <div class="col-md-1 col-md-offset-2">
-            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive">
+            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive img-thumbnail">
           </div>
           <div class="col-md-7">
             <form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
@@ -160,7 +160,7 @@
           <c:forEach var="comment" items="${result.article.comments}">
 			  <div class="row">
 				<div class="col-md-1 col-md-offset-2">
-				  <img src="${comment.iconPath}" class="img-responsive">
+				  <img src="${comment.iconPath}" class="img-responsive img-thumbnail">
 				  <a href="#"><p class="text-center">${comment.userName}</p></a>
 				</div>
 				<div class="col-md-7">
