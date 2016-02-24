@@ -55,6 +55,9 @@ public class ShowArticleCommand extends AbstractCommand{
             params.put("flag", "0");
 
 
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
+			
             //前後の記事IDを調べる　なければ-1 ----------------------------------
             List articles = dao.readAll(params);
             int index = -1;
