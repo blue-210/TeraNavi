@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import ttc.bean.BlogBean;
+import ttc.bean.ArticleBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class ArticlePostCommand extends AbstractCommand{
@@ -30,10 +31,22 @@ public class ArticlePostCommand extends AbstractCommand{
             String title = reqc.getParameter("title")[0];
 
             String body = reqc.getParameter("body")[0];
-
+			
 			String[] tags = null;
 			//タグはチェックボックス等で複数来る事を想定してます
 			
+			boolean tagFlag = false;
+			try{
+				//tagパラメータがあるかのチェック、jsp変更前の例外防止
+				tags =reqc.getParameter("tag");
+				
+				if(tags.length > 0){
+					tagFlag=true;
+				}
+			}catch(NullPointerException e){
+				System.out.println("tagパラメータなし");
+			}
+
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
@@ -48,16 +61,6 @@ public class ArticlePostCommand extends AbstractCommand{
             params.put("date",date);
             params.put("status",status);
 
-			try{
-				//tagパラメータがあるかのチェック、jsp変更前の例外防止
-				tags =reqc.getParameter("tag");
-				
-				if(tags.length > 0){
-					params.put("tags",tags);
-				}
-			}catch(NullPointerException e){
-				System.out.println("tagパラメータなし");
-			}
 			
 			// ブログが解説しているかどうかのチェック
 			MySqlConnectionManager.getInstance().beginTransaction();
@@ -74,8 +77,27 @@ public class ArticlePostCommand extends AbstractCommand{
             factory = AbstractDaoFactory.getFactory("article");
             dao = factory.getAbstractDao();
             dao.insert(params);
+			
+            
+			if(tagFlag){
+				params.put("whereNo","1");
+				ArticleBean article = (ArticleBean)dao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
+				factory = AbstractDaoFactory.getFactory("tag");
+				dao = factory.getAbstractDao();
+				
+				Map params2 = new HashMap();
+				
+				for(int i = 0;i < tags.length;i++){
+					params2.put("articleId", article.getArticleId());
+					params2.put("tag", tags[i]);
+					dao.update(params2);
+					params2.clear();
+				}
+				
+			}
+						
+			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			
