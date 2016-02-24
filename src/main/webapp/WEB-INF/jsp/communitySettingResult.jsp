@@ -31,7 +31,7 @@
     <div class="container">
        <div class="row">
            <h1>コミュニティの変更完了！</h1>
-           <p>３秒後にマイページに飛びます<br>
+           <p>３秒後に${result.communityName}コミュニティに戻ります<br>
                戻らに場合は<a href="/showcomm?commId=${result.commId}">こちら</a></p>
 
        </div><!--end row-->
