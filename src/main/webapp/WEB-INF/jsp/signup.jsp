@@ -32,7 +32,7 @@
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="name">お名前</label>
+						<label class="pull-left control-label"  for="name">お名前</label>
 						<input type="text" form="signForm" id="fName" name="userName" placeholder="田中太郎" class="form-control">
 					</div>
 				</div>
@@ -180,7 +180,11 @@
 			</div>
 
 			<input type="hidden" name="adminFlag" form="signForm" value="0">
+<<<<<<< HEAD
+            <button type="submit" class="btn btn-primary pull-right" id="signsubmit" data-toggle="modal">確認</button>
+=======
             <button type="submit" class="btn btn-primary" id="signsubmit" data-toggle="modal" style="margin-left:850px;">確認</button>
+>>>>>>> refs/remotes/blue-210/master
 			</div>
 		</form>
 
@@ -198,6 +202,16 @@
 				<div class="modal-body">
 					<div class="col-xs-1"></div>
                     <div class="col-xs-10">
+						<h2 id="sName"></h2>
+					   <h2 id="sKana"></h2>
+					   <h2 id="sSex"></h2>
+					   <h2 id="sBirth"></h2>
+					   <h2 id="sMail"></h2>
+					   <h2 id="sId"></h2>
+					   <h2 id="sPass"></h2>
+					   <h2 id="sQuestion"></h2>
+					   <h2 id="sAnswer"></h2>
+					   <h2 id="sKey"></h2>
 						<label>名前</label>
                         <h3 id="sName"></h3>
 						<hr size="1" color="#fffff">
