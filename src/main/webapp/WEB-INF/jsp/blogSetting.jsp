@@ -203,6 +203,37 @@
 			}
 		}
 
+        function fileUpIcon(){
+			var files = document.getElementById("iconFile").files;
+
+			for(var i = 0;i < files.length;i++){
+				console.log("for");
+				var f = files[i];
+				var formData = new FormData();
+				formData.append("file",f);
+				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload";
+				ajaxSettings.success = function(data){
+					$("#comIconPath").val(data.result);
+					$("#icon").attr("src", data.result);
+				}
+
+ 				ajax = $.ajax(ajaxSettings);
+			}
+
+		}
+
+        $(document).on("change","#iconFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+
+            fileUpIcon();
+        });
+
 	</script>
 
 </body>
