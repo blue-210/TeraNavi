@@ -21,7 +21,7 @@ public class ShowBlogCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 			String target = "";
-
+            String targetURL="";
 			try{
 				//ログインユーザ以外のブログ情報を取得したい場合はtargetパラメータからIDを取得する
 				target = reqc.getParameter("targetId")[0];
@@ -29,10 +29,12 @@ public class ShowBlogCommand extends AbstractCommand{
 				//それ以外の場合はログインユーザのIDを取得
 				target = reqc.getParameter("userId")[0];
 			}
-			
+
+            targetURL=reqc.getParameter("targetURL")[0];
+
             Map params = new HashMap();
-			params.put("target", target);
-			
+			params.put("userId", target);
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("blog");
@@ -42,8 +44,13 @@ public class ShowBlogCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
+            String url="blogSetting";
+            System.out.println("飛ばす先"+targetURL+" id :"+target);
+
+
             resc.setResult(bean);
-            resc.setTarget("showBlogResult");
+            resc.setTarget(targetURL);
+
 
             return resc;
 

@@ -25,7 +25,7 @@
      <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 	 <input type="hidden" value="${result.article.articleId}" id="primaryArticleId">
-	 
+
     <header>
       <div class="row">
           <div class="col-md-12">
@@ -60,12 +60,9 @@
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
-            <h4>2016</h4>
-            <a href="#"><p class="text-center">2月(2)</p></a>
-            <a href="#"><p class="text-center">1月(4)</p></a>
-            <h4>2015</h4>
-            <a href="#"><p class="text-center">12月(5)</p></a>
-            <a href="#"><p class="text-center">11月(1)</p></a>
+            <c:forEach var="contents" items="${result.archives}">
+                <a href="#"><p class="text-center">${contents.date}(${contents.count})</p></a>
+            </c:forEach>
           </div>
         </div>
         <div class="row">
@@ -93,7 +90,7 @@
         </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            
+
 			 <p>
 				<c:forEach var="tag" items="${result.article.tags}">
 					<a class="label label-warning">${tag.name}</a>
@@ -115,11 +112,11 @@
             <ul class="dropdown-menu dropdown-menu-right">
               <li>
                 <a id="cautionArticle">この記事を通報する</a>
-				
+
               </li>
               <li>
                 <a id="cautionUser">この記事を書いたユーザを通報する</a>
-				
+
               </li>
             </ul>
           </div>
@@ -180,7 +177,7 @@
 		</div>
 		<div>
         </div>
-			  
+
 		<div id="cautionModal" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -203,7 +200,7 @@
 								</div>
 								<button id="cautionSubmit" type="button" form="cautionForm" class="btn btn-default pull-right">送信する</button>
 							</form>
-						
+
 						</div>
 
 					</div>
@@ -211,11 +208,11 @@
 					</div><!--end moal-content-->
 				</div><!--end modal-dialog-->
 			</div><!--end modal-->
-			  
+
       </div>
     </div>
 
-  
+
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
     <script>
