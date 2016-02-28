@@ -6,9 +6,9 @@
 	border-bottom: 0px;
 	border-style: solid;
 }
-* {
+/** {
 	 box-sizing: border-box;
-}
+}*/
  .wrapper {
    padding: 30px;
    position: relative;
@@ -144,14 +144,14 @@
 	margin-bottom:-20px;
 	float:none;
 }
-.navbar{
+/*.navbar{
 	margin-bottom:0px;
 }
 #header{
 }
 #footer{
 
-}
+}*/
 .form-group{
 	margin-left: 10%;
 	width:400px;
