@@ -20,7 +20,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
-    <script src="ckeditor/ckeditor.js"></script>
+    <script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -49,12 +49,12 @@
                         <div class="form-group">
                             <div class="input-group col-md-8">
                                 <label class="control-label">タイトル</label>
-                                <input type="text" name="title" class="form-control" id="inputTitle" value="">
+                                <input type="text" name="title" class="form-control" id="inputTitle" value="${result.article.title}">
                             </div>
                             <br>
                             <div class="input-group col-md-8">
                                 <label class="control-label">内容</label>
-                                <textarea class="ckeditor" id="inputBody" name="body"></textarea>
+                                <textarea class="ckeditor" id="inputBody" name="body">${result.article.articleBody}</textarea>
                             </div>
                         </div>
 

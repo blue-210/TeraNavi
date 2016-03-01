@@ -36,17 +36,17 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
-			
+
 			factory = AbstractDaoFactory.getFactory("tag");
 			dao = factory.getAbstractDao();
-			
+
 			ab.setTags(dao.readAll(params));
-			
+
 			factory = AbstractDaoFactory.getFactory("comment");
 			dao = factory.getAbstractDao();
 			ab.setComments(dao.readAll(params));
-			
-			
+
+
             result.put("article", ab);
             //----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public class ShowArticleCommand extends AbstractCommand{
 
 			factory = AbstractDaoFactory.getFactory("article");
 			dao = factory.getAbstractDao();
-			
+
             //前後の記事IDを調べる　なければ-1 ----------------------------------
             List articles = dao.readAll(params);
             int index = -1;
@@ -101,7 +101,23 @@ public class ShowArticleCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);
-            resc.setTarget("showArticleResult");
+
+            //編集だったらターゲットを変える
+            boolean editFlag = false;
+			try{
+				//editパラメータがあるかのチェック
+				String edit = reqc.getParameter("edit")[0];
+
+				if(edit.length() > 0){
+					editFlag=true;
+				}
+			}catch(NullPointerException e){}
+
+            if(editFlag){
+                resc.setTarget("articlePost");
+            }else{
+                resc.setTarget("showArticleResult");
+            }
 
             return resc;
 
