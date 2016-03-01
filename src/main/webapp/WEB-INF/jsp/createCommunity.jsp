@@ -5,21 +5,12 @@
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>コミュニティ作成</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-    rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
 </head>
 <body>
@@ -78,23 +69,26 @@
                     <h4 class="modal-title">確認画面</h4>
                   </div>
                   <div class="modal-body">
-                    <img src="cat34.jpg" width="350" height="60" id="mHeader"><br>
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-10">
-                      <h1 id="mTitle"></h1>
-                      <h2 id="mProfile"></h2>
-                      <p></p>
-                      <!-- アイコン -->
-                      <div class="col-xs-4">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-                        class="center-block img-circle img-responsive" width="150" height="150" id="mIcon">設定したアイコン
-                      </div>
+                      <div class="row">
+                          <div class="col-xs-1"></div>
+                          <div class="col-xs-10">
 
+
+                            <h2>コミュニティ名</h2>
+                            <h5 id="mTitle"></h5>
+                            <h2>コミュニティ紹介文</h2>
+                            <h5 id="mProfile"></h5>
+                            <h2>アイコン画像</h2>
+                            <img src="" class="img-thumbnail" width="110" height="110" id="mIcon">
+                            <h2>ヘッダー画像</h2>
+                            <img src="" class="img-rounded" width="480" height="150" id="mHeader">
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
                   </div>
                   <div class="modal-footer">
-					  <button type="submit" class="btn btn-block btn-primary" form="commForm">OK</button>
-					  <button type="submit" class="btn btn-block btn-primary" data-dismiss="modal">閉じる</button>
+					  <button type="submit" class="btn btn-block btn-warning" form="commForm">OK</button>
+					  <button type="submit" class="btn btn-block btn-warning" data-dismiss="modal">閉じる</button>
                   </div>
                 </div>
               </div>
