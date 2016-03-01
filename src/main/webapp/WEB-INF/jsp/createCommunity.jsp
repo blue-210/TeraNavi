@@ -87,8 +87,8 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-					  <button type="submit" class="btn btn-block btn-primary" form="commForm">OK</button>
-					  <button type="submit" class="btn btn-block btn-primary" data-dismiss="modal">閉じる</button>
+					  <button type="submit" class="btn btn-block btn-warning" form="commForm">OK</button>
+					  <button type="submit" class="btn btn-block btn-warning" data-dismiss="modal">閉じる</button>
                   </div>
                 </div>
               </div>
