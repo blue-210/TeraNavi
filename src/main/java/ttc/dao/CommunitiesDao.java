@@ -53,28 +53,6 @@ public class CommunitiesDao implements AbstractDao{
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
 
-            StringBuffer sqlx = new StringBuffer();
-			sqlx.append("SELECT topic_id,fk_create_user_id,topic_name,topic_updatetime_date,user_name ");
-			sqlx.append("from topics join users on fk_create_user_id = user_id where fk_community_id=?");
-			
-            pst=cn.prepareStatement(new String(sqlx));
-            pst.setString(1,(String)map.get("commId"));
-            ResultSet rsx=pst.executeQuery();
-            ArrayList topics=new ArrayList();
-
-            UserBean ub=new UserBean();
-            while(rsx.next()){
-                TopicBean tb=new TopicBean();
-                tb.setTopicId(rsx.getString("topic_id"));
-                tb.setName(rsx.getString("topic_name"));
-                tb.setUpdateDate(rsx.getString("topic_updatetime_date"));
-                tb.setTopicCreater(rsx.getString("user_name"));
-                topics.add(tb);
-
-            }
-
-            cb.setTopics(topics);
-
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
         }finally{
