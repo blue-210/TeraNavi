@@ -13,10 +13,12 @@
     <title>チャット</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link href="/TeraNavi/css/chat.css" rel="stylesheet" type="text/css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="/TeraNavi/css/chat.css" rel="stylesheet" type="text/css">
+	<link href="/TeraNavi/css/comm.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -24,15 +26,25 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-    <div id="header">
     	<jsp:include page="/WEB-INF/jsp/header.jsp"/>
-	</div>
-	<div id="header_image">
-		<img src="${result.community.headerPath}" width="100%" height="400px" />
-		<div id="header_icon">
-			<img id="icon_image" src="${result.community.iconPath}">
-		</div>
-		<h2 id="comunity_title">チャットルーム</p>
+
+        <img src="${result.community.headerPath}" id="headimg">
+        <div class="cotainer-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-5">
+                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
+                    </p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
+                </div>
+            </div>
+        </div>
+		<%-- <h2 id="comunity_title">チャットルーム</p> --%>
 	</div>
     <div id="chat_room">
         <div class="container-fluid">
