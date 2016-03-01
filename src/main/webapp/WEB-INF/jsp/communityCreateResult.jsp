@@ -28,19 +28,27 @@
     <div class="container">
        <div class="row">
             <div calss="col-md-8">
-                <h1>作成完了</h1>
 
-               コミュニティ名${sessionScope.loginUser.community.name}<br>
-               説明文 ${sessionScope.loginUser.community.profile}<br>
-               コミュニティアイコン<img src='${sessionScope.loginUser.community.iconPath}' width="150px" height="150px"><br>
-
-              ヘッダ画像 <img src='${sessionScope.loginUser.community.headerPath}' width="555px" height="150px"><br>
+                <h1>コミュニティを作成しました</h1>
+                <p>３秒後に${sessionScope.loginUser.community.name}コミュニティに移動します<br>
+                    移動しないに場合は<a href="/TeraNavi/front/showcomm?commId=${sessionScope.loginUser.community.id}">こちら</a></p>
           </div>
 
 
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
+
+        setTimeout(function(){
+            window.location.href = './showcomm?commId=${sessionScope.loginUser.community.id}';
+        }, 3000);
+
+    });
+
+
+    </script>
 
 
 </body>
