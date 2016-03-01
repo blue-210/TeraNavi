@@ -41,7 +41,7 @@
                <div calss="col-md-8">
                    <h1>ユーザー情報を変更しました</h1>
                    <p>３秒後にマイページに飛びます<br>
-                       戻らに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+                        戻らない場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a>をクリック</p>
 
                 </div>
             </div>

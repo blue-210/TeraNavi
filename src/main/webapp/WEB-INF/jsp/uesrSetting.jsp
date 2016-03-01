@@ -132,10 +132,11 @@
                                     <h5 id="modalMail"></h5>
                                     <h2>自己紹介</h2>
                                     <h5 id="modalProfile"></h5>
-                                    <h2>ヘッダー画像</h2>
-                                    <img src="" class="img-rounded" width="450" height="150" id="modalHeader">
                                     <h2>アイコン画像</h2>
                                     <img src="" class="img-thumbnail" width="110" height="110" id="modalIcon">
+                                    <h2>ヘッダー画像</h2>
+                                    <img src="" class="img-rounded" width="480" height="150" id="modalHeader">
+
                                 </div>
                                 <div class="col-md-1"></div>
                             </div>

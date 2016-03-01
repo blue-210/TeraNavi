@@ -95,7 +95,7 @@
                             <br>
                             <p style="position:relative;" class="well">${result.user.profile}</p>
                             <c:if test="${sessionScope.loginUser.id eq result.user.id}">
-                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">ユーザ情報編集</a>
                             </c:if>
                         </div>
                     </div>
