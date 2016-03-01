@@ -151,7 +151,7 @@
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
                     </div>
                     <div class="col-sm-3 col-xs-6">
-         			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
+         			   
 
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
                         <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>

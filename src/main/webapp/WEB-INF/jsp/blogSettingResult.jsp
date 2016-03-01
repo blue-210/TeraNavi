@@ -39,9 +39,18 @@
                 </div>
 
                <div calss="col-md-8">
-                   <h1>ブログ設定を変更しました</h1>
-                   <p>３秒後にマイページに飛びます<br>
-                       戻らに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+                   <c:choose>
+                       <c:when test="${result.status eq 0}">
+                           <h1>ブログを閉鎖しました</h1>
+                           <p>３秒後にマイページに戻ります<br>
+                               戻らないに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+                        </c:when>
+                        <c:otherwise>
+                            <h1>ブログの設定を変更しました</h1>
+                            <p>３秒後にマイページに戻ります<br>
+                                戻らないに場合は<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">こちら</a></p>
+                        </c:otherwise>
+                    </c:choose>
 
                 </div>
             </div>

@@ -46,7 +46,7 @@
                     <c:choose>
                         <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
                             <div class="col-md-1"></div>
-                            <h1>ブログ設定</h1>
+                            <h1>ブログ設定<a class="btn btn-danger" href="/TeraNavi/blogDelete" role="button" style="margin-left: 26.5%;">ブログ閉鎖</a></h1>
                             <form id="blogSetting" action="/TeraNavi/front/blogSetting" method="post">
                                 <input id="status" type="hidden" name="status" value="1">
                         </c:when>
