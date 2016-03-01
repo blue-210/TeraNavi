@@ -68,8 +68,7 @@ public class TopicDao implements AbstractDao{
     public List readAll(Map map)throws IntegrationException{
         List result = new ArrayList();
         PreparedStatement pst = null;
-        String comId= null;
-        comId=(String)map.get("communityId");
+        String commId= (String)map.get("communityId");
 
         try{
             Connection cn = null;
@@ -84,7 +83,7 @@ public class TopicDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(sql));
 
-			pst.setInt(1,Integer.parseInt(comId));
+			pst.setInt(1,Integer.parseInt(commId));
 
             ResultSet rs = pst.executeQuery();
 
