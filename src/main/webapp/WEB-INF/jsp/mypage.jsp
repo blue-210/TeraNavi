@@ -95,7 +95,7 @@
                             <br>
                             <p style="position:relative;" class="well">${result.user.profile}</p>
                             <c:if test="${sessionScope.loginUser.id eq result.user.id}">
-                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">プロフィール編集</a>
+                                <a href="/TeraNavi/userSetting" class="btn btn-default pull-right">ユーザ情報編集</a>
                             </c:if>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
                     </div>
                     <div class="col-sm-3 col-xs-6">
-         			   <a href="/TeraNavi/blogDelete">ブログ閉鎖</a><br><br>
+         			   
 
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
                         <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
