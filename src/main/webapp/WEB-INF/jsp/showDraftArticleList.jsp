@@ -52,7 +52,7 @@
                                <tr>
                                    <td> <c:out value="${article.title}"/> </td>
                                    <td> <c:out value="${article.createdDate}"/> </td>
-                                   <!-- <td class="deletable"> <a href="/TeraNavi/deletArticle">編集</a> </td> -->
+                                   <td> <a class="btn btn-default" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
                                </tr>
                                </c:forEach>
                            </tbody>
