@@ -74,6 +74,27 @@ public class MypageLoadCommand extends AbstractCommand{
 				result.put("article",nArticles);
 			}
 
+			//コミュの取得
+			factory = AbstractDaoFactory.getFactory("community");
+			dao = factory.getAbstractDao();
+
+			Map param2 = new HashMap();
+			param2.put("where","Where community_delete_flag=0 and community_members_list.fk_user_id="+userId);
+			param2.put("sort", " order by communities.community_created_date desc ");
+			List communities = dao.readAll(param2);
+
+			if(communities.size() <= 3){
+				result.put("community",communities);
+			}else{
+				List nCommunities = new ArrayList();
+				for(int i = 0;i < 3;i++){
+					nCommunities.add(communities.get(i));
+				}
+
+				result.put("community",nCommunities);
+			}
+
+
 			resc.setResult(result);
             resc.setTarget("mypage");
 

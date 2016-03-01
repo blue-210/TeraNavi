@@ -122,13 +122,13 @@
                             <h1 class="text-warning">参加中のコミュニティ</h1>
                             <table class="table table-striped">
                               <tbody>
-								  <c:forEach var="community" items="${sessionScope.myCommunities}">
+								  <c:forEach var="community" items="${result.community}">
 									<tr>
 										<td>
 										  <img src="${community.iconPath}" class="img-thumbnail"
 										  style="width:50px;height:50px;">
 										</td>
-										<td>${community.name}</td>
+										<td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
 										<td>
 										<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
 											<input type="hidden" name="commId" value="${community.id}">
@@ -151,7 +151,7 @@
                         <a href="/TeraNavi/dmsend">DMの送信</a><br><br>
                     </div>
                     <div class="col-sm-3 col-xs-6">
-         			   
+
 
                         <a href="/TeraNavi/joincomm">コミュニティの参加</a><br><br>
                         <a href="#" onclick="document.comForm.submit();">コミュニティ一覧</a>
