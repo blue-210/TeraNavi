@@ -1,8 +1,6 @@
-
 		<link href="/TeraNavi/css/footer.css" rel="stylesheet" type="text/css">
-		<%-- <script src='/TeraNavi/js/footerFixed.js'></script> --%>
 
-		<nav class="navbar navbar-default footer" role="navigation">
+		<nav class="navbar navbar-default footer" role="navigation" id="footer">
 				<footer class="container-fluid">
 					<div class="row">
 						<div class="col-md-3">

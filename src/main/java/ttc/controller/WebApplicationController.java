@@ -22,6 +22,9 @@ import java.io.PrintWriter;
 
 import ttc.bean.UserBean;
 
+import java.util.Map;
+import java.util.List;
+
 public class WebApplicationController implements ApplicationController{
 
 	public RequestContext getRequest(Object request)throws PresentationException{
@@ -72,14 +75,45 @@ public class WebApplicationController implements ApplicationController{
 			}
 		}else{
 
-			if(path.equals("login") || path.equals("signup") || path.equals("basic") || path.equals("createcomm")){
+			if(path.equals("login")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("loginUser",result.get("user"));
+				session.setAttribute("myCommunities",result.get("community"));
+				
+			}else if(path.equals("createcomm")){
+				
+				HttpSession session = req.getSession(true);
+				UserBean ub = (UserBean)resc.getResult();
+				session.setAttribute("loginUser",ub);
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(ub.getCommunity());
+				session.setAttribute("myCommunities", communities);
+				
+			}else if(path.equals("withDrawComm")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("myCommunities",result.get("community"));
+				
+			}else if(path.equals("partiComm")){
+				HttpSession session = req.getSession(true);
+				
+				Map result = (Map)resc.getResult();
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(result.get("community"));
+				session.setAttribute("myCommunities", communities);
+				
+				
+			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 			}else if(path.equals("logout")){
 				HttpSession session = req.getSession(true);
 				session.removeAttribute("loginUser");
+				session.removeAttribute("myCommunities");
 				session.invalidate();
-
+				
+				
 			}else if(path.equals("blogCreate")){
 				HttpSession session = req.getSession(true);
 				UserBean user = (UserBean)session.getAttribute("loginUser");

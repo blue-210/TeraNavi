@@ -10,20 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <title>コミュニティ詳細</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-    rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-    rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 
@@ -35,19 +27,17 @@
 
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
     <form action="commSetting" method="post" id="setting" >
+
+    <img src="${result.headerPath}" id="headimg">
+    <label for="headerFile" id="headerPath">
+            <input type="file" id="headerFile" style="display:none">
+    </label>
+
     <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="${result.headerPath}" id="headimg">
-                        <label for="headerFile" id="headerPath">
-                                <input type="file" id="headerFile" style="display:none">
-                        </label>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-5">
-                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+                    <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
                     </p>
                 </div>
                 <div class="col-md-4"></div>
@@ -61,7 +51,7 @@
                 </div>
             </div>
             <c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-                <span id="editButton"><button type="button" id="edit" class="col-md-2 text-center">編集</button></span>
+                <button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
             </c:if>
 
            <br>
@@ -100,7 +90,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-default" onclick="document.memberForm.submit();">
+                        <button type="button" class="btn btn-warning" onclick="document.memberForm.submit();">
                             メンバーの一覧を取得
                         </button>
                     </div>
@@ -161,21 +151,24 @@
                     </div>
 
                    <div class="modal-body">
-                       <div class="col-xs-1"></div>
-                       <div class="col-xs-10">
-                           <h2>コミュニティ名</h2><h5 id="modalName"></h5>
-                           <h2>説明文</h2><h5 id="modalProfile"></h5>
-                           <h2>ヘッダー画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-                           class="img-rounded" width="200" height="150" id="commHeader">
-                             <h2>アイコン画像</h2><img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
-                             class="center-block img-circle img-responsive" width="150" height="150" id="commIcon">
-
+                       <div class="row">
+                           <div class="col-md-1"></div>
+                           <div class="col-md-10">
+                               <h2>コミュニティ名</h2>
+                               <h5 id="modalName"></h5>
+                               <h2>説明文</h2>
+                               <h5 id="modalProfile"></h5>
+                               <h2>ヘッダー画像</h2>
+                               <img src="" class="img-rounded" width="450" height="150" id="commHeader">
+                               <h2>アイコン画像</h2>
+                               <img src="" class="img-thumbnail" width="110" height="150" id="commIcon">
+                           </div>
+                           <div class="col-md-1"></div>
                        </div>
                    </div>
-
                    <div class="modal-footer">
-                       <button type="submit" class="btn btn-block btn-primary" form="setting">設定する</button>
-                       <button type="button" class="btn btn-block btn-primary" data-dismiss="modal">キャンセル</button>
+                       <button type="submit" class="btn btn-warning" form="setting">設定する</button>
+                       <button type="button" class="btn btn-warning" data-dismiss="modal">キャンセル</button>
                    </div>
                  </div>
                </div>
@@ -211,13 +204,14 @@
                 var button=$('#editButton');
 
                 $("#name").html('<input type="text" class="form-control" name="commName" value="'+name.text()+'" id="commName" maxlength="25"><br>');
-
+                $("#name").css("background-color","");
                 $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">'+profile+'</textarea>');
                 $("#headerPath").append('<p id="headerText">ヘッダー画像を選択</p>');
                 $("#headerPath").addClass("changeEffectHead");
                 // $("#headimg").addClass("changeEffectHead");
-                $("#iconPath").append('<p>アイコン画像を選択</p>');
+                $("#iconPath").append('<p id="changeEffectIconText">アイコン画像を選択</p>');
                 $("#iconPath").addClass("changeEffectIcon");
+                $("#edit").css("display","none");
 
                 // $("#iconFile").show();
                 $("#iconFile").append('<input id="comIconPath" type="hidden" name="iconPath">');
@@ -233,7 +227,7 @@
                 $('#commid').append('<input type="hidden" name="target" value="'+target+'">');
                 $('#commid').append('<input type="hidden" name="nowIconPath" value="'+iconPath+'">');
                 $('#commid').append('<input type="hidden" name="nowHeaderPath" value="'+headerPath+'">');
-                $('#sub').html('<button class="btn btn-info" type="button" id="commSubmit" data-toggle="modal">確認</button>');
+                $('#sub').html('<button class="btn btn-warning btn-lg" type="button" id="commSubmit" data-toggle="modal">確認</button>');
             });
         });
 

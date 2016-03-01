@@ -36,16 +36,30 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
+			
+			factory = AbstractDaoFactory.getFactory("tag");
+			dao = factory.getAbstractDao();
+			
+			ab.setTags(dao.readAll(params));
+			
+			factory = AbstractDaoFactory.getFactory("comment");
+			dao = factory.getAbstractDao();
+			ab.setComments(dao.readAll(params));
+			
+			
             result.put("article", ab);
             //----------------------------------------------------------------------
 
-            Map params2 = new HashMap();
-            params2.put("userId", ab.getUserId());
-            params2.put("flag", "0");
+            params.clear();
+            params.put("userId", ab.getUserId());
+            params.put("flag", "0");
 
 
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
+			
             //前後の記事IDを調べる　なければ-1 ----------------------------------
-            List articles = dao.readAll(params2);
+            List articles = dao.readAll(params);
             int index = -1;
             for(int i=0; i<articles.size(); i++){
                 ArticleBean article = (ArticleBean)articles.get(i);
@@ -70,15 +84,15 @@ public class ShowArticleCommand extends AbstractCommand{
             //----------------------------------------------------------------
 
             //月別アーカイブ用のリスト作成-----------------------------------------
-            params2.put("archive", "true");
-            List archives = dao.readAll(params2);
+            params.put("archive", "true");
+            List archives = dao.readAll(params);
             result.put("archives", archives);
             //----------------------------------------------------------------
 
             //ブログ情報取得----------------------------------------------------
             factory = AbstractDaoFactory.getFactory("blog");
             dao = factory.getAbstractDao();
-            BlogBean bb = (BlogBean)dao.read(params2);
+            BlogBean bb = (BlogBean)dao.read(params);
             result.put("blog", bb);
             //----------------------------------------------------------------
 
@@ -90,8 +104,6 @@ public class ShowArticleCommand extends AbstractCommand{
             resc.setTarget("showArticleResult");
 
             return resc;
-
-
 
 
         }catch(NullPointerException e){

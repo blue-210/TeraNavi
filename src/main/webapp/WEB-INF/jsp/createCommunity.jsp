@@ -25,8 +25,8 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-	
-	
+
+
 	<div class="section">
       <div class="container">
         <div class="row">
@@ -34,15 +34,14 @@
 			<form role="form" action="/TeraNavi/front/createcomm" method="post" id="commForm">
               <div class="form-group">
                 <label class="control-label" for="name">コミュニティ名</label>
-                <input class="form-control" id="name" name="commName">
+                <input class="form-control" id="name" name="commName" placeholder="例:情報処理科2年のコミュニティ">
               </div>
               <div class="form-group">
                 <label class="control-label" for="profile">紹介文</label>
-                <textarea class="form-control" id="profile" rows="4" name="commProfile"></textarea>
+                <textarea class="form-control" id="profile" rows="4" name="commProfile" placeholder="例:情報処理科2年が入ることを推奨しますｗ"></textarea>
               </div>アイコン
               <div class="col-md-12 text-left">
-                <img id="preIcon" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                width="50px" height="50px">
+                <img id="preIcon" src="" width="150px" height="150px">
               </div>
               <br>
               <input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
@@ -51,19 +50,18 @@
               <br>ヘッダ画像
               <br>
               <div class="col-md-12 text-left">
-                <img id="preHeader" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                width="50px" height="50px">
+                <img id="preHeader" src="" width="450px" height="150px">
               </div>
               <input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
               <br>
               <br>
 			  <input id="commHeaderPath" type="hidden" name="commHeader">
-			  
+
 			  <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
               <div class="text-center">
-                <button type="button" class="btn btn-primary" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
-				
-				
+                <button type="button" class="btn btn-warning" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
+
+
 				<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
                 <!--モーダルがあったところ-->
               </div>
@@ -107,7 +105,7 @@
         </div>
       </div>
     </div>
-	
+
 
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	<script>
@@ -123,17 +121,17 @@
 				cache:false,
 				dataType:'json'
 			}
-			
+
 			$("#csubmit").on("click",function(){
 				$("#mTitle").empty();
 				$("#mProfile").empty();
-				
-				
+
+
 				$("#mHeader").attr("src",$("#commHeaderPath").val());
 				$("#mTitle").append($("#name").val());
 				$("#mProfile").append($("#profile").val());
 				$("#mIcon").attr("src",$("#icon").val());
-				
+
 			});
 
 		});
@@ -152,12 +150,12 @@
 					$("#icon").val(data.result);
 					$("#preIcon").attr("src",data.result);
 				}
-				
+
  				ajax = $.ajax(ajaxSettings);
 			}
-			
+
 		}
-		
+
 		function fileUpHeader(){
 			var files = document.getElementById("headerFile").files;
 
@@ -172,12 +170,12 @@
 					$("#commHeaderPath").val(data.result);
 					$("#preHeader").attr("src",data.result);
 				}
-				
+
  				ajax = $.ajax(ajaxSettings);
 			}
 		}
 
-		
+
 
 	</script>
 </body>
