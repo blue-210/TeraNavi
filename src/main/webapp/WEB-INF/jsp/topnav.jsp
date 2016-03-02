@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
 <div class="section hidden-xs">
     <div class="container">
 		<div class="row">
@@ -24,7 +25,7 @@
     </div>
 </div>
 
-<div class="visible-xs">
+<div class="visible-xs xs-top-nav">
 	<nav class="nav nav-horizontal">
 		<div class="mask">
 			<ul class="list">
