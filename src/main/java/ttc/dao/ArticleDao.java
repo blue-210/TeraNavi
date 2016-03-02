@@ -54,7 +54,7 @@ public class ArticleDao implements AbstractDao{
 			}
 
 
-            
+
 
             ResultSet rs = pst.executeQuery();
 
@@ -88,7 +88,7 @@ public class ArticleDao implements AbstractDao{
         PreparedStatement pst = null;
         int result = 0;
         try{
-            
+
             ArticleBean ab =(ArticleBean)map.get("articlebean");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
@@ -123,7 +123,7 @@ public class ArticleDao implements AbstractDao{
 
             pst.setInt(5, Integer.parseInt( (String)map.get("articleId") ) );
 
-            
+
             result = pst.executeUpdate();
 
         }catch(SQLException e){
@@ -198,7 +198,8 @@ public class ArticleDao implements AbstractDao{
                 sql.append("count(*) ");
                 sql.append("from articles ");
                 sql.append("where fk_user_id = ? and article_status_flag=0 ");
-                sql.append("group by date_format(article_created_date, '%Y%m')");
+                sql.append("group by date_format(article_created_date, '%Y%m') ");
+                sql.append("order by article_created_date desc ");
 
                 pst = cn.prepareStatement( new String(sql) );
                 pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
