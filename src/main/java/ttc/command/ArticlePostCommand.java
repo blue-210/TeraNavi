@@ -44,7 +44,7 @@ public class ArticlePostCommand extends AbstractCommand{
 					tagFlag=true;
 				}
 			}catch(NullPointerException e){
-				System.out.println("tagパラメータなし");
+				
 			}
 
 			Calendar cal = Calendar.getInstance();
