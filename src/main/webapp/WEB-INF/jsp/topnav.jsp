@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div class="visible-xs">
+<div class="visible-xs xs-top-nav">
 	<nav class="nav nav-horizontal">
 		<div class="mask">
 			<ul class="list">
