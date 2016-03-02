@@ -55,7 +55,6 @@
         <div class="container">
             <div class="row">
                 <form action="commGra" method="post">
-                    <p><button id="dd">権限付与</button></p>
     			    <div class="container">
                         <div class="row text-center">
                             <div class="col-xs-10">
@@ -67,14 +66,22 @@
                                             <h4>${member.userName}</h4>
                                             <input type="hidden" name="targetUser" value="${member.id}">
     								        <input type="hidden" name="communityId" value="${result.value}">
-                                            <div class="check"></div>
+                                            <c:choose>
+                                                <c:when test="${result.community.adminFlag eq 1}">
+                                                    <div class="check"></div>
+                                                </c:when>
+                                            </c:choose>
                                         </div>
                                     </c:forEach>
                                 </div>
                             </div>
     					</div>
     				</div>
-                    <p id="sub"></p>
+                    <c:choose>
+                        <c:when test="${result.community.adminFlag eq 1}">
+                            <p id="sub"></p>
+                        </c:when>
+                    </c:choose>
                 </form>
             </div><!--end row-->
         </div><!--end container-->
@@ -85,7 +92,7 @@
     <script>
         $(function(){
             $('.check').append('<input type="checkbox">');
-            $('#sub').append('<input type="submit" value="確定">');
+            $('#sub').append('<input type="submit" value="権限付与">');
         });
     </script>
 

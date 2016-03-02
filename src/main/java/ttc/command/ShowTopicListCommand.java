@@ -25,7 +25,7 @@ public class ShowTopicListCommand extends AbstractCommand{
 
             // 削除されていないコミュニティを取得するための条件
             params.put("where","where community_id=? and community_delete_flag=0");
-            params.put("commnutyId",reqc.getParameter("communityId")[0]);
+            params.put("communityId",reqc.getParameter("communityId")[0]);
             // DAOの中でキーの値が統一されていないため、同じ値を違うキーで入れています。
             // 犯人は土屋。
             params.put("commId",reqc.getParameter("communityId")[0]);
