@@ -20,6 +20,7 @@ import ttc.exception.business.ParameterInvalidException;
 public class ParticipationCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
+            System.out.println("参加ー");
             RequestContext reqc = getRequestContext();
 
             HashMap params = new HashMap();
@@ -36,7 +37,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
 
             CommunityBean cb =(CommunityBean)dao.read(params);
-
+            System.out.println("参加ー");
             params.put("community",cb);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

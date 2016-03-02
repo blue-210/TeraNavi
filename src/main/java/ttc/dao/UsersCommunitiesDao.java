@@ -62,7 +62,7 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            
+
             sql.append("update community_members_list set ");
 			sql.append(map.get("target"));
             sql.append(" where fk_user_id=? and fk_community_id=?");
@@ -105,7 +105,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-
+            System.out.println(new String(sql));
 
 
             result = pst.executeUpdate();

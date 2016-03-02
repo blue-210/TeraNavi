@@ -16,17 +16,30 @@
                     </a>
                     <p class="text-center">${community.profile}</p>
                   </div><!--コミュニティ名と紹介文の領域おわり-->
-${sessionScope.myCommunities[status.index].id}
-     <%-- ${community.id} --%>
+                  <%-- ${community.id} --%>
                   <c:choose>
-                      <c:when test="${sessionScope.myCommunities[status.index].id ne community.id}">
+                      <c:when test="${empty sessionScope.myCommunities}">
                           <div class="row text-right">
-                              <a class="btn btn-warning" href="/TeraNavi/front/showcomm?commId=${community.id}">
+                              <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">
                                   参加する
                               </a>
                           </div>
                       </c:when>
-                      <c:otherwise></c:otherwise>
+                      <c:otherwise>
+                          <%-- <c:forEach var="co" items="${sessionScope.myCommunities}"> --%>
+                              <c:choose>
+                                  <c:when test="${fn:contains(co.id,sessionScope.myCommunities)}">
+                                      ${fn:contains(co.id,sessionScope.myCommunities)}
+                                  </c:when>
+                                  <c:otherwise>
+                                    ${fn:contains(co.id,sessionScope.myCommunities)}
+                                      <div class="row text-right">
+                                          <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
+                                      </div>
+                                  </c:otherwise>
+                              </c:choose>
+                          <%-- </c:forEach> --%>
+                      </c:otherwise>
                   </c:choose>
               </div><!--コミュニティ一件の領域おわり-->
         </c:forEach>
