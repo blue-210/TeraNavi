@@ -25,6 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                <h1 class="text-warning" style="margin-bottom:5%">${result[0].userName} さんの投稿記事一覧</h1>
                 <table class="table table-striped">
                    <thead>
                        <tr>

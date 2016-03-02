@@ -26,10 +26,8 @@ public class DeleteArticleCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             String[] articleId = reqc.getParameter("articleId[]");
-            System.out.println("Delete:"+articleId);
 
             String loginUserId = reqc.getParameter("userId")[0];
-            System.out.println(loginUserId);
 
             String status = "2";
 
