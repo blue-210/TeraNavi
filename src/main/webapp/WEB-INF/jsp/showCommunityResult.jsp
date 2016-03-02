@@ -24,7 +24,6 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
     <form action="commSetting" method="post" id="setting" >
 
