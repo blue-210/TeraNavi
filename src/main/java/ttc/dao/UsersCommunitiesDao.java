@@ -62,7 +62,7 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            System.out.println("メンバーアップデート");
+            
             sql.append("update community_members_list set ");
 			sql.append(map.get("target"));
             sql.append(" where fk_user_id=? and fk_community_id=?");

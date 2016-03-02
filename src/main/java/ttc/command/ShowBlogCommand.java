@@ -45,7 +45,7 @@ public class ShowBlogCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             String url="blogSetting";
-            System.out.println("飛ばす先"+targetURL+" id :"+target);
+            
 
 
             resc.setResult(bean);

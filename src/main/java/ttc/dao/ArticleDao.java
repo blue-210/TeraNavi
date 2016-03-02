@@ -54,7 +54,7 @@ public class ArticleDao implements AbstractDao{
 			}
 
 
-            System.out.println(sql);
+            
 
             ResultSet rs = pst.executeQuery();
 
@@ -88,7 +88,7 @@ public class ArticleDao implements AbstractDao{
         PreparedStatement pst = null;
         int result = 0;
         try{
-            System.out.println("ArticleDao:update()");
+            
             ArticleBean ab =(ArticleBean)map.get("articlebean");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
@@ -123,7 +123,7 @@ public class ArticleDao implements AbstractDao{
 
             pst.setInt(5, Integer.parseInt( (String)map.get("articleId") ) );
 
-            System.out.println(sql);
+            
             result = pst.executeUpdate();
 
         }catch(SQLException e){

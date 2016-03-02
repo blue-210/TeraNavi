@@ -21,7 +21,7 @@ import ttc.exception.business.ParameterInvalidException;
 public class DeleteArticleCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
-            System.out.println("DeleteArticleCommand");
+            
             RequestContext reqc = getRequestContext();
 
             String[] articleId = reqc.getParameter("articleId");
@@ -39,7 +39,7 @@ public class DeleteArticleCommand extends AbstractCommand{
 
             for(int i = 0; i < articleId.length; i++){
                 params.put("articleId", articleId[i]);
-                System.out.println("parameterArticleId="+articleId[i]);
+                
 
                 MySqlConnectionManager.getInstance().beginTransaction();
 

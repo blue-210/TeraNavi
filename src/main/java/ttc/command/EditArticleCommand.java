@@ -27,7 +27,7 @@ public class EditArticleCommand extends AbstractCommand{
 
             String articleId = reqc.getParameter("articleId")[0];
             String title = reqc.getParameter("title")[0];
-            System.out.println(title);
+            
             String body = reqc.getParameter("body")[0];
             String status = reqc.getParameter("status")[0];
 

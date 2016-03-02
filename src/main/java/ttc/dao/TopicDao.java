@@ -83,7 +83,7 @@ public class TopicDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(sql));
 
-			pst.setInt(1,Integer.parseInt(commId));
+			pst.setString(1, commId);
 
             ResultSet rs = pst.executeQuery();
 

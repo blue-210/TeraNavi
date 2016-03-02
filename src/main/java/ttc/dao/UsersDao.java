@@ -189,7 +189,7 @@ public class UsersDao implements AbstractDao{
 
             result = pst.executeUpdate();
 
-			System.out.println("\t処理件数 : "+result);
+			
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
