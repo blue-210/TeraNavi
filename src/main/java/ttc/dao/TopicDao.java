@@ -88,15 +88,15 @@ public class TopicDao implements AbstractDao{
             ResultSet rs = pst.executeQuery();
 
             while(rs.next()){
-                TopicBean topics = new TopicBean();
-                topics.setTopicId(rs.getString(1));
-                topics.setCreateUserId(rs.getString(2));
-                topics.setName(rs.getString(3));
-                topics.setUpdateDate(rs.getString(4));
-                topics.setCreateDate(rs.getString(5));
-                topics.setCreateUserName(rs.getString(6));
-                topics.setUserIconPath(rs.getString(7));
-                result.add(topics);
+                TopicBean topic = new TopicBean();
+                topic.setTopicId(rs.getString(1));
+                topic.setCreateUserId(rs.getString(2));
+                topic.setName(rs.getString(3));
+                topic.setUpdateDate(rs.getString(4));
+                topic.setCreateDate(rs.getString(5));
+                topic.setCreateUserName(rs.getString(6));
+                topic.setUserIconPath(rs.getString(7));
+                result.add(topic);
             }
 
         }catch(SQLException e){
