@@ -78,7 +78,7 @@
             　<h4 class="modal-title text-center">確認</h4>
              </div>
             <div class="modal-body">
-                <p id="articlePostResultMessage" class="text-center">本当に削除しますか？</p>
+                <p class="text-center">本当に削除しますか？</p>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-block btn-danger" id="btn_modalDelete" data-dismiss="modal">削除</button>
