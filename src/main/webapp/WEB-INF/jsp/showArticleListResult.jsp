@@ -17,7 +17,6 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -25,56 +24,137 @@
 
     <div class="container">
         <div class="row">
-            <table class="table table-striped">
-               <thead>
-                   <tr>
-                       <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
-                           <th></th>
-                       </c:if>
-                       <th>タイトル</th>
-                       <th>内容</th>
-                       <th>投稿日時</th>
-                       <!-- <th class="deletable"></th> -->
-                   </tr>
-               </thead>
-               <tbody>
-                   <form name="form" method="post" action="/TeraNavi/front/deleteArticle">
-                       <input type="hidden" name="loginUserId" value="${sessionScope.loginUser.id}">
-                       <input type="hidden" name="articleUserId" value="${result[0].userId}">
-                       <c:forEach var="article" items="${result}">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-striped">
+                   <thead>
                        <tr>
+                           <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
+                               <th></th>
+                           </c:if>
+                           <th>タイトル</th>
+                           <th>内容</th>
+                           <th>投稿日時</th>
+                           <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
+                               <th>選択</th>
+                           </c:if>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <c:forEach var="article" items="${result}">
+                       <tr id="tableRow${article.articleId}">
+                           <c:if test="${sessionScope.loginUser.id eq article.userId}" >
+                               <td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
+                           </c:if>
+                           <td>
+                               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
+                                   <c:out value="${article.title}"/>
+                               </a>
+                           </td>
+                           <td> ${ fn:substring(article.articleBody, 0, 20) } </td>
+                           <td> <c:out value="${article.createdDate}"/> </td>
                            <c:if test="${sessionScope.loginUser.id eq article.userId}" >
                                <td> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
                            </c:if>
-                           <td> <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
-                               <c:out value="${article.title}"/>
-                           </a> </td>
-                           <td> ${ fn:substring(article.articleBody, 0, 30) } </td>
-                           <td> <c:out value="${article.createdDate}"/> </td>
-                           <!-- <td class="deletable"> <a href="/TeraNavi/deletArticle">編集</a> </td> -->
                        </tr>
                        </c:forEach>
-                       <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
-                           <button id="btnDelete" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
-                       </c:if>
-                   </form>
-               </tbody>
-           </table>
+                   </tbody>
+               </table>
+               <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
+                   <a id="btn_articleDelete" class="btn btn-danger pull-right">削除</a>
+               </c:if>
+           </div><!--end col-->
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-<script>
+    <!-- 確認モーダル -->
+    <div class="fade modal text-justify" id="articleDeleteModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            　<h4 class="modal-title text-center">確認</h4>
+             </div>
+            <div class="modal-body">
+                <p id="articlePostResultMessage" class="text-center">本当に削除しますか？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-block btn-danger" id="btn_modalDelete" data-dismiss="modal">削除</button>
+                <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+            </div>
+          </div>
+        </div>
+     </div>
 
-    if ($(this).prop("checked") == false) {
-        $("#btnDelete").attr("disabled","disabled");
-        $("#btnDelete").attr("class","btn-default btn-sm");
-    }else{
-        $("#btnDelete").removeAttr("disabled");
-        $("#btnDelete").attr("class","btn-danger btn-sm");
-    }
+     <!-- 結果モーダル -->
+      <div class="modal fade" id="deleteArticleResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+              <h4 class="modal-title text-center" id="deleteArticleResultModalLabel">記事削除結果</h4>
+            </div>
+            <div class="modal-body">
+              <p id="deleteArticleResultMessage" class="text-center">記事の削除が完了しました</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
-</script>
+    <script>
+
+        $(function(){
+
+            $("#btn_articleDelete").on("click",function(){
+                $("#articleDeleteModal").modal();
+            });
+
+            $("#btn_modalDelete").on("click",function(){
+
+                var checks=[];
+                $("[name='articleId']:checked").each(function(){
+                    checks.push(this.value);
+                });
+                console.log(checks);
+
+                $.ajax({
+                    // urlで飛ばしたいコマンドを指定してあげる
+                  url: '/TeraNavi/front/deleteArticle',
+                  type:'POST',
+                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
+                  dataType: 'json',
+                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+                  data:{
+                    //   キー:バリューで書く。バリューには変数も使えます。
+                    "articleId":checks,
+                    ajax:'true'
+                  }
+               })
+                //    成功時の処理
+                   .done(function(data) {
+                       $("#deleteArticleResultModal").modal();
+
+                       jQuery.each(checks, function() {
+                           $("#tableRow" + this).hide();
+                        });
+
+                   })
+                //    失敗時の処理
+                   .fail(function() {
+                       $("#deleteArticleResultMessage").text("記事の削除に失敗しました");
+                       $("#deleteArticleResultModal").modal();
+                   });
+            });
+
+
+        });
+
+    </script>
 
 </body>
 </html>
