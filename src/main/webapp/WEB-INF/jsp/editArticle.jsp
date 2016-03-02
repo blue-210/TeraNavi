@@ -95,7 +95,28 @@
     </div><!--end section-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-    <!-- モーダルの設定 -->
+    <!-- 確認モーダル -->
+    <div class="fade modal text-justify" id="editArticleModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            　<h4 class="modal-title text-center">確認</h4>
+             </div>
+            <div class="modal-body" id="editArticleModalBody">
+                <p>この内容でよろしいですか？</p><br>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-block btn-warning" id="btn_modalEditArticle" data-dismiss="modal">投稿</button>
+                <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+            </div>
+          </div>
+        </div>
+     </div>
+
+    <!-- 結果モーダル -->
      <div class="modal fade" id="editArticleResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
          <div class="modal-content">
@@ -133,6 +154,14 @@
 			}
 
             $("#btn_post").on("click",function(){
+                var eamBody = $("#editArticleModalBody");
+                var title = $("#inputTitle").val();
+                var body = CKEDITOR.instances.inputBody.getData();
+                eamBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
+                $("#editArticleModal").modal();
+            });
+
+            $("#btn_modalEditArticle").on("click",function(){
                 $.ajax({
                     // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/editArticle',
