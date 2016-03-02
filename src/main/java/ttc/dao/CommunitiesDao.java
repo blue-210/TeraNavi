@@ -27,7 +27,8 @@ public class CommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
             sql.append("select community_id,community_name,community_profile,community_icon_path,community_header_path,");
-            sql.append("community_delete_flag,communities.fk_user_id from communities ");
+            sql.append("community_delete_flag,communities.fk_user_id,community_members_list.community_admin_flag ");
+            sql.append("from communities left outer join community_members_list on communities.community_id=community_members_list.fk_community_id ");
 
             if(map.containsKey("where")){
                 sql.append((String)map.get("where"));
@@ -52,6 +53,7 @@ public class CommunitiesDao implements AbstractDao{
             cb.setIconPath(rs.getString("community_icon_path"));
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
+            cb.setAdminFlag(rs.getString(8));
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
