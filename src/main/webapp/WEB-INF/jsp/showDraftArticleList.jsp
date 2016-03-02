@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <title>マイページ</title>
+    <title>下書き一覧</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -42,6 +42,7 @@
                         <table class="table table-striped">
                            <thead>
                                <tr>
+                                   <th></th>
                                    <th>タイトル</th>
                                    <th>投稿日時</th>
                                    <!-- <th class="deletable"></th> -->
@@ -50,9 +51,9 @@
                            <tbody>
                                <c:forEach var="article" items="${result}">
                                <tr>
+                                   <td> <a class="btn btn-default" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
                                    <td> <c:out value="${article.title}"/> </td>
                                    <td> <c:out value="${article.createdDate}"/> </td>
-                                   <td> <a class="btn btn-default" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
                                </tr>
                                </c:forEach>
                            </tbody>

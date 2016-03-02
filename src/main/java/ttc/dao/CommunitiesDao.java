@@ -46,7 +46,7 @@ public class CommunitiesDao implements AbstractDao{
             rs.next();
 			cb.setId(rs.getString("community_id"));
 			cb.setName(rs.getString("community_name"));
-            System.out.println("comName="+cb.getName());
+
             cb.setProfile(rs.getString("community_profile"));
             cb.setHeaderPath(rs.getString("community_header_path"));
             cb.setIconPath(rs.getString("community_icon_path"));
@@ -80,7 +80,7 @@ public class CommunitiesDao implements AbstractDao{
             sql.append("community_icon_path=?,community_header_path=?,");
             sql.append("community_delete_flag=? where community_id=? ");
             String upSql=new String(sql);
-            System.out.println(upSql);
+
             pst = cn.prepareStatement(new String(upSql));
 
             pst.setString(1,(String)map.get("communityName"));
@@ -160,7 +160,7 @@ public class CommunitiesDao implements AbstractDao{
             CommunityBean cb=new CommunityBean();
             rs.next();
 			cb.setId(rs.getString("community_id"));
-            System.out.println("コミュid"+cb.getId());
+
 
             StringBuffer insMemSql=new StringBuffer();
             insMemSql.append("insert into community_members_list(fk_user_id,fk_community_id,");
@@ -173,7 +173,7 @@ public class CommunitiesDao implements AbstractDao{
 
 
             result=pst2.executeUpdate();
-            System.out.println("メンバーリストにインサート");
+
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();

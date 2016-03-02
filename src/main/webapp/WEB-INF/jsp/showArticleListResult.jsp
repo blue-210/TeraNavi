@@ -28,7 +28,9 @@
             <table class="table table-striped">
                <thead>
                    <tr>
-                       <th class="deletable"></th>
+                       <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
+                           <th></th>
+                       </c:if>
                        <th>タイトル</th>
                        <th>内容</th>
                        <th>投稿日時</th>
@@ -41,7 +43,9 @@
                        <input type="hidden" name="articleUserId" value="${result[0].userId}">
                        <c:forEach var="article" items="${result}">
                        <tr>
-                           <td class="deletable"> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
+                           <c:if test="${sessionScope.loginUser.id eq article.userId}" >
+                               <td> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
+                           </c:if>
                            <td> <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
                                <c:out value="${article.title}"/>
                            </a> </td>
@@ -50,39 +54,27 @@
                            <!-- <td class="deletable"> <a href="/TeraNavi/deletArticle">編集</a> </td> -->
                        </tr>
                        </c:forEach>
-                       <button id="btnDelete" class="deletable" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
+                       <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
+                           <button id="btnDelete" type="submit" onclick="location.href='/TeraNavi/front/deleteArticle'">削除</button>
+                       </c:if>
                    </form>
                </tbody>
            </table>
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-    <script>
-        var loginUserId = document.form.loginUserId.value;
-        var articleUserId = document.form.articleUserId.value;
-        console.log(loginUserId);
-        console.log(articleUserId);
 
-        if(loginUserId == articleUserId){
-            $(function() {
-                $("#btnDelete").attr("disabled","disabled");
-                $("#btnDelete").attr("class","btn-default btn-sm");
-                $(".chDelete").click(function() {
-                    if ($(this).prop("checked") == false) {
-                        $("#btnDelete").attr("disabled","disabled");
-                        $("#btnDelete").attr("class","btn-default btn-sm");
-                    }else{
-                        $("#btnDelete").removeAttr("disabled");
-                        $("#btnDelete").attr("class","btn-danger btn-sm");
-                    }
-                });
-            });
-        }else{
-            $(".deletable").hide();
-        }
+<script>
 
+    if ($(this).prop("checked") == false) {
+        $("#btnDelete").attr("disabled","disabled");
+        $("#btnDelete").attr("class","btn-default btn-sm");
+    }else{
+        $("#btnDelete").removeAttr("disabled");
+        $("#btnDelete").attr("class","btn-danger btn-sm");
+    }
 
+</script>
 
-    </script>
 </body>
 </html>

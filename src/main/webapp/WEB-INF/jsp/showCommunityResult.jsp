@@ -24,7 +24,6 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
     <form action="commSetting" method="post" id="setting" >
 
@@ -54,7 +53,6 @@
                 <button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
             </c:if>
 
-           <br>
            <div class="section">
                <div class="container">
                    <div class="row">

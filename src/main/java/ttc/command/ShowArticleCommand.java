@@ -70,12 +70,12 @@ public class ShowArticleCommand extends AbstractCommand{
             }
             int preArticleId = -1, nextArticleId =-1;
             if(index > 0){
-                System.out.println("index > 0");
+                
                 ArticleBean nextArticle = (ArticleBean)articles.get(index-1);
                 nextArticleId = Integer.parseInt( nextArticle.getArticleId() );
             }
             if(index+1 <  articles.size() && index > -1 ){
-                System.out.println("index not last");
+                
                 ArticleBean preArticle = (ArticleBean)articles.get(index+1);
                 preArticleId = Integer.parseInt( preArticle.getArticleId() );
             }
@@ -114,7 +114,7 @@ public class ShowArticleCommand extends AbstractCommand{
 			}catch(NullPointerException e){}
 
             if(editFlag){
-                resc.setTarget("articlePost");
+                resc.setTarget("editArticle");
             }else{
                 resc.setTarget("showArticleResult");
             }
