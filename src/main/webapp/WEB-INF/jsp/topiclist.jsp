@@ -24,10 +24,6 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
-
-
-
-
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -86,26 +82,47 @@
                     </div>
                     <div class="col-md-1"></div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-10">
-                        <div class="row col-md-10 col-md-offset-1">
+                <c:if test="${not empty sessionScope.loginUser}">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-10"></div>
                             <div class="col-md-2">
-                            </div>
-                            <div class="col-md-7">
-                                <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
-                                    新しいトピックを作成
-                                </a>
-                            </div>
-                            <div class="col-md-2">
+                                <a class="btn btn-warning" data-toggle="modal" data-target="#myModal">新しいトピックを作成</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
-                </div>
+                </c:if>
             </div>
         </div>
     </div>
+    <!-- モーダルウィンドウの中身 -->
+    <div class="fade modal text-justify" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title text-center">新規トピック作成</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10">
+                                <h1>新しいトピック名</h1>
+                                <form id="newtopic" action="/TeraNavi/front/createtopic" method="post">
+                                    <input type="text" size="50" name="topic_name">
+                                    <input type="hidden" name="communityId" value="${result.id}">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" form="newtopic" type="submit">作成する</button>
+                </div>
+            </div>
+        </div>
+    </div><%-- modal-end--%>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
     <script type="text/javascript">
         $(function(){

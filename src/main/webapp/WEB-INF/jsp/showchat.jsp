@@ -56,16 +56,15 @@
                         </c:when>
                         <c:when test="${sessionScope.loginUser.id eq ch.userId}">
                             <div class="row">
-                                <div class="col-md-5"></div>
-                                <div class="col-md-1"></div>
+                                <div class="col-md-6"></div>
                                 <div class="col-md-6">
                                     <div class="box">
                                         <p class="content">
                                             <c:out value="${ch.body}"/><br>
                                         </p>
                                     </div>
-                                    <p class="Mydate"><c:out value="${ch.date}" /><p>
-                                    <img class="account" src="${sessionScope.loginUser.iconPath}">
+                                    <p class="Mydate"><c:out value="${ch.date}"/></p>
+                                    <img class="account img-thumbnail" src="${sessionScope.loginUser.iconPath}">
                                     <p class="Myusername"><c:out value="${ch.userName}"/></p>
                                 </div>
                             </div>
@@ -78,12 +77,11 @@
                                              <c:out value="${ch.body}"/><br>
                                          </p>
                                       </div>
-                                      <p class="date"><c:out value="${ch.date}" /><p>
-                                      <img class="other_account" src="${sessionScope.loginUser.iconPath}">
+                                      <p class="date"><c:out value="${ch.date}"/></p>
+                                      <img class="other_account img-thumbnail" src="${sessionScope.loginUser.iconPath}">
                                       <p class="username"><c:out value="${ch.userName}"/></p>
                                  </div>
-                                 <div class="col-md-1"></div>
-                                 <div class="col-md-5"></div>
+                                 <div class="col-md-6"></div>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -91,19 +89,20 @@
 			</div>
 		</div>
 	</div>
-		<div id="forms">
-                <div id="camera_space">
-                    <span><img id="camera_logo" src="/TeraNavi/img/camera.png" width="41.6px" height="41.6px"></span>
-                </div>
-                <textarea id="chatBody" name="chatBody"></textarea>
-				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
-				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-				<input type="hidden" name="communityId" value="${result.community.id}">
-                <div id="submit_button">
-            		<button id="chatwrite" type="button" name="button">送信</button>
-            	</div>
+    <c:if test="${not empty sessionScope.loginUser}">
+        <div id="forms">
+            <div id="camera_space">
+                <span><img id="camera_logo" src="/TeraNavi/img/camera.png" width="41.6px" height="41.6px"></span>
+            </div>
+            <textarea id="chatBody" name="chatBody"></textarea>
+            <input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
+            <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+            <input type="hidden" name="communityId" value="${result.community.id}">
+            <div id="submit_button">
+                <button id="chatwrite" type="button" name="button">送信</button>
+            </div>
         </div>
-    </div>
+    </c:if>
     <div id="footer">
     	<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	</div>
