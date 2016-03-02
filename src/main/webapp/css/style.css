@@ -7,3 +7,16 @@
 .mobile-user-name{
 	padding-top:20px;
 }
+
+.mobile-article-body{
+	padding-left: 15px;
+}
+
+.mobile-blog-title{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.mobile-content-space{
+	padding :10px;
+}

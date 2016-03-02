@@ -48,10 +48,10 @@
 			<nav class="nav nav-horizontal">
 				<div class="mask">
 					<ul class="list">
-						<li><a href="/TeraNavi/front/top">Top</a></li>
-						<li><a href="/TeraNavi/front/top#blog">ブログ</a></li>
-						<li><a href="/TeraNavi/front/top#community">コミュニティ</a></li>
-						<li><a href="/TeraNavi/front/top#tag">タグ</a></li>
+						<li><a href="TeraNavi/front/top#top" data-toggle="tab">Top</a></li>
+						<li><a href="#blog" data-toggle="tab" >ブログ</a></li>
+						<li><a href="#community" data-toggle="tab" >コミュニティ</a></li>
+						<li><a href="#tag" data-toggle="tab">タグ</a></li>
 
 						<li>
 							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
@@ -71,7 +71,7 @@
 							<h1 class="text-warning">新着記事</h1>
 						</div>
 						<c:forEach var="article" items="${result.article}">
-							<div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well">
+							<div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well mobile-content-space">
 								<div class="col-md-2 col-xs-12">
 									<br>
 									<div class="hidden-xs">
@@ -95,8 +95,8 @@
 
 									</div>
 									<div class="visible-xs">
-										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted">${article.title}</h5></a>
-										<p id="articleBody"><c:out value="${article.articleBody}" />...</p>
+										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted mobile-article-title">${article.title}</h5></a>
+										<p class="mobile-article-body" id="articleBody"><c:out value="${article.articleBody}" />...</p>
 										
 										<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 										
