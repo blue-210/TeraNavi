@@ -114,7 +114,7 @@ public class ShowArticleCommand extends AbstractCommand{
 			}catch(NullPointerException e){}
 
             if(editFlag){
-                resc.setTarget("articlePost");
+                resc.setTarget("editArticle");
             }else{
                 resc.setTarget("showArticleResult");
             }

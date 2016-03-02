@@ -45,23 +45,28 @@
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div calss="col-md-8">
 
-                    <form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
-                        <div class="form-group">
-                            <div class="input-group col-md-8">
-                                <label class="control-label">タイトル</label>
-                                <input type="text" name="title" class="form-control" id="inputTitle" value="${result.article.title}">
+                    <div class="row">
+                        <form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
+                            <div class="form-group">
+                                <div class="input-group col-md-8">
+                                    <label class="control-label">タイトル</label>
+                                    <input type="text" name="title" class="form-control" id="inputTitle">
+                                </div>
+                                <br>
+                                <div class="input-group col-md-8">
+                                    <label class="control-label">内容</label>
+                                    <textarea class="ckeditor" id="inputBody" name="body"></textarea>
+                                </div>
                             </div>
-                            <br>
-                            <div class="input-group col-md-8">
-                                <label class="control-label">内容</label>
-                                <textarea class="ckeditor" id="inputBody" name="body">${result.article.articleBody}</textarea>
-                            </div>
-                        </div>
+                        </form>
+                    </div>
 
-                    </form>
-                    <br>
+                    <div class="row">
 
-                    <div="row">
+
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-4 col-md-offset-2">
                             <button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
                         </div>
@@ -100,10 +105,83 @@
     </div><!--end section-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
+    <!-- モーダルの設定 -->
+     <div class="modal fade" id="articlePostResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+             <h4 class="modal-title text-center" id="articlePostResultModalLabel">記事の投稿結果</h4>
+           </div>
+           <div class="modal-body">
+             <p id="articlePostResultMessage" class="text-center">記事の投稿が完了しました</p>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+           </div>
+         </div><!-- /.modal-content -->
+       </div><!-- /.modal-dialog -->
+     </div><!-- /.modal -->
+
 	<script>
-		<!-- var ajaxSettings;
+		var ajaxSettings;
 		var ajax;
 		$(function(){
+
+            $("#btn_post").on("click",function(){
+                console.log( $("#inputBody").val() );
+                $.ajax({
+                    // urlで飛ばしたいコマンドを指定してあげる
+                  url: '/TeraNavi/front/articlepost',
+                  type:'POST',
+                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
+                  dataType: 'json',
+                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+                  data:{
+                    //   キー:バリューで書く。バリューには変数も使えます。
+                    title:$("#inputTitle").val(),
+                    body:CKEDITOR.instances.inputBody.getData(),
+                    ajax:'true'
+                  }
+               })
+                //    成功時の処理
+                   .done(function(data) {
+                      $("#articlePostResultModal").modal();
+                   })
+                //    失敗時の処理
+                   .fail(function() {
+                       $("#articlePostResultMessage").text("記事を投稿できませんでした");
+                       $("#articlePostResultModal").modal();
+                   });
+            });
+
+            $("#btn_draft").on("click",function(){
+                $.ajax({
+                    // urlで飛ばしたいコマンドを指定してあげる
+                  url: '/TeraNavi/front/draftArticle',
+                  type:'POST',
+                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
+                  dataType: 'json',
+                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+                  data:{
+                    //   キー:バリューで書く。バリューには変数も使えます。
+                    title:$("#inputTitle").val(),
+                    body:CKEDITOR.instances.inputBody.getData(),
+                    ajax:'true'
+                  }
+               })
+                //    成功時の処理
+                   .done(function(data) {
+                      $("#articlePostResultModalLabel").text("記事の下書き保存結果");
+                      $("#articlePostResultMessage").text("記事の下書き保存が完了しました");
+                      $("#articlePostResultModal").modal();
+                   })
+                //    失敗時の処理
+                   .fail(function() {
+                       $("#articlePostResultMessage").text("記事を下書き保存できませんでした");
+                       $("#articlePostResultModal").modal();
+                   });
+            });
 
 			ajaxSettings = {
 				type:'post',
@@ -119,19 +197,12 @@
 				}
 			}
 
+            /*
             $("#btn_post").on("click",function(){
-                $('<input />').attr('type', 'hidden')
-                .attr('name', "body")
-                .attr('value', $("#inputBody").html())
-                .appendTo('#articleForm');
                 $('#articleForm').submit();
             });
+            */
 
-            $("#btn_draft").on("click",function(){
-                $("#draftTitle").attr('value', $(':text[name="inputTitle"]').val())
-                $("#draftBody").attr('value', $("#inputBody").html())
-                $('#draftForm').submit();
-            });
 
             $("#btn_preview").on("click",function(){
                 alert($(':text[name="inputTitle"]').val());
@@ -158,7 +229,6 @@
 		function onDragOver(event){
 			event.preventDefault();
 		}
- -->
 
 	</script>
 </body>
