@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
 <div class="section hidden-xs">
     <div class="container">
 		<div class="row">
