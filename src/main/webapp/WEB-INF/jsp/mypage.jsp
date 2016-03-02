@@ -122,7 +122,7 @@
 										<li>
 											<a href="/TeraNavi/front/showDmList">DM</a>
 										</li>
-										<br><br><br><br>
+										<br><br>
 										<li>
 											<a href="/TeraNavi/withdraw">退会</a>
 										</li>
@@ -149,7 +149,7 @@
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
 									<img src="${result.user.headerPath}" style="width:100%; height:200px" class="hidden-xs">
-									<img src="${result.user.headerPath}" style="width:100%; height:150px" class="vidden-xs">
+									<img src="${result.user.headerPath}" style="width:100%; height:150px" class="visible-xs">
 								</div>
 							</div>
 
@@ -188,7 +188,7 @@
 												</c:forEach>
 										</tbody>
 									</table>
-									<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">もっと見る</a>　
+									<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>　
 									<br>
 									<br>
 									<br>

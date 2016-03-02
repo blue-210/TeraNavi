@@ -146,3 +146,8 @@ body{
 .xs-header-nav{
 	z-index: 1080;
 }
+
+#loginModalMobile{
+	padding-top: 50%;
+	width: 100%;
+}

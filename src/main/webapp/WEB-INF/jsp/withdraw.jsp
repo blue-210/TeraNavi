@@ -40,8 +40,11 @@
 
 					<div class="container visible-xs">
 						<div class="dropdown">
-							<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">マイページ<span class="caret"></span></button>
+							<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">退会<span class="caret"></span></button>
 							<ul class="dropdown-menu">
+								<li id="mypageTab">
+									<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
+								</li>
 								<c:choose>
 									<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
 										<li>
@@ -66,7 +69,7 @@
 								<li>
 									<a href="/TeraNavi/front/showDmList">DM</a>
 								</li>
-								<br><br><br><br>
+								<br><br>
 								<li>
 									<a href="/TeraNavi/withdraw">退会</a>
 								</li>
@@ -115,7 +118,7 @@
 			</div><!--end container-->
 		</div><!--end section-->
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-		
+
 		<div class="fade modal text-center" id="withdraw-modal">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -130,13 +133,13 @@
 					</div>
 					<div class="modal-footer"></div>
 				</div>
-				
+
 				<!--end modal-dialog-->
 				<!--end modal-->
 			</div>
 			<!--end moal-content-->
 		</div>
-		
+
 		<!--モバイル用のmodal-->
 		<div class="fade modal text-center" id="withdraw-modal-mobile">
 			<div class="modal-dialog modal-xs modal-dialog-centar">
@@ -152,7 +155,7 @@
 					</div>
 					<div class="modal-footer"></div>
 				</div>
-				
+
 				<!--end modal-dialog-->
 				<!--end modal-->
 			</div>
