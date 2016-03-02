@@ -14,7 +14,7 @@
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/mypage.css" type="text/css">
-		
+
 	</head>
 	<body>
 		<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -93,7 +93,7 @@
 							<div class="col-md-2 hidden-xs">
 								<jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
 							</div>
-							
+
 							<div class="container visible-xs">
 								<div class="dropdown">
 									<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">マイページ<span class="caret"></span></button>
@@ -134,7 +134,7 @@
 							</script>
 
 							<!-- 残り8列はコンテンツ表示部分として使う -->
-							<div class="col-md-10 col-xs-12">
+							<div class="col-md-8 col-xs-12">
 							</c:when>
 							<c:otherwise>
 
@@ -160,12 +160,12 @@
 									<h3 style="position:relative; margin-top:-100px; margin-left:20px;">${result.user.userName}</h3>
 								</div>
 							</div>
-							
+
 							<img src="${result.user.iconPath}" class="img-thumbnail visible-xs" style="width:100px; height:100px; position:relative; bottom:100px; margin-left:10px">
 
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
-									
+
 									<p style="position:relative;" class="well">${result.user.profile}</p>
 									<c:if test="${sessionScope.loginUser.id eq result.user.id}">
 										<a href="/TeraNavi/userSetting" class="btn btn-default pull-right">ユーザ情報編集</a>
@@ -223,7 +223,7 @@
 							<div class="col-sm-3 col-xs-6">
 								<a href="/TeraNavi/dmsend">DMの送信</a><br><br>
 							</div>
-							
+
 						</div>
 
 
