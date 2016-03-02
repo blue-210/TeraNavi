@@ -53,6 +53,7 @@
                                     <input type="text" name="title" class="form-control" id="inputTitle">
                                 </div>
                                 <br>
+
                                 <div class="input-group col-md-8">
                                     <label class="control-label">内容</label>
                                     <textarea class="ckeditor" id="inputBody" name="body"></textarea>
@@ -62,7 +63,6 @@
                     </div>
 
                     <div class="row">
-
 
                     </div>
 
