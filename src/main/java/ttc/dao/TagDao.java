@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,7 +30,7 @@ public class TagDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
 
 			String tag = (String)map.get("tag");
@@ -73,7 +74,7 @@ public class TagDao implements AbstractDao{
 		try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
 
             if( map.containsKey("tagOnlyFlg") ){
