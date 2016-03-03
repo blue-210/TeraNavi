@@ -36,10 +36,10 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
 
             CommunityBean cb =(CommunityBean)dao.read(params);
-
             params.put("community",cb);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
+            
             UserBean ub=new UserBean();
             ub.setCommunity(cb);
             resc.setResult(params);

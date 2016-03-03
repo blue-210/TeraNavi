@@ -205,10 +205,11 @@ public class CommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
             sql.append("communities.community_profile,count(community_members_list.fk_user_id),communities.fk_user_id,");
-			sql.append("community_members_list.community_admin_flag,community_icon_path from ");
+			sql.append("community_members_list.community_admin_flag,community_icon_path,community_members_list.fk_user_id from ");
             sql.append("communities left outer join community_members_list ");
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
-
+            //select fk_user_id from community_members_list where fk_community_id=1;
+            //select fk_community_id from community_members_list where fk_user_id=1;
             boolean flag = map.containsKey("where");
 
             if(flag){
@@ -232,6 +233,7 @@ public class CommunitiesDao implements AbstractDao{
 
             while(rs.next()){
                 CommunityBean cb = new CommunityBean();
+
                 cb.setId(rs.getString(1));
                 cb.setName(rs.getString(2));
                 cb.setProfile(rs.getString(3));
@@ -239,8 +241,6 @@ public class CommunitiesDao implements AbstractDao{
                 cb.setCreateUserId(rs.getString(5));
 				cb.setAdminFlag(rs.getString(6));
                 cb.setIconPath(rs.getString(7));
-
-
                 result.add(cb);
             }
 

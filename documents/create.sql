@@ -29,7 +29,7 @@ create table tera_db.users(
 	sex char(1) not null,
 	-- 表示→0　非表示→1
 	sex_visible_flag char(1) default '0',
-	birth_date char(8) not null,
+	birth_date char(8),
 	mail_address varchar(40) not null unique,
 	password varchar(10) not null,
 	fk_secret_question_id int(1),
