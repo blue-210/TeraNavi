@@ -27,9 +27,24 @@ public class EditArticleCommand extends AbstractCommand{
 
             String articleId = reqc.getParameter("articleId")[0];
             String title = reqc.getParameter("title")[0];
-            
+
             String body = reqc.getParameter("body")[0];
             String status = reqc.getParameter("status")[0];
+
+            String[] tags = null;
+			//タグはチェックボックス等で複数来る事を想定してます
+
+			boolean tagFlag = false;
+			try{
+				//tagパラメータがあるかのチェック、jsp変更前の例外防止
+				tags =reqc.getParameter("tag[]");
+
+				if(tags.length > 0){
+					tagFlag=true;
+				}
+			}catch(NullPointerException e){
+
+			}
 
             Calendar cal = Calendar.getInstance();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
@@ -51,6 +66,27 @@ public class EditArticleCommand extends AbstractCommand{
 
 			params.put("articlebean",ab);
             dao.update(params);
+
+            params.clear();
+
+            if(tagFlag){
+                //さっきインサートした記事情報を取得したいとき
+				params.put("lastInsert","true");
+				ArticleBean article = (ArticleBean)dao.read(params);
+
+                params.clear();
+
+				factory = AbstractDaoFactory.getFactory("tag");
+				dao = factory.getAbstractDao();
+
+				for(int i = 0;i < tags.length;i++){
+					params.put("articleId", article.getArticleId());
+					params.put("tag", tags[i]);
+					dao.insert(params);
+					params.clear();
+				}
+
+			}
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

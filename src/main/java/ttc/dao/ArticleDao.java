@@ -29,44 +29,55 @@ public class ArticleDao implements AbstractDao{
             MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 
-            //記事表からの取得----------------------------------------------------
-            sql.append("select article_id, article_title, article_body, ");
-            sql.append("article_created_date,fk_user_id, ");
-            sql.append("user_name, user_icon_path ");
-            sql.append("from articles join users ");
-            sql.append("on articles.fk_user_id = users.user_id ");
+
+            if( map.containsKey("lastInsert") ){
+
+                //最後にインサートした記事のIDがほしい場合（記事投稿のタグ付けでのみ使用）
+                sql.append("select last_insert_id() from articles limit 1 ");
+                pst = cn.prepareStatement( new String(sql) );
+                ResultSet rs = pst.executeQuery();
+                rs.next();
+                ab.setArticleId( rs.getString(1) );
+
+            }else{
+
+                //記事表からの取得----------------------------------------------------
+                sql.append("select article_id, article_title, article_body, ");
+                sql.append("article_created_date,fk_user_id, ");
+                sql.append("user_name, user_icon_path ");
+                sql.append("from articles join users ");
+                sql.append("on articles.fk_user_id = users.user_id ");
 
 
-			if(map.containsKey("whereNo")){
-				String whereNo = (String)map.get("whereNo");
-				if(whereNo.equals("1")){
-					sql.append("where article_title=? and article_created_date=? and fk_user_id=?");
-					pst = cn.prepareStatement( new String(sql) );
-					pst.setString(1, (String)map.get("title"));
-					pst.setString(2, (String)map.get("date"));
-					pst.setString(3, (String)map.get("userId"));
-				}
-			}else{
-				sql.append("where article_id = ?");
-				pst = cn.prepareStatement( new String(sql) );
-				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
+    			if(map.containsKey("whereNo")){
+    				String whereNo = (String)map.get("whereNo");
+    				if(whereNo.equals("1")){
+    					sql.append("where article_title=? and article_created_date=? and fk_user_id=?");
+    					pst = cn.prepareStatement( new String(sql) );
+    					pst.setString(1, (String)map.get("title"));
+    					pst.setString(2, (String)map.get("date"));
+    					pst.setString(3, (String)map.get("userId"));
+    				}
+    			}else{
+    				sql.append("where article_id = ?");
+    				pst = cn.prepareStatement( new String(sql) );
+    				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
 
-			}
+    			}
+                ResultSet rs = pst.executeQuery();
 
+                rs.next();
+                ab.setArticleId( rs.getString(1) );
+                ab.setTitle( rs.getString(2) );
+                ab.setArticleBody( rs.getString(3) );
+                ab.setCreatedDate( rs.getString(4) );
+                ab.setUserId(rs.getString(5));
+                ab.setUserName(rs.getString(6));
+                ab.setIconPath(rs.getString(7));
+    			//------------------------------------------------------------------
 
+            }
 
-
-            ResultSet rs = pst.executeQuery();
-
-            rs.next();
-            ab.setArticleId( rs.getString(1) );
-            ab.setTitle( rs.getString(2) );
-            ab.setArticleBody( rs.getString(3) );
-            ab.setCreatedDate( rs.getString(4) );
-            ab.setUserId(rs.getString(5));
-            ab.setUserName(rs.getString(6));
-            ab.setIconPath(rs.getString(7));
-			//------------------------------------------------------------------
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
@@ -94,6 +105,7 @@ public class ArticleDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
+
             sql.append("update articles set ");
             sql.append("article_title = ?, ");
             sql.append("article_body = ?, ");
