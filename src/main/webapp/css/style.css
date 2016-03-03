@@ -20,3 +20,25 @@
 .mobile-content-space{
 	padding :10px;
 }
+
+#signup-modal-mobile{
+	width:100%;
+	
+	margin-top: 50px;
+}
+
+.mobile-sign-result{
+	height:400px;
+}
+
+#signUserNameMobile{
+	margin-top: 50px;
+}
+
+#signLoginIdMobile{
+	margin-top:80px;
+}
+
+#signMobileBtn{
+	margin-top: 80px
+}
