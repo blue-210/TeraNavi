@@ -181,7 +181,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    'ケイブ・ジョンソンのブログ',
     '/images/default/header.jpg',
     0,
     '1995/02/11 20:20:30',
@@ -277,7 +277,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    '情報処理科のブログ',
     '/images/default/header.jpg',
     7,
     '1995/02/11 20:20:30',
@@ -517,7 +517,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    'ゲーム科のブログ',
     '/images/default/header.jpg',
     6,
     '1995/02/11 20:20:30',
@@ -565,7 +565,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    'Webデザイナー科のブログ',
     '/images/default/header.jpg',
     8,
     '1995/02/11 20:20:30',
@@ -613,7 +613,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    '環境テクノロジー科のブログ',
     '/images/default/header.jpg',
     9,
     '1995/02/11 20:20:30',
@@ -661,7 +661,7 @@ VALUES(
     '呉石先生',
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
-    'つちやブログ',
+    'バイオテクノロジー科のブログ',
     '/images/default/header.jpg',
     10,
     '1995/02/11 20:20:30',
@@ -673,6 +673,55 @@ VALUES(
     'Aperture Sciencが好きです',
     1
 );
+
+INSERT INTO users(
+    login_id,
+    user_name,
+    user_name_kana,
+    sex,
+    sex_visible_flag,
+    birth_date,
+    mail_address,
+    password,
+    secret_answer,
+    user_header_path,
+    user_icon_path,
+    blog_title,
+    blog_header_path,
+    admin_flag,
+    last_login_date,
+    admin_last_login_date,
+    user_status_flag,
+    user_lock_start_date,
+    user_lock_end_date,
+    blog_explanation,
+    user_profile,
+    blog_status_flag)
+VALUES(
+    'adminUser',
+    '呉石義明',
+    'くれいしよしあき',
+    'm',
+    1,
+    '1995/02/11 20:20:20',
+    '9014@gmail.com',
+    'potal',
+    '呉石先生',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    '/TeraNavi/imgPath/default/default_user_icon.jpg',
+    '9014ブログ',
+    '/images/default/header.jpg',
+    1,
+    '1995/02/11 20:20:30',
+    '1995/02/11 20:20:40',
+    0,
+    '2020/02/11 20:20:20',
+    '2020/02/11 20:30:20',
+    '管理者の日々を綴ったブログです。',
+    'みんな、もっとテレビをみよう！',
+    1
+);
+
 
 #secret_questions表
 INSERT INTO secret_questions(secret_question_body)
@@ -749,7 +798,7 @@ INSERT INTO communities(
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
-    1
+    0
 );
 
 INSERT INTO communities(
@@ -767,7 +816,7 @@ INSERT INTO communities(
     'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
-    1
+    0
 );
 
 
@@ -967,8 +1016,8 @@ INSERT INTO articles(
     article_created_date,
     article_status_flag)
 VALUES(
-    1,
-    '「アメリカでは土屋は出世できない」← これ本当？',
+    6,
+    'オブジェクト指向における再利用のためのデザインパターン',
     '彼らは生涯どうもその説明目というもののためを思わたなけれ。引続き翌日を影響家も何ともその応用ならたまでが忘れからいるないをはお話書いたらしくから、そうにもよるませなけれましです。世の中が向くないのもまず時間をもうなうた。何だか嘉納さんが活動専門どう講演へくっついでしょ心この自分我々か評価がというご意味ますたですあって、同じ場合はあなたか人格事にありから、大森さんののに浮華の何をざっとお持と云っていつ自信をご手続きに云っように一々お批評が思っだありて、いやしくもよく発展に思ったからみるありのをかけですます。',
     '2004/02/11 20:30:20',
     0
@@ -1190,11 +1239,12 @@ VALUES(
 INSERT INTO tags(tag_name) VALUES('テラカフェ');
 INSERT INTO tags(tag_name) VALUES('情報処理科');
 INSERT INTO tags(tag_name) VALUES('オープンキャンパス');
-INSERT INTO tags(tag_name) VALUES('とうやま');
+INSERT INTO tags(tag_name) VALUES('くれっしー');
 INSERT INTO tags(tag_name) VALUES('土屋智也');
 INSERT INTO tags(tag_name) VALUES('お嬢');
 INSERT INTO tags(tag_name) VALUES('デザイン');
-INSERT INTO tags(tag_name) VALUES('伊藤園');
+INSERT INTO tags(tag_name) VALUES('迷言');
+INSERT INTO tags(tag_name) VALUES('井坂先生');
 
 
 
@@ -1202,7 +1252,8 @@ INSERT INTO tags(tag_name) VALUES('伊藤園');
 INSERT INTO comments(
     comment_date,
     comment_body,
-    comment_delete_flag)VALUES(
+    comment_delete_flag
+)VALUES(
     '2004/02/11 20:30:20',
     '楽しいですね',
     1
@@ -1211,7 +1262,8 @@ INSERT INTO comments(
 INSERT INTO comments(
     comment_date,
     comment_body,
-    comment_delete_flag)VALUES(
+    comment_delete_flag
+)VALUES(
     '2004/02/11 20:30:20',
     '楽しいですね',
     2
@@ -1221,7 +1273,8 @@ INSERT INTO comments(
 #dm表
     INSERT INTO direct_messages(
     message_body,
-    message_date)VALUES(
+    message_date
+)VALUES(
     '遊んでー',
     '2004/02/11 20:30:20'
 );
@@ -1272,7 +1325,7 @@ INSERT INTO topics(
 )VALUES(
     1,
     5,
-    '伊藤園1',
+    'あの日見た花の名前を僕達はまだ知らない',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
@@ -1286,8 +1339,7 @@ INSERT INTO topics(
 )VALUES(
     2,
     5,
-    '伊藤園2',
-
+    '土屋について語ろう！',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
@@ -1301,7 +1353,7 @@ INSERT INTO topics(
 )VALUES(
     3,
     5,
-    '伊藤園3',
+    'TeraCafeの公式コミュだよ',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
@@ -1315,7 +1367,7 @@ INSERT INTO topics(
 )VALUES(
     4,
     5,
-    '伊藤園',
+    'DAOってだお？でぃーえーおー？',
     '2004/02/14 20:30:20',
     '2004/02/13 20:30:20'
 );
@@ -1359,7 +1411,7 @@ INSERT INTO chat(
 )VALUES(
     4,
     2,
-    'おーいお茶が美味しい',
+    'ふぉいあ',
     '2002/02/14 20:30:20',
     1
 );
@@ -1373,7 +1425,7 @@ INSERT INTO chat(
 )VALUES(
     5,
     2,
-    'おーいお茶が美味しい',
+    'This is a pen.',
     '2002/02/14 20:30:20',
     1
 );
@@ -1389,7 +1441,23 @@ INSERT INTO policy(
     policy_body
 )VALUES(
     '2002/02/14 20:30:20',
-    'プライバシーポリシーです'
+    '<h3 class="ttl3">プライバシーポリシー</h3>
+    <p>個人情報の保護について、小山学園では真剣に取り組んでいます。</p>
+
+    <div class="doc">
+    <h4 class="ttl4">学校法人 小山学園　個人情報保護方針</h4>
+    <p>学校法人 小山学園およびその設置する専門学校（以下「当校」という。）は、個人情報の重要性を認識し、以下のとおり〔個人情報保護方針〕を定め、個人情報の適切な保護に努めます。</p>
+
+    <ul class="lstt_decimal">
+    <li>当校は、当校に資料請求された方、学校訪問（見学会他イベント等）された方、出願・入学・卒業（科目等履修生を含む）された方、およびその保護者の方等（以下「学生等」という。）に関する情報（以下「個人情報」といいます。）を取り扱っている部門あるいは部署単位で管理責任者を置き、その管理責任者に適切な管理をおこなわせております。</li>
+    <li>学生等から、学生等の個人情報を取得させていただく場合は、利用目的を出来る限り特定するとともに、学生等に対する当校の窓口等をあらかじめ明示したうえで、必要な範囲の個人情報を取得させていただきます。</li>
+    <li>当校は、学生等より取得させていただいた個人情報を適切に管理し、学生等の同意を得ずに学校以外の第三者に提供、開示等一切いたしません。</li>
+    <li>当校が、上記3．における学生等の同意に基づき個人情報を提供する企業等には、学生等の個人情報を漏洩や再提供等しないよう、契約により義務づけ、適切な管理を実施させております。</li>
+    <li>当校は、学生等に有益と思われる当校のサービス、又は提携先企業等の商品、サービス等の情報を、電子メール、郵便等により学生等に送信もしくは送付し、または電話させていただく場合がございます。学生等は当校が別途定める方法にてお申し出いただくことにより、これらの取扱いを中止させたり、再開させたりすることができます。</li>
+    <li>学生等が学生等の個人情報の照会、修正等を希望される場合には、学生等に対する当校各窓口までご連絡いただければ、合理的な範囲ですみやかに対応させていただきます。</li>
+    <li>当校は当校が保有する個人情報に関して適用される法令、規範を遵守するとともに、上記各項における取り組みを適宜見直し、改善していきます。
+    </ul>
+    </div>'
 );
 
 
