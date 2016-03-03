@@ -58,6 +58,9 @@
                                     <label class="control-label">内容</label>
                                     <textarea class="ckeditor" id="inputBody" name="body"></textarea>
                                 </div>
+                                <div class="col-md-2" style="padding-left:0px;">
+                                    <a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -74,7 +77,7 @@
                             <button type="button" class="btn btn-default pull-right" id="btn_draft">下書き保存</button>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-warning pull-right" id="btn_post">投稿</button>
+                            <button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
                         </div>
                     </div>
 
@@ -104,6 +107,26 @@
         </div><!--end container-->
     </div><!--end section-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    <!-- タグ選択モーダル -->
+    <div class="fade modal text-justify" id="addTagModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            　<h4 class="modal-title text-center">タグ追加</h4>
+             </div>
+            <div class="modal-body" id="addTagModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-default" data-dismiss="modal">確定</button>
+            </div>
+          </div>
+        </div>
+     </div>
 
     <!-- 確認モーダル -->
     <div class="fade modal text-justify" id="articlePostModal">
@@ -149,30 +172,75 @@
 		var ajax;
 		$(function(){
 
+            //タグ一覧を取得する処理-----------------------------------------------------------
+            $.ajax({
+                // urlで飛ばしたいコマンドを指定してあげる
+              url: '/TeraNavi/front/getTagList',
+              type:'POST',
+              dataType: 'json',
+            //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+              data:{
+                //   キー:バリューで書く。バリューには変数も使えます。
+                ajax:'true'
+              }
+            })
+            //    成功時の処理
+               .done(function(data) {
+                  //タグ選択モーダルにタグ一覧を入れ込む
+                  var atmBody = $("#addTagModalBody")
+                  for(var i in data){
+                      var tagId = data[i].id;
+                      var tagName = data[i].name;
+                      atmBody.append(
+                        '<label class="checkbox-inline">\n\
+                            <input type="checkbox" name="chTag" value="'+tagId+'">\n\
+                                '+tagName+'\n\
+                        </label>'
+                      );
+                  }
+               })
+            //    失敗時の処理
+               .fail(function() {
+
+               });
+
+            //タグ選択モーダルを出す処理---------------------------------------------
+            $("#btn_addTag").on("click",function(){
+               $("#addTagModal").modal();
+            });
+
+            //記事投稿の際の確認モーダルを出す処理---------------------------------------------
             $("#btn_post").on("click",function(){
                 var apmBody = $("#articlePostModalBody");
                 var title = $("#inputTitle").val();
                 var body = CKEDITOR.instances.inputBody.getData();
+                $("#articlePostModalBody").empty();
                 apmBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
                 $("#articlePostModal").modal();
             });
 
+            //記事を投稿する処理--------------------------------------------------------------
             $("#btn_modalArticlePost").on("click",function(){
-                console.log( $("#inputBody").val() );
+
+                var checks=[];
+                $("[name='chTag']:checked").each(function(){
+                    checks.push(this.value);
+                });
+
                 $.ajax({
                     // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/articlepost',
                   type:'POST',
-                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
                   dataType: 'json',
                 //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
                   data:{
                     //   キー:バリューで書く。バリューには変数も使えます。
                     title:$("#inputTitle").val(),
                     body:CKEDITOR.instances.inputBody.getData(),
+                    tag:checks,
                     ajax:'true'
                   }
-               })
+                })
                 //    成功時の処理
                    .done(function(data) {
                       $("#articlePostResultModal").modal();
@@ -184,7 +252,14 @@
                    });
             });
 
+            //下書き保存する処理--------------------------------------------------------------
             $("#btn_draft").on("click",function(){
+
+                var checks=[];
+                $("[name='chTag']:checked").each(function(){
+                    checks.push(this.value);
+                });
+
                 $.ajax({
                     // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/draftArticle',
@@ -196,6 +271,7 @@
                     //   キー:バリューで書く。バリューには変数も使えます。
                     title:$("#inputTitle").val(),
                     body:CKEDITOR.instances.inputBody.getData(),
+                    tag:checks,
                     ajax:'true'
                   }
                })
@@ -212,6 +288,7 @@
                    });
             });
 
+
 			ajaxSettings = {
 				type:'post',
 				url:'upload',
@@ -225,12 +302,6 @@
 					$("#tbody").val(text+"<br>"+data.result);
 				}
 			}
-
-            /*
-            $("#btn_post").on("click",function(){
-                $('#articleForm').submit();
-            });
-            */
 
 
             $("#btn_preview").on("click",function(){
