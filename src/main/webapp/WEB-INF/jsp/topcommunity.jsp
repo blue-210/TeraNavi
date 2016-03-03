@@ -31,6 +31,8 @@
                           <c:set var="flag" value="false"/>
                           <%-- sessionにある参加しているコミュニティのリストを使って比較 --%>
                           <c:forEach var="co" items="${sessionScope.myCommunities}">
+                              <p>せっしょんこみゅID${co.id}</p>
+                              <p>こみゅID${community.id}</p>
                               <c:choose>
                                   <%-- co.idは自分が参加しているコミュ、community.idは比較対象となるコミュ --%>
                                   <c:when test="${co.id eq community.id}">

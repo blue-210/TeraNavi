@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 
 import ttc.bean.UserBean;
+import ttc.bean.CommunityBean;
 
 import java.util.Map;
 import java.util.List;
@@ -98,13 +99,14 @@ public class WebApplicationController implements ApplicationController{
 				session.setAttribute("myCommunities",result.get("community"));
 
 			}else if(path.equals("partiComm")){
-				System.out.println("Session Add");
 				HttpSession session = req.getSession(true);
 
 				Map result = (Map)resc.getResult();
 				List communities = (List)session.getAttribute("myCommunities");
+				System.out.println("IDいけてる？："+((CommunityBean)result.get("community")).getId());
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
+
 
 			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);
