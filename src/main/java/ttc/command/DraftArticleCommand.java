@@ -49,14 +49,11 @@ public class DraftArticleCommand extends AbstractCommand{
 			AbstractDao dao = factory.getAbstractDao();
 			BlogBean blog = (BlogBean)dao.read(params);
 
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
 			if(blog.getStatus().equals("0")){
+				MySqlConnectionManager.getInstance().closeConnection();
 				throw new BusinessLogicException("ブログが開設されていません",null);
 			}
-
-            MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("article");
             AbstractDao dao2 = factory2.getAbstractDao();

@@ -36,17 +36,17 @@ public class ShowArticleCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
             ArticleBean ab = (ArticleBean)dao.read(params);
-			
+
 			factory = AbstractDaoFactory.getFactory("tag");
 			dao = factory.getAbstractDao();
-			
+
 			ab.setTags(dao.readAll(params));
-			
+
 			factory = AbstractDaoFactory.getFactory("comment");
 			dao = factory.getAbstractDao();
 			ab.setComments(dao.readAll(params));
-			
-			
+
+
             result.put("article", ab);
             //----------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ public class ShowArticleCommand extends AbstractCommand{
 
 			factory = AbstractDaoFactory.getFactory("article");
 			dao = factory.getAbstractDao();
-			
+
             //前後の記事IDを調べる　なければ-1 ----------------------------------
             List articles = dao.readAll(params);
             int index = -1;
@@ -70,12 +70,12 @@ public class ShowArticleCommand extends AbstractCommand{
             }
             int preArticleId = -1, nextArticleId =-1;
             if(index > 0){
-                System.out.println("index > 0");
+                
                 ArticleBean nextArticle = (ArticleBean)articles.get(index-1);
                 nextArticleId = Integer.parseInt( nextArticle.getArticleId() );
             }
             if(index+1 <  articles.size() && index > -1 ){
-                System.out.println("index not last");
+                
                 ArticleBean preArticle = (ArticleBean)articles.get(index+1);
                 preArticleId = Integer.parseInt( preArticle.getArticleId() );
             }
@@ -101,7 +101,23 @@ public class ShowArticleCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);
-            resc.setTarget("showArticleResult");
+
+            //編集だったらターゲットを変える
+            boolean editFlag = false;
+			try{
+				//editパラメータがあるかのチェック
+				String edit = reqc.getParameter("edit")[0];
+
+				if(edit.length() > 0){
+					editFlag=true;
+				}
+			}catch(NullPointerException e){}
+
+            if(editFlag){
+                resc.setTarget("editArticle");
+            }else{
+                resc.setTarget("showArticleResult");
+            }
 
             return resc;
 

@@ -42,7 +42,7 @@ public class UsersDao implements AbstractDao{
             if(map.containsKey("where")){
                 sql.append((String)map.get("where"));
             }
-
+            sql.append(" and not(user_status_flag=3)");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userStatus"));
@@ -189,7 +189,7 @@ public class UsersDao implements AbstractDao{
 
             result = pst.executeUpdate();
 
-			System.out.println("\t処理件数 : "+result);
+			
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
@@ -275,6 +275,7 @@ public class UsersDao implements AbstractDao{
             sql.append(",users.blog_status_flag from users left outer join community_members_list ");
             sql.append("on users.user_id=community_members_list.fk_user_id ");
             sql.append((String)map.get("where"));
+            sql.append("and not(user_status_flag=3)");
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("value"));

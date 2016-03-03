@@ -27,7 +27,8 @@ public class CommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
             sql.append("select community_id,community_name,community_profile,community_icon_path,community_header_path,");
-            sql.append("community_delete_flag,communities.fk_user_id from communities ");
+            sql.append("community_delete_flag,communities.fk_user_id,community_members_list.community_admin_flag ");
+            sql.append("from communities left outer join community_members_list on communities.community_id=community_members_list.fk_community_id ");
 
             if(map.containsKey("where")){
                 sql.append((String)map.get("where"));
@@ -46,34 +47,13 @@ public class CommunitiesDao implements AbstractDao{
             rs.next();
 			cb.setId(rs.getString("community_id"));
 			cb.setName(rs.getString("community_name"));
-            System.out.println("comName="+cb.getName());
+
             cb.setProfile(rs.getString("community_profile"));
             cb.setHeaderPath(rs.getString("community_header_path"));
             cb.setIconPath(rs.getString("community_icon_path"));
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
-
-            StringBuffer sqlx = new StringBuffer();
-			sqlx.append("SELECT topic_id,fk_create_user_id,topic_name,topic_updatetime_date,user_name ");
-			sqlx.append("from topics join users on fk_create_user_id = user_id where fk_community_id=?");
-			
-            pst=cn.prepareStatement(new String(sqlx));
-            pst.setString(1,(String)map.get("commId"));
-            ResultSet rsx=pst.executeQuery();
-            ArrayList topics=new ArrayList();
-
-            UserBean ub=new UserBean();
-            while(rsx.next()){
-                TopicBean tb=new TopicBean();
-                tb.setTopicId(rsx.getString("topic_id"));
-                tb.setName(rsx.getString("topic_name"));
-                tb.setUpdateDate(rsx.getString("topic_updatetime_date"));
-                tb.setTopicCreater(rsx.getString("user_name"));
-                topics.add(tb);
-
-            }
-
-            cb.setTopics(topics);
+            cb.setAdminFlag(rs.getString(8));
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
@@ -102,7 +82,7 @@ public class CommunitiesDao implements AbstractDao{
             sql.append("community_icon_path=?,community_header_path=?,");
             sql.append("community_delete_flag=? where community_id=? ");
             String upSql=new String(sql);
-            System.out.println(upSql);
+
             pst = cn.prepareStatement(new String(upSql));
 
             pst.setString(1,(String)map.get("communityName"));
@@ -182,7 +162,7 @@ public class CommunitiesDao implements AbstractDao{
             CommunityBean cb=new CommunityBean();
             rs.next();
 			cb.setId(rs.getString("community_id"));
-            System.out.println("コミュid"+cb.getId());
+
 
             StringBuffer insMemSql=new StringBuffer();
             insMemSql.append("insert into community_members_list(fk_user_id,fk_community_id,");
@@ -195,7 +175,7 @@ public class CommunitiesDao implements AbstractDao{
 
 
             result=pst2.executeUpdate();
-            System.out.println("メンバーリストにインサート");
+
 
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
@@ -225,10 +205,11 @@ public class CommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
             sql.append("communities.community_profile,count(community_members_list.fk_user_id),communities.fk_user_id,");
-			sql.append("community_members_list.community_admin_flag,community_icon_path from ");
+			sql.append("community_members_list.community_admin_flag,community_icon_path,community_members_list.fk_user_id from ");
             sql.append("communities left outer join community_members_list ");
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
-
+            //select fk_user_id from community_members_list where fk_community_id=1;
+            //select fk_community_id from community_members_list where fk_user_id=1;
             boolean flag = map.containsKey("where");
 
             if(flag){
@@ -252,6 +233,7 @@ public class CommunitiesDao implements AbstractDao{
 
             while(rs.next()){
                 CommunityBean cb = new CommunityBean();
+
                 cb.setId(rs.getString(1));
                 cb.setName(rs.getString(2));
                 cb.setProfile(rs.getString(3));
@@ -259,8 +241,6 @@ public class CommunitiesDao implements AbstractDao{
                 cb.setCreateUserId(rs.getString(5));
 				cb.setAdminFlag(rs.getString(6));
                 cb.setIconPath(rs.getString(7));
-
-
                 result.add(cb);
             }
 

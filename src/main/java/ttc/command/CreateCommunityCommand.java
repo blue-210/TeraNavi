@@ -49,29 +49,35 @@ public class CreateCommunityCommand extends AbstractCommand{
             String userId=reqc.getParameter("userId")[0];
             params.put("userId",userId);
 
+
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-			AbstractDaoFactory factory2 = AbstractDaoFactory.getFactory("users");
-			dao = factory2.getAbstractDao();
+			factory = AbstractDaoFactory.getFactory("users");
+			dao = factory.getAbstractDao();
 
 			UserBean user = (UserBean)dao.read(params);
+
+
+
+            factory=AbstractDaoFactory.getFactory("community");
+            dao=factory.getAbstractDao();
+
+            String where="where fk_user_id=? and community_delete_flag=0 order by community_created_date desc";
+
+            params.put("where",where);
+            params.put("commId",user.getId());
+            CommunityBean cb=(CommunityBean)dao.read(params);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-			CommunityBean community = new CommunityBean();
-
-			community.setName((String)params.get("commName"));
-			community.setProfile((String)params.get("commProfile"));
-			community.setIconPath((String)params.get("commIcon"));
-			community.setHeaderPath((String)params.get("commHeader"));
-
-			user.setCommunity(community);
+			user.setCommunity(cb);
 
 			resc.setResult(user);
 
