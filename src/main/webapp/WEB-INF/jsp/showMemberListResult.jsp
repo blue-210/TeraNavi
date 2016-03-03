@@ -70,6 +70,8 @@
                                                 <c:when test="${result.community.adminFlag eq 1}">
                                                     <div class="check"></div>
                                                 </c:when>
+                                                <c:otherwise>
+                                                </c:otherwise>
                                             </c:choose>
                                         </div>
                                     </c:forEach>

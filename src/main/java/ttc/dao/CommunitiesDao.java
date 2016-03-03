@@ -41,6 +41,9 @@ public class CommunitiesDao implements AbstractDao{
             if(map.containsKey("commId")){
                 pst.setString(1,(String)map.get("commId"));
             }
+            if(map.containsKey("userId")){
+                pst.setString(2,(String)map.get("userId"));
+            }
 
             ResultSet rs = pst.executeQuery();
 
@@ -53,7 +56,7 @@ public class CommunitiesDao implements AbstractDao{
             cb.setIconPath(rs.getString("community_icon_path"));
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
-            cb.setAdminFlag(rs.getString(8));
+            cb.setAdminFlag(rs.getString("community_admin_flag"));
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
