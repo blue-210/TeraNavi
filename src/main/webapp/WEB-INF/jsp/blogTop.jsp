@@ -117,7 +117,7 @@
               </button>
               <ul class="dropdown-menu">
                 <c:forEach var="contents" items="${result.archives}">
-                    <li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.article.userId}&scope=${contents.year}${contents.month}">
+                    <li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.blog.userId}&scope=${contents.year}${contents.month}">
                         ${contents.year}年${contents.month}月(${contents.count})
                     </a></li>
                 </c:forEach>
