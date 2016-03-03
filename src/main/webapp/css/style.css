@@ -46,3 +46,19 @@
 #loginmodal{
 	margin-top:140px;
 }
+
+
+#iconFile{
+	padding-top: 20x;
+	padding-bottom: 20px;
+}
+
+#headerFile{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#myModalMobile{
+	width: 100%;
+	margin-top: 50px;
+}
