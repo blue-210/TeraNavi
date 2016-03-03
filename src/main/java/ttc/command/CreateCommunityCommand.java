@@ -67,7 +67,7 @@ public class CreateCommunityCommand extends AbstractCommand{
             factory=AbstractDaoFactory.getFactory("community");
             dao=factory.getAbstractDao();
 
-            String where="where fk_user_id=? and community_delete_flag=0 order by community_created_date desc";
+            String where="where communities.fk_user_id=? and community_delete_flag=0 order by community_created_date desc";
 
             params.put("where",where);
             params.put("commId",user.getId());

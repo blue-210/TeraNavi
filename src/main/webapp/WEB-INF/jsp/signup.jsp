@@ -284,7 +284,7 @@
 							<h3 id="sNameMobile"></h3>
 							<hr size="1" color="#fffff">
 
-							<label>かな</label>
+							<label>ふりがな</label>
 							<h3 id="sKanaMobile"></h3>
 							<hr size="1" color="#fffff">
 
@@ -296,7 +296,7 @@
 							<h3 id="sBirthMobile"></h3>
 							<hr size="1" color="#fffff">-->
 
-							<label>メール</label>
+							<label>メールアドレス</label>
 							<h3 id="sMailMobile"></h3>
 							<hr size="1" color="#fffff">
 
