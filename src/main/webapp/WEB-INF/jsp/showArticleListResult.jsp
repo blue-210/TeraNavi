@@ -121,7 +121,6 @@
                 $("[name='articleId']:checked").each(function(){
                     checks.push(this.value);
                 });
-                console.log(checks);
 
                 $.ajax({
                     // urlで飛ばしたいコマンドを指定してあげる
