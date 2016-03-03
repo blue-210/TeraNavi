@@ -106,7 +106,7 @@ public class WebApplicationController implements ApplicationController{
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
 
-			}else if(path.equals("signup") || path.equals("basic") || path.equals("partiComm")){
+			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 				session.setAttribute("myCommunities",new HashMap());
