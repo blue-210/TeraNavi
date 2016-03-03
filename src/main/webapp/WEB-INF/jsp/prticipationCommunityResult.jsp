@@ -21,7 +21,7 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-    
+
 
     <div class="section">
         <div class="container">
@@ -31,8 +31,8 @@
 
 
                             <h1>コミュニティに参加しました！</h1>
-                            <p>３秒後にマイページに戻ります<br>
-                                戻らないに場合は<a href="/TeraNavi/front/showcomm?commId=${result.commId}">こちら</a></p>
+                            <p>３秒後に参加したコミュニティに移動します<br>
+                                移動しない場合は<a href="/TeraNavi/front/showcomm?commId=${result.commId}">こちら</a></p>
                 </div>
             </div>
 
