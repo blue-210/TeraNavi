@@ -37,9 +37,9 @@
               <p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
                   ${result.blog.title}</span>
               </p>
-
           </div>
       </div>
+
       <div class="row">
           <div class="col-md-12">
               <img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
@@ -54,11 +54,26 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center">${result.article.title}</h1>
-            <p class="text-left">${result.article.createdDate}</p>
-            <br>
-            <br>
-            <p class="text-left">${result.article.articleBody}</p>
+            <p class="text-left">${result.blog.explanation}</p>
+            <h1>新着記事</h1>
+
+            <table class="table table-striped">
+               <tbody>
+                   <c:forEach var="articles" items="${result.articleList}">
+                       <tr id="tableRow${articles.articleId}">
+                           <td>
+                               <a href="/TeraNavi/front/showArticle?articleId=${articles.articleId}">
+                                   <c:out value="${articles.title}"/>
+                               </a>
+                           </td>
+                           <td> ${ fn:substring(articles.articleBody, 0, 20) } </td>
+                           <td> <c:out value="${articles.createdDate}"/> </td>
+                       </tr>
+                   </c:forEach>
+               </tbody>
+           </table>
+
+
           </div>
           <div class="col-md-2">
             <h3 class="text-center text-warning">月別アーカイブ</h3>
@@ -86,9 +101,6 @@
                       </li>
                   </c:when>
               </c:choose>
-              <li>
-                <a href="#" style="font-weight:bold">ブログTOPへ</a>
-              </li>
               <c:choose>
                   <c:when test="${result.next >= 0}">
                       <li class="next">
@@ -99,6 +111,8 @@
             </ul>
           </div>
         </div>
+
+        <%-- タグ --%>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
 
@@ -109,6 +123,7 @@
             </p>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <i id="commentCount" class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
