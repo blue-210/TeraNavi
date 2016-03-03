@@ -31,6 +31,8 @@
                           <c:set var="flag" value="false"/>
                           <%-- sessionにある参加しているコミュニティのリストを使って比較 --%>
                           <c:forEach var="co" items="${sessionScope.myCommunities}">
+                              <p>参加しているこみゅ${co.id}</p>
+                              <p>コミュID${community.id}</p>
                               <c:choose>
                                   <%-- co.idは自分が参加しているコミュ、community.idは比較対象となるコミュ --%>
                                   <c:when test="${co.id eq community.id}">
@@ -48,7 +50,6 @@
                               </c:when>
                               <%-- 参加している場合 --%>
                               <c:otherwise>
-                                  ${sessionScope.myCommunities}
                                   <div class="row text-right">
                                       <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
                                   </div>
