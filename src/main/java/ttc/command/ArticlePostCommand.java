@@ -38,18 +38,17 @@ public class ArticlePostCommand extends AbstractCommand{
 			boolean tagFlag = false;
 			try{
 				//tagパラメータがあるかのチェック、jsp変更前の例外防止
-				tags =reqc.getParameter("tag");
+				tags =reqc.getParameter("tag[]");
 
 				if(tags.length > 0){
 					tagFlag=true;
 				}
 			}catch(NullPointerException e){
-				
+
 			}
 
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-
             String date = formatter.format(cal.getTime());
 
             String status = "0";
@@ -78,21 +77,23 @@ public class ArticlePostCommand extends AbstractCommand{
             dao = factory.getAbstractDao();
             dao.insert(params);
 
+            params.clear();
 
 			if(tagFlag){
-				params.put("whereNo","1");
+                //さっきインサートした記事情報を取得したいとき
+				params.put("lastInsert","true");
 				ArticleBean article = (ArticleBean)dao.read(params);
+
+                params.clear();
 
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
 
-				Map params2 = new HashMap();
-
 				for(int i = 0;i < tags.length;i++){
-					params2.put("articleId", article.getArticleId());
-					params2.put("tag", tags[i]);
-					dao.update(params2);
-					params2.clear();
+					params.put("articleId", article.getArticleId());
+					params.put("tag", tags[i]);
+					dao.insert(params);
+					params.clear();
 				}
 
 			}

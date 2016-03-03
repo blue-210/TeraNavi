@@ -16,7 +16,7 @@
                     </a>
                     <p class="text-center">${community.profile}</p>
                   </div><!--コミュニティ名と紹介文の領域おわり-->
-                  <%-- ${community.id} --%>
+                  
                   <c:choose>
                       <%-- どのコミュニティにも参加していない場合 --%>
                       <c:when test="${empty sessionScope.myCommunities}">

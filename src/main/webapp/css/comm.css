@@ -1,5 +1,5 @@
 #title{
-padding-top: 5px;
+	padding-top: 5px;
 }
 #headimg{
 	width:100%;
@@ -7,13 +7,13 @@ padding-top: 5px;
 	position:relative;
 }
 #comName{
-position: relative;
-bottom: 100px;
+	position: relative;
+	bottom: 100px;
 
 }
 #icon{
-position: relative;
-bottom: 220px;
+	position: relative;
+	bottom: 220px;
 }
 #iconFile{
 	position: relative;
@@ -26,34 +26,34 @@ bottom: 220px;
 }
 
 #userimage{
-width:40%;
-height:10%;
+	width:40%;
+	height:10%;
 }
 
 #date{
-padding-top: 50px;
+	padding-top: 50px;
 }
 #topicIcon{
-width:70px;
-height:70px;
+	width:70px;
+	height:70px;
 }
 
 #topiclist{
-border: medium solid #ff00ff;
+	border: medium solid #ff00ff;
 }
 #createtopic{
-padding-top: 20px;
+	padding-top: 20px;
 }
 #joincom{
-border: medium solid #ff00ff;
+	border: medium solid #ff00ff;
 }
 #slide{
 	height:30px;
 }
 #showwdel{
-width:100px;
-height:50px;
-margin-top: 10px;
+	width:100px;
+	height:50px;
+	margin-top: 10px;
 }
 
 
@@ -65,11 +65,11 @@ margin-top: 10px;
 }
 
 #userimage{
-width:40%;
-height:10%;
+	width:40%;
+	height:10%;
 }
 #communityList{
-border: medium solid #B22222;
+	border: medium solid #B22222;
 }
 
 .changeEffectHead{
@@ -114,3 +114,58 @@ border: medium solid #B22222;
 	margin-right: 39%;
 	margin-top: 110px;
 }
+
+#mobileHead{
+	width:100%;
+	height:120px;
+	position:relative;
+}
+
+#mobileCommName{
+	position:relative;
+	margin-left:15%;
+	margin-top:-60px;
+	background-color:rgba(255,255,255,0.7);
+	font-size: 18px;
+}
+
+#mobileCommIcon{
+	width:80px;
+	height:80px;
+	position:relative;
+	bottom:110px;
+	margin-left:-2%;
+}
+
+#mobileCommProfile{
+	margin-top: -120px;
+}
+
+#mobileMemberIcon{
+	width : 60px;
+	height: 60px;
+}
+
+#mobileTopicIcon{
+	width : 70px;
+	height: 70px;
+}
+
+#mobileCreateUser{
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+#mobileCreateDate{
+	padding:0 0;
+	margin-bottom: 5px;
+}
+
+#mobileTopicName{
+	margin-bottom: 0px;
+}
+
+.mobileText{
+	margin-left: 20px;
+}
+
