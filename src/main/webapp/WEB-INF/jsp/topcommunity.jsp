@@ -18,6 +18,7 @@
                   </div><!--コミュニティ名と紹介文の領域おわり-->
                   <%-- ${community.id} --%>
                   <c:choose>
+                      <%-- どのコミュニティにも参加していない場合 --%>
                       <c:when test="${empty sessionScope.myCommunities}">
                           <div class="row text-right">
                               <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">
@@ -26,19 +27,33 @@
                           </div>
                       </c:when>
                       <c:otherwise>
-                          <%-- <c:forEach var="co" items="${sessionScope.myCommunities}"> --%>
+                          <%-- あるコミュニティに参加しているかどうかの判定フラグ --%>
+                          <c:set var="flag" value="false"/>
+                          <%-- sessionにある参加しているコミュニティのリストを使って比較 --%>
+                          <c:forEach var="co" items="${sessionScope.myCommunities}">
                               <c:choose>
-                                  <c:when test="${fn:contains(co.id,sessionScope.myCommunities)}">
-                                      ${fn:contains(co.id,sessionScope.myCommunities)}
+                                  <%-- co.idは自分が参加しているコミュ、community.idは比較対象となるコミュ --%>
+                                  <c:when test="${co.id eq community.id}">
+                                      <%-- 参加していればtrueに --%>
+                                      <c:set var="flag" value="true"/>
                                   </c:when>
-                                  <c:otherwise>
-                                    ${fn:contains(co.id,sessionScope.myCommunities)}
-                                      <div class="row text-right">
-                                          <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
-                                      </div>
-                                  </c:otherwise>
                               </c:choose>
-                          <%-- </c:forEach> --%>
+                          </c:forEach>
+                          <%-- 参加していない場合ボタンを表示 --%>
+                          <c:choose>
+                              <c:when test="${flag eq 'false'}">
+                                  <div class="row text-right">
+                                      <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
+                                  </div>
+                              </c:when>
+                              <%-- 参加している場合 --%>
+                              <c:otherwise>
+                                  ${sessionScope.myCommunities}
+                                  <div class="row text-right">
+                                      <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
+                                  </div>
+                              </c:otherwise>
+                          </c:choose>
                       </c:otherwise>
                   </c:choose>
               </div><!--コミュニティ一件の領域おわり-->

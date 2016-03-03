@@ -100,8 +100,7 @@ public class WebApplicationController implements ApplicationController{
 				HttpSession session = req.getSession(true);
 
 				Map result = (Map)resc.getResult();
-				System.out.println(result);
-				Collection communities = (Collection)session.getAttribute("myCommunities");
+				List communities = (List)session.getAttribute("myCommunities");
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
 
