@@ -69,7 +69,11 @@
 					</div><!--アイコンとユーザー名の領域おわり-->
 					<div class="row"><!--ブログ名と紹介文の領域-->
 						<div class="hidden-xs">
-							<h1 class="text-center"><a href=""><h3 class="text-muted">${blog.title}</h3></a></h1>
+							<h1 class="text-center">
+								<a href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}">
+									<h3 class="text-muted">${blog.title}${blog.userId}</h3>
+								</a>
+							</h1>
 
 						</div>
 						<div class="visible-xs">

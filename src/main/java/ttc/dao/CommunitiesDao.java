@@ -44,6 +44,11 @@ public class CommunitiesDao implements AbstractDao{
             }
             if(map.containsKey("userId")){
                 pst.setString(i++,(String)map.get("userId"));
+			}
+			
+            if(map.containsKey("targetUserId")){
+                pst.setString(2,(String)map.get("targetUserId"));
+
             }
 
             ResultSet rs = pst.executeQuery();
