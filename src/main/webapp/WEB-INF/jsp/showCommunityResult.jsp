@@ -107,27 +107,29 @@
                 </form>
 
                 <div class="col-xs-10 col-xs-offset-1">
-                    <c:forEach var="item" items="${result.topics}">
-                        <div class="row col-md-10 col-md-offset-1 well">
-                            <div class="col-md-2">
-                                <img src="${item.userIconPath}" id="topicIcon">
-                                <p>
-                                    <c:out value="${item.createUserName}" />
-                                </p>
-                            </div>
+                    <c:forEach var="item" items="${result.topics}" varStatus="i">
+                        <c:if test="${i.count <= 5}">
+                            <div class="row col-md-10 col-md-offset-1 well">
+                                <div class="col-md-2">
+                                    <img class="img-thumbnail" src="${item.userIconPath}" id="topicIcon">
+                                    <p>
+                                        <c:out value="${item.createUserName}" />
+                                    </p>
+                                </div>
 
-                            <div class="col-md-7">
-                                <a href="showchat?topicId=${item.topicId}&communityId=${result.id}">
-                                    <h2 class="text-muted">${item.name}</h2>
-                                </a>
-                            </div>
+                                <div class="col-md-7">
+                                    <a href="showchat?topicId=${item.topicId}&communityId=${result.id}">
+                                        <h2 class="text-muted">${item.name}</h2>
+                                    </a>
+                                </div>
 
-                            <div class="col-md-2">
-                               <p id="date">
-                                   <c:out value="${item.updateDate}" />
-                               </p>
+                                <div class="col-md-2">
+                                   <p id="date">
+                                       <c:out value="${item.updateDate}" />
+                                   </p>
+                                </div>
                             </div>
-                        </div>
+                        </c:if>
                     </c:forEach>
                 </div>
             </div>
@@ -137,10 +139,6 @@
                     <div class="col-md-2">
                         <a class="btn btn-warning" href="/TeraNavi/front/showTopic?communityId=${result.id}">トピック一覧</a>
                     </div>
-                </div>
-
-                <div class="col-xs-10 col-xs-offset-1">
-
                 </div>
             </div>
         </div>
