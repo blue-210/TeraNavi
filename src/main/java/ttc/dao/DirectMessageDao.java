@@ -32,7 +32,7 @@ public class DirectMessageDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
 
             sql.append("select message_id,message_body,message_date," );
@@ -96,7 +96,7 @@ public class DirectMessageDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
             sql.append("direct_messages(message_body,message_date, ");
