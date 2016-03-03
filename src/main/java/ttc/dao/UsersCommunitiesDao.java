@@ -100,14 +100,19 @@ public class UsersCommunitiesDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into community_members_list values(");
-            sql.append("?,?,'0','0')");
+            sql.append("?,?,?,'0')");
 
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-            System.out.println(new String(sql));
-
+            
+//			コミュニティ作成者の時に管理者フラグを立てるための分岐処理
+			if(map.containsKey("adminFlag")){
+				pst.setString(3, (String)map.get("adminFlag"));
+			}else{
+				pst.setString(3,"0");
+			}
 
             result = pst.executeUpdate();
 

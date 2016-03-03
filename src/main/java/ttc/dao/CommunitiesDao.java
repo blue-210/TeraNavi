@@ -38,14 +38,23 @@ public class CommunitiesDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(ssql));
 
+			int i = 1;
             if(map.containsKey("commId")){
-                pst.setString(1,(String)map.get("commId"));
+                pst.setString(i++,(String)map.get("commId"));
+            }
+            if(map.containsKey("userId")){
+                pst.setString(i++,(String)map.get("userId"));
+			}
+			
+            if(map.containsKey("targetUserId")){
+                pst.setString(2,(String)map.get("targetUserId"));
+
             }
 
             ResultSet rs = pst.executeQuery();
 
             rs.next();
-			cb.setId(rs.getString("community_id"));
+			cb.setId(rs.getString(1));
 			cb.setName(rs.getString("community_name"));
 
             cb.setProfile(rs.getString("community_profile"));
@@ -53,7 +62,7 @@ public class CommunitiesDao implements AbstractDao{
             cb.setIconPath(rs.getString("community_icon_path"));
             cb.setDeleteFlag(rs.getString("community_delete_flag"));
             cb.setCreateUserId(rs.getString(7));
-            cb.setAdminFlag(rs.getString(8));
+            cb.setAdminFlag(rs.getString("community_admin_flag"));
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
@@ -112,6 +121,8 @@ public class CommunitiesDao implements AbstractDao{
     }
 
     public int insert(Map map)throws IntegrationException{
+		
+		
         PreparedStatement pst = null;
         PreparedStatement pst1 = null;
         PreparedStatement pst2 = null;
@@ -151,30 +162,6 @@ public class CommunitiesDao implements AbstractDao{
 
 
             result = pst.executeUpdate();
-
-
-            StringBuffer selectSql=new StringBuffer();
-            selectSql.append("select community_id from communities ");
-            selectSql.append("where fk_user_id = ? order by community_id desc");
-            pst1 = cn.prepareStatement(new String(selectSql));
-            pst1.setString(1,(String)map.get("userId"));
-            ResultSet rs = pst1.executeQuery();
-            CommunityBean cb=new CommunityBean();
-            rs.next();
-			cb.setId(rs.getString("community_id"));
-
-
-            StringBuffer insMemSql=new StringBuffer();
-            insMemSql.append("insert into community_members_list(fk_user_id,fk_community_id,");
-            insMemSql.append("community_admin_flag,community_withdrawal_flag) ");
-            insMemSql.append("values(?,?,'1','0')");
-
-            pst2 = cn.prepareStatement(new String(insMemSql));
-            pst2.setString(1,(String)map.get("userId"));
-            pst2.setString(2,cb.getId());
-
-
-            result=pst2.executeUpdate();
 
 
         }catch(SQLException e){

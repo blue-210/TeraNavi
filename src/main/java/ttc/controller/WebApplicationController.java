@@ -25,6 +25,7 @@ import ttc.bean.UserBean;
 
 import java.util.Map;
 import java.util.List;
+import java.util.HashMap;
 
 public class WebApplicationController implements ApplicationController{
 
@@ -97,6 +98,7 @@ public class WebApplicationController implements ApplicationController{
 				session.setAttribute("myCommunities",result.get("community"));
 
 			}else if(path.equals("partiComm")){
+				System.out.println("Session Add");
 				HttpSession session = req.getSession(true);
 
 				Map result = (Map)resc.getResult();
@@ -104,9 +106,10 @@ public class WebApplicationController implements ApplicationController{
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
 
-			}else if(path.equals("signup") || path.equals("basic")){
+			}else if(path.equals("signup") || path.equals("basic") || path.equals("partiComm")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
+				session.setAttribute("myCommunities",new HashMap());
 			}else if(path.equals("logout")||path.equals("withdraw")){
 				HttpSession session = req.getSession(true);
 				session.removeAttribute("loginUser");
