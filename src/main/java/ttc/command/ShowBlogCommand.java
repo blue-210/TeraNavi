@@ -44,7 +44,15 @@ public class ShowBlogCommand extends AbstractCommand{
             List results = dao.readAll(params);
             result.put("articleList", results);
             //----------------------------------------------------------------
-
+            //月別アーカイブ用のリスト作成-----------------------------------------
+            params.put("archive", "true");
+            List archives = dao.readAll(params);
+            result.put("archives", archives);
+            //----------------------------------------------------------------
+            // factory = AbstractDaoFactory.getFactory("article");
+            // dao = factory.getAbstractDao();
+            // ArticleBean ab = (ArticleBean)dao.read(params);
+            // result.put("art", ab);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
