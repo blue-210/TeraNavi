@@ -31,7 +31,7 @@ public class TopicDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            
             StringBuffer sql = new StringBuffer();
 
             sql.append("INSERT INTO ");

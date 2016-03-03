@@ -26,7 +26,6 @@ public class ArticleDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 
 
@@ -101,9 +100,7 @@ public class ArticleDao implements AbstractDao{
         try{
 
             ArticleBean ab =(ArticleBean)map.get("articlebean");
-            Connection cn = null;
-            cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+            Connection cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
 
             sql.append("update articles set ");
@@ -160,7 +157,6 @@ public class ArticleDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
             sql.append("articles(fk_user_id, article_title, article_body, ");
@@ -199,7 +195,6 @@ public class ArticleDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
             ResultSet rs = null;
 
