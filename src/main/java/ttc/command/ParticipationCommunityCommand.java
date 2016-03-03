@@ -39,11 +39,11 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             params.put("community",cb);
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
-            
+
             UserBean ub=new UserBean();
             ub.setCommunity(cb);
             resc.setResult(params);
-            resc.setTarget("showCommunityResult");
+            resc.setTarget("prticipationCommunityResult");
 
             return resc;
         }catch(NullPointerException e){

@@ -38,11 +38,11 @@
 					<label for="headerFile" id="headerPath">
 						<input type="file" id="headerFile" style="display:none">
 					</label>
-					
+
 				</div>
-					<div class="visible-xs">
-						<img src="${result.community.headerPath}" id="mobileHead">
-					</div>
+				<div class="visible-xs">
+					<img src="${result.community.headerPath}" id="mobileHead">
+				</div>
 
 				<div class="container-fluid">
 					<div class="row">
@@ -55,7 +55,7 @@
 							<p> <span id="mobileCommName" class="col-xs-12 text-center">${result.community.name}</span>
 							</p>
 						</div>
-							<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
 					</div>
 					<div class="row hidden-xs">
 						<div class="col-md-12">
@@ -90,27 +90,29 @@
 												</c:forEach>
 											</div>
 
+
 											<div class="row visible-xs">
 												<table class="table table-striped">
 													<tbody>
 														<c:forEach var="member" items="${result.members}">
 															<tr>
 																<td>
-																<img id="mobileMemberIcon" src="${member.iconPath}" class="img-responsive">
-																	
+																	<img id="mobileMemberIcon" src="${member.iconPath}" class="img-responsive">
+
 																</td>
 																<td>
 																	<h3>${member.userName}</h4>
-																	
+
 																</td>
 															</tr>
-															
+
 														</c:forEach>
 
+
 													</tbody>
-													
+
 												</table>
-												
+
 											</div>
 										</div>
 									</div>
