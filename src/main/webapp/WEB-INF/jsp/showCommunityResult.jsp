@@ -24,7 +24,6 @@
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
     <form action="commSetting" method="post" id="setting" >
 
@@ -54,7 +53,6 @@
                 <button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
             </c:if>
 
-           <br>
            <div class="section">
                <div class="container">
                    <div class="row">
@@ -90,9 +88,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-warning" onclick="document.memberForm.submit();">
-                            メンバーの一覧を取得
-                        </button>
+                        <button type="button" class="btn btn-warning" onclick="document.memberForm.submit();">メンバーの一覧をみる</button>
                     </div>
                 </div>
             </div>
@@ -100,41 +96,49 @@
 
     <div class="section">
         <div class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <h1 class="text-center text-primary" style="margin-bottom:10px;">トピック</h1>
+            </div>
+            <div class="col-md-1"></div>
+
             <div class="row">
                 <form name="memberForm" action="/TeraNavi/front/showMemberList" method="post">
                     <input type="hidden" name="commId" value="${result.id}">
                 </form>
 
                 <div class="col-xs-10 col-xs-offset-1">
-                    <c:forEach var="item" items="${result.topics}">
-                        <div class="row col-md-10 col-md-offset-1 well">
-                            <div class="col-md-2">
-                                <img src="${item.userIconPath}" id="topicIcon">
-                                <p>
-                                    <c:out value="${item.createUserName}" />
-                                </p>
-                            </div>
+                    <c:forEach var="item" items="${result.topics}" varStatus="i">
+                        <c:if test="${i.count <= 5}">
+                            <div class="row col-md-10 col-md-offset-1 well">
+                                <div class="col-md-2">
+                                    <img class="img-thumbnail" src="${item.userIconPath}" id="topicIcon">
+                                    <p>
+                                        <c:out value="${item.createUserName}" />
+                                    </p>
+                                </div>
 
-                            <div class="col-md-7">
-                                <a href="showchat?topicId=${item.topicId}&communityId=${result.id}">
-                                    <h2 class="text-muted">${item.name}</h2>
-                                </a>
-                            </div>
+                                <div class="col-md-7">
+                                    <a href="showchat?topicId=${item.topicId}&communityId=${result.id}">
+                                        <h2 class="text-muted">${item.name}</h2>
+                                    </a>
+                                </div>
 
-                            <div class="col-md-2">
-                               <p id="date">
-                                   <c:out value="${item.updateDate}" />
-                               </p>
+                                <div class="col-md-2">
+                                   <p id="date">
+                                       <c:out value="${item.updateDate}" />
+                                   </p>
+                                </div>
                             </div>
-                        </div>
+                        </c:if>
                     </c:forEach>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                    <a href="/TeraNavi/front/showTopic?communityId=${result.id}">
-                        <h2>トピックリスト</h2>
-                    </a>
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <a class="btn btn-warning" href="/TeraNavi/front/showTopic?communityId=${result.id}">トピック一覧</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -31,45 +31,68 @@
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-    <header>
-        <img src='${result.community.headerPath}' id="headimg"></span></p>
-        <img class="pull-left" src='${result.community.iconPath}'width="200px" height="200px" id="icon"></span></p>
-        <span id="name" class="col-md-8 text-center">${result.community.name}</span>
-    </header>
+    <form action="commSetting" method="post" id="setting" >
 
-    <div class="container">
+    <img src="${result.community.headerPath}" id="headimg">
+    <label for="headerFile" id="headerPath">
+            <input type="file" id="headerFile" style="display:none">
+    </label>
+
+    <div class="container-fluid">
         <div class="row">
-            <form action="commGra" method="post">
-                <p><button id="dd">権限付与</button></p>
-			    <div class="container">
-                    <div class="row text-center">
-                        <div class="col-xs-10">
-                            <h1>メンバー一覧</h1>
-                            <div class="row">
-                                <c:forEach var="member" items="${result.members}">
-                                    <div class="col-md-3">
-                                        <img src="${member.iconPath}" class="img-responsive">
-                                        <h4>${member.userName}</h4>
-                                        <input type="hidden" name="targetUser" value="${member.id}">
-								        <input type="hidden" name="communityId" value="${result.value}">
-                                        <div class="check"></div>
-                                    </div>
-                                </c:forEach>
+            <div class="col-md-3"></div>
+            <div class="col-md-5">
+                <p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
+                </p>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <form action="commGra" method="post">
+    			    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-xs-10">
+                                <h1>コミュニティメンバー</h1>
+                                <div class="row">
+                                    <c:forEach var="member" items="${result.members}">
+                                        <div class="col-md-3">
+                                            <img src="${member.iconPath}" class="img-responsive">
+                                            <h4>${member.userName}</h4>
+                                            <input type="hidden" name="targetUser" value="${member.id}">
+    								        <input type="hidden" name="communityId" value="${result.value}">
+                                            <c:choose>
+                                                <c:when test="${result.community.adminFlag eq 1}">
+                                                    <div class="check"></div>
+                                                </c:when>
+                                            </c:choose>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </div>
-                        </div>
-					</div>
-				</div>
-                <p id="sub"></p>
-            </form>
-        </div><!--end row-->
-    </div><!--end container-->
+    					</div>
+    				</div>
+                    <c:choose>
+                        <c:when test="${result.community.adminFlag eq 1}">
+                            <p id="sub"></p>
+                        </c:when>
+                    </c:choose>
+                </form>
+            </div><!--end row-->
+        </div><!--end container-->
+    </div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 
     <script>
         $(function(){
             $('.check').append('<input type="checkbox">');
-            $('#sub').append('<input type="submit" value="確定">');
+            $('#sub').append('<input type="submit" value="権限付与">');
         });
     </script>
 

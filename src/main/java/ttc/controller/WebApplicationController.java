@@ -19,6 +19,7 @@ import ttc.exception.PresentationException;
 import com.google.gson.Gson;
 
 import java.io.PrintWriter;
+import java.util.Collection;
 
 import ttc.bean.UserBean;
 
@@ -79,7 +80,7 @@ public class WebApplicationController implements ApplicationController{
 				Map result = (Map)resc.getResult();
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",result.get("user"));
-				session.setAttribute("myCommunities",result.get("community"));
+				session.setAttribute("myCommunities",(Collection)result.get("community"));
 
 			}else if(path.equals("createcomm")){
 
@@ -102,7 +103,6 @@ public class WebApplicationController implements ApplicationController{
 				List communities = (List)session.getAttribute("myCommunities");
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
-
 
 			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);

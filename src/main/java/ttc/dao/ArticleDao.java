@@ -36,7 +36,7 @@ public class ArticleDao implements AbstractDao{
             sql.append("from articles join users ");
             sql.append("on articles.fk_user_id = users.user_id ");
 
-			
+
 			if(map.containsKey("whereNo")){
 				String whereNo = (String)map.get("whereNo");
 				if(whereNo.equals("1")){
@@ -50,11 +50,11 @@ public class ArticleDao implements AbstractDao{
 				sql.append("where article_id = ?");
 				pst = cn.prepareStatement( new String(sql) );
 				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
-				
+
 			}
 
 
-            System.out.println(sql);
+
 
             ResultSet rs = pst.executeQuery();
 
@@ -88,7 +88,7 @@ public class ArticleDao implements AbstractDao{
         PreparedStatement pst = null;
         int result = 0;
         try{
-            System.out.println("ArticleDao:update()");
+
             ArticleBean ab =(ArticleBean)map.get("articlebean");
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
@@ -97,7 +97,8 @@ public class ArticleDao implements AbstractDao{
             sql.append("update articles set ");
             sql.append("article_title = ?, ");
             sql.append("article_body = ?, ");
-            sql.append("article_status_flag = ? ");
+            sql.append("article_status_flag = ?, ");
+            sql.append("article_created_date = ? ");
             sql.append("where article_id = ?");
 
             pst = cn.prepareStatement( new String(sql) );
@@ -118,9 +119,11 @@ public class ArticleDao implements AbstractDao{
 
             pst.setString(3, (String)map.get("status"));
 
-            pst.setInt(4, Integer.parseInt( (String)map.get("articleId") ) );
+            pst.setString(4, (String)map.get("date"));
 
-            System.out.println(sql);
+            pst.setInt(5, Integer.parseInt( (String)map.get("articleId") ) );
+
+
             result = pst.executeUpdate();
 
         }catch(SQLException e){
@@ -195,7 +198,8 @@ public class ArticleDao implements AbstractDao{
                 sql.append("count(*) ");
                 sql.append("from articles ");
                 sql.append("where fk_user_id = ? and article_status_flag=0 ");
-                sql.append("group by date_format(article_created_date, '%Y%m')");
+                sql.append("group by date_format(article_created_date, '%Y%m') ");
+                sql.append("order by article_created_date desc ");
 
                 pst = cn.prepareStatement( new String(sql) );
                 pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
@@ -211,7 +215,7 @@ public class ArticleDao implements AbstractDao{
                 //-----------------------------------------------------------------------
             }
             else{
-                
+
                 //記事一覧の取得----------------------------------------------------------------------
                 sql.append("select article_id, article_title, article_body, ");
                 sql.append("article_created_date, ");
@@ -247,7 +251,7 @@ public class ArticleDao implements AbstractDao{
                     ab.setUserName( rs.getString(6) );
                     ab.setIconPath( rs.getString(7) );
 
-                   
+
                     results.add(ab);
                 }
                 //-----------------------------------------------------------------------------------

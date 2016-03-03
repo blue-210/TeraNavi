@@ -50,7 +50,7 @@ public class KeyWordSearchDao implements AbstractDao{
                 pst.setString(i+1,"%"+keywords[i]+"%");
             }
 
-            System.out.println("preSibakura");
+            
 
             ResultSet rs = pst.executeQuery();
 
@@ -60,7 +60,7 @@ public class KeyWordSearchDao implements AbstractDao{
                 blog.setTitle(rs.getString(2));
                 blog.setExplanation(rs.getString(3));
                 result.add(blog);
-                System.out.println("sibakura");
+                
             }
 
         }catch(SQLException e){
