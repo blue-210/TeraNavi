@@ -79,10 +79,12 @@ public class MypageLoadCommand extends AbstractCommand{
 			dao = factory.getAbstractDao();
 
 			Map param2 = new HashMap();
-			param2.put("where","Where community_delete_flag=0 and community_members_list.fk_user_id="+userId);
+			// 削除されていないコミュニティである、かつ退会していないコミュニティであることを指定する条件
+			param2.put("where","Where community_delete_flag = 0 and community_members_list.fk_user_id="+userId);
 			param2.put("sort", " order by communities.community_created_date desc ");
 			List communities = dao.readAll(param2);
 
+			// マイページに表示する「参加しているコミュニティ」の数を3つに調整する処理
 			if(communities.size() <= 3){
 				result.put("community",communities);
 			}else{

@@ -100,7 +100,9 @@ create table tera_db.articles_tags(
 
 #コミュニティユーザーリスト表
 create table tera_db.community_members_list(
+	-- 所属しているユーザのID
 	fk_user_id int(10),
+	-- 所属しているコミュニティのID
 	fk_community_id int(10),
 	-- 一般ユーザは0, 管理者は1
 	community_admin_flag char(1) not null,
