@@ -27,7 +27,8 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
             params.put("userId",reqc.getParameter("userId")[0]);
             params.put("commId",reqc.getParameter("commId")[0]);
-            System.out.println("パラメータのcommId"+reqc.getParameter("commId")[0]);
+            params.put("where", "where community_id = ? ");
+            System.out.println("1:パラメータのcommId="+reqc.getParameter("commId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -35,11 +36,11 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-            MySqlConnectionManager.getInstance().commit();
-
+            // insertした結果を取得
             CommunityBean cb =(CommunityBean)dao.read(params);
             params.put("community",cb);
-            System.out.println("insertしてからの～こみゅID："+cb.getId());
+            System.out.println("3:insertしてからの～こみゅID："+cb.getId());
+            System.out.println("------------------------------------------");
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 

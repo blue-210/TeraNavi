@@ -103,7 +103,7 @@ public class WebApplicationController implements ApplicationController{
 
 				Map result = (Map)resc.getResult();
 				List communities = (List)session.getAttribute("myCommunities");
-				System.out.println("IDいけてる？："+((CommunityBean)result.get("community")).getId());
+				System.out.println("handleResponseでIDいけてる？："+((CommunityBean)result.get("community")).getId());
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
 
