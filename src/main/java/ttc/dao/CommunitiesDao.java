@@ -45,16 +45,17 @@ public class CommunitiesDao implements AbstractDao{
             if(map.containsKey("userId")){
                 pst.setString(i++,(String)map.get("userId"));
 			}
-			
+
             if(map.containsKey("targetUserId")){
                 pst.setString(2,(String)map.get("targetUserId"));
 
             }
-
+            System.out.println(new String(ssql));
             ResultSet rs = pst.executeQuery();
 
             rs.next();
 			cb.setId(rs.getString(1));
+            System.out.println("2:DAOデIDトッテル？ "+cb.getId());
 			cb.setName(rs.getString("community_name"));
 
             cb.setProfile(rs.getString("community_profile"));
@@ -121,8 +122,8 @@ public class CommunitiesDao implements AbstractDao{
     }
 
     public int insert(Map map)throws IntegrationException{
-		
-		
+
+
         PreparedStatement pst = null;
         PreparedStatement pst1 = null;
         PreparedStatement pst2 = null;
