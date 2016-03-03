@@ -190,7 +190,7 @@
 				<div class="visible-xs col-xs-12">
 					<button type="submit" class="btn btn-primary btn-block" id="signsubmitMobile" data-toggle="modal">確認</button>
 				</div>
-				
+
 			</div>
 			</div>
 		</form>
@@ -208,44 +208,44 @@
 
 				<div class="modal-body">
 					<div class="row">
-						
+
 						<div class="col-xs-1"></div>
 						<div class="col-xs-10">
 
-							<label>名前</label>
-							<h3 id="sName"></h3>
+							<h2>名前</h2>
+							<h4 id="sName"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>かな</label>
-							<h3 id="sKana"></h3>
+							<h2>ふりがな</h2>
+							<h4 id="sKana"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>性別</label>
-							<h3 id="sSex"></h3>
+							<h2>性別</h2>
+							<h4 id="sSex"></h4>
 							<hr size="1" color="#fffff">
 
 <!--							<label>生年月日</label>
 							<h3 id="sBirth"></h3>
 							<hr size="1" color="#fffff">-->
 
-							<label>メール</label>
-							<h3 id="sMail"></h3>
+							<h2>メールアドレス</h2>
+							<h4 id="sMail"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>ログインID</label>
-							<h3 id="sId"></h3>
+							<h2>ログインID</h2>
+							<h4 id="sId"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>パスワード</label>
-							<h3 id="sPass"></h3>
+							<h2>パスワード</h2>
+							<h4 id="sPass"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>秘密の質問</label>
-							<h3 id="sQuestion"></h3>
+							<h2>秘密の質問</h2>
+							<h4 id="sQuestion"></h4>
 							<hr size="1" color="#fffff">
 
-							<label>秘密の回答</label>
-							<h3 id="sAnswer"></h3>
+							<h2>秘密の回答</h2>
+							<h4 id="sAnswer"></h4>
 							<hr size="1" color="#fffff">
 							<!--<h2 id="sKey"></label>-->
 							<p></p>
@@ -262,7 +262,7 @@
          </div>
           <!-- モーダル閉じるやつだよ -->
 	  </div>
-	
+
 	<!--モバイル用のmodal-->
 	<div class="fade modal text-justify modal-xs" id="signup-modal-mobile">
         	<div class="modal-dialog">
@@ -276,7 +276,7 @@
 
 				<div class="modal-body">
 					<div class="row">
-						
+
 						<div class="col-xs-1"></div>
 						<div class="col-xs-10">
 
@@ -328,14 +328,14 @@
               </div>
             </div>
          </div>
-	
+
 
 	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 	  <script>
 	  	$("#signsubmit").on("click", function() {
 			if($("#fMail").val()==$("#fMail2").val()){
 				if($("#fPassword").val()==$("#fPassword2").val()){
-					
+
 					$("#sName").empty();
 					$("#sKana").empty();
 					$("#sSex").empty();
@@ -373,7 +373,7 @@
 			}
 
 	  	});
-		
+
 		$("#signsubmitMobile").on("click", function() {
 			if($("#fMail").val()==$("#fMail2").val()){
 				if($("#fPassword").val()==$("#fPassword2").val()){
