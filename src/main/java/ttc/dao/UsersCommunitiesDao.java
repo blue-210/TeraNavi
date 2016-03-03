@@ -139,7 +139,6 @@ public class UsersCommunitiesDao implements AbstractDao{
        表の主キー制約をなくすという手もあるが、deleteしたほうが更新異状などがなくて確実だと判断して
        deleteメソッドを作成
     */
-
     public void delete(Map map) throws IntegrationException{
         PreparedStatement pst = null;
         int result = 0;
