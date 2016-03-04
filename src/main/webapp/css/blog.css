@@ -35,4 +35,29 @@ and open the template in the editor.
 #articleBody{
 	text-align: left;
 	width:65%;
+	
+}
+
+#articleBodyMobile{
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+.article-date-mobile{
+	font-size: 10px;
+	float: left;
+	margin-left:20px;
+	margin-right: 20px;
+}
+
+.article-comment-count-mobile{
+	font-size: 10px;
+}
+
+.blog-archive{
+	margin-top: -30px;
+}
+
+.archive-list-btn{
+	margin-left: 60px;
 }
