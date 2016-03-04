@@ -56,9 +56,11 @@
                                 <label class="control-label">内容</label>
                                 <textarea class="ckeditor" id="inputBody" name="body">${result.article.articleBody}</textarea>
                             </div>
-                            <div class="col-md-2" style="padding-left:0px;">
+                            <div class="col-md-2 col-md-offset-2">
                                 <a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
                             </div>
+                            <a id="addImage" style="cursor:pointer"><i class="fa fa-2x fa-fw fa-image text-muted pull-left"></i></a>
+                           <input type="file" id="inputImage" class="hidden">
                         </div>
                         <input type="hidden" name="articleId" value="${result.article.articleId}" id="targetArticleId">
                     </form>
@@ -75,21 +77,6 @@
                             <button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">編集内容を投稿</button>
                         </div>
                     </div>
-
-                    <br>
-                    <h1>記事投稿ページ</h1>
-                    <form action="/TeraNavi/front/articlepost" method="post">
-                        タイトル <input type="text" name="title"><br>
-                        内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-                        <input type="submit" value="投稿">
-                    </form>
-
-                    <h1>下書き</h1>
-                    <form action="/TeraNavi/front/draftArticle" method="post">
-                        タイトル <input type="text" name="title"><br>
-                        内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-                        <input type="submit" value="投稿">
-                    </form>
 
                 </div><!-- end col-8コンテンツ -->
 
@@ -118,6 +105,25 @@
         </div>
      </div>
 
+     <!-- プレビューモーダル -->
+     <div class="fade modal text-justify" id="previewModal">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+               </button>
+             　<h4 class="modal-title text-center">プレビュー</h4>
+              </div>
+             <div class="modal-body" id="previewModalBody">
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-block btn-default" data-dismiss="modal">閉じる</button>
+             </div>
+           </div>
+         </div>
+      </div>
+
     <!-- 確認モーダル -->
     <div class="fade modal text-justify" id="editArticleModal">
         <div class="modal-dialog">
@@ -129,9 +135,8 @@
             　<h4 class="modal-title text-center">確認</h4>
              </div>
             <div class="modal-body" id="editArticleModalBody">
-                <p>この内容でよろしいですか？</p><br>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="editArticleModalFooter">
                 <button type="submit" class="btn btn-block btn-warning" id="btn_modalEditArticle" data-dismiss="modal">投稿</button>
                 <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
             </div>
@@ -194,6 +199,47 @@
 
               });
 
+          //画像追加-------------------------------------------------------------
+
+          $("#addImage").on("click",function(){
+             $("#inputImage").click();
+          });
+
+          $(document).on("change","#inputImage",function(){
+              var file = this.files[0];
+              // ブラウザごとの違いをフォローする
+              window.URL = window.URL || window.webkitURL ;
+
+              // Blob URLの作成
+              src = window.URL.createObjectURL( file ) ;
+              $("#headimg").attr("src", src);
+              uploadImage();
+          });
+
+           function uploadImage(){
+        		var files = document.getElementById("inputImage").files;
+
+        		for(var i = 0;i < files.length;i++){
+        			var f = files[i];
+        			var formData = new FormData();
+        			formData.append("file",f);
+        			ajaxSettings.data = formData;
+        			ajaxSettings.url = "/TeraNavi/upload/article";
+        			ajaxSettings.success = function(data){
+                       var imageTag = "<img src=\""+data.result+"\" / style=\"width:100%;\">";
+                       var currentText = CKEDITOR.instances.inputBody.getData();
+                       CKEDITOR.instances.inputBody.setData(currentText+""+imageTag);
+                       console.log(imageTag);
+                       console.log(currentText);
+                       console.log(CKEDITOR.instances.inputBody.getData());
+        			}
+
+        		    ajax = $.ajax(ajaxSettings);
+        		}
+           }
+
+
+
            //タグ選択モーダルを出す処理---------------------------------------------
            $("#btn_addTag").on("click",function(){
               $("#addTagModal").modal();
@@ -219,6 +265,7 @@
                 var body = CKEDITOR.instances.inputBody.getData();
                 $("#editArticleModalBody").empty();
                 eamBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
+                eamBody.append('<hr><p>この内容でよろしいですか？<p>');
                 $("#editArticleModal").modal();
             });
 
@@ -287,7 +334,12 @@
             });
 
             $("#btn_preview").on("click",function(){
-                alert($(':text[name="inputTitle"]').val());
+                var apmBody = $("#previewModalBody");
+                var title = $("#inputTitle").val();
+                var body = CKEDITOR.instances.inputBody.getData();
+                $("#previewModalBody").empty();
+                apmBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
+                $("#previewModal").modal();
             });
 
 		});
