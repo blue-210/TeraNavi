@@ -23,7 +23,17 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
 
             HashMap params = new HashMap();
 
-            String userId=reqc.getParameter("userId")[0];
+            String userId = reqc.getParameter("userId")[0];
+
+			try{
+				//targetUserIdパラメータがあるかのチェック
+				String targetUserId = reqc.getParameter("targetUserId")[0];
+
+				if(targetUserId.length() > 0){
+					userId = targetUserId;
+				}
+			}catch(NullPointerException e){}
+
             params.put("value",userId);
 
             params.put("where"," WHERE community_members_list.fk_user_id= ? and communities.community_delete_flag = '0' ");
@@ -37,14 +47,37 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
 			Map results = new HashMap();
 			results.put("list",dao.readAll(params));
 
+            params.clear();
+
+            factory = AbstractDaoFactory.getFactory("users");
+            dao = factory.getAbstractDao();
+            params.put("value",userId);
+            params.put("where", " where user_id=? ");
+            results.put("user", dao.read(params));
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(results);
 
-            resc.setTarget("showMyCommunityResult");
+            boolean myCommListFlag = false;
+			try{
+				//targetパラメータがあるかのチェック
+				String myCommList = reqc.getParameter("myCommunityList")[0];
+
+				if(myCommList.length() > 0){
+					myCommListFlag=true;
+				}
+			}catch(NullPointerException e){}
+
+            if(myCommListFlag){
+                resc.setTarget("showMyCommunityList");
+            }else{
+                resc.setTarget("showMyCommunityResult");
+            }
 
             return resc;
+
         }catch(NullPointerException e){
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){

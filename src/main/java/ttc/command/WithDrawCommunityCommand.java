@@ -27,13 +27,13 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 
             // targetはなぜかcommunity_withdrawal_flag=1というSQLのパラメータの一部が入っている。
             // 本当は列名を外部に晒すのはイクナイ
-			String target = reqc.getParameter("target")[0];
+			// String target = reqc.getParameter("target")[0];
             // userIdで、ログイン時にsessionからWebRequestContextのparameterに入れられたログインユーザのIDを取得できる
 			String userId = reqc.getParameter("userId")[0];
 
             params.put("userId",userId);
             params.put("commId",reqc.getParameter("commId")[0]);
-			params.put("target",target);
+			// params.put("target",target);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
@@ -61,10 +61,10 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 
             MySqlConnectionManager.getInstance().closeConnection();
 
-            result.put("commName",reqc.getParameter("commName")[0]);
+            // result.put("commName",reqc.getParameter("commName")[0]);
             // communities表から取得した最新の参加コミュニティがWebApplicationControllerのhandleResponse内でsessionに反映される
             resc.setResult(result);
-            resc.setTarget("communityWithDrawResult");
+            // resc.setTarget("communityWithDrawResult");
 
             return resc;
         }catch(NullPointerException e){

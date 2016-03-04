@@ -215,8 +215,6 @@
 													<td>
 														<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
 															<input type="hidden" name="commId" value="${community.id}">
-															<input type="hidden" name="commName" value="${community.name}">
-															<input type="hidden" name="target" value="community_withdrawal_flag=1">
 															<button type="submit" class="btn btn-danger pull-right">退会</button>
 														</form>
 													</td>
@@ -228,7 +226,7 @@
 									</table>
 									<c:choose>
 										<c:when test="${fn:length(result.community) > 0}">
-											<a href="/TeraNavi/front/commmy" class="btn btn-warning pull-right">参加中のコミュニティ一覧</a>　
+											<a href="/TeraNavi/front/commmy?myCommunityList=true&targetUserId=${result.user.id}" class="btn btn-warning pull-right">参加中のコミュニティ一覧</a>　
 										</c:when>
 										<c:otherwise>
 											<p class="text-center">まだコミュニティに参加していません</p>
