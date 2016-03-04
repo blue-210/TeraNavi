@@ -56,17 +56,16 @@
 
                                 <div class="input-group col-md-8">
                                     <label class="control-label">内容</label>
+
                                     <textarea class="ckeditor" id="inputBody" name="body"></textarea>
                                 </div>
-                                <div class="col-md-2" style="padding-left:0px;">
+                                <div class="col-md-2 col-md-offset-2">
                                     <a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
                                 </div>
+                                <a id="addImage" style="cursor:pointer"><i class="fa fa-2x fa-fw fa-image text-muted pull-left"></i></a>
+                                <input type="file" id="inputImage">
                             </div>
                         </form>
-                    </div>
-
-                    <div class="row">
-
                     </div>
 
                     <div class="row">
@@ -80,26 +79,6 @@
                             <button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
                         </div>
                     </div>
-
-                    <form action="/TeraNavi/front/draftArticle" method="post" id="draftForm">
-                        <input type="hidden" name="title" value="" id="draftTitle">
-                        <input type="hidden" name="body" value="" id="draftBody">
-                    <form>
-
-                    <br>
-                    <h1>記事投稿ページ</h1>
-                    <form action="/TeraNavi/front/articlepost" method="post">
-                        タイトル <input type="text" name="title"><br>
-                        内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-                        <input type="submit" value="投稿">
-                    </form>
-
-                    <h1>下書き</h1>
-                    <form action="/TeraNavi/front/draftArticle" method="post">
-                        タイトル <input type="text" name="title"><br>
-                        内容 <textarea id="tbody" name="body" rows="4" cols="40" ondrop="onDrop(event)" ondragover="onDragOver(event)"></textarea><br>
-                        <input type="submit" value="投稿">
-                    </form>
 
                 </div><!-- end col-8コンテンツ -->
 
@@ -170,7 +149,23 @@
 	<script>
 		var ajaxSettings;
 		var ajax;
+        $(function(){
+
+			ajaxSettings = {
+				type:'post',
+				url:'upload',
+				processData:false,
+				contentType:false,
+				cache:false,
+				dataType:'json'
+
+			};
+
+		});
+
 		$(function(){
+
+            $("#inputImage").hide();
 
             //タグ一覧を取得する処理-----------------------------------------------------------
             $.ajax({
@@ -198,11 +193,51 @@
                         </label>'
                       );
                   }
-               })
+                })
             //    失敗時の処理
                .fail(function() {
 
                });
+
+           //画像追加-------------------------------------------------------------
+
+           $("#addImage").on("click",function(){
+              $("#inputImage").click();
+           });
+
+           $(document).on("change","#inputImage",function(){
+               var file = this.files[0];
+               // ブラウザごとの違いをフォローする
+               window.URL = window.URL || window.webkitURL ;
+
+               // Blob URLの作成
+               src = window.URL.createObjectURL( file ) ;
+               $("#headimg").attr("src", src);
+               uploadImage();
+           });
+
+            function uploadImage(){
+        		var files = document.getElementById("inputImage").files;
+
+        		for(var i = 0;i < files.length;i++){
+        			var f = files[i];
+        			var formData = new FormData();
+        			formData.append("file",f);
+        			ajaxSettings.data = formData;
+        			ajaxSettings.url = "/TeraNavi/upload/article";
+        			ajaxSettings.success = function(data){
+                        var imageTag = "<img src=\""+data.result+"\" / style=\"width:100%;\">";
+                        var currentText = CKEDITOR.instances.inputBody.getData();
+                        CKEDITOR.instances.inputBody.setData(currentText+""+imageTag);
+                        console.log(imageTag);
+                        console.log(currentText);
+                        console.log(CKEDITOR.instances.inputBody.getData());
+        			}
+
+        		    ajax = $.ajax(ajaxSettings);
+        		}
+            }
+
 
             //タグ選択モーダルを出す処理---------------------------------------------
             $("#btn_addTag").on("click",function(){
@@ -214,6 +249,8 @@
                 var apmBody = $("#articlePostModalBody");
                 var title = $("#inputTitle").val();
                 var body = CKEDITOR.instances.inputBody.getData();
+                console.log("gatData="+CKEDITOR.instances.inputBody.getData());
+                console.log("body="+body);
                 $("#articlePostModalBody").empty();
                 apmBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
                 $("#articlePostModal").modal();
@@ -244,7 +281,7 @@
                 //    成功時の処理
                    .done(function(data) {
                       $("#articlePostResultModal").modal();
-                   })
+                  })
                 //    失敗時の処理
                    .fail(function() {
                        $("#articlePostResultMessage").text("記事を投稿できませんでした");
@@ -289,46 +326,12 @@
             });
 
 
-			ajaxSettings = {
-				type:'post',
-				url:'upload',
-				processData:false,
-				contentType:false,
-				cache:false,
-				dataType:'json',
-				success:function(data){
-					console.log("success");
-					var text = $("#tbody").val();
-					$("#tbody").val(text+"<br>"+data.result);
-				}
-			}
-
-
             $("#btn_preview").on("click",function(){
                 alert($(':text[name="inputTitle"]').val());
             });
 
 		});
 
-		function onDrop(event){
-			var files = event.dataTransfer.files;
-
-
-			for(var i = 0;i < files.length;i++){
-
-				var f = files[i];
-				var formData = new FormData();
-				formData.append("file",f);
-				ajaxSettings.data = formData;
-				ajax = $.ajax(ajaxSettings);
-			}
-
-			event.preventDefault();
-		}
-
-		function onDragOver(event){
-			event.preventDefault();
-		}
 
 	</script>
 </body>
