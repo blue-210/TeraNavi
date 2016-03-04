@@ -25,7 +25,7 @@ public class UsersCommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select fk_community_id ");
             // 退会していないものを取得する
-            sql.append("from community_members_list where community_withdrawal_flag = 0 and fk_user_id = ? ");
+            sql.append("from community_members_list where fk_user_id = ? ");
 
             pst = cn.prepareStatement(new String(sql));
             pst.setInt(1, Integer.parseInt((String)map.get("userId")));
@@ -96,8 +96,8 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-            sql.append("insert into community_members_list values(");
-            sql.append("?,?,?,'0')");
+            sql.append("insert into community_members_list ");
+            sql.append("values(?,?,?)");
 
             pst = cn.prepareStatement(new String(sql));
 

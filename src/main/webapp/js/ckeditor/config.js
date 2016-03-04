@@ -21,5 +21,9 @@
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] }
 	];
 
+    CKEDITOR.config.height = '500px'; //高さ
+
+    config.allowedContent = true;
+
 	config.removeButtons = 'Underline,Subscript,Superscript,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Scayt,Anchor,Table,HorizontalRule,SpecialChar,Maximize,Outdent,Indent,About,Styles';
 };
