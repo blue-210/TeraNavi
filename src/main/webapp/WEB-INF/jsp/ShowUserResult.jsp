@@ -30,7 +30,7 @@
       <div class="container">
 		<c:forEach var="item" items="${result}">
 			<div class="row">
-			  <div class="col-md-7 col-md-offset-1">
+			  <div class="col-md-10 col-md-offset-1">
 				<img src="${item.iconPath}" class="img-responsive">
                     <div class="prof">
                         <h2>${item.userName}</h2>
