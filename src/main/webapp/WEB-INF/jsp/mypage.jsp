@@ -117,7 +117,7 @@
 											</c:otherwise>
 										</c:choose>
 										<li>
-											<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+community_members_list.community_withdrawal_flag+&target=create">コミュニティ管理</a>
+											<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 										</li>
 										<li>
 											<a href="/TeraNavi/front/showDmList">DM</a>

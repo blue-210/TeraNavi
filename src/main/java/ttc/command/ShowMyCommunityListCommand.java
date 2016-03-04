@@ -26,9 +26,7 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             String userId=reqc.getParameter("userId")[0];
             params.put("value",userId);
 
-            params.put("where"," WHERE "+reqc.getParameter("where")[0]+" ");
-			
-			String target = reqc.getParameter("target")[0];
+            params.put("where"," WHERE community_members_list.fk_user_id= ? and communities.community_delete_flag = '0' ");
 
 
             MySqlConnectionManager.getInstance().beginTransaction();
@@ -42,9 +40,8 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			results.put("target",target);
 			resc.setResult(results);
-			
+
             resc.setTarget("showMyCommunityResult");
 
             return resc;

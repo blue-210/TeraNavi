@@ -48,7 +48,7 @@
                         <c:if test="${comm.adminFlag eq 1}">
                             <div class="row col-md-10 col-md-offset-1 well">
                                 <div class="col-md-2">
-                                    <img src="${comm.iconPath}" id="topicIcon">
+                                    <img src="${comm.iconPath}" id="topicIcon" class="img-thumbnail">
                                 </div>
                                 <div class="col-md-7">
                                     <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
@@ -81,7 +81,7 @@
                         <c:if test="${comm2.adminFlag ne 1}">
                             <div class="row col-md-10 col-md-offset-1 well">
                                 <div class="col-md-2">
-                                    <img src="${comm2.iconPath}" id="topicIcon">
+                                    <img src="${comm2.iconPath}" id="topicIcon" class="img-thumbnail">
                                 </div>
                                 <div class="col-md-7">
                                     <a href="/TeraNavi/front/showcomm?commId=${comm2.id}">
