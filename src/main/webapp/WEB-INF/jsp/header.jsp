@@ -68,8 +68,8 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					
-					<li><a href="TeraNavi/front/top">Top</a></li>
+					<li><a href="/TeraNavi/front/top">Top</a></li>
+					<li><a data-toggle="modal" href="#searchFormModal">検索</a><li>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginUser}">
 							<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
@@ -88,18 +88,19 @@
 
 
 <%-- 検索モーダル本体 --%>
-	<div class="modal fade" id="searchForm" tabindex="-1" role="dialog">
+	<div class="modal fade" id="searchFormModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-                <form action="/TeraNavi/front/usearch" method="POST">
+                <form action="/TeraNavi/front/usearch" method="POST" id="sFormMobile">
                   <div class="form-group">
-						<select id="target">
+						<select id="targetMobile">
 							<option value="usearch" selected>ユーザ</option>
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
 					  <input type="text" class="form-group" name="keyword" placeholder="検索キーワード">
+					  <input type="hidden" name="intention" value="search">
                   </div>
                   <button type="submit" class="btn btn-default btn-block">検索</button>
                 </form>
