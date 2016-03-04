@@ -107,7 +107,7 @@
 													<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
 												</li>
 												<li>
-													<a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+													<a href="/TeraNavi/front/showBlog??edit=true&bloguserId">ブログ設定</a>
 												</li>
 											</c:when>
 											<c:otherwise>
@@ -135,13 +135,13 @@
 
 							<!-- 残り8列はコンテンツ表示部分として使う -->
 							<div class="col-md-8 col-xs-12">
-							</c:when>
-							<c:otherwise>
+						</c:when>
+						<c:otherwise>
 
 								<div class="col-md-8 col-xs-12 col-md-offset-2">
 
-							</c:otherwise>
-							</c:choose>
+						</c:otherwise>
+					</c:choose>
 
 							<div class="row visible-xs">
 								<h3 style="margin-left:20px;">${result.user.userName}</h3>
