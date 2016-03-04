@@ -65,10 +65,10 @@
 
                                <c:choose>
                                    <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-                                       タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.title}"><br>
-                                       説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.explanation}</textarea><br>
+                                       タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.blog.title}"><br>
+                                       説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.blog.explanation}</textarea><br>
                                        <p>ヘッダー画像</p>
-                                       <img src="${result.headerPath}" width="555px" height="150px" id="headimg">
+                                       <img src="${result.blog.headerPath}" width="555px" height="150px" id="headimg">
                                     </c:when>
                                     <c:otherwise>
                                         タイトル<input type="text" name="title" class="form-control" id="blogTitle" placeholder="例:野球ブログ"><br>
@@ -78,7 +78,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <input type="file" id="headerFile">
-                                <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.headerPath}">
+                                <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.blog.headerPath}">
                                <div class="col-md-3">
                                     <button class="btn btn-warning" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:485px;">確認</button>
                                 </div>
