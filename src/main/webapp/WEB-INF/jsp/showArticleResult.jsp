@@ -93,7 +93,9 @@
 								</c:when>
 							</c:choose>
 							<li>
-								<a href="#" style="font-weight:bold">ブログTOPへ</a>
+								<a href="/TeraNavi/front/showBlog?bloguserId=${result.blog.userId}" style="font-weight:bold">
+									ブログTOPへ
+								</a>
 							</li>
 							<c:choose>
 								<c:when test="${result.next >= 0}">
