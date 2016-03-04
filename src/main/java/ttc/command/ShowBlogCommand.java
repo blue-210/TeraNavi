@@ -16,6 +16,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.ArticleBean;
 import ttc.bean.BlogBean;
+import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class ShowBlogCommand extends AbstractCommand{
@@ -49,10 +50,12 @@ public class ShowBlogCommand extends AbstractCommand{
             List archives = dao.readAll(params);
             result.put("archives", archives);
             //----------------------------------------------------------------
-            // factory = AbstractDaoFactory.getFactory("article");
-            // dao = factory.getAbstractDao();
-            // ArticleBean ab = (ArticleBean)dao.read(params);
-            // result.put("art", ab);
+            factory = AbstractDaoFactory.getFactory("users");
+            dao = factory.getAbstractDao();
+            params.put("value",userId);
+            params.put("where", " where user_id=? ");
+            UserBean ub = (UserBean)dao.read(params);
+            result.put("user", ub);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
