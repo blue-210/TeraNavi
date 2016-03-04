@@ -29,7 +29,7 @@ public class FileUploadServlet extends HttpServlet{
 
 	public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException{
 
-		
+
 
 		req.setCharacterEncoding("utf-8");
 
@@ -41,16 +41,22 @@ public class FileUploadServlet extends HttpServlet{
 
 		int width = 0;
 		int height = 0;
-		
+
 		String info = req.getPathInfo();
-		if(info != null && info.equals("header")){
+
+		boolean resizeFlg = true;
+
+		if(info != null && info.equals("/header")){
 			width = 1500;
 			height = 500;
+		}else if(info != null && info.equals("/article")){
+			resizeFlg = false;
+			//リサイズしません
 		}else{
 			width = 400;
 			height = 400;
 		}
-		
+
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload sfu = new ServletFileUpload(factory);
 		try{
@@ -64,11 +70,18 @@ public class FileUploadServlet extends HttpServlet{
 					if((fileName!=null)&&(!fileName.equals(""))){
 						File target = new File(fileName);
 						fileName = target.getName();
-						
+
 						item.write(new File(path+"/"+fileName));
-						
-						String result=ImageResizer.doResize(new File(path+"/"+fileName), width, height,path+"/"+fileName);
-						resultPath="http://"+hostName+"/TeraNavi/imgPath/"+result;
+
+						String result = null;
+
+						if(resizeFlg){
+								result = ImageResizer.doResize(new File(path+"/"+fileName), width, height,path+"/"+fileName);
+						}else{
+							result = fileName;
+						}
+
+						resultPath = "http://"+hostName+"/TeraNavi/imgPath/"+result;
 					}
 				}
 
@@ -81,7 +94,7 @@ public class FileUploadServlet extends HttpServlet{
 			throw new IOException(e.getMessage(),e);
 		}
 
-		
+
 
 		String responseJson = "{\"result\":\""+resultPath+"\"}";
 		res.setContentType("application/json;charset=UTF-8");
