@@ -69,10 +69,7 @@
 								<li>
 									<a href="/TeraNavi/front/showDmList">DM</a>
 								</li>
-								<br><br>
-								<li>
-									<a href="/TeraNavi/withdraw">退会</a>
-								</li>
+								
 							</ul>
 						</div>
 					</div>
