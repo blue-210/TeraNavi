@@ -30,18 +30,21 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
+            // UsersCommunitiesDaoを取得
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
+            // いったんコミット。
+            MySqlConnectionManager.getInstance().commit();
 
+            // insertした結果（参加したコミュを取得）
             CommunityBean cb =(CommunityBean)dao.read(params);
             params.put("community",cb);
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-            UserBean ub=new UserBean();
-            ub.setCommunity(cb);
             resc.setResult(params);
             resc.setTarget("prticipationCommunityResult");
 

@@ -23,21 +23,17 @@ public class UsersCommunitiesDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql=new StringBuffer();
-            sql.append("select community_id,community_name from communities where fk_user_id=? and community_id=?");
+            sql.append("select fk_community_id ");
+            // 退会していないものを取得する
+            sql.append("from community_members_list where community_withdrawal_flag = 0 and fk_user_id = ? ");
 
             pst = cn.prepareStatement(new String(sql));
-
             pst.setInt(1, Integer.parseInt((String)map.get("userId")));
-            pst.setInt(2, Integer.parseInt((String)map.get("commId")));
-
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
-
-                cb.setId(rs.getString("community_id"));
-				cb.setName(rs.getString("community_name"));
-
+                cb.setId(rs.getString("fk_community_id"));
             }
 
         }catch(SQLException e){
@@ -55,6 +51,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 
     }
 
+    // 退会時の処理では使わない。理由は↓のdelteメソッド前のコメント参照
     public int update(Map map)throws IntegrationException{
         PreparedStatement pst = null;
         int result = 0;
@@ -106,7 +103,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("commId"));
-            
+
 //			コミュニティ作成者の時に管理者フラグを立てるための分岐処理
 			if(map.containsKey("adminFlag")){
 				pst.setString(3, (String)map.get("adminFlag"));
@@ -137,4 +134,41 @@ public class UsersCommunitiesDao implements AbstractDao{
         return null;
     }
 
+    /* UsersCommunities表は、一度参加して退会したコミュニティに参加しようとすると、
+       主キー制約に違反してしまう。そのため、退会時にはフラグ変更ではなくdeleteする必要がある。
+       表の主キー制約をなくすという手もあるが、deleteしたほうが更新異状などがなくて確実だと判断して
+       deleteメソッドを作成
+    */
+    public void delete(Map map) throws IntegrationException{
+        PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+
+            StringBuffer sql = new StringBuffer();
+
+            sql.append("delete from community_members_list ");
+            sql.append("where fk_user_id=? and fk_community_id=?");
+            System.out.println(new String(sql));
+            pst = cn.prepareStatement(new String(sql));
+
+            pst.setString(1,(String)map.get("userId"));
+            pst.setString(2,(String)map.get("commId"));
+
+            result = pst.executeUpdate();
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+    }
 }

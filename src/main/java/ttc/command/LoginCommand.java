@@ -29,12 +29,9 @@ public class LoginCommand extends AbstractCommand{
             String loginId=reqc.getParameter("loginId")[0];
             String password=reqc.getParameter("password")[0];
 
-
-
             Map params = new HashMap();
             params.put("value",loginId);
             params.put("where","where login_id=?");
-
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
@@ -44,26 +41,27 @@ public class LoginCommand extends AbstractCommand{
             if(password.equals(ub.getPassword())){
                 ub.setPassword("dummy");
                 ub.setSecretAnswer("dummy");
-				
+
+                // communities表から所属しているコミュニティを取得する
 				factory = AbstractDaoFactory.getFactory("community");
 				dao = factory.getAbstractDao();
-				
+
 				params.clear();
 				params.put("where","where community_members_list.fk_user_id=?");
 				params.put("value", ub.getId());
 				List communities = dao.readAll(params);
-				
+
 				Map result = new HashMap();
 				result.put("user", ub);
 				result.put("community", communities);
-				
+
                 resc.setResult(result);
                 resc.setTarget("LoginResult");
 
             }else{
                 throw new PasswordInvalidException("パスワードが違います",null);
             }
-			
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 

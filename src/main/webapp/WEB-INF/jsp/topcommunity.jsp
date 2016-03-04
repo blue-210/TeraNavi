@@ -16,7 +16,7 @@
                     </a>
                     <p class="text-center">${community.profile}</p>
                   </div><!--コミュニティ名と紹介文の領域おわり-->
-                  
+
                   <c:choose>
                       <%-- どのコミュニティにも参加していない場合 --%>
                       <c:when test="${empty sessionScope.myCommunities}">
@@ -31,8 +31,6 @@
                           <c:set var="flag" value="false"/>
                           <%-- sessionにある参加しているコミュニティのリストを使って比較 --%>
                           <c:forEach var="co" items="${sessionScope.myCommunities}">
-                              <p>参加しているこみゅ${co.id}</p>
-                              <p>コミュID${community.id}</p>
                               <c:choose>
                                   <%-- co.idは自分が参加しているコミュ、community.idは比較対象となるコミュ --%>
                                   <c:when test="${co.id eq community.id}">

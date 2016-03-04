@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 
 import ttc.bean.UserBean;
+import ttc.bean.CommunityBean;
 
 import java.util.Map;
 import java.util.List;
@@ -76,7 +77,7 @@ public class WebApplicationController implements ApplicationController{
 				throw new PresentationException((e.getMessage()), e);
 			}
 		}else{
-
+			// 以下はsessionの中身を更新する必要があるコマンド群
 			if(path.equals("login")){
 				Map result = (Map)resc.getResult();
 				HttpSession session = req.getSession(true);
@@ -98,7 +99,6 @@ public class WebApplicationController implements ApplicationController{
 				session.setAttribute("myCommunities",result.get("community"));
 
 			}else if(path.equals("partiComm")){
-				System.out.println("Session Add");
 				HttpSession session = req.getSession(true);
 
 				Map result = (Map)resc.getResult();
@@ -106,7 +106,7 @@ public class WebApplicationController implements ApplicationController{
 				communities.add(result.get("community"));
 				session.setAttribute("myCommunities", communities);
 
-			}else if(path.equals("signup") || path.equals("basic") || path.equals("partiComm")){
+			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 				session.setAttribute("myCommunities",new HashMap());

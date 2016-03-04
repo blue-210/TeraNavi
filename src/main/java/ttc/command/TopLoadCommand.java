@@ -47,7 +47,7 @@ public class TopLoadCommand extends AbstractCommand{
 			param1.put("sortType","0");
 			List articles = dao.readAll(param1);
 			Iterator itr = articles.iterator();
-			
+
 			while(itr.hasNext()){
 				ArticleBean ab = (ArticleBean)itr.next();
 				param1.clear();
@@ -88,11 +88,13 @@ public class TopLoadCommand extends AbstractCommand{
 				result.put("blog",nBlogs);
 			}
 
+			// コミュニティの取得
 			factory = AbstractDaoFactory.getFactory("community");
 			dao = factory.getAbstractDao();
 
 			Map param2 = new HashMap();
-			param2.put("where","Where community_delete_flag=0 ");
+			// 削除されていない、かつ退会していないコミュニティを取得する条件
+			param2.put("where","Where community_delete_flag = 0");
 			param2.put("sort", " order by communities.community_created_date desc ");
 			List communities = dao.readAll(param2);
 
@@ -154,7 +156,7 @@ public class TopLoadCommand extends AbstractCommand{
 			String articleBody = ab.getArticleBody();
 			if(articleBody.length() > 30){
 				ab.setArticleBody( articleBody.substring(0,30) );
-				
+
 			}
 			newArticles.add(ab);
 		}
