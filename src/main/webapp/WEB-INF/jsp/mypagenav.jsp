@@ -21,7 +21,7 @@
         </c:otherwise>
     </c:choose>
     <li id="commMgrTab">
-      <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+&target=create">コミュニティ管理</a>
+      <a href="/TeraNavi/front/commmy">コミュニティ管理</a>
     </li>
     <li id="dmTab">
       <a href="/TeraNavi/front/showDmList">DM</a>

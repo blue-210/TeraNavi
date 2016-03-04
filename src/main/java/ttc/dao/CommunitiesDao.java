@@ -189,9 +189,8 @@ public class CommunitiesDao implements AbstractDao{
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
             //select fk_user_id from community_members_list where fk_community_id=1;
             //select fk_community_id from community_members_list where fk_user_id=1;
-            boolean flag = map.containsKey("where");
 
-            if(flag){
+            if(map.containsKey("where")){
                 sql.append((String)map.get("where"));
             }
 
