@@ -6818,10 +6818,29 @@ body {
 	
 }
 
+.mobile-community-icon{
+	width:80px;
+	height:80px;
+	margin-left: -20px;
+}
+
 .mobile-user-name{
 	margin-top:5px;
 }
 
 .mobile-btn{
 	margin-top: 5px;
+}
+
+.mobile-community-name{
+	font-size: 16px;
+	padding-left:25px;
+}
+
+.mobile-community-profile{
+	margin-top: 10px;
+}
+
+.mobile-community-title{
+	margin-top: -40px;
 }
