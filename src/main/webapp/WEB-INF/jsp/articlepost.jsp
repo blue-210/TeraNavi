@@ -63,7 +63,7 @@
                                     <a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
                                 </div>
                                 <a id="addImage" style="cursor:pointer"><i class="fa fa-2x fa-fw fa-image text-muted pull-left"></i></a>
-                                <input type="file" id="inputImage">
+                                <input type="file" id="inputImage" class="hidden">
                             </div>
                         </form>
                     </div>
@@ -107,6 +107,25 @@
         </div>
      </div>
 
+     <!-- プレビューモーダル -->
+     <div class="fade modal text-justify" id="previewModal">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+               </button>
+             　<h4 class="modal-title text-center">プレビュー</h4>
+              </div>
+             <div class="modal-body" id="previewModalBody">
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-block btn-default" data-dismiss="modal">閉じる</button>
+             </div>
+           </div>
+         </div>
+      </div>
+
     <!-- 確認モーダル -->
     <div class="fade modal text-justify" id="articlePostModal">
         <div class="modal-dialog">
@@ -118,9 +137,8 @@
             　<h4 class="modal-title text-center">確認</h4>
              </div>
             <div class="modal-body" id="articlePostModalBody">
-                <p>この内容でよろしいですか？</p><br>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="articlePostModalFooter">
                 <button type="submit" class="btn btn-block btn-warning" id="btn_modalArticlePost" data-dismiss="modal">投稿</button>
                 <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
             </div>
@@ -164,8 +182,6 @@
 		});
 
 		$(function(){
-
-            $("#inputImage").hide();
 
             //タグ一覧を取得する処理-----------------------------------------------------------
             $.ajax({
@@ -249,10 +265,9 @@
                 var apmBody = $("#articlePostModalBody");
                 var title = $("#inputTitle").val();
                 var body = CKEDITOR.instances.inputBody.getData();
-                console.log("gatData="+CKEDITOR.instances.inputBody.getData());
-                console.log("body="+body);
                 $("#articlePostModalBody").empty();
                 apmBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
+                apmBody.append('<hr><p>この内容でよろしいですか？<p>');
                 $("#articlePostModal").modal();
             });
 
@@ -327,7 +342,12 @@
 
 
             $("#btn_preview").on("click",function(){
-                alert($(':text[name="inputTitle"]').val());
+                var apmBody = $("#previewModalBody");
+                var title = $("#inputTitle").val();
+                var body = CKEDITOR.instances.inputBody.getData();
+                $("#previewModalBody").empty();
+                apmBody.append('<h1 class="text-center">'+title+'</h1><br>'+body);
+                $("#previewModal").modal();
             });
 
 		});
