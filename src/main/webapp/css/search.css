@@ -6844,3 +6844,12 @@ body {
 .mobile-community-title{
 	margin-top: -40px;
 }
+
+.mobile-blog-title{
+	font-size: 18px;
+}
+
+.mobile-blog-icon{
+	width: 100px;
+	height: auto;
+}
