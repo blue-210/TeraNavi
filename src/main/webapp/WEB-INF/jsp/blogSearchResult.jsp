@@ -24,7 +24,7 @@
 	<h2 class="page-title">ブログの検索結果</h2>
     <br>
 
-    <div class="section">
+    <div class="section hidden-xs">
       <div class="container">
 		<c:forEach var="item" items="${result}">
 			<div class="row">
@@ -40,8 +40,33 @@
 			</div><br><br>
 	   	</c:forEach>
       </div><!-- container-->
+	  
+	  
   </div><!-- section -->
 
+<div class="visible-xs">
+	<table class="table table-striped">
+		<tbody>
+			<c:forEach var="item" items="${result}">
+			<tr>
+				<td>
+					<img src="${item.headerPath}" class="img-responsive mobile-blog-icon">
+
+				</td>
+				<td>
+						<a href="/TeraNavi/front/showBlog?bloguserId=${item.userId}">
+							  <h3 class="text-muted mobile-blog-title">${item.title}</h3>
+						<p>${item.explanation}<br></p>
+						<br></a>
+
+				</td>
+			</tr>	
+			</c:forEach>
+
+		</tbody>
+	</table>
+
+</div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 </body>
