@@ -843,27 +843,21 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     6,
     3,
-    1,
-    0
+    1
 );
 
 INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     7,
     3,
-    0,
     0
 );
 
@@ -871,13 +865,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     8,
     3,
-    0,
     0
 );
 
@@ -885,13 +876,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     9,
     3,
-    0,
     0
 );
 
@@ -899,13 +887,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     10,
     3,
-    0,
     0
 );
 
@@ -913,13 +898,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     11,
     3,
-    0,
     0
 );
 
@@ -927,13 +909,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     12,
     3,
-    0,
     0
 );
 
@@ -941,13 +920,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     13,
     3,
-    0,
     0
 );
 
@@ -955,13 +931,10 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     14,
     3,
-    0,
     0
 );
 
@@ -969,41 +942,32 @@ INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     1,
     1,
-    1,
-    0
+    1
 );
 
 INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     3,
     2,
-    1,
-    0
+    1
 );
 
 INSERT INTO community_members_list(
     fk_user_id,
     fk_community_id,
     -- 一般ユーザは0, 管理者は1
-    community_admin_flag,
-    -- 退会フラグ。通常は0、退会は1
-    community_withdrawal_flag
+    community_admin_flag
 )VALUES(
     5,
     6,
-    0,
     0
 );
 

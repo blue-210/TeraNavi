@@ -7,7 +7,7 @@
 				<h3>TeraNaviについて</h3>
 				<a href="/TeraNavi/showRule"><p>利用規約</p></a>
 				<a data-toggle="modal" href="#contact-modal"><p>お問い合わせ</p></a>
-				<a href="#"><p>よくある質問</p></a>
+				<a href="/TeraNavi/help"><p>よくある質問</p></a>
 			</div>
 			<div class="col-md-4">
 				<h3>運営元について</h3>
