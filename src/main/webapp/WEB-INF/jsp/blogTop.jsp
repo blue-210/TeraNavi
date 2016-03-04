@@ -8,6 +8,7 @@
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/TeraNavi/css/blog.css" type="text/css">
 
  </head>
  <body>
@@ -53,33 +54,39 @@
     <div class="section">
       <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <p class="text-center well" style="margin-top:-80px;margin-bottom:80px">${result.blog.explanation}</p>
+            <div class="col-md-9 col-md-offset-1">
+              <p class="text-center well" style="margin-top:0px;margin-bottom:80px">${result.blog.explanation}</p>
               <h1>新着記事</h1>
             </div>
             <%-- 記事一覧の表示 --%>
             <div class="col-md-2"></div>
-            <div class="col-md-10">
+            
                   <c:forEach var="article" items="${result.articleList}"  begin="0" end="3">
-                    <div class="row col-md-10 col-md-offset-2 well">
-                        <div class="col-md-2">
-                        </div>
-
-                        <div class="col-md-6">
+					  <div class="section">
+					  <div class=" col-md-9 col-md-offset-1 well">
+						  <div class="article-title">
                             <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}">
                                 <h2 class="text-muted">${article.title}</h2>
                             </a>
+						  
+						  </div>
+							<div class="article-content">
+								<div class="section">
                             <p id="articleBody">${ fn:substring(article.articleBody, 0, 20) }</p>
-                        </div>
-
-                        <div class="col-md-3">
-                            <p>投稿日時 ${article.createdDate}</p>
-                            <br>
-                            <p>コメント数 ${article.commentCount}</p>
-                        </div>
-                    </div>
+								
+								</div>
+                            <p class="article-date">投稿日時 ${article.createdDate}</p>
+                            
+                            <p class="article-comment-count">コメント数 ${article.commentCount}</p>
+                        
+							</div>
+					  </div>
+					  
+					  </div>
+                        
+                    
                 </c:forEach>
-            </div>
+            
 
 
 
