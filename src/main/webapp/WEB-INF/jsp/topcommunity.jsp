@@ -16,7 +16,7 @@
                     </a>
                     <p class="text-center">${community.profile}</p>
                   </div><!--コミュニティ名と紹介文の領域おわり-->
-                  
+
                   <c:choose>
                       <%-- どのコミュニティにも参加していない場合 --%>
                       <c:when test="${empty sessionScope.myCommunities}">
@@ -48,7 +48,6 @@
                               </c:when>
                               <%-- 参加している場合 --%>
                               <c:otherwise>
-                                  ${sessionScope.myCommunities}
                                   <div class="row text-right">
                                       <a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
                                   </div>

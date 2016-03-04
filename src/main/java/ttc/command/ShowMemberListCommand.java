@@ -44,7 +44,7 @@ public class ShowMemberListCommand extends AbstractCommand{
 
 			params.put("where","where community_id=? and community_members_list.fk_user_id=? and community_delete_flag=0");
             params.put("commId",reqc.getParameter("commId")[0]);
-            params.put("userId",reqc.getParameter("userId")[0]);
+            params.put("targetUserId",reqc.getParameter("userId")[0]);
 
 			Bean comm = abdao.read(params);
 

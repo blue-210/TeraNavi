@@ -56,28 +56,36 @@ public class CreateCommunityCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
+			
+			params.clear();
+			params.put("userId", userId);
+			params.put("where","where  communities.fk_user_id = ? order by community_id desc");
+			CommunityBean community = (CommunityBean)dao.read(params);
 
+			factory = AbstractDaoFactory.getFactory("communitymember");
+			dao = factory.getAbstractDao();
+			params.clear();
+			params.put("userId", userId);
+			params.put("adminFlag","1");
+			params.put("commId", community.getId());
+			dao.insert(params);
+			
+			params.clear();
+			
+			params.put("value",loginId);
+			params.put("where","where user_id=?");
+			
 			factory = AbstractDaoFactory.getFactory("users");
 			dao = factory.getAbstractDao();
 
 			UserBean user = (UserBean)dao.read(params);
 
 
-
-            factory=AbstractDaoFactory.getFactory("community");
-            dao=factory.getAbstractDao();
-
-            String where="where communities.fk_user_id=? and community_delete_flag=0 order by community_created_date desc";
-
-            params.put("where",where);
-            params.put("commId",user.getId());
-            CommunityBean cb=(CommunityBean)dao.read(params);
-
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
-			user.setCommunity(cb);
+			user.setCommunity(community);
 
 			resc.setResult(user);
 
