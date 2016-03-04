@@ -43,33 +43,27 @@
 
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
-                <div calss="col-md-8">
+                <div class="col-md-8">
 
                     <div class="row">
                         <form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
                             <div class="form-group">
-                                <div class="input-group col-md-8">
-                                    <label class="control-label">タイトル</label>
-                                    <input type="text" name="title" class="form-control" id="inputTitle">
-                                </div>
+                                <label class="control-label">タイトル</label>
+                                <input type="text" name="title" class="form-control" id="inputTitle">
                                 <br>
-
-                                <div class="input-group col-md-8">
-                                    <label class="control-label">内容</label>
-
-                                    <textarea class="ckeditor" id="inputBody" name="body"></textarea>
-                                </div>
-                                <div class="col-md-2 col-md-offset-2">
+                                <label class="control-label">内容</label>
+                                <textarea class="ckeditor" id="inputBody" name="body"></textarea>
+                                <div class="col-md-2" style="padding-left:0px;">
                                     <a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
                                 </div>
-                                <a id="addImage" style="cursor:pointer"><i class="fa fa-2x fa-fw fa-image text-muted pull-left"></i></a>
+                                <a id="addImage" style="cursor:pointer"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
                                 <input type="file" id="inputImage" class="hidden">
                             </div>
                         </form>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-2">
+                        <div class="col-md-4 col-md-offset-4">
                             <button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
                         </div>
                         <div class="col-md-2">
