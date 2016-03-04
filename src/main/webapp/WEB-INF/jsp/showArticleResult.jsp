@@ -68,7 +68,7 @@
 					</div>
 					<div class="col-md-2 hidden-xs">
 						<h3 class="text-center text-warning">月別アーカイブ</h3>
-						<div class="btn-group">
+						<div class="btn-group btn-block">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 								月を選択 <span class="caret"></span>
 							</button>
@@ -155,7 +155,7 @@
 								<textarea name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
 							</div>
 						</div>
-						<div class="col-md-7 col-xs-10 col-xs-offset-1">
+						<div class="col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1">
 							<div class="form-group">
 								<button type="button" id="commentSubmit" class="btn btn-default pull-right hidden-xs">投稿</button>
 								<button type="button" id="commentSubmit" class="btn btn-default pull-right visible-xs btn-block">投稿</button>
@@ -172,7 +172,7 @@
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2">
 									<img src="${comment.iconPath}" class="img-responsive img-thumbnail">
-									<a href="#"><p class="text-center">${comment.userName}</p></a>
+									<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}"><p class="text-center">${comment.userName}</p></a>
 								</div>
 								<div class="col-md-7">
 									<p>${comment.commentDate}</p>

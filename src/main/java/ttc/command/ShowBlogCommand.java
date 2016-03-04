@@ -62,7 +62,7 @@ public class ShowBlogCommand extends AbstractCommand{
 
             resc.setResult(result);
 
-/*            //編集だったらターゲットを変える
+            //編集だったらターゲットを変える
             boolean editFlag = false;
 			try{
 				//editパラメータがあるかのチェック
@@ -74,12 +74,11 @@ public class ShowBlogCommand extends AbstractCommand{
 			}catch(NullPointerException e){}
 
             if(editFlag){
-                resc.setTarget("editArticle");
+                resc.setTarget("blogSetting");
             }else{
-                resc.setTarget("showArticleResult");
+                resc.setTarget("blogTop");
             }
-*/
-            resc.setTarget("blogTop");
+
             return resc;
 
 
