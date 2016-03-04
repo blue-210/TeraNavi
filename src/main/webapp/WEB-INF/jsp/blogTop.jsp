@@ -42,7 +42,7 @@
 
       <div class="row">
           <div class="col-md-12">
-              <img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+              <img src="${result.user.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
               <h3 style="position:relative; margin-top:-100px; margin-left:50px;">
                   <a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
               </h3>
@@ -54,16 +54,15 @@
       <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <p class="text-left">${result.blog.explanation}</p>
+              <p class="text-center well" style="margin-top:-80px;margin-bottom:80px">${result.blog.explanation}</p>
               <h1>新着記事</h1>
             </div>
             <%-- 記事一覧の表示 --%>
             <div class="col-md-2"></div>
             <div class="col-md-10">
-                  <c:forEach var="article" items="${result.articleList}"  begin="1" end="3">
+                  <c:forEach var="article" items="${result.articleList}"  begin="0" end="3">
                     <div class="row col-md-10 col-md-offset-2 well">
                         <div class="col-md-2">
-                            <img class="img-thumbnail" src="${article.iconPath}" id="topicIcon">
                         </div>
 
                         <div class="col-md-6">
@@ -157,118 +156,6 @@
             </p>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <i id="commentCount" class="fa fa-3x fa-comment-o fa-fw text-muted " style="margin-right:20%;">${result.article.commentCount}</i>
-
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-dnt="true">ツイート</a>
-            <%-- 下のdata-hrefはサイトのURLに変更してください --%>
-            <div class="fb-like" data-width="130px" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-
-            <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
-        	<i class="-o -square fa fa-3x fa-ellipsis-h fa-fw text-muted"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li>
-                <a id="cautionArticle">この記事を通報する</a>
-
-              </li>
-              <li>
-                <a id="cautionUser">この記事を書いたユーザを通報する</a>
-
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <hr>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-1 col-md-offset-2">
-            <img src="${sessionScope.loginUser.iconPath}" class="img-responsive img-thumbnail">
-          </div>
-          <div class="col-md-7">
-            <form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
-              <div class="form-group">
-                <textarea name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
-              </div>
-              <div class="form-group">
-                <button type="button" id="commentSubmit" class="btn btn-default pull-right">投稿</button>
-              </div>
-            </form>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <hr>
-            </div>
-          </div>
-		<div id="commentPostDiv">
-          <c:forEach var="comment" items="${result.article.comments}">
-			  <div class="row">
-				<div class="col-md-1 col-md-offset-2">
-				  <img src="${comment.iconPath}" class="img-responsive img-thumbnail">
-				  <a href="#"><p class="text-center">${comment.userName}</p></a>
-				</div>
-				<div class="col-md-7">
-				  <p>${comment.commentDate}</p>
-				  <p>${comment.commentBody}</p>
-				  <a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
-					<i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i>
-				</a>
-				  <ul class="dropdown-menu dropdown-menu-right">
-					<li>
-					  <a onclick="commentCaution('${comment.userId}')">このコメントを通報する</a>
-					</li>
-					<li>
-					  <a onclick="commentUserCaution('${comment.userId}')">このユーザを通報する</a>
-					</li>
-				  </ul>
-				</div>
-			  </div>
-              <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                  <hr>
-                </div>
-              </div>
-		  </c:forEach>
-		</div>
-		<div>
-        </div>
-
-		<div id="cautionModal" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h1 class="text-center" id="moHead">通報</h1>
-					</div>
-					<div id="cautionM" class="modal-body">
-						<div class="form-group">
-							<form action="/TeraNavi/front/caution" method="post" id="cautionForm">
-								<input class="form-control" id="uiCaution" form="cautionForm" type="hidden" name="cautionUserId" value="${result.blog.userId}">
-								<input class="form-control" form="cautionForm" id="targetUrl" type="hidden" name="url" value="<%=request.getRequestURI()%>">
-								<div class="form-group">
-									<label class="control-label">タイトル</label>
-									<input class="form-control" id="cautionTitle" form="cautionForm" type="text" name="cautionTitle">
-								</div>
-								<div class="form-group">
-									<label class="control-label">本文</label>
-									<textarea class="form-control" id="cautionBody" form="cautionForm" name="cautionBody"></textarea>
-								</div>
-								<button id="cautionSubmit" type="button" form="cautionForm" class="btn btn-default pull-right">送信する</button>
-							</form>
-
-						</div>
-
-					</div>
-					<div class="modal-footer"></div>
-					</div><!--end moal-content-->
-				</div><!--end modal-dialog-->
-			</div><!--end modal-->
-
       </div>
     </div>
 
