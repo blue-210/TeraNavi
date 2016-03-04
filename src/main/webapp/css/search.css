@@ -6811,3 +6811,17 @@ body {
   position: absolute;
   left: 75%;
 }
+
+.mobile-user-icon{
+	width:80px;
+	height:80px;
+	
+}
+
+.mobile-user-name{
+	margin-top:5px;
+}
+
+.mobile-btn{
+	margin-top: 5px;
+}

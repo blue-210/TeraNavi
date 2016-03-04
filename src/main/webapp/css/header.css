@@ -151,3 +151,9 @@ body{
 	padding-top: 50%;
 	width: 100%;
 }
+
+#searchFormModal{
+	margin-top: 150px;
+	z-index: 1090;
+}
+
