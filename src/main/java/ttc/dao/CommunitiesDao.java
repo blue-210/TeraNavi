@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
-import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
-import ttc.bean.TopicBean;
 import ttc.exception.integration.IntegrationException;
 
 
@@ -46,10 +44,6 @@ public class CommunitiesDao implements AbstractDao{
                 pst.setString(i++,(String)map.get("userId"));
 			}
 
-            if(map.containsKey("targetUserId")){
-                pst.setString(2,(String)map.get("targetUserId"));
-
-            }
             ResultSet rs = pst.executeQuery();
 
             rs.next();

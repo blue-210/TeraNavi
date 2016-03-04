@@ -8,10 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
+import ttc.bean.MembersBean;
 import ttc.exception.integration.IntegrationException;
 
 public class UsersCommunitiesDao implements AbstractDao{
@@ -131,7 +133,49 @@ public class UsersCommunitiesDao implements AbstractDao{
     }
 
     public List readAll(Map map)throws IntegrationException{
-        return null;
+        List members = null;
+        PreparedStatement pst = null;
+		//Communityのメンバを取得する処理
+		
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+            StringBuffer sql=new StringBuffer();
+            sql.append("select users.user_id,users.user_name,users.user_name_kana,");
+			sql.append("users.user_icon_path,community_members_list.community_admin_flag ");
+            sql.append("from users right outer join community_members_list ");
+			sql.append("on users.user_id = fk_user_id where fk_community_id = ?");
+
+            pst = cn.prepareStatement(new String(sql));
+            pst.setString(1,(String)map.get("communityId"));
+				
+            ResultSet rs = pst.executeQuery();
+			members = new ArrayList();
+			while(rs.next()){
+				MembersBean member = new MembersBean();
+				member.setId(rs.getString(1));
+				member.setUserName(rs.getString(2));
+				member.setNameKana(rs.getString(3));
+				member.setIconPath(rs.getString(4));
+				member.setCommunityAdminFlag(rs.getString(5));
+				members.add(member);
+			}
+            
+
+        }catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+		
+        return members;
+		
     }
 
     /* UsersCommunities表は、一度参加して退会したコミュニティに参加しようとすると、
