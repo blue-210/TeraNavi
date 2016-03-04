@@ -21,9 +21,7 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<h2 class="text-center"><b class="page-title">検索結果</b></h2>
-    <hr id="hr" class="hr">
-    <h3 class="p-level">ユーザの検索結果</h3>
+	<h2 class="page-title">ユーザの検索結果</h2>
 
     <br>
     <div class="section">
@@ -46,8 +44,8 @@
     				    </form>
 			        </div>
                 </div>
-            </div><br>
-	   	</c:forEach><br>
+            </div><br><br>
+	   	</c:forEach>
       </div>
     </div>
 
