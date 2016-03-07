@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-
+		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
 	<body>
 		<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -75,7 +75,7 @@
 
 							</ul>
 						</div>
-					</div>	
+					</div>
 
 
 
@@ -98,8 +98,8 @@
 									<c:forEach var="article" items="${result}">
 										<tr id="tableRow${article.articleId}">
 											<td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
-											<td> ${ fn:substring(article.title, 0, 10) }... <p class="visible-xs"><c:out value="${article.createdDate}"/></p></td>
-											<td> ${ fn:substring(article.articleBody, 0, 10) }... </td>
+											<td> ${ fn:substring(article.title, 0, 10) }<p class="visible-xs"><c:out value="${article.createdDate}"/></p></td>
+											<td> ${ fn:substring(article.articleBody, 0, 10) }</td>
 											<td class="hidden-xs"> <c:out value="${article.createdDate}"/> </td>
 											<td class="hidden-xs"> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
 										</tr>

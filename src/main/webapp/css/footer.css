@@ -1,10 +1,11 @@
 .footer{
 	margin-top: 20px;
-	position: absolute;
-	margin-bottom: 0px;
+	position: relative;;
+	bottom: 0px;
 	width: 100%;
-	background-color: #ddd
+	background-color: #ddd;
 }
+
 
 #twitter_icon{
 	float:left;

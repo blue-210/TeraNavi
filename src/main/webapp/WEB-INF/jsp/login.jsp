@@ -11,6 +11,7 @@
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
     <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>

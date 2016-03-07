@@ -15,7 +15,7 @@
 			<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="/TeraNavi/css/search.css" rel="stylesheet" type="text/css">
-
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>

@@ -24,6 +24,7 @@
 			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -79,8 +80,8 @@
 										<p class="Mydate" style="text-align: right;"><c:out value="${ch.date}"/></p>
 									</div>
 									<div class="col-md-1 col-xs-5">
-											
-										
+
+
 										<img class="accountImg img-thumbnail" src="${sessionScope.loginUser.iconPath}">
 										<p class="Myusername"><c:out value="${ch.userName}"/></p>
 									</div>
@@ -98,7 +99,7 @@
 										</p>
 										<p style="text-align: right;"><c:out value="${ch.date}"/></p>
 									</div>
-									
+
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -121,8 +122,8 @@
 				<div class="visible-xs col-xs-12">
 					<button id="mobileChatWrite" class="btn btn-default btn-block">送信</button>
 				</div>
-				
-				
+
+
 			</div>
 		</c:if>
 		<div id="footer">
