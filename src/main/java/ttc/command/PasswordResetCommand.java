@@ -38,6 +38,7 @@ public class PasswordResetCommand extends AbstractCommand{
             UserBean ub = (UserBean)dao.read(params);
 
 			params.put("userbean",ub);
+			params.put("userId",ub.getId());
 			dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();

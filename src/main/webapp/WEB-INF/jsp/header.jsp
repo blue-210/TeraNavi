@@ -76,6 +76,7 @@
 							<li><a href="/TeraNavi/front/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
+							<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
 							<li><a data-toggle="modal" href="#loginmodal">Login</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -130,7 +131,7 @@
 							<label class="control-label" for="exampleInputPass">パスワード</label>
 							<input class="form-control" name="password" type="password">
 						</div>
-						<button type="submit" class="btn btn-default pull-right">送信する</button>
+						<button type="submit" class="btn btn-default pull-right">ログインする</button>
 					</form>
 					<a href="/TeraNavi/reset">パスワードを忘れた方はこちら</a>
 				</div>

@@ -27,7 +27,7 @@ public abstract class DateConversion{
             e.printStackTrace();
         }
 
-        String dateTimeStr = new SimpleDateFormat("MM月dd日 HH:mm").format(dateTime);
+        String dateTimeStr = new SimpleDateFormat("M月d日 HH:mm").format(dateTime);
         return dateTimeStr;
     }
 
@@ -39,7 +39,7 @@ public abstract class DateConversion{
             e.printStackTrace();
         }
 
-        String dateTimeStr = new SimpleDateFormat("yyyy年MM月dd日").format(dateTime);
+        String dateTimeStr = new SimpleDateFormat("yyyy年M月d日 HH時mm分").format(dateTime);
         return dateTimeStr;
     }
 }

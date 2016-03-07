@@ -48,7 +48,7 @@
 
 									<p>${item.profile}</p>
 
-									<div class="hidden-xs">
+									<%-- <div class="hidden-xs">
 										<form action="dmsend" method="post">
 											<div class="form-inline">
 												<label class="control-label">DMの本文</label>
@@ -58,7 +58,7 @@
 											</div>
 										</form>
 
-									</div>
+									</div> --%>
 
 								</div>
 							</div>

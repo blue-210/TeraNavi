@@ -97,14 +97,14 @@
 									<div class="visible-xs">
 										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted mobile-article-title">${article.title}</h5></a>
 										<p class="mobile-article-body" id="articleBody"><c:out value="${article.articleBody}" />...</p>
-										
+
 										<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
-										
+
 									</div>
 								</div>
 								<div class="col-md-3 hidden-xs">
 									<br><br>
-									<p>投稿日時 ${article.createdDate}</p>
+									<p>${article.createdDate}</p>
 									<br>
 									<p>コメント数 ${article.commentCount}</p>
 								</div>

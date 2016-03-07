@@ -75,7 +75,7 @@ public class ArticleDao implements AbstractDao{
                 ab.setArticleId( rs.getString(1) );
                 ab.setTitle( rs.getString(2) );
                 ab.setArticleBody( rs.getString(3) );
-                ab.setCreatedDate( rs.getString(4) );
+                ab.setCreatedDate( DateConversion.doFormatDateYear(rs.getString(4)) );
                 ab.setUserId(rs.getString(5));
                 ab.setUserName(rs.getString(6));
                 ab.setIconPath(rs.getString(7));
@@ -260,7 +260,7 @@ public class ArticleDao implements AbstractDao{
                     ab.setArticleId( rs.getString(1) );
                     ab.setTitle( rs.getString(2) );
                     ab.setArticleBody( rs.getString(3) );
-                    ab.setCreatedDate(DateConversion.doFormatDateMonth(rs.getString(4)) );
+                    ab.setCreatedDate(DateConversion.doFormatDateYear(rs.getString(4)) );
                     ab.setUserId( rs.getString(5) );
                     ab.setUserName( rs.getString(6) );
                     ab.setIconPath( rs.getString(7) );

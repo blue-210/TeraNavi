@@ -32,7 +32,7 @@ public class WriteChatCommand extends AbstractCommand{
             String chatBody=reqc.getParameter("chatBody")[0];
 
             Calendar c = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date=sdf.format(c.getTime());
 
             String chatDeleteFlag="0";
