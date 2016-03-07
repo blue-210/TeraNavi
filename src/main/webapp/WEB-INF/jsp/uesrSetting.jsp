@@ -240,7 +240,7 @@
             $("#modalHuri").empty();
 
             $("#modalName").append($("#name").val());
-            $("#modalProfile").append($("#profile").text());
+            $("#modalProfile").append($("#profile").val());
             $("#modalHuri").append($("#nameKana").val());
             $("#modalMail").append($("#address").val());
             $("#modalHeader").attr("src",$("#headimg").attr("src"));

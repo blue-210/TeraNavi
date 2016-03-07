@@ -31,7 +31,7 @@ create table tera_db.users(
 	sex_visible_flag char(1) default '0',
 	birth_date char(8),
 	mail_address varchar(40) not null unique,
-	password varchar(10) not null,
+	password char(64) not null,
 	fk_secret_question_id int(1),
 	secret_answer varchar(100) not null,
 	user_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
