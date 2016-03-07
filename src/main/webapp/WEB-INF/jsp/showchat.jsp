@@ -89,7 +89,7 @@
 							<c:otherwise>
 								<div class="row">
 									<div class="col-md-1 col-md-offset-2 col-xs-5">
-										<img class="accountImg img-thumbnail" src="${sessionScope.loginUser.iconPath}">
+										<img class="accountImg img-thumbnail" src="${ch.iconPath}">
 										<p class="username"><c:out value="${ch.userName}"/></p>
 									</div>
 									<div class="col-md-6 col-xs-7 other_content">
