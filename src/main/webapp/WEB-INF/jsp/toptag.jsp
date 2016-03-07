@@ -10,7 +10,9 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles1}">
+<c:choose>
+<c:when test="${fn:length(result.tag[0]) > 0}">
+      <c:forEach var="article" items="${result.tagArticles[0]}">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -39,7 +41,7 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles2}">
+      <c:forEach var="article" items="${result.tagArticles[1]}">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -68,7 +70,7 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles3}">
+      <c:forEach var="article" items="${result.tagArticles[2]}">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -91,6 +93,13 @@
             </div>
           </div>
       </c:forEach>
+</c:when>
+<c:otherwise>
+    <div class="row col-md-10 col-md-offset-1">
+      <p class="text-center">まだタグ付けされた記事がありません</p>
+    </div>
+</c:otherwise>
+</c:choose>
 
 
     </div><!-- contener -->
