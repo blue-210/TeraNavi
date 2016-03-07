@@ -98,8 +98,8 @@
 									<c:forEach var="article" items="${result}">
 										<tr id="tableRow${article.articleId}">
 											<td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
-											<td> ${ fn:substring(article.title, 0, 10) }... <p class="visible-xs"><c:out value="${article.createdDate}"/></p></td>
-											<td> ${ fn:substring(article.articleBody, 0, 10) }... </td>
+											<td> ${ fn:substring(article.title, 0, 10) }<p class="visible-xs"><c:out value="${article.createdDate}"/></p></td>
+											<td> ${ fn:substring(article.articleBody, 0, 10) }</td>
 											<td class="hidden-xs"> <c:out value="${article.createdDate}"/> </td>
 											<td class="hidden-xs"> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
 										</tr>
