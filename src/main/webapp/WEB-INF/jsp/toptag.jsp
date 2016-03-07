@@ -27,7 +27,7 @@
             <div class="col-md-3">
               <br>
               <br>
-              <p>投稿日時 ${article.createdDate}</p>
+              <p>${article.createdDate}</p>
               <br>
               <p>コメント数 ${article.commentCount}</p>
             </div>
@@ -57,7 +57,7 @@
             <div class="col-md-3">
               <br>
               <br>
-              <p>投稿日時 ${article.createdDate}</p>
+              <p>${article.createdDate}</p>
               <br>
               <p>コメント数 2</p>
             </div>
@@ -87,7 +87,7 @@
             <div class="col-md-3">
               <br>
               <br>
-              <p>投稿日時 ${article.createdDate}</p>
+              <p>${article.createdDate}</p>
               <br>
               <p>コメント数 2</p>
             </div>
