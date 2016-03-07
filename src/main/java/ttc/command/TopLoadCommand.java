@@ -21,8 +21,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ttc.bean.Bean;
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
+import ttc.bean.TagBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -131,6 +133,85 @@ public class TopLoadCommand extends AbstractCommand{
 			}
 			result.put( "department", sliceArticleBody(departmentArticles) );
 
+
+			param1.clear();
+
+			//人気タグ取得
+			factory = AbstractDaoFactory.getFactory("tag");
+			dao = factory.getAbstractDao();
+
+			param1.put("topFlg","true");
+			List tags = dao.readAll(param1);
+			result.put("tags",tags);
+
+			param1.clear();
+
+			param1.put("whereTagIdFlg", "true");
+
+			List tagArticleIdList = new ArrayList();
+			for(int i=0; i<tags.size(); i++){
+				TagBean tb = (TagBean)tags.get(i);
+				param1.put( "tagId",tb.getId() );
+				List list = dao.readAll(param1);
+				tagArticleIdList.add(list);
+			}
+
+			param1.clear();
+
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
+
+			List tagArticles1 = new ArrayList();
+			List tagArticles2 = new ArrayList();
+			List tagArticles3 = new ArrayList();
+
+			List list = (List)tagArticleIdList.get(0);
+			for(int i=0; i<list.size(); i++){
+				String articleId = (String)list.get(i);
+				param1.put("articleId", articleId);
+				param1.put("flag", "0");
+				Bean article = dao.read(param1);
+				tagArticles1.add(article);
+			}
+			param1.clear();
+
+			List list = (List)tagArticleIdList.get(1);
+			for(int i=0; i<list.size(); i++){
+				String articleId = (String)list.get(i);
+				param1.put("articleId", articleId);
+				param1.put("flag", "0");
+				Bean article = dao.read(param1);
+				tagArticles2.add(article);
+			}
+			param1.clear();
+
+			List list = (List)tagArticleIdList.get(2);
+			for(int i=0; i<list.size(); i++){
+				String articleId = (String)list.get(i);
+				param1.put("articleId", articleId);
+				param1.put("flag", "0");
+				Bean article = dao.read(param1);
+				tagArticles3.add(article);
+			}
+
+
+
+
+
+			for(int i=0; i<tagArticleIdList.size(); i++){
+				List list = (List)tagArticleIdList.get(i);
+				List oneTagArticles = new ArrayList();
+				for(int j=0; j<list.size(); j++){
+					String articleId = (String)list.get(i);
+					param1.put("articleId", articleId);
+					param1.put("flag", "0");
+					Bean article = dao.read(param1);
+					oneTagArticles.add(article);
+				}
+				tagArticles.add(oneTagArticles);
+			}
+
+			result.put("tagArticles",tagArticles);
 
 			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

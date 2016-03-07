@@ -30,7 +30,7 @@ public class TagDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            
+
             StringBuffer sql = new StringBuffer();
 
 			String tag = (String)map.get("tag");
@@ -74,13 +74,56 @@ public class TagDao implements AbstractDao{
 		try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            
+
             StringBuffer sql = new StringBuffer();
 
             if( map.containsKey("tagOnlyFlg") ){
                 //すべてのタグ一覧がほしい場合
                 sql.append("select * from tags ");
                 pst = cn.prepareStatement( new String(sql) );
+
+                ResultSet rs = pst.executeQuery();
+
+                while( rs.next() ){
+                    TagBean tb = new TagBean();
+                    tb.setId( rs.getString(1) );
+                    tb.setName( rs.getString(2) );
+                    tags.add(tb);
+                }
+
+            }else if( map.containsKey("topFlg") ){
+                //タグを登録数が多い順に3件とる
+                sql.append("select fk_tag_id, tag_name, count(fk_tag_id) as count ");
+                sql.append("from articles_tags join tags ");
+                sql.append("on fk_tag_id = tag_id ");
+                sql.append("group by fk_tag_id ");
+                sql.append("order by count desc ");
+                sql.append("limit 3 ");
+
+                pst = cn.prepareStatement( new String(sql) );
+                ResultSet rs = pst.executeQuery();
+
+                while( rs.next() ){
+                    TagBean tb = new TagBean();
+                    tb.setId( rs.getString(1) );
+                    tb.setName( rs.getString(2) );
+                    tags.add(tb);
+                }
+
+            }else if( map.containsKey("whereTagIdFlg") ){
+                //fk_tag_idを指定してarticleIdを調べる場合
+                sql.append("select fk_article_id from articles_tags ");
+                sql.append("where fk_tag_id = ? ");
+
+                pst = cn.prepareStatement( new String(sql) );
+                pst.setString( 1,(String)map.get("tagId"));
+
+                ResultSet rs = pst.executeQuery();
+
+                while( rs.next() ){
+                    String articleId = rs.getString(1);
+                    tags.add(articleId);
+                }
 
             }else{
                 //ある記事に紐づけられているタグ一覧がほしい場合
@@ -92,16 +135,15 @@ public class TagDao implements AbstractDao{
                 pst = cn.prepareStatement( new String(sql) );
                 pst.setString( 1,(String)map.get("articleId"));
 
-            }
+                ResultSet rs = pst.executeQuery();
 
+                while( rs.next() ){
+                    TagBean tb = new TagBean();
+                    tb.setId( rs.getString(1) );
+                    tb.setName( rs.getString(2) );
+                    tags.add(tb);
+                }
 
-			ResultSet rs = pst.executeQuery();
-
-            while( rs.next() ){
-                TagBean tb = new TagBean();
-                tb.setId( rs.getString(1) );
-                tb.setName( rs.getString(2) );
-                tags.add(tb);
             }
 
 
