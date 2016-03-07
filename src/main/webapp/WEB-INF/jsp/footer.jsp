@@ -1,4 +1,5 @@
 <link href="/TeraNavi/css/footer.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 
 <nav class="navbar navbar-default footer" role="navigation" id="footer">
 	<footer class="container-fluid">
@@ -61,10 +62,10 @@
 
 						</div>
 						<div class="modal-footer">
-							
+
 								<button type="button" id="contactBtn" class="btn btn-default pull-right hidden-xs">送信する</button>
 								<button type="button" id="contactBtn" class="btn btn-default btn-block pull-right visible-xs">送信する</button>
-							
+
 						</div>
 					</div><!--end moal-content-->
 				</div><!--end modal-dialog-->
