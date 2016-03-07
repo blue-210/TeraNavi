@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import ttc.bean.ArticleBean;
 import ttc.bean.Bean;
+import ttc.util.DateConversion;
 
 import ttc.exception.integration.IntegrationException;
 
@@ -65,7 +66,7 @@ public class ArticleSortDao implements AbstractDao{
                 article.setArticleId(rs.getString(1));
                 article.setTitle(rs.getString(2));
                 article.setArticleBody(rs.getString(3));
-                article.setCreatedDate(rs.getString(4));
+                article.setCreatedDate(DateConversion.doFormatDateYear(rs.getString(4)));
                 article.setUserId(rs.getString(5));
                 article.setUserName(rs.getString(6));
                 article.setIconPath(rs.getString(7));
