@@ -34,7 +34,7 @@ public class ChatDao implements AbstractDao{
             sql.append("select c.chat_id, u.user_name, u.user_id, u.user_icon_path, c.chat_body, c.chat_date, t.topic_id ");
             sql.append("from chat c JOIN users u ON c.fk_user_id = u.user_id ");
             sql.append("JOIN topics t ON t.topic_id = c.fk_topic_id ");
-            sql.append("where t.topic_id = ?");
+            sql.append("where t.topic_id = ? order by c.chat_date");
 
             pst = cn.prepareStatement(new String(sql));
             pst.setString(1,(String)map.get("topicId"));
@@ -80,26 +80,27 @@ public class ChatDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
             sql.append("chat(fk_user_id,fk_topic_id,chat_body,chat_date,chat_delete_flag)");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,?,?,sysdate(),?)");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("topicId"));
             pst.setString(3,(String)map.get("chatBody"));
-            pst.setString(4,(String)map.get("chatDate"));
-            pst.setString(5,(String)map.get("chatDeleteFlag"));
+//            pst.setString(4,(String)map.get("chatDate"));
+            pst.setString(4,(String)map.get("chatDeleteFlag"));
 
 
             count = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
+			throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{
                 if(pst!=null){
                     pst.close();
                 }
             }catch(SQLException e){
-                e.printStackTrace();
+                throw new IntegrationException(e.getMessage(),e);
             }
         }
         return count;
