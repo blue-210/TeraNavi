@@ -18,6 +18,7 @@ import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 
 import ttc.exception.business.ParameterInvalidException;
+import ttc.util.PasswordSaffer;
 
 public class LoginCommand extends AbstractCommand{
 
@@ -29,6 +30,8 @@ public class LoginCommand extends AbstractCommand{
             String loginId=reqc.getParameter("loginId")[0];
             String password=reqc.getParameter("password")[0];
 
+			password = PasswordSaffer.getStretchedPassword(password, loginId);
+			
             Map params = new HashMap();
             params.put("value",loginId);
             params.put("where","where login_id=?");
@@ -37,6 +40,8 @@ public class LoginCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
             AbstractDao dao = factory.getAbstractDao();
             UserBean ub = (UserBean)dao.read(params);
+			
+			
 
             if(password.equals(ub.getPassword())){
                 ub.setPassword("dummy");

@@ -17,6 +17,7 @@ import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 import ttc.util.UniqueKeyGenerator;
+import ttc.util.PasswordSaffer;
 
 public class SignUpCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
@@ -35,7 +36,10 @@ public class SignUpCommand extends AbstractCommand{
 
 			String mailAddress=reqc.getParameter("mailAddress")[0];
             String password=reqc.getParameter("password")[0];
-            String quepstionId=reqc.getParameter("questionId")[0];
+            
+			password = PasswordSaffer.getStretchedPassword(password, loginId);
+			
+			String quepstionId=reqc.getParameter("questionId")[0];
             String questionAnswer=reqc.getParameter("questionAnswer")[0];
             String adminFlag = reqc.getParameter("adminFlag")[0];
 			String signKey = reqc.getParameter("signKey")[0];
