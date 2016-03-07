@@ -95,21 +95,29 @@ public class TopLoadCommand extends AbstractCommand{
 			dao = factory.getAbstractDao();
 
 			Map param2 = new HashMap();
-			// 削除されていない、かつ退会していないコミュニティを取得する条件
+			// 新規コミュニティの取得処理
 			param2.put("where","Where community_delete_flag = 0");
 			param2.put("sort", " order by communities.community_created_date desc ");
 			List communities = dao.readAll(param2);
 
 			if(communities.size() <= 5){
-				result.put("community",communities);
+				result.put("hotCommunity",communities);
 			}else{
 				List nCommunities = new ArrayList();
 				for(int i = 0;i < 5;i++){
 					nCommunities.add(communities.get(i));
 				}
 
-				result.put("community",nCommunities);
+				result.put("hotCommunity",nCommunities);
 			}
+			
+			//人気コミュニティの取得処理
+			param2.clear();
+			param2.put("where","where community_delete_flag = 0");
+			param2.put("sort", " order by membercount limit 5 offset 0");
+			List popularCommunity = dao.readAll(param2);
+			result.put("popularCommunity", popularCommunity);
+			
 
 			//ブログタブで表示する学科ごとの新着記事の取得
 			factory = AbstractDaoFactory.getFactory("users");
@@ -137,66 +145,66 @@ public class TopLoadCommand extends AbstractCommand{
 			param1.clear();
 
 			//人気タグ取得
-			factory = AbstractDaoFactory.getFactory("tag");
-			dao = factory.getAbstractDao();
-
-			param1.put("topFlg","true");
-			List tags = dao.readAll(param1);
-			result.put("tags",tags);
-
-			param1.clear();
-
-			param1.put("whereTagIdFlg", "true");
-
-			List tagArticleIdList = new ArrayList();
-			for(int i=0; i<tags.size(); i++){
-				TagBean tb = (TagBean)tags.get(i);
-				param1.put("tagId",tb.getId() );
-				List list = dao.readAll(param1);
-				tagArticleIdList.add(list);
-			}
-
-			param1.clear();
-
-			factory = AbstractDaoFactory.getFactory("article");
-			dao = factory.getAbstractDao();
-
-			List tagArticles1 = new ArrayList();
-			List tagArticles2 = new ArrayList();
-			List tagArticles3 = new ArrayList();
-
-			List list = (List)tagArticleIdList.get(0);
-			for(int i=0; i<list.size(); i++){
-				String articleId = (String)list.get(i);
-				param1.put("articleId", articleId);
-				param1.put("flag", "0");
-				ArticleBean article = (ArticleBean)dao.read(param1);
-				tagArticles1.add(article);
-			}
-			param1.clear();
-
-			list = (List)tagArticleIdList.get(1);
-			for(int i=0; i<list.size(); i++){
-				String articleId = (String)list.get(i);
-				param1.put("articleId", articleId);
-				param1.put("flag", "0");
-				ArticleBean article = (ArticleBean)dao.read(param1);
-				tagArticles2.add(article);
-			}
-			param1.clear();
-
-			list = (List)tagArticleIdList.get(2);
-			for(int i=0; i<list.size(); i++){
-				String articleId = (String)list.get(i);
-				param1.put("articleId", articleId);
-				param1.put("flag", "0");
-				ArticleBean article = (ArticleBean)dao.read(param1);
-				tagArticles3.add(article);
-			}
-
-			result.put("tagArticles1",tagArticles1);
-			result.put("tagArticles2",tagArticles2);
-			result.put("tagArticles3",tagArticles3);
+//			factory = AbstractDaoFactory.getFactory("tag");
+//			dao = factory.getAbstractDao();
+//
+//			param1.put("topFlg","true");
+//			List tags = dao.readAll(param1);
+//			result.put("tags",tags);
+//
+//			param1.clear();
+//
+//			param1.put("whereTagIdFlg", "true");
+//
+//			List tagArticleIdList = new ArrayList();
+//			for(int i=0; i<tags.size(); i++){
+//				TagBean tb = (TagBean)tags.get(i);
+//				param1.put("tagId",tb.getId() );
+//				List list = dao.readAll(param1);
+//				tagArticleIdList.add(list);
+//			}
+//
+//			param1.clear();
+//
+//			factory = AbstractDaoFactory.getFactory("article");
+//			dao = factory.getAbstractDao();
+//
+//			List tagArticles1 = new ArrayList();
+//			List tagArticles2 = new ArrayList();
+//			List tagArticles3 = new ArrayList();
+//
+//			List list = (List)tagArticleIdList.get(0);
+//			for(int i=0; i<list.size(); i++){
+//				String articleId = (String)list.get(i);
+//				param1.put("articleId", articleId);
+//				param1.put("flag", "0");
+//				ArticleBean article = (ArticleBean)dao.read(param1);
+//				tagArticles1.add(article);
+//			}
+//			param1.clear();
+//
+//			list = (List)tagArticleIdList.get(1);
+//			for(int i=0; i<list.size(); i++){
+//				String articleId = (String)list.get(i);
+//				param1.put("articleId", articleId);
+//				param1.put("flag", "0");
+//				ArticleBean article = (ArticleBean)dao.read(param1);
+//				tagArticles2.add(article);
+//			}
+//			param1.clear();
+//
+//			list = (List)tagArticleIdList.get(2);
+//			for(int i=0; i<list.size(); i++){
+//				String articleId = (String)list.get(i);
+//				param1.put("articleId", articleId);
+//				param1.put("flag", "0");
+//				ArticleBean article = (ArticleBean)dao.read(param1);
+//				tagArticles3.add(article);
+//			}
+//
+//			result.put("tagArticles1",tagArticles1);
+//			result.put("tagArticles2",tagArticles2);
+//			result.put("tagArticles3",tagArticles3);
 
 			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
