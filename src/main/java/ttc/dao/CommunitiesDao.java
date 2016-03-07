@@ -183,7 +183,7 @@ public class CommunitiesDao implements AbstractDao{
 
             StringBuffer sql=new StringBuffer();
             sql.append("select communities.community_id,communities.community_name,");
-            sql.append("communities.community_profile,count(community_members_list.fk_user_id),communities.fk_user_id,");
+            sql.append("communities.community_profile,count(community_members_list.fk_user_id) as membercount,communities.fk_user_id,");
 			sql.append("community_members_list.community_admin_flag,community_icon_path,community_members_list.fk_user_id from ");
             sql.append("communities left outer join community_members_list ");
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
