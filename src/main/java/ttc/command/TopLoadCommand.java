@@ -151,7 +151,7 @@ public class TopLoadCommand extends AbstractCommand{
 			List tagArticleIdList = new ArrayList();
 			for(int i=0; i<tags.size(); i++){
 				TagBean tb = (TagBean)tags.get(i);
-				param1.put( "tagId",tb.getId() );
+				param1.put("tagId",tb.getId() );
 				List list = dao.readAll(param1);
 				tagArticleIdList.add(list);
 			}
@@ -170,48 +170,33 @@ public class TopLoadCommand extends AbstractCommand{
 				String articleId = (String)list.get(i);
 				param1.put("articleId", articleId);
 				param1.put("flag", "0");
-				Bean article = dao.read(param1);
+				ArticleBean article = (ArticleBean)dao.read(param1);
 				tagArticles1.add(article);
 			}
 			param1.clear();
 
-			List list = (List)tagArticleIdList.get(1);
+			list = (List)tagArticleIdList.get(1);
 			for(int i=0; i<list.size(); i++){
 				String articleId = (String)list.get(i);
 				param1.put("articleId", articleId);
 				param1.put("flag", "0");
-				Bean article = dao.read(param1);
+				ArticleBean article = (ArticleBean)dao.read(param1);
 				tagArticles2.add(article);
 			}
 			param1.clear();
 
-			List list = (List)tagArticleIdList.get(2);
+			list = (List)tagArticleIdList.get(2);
 			for(int i=0; i<list.size(); i++){
 				String articleId = (String)list.get(i);
 				param1.put("articleId", articleId);
 				param1.put("flag", "0");
-				Bean article = dao.read(param1);
+				ArticleBean article = (ArticleBean)dao.read(param1);
 				tagArticles3.add(article);
 			}
 
-
-
-
-
-			for(int i=0; i<tagArticleIdList.size(); i++){
-				List list = (List)tagArticleIdList.get(i);
-				List oneTagArticles = new ArrayList();
-				for(int j=0; j<list.size(); j++){
-					String articleId = (String)list.get(i);
-					param1.put("articleId", articleId);
-					param1.put("flag", "0");
-					Bean article = dao.read(param1);
-					oneTagArticles.add(article);
-				}
-				tagArticles.add(oneTagArticles);
-			}
-
-			result.put("tagArticles",tagArticles);
+			result.put("tagArticles1",tagArticles1);
+			result.put("tagArticles2",tagArticles2);
+			result.put("tagArticles3",tagArticles3);
 
 			MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();

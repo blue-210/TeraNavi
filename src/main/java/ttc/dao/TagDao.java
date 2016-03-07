@@ -114,6 +114,7 @@ public class TagDao implements AbstractDao{
                 //fk_tag_idを指定してarticleIdを調べる場合
                 sql.append("select fk_article_id from articles_tags ");
                 sql.append("where fk_tag_id = ? ");
+                sql.append("order by fk_article_id desc ");
 
                 pst = cn.prepareStatement( new String(sql) );
                 pst.setString( 1,(String)map.get("tagId"));
