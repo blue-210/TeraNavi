@@ -119,7 +119,7 @@
 										<li>
 											<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 										</li>
-										<!--<li>
+<!--										<li>
 											<a href="/TeraNavi/front/showDmList">DM</a>
 										</li>-->
 										<br><br>
