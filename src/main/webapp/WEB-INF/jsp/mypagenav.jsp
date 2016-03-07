@@ -11,7 +11,7 @@
                 <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
             </li>
             <li id="blogSettingTab">
-                <a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+                <a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
             </li>
         </c:when>
         <c:otherwise>
@@ -21,11 +21,11 @@
         </c:otherwise>
     </c:choose>
     <li id="commMgrTab">
-      <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+      <a href="/TeraNavi/front/commmy">コミュニティ管理</a>
     </li>
-    <li id="dmTab">
+    <!--<li id="dmTab">
       <a href="/TeraNavi/front/showDmList">DM</a>
-    </li>
+  </li>-->
     <br><br><br><br>
     <li id="withdrawTab">
       <a href="/TeraNavi/withdraw">退会</a>

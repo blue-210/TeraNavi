@@ -21,36 +21,53 @@
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-	<h5 class="page-title">検索結果</h5>
-    <hr id="hr" class="hr">
-    <p class="p-level">ブログの検索結果です</p>
-
+	<h2 class="page-title">ブログの検索結果</h2>
     <br>
-    <div class="section">
+
+    <div class="section hidden-xs">
       <div class="container">
 		<c:forEach var="item" items="${result}">
 			<div class="row">
-			  <div class="col-md-3">
+			  <div class="col-md-10 col-md-offset-1">
 				<img src="${item.headerPath}" class="img-responsive">
+                <div class="blog">
+                    <a href="/TeraNavi/front/showBlog?bloguserId=${item.userId}">
+                          <h1 class="text-muted">${item.title}</h1>
+                    </a>
+    				<p>${item.explanation}<br></p>
+                </div>
 			  </div>
-			  <div class="col-md-9">
-                  <a href="/TeraNavi/front/showBlog?bloguserId=${item.userId}">
-                      <h1 class="text-muted">${item.title}</h1>
-                  </a>
-				<h3></h3>
-				<p>${item.explanation}<br>
-				</p>
-			  </div>
-			</div>
-
-
+			</div><br><br>
 	   	</c:forEach>
-      </div>
-    </div>
+      </div><!-- container-->
+	  
+	  
+  </div><!-- section -->
 
+<div class="visible-xs">
+	<table class="table table-striped">
+		<tbody>
+			<c:forEach var="item" items="${result}">
+			<tr>
+				<td>
+					<img src="${item.headerPath}" class="img-responsive mobile-blog-icon">
+
+				</td>
+				<td>
+						<a href="/TeraNavi/front/showBlog?bloguserId=${item.userId}">
+							  <h3 class="text-muted mobile-blog-title">${item.title}</h3>
+						<p>${item.explanation}<br></p>
+						<br></a>
+
+				</td>
+			</tr>	
+			</c:forEach>
+
+		</tbody>
+	</table>
+
+</div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-
-
 
 </body>
 </html>

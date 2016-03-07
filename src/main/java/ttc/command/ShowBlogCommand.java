@@ -16,6 +16,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.ArticleBean;
 import ttc.bean.BlogBean;
+import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class ShowBlogCommand extends AbstractCommand{
@@ -44,14 +45,24 @@ public class ShowBlogCommand extends AbstractCommand{
             List results = dao.readAll(params);
             result.put("articleList", results);
             //----------------------------------------------------------------
-
+            //月別アーカイブ用のリスト作成-----------------------------------------
+            params.put("archive", "true");
+            List archives = dao.readAll(params);
+            result.put("archives", archives);
+            //----------------------------------------------------------------
+            factory = AbstractDaoFactory.getFactory("users");
+            dao = factory.getAbstractDao();
+            params.put("value",userId);
+            params.put("where", " where user_id=? ");
+            UserBean ub = (UserBean)dao.read(params);
+            result.put("user", ub);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);
 
-/*            //編集だったらターゲットを変える
+            //編集だったらターゲットを変える
             boolean editFlag = false;
 			try{
 				//editパラメータがあるかのチェック
@@ -63,12 +74,11 @@ public class ShowBlogCommand extends AbstractCommand{
 			}catch(NullPointerException e){}
 
             if(editFlag){
-                resc.setTarget("editArticle");
+                resc.setTarget("blogSetting");
             }else{
-                resc.setTarget("showArticleResult");
+                resc.setTarget("blogTop");
             }
-*/
-            resc.setTarget("blogTop");
+
             return resc;
 
 

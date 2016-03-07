@@ -162,7 +162,7 @@
 
 
 			<div class="section">
-				
+
 					<div class="col-md-10 hidden-xs col-md-offset-1">
 						<h1 class="text-center text-primary" style="margin-bottom:10px;">トピック</h1>
 					</div>
@@ -255,7 +255,7 @@
 							</div>
 						</div>
 					</div>
-				
+
 			</div>
 			<!--モーダルウインドウの中身-->
 			<div class="fade modal text-justify" id="communitySetting-modal">

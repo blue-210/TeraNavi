@@ -24,7 +24,8 @@ public class UserBean implements Bean{
     private String lockStartDate;
     private String lockEndDate;
     private String profile;
-    private String communityAdminFlag;
+//  使われていないプロパティ  
+//	private String communityAdminFlag;
     private ArrayList directMessageList;
 	private CommunityBean community;
 	private String blogStatus;
@@ -366,21 +367,6 @@ public class UserBean implements Bean{
 		this.profile = profile;
 	}
 
-	/**
-	* Returns value of communityAdminFlag
-	* @return
-	*/
-	public String getCommunityAdminFlag() {
-		return communityAdminFlag;
-	}
-
-	/**
-	* Sets new value of communityAdminFlag
-	* @param
-	*/
-	public void setCommunityAdminFlag(String communityAdminFlag) {
-		this.communityAdminFlag = communityAdminFlag;
-	}
 
 	/**
 	* Returns value of directMessageList

@@ -38,7 +38,7 @@ public class KeyWordSearchDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("select user_header_path,blog_title,blog_explanation,user_id ");
-            sql.append("from users where blog_title like ?");
+            sql.append("from users where blog_title like ? and blog_status_flag='1'");
             for(int i=1;i<keywords.length;i++){
 
                 sql.append(" and blog_title like ?");

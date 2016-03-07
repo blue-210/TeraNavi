@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
-import ttc.bean.UserBean;
 import ttc.bean.CommunityBean;
-import ttc.bean.TopicBean;
 import ttc.exception.integration.IntegrationException;
 
 
@@ -46,18 +44,12 @@ public class CommunitiesDao implements AbstractDao{
                 pst.setString(i++,(String)map.get("userId"));
 			}
 
-            if(map.containsKey("targetUserId")){
-                pst.setString(2,(String)map.get("targetUserId"));
-
-            }
-            System.out.println(new String(ssql));
             ResultSet rs = pst.executeQuery();
 
             rs.next();
-			cb.setId(rs.getString(1));
-            System.out.println("2:DAOデIDトッテル？ "+cb.getId());
-			cb.setName(rs.getString("community_name"));
 
+			cb.setId(rs.getString(1));
+			cb.setName(rs.getString("community_name"));
             cb.setProfile(rs.getString("community_profile"));
             cb.setHeaderPath(rs.getString("community_header_path"));
             cb.setIconPath(rs.getString("community_icon_path"));
@@ -122,7 +114,6 @@ public class CommunitiesDao implements AbstractDao{
     }
 
     public int insert(Map map)throws IntegrationException{
-
 
         PreparedStatement pst = null;
         PreparedStatement pst1 = null;
@@ -198,9 +189,8 @@ public class CommunitiesDao implements AbstractDao{
             sql.append("on communities.community_id=community_members_list.fk_community_id ");
             //select fk_user_id from community_members_list where fk_community_id=1;
             //select fk_community_id from community_members_list where fk_user_id=1;
-            boolean flag = map.containsKey("where");
 
-            if(flag){
+            if(map.containsKey("where")){
                 sql.append((String)map.get("where"));
             }
 

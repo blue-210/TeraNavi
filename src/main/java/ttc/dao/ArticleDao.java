@@ -15,6 +15,7 @@ import ttc.bean.Bean;
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
 import ttc.bean.BlogBean;
+import ttc.util.DateConversion;
 
 import ttc.exception.integration.IntegrationException;
 
@@ -244,6 +245,7 @@ public class ArticleDao implements AbstractDao{
                 pst = cn.prepareStatement( new String(sql) );
 
                 pst.setInt(1, Integer.parseInt( (String)map.get("userId") ));
+
                 pst.setString(2, (String)map.get("flag") );
 
                 rs = pst.executeQuery();
@@ -253,7 +255,7 @@ public class ArticleDao implements AbstractDao{
                     ab.setArticleId( rs.getString(1) );
                     ab.setTitle( rs.getString(2) );
                     ab.setArticleBody( rs.getString(3) );
-                    ab.setCreatedDate( rs.getString(4) );
+                    ab.setCreatedDate(DateConversion.doFormatDateMonth(rs.getString(4)) );
                     ab.setUserId( rs.getString(5) );
                     ab.setUserName( rs.getString(6) );
                     ab.setIconPath( rs.getString(7) );

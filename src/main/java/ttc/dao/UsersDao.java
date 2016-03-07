@@ -287,7 +287,10 @@ public class UsersDao implements AbstractDao {
 				ub.setQuestionNo(rs.getString("fk_secret_question_id"));
 				ub.setProfile(rs.getString("user_profile"));
 				ub.setSecretAnswer(rs.getString("secret_answer"));
-				ub.setCommunityAdminFlag(rs.getString("community_admin_flag"));
+				
+//				使われていないプロパティです
+//				ub.setCommunityAdminFlag(rs.getString("community_admin_flag"));
+//				
 				ub.setBlogStatus(rs.getString("blog_status_flag"));
 			} else {
 				throw new UserUnregisteredException("登録されていません", null);

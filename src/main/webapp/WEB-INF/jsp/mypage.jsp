@@ -107,7 +107,7 @@
 													<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
 												</li>
 												<li>
-													<a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+													<a href="/TeraNavi/front/showBlog??edit=true&bloguserId">ブログ設定</a>
 												</li>
 											</c:when>
 											<c:otherwise>
@@ -117,11 +117,11 @@
 											</c:otherwise>
 										</c:choose>
 										<li>
-											<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+											<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 										</li>
-										<li>
+<!--										<li>
 											<a href="/TeraNavi/front/showDmList">DM</a>
-										</li>
+										</li>-->
 										<br><br>
 										<li>
 											<a href="/TeraNavi/withdraw">退会</a>
@@ -135,13 +135,13 @@
 
 							<!-- 残り8列はコンテンツ表示部分として使う -->
 							<div class="col-md-8 col-xs-12">
-							</c:when>
-							<c:otherwise>
+						</c:when>
+						<c:otherwise>
 
 								<div class="col-md-8 col-xs-12 col-md-offset-2">
 
-							</c:otherwise>
-							</c:choose>
+						</c:otherwise>
+					</c:choose>
 
 							<div class="row visible-xs">
 								<h3 style="margin-left:20px;">${result.user.userName}</h3>
@@ -172,6 +172,7 @@
 									</c:if>
 								</div>
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-md-12">
 									<h1 class="text-warning">投稿した記事</h1>
@@ -188,9 +189,18 @@
 												</c:forEach>
 										</tbody>
 									</table>
-									<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>　
+									<c:choose>
+										<c:when test="${fn:length(result.article)  > 0}">
+											<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>　
+										</c:when>
+										<c:otherwise>
+											<p class="text-center">まだ記事が投稿されていません</p>
+										</c:otherwise>
+									</c:choose>
 									<br>
-									<br>
+
+									<hr>
+
 									<br>
 									<h1 class="text-warning">参加中のコミュニティ</h1>
 									<table class="table table-striped">
@@ -205,8 +215,6 @@
 													<td>
 														<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
 															<input type="hidden" name="commId" value="${community.id}">
-															<input type="hidden" name="commName" value="${community.name}">
-															<input type="hidden" name="target" value="community_withdrawal_flag=1">
 															<button type="submit" class="btn btn-danger pull-right">退会</button>
 														</form>
 													</td>
@@ -216,13 +224,20 @@
 
 										</tbody>
 									</table>
-									<a class="btn btn-warning pull-right">もっと見る</a>
+									<c:choose>
+										<c:when test="${fn:length(result.community) > 0}">
+											<a href="/TeraNavi/front/commmy?myCommunityList=true&targetUserId=${result.user.id}" class="btn btn-warning pull-right">参加中のコミュニティ一覧</a>　
+										</c:when>
+										<c:otherwise>
+											<p class="text-center">まだコミュニティに参加していません</p>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 
-							<div class="col-sm-3 col-xs-6">
+							<!--<div class="col-sm-3 col-xs-6">
 								<a href="/TeraNavi/dmsend">DMの送信</a><br><br>
-							</div>
+							</div>-->
 
 						</div>
 

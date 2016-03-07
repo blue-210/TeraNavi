@@ -70,6 +70,22 @@ public class WebApplicationController implements ApplicationController{
 
 		if(flag){
 			try{
+				// 退会時と参加時にセッションの中身を書き換える
+				if(path.equals("withDrawComm")){
+					Map result = (Map)resc.getResult();
+					HttpSession session = req.getSession(true);
+					session.setAttribute("myCommunities",result.get("community"));
+
+				}else if(path.equals("partiComm")){
+					HttpSession session = req.getSession(true);
+
+					Map result = (Map)resc.getResult();
+					List communities = (List)session.getAttribute("myCommunities");
+					communities.add(result.get("community"));
+					session.setAttribute("myCommunities", communities);
+
+				}
+
 				res.setContentType("application/json;charset=UTF-8");
 				PrintWriter writer = res.getWriter();
 				writer.print(new Gson().toJson(resc.getResult()));
@@ -77,7 +93,7 @@ public class WebApplicationController implements ApplicationController{
 				throw new PresentationException((e.getMessage()), e);
 			}
 		}else{
-
+			// 以下はsessionの中身を更新する必要があるコマンド群
 			if(path.equals("login")){
 				Map result = (Map)resc.getResult();
 				HttpSession session = req.getSession(true);
@@ -92,21 +108,6 @@ public class WebApplicationController implements ApplicationController{
 				List communities = (List)session.getAttribute("myCommunities");
 				communities.add(ub.getCommunity());
 				session.setAttribute("myCommunities", communities);
-
-			}else if(path.equals("withDrawComm")){
-				Map result = (Map)resc.getResult();
-				HttpSession session = req.getSession(true);
-				session.setAttribute("myCommunities",result.get("community"));
-
-			}else if(path.equals("partiComm")){
-				HttpSession session = req.getSession(true);
-
-				Map result = (Map)resc.getResult();
-				List communities = (List)session.getAttribute("myCommunities");
-				System.out.println("handleResponseでIDいけてる？："+((CommunityBean)result.get("community")).getId());
-				communities.add(result.get("community"));
-				session.setAttribute("myCommunities", communities);
-
 
 			}else if(path.equals("signup") || path.equals("basic")){
 				HttpSession session = req.getSession(true);
