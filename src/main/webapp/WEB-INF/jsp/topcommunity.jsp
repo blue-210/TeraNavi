@@ -86,9 +86,7 @@
 <<div class="section">
     <div class="container">
 		<div class="row col-md-10 col-md-offset-1 col-xs-12">
-			<a class="btn btn-warning btn-lg hidden-xs" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
-			<a class="btn btn-warning btn-block visible-xs" href="/TeraNavi/createcomm" role="button" style="margin-top: 60px">コミュニティ作成</a>
-			<h1 class="text-warning">人気コミュニティ</h1>
+			<h1 class="text-warning">新着コミュニティ</h1>
 		</div>
 		<div class="row col-md-12 col-xs-12">
             <c:forEach var="community" items="${result.hotCommunity}" varStatus="status">
