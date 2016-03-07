@@ -20,6 +20,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/TeraNavi/css/style.css">
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -35,7 +36,7 @@
 			</h1>
 
 			<a href="/TeraNavi/front/mypage"><h3>マイページはこちら</h3></a>
-			   
+
 		   </div>
 
 			<div class="col-xs-12 visible-xs mobile-sign-result">
@@ -46,9 +47,9 @@
 			</h4>
 
 			<a href="/TeraNavi/mypage" id="signMobileBtn" class="btn btn-block btn-default">マイページはこちら</a>
-			   
+
 		   </div>
-			
+
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

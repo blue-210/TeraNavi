@@ -11,6 +11,7 @@
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
+		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		<title>TeraNavi TOP</title>
 	</head>
 	<body>

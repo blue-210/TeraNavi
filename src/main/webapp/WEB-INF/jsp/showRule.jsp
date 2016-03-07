@@ -17,8 +17,7 @@
 			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<link href="/TeraNavi/css/policy.css" rel="stylesheet" type="text/css">
-
-
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -43,7 +42,7 @@
 					<div class="row">
 						<div class="col-md-8 col-md-offset-1">
 							<div id="listMobile" class=" dropdown visible-xs">
-								
+
 							</div>
 							<div id="main">
 								<h1>少々お待ちください</h1>
@@ -102,7 +101,7 @@
 
 						main.empty();
 						list.empty();
-						
+
 						main.append("<p>" + data.main.date + "</p>");
 						main.append("<p>" + data.main.body + "</p>");
 						list.append("<h1>リスト</h1>");
@@ -114,7 +113,7 @@
 								$("#listMobile").append('<button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">' + date + '<span class="caret"></span></button>');
 
 							}
-							
+
 							listMobile.append("<li '><a onclick='loadRuleId(\"" + data.list[i].id + "\")'>" + date + "</a></li>");
 
 
@@ -144,12 +143,12 @@
 
 						$("#listMobile").empty();
 						$("#listMobile").append('<ul class="dropdown-menu" style="width:100%;"></ul>');
-						
+
 						var listMobile = $("#listMobile ul");
-						
+
 						main.empty();
 						list.empty();
-						
+
 
 						main.append("<p>" + data.main.date + "</p>");
 						main.append(data.main.body);
@@ -163,9 +162,9 @@
 								$("#list ul li:last").css("border-style", "groove");
 								$("#listMobile").append('<button class="btn btn-default btn-block dropdown-toggle" type="button" data-toggle="dropdown">' + date + '<span class="caret"></span></button>');
 							}
-							
+
 							listMobile.append("<li ><a onclick='loadRuleId(\"" + data.list[i].id + "\")'>" + date + "</a></li>");
-							
+
 
 						}
 					};

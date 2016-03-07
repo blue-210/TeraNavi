@@ -26,6 +26,7 @@
 			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 			<link rel="stylesheet" type="text/css" href="/TeraNavi/css/style.css">
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
