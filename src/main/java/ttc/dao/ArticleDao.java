@@ -58,7 +58,12 @@ public class ArticleDao implements AbstractDao{
     					pst.setString(2, (String)map.get("date"));
     					pst.setString(3, (String)map.get("userId"));
     				}
-    			}else{
+    			}else if(map.containsKey("notDraft")){
+                    sql.append("where article_id = ? and article_status_flag = ? ");
+    				pst = cn.prepareStatement( new String(sql) );
+    				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
+                    pst.setString(2, (String)map.get("flag"));
+                }else{
     				sql.append("where article_id = ?");
     				pst = cn.prepareStatement( new String(sql) );
     				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
