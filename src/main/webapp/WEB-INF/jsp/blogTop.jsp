@@ -98,7 +98,7 @@
 						<p class="text-center well" style="margin-top:0px;margin-bottom:40px">${result.blog.explanation}</p>
 						<div class="container visible-xs">
 							<div class="dropdown">
-								
+
 									<button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown">
 										月別アーカイブ <span class="caret"></span>
 									</button>
@@ -108,9 +108,9 @@
 													${contents.year}年${contents.month}月(${contents.count})
 												</a></li>
 											</c:forEach>
-										
+
 									</ul>
-								
+
 							</div>
 						</div>
 						<br>
@@ -154,7 +154,7 @@
 										<p id="articleBody">${ fn:substring(article.articleBody, 0, 20) }...</p>
 
 									</div>
-									<p class="article-date">投稿日時 ${article.createdDate}</p>
+									<p class="article-date">${article.createdDate}</p>
 
 									<p class="article-comment-count">コメント数 ${article.commentCount}</p>
 
@@ -181,7 +181,7 @@
 
 											<p id="articleBodyMobile">${ fn:substring(article.articleBody, 0, 20) }...</p>
 
-											<p class="article-date-mobile">投稿日時 ${article.createdDate}</p>
+											<p class="article-date-mobile">${article.createdDate}</p>
 
 											<p class="article-comment-count-mobile">コメント数 ${article.commentCount}</p>
 										</td>

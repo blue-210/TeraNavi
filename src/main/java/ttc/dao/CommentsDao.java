@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import ttc.bean.ArticleBean;
+import ttc.util.DateConversion;
+
 
 import ttc.bean.Bean;
 import ttc.bean.BlogBean;
@@ -84,7 +86,7 @@ public class CommentsDao implements AbstractDao{
     }
 
     public List readAll(Map map)throws IntegrationException{
-        
+
 		PreparedStatement pst = null;
         List results = new ArrayList();
         try{
@@ -100,22 +102,22 @@ public class CommentsDao implements AbstractDao{
             sql.append("where fk_article_id=?");
             pst = cn.prepareStatement( new String(sql) );
             pst.setString( 1,(String)map.get("articleId"));
-            
+
 			ResultSet rs = pst.executeQuery();
             while( rs.next() ){
-				
+
                 CommentBean cb = new CommentBean();
                 cb.setCommentId( rs.getString(1) );
                 cb.setArticleId( rs.getString(2) );
                 cb.setCommentBody( rs.getString(3) );
-                cb.setCommentDate( rs.getString(4) );
+                cb.setCommentDate( DateConversion.doFormatDateYear(rs.getString(4)) );
                 cb.setUserId( rs.getString(5) );
                 cb.setUserName( rs.getString(6) );
                 cb.setIconPath( rs.getString(7) );
                 results.add(cb);
             }
-           
-            
+
+
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
             throw new IntegrationException(e.getMessage(),e);
@@ -128,7 +130,7 @@ public class CommentsDao implements AbstractDao{
                 throw new IntegrationException(e.getMessage(),e);
             }
         }
-		
+
 		return results;
     }
 

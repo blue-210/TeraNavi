@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
 import ttc.bean.Bean;
+import ttc.util.DateConversion;
 
 import ttc.exception.integration.IntegrationException;
 
@@ -65,7 +66,7 @@ public class TagSearchDao implements AbstractDao{
 					article.setArticleId(rs.getString(3));
 					article.setTitle(rs.getString(4));
 					article.setArticleBody(rs.getString(5));
-					article.setCreatedDate(rs.getString(6));
+					article.setCreatedDate(DateConversion.doFormatDateYear(rs.getString(6)));
 
 					article_result.add(article);
 			}
