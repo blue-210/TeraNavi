@@ -12,7 +12,7 @@
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 		<link rel="stylesheet" href="/TeraNavi/css/style.css" type="text/css"/>
-
+		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
 	<body>
 		<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -134,19 +134,19 @@
 							<div class="col-xs-10">
 								<h2>コミュニティ紹介文</h2>
 								<h5 id="mProfileMobile"></h5>
-								
+
 							</div>
 							<div class="col-xs-10">
 								<h2>アイコン画像</h2>
 								<img src="" class="img-thumbnail" width="110" height="110" id="mIconMobile">
 							</div>
-							
+
 							<div class="col-xs-10">
 								<h2>ヘッダー画像</h2>
 								<img src="" class="img-rounded" width="240" height="80" id="mHeaderMobile">
-								
+
 							</div>
-							
+
 							<div class="col-md-1"></div>
 						</div>
 					</div>
