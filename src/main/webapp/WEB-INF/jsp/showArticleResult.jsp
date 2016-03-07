@@ -176,7 +176,7 @@
 								</div>
 								<div class="col-md-7">
 									<p>${comment.commentDate}</p>
-									<p>${comment.commentBody}</p>
+									<pre><c:out value="${comment.commentBody}" /></pre>
 									<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
 										<i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i>
 									</a>
