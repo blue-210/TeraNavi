@@ -23,7 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 	<link rel="stylesheet" href="/TeraNavi/css/search.css" type="text/css">
-
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -33,17 +33,17 @@
             <div class="row col-md-10 col-md-offset-1 hidden-xs">
                 <h1 class="text-warning">コミュニティ一覧</h1>
             </div>
-			
+
 			<div class="row col-xs-10 visible-xs col-xs-offset-1 text-center mobile-community-title">
                 <h3 class="text-warning">コミュニティ一覧</h3>
             </div>
-			
+
             <c:forEach var="comm" items="${result}">
                 <div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well">
                     <div class="col-md-2 hidden-xs">
                         <img src="${comm.iconPath}" id="topicIcon">
                     </div>
-					
+
 					<div class="visible-xs col-xs-2">
 						<img src="${comm.iconPath}" id="topicIcon" class="mobile-community-icon">
 					</div>
@@ -60,32 +60,32 @@
                         </a>
                         <p id="articleBody">${comm.profile}...</p>
 
-                        
+
                     </div>
-						
+
 					<div class="col-xs-10 visible-xs">
                         <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
                             <h3 class="text-muted mobile-community-name">${comm.name}</h2>
                         </a>
-                        
+
                     </div>
 						<div class="col-xs-12 visible-xs mobile-community-profile">
 							<p>${comm.profile}...</p>
 						</div>
-						
+
                     <div class="text-right">
 						<div class="hidden-xs">
 							<a class="btn btn-warning" href="/TeraNavi/front/partiComm?commId=${comm.id}">
 								参加する
 							</a>
-							
+
 						</div>
-								
+
 						<div class="col-xs-12 visible-xs">
 							<a class="btn btn-warning btn-block" href="/TeraNavi/front/partiComm?commId=${comm.id}">
 								参加する
 							</a>
-							
+
 						</div>
                     </div>
 

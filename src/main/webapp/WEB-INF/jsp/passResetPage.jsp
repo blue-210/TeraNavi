@@ -20,6 +20,7 @@
 
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -39,7 +40,7 @@
 							<button type="submit" class="btn btn-default pull-right">パスワードを変更</button>
 
 						</form>
-						
+
 					</div>
 				</div><!--end row-->
 			</div><!--end container-->

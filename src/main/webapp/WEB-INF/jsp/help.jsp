@@ -18,7 +18,7 @@
 			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<link rel="stylesheet" href="/TeraNavi/css/style.css" type="text/css">
 			<link href="/TeraNavi/css/help.css" rel="stylesheet" type="text/css">
-
+				<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 
 		</head>
 		<body>
@@ -26,8 +26,8 @@
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 			<h1 class="hidden-xs">テストデータです、本番環境への移行前に書き換えてください</h1>
-			
-			
+
+
 			<div class="section hidden-xs">
 				<div class="container">
 					<div class="row">
@@ -74,7 +74,7 @@
 										他人や関連のない団体等を名乗ることは禁じられています。<br>
 										アカウントに実名が表示されていない場合は、名前を変更してください。変更できない場合は、こちらをご覧ください。<br>
 									</p>
-									
+
 								</div>
 
 								<div class="help-content">
@@ -90,9 +90,9 @@
 
 										注: [私の以前のプロフィールです]オプションは、問題のアカウントと友達としてつながっていない場合にのみ利用できます。古いアカウントと友達になっている場合は、先に友達から削除する必要があります。<br>
 									</p>
-									
+
 								</div>
-								
+
 
 							</div>
 						</div>
