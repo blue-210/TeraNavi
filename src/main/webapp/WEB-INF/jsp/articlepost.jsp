@@ -22,6 +22,7 @@
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 			<script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
 			<link rel="stylesheet" href="/TeraNavi/css/articlePost.css">
+			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -52,7 +53,7 @@
 									</li>
 									<c:choose>
 										<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-											
+
 											<li>
 												<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
 											</li>
@@ -115,8 +116,8 @@
 									<button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
 								</div>
 							</div>
-							
-							
+
+
 
 						</div><!-- end col-8コンテンツ -->
 
