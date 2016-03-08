@@ -153,7 +153,7 @@
 					<form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
 						<div class="col-md-7 col-xs-8">
 							<div class="form-group">
-								<textarea required="true" name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
+								<textarea required="" name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
 							</div>
 						</div>
 						<div class="col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1">
