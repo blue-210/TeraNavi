@@ -315,7 +315,7 @@
 											var del = '0';
 											var target = 'communitySettingResult';
 											var button = $('#ed i tButton');
-											$("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="25"><br>');
+											$("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="100"><br>');
 											$("#name").css("background-color", "");
 											$("#name").removeClass("col-md-12");
 											$("#name").addClass("col-md-8");
