@@ -63,7 +63,7 @@
 								</div>
 							</div>
 
-							<div class="col-xs-12">
+							<%-- <div class="col-xs-12">
 								<div class="visible-xs mobile-dm-form">
 									<form action="dmsend" method="post">
 										<div class="form-inline">
@@ -75,7 +75,7 @@
 									</form>
 
 								</div>
-							</div>
+							</div> --%>
 
 						</div><br><br>
 					</c:forEach>

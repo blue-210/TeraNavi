@@ -39,8 +39,8 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-3"></div>
-						<div class="col-md-5 hidden-xs">
-							<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+						<div class="col-md-13 hidden-xs">
+							<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
 							</p>
 						</div>
 						<div class="visible-xs col-xs-11">
@@ -308,16 +308,18 @@
 											$("#edit").click(function () {
 											var id = $('#commid');
 											var userid = $('#userId');
-									var name = $('#name');
+											var name = $('#name');
 											var profile = $('#profile').text();
 											var iconPath = " ${result.iconPath}";
 											var headerPath = "${result .headerPath}";
 											var del = '0';
 											var target = 'communitySettingResult';
 											var button = $('#ed i tButton');
-											$("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="25"><br>');
+											$("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="100"><br>');
 											$("#name").css("background-color", "");
-											$("#profile").html('<textarea class="form -control" id="profile" rows="4" name="commProfile">' + profile + '</textarea>');
+											$("#name").removeClass("col-md-12");
+											$("#name").addClass("col-md-8");
+											$("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">' + profile + '</textarea>');
 											$("#headerPa t h").append('<p id="headerText">ヘッダー画像を選択</p>');
 											$("#headerPath").addClass("changeEffectHead");
 											// $("#headimg").addClass("changeEffectHead");

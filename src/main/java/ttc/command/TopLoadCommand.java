@@ -176,11 +176,8 @@ public class TopLoadCommand extends AbstractCommand{
 			for(int i=0; i<tagArticleIdList.size(); i++){
 				List list = (List)tagArticleIdList.get(i);
 				List oneTagArticles = new ArrayList();
-				System.out.println("i="+i);
 				for(int j=0; j<list.size(); j++){
-					System.out.println("j="+j);
 					String articleId = (String)list.get(j);
-					System.out.println("あいでぃー"+articleId);
 					param1.put("articleId", articleId);
 					param1.put("flag", "0");
 					Bean article = dao.read(param1);

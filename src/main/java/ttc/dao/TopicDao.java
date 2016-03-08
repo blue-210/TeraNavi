@@ -38,16 +38,14 @@ public class TopicDao implements AbstractDao{
             sql.append("INSERT INTO ");
             sql.append("topics(fk_community_id,fk_create_user_id,topic_name,");
             sql.append("topic_updatetime_date,topic_created_date) ");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,?,?,now(),now())");
 
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setString(1, (String)map.get("communityId"));
             pst.setString(2, (String)map.get("userId"));
             pst.setString(3, (String)map.get("topic_name"));
-            pst.setString(4, (String)map.get("update_date"));
-            pst.setString(5, (String)map.get("create_date"));
-
+            
             result = pst.executeUpdate();
 
         }catch(SQLException e){

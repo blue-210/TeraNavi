@@ -19,6 +19,7 @@
 	<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="/TeraNavi/css/style.css" type="text/css">
 	<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+	<script src="/TeraNavi/js/signup.js"></script>
 </head>
 <body>
 	<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -34,7 +35,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="pull-left control-label"  for="name">お名前</label>
-						<input type="text" form="signForm" id="fName" name="userName" placeholder="田中太郎" class="form-control">
+						<input type="text" form="signForm" required="" id="fName" name="userName" placeholder="田中太郎" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -47,7 +48,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="furi">ふりがな</label>
-						<input type="text" form="signForm" id="fNameKana" name="nameKana" placeholder="たなかたろう" class="form-control">
+						<input type="text" form="signForm" required="" id="fNameKana" name="nameKana" placeholder="たなかたろう" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -58,7 +59,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="sex" id="fSex">性別</label>
-						男性<input form="signForm" type="radio" name="sex" value="m">
+						男性<input required="" form="signForm" type="radio" name="sex" value="m">
 						女性<input form="signForm" type="radio" name="sex" value="f">
 					</div>
 				</div>
@@ -96,7 +97,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="mail">メールアドレス</label>
-						<input type="mail" form="signForm" id="fMail" name="mailAddress" class="form-control">
+						<input type="mail" required="" form="signForm" id="fMail" name="mailAddress" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -107,7 +108,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="mail">メールアドレス確認</label>
-						<input type="mail" name="mailAddress" id="fMail2" class="form-control">
+						<input type="mail" required="" name="mailAddress" id="fMail2" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -118,7 +119,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="login">ログインID</label>
-						<input type="text" id="fLoginId" form="signForm" name="loginId" class="form-control">
+						<input type="text" required="" id="fLoginId" form="signForm" name="loginId" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -129,7 +130,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="pass">パスワード</label>
-						<input type="password" id="fPassword" form="signForm" name="password" class="form-control">
+						<input type="password" required="" id="fPassword" form="signForm" name="password" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -140,7 +141,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="pass">パスワード確認</label>
-						<input type="password" id="fPassword2" name="password" form="signForm" class="form-control">
+						<input type="password" required="" id="fPassword2" name="password" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -165,7 +166,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="answer">回答</label>
-						<input type="text" id="fAnswer" form="signForm" name="questionAnswer" class="form-control">
+						<input type="text" required="" id="fAnswer" form="signForm" name="questionAnswer" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -176,7 +177,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="key">登録キーを入力してください</label>
-						<input type="text" name="signKey" id="fKey" form="signForm" class="form-control">
+						<input type="text" required="" name="signKey" id="fKey" form="signForm" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>

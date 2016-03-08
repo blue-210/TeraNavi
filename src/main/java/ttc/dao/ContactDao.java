@@ -34,16 +34,15 @@ public class ContactDao implements AbstractDao{
             sql.append("insert into ");
             sql.append("contacts(contact_user_name,contact_title,contact_body," );
 			sql.append("contact_date,contact_address,contact_category) ");
-            sql.append("values(?,?,?,?,?,?)");
+            sql.append("values(?,?,?,sysdate(),?,?)");
 
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setString(1, (String)map.get("userName"));
             pst.setString(2, (String)map.get("title"));
             pst.setString(3, (String)map.get("body"));
-            pst.setString(4, (String)map.get("date"));
-			pst.setString(5,(String)map.get("address"));
-			pst.setString(6,(String)map.get("category"));
+            pst.setString(4,(String)map.get("address"));
+			pst.setString(5,(String)map.get("category"));
 
             result = pst.executeUpdate();
 

@@ -40,7 +40,7 @@ public class ArticleSortDao implements AbstractDao{
             String sortType=(String)map.get("sortType");
 
 
-            if(sortType=="0"){
+            if(sortType.equals("0")){
                 //新着順に並び替え
                 sql.append("select article_id,article_title,article_body,article_created_date, ");
                 sql.append("fk_user_id, user_name, user_icon_path ");
@@ -49,7 +49,7 @@ public class ArticleSortDao implements AbstractDao{
                 sql.append("order by article_created_date desc");
 
             }
-            else if(sortType=="1"){
+            else if(sortType.equals("1")){
                 //古い順に並び替え
                 sql.append("select article_id,article_title,article_body,article_created_date,");
                 sql.append("fk_user_id, user_name ");
