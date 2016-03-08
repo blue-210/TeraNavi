@@ -109,9 +109,7 @@
 		</div>
 		<c:if test="${not empty sessionScope.loginUser}">
 			<div id="forms">
-				<div id="camera_space">
-					<span><img id="camera_logo" src="/TeraNavi/img/camera.png" width="41.6px" height="41.6px"></span>
-				</div>
+
 				<textarea id="chatBody" name="chatBody"></textarea>
 				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
