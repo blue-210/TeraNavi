@@ -91,7 +91,7 @@
 
                     <div class="col-md-3 hidden-xs">
                             <h4 id="title" class="text-left">
-                                <c:out value="${comm.countMember}" /></a>
+                                メンバー数：<c:out value="${comm.countMember}" /></a>
                             </h4>
                         </div>
                     </div>
