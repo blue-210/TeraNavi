@@ -89,7 +89,7 @@
 								<div class="col-md-7 col-xs-12">
 									<div class="hidden-xs">
 										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-										<p id="articleBody"><c:out value="${article.articleBody}" />...</p>
+										<p id="articleBody"><c:out value="${article.articleBody}" /></p>
 										<div class="text-right">
 											<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 										</div>
@@ -97,7 +97,7 @@
 									</div>
 									<div class="visible-xs">
 										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted mobile-article-title">${article.title}</h5></a>
-										<p class="mobile-article-body" id="articleBody"><c:out value="${article.articleBody}" />...</p>
+										<p class="mobile-article-body" id="articleBody"><c:out value="${article.articleBody}" /></p>
 
 										<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 

@@ -46,7 +46,7 @@
 				あなたのログインIDは「${sessionScope.loginUser.loginId}」です
 			</h4>
 
-			<a href="/TeraNavi/mypage" id="signMobileBtn" class="btn btn-block btn-default">マイページはこちら</a>
+			<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" id="signMobileBtn" class="btn btn-block btn-default">マイページはこちら</a>
 
 		   </div>
 
