@@ -7,7 +7,7 @@
 			<div class="col-md-3">
 				<h3>TeraNaviについて</h3>
 				<a href="/TeraNavi/showRule"><p>利用規約</p></a>
-				<a data-toggle="modal" href="#contact-modal"><p>お問い合わせ</p></a>
+					<a data-toggle="modal" href="#contact-modal"><p>お問い合わせ</p></a>
 				<a href="/TeraNavi/help"><p>よくある質問</p></a>
 			</div>
 			<div class="col-md-4">
@@ -59,13 +59,12 @@
 									<textarea class="form-control" id="contactBody" name="body"></textarea>
 								</div>
 							</form>
-
-						</div>
-						<div class="modal-footer">
-
+							<div>
 								<button type="button" id="contactBtn" class="btn btn-default pull-right hidden-xs">送信する</button>
 								<button type="button" id="contactBtn" class="btn btn-default btn-block pull-right visible-xs">送信する</button>
-
+							</div>
+						</div>
+						<div class="modal-footer">
 						</div>
 					</div><!--end moal-content-->
 				</div><!--end modal-dialog-->
