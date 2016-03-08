@@ -5,13 +5,14 @@
         <h1 class="text-warning">人気タグ</h1>
       </div>
 
+<c:choose>
+<c:when test="${fn:length(result.tags) > 0}">
+
       <div class="row col-md-10 col-md-offset-1">
         <h1><span class="label label-warning">${result.tags[0].name}</span></h1>
         <br>
       </div>
 
-<c:choose>
-<c:when test="${fn:length(result.tag[0]) > 0}">
       <c:forEach var="article" items="${result.tagArticles[0]}">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">

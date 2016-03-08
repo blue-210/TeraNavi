@@ -78,7 +78,7 @@ public class FileUploadServlet extends HttpServlet{
 						if(resizeFlg){
 								result = ImageResizer.doResize(new File(path+"/"+fileName), width, height,path+"/"+fileName);
 						}else{
-							result = fileName;
+							result = fileName+"_resize";
 						}
 
 						resultPath = "http://"+hostName+"/TeraNavi/imgPath/"+result;
