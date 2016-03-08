@@ -5,7 +5,8 @@
 		<div class="row col-md-10 col-xs-11 col-xs-offset-1 col-md-offset-1">
 			<h1 class="text-warning">各科新着記事</h1>
 		</div>
-		<c:forEach var="article" items="${result.department}">
+		<input type="hidden" id="blogArticlesSize" value="${fn:length(result.department)}">
+		<c:forEach var="article" items="${result.department}" varStatus="status">
 			<div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well mobile-content-space">
 				<div class="col-md-2 col-xs-12">
 					<br>
@@ -23,7 +24,7 @@
 				<div class="col-md-7 col-xs-12">
 					<div class="hidden-xs">
 						<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-						<p id="articleBody"><c:out value="${article.articleBody}" /></p>
+						<p id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
 						<div class="text-right">
 							<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 						</div>
@@ -31,7 +32,7 @@
 					</div>
 					<div class="visible-xs">
 						<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted">${article.title}</h5></a>
-						<p class="mobile-article-body" id="articleBody"><c:out value="${article.articleBody}" /></p>
+						<p class="mobile-article-body" id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
 
 						<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 
