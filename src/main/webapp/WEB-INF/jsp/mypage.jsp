@@ -213,10 +213,14 @@
 													</td>
 													<td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
 													<td>
-														<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
-															<input type="hidden" name="commId" value="${community.id}">
-															<button type="submit" class="btn btn-danger pull-right">退会</button>
-														</form>
+														<c:choose>
+															<c:when test="${sessionScope.loginUser.id eq result.user.id}">
+																<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
+																	<input type="hidden" name="commId" value="${community.id}">
+																	<button type="submit" class="btn btn-danger pull-right">退会</button>
+																</form>
+															</c:when>
+														</c:choose>
 													</td>
 												</tr>
 
