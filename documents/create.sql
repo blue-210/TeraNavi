@@ -48,7 +48,7 @@ create table tera_db.users(
 	-- 深夜12時にチェックする
 	user_lock_end_date date,
 	blog_explanation varchar(100),
-	user_profile varchar(2000),
+	user_profile varchar(6000),
 	-- 開設してない→0,開設してる→１
 	blog_status_flag char(1) default '0',
 	index(user_id),index(user_name),
@@ -58,8 +58,8 @@ create table tera_db.users(
 #　コミュニティ表
 create table tera_db.communities(
 	community_id int(10) primary key auto_increment,
-	community_name varchar(50),
-	community_profile varchar(400),
+	community_name varchar(200),
+	community_profile varchar(2000),
 	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_created_date datetime,
@@ -74,8 +74,8 @@ create table tera_db.communities(
 create table tera_db.articles(
 	article_id int(10) primary key auto_increment,
 	fk_user_id int(8),
-	article_title varchar(100) default 'こんにちは',
-	article_body varchar(20000),
+	article_title varchar(200) default 'こんにちは',
+	article_body varchar(60000),
 	article_created_date datetime,
 	-- 公開→0 下書き→1 削除→2
 	article_status_flag char(1) not null,
@@ -117,7 +117,7 @@ create table tera_db.comments(
 	fk_article_id int(10),
 	comment_date datetime not null,
 	fk_user_id int(10),
-	comment_body varchar(800),
+	comment_body varchar(8000),
 	-- 通常→0　削除→1
 	comment_delete_flag char(1) not null,
 	index(comment_id),
@@ -200,7 +200,7 @@ create table tera_db.sign_up_keys(
 create table tera_db.policy(
 	policy_id int(10) primary key auto_increment,
 	policy_date datetime,
-	policy_body varchar(10000) not null,
+	policy_body varchar(100000) not null,
 	index(policy_id)
 )engine=InnoDB;
 
@@ -208,7 +208,7 @@ create table tera_db.policy(
 create table tera_db.rules(
 	rule_id int(10) primary key auto_increment,
 	rule_date datetime,
-	rule_body varchar(10000) not null,
+	rule_body varchar(100000) not null,
 	index(rule_id)
 )engine=InnoDB;
 
