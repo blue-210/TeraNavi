@@ -113,7 +113,7 @@ public class ArticleDao implements AbstractDao{
             sql.append("article_title = ?, ");
             sql.append("article_body = ?, ");
             sql.append("article_status_flag = ?, ");
-            sql.append("article_created_date = ? ");
+            sql.append("article_created_date = sysdate() ");
             sql.append("where article_id = ?");
 
             pst = cn.prepareStatement( new String(sql) );
@@ -134,9 +134,9 @@ public class ArticleDao implements AbstractDao{
 
             pst.setString(3, (String)map.get("status"));
 
-            pst.setString(4, (String)map.get("date"));
+            
 
-            pst.setInt(5, Integer.parseInt( (String)map.get("articleId") ) );
+            pst.setInt(4, Integer.parseInt( (String)map.get("articleId") ) );
 
 
             result = pst.executeUpdate();
@@ -167,15 +167,14 @@ public class ArticleDao implements AbstractDao{
             sql.append("insert into ");
             sql.append("articles(fk_user_id, article_title, article_body, ");
             sql.append("article_created_date, article_status_flag) ");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,?,?,sysdate(),?)");
 
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setString(1, (String)map.get("userId"));
             pst.setString(2, (String)map.get("title"));
             pst.setString(3, (String)map.get("body"));
-            pst.setString(4, (String)map.get("date"));
-            pst.setString(5, (String)map.get("status"));
+            pst.setString(4, (String)map.get("status"));
 
             result = pst.executeUpdate();
 

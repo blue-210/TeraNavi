@@ -146,13 +146,14 @@
 					</div>
 				</div>
 				<div class="row">
+					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="col-md-1 col-md-offset-2 col-xs-3">
 						<img src="${sessionScope.loginUser.iconPath}" class="img-responsive img-thumbnail">
 					</div>
 					<form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
 						<div class="col-md-7 col-xs-8">
 							<div class="form-group">
-								<textarea name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
+								<textarea required="" name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
 							</div>
 						</div>
 						<div class="col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1">
@@ -162,6 +163,7 @@
 							</div>
 						</div>
 					</form>
+					</c:if>
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
 							<hr>

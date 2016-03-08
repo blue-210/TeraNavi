@@ -14,8 +14,7 @@ import ttc.dao.AbstractDao;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
+
 import ttc.exception.business.ParameterInvalidException;
 
 
@@ -30,13 +29,11 @@ public class SendContactCommand extends AbstractCommand{
             AbstractDao dao= factory.getAbstractDao();
 
             Map params = new HashMap();
-			
-			Calendar c = Calendar.getInstance();
+
 			
 			params.put("userName", reqc.getParameter("name")[0]);
 			params.put("title", reqc.getParameter("title")[0]);
 			params.put("body", reqc.getParameter("body")[0]);
-			params.put("date", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(c.getTime()));
 			
 			String address = null;
 			try{

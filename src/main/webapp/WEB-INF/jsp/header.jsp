@@ -125,11 +125,11 @@
 					<form action="/TeraNavi/front/login" method="post">
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
-							<input class="form-control" name="loginId" type="text">
+							<input class="form-control" required="" name="loginId" type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputPass">パスワード</label>
-							<input class="form-control" name="password" type="password">
+							<input class="form-control" required="" name="password" type="password">
 						</div>
 						<button type="submit" class="btn btn-default pull-right">ログインする</button>
 					</form>
