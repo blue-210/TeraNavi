@@ -47,7 +47,7 @@ create table tera_db.users(
 	user_lock_start_date date,
 	-- 深夜12時にチェックする
 	user_lock_end_date date,
-	blog_explanation varchar(100),
+	blog_explanation varchar(1000),
 	user_profile varchar(6000),
 	-- 開設してない→0,開設してる→１
 	blog_status_flag char(1) default '0',
@@ -200,7 +200,7 @@ create table tera_db.sign_up_keys(
 create table tera_db.policy(
 	policy_id int(10) primary key auto_increment,
 	policy_date datetime,
-	policy_body varchar(100000) not null,
+	policy_body varchar(60000) not null,
 	index(policy_id)
 )engine=InnoDB;
 
@@ -208,7 +208,7 @@ create table tera_db.policy(
 create table tera_db.rules(
 	rule_id int(10) primary key auto_increment,
 	rule_date datetime,
-	rule_body varchar(100000) not null,
+	rule_body varchar(60000) not null,
 	index(rule_id)
 )engine=InnoDB;
 
