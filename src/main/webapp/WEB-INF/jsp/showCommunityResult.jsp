@@ -102,7 +102,7 @@
 					<div class="row hidden-xs">
 						<c:forEach var="member" items="${result.members}">
 							<div class="col-md-3">
-								<img src="${member.iconPath}" class="center-block img-circle img-responsive">
+								<img src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
 								<h3 class="text-center"><c:out value="${member.userName}" /> </h3>
 							</div>
 						</c:forEach>
@@ -116,7 +116,7 @@
 								<div class="col-md-3">
 									<tr>
 										<td>
-											<img src="${member.iconPath}" class="center-block img-circle img-responsive" id="mobileMemberIcon">
+											<img src="${member.iconPath}" class="center-block img-circle" id="mobileMemberIcon">
 
 										</td>
 										<td>

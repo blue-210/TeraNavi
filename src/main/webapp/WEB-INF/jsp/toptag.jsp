@@ -17,7 +17,7 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" class="img-responsive">
+              <img src="${article.iconPath}" style="width:100px;height:100px;" >
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
@@ -46,7 +46,7 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" class="img-responsive">
+              <img src="${article.iconPath}" style="width:100px;height:100px;">
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
@@ -75,7 +75,7 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" class="img-responsive">
+              <img src="${article.iconPath}" style="width:100px;height:100px;">
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
