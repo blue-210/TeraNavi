@@ -65,13 +65,13 @@ public class TopLoadCommand extends AbstractCommand{
 			}
 
 			if(articles.size() <= 6){
-				result.put("article", sliceArticleBody(articles));
+				result.put("article", articles);
 			}else{
 				List nArticles = new ArrayList();
 				for(int i = 0;i < 6;i++){
 					nArticles.add(articles.get(i));
 				}
-				result.put("article",sliceArticleBody(nArticles));
+				result.put("article",nArticles);
 			}
 
 
@@ -139,7 +139,7 @@ public class TopLoadCommand extends AbstractCommand{
 				List departmentArticle = dao.readAll(param);
 				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
 			}
-			result.put( "department", sliceArticleBody(departmentArticles) );
+			result.put( "department", departmentArticles );
 
 
 			param1.clear();
@@ -205,18 +205,4 @@ public class TopLoadCommand extends AbstractCommand{
         }
     }
 
-	//記事本文を30文字で切る
-	private static List sliceArticleBody(List articles){
-		List newArticles = new ArrayList();
-		for(int i=0; i<articles.size(); i++){
-			ArticleBean ab = (ArticleBean)articles.get(i);
-			String articleBody = ab.getArticleBody();
-			if(articleBody.length() > 30){
-				ab.setArticleBody( articleBody.substring(0,30) );
-
-			}
-			newArticles.add(ab);
-		}
-		return newArticles;
-	}
 }
