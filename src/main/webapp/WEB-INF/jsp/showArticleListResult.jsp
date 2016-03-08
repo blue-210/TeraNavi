@@ -26,6 +26,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+<c:choose>
+<c:when test="${fn:length(result)  > 0}">
                 <h1 class="text-warning" style="margin-bottom:5%">${result[0].userName} さんの投稿記事一覧</h1>
                 <table class="table table-striped">
                    <thead>
@@ -52,8 +54,8 @@
                                    <c:out value="${article.title}"/>
                                </a>
                            </td>
-                           <td> ${ fn:substring(article.articleBody, 0, 20) } </td>
-                           <td> <c:out value="${article.createdDate}"/> </td>
+                           <td><c:out value=" ${ fn:substring(article.articleBody, 0, 20) }" /></td>
+                           <td> ${article.createdDate}</td>
                            <c:if test="${sessionScope.loginUser.id eq article.userId}" >
                                <td> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
                            </c:if>
@@ -64,6 +66,11 @@
                <c:if test="${sessionScope.loginUser.id eq result[0].userId}" >
                    <a id="btn_articleDelete" class="btn btn-danger pull-right">削除</a>
                </c:if>
+</c:when>
+<c:otherwise>
+    <p class="text-center">まだ記事がありません</p>
+</c:otherwise>
+</c:choose>
            </div><!--end col-->
        </div><!--end row-->
     </div><!--end container-->
