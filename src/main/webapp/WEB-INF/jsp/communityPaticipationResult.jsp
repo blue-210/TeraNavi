@@ -20,21 +20,15 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/fileup.js"></script>
-
-
-
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-    <div class="container">
+    <div class="container-fluid">
        <div class="row">
            <h1>${sessionScope.loginUser.community.name}コミュニティに参加しました</h1>
-
-
-
-
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>

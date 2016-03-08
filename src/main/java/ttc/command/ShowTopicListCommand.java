@@ -10,7 +10,7 @@ import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.List;
+import ttc.bean.CommunityBean;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -22,18 +22,30 @@ public class ShowTopicListCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
             String communityId=reqc.getParameter("communityId")[0];
             Map params = new HashMap();
-            params.put("communityId", communityId);
+
+            // 削除されていないコミュニティを取得するための条件
+            params.put("where","where community_id=? and community_delete_flag=0");
+            params.put("communityId",reqc.getParameter("communityId")[0]);
+            // DAOの中でキーの値が統一されていないため、同じ値を違うキーで入れています。
+            // 犯人は土屋。
+            params.put("commId",reqc.getParameter("communityId")[0]);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("topic");
+            // コミュニティを取得
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            List result = dao.readAll(params);
+            CommunityBean cb =(CommunityBean)dao.read(params);
+
+            // コミュニティがもつトピックを取得
+            factory = AbstractDaoFactory.getFactory("topic");
+            dao = factory.getAbstractDao();
+            cb.setTopics(dao.readAll(params));
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setResult(result);
+			resc.setResult(cb);
             resc.setTarget("topiclist");
 
             return resc;

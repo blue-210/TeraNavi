@@ -12,7 +12,8 @@ import java.sql.SQLException;
 import ttc.util.MySqlConnectionManager;
 import ttc.bean.Bean;
 import ttc.bean.TopicBean;
-import ttc.bean.UserBean;
+import ttc.util.DateConversion;
+
 import ttc.exception.integration.IntegrationException;
 
 public class TopicDao implements AbstractDao{
@@ -31,22 +32,20 @@ public class TopicDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
+
             StringBuffer sql = new StringBuffer();
 
             sql.append("INSERT INTO ");
             sql.append("topics(fk_community_id,fk_create_user_id,topic_name,");
             sql.append("topic_updatetime_date,topic_created_date) ");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,?,?,now(),now())");
 
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setString(1, (String)map.get("communityId"));
             pst.setString(2, (String)map.get("userId"));
             pst.setString(3, (String)map.get("topic_name"));
-            pst.setString(4, (String)map.get("update_date"));
-            pst.setString(5, (String)map.get("create_date"));
-
+            
             result = pst.executeUpdate();
 
         }catch(SQLException e){
@@ -68,8 +67,7 @@ public class TopicDao implements AbstractDao{
     public List readAll(Map map)throws IntegrationException{
         List result = new ArrayList();
         PreparedStatement pst = null;
-        String comId= null;
-        comId=(String)map.get("communityId");
+        String commId= (String)map.get("communityId");
 
         try{
             Connection cn = null;
@@ -77,32 +75,27 @@ public class TopicDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
 			sql.append("select topic_id,fk_create_user_id,topic_name,topic_updatetime_date,");
 			sql.append("topic_created_date,users.user_name,");
-            sql.append("communities.community_header_path,communities.community_icon_path,communities.community_name,users.user_icon_path,communities.community_id ");
+            sql.append("users.user_icon_path ");
 			sql.append("from topics inner join users ");
-			sql.append(" on topics.fk_create_user_id=users.user_id ");
-            sql.append("join communities on communities.community_id=topics.fk_community_id ");
+			sql.append("on topics.fk_create_user_id=users.user_id ");
             sql.append("where fk_community_Id=?");
 
             pst = cn.prepareStatement(new String(sql));
 
-			pst.setInt(1,Integer.parseInt(comId));
+			pst.setString(1, commId);
 
             ResultSet rs = pst.executeQuery();
 
             while(rs.next()){
-                TopicBean topics = new TopicBean();
-                topics.setTopicId(rs.getString(1));
-                topics.setCreateUserId(rs.getString(2));
-                topics.setName(rs.getString(3));
-                topics.setUpdateDate(rs.getString(4));
-                topics.setCreateDate(rs.getString(5));
-                topics.setCreateUserName(rs.getString(6));
-                topics.setHeaderPath(rs.getString(7));
-                topics.setCommunityIconPath(rs.getString(8));
-                topics.setCommunityName(rs.getString(9));
-                topics.setUserIconPath(rs.getString(10));
-                topics.setCommunityId(rs.getString(11));
-                result.add(topics);
+                TopicBean topic = new TopicBean();
+                topic.setTopicId(rs.getString(1));
+                topic.setCreateUserId(rs.getString(2));
+                topic.setName(rs.getString(3));
+                topic.setUpdateDate(DateConversion.doFormatDateYear(rs.getString(4)));
+                topic.setCreateDate(DateConversion.doFormatDateYear(rs.getString(5)));
+                topic.setCreateUserName(rs.getString(6));
+                topic.setUserIconPath(rs.getString(7));
+                result.add(topic);
             }
 
         }catch(SQLException e){

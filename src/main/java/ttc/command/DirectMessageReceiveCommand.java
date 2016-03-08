@@ -12,13 +12,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
-import ttc.bean.DirectMessageBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class DirectMessageReceiveCommand extends AbstractCommand{
@@ -26,10 +23,13 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String sendUserId=reqc.getParameter("userId")[0];
-
+            String userId=reqc.getParameter("userId")[0];
+			String sendUser = reqc.getParameter("sendUserId")[0];
+			
             Map params = new HashMap();
-            params.put("sendUserId", sendUserId);
+			
+            params.put("receiveUserId",userId);
+			params.put("sendUserId",sendUser);
 
             MySqlConnectionManager.getInstance().beginTransaction();
 

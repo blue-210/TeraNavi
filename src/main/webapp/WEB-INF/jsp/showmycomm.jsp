@@ -21,7 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/fileup.js"></script>
 
-
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 
 </head>
 <body>
@@ -37,6 +37,7 @@
 						<input type="hidden" name="target" value="create">
                         <input type="submit" value="作成したコミュ一覧">
                    </form>
+                    <h1>参加したコミュニティ</h1>
                    <form action="front/commmy" method="post">
                        <input type="hidden" name="groupBy" value="groupBy community_members_list.fk_community_id ">
                        <input type="hidden" name="where" value="community_members_list.fk_user_id= ? and communities.community_delete_flag=0 and community_members_list.community_withdrawal_flag=0 ">

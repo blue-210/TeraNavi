@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import ttc.bean.ArticleBean;
 
 import ttc.bean.BlogBean;
 import ttc.bean.Bean;
@@ -87,16 +88,16 @@ public class BlogDao implements AbstractDao{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
-			
+
 			sql.append("select blog_title,");
-			sql.append("blog_header_path,blog_explanation ");
+			sql.append("blog_header_path,blog_explanation,user_id ");
 			sql.append("from users where blog_status_flag = 1");
-			
+
 			if(map.containsKey("sort")){
 				sql.append((String)map.get("sort"));
 			}
-			
-			
+
+
             pst = cn.prepareStatement(new String(sql));
 
             ResultSet rs = pst.executeQuery();
@@ -106,7 +107,7 @@ public class BlogDao implements AbstractDao{
                 blog.setTitle(rs.getString(1));
                 blog.setHeaderPath(rs.getString(2));
                 blog.setExplanation(rs.getString(3));
-
+                blog.setUserId(rs.getString(4));
                 result.add(blog);
             }
 
@@ -131,23 +132,26 @@ public class BlogDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            String sql = "select blog_title,blog_header_path,blog_explanation,blog_status_flag from users where user_id=?";
+            StringBuffer sql = new StringBuffer();
+			sql.append("select blog_title,blog_header_path,blog_explanation,blog_status_flag,user_id ");
+			sql.append("from users where user_id=? and blog_status_flag='1'");
 
-            pst = cn.prepareStatement(sql);
+            pst = cn.prepareStatement(new String(sql));
 
-            pst.setInt(1,Integer.parseInt((String)map.get("userId")));
+			String target = (String)map.get("userId");
+
+            pst.setString(1,target);
 
             ResultSet rs = pst.executeQuery();
 
-            rs.next();
-
-            blog = new BlogBean();
-            blog.setTitle(rs.getString(1));
-            blog.setHeaderPath(rs.getString(2));
-            blog.setExplanation(rs.getString(3));
-			blog.setStatus(rs.getString(4));
-
-
+            if(rs.next()){
+				blog = new BlogBean();
+				blog.setTitle(rs.getString(1));
+				blog.setHeaderPath(rs.getString(2));
+				blog.setExplanation(rs.getString(3));
+				blog.setStatus(rs.getString(4));
+				blog.setUserId(rs.getString(5));
+			}
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
         }finally{

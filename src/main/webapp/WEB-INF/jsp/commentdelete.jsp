@@ -18,6 +18,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -29,7 +30,7 @@
 
            <form action="front/comdel" method="post">
                <h2>コメントID <input type="text" name="commentId"></h2><br>
-               <h2><input type="submit" value="登録"></h2>    
+               <h2><input type="submit" value="登録"></h2>
            </form>
        </div><!--end row-->
     </div><!--end container-->

@@ -1,11 +1,9 @@
 package ttc.dao;
 
-import java.text.SimpleDateFormat;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import java.sql.Date;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,9 +14,7 @@ import ttc.bean.ChatBean;
 import ttc.bean.Bean;
 import ttc.exception.integration.IntegrationException;
 import ttc.util.MySqlConnectionManager;
-
-import ttc.exception.NotLineException;
-
+import ttc.util.DateConversion;
 
 public class ChatDao implements AbstractDao{
     PreparedStatement pst=null;
@@ -33,13 +29,12 @@ public class ChatDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 
             sql.append("select c.chat_id, u.user_name, u.user_id, u.user_icon_path, c.chat_body, c.chat_date, t.topic_id ");
             sql.append("from chat c JOIN users u ON c.fk_user_id = u.user_id ");
             sql.append("JOIN topics t ON t.topic_id = c.fk_topic_id ");
-            sql.append("where t.topic_id = ?");
+            sql.append("where t.topic_id = ? order by c.chat_date");
 
             pst = cn.prepareStatement(new String(sql));
             pst.setString(1,(String)map.get("topicId"));
@@ -53,7 +48,7 @@ public class ChatDao implements AbstractDao{
                 chatBean.setUserId(rs.getString(3));
                 chatBean.setIconPath(rs.getString(4));
                 chatBean.setBody(rs.getString(5));
-                chatBean.setDate(rs.getString(6));
+                chatBean.setDate(DateConversion.doFormatTime(rs.getString(6)));
                 chatBean.setFkTopicId(rs.getString(7));
                 result.add(chatBean);
             }
@@ -85,26 +80,27 @@ public class ChatDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
             sql.append("insert into ");
             sql.append("chat(fk_user_id,fk_topic_id,chat_body,chat_date,chat_delete_flag)");
-            sql.append("values(?,?,?,?,?)");
+            sql.append("values(?,?,?,sysdate(),?)");
             pst=cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("topicId"));
             pst.setString(3,(String)map.get("chatBody"));
-            pst.setString(4,(String)map.get("chatDate"));
-            pst.setString(5,(String)map.get("chatDeleteFlag"));
+//            pst.setString(4,(String)map.get("chatDate"));
+            pst.setString(4,(String)map.get("chatDeleteFlag"));
 
 
             count = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
+			throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{
                 if(pst!=null){
                     pst.close();
                 }
             }catch(SQLException e){
-                e.printStackTrace();
+                throw new IntegrationException(e.getMessage(),e);
             }
         }
         return count;

@@ -32,7 +32,7 @@
                 <tr>
                     <th>内容</th>
                     <th>受信日時</th>
-                    <th>送信先</th>
+                    <th>送信元</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                 <tr>
                     <td> <c:out value="${dm.messageBody}"/> </td>
                     <td> <c:out value="${dm.date}" /> </td>
-                    <td> <c:out value="${dm.toUserId}"/> </td>
+                    <td> <c:out value="${dm.fromUserName}"/> </td>
                 </tr>
                 </c:forEach>
             </tbody>

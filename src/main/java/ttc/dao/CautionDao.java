@@ -1,7 +1,7 @@
 package ttc.dao;
 
 import java.util.List;
-import java.util.ArrayList;
+
 import java.util.Map;
 
 import java.sql.Connection;
@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ttc.bean.BlogBean;
 import ttc.bean.Bean;
 
 import ttc.exception.integration.IntegrationException;
@@ -29,7 +28,6 @@ public class CautionDao implements AbstractDao{
             sql.append("cautions(fk_user_id,fk_caution_user_id,caution_date,caution_title,caution_body,report_page_url)");
             sql.append("values(?,?,sysdate(),?,?,?)");
             pst=cn.prepareStatement(new String(sql));
-            System.out.println("警告insert");
 
             pst.setString(1,(String)map.get("userId"));
             pst.setString(2,(String)map.get("cautionUserId"));
@@ -41,6 +39,7 @@ public class CautionDao implements AbstractDao{
             count = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
+			throw new IntegrationException(e.getMessage(), e);
         }finally{
             try{
                 if(pst!=null){

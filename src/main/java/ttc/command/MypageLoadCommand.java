@@ -3,7 +3,7 @@ package ttc.command;
 
 
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import ttc.context.RequestContext;
 import ttc.context.ResponseContext;
 
@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import ttc.bean.ArticleBean;
 import ttc.bean.UserBean;
 
 import ttc.util.factory.AbstractDaoFactory;
@@ -31,16 +30,36 @@ public class MypageLoadCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("userId")[0];
+            String loginUserId = reqc.getParameter("userId")[0];
+            String paramUserId = reqc.getParameter("paramUserId")[0];
+
+			String userId = "-1";
+			if( loginUserId.equals(paramUserId) ){
+				userId = loginUserId;
+			}else{
+				userId = paramUserId;
+			}
 
             Map result = new HashMap();
 
 			MySqlConnectionManager.getInstance().beginTransaction();
 
-			//TOPで表示する新着記事の取得
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
+
+			//ユーザー情報の取得
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("users");
 			AbstractDao dao = factory.getAbstractDao();
 			Map param = new HashMap();
+			param.put("where", "where user_id = ?");
+			param.put("value", userId);
+			UserBean ub = (UserBean)dao.read(param);
+			result.put("user", ub);
+
+			param.remove("where");
+
+
+			//新着記事の取得
+			factory = AbstractDaoFactory.getFactory("article");
+			dao = factory.getAbstractDao();
 			param.put("userId", userId);
 			param.put("flag", "0");
 			List articles = dao.readAll(param);
@@ -54,6 +73,29 @@ public class MypageLoadCommand extends AbstractCommand{
 				}
 				result.put("article",nArticles);
 			}
+
+			//コミュの取得
+			factory = AbstractDaoFactory.getFactory("community");
+			dao = factory.getAbstractDao();
+
+			Map param2 = new HashMap();
+			// 削除されていないコミュニティである、かつ退会していないコミュニティであることを指定する条件
+			param2.put("where","Where community_delete_flag = 0 and community_members_list.fk_user_id="+userId);
+			param2.put("sort", " order by communities.community_created_date desc ");
+			List communities = dao.readAll(param2);
+
+			// マイページに表示する「参加しているコミュニティ」の数を3つに調整する処理
+			if(communities.size() <= 3){
+				result.put("community",communities);
+			}else{
+				List nCommunities = new ArrayList();
+				for(int i = 0;i < 3;i++){
+					nCommunities.add(communities.get(i));
+				}
+
+				result.put("community",nCommunities);
+			}
+
 
 			resc.setResult(result);
             resc.setTarget("mypage");

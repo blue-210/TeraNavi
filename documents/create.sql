@@ -29,15 +29,15 @@ create table tera_db.users(
 	sex char(1) not null,
 	-- 表示→0　非表示→1
 	sex_visible_flag char(1) default '0',
-	birth_date char(8) not null,
+	birth_date char(8),
 	mail_address varchar(40) not null unique,
-	password varchar(10) not null,
+	password char(64) not null,
 	fk_secret_question_id int(1),
 	secret_answer varchar(100) not null,
-	user_header_path varchar(255) default 'WEB-INF/img/default_user_header.img',
-	user_icon_path varchar(255) default 'WEB-INF/img/default_user_icon.img',
+	user_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	user_icon_path varchar(255) default '/TeraNavi/imgPath/default/default_user_icon.jpg',
 	blog_title varchar(200) default 'ようこそブログへ',
-	blog_header_path varchar(255) default 'WEB-INF/img/default_blog_header.img',
+	blog_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	-- 通常ユーザ→0, 管理者→1, 建築監督→2, 建築→3, 建築夜間→4, インテリア→5、ゲーム→6、情報処理→7、Web→8、環境→9、バイオ→10、師岡→11
 	admin_flag char(2) not null,
 	last_login_date char(100),
@@ -47,8 +47,8 @@ create table tera_db.users(
 	user_lock_start_date date,
 	-- 深夜12時にチェックする
 	user_lock_end_date date,
-	blog_explanation varchar(100),
-	user_profile varchar(2000),
+	blog_explanation varchar(1000),
+	user_profile varchar(6000),
 	-- 開設してない→0,開設してる→１
 	blog_status_flag char(1) default '0',
 	index(user_id),index(user_name),
@@ -58,11 +58,12 @@ create table tera_db.users(
 #　コミュニティ表
 create table tera_db.communities(
 	community_id int(10) primary key auto_increment,
-	community_name varchar(50),
-	community_profile varchar(400),
-	community_icon_path varchar(255) default 'WEB-INF/img/default_community_icon.img',
-	community_header_path varchar(255) default 'WEB-INF/img/default_community_header.img',
-	community_created_date datetime,fk_user_id int(8),
+	community_name varchar(200),
+	community_profile varchar(2000),
+	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	community_created_date datetime,
+	fk_user_id int(8),
 	-- 通常→0　削除→1
 	community_delete_flag char(1) not null,
 	index(community_id),
@@ -73,8 +74,8 @@ create table tera_db.communities(
 create table tera_db.articles(
 	article_id int(10) primary key auto_increment,
 	fk_user_id int(8),
-	article_title varchar(100) default 'こんにちは',
-	article_body varchar(20000),
+	article_title varchar(200) default 'こんにちは',
+	article_body varchar(60000),
 	article_created_date datetime,
 	-- 公開→0 下書き→1 削除→2
 	article_status_flag char(1) not null,
@@ -99,12 +100,12 @@ create table tera_db.articles_tags(
 
 #コミュニティユーザーリスト表
 create table tera_db.community_members_list(
+	-- 所属しているユーザのID
 	fk_user_id int(10),
+	-- 所属しているコミュニティのID
 	fk_community_id int(10),
 	-- 一般ユーザは0, 管理者は1
 	community_admin_flag char(1) not null,
-	-- 退会フラグ。通常は0、退会は1
-	community_withdrawal_flag char(1),
 	foreign key(fk_user_id) references tera_db.users(user_id),
 	foreign key(fk_community_id) references tera_db.communities(community_id),
 	primary key(fk_user_id,fk_community_id)
@@ -116,7 +117,7 @@ create table tera_db.comments(
 	fk_article_id int(10),
 	comment_date datetime not null,
 	fk_user_id int(10),
-	comment_body varchar(800),
+	comment_body varchar(8000),
 	-- 通常→0　削除→1
 	comment_delete_flag char(1) not null,
 	index(comment_id),
@@ -199,7 +200,7 @@ create table tera_db.sign_up_keys(
 create table tera_db.policy(
 	policy_id int(10) primary key auto_increment,
 	policy_date datetime,
-	policy_body varchar(10000) not null,
+	policy_body varchar(60000) not null,
 	index(policy_id)
 )engine=InnoDB;
 
@@ -207,7 +208,7 @@ create table tera_db.policy(
 create table tera_db.rules(
 	rule_id int(10) primary key auto_increment,
 	rule_date datetime,
-	rule_body varchar(10000) not null,
+	rule_body varchar(60000) not null,
 	index(rule_id)
 )engine=InnoDB;
 

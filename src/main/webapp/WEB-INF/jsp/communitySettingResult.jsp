@@ -20,8 +20,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/fileup.js"></script>
-
-
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 
 </head>
 <body>
@@ -31,15 +30,23 @@
     <div class="container">
        <div class="row">
            <h1>コミュニティの変更完了！</h1>
-                    コミュニティ名：${result.communityName}<br>
-                    紹介文：${result.communityProfile}<br>
-                    アイコン<img src="${result.iconPath}"><br>
-                    ヘッダ<img src="${result.headerPath}"><br>
-                    <p>上記で変更しました。</p>
+           <p>３秒後に${result.communityName}コミュニティに戻ります<br>
+               戻らに場合は<a href="/showcomm?commId=${result.commId}">こちら</a></p>
 
        </div><!--end row-->
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+    <script>
+    $(document).ready( function(){
+
+        setTimeout(function(){
+            window.location.href = './showcomm?commId=${result.commId}';
+        }, 3000);
+
+    });
+
+
+    </script>
 
 
 </body>

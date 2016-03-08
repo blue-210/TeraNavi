@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Lato');
 /*!
- * Default theme for Pingendo 
- * Homepage: http://pingendo.com  
- * Copyright 2015 Pingendo 
- * Licensed under MIT 
+ * Default theme for Pingendo
+ * Homepage: http://pingendo.com
+ * Copyright 2015 Pingendo
+ * Licensed under MIT
  * Based on Bootstrap v3.3.4
 */
-/* Add custom CSS classes here 
- * 
+/* Add custom CSS classes here
+ *
  * img {
  *   box-shadow : 0px 0px 10px black !important;
  * }
@@ -1128,6 +1128,21 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+.img-responsive{
+    max-width: 140px;
+    height: auto;
+    float: left;
+    vertical-align:middle;
+}
+.prof{
+    position: relative;
+    left: 20px;
+}
+.blog{
+    vertical-align: middle;
+    position: relative;
+    left: 20px;
 }
 .img-rounded {
   border-radius: 5px;
@@ -6777,22 +6792,64 @@ body {
 }
 /* PINGENDO COMMENT DO NOT REMOVE */
 body {
-  background-color: #f0f8ff;
+  background-color: #fff;
 }
 .page-title {
-  font-size: 50;
+  font-weight: bold;
   text-align: center;
 }
 .hr {
   width: 80%;
   border-top: 2px #000000 solid;
 }
-.p-level {
+/*.p-level {
   color: #96A3F0;
-  left: 15%;
-  position: absolute;
-}
+  font-weight: bold;
+  text-align: center;
+}*/
 .select {
   position: absolute;
   left: 75%;
+}
+
+.mobile-user-icon{
+	width:80px;
+	height:80px;
+	
+}
+
+.mobile-community-icon{
+	width:80px;
+	height:80px;
+	margin-left: -20px;
+}
+
+.mobile-user-name{
+	margin-top:5px;
+}
+
+.mobile-btn{
+	margin-top: 5px;
+}
+
+.mobile-community-name{
+	font-size: 16px;
+	padding-left:25px;
+}
+
+.mobile-community-profile{
+	margin-top: 10px;
+}
+
+.mobile-community-title{
+	margin-top: -40px;
+}
+
+.mobile-blog-title{
+	font-size: 18px;
+}
+
+.mobile-blog-icon{
+	width: 100px;
+	height: auto;
 }

@@ -15,6 +15,7 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
+import ttc.util.PasswordSaffer;
 
 public class PasswordResetCommand extends AbstractCommand{
 
@@ -25,6 +26,8 @@ public class PasswordResetCommand extends AbstractCommand{
 
 			String loginId = reqc.getParameter("loginId")[0];
 			String password = reqc.getParameter("password")[0];
+			
+			password = PasswordSaffer.getStretchedPassword(password, loginId);
 
             Map params = new HashMap();
 			params.put("value",loginId);
@@ -38,6 +41,7 @@ public class PasswordResetCommand extends AbstractCommand{
             UserBean ub = (UserBean)dao.read(params);
 
 			params.put("userbean",ub);
+			params.put("userId",ub.getId());
 			dao.update(params);
 
             MySqlConnectionManager.getInstance().commit();

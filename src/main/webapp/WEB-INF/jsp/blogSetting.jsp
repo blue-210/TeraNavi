@@ -16,9 +16,7 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
-
-
-
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -32,49 +30,106 @@
 
                 <!-- 2列をサイドメニューに割り当て -->
                 <div class="col-md-2">
-                 <ul class="nav nav-pills nav-stacked well">
-                   <li>
-                     <a href="/TeraNavi/front/mypage">マイページ</a>
-                   </li>
-                   <li>
-                     <a href="/TeraNavi/articlepost">記事を書く</a>
-                   </li>
-                   <li>
-                     <a href="/TeraNavi/front/showArticleList?userId=${sessionScope.loginUser.id}&flg=2">下書き一覧</a>
-                   </li>
-                   <li class="active">
-                     <a href="#blogsetting">ブログ設定</a>
-                   </li>
-                   <li>
-                     <a href="#communitymanage">コミュニティ管理</a>
-                   </li>
-                   <li>
-                     <a href="#directmessage">DM</a>
-                   </li>
-                   <br><br><br><br>
-                   <li>
-                     <a href="/TeraNavi/wirhdraw">退会</a>
-                   </li>
-                 </ul>
+                    <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+                    <script>
+                      $("#blogSettingTab").attr("class","active");
+                      $("#openBlogTab").attr("class","active");
+                    </script>
+
                 </div>
 
 
+
                 <div calss="col-md-8">
+                    <c:choose>
+                        <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                            <div class="col-md-1"></div>
+                            <h1>ブログ設定<a class="btn btn-danger" href="/TeraNavi/blogDelete" role="button" style="margin-left: 26.5%;">ブログ閉鎖</a></h1>
+                            <form id="blogSetting" action="/TeraNavi/front/blogSetting" method="post">
+                                <input id="status" type="hidden" name="status" value="1">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col-md-1"></div>
+                            <h1>ブログ開設</h1>
+                            <form id="blogCreate" action="front/blogCreate" method="post">
+                                <input id="status" type="hidden" name="status" value="0">
+                        </c:otherwise>
+                    </c:choose>
 
-                            <h1>ブログ設定画面</h1>
 
-                       <form action="front/blogSetting" method="post">
-                           <div class="col-xs-4">
-                               タイトル <input type="text" name="title" class="form-control"><br>
-                               説明文 <textarea rows="3" class="form-control" name="explanation"></textarea><br>
-                               ヘッダ画像 <input id="head" type="text" class="form-control" name="headerPath" ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
+                           <div class="col-md-1"></div>
+                           <div class="col-md-6">
 
-            			            <input id="status" type="hidden" name="status" value="1">
-                                <input type="submit" value="確認">
+
+                               <c:choose>
+                                   <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                       タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.blog.title}"><br>
+                                       説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.blog.explanation}</textarea><br>
+                                       <p>ヘッダー画像</p>
+                                       <img src="${result.blog.headerPath}" width="555px" height="150px" id="headimg">
+                                    </c:when>
+                                    <c:otherwise>
+                                        タイトル<input type="text" name="title" class="form-control" id="blogTitle" placeholder="例:野球ブログ"><br>
+                                        説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation" placeholder="例:このブログは野球について書きます"></textarea><br>
+                                        <p>ヘッダー画像</p>
+                                        <img src="/TeraNavi/img/NoImage.png" width="555px" height="150px" id="headimg">
+                                    </c:otherwise>
+                                </c:choose>
+                                <input type="file" id="headerFile">
+                                <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.blog.headerPath}">
+                               <div class="col-md-3">
+                                    <button class="btn btn-warning" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:485px;">確認</button>
+                                </div>
                             </div>
                        </form>
 
+                   </div>
+                   <!-- モーダルウィンドウの中身 -->
+                   <div class="fade modal text-justify" id="blog-modal">
+                       <div class="modal-dialog">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                             <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">×</span>
+                             </button>
+                             <c:choose>
+                                 <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                     <h4 class="modal-title">ブログ設定</h4>
+                                 </c:when>
+                                 <c:otherwise>
+                                     <h4 class="modal-title">ブログ開設</h4>
+                                 </c:otherwise>
+                             </c:choose>
+                            </div>
 
+                           <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <h2>タイトル</h2><h5 id="title"></h5>
+                                        <h2>説明文</h2><h5 id="explanation"></h5>
+                                        <h2>ヘッダー画像</h2><img src="" class="img-rounded" width="450" height="150" id="blogHeader">
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                           </div>
+
+                           <div class="modal-footer">
+                               <c:choose>
+                                   <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                       <button type="submit" class="btn btn-block btn-warning" form="blogSetting">設定する</button>
+                                   </c:when>
+                                   <c:otherwise>
+                                       <button type="submit" class="btn btn-block btn-warning" form="blogCreate">開設する</button>
+                                   </c:otherwise>
+                               </c:choose>
+
+
+                               <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">キャンセル</button>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
 
                </div>
 
@@ -83,7 +138,7 @@
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 	<script>
-		<!-- var ajaxSettings;
+		var ajaxSettings;
 		var ajax;
 		$(function(){
 
@@ -99,52 +154,83 @@
 
 		});
 
-		function onDrop1(event){
-			var files = event.dataTransfer.files;
 
+
+        // 画像アップロード関連
+
+
+        $(document).on("change","#headerFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
+
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
+            $("#headimg").attr("src", src);
+            fileUpHeader();
+        });
+
+        $("#blogSubmit").on("click", function() {
+            $("#title").empty();
+            $("#explanation").empty();
+            $("#blogHeader").empty();
+
+
+            $("#title").append($("#blogTitle").val());
+            $("#explanation").append($("#bodyExplanation").val());
+            $("#blogHeader").attr("src",$("#headimg").attr("src"));
+
+            $("#blog-modal").modal("show");
+        });
+        function fileUpHeader(){
+			var files = document.getElementById("headerFile").files;
 
 			for(var i = 0;i < files.length;i++){
+				console.log("for");
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload/header";
 				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+data.result);
+					$("#headerPathHidden").val(data.result);
+					$("#headerFile").attr("src",data.result);
 				}
-				ajax = $.ajax(ajaxSettings);
-			}
 
-			event.preventDefault();
+ 				ajax = $.ajax(ajaxSettings);
+			}
 		}
 
-		function onDrop2(event){
-			var files = event.dataTransfer.files;
-
+        function fileUpIcon(){
+			var files = document.getElementById("iconFile").files;
 
 			for(var i = 0;i < files.length;i++){
+				console.log("for");
 				var f = files[i];
 				var formData = new FormData();
 				formData.append("file",f);
 				ajaxSettings.data = formData;
+				ajaxSettings.url = "/TeraNavi/upload";
 				ajaxSettings.success = function(data){
-					var text = $("#head").val();
-					$("#head").val(text+"<br>"+data.result);
+					$("#comIconPath").val(data.result);
+					$("#icon").attr("src", data.result);
 				}
-				ajax = $.ajax(ajaxSettings);
+
+ 				ajax = $.ajax(ajaxSettings);
 			}
 
-			event.preventDefault();
 		}
 
+        $(document).on("change","#iconFile",function(){
+            var file = this.files[0];
+            // ブラウザごとの違いをフォローする
+            window.URL = window.URL || window.webkitURL ;
 
-		function onDragOver(event){
-			event.preventDefault();
-		}
+            // Blob URLの作成
+            src = window.URL.createObjectURL( file ) ;
 
-
-
- -->
+            fileUpIcon();
+        });
 
 	</script>
 

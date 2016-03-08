@@ -11,7 +11,7 @@
 
     <meta charset="UTF-8">
 
-    <title>ログイン</title>
+    <title>ログイン中</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,24 +19,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="http://malsup.github.io/jquery.blockUI.js"></script>
+    <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
-    <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+	<script>
+		$.blockUI({
+				fadeIn: 1000,
+				timeout:   2000,
+				onBlock: function() {
+					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}";
+				}
+		});
+	</script>
 
-    <div class="container">
-       <div class="row">
-           <h1>${sessionScope.loginUser.userName}さん、また会いましたね</h1>
-
-           <a href="/TeraNavi/front/mypage"><h1>マイページはこちら</h1></a>
-
-
-		   <a href="logout" style="font-size:18px;">ログアウトしますよ</a>
-        <a href="/TeraNavi/front/top">Topへ</a>
-
-       </div><!--end row-->
-    </div><!--end container-->
-    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
