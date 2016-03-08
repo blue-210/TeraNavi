@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -93,20 +93,11 @@ public class FileUploadServlet extends HttpServlet {
 						String result = null;
 
 						if (resizeFlg) {
+							
 							result = ImageResizer.doResize(new File(path + "/" + fileName), width, height, path + "/" + fileName);
 						} else {
-							String inputPath = fileName;
-							String ext = inputPath.substring(inputPath.lastIndexOf(".") + 1);
-
-							String[] temp = fileName.split("\\.", 0);
-							StringBuffer buff = new StringBuffer();
-							for (int i = 0; i < temp.length; i++) {
-								if (i == temp.length - 1) {
-									buff.append("_resize.");
-								}
-								buff.append(temp[i]);
-							}
-							result = new String(buff);
+							result = fileName;
+//							
 						}
 
 //						戻り値としてサーバ上の画像のパスを返す
@@ -122,6 +113,7 @@ public class FileUploadServlet extends HttpServlet {
 			throw new IOException(e.getMessage(), e);
 		}
 
+//		ajaxで画像のパスを返すための記述
 		String responseJson = "{\"result\":\"" + resultPath + "\"}";
 		res.setContentType("application/json;charset=UTF-8");
 
