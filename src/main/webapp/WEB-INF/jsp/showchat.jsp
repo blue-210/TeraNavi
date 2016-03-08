@@ -41,8 +41,8 @@
 			<div class="cotainer-fluid">
 				<div class="row">
 					<div class="col-md-3"></div>
-					<div class="col-md-5 hidden-xs">
-						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;margin-left:20px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
+					<div class="col-md-12 hidden-xs">
+						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
 						</p>
 					</div>
 					<div class="visible-xs col-xs-11">
@@ -124,9 +124,9 @@
 
 			</div>
 		</c:if>
-		<div id="footer">
+		
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-		</div>
+
 		<script src="/TeraNavi/js/script.js"></script>
 	</body>
 </html>
