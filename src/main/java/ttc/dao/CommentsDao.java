@@ -31,14 +31,13 @@ public class CommentsDao implements AbstractDao{
             Connection cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into comments(fk_article_id,");
-            sql.append("comment_date,fk_user_id,comment_body,comment_delete_flag) values(?,?,?,?,?)");
+            sql.append("comment_date,fk_user_id,comment_body,comment_delete_flag) values(?,sysdate(),?,?,?)");
             pst = cn.prepareStatement(new String(sql));
 
             pst.setString(1,(String)map.get("articleId"));
-            pst.setString(2,(String)map.get("date"));
-            pst.setString(3,(String)map.get("userId"));
-            pst.setString(4,(String)map.get("body"));
-            pst.setString(5,(String)map.get("status"));
+            pst.setString(2,(String)map.get("userId"));
+            pst.setString(3,(String)map.get("body"));
+            pst.setString(4,(String)map.get("status"));
 
             result = pst.executeUpdate();
 
