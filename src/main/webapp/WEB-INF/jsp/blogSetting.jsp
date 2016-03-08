@@ -29,7 +29,7 @@
            <div class="row">
 
                 <!-- 2列をサイドメニューに割り当て -->
-                <div class="col-md-2">
+                <div class="col-md-2 hidden-xs">
                     <jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
                     <script>
                       $("#blogSettingTab").attr("class","active");
@@ -37,6 +37,47 @@
                     </script>
 
                 </div>
+
+                <!--モバイル用のドロップダウンメニュー-->
+                <div class="container visible-xs">
+                    <div class="dropdown">
+                        <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">ブログ設定<span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li id="mypageTab">
+                                <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
+                            </li>
+                            <c:choose>
+                                <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+
+                                    <li>
+                                        <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <a href="/TeraNavi/blogSetting">ブログ開設</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                            <li>
+                                <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+                            </li>
+<!--									<li>
+                                <a href="/TeraNavi/front/showDmList">DM</a>
+                            </li>-->
+                            <br><br>
+                            <li>
+                                <a href="/TeraNavi/withdraw">退会</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+
 
 
 

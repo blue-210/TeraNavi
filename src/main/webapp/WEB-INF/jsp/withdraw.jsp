@@ -54,7 +54,7 @@
 											<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
 										</li>
 										<li>
-											<a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+											<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 										</li>
 									</c:when>
 									<c:otherwise>
