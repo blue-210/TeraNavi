@@ -10,8 +10,7 @@ import ttc.exception.integration.IntegrationException;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
+
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
@@ -45,9 +44,7 @@ public class DraftArticleCommand extends AbstractCommand{
 
 			}
 
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-            String date = formatter.format(cal.getTime());
+			
 
             String status = "1";
 
@@ -55,7 +52,6 @@ public class DraftArticleCommand extends AbstractCommand{
             params.put("userId",userId);
             params.put("title",title);
             params.put("body",body);
-            params.put("date",date);
             params.put("status",status);
 
 

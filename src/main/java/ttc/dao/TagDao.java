@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import ttc.bean.Bean;
-import ttc.bean.CommentBean;
 import ttc.bean.TagBean;
 
 import ttc.exception.integration.IntegrationException;
