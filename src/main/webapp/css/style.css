@@ -23,7 +23,7 @@
 
 #signup-modal-mobile{
 	width:100%;
-	
+
 	margin-top: 50px;
 }
 
@@ -66,4 +66,8 @@
 .communityBtn{
 	margin-top: 40px;
 	margin-left: 50px;
+}
+.mobileBlogThumbnail{
+	width:100%;
+	height: auto;
 }
