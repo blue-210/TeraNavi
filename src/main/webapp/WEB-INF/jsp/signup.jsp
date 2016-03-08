@@ -20,6 +20,9 @@
 	<link rel="stylesheet" href="/TeraNavi/css/style.css" type="text/css">
 	<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	<script src="/TeraNavi/js/signup.js"></script>
+	
+	
+	
 </head>
 <body>
 	<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -35,13 +38,22 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="pull-left control-label"  for="name">お名前</label>
-						<input type="text" form="signForm" required="" id="fName" name="userName" placeholder="田中太郎" class="form-control">
+						<input type="text" form="signForm" id="fName" name="userName" placeholder="田中太郎" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-3"></div>
 				<!-- ここまででひとつのインプットを構成する -->
+				
 				</form>
+				
 			</div><!--end of row-->
+			
+			<!--入力チェックのメッセージ用のdiv-->
+			<div class="row" id="validateName" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">名前は必須入力です</p>
+				
+			</div>
+			
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -53,7 +65,12 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
+			<div class="row" id="validateNameKana" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">ふりがなは必須入力です</p>
 
+			</div>
+			
+			
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
@@ -65,6 +82,13 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
+			
+			<!--入力チェック用-->
+			<div class="row" id="validateSex" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">性別は必須入力です</p>
+				
+			</div>
+			
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -103,6 +127,12 @@
 				<div class="col-md-3"></div>
 			</div>
 
+			<div class="row" id="validateMail" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">メールアドレスが不正です</p>
+
+			</div>
+
+
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
@@ -112,6 +142,12 @@
 					</div>
 				</div>
 				<div class="col-md-3"></div>
+			</div>
+
+			<!--入力チェックのメッセージ用のdiv-->
+			<div class="row" id="validateMail2" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">メールアドレスと確認のアドレスが一致しません</p>
+				
 			</div>
 
 			<div class="row">
@@ -124,6 +160,13 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
+			
+			<!--入力チェック用-->
+			<div class="row" id="validateLoginId" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">ログインIDは必須入力です</p>
+				
+			</div>
+			
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -131,9 +174,15 @@
 					<div class="form-group">
 						<label for="pass">パスワード</label>
 						<input type="password" required="" id="fPassword" form="signForm" name="password" class="form-control">
+						<p class="help-block">6文字以上,半角英数字がそれぞれ一文字以上</p>
 					</div>
 				</div>
 				<div class="col-md-3"></div>
+			</div>
+			
+			<div class="row" id="validatePassword" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">パスワードの入力が不正です</p>
+				
 			</div>
 
 			<div class="row">
@@ -145,6 +194,12 @@
 					</div>
 				</div>
 				<div class="col-md-3"></div>
+			</div>
+			
+			<!--入力チェック用-->
+			<div class="row" id="validatePassword2" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">パスワードとパスワードの確認が一致しません</p>
+				
 			</div>
 
 			<div class="row">
@@ -171,6 +226,12 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
+			
+			<!--入力チェック用-->
+			<div class="row" id="validateAnswer" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">秘密の質問の答えは必須入力です</p>
+				
+			</div>
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -183,6 +244,16 @@
 				<div class="col-md-3"></div>
 
 			</div>
+			
+			<!--入力チェック用-->
+			<div class="row" id="validateKey" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">登録キーは必須入力です</p>
+				
+			</div>
+			
+			<!--入力チェック用-->
+			
+			
 			<div class="row">
 				<input type="hidden" name="adminFlag" form="signForm" value="0">
 				<div class="hidden-xs">
@@ -332,90 +403,6 @@
 
 
 	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-	  <script>
-	  	$("#signsubmit").on("click", function() {
-			if($("#fMail").val()==$("#fMail2").val()){
-				if($("#fPassword").val()==$("#fPassword2").val()){
-
-					$("#sName").empty();
-					$("#sKana").empty();
-					$("#sSex").empty();
-//					$("#sBirth").empty();
-					$("#sMail").empty();
-					$("#sId").empty();
-					$("#sPass").empty();
-					$("#sQuestion").empty();
-					$("#sAnswer").empty();
-					$("#sKey").empty();
-
-					$("#sName").append($("#fName").val());
-					$("#sKana").append($("#fNameKana").val());
-					var cSex = $("input[name='sex']:checked").val();
-					if(cSex == 'f'){
-						cSex = '女';
-					}else if (cSex=='m') {
-						cSex='男';
-					}
-					$("#sSex").append(cSex);
-//					$("#sBirth").append($("#fBirthday").val());
-					$("#sMail").append($("#fMail").val());
-					$("#sId").append($("#fLoginId").val());
-					$("#sPass").append($("#fPassword").val());
-					$("#sQuestion").append($("#fQuestionId option:selected").text());
-					$("#sAnswer").append($("#fAnswer").val());
-					$("#sKey").append($("#fKey").val());
-
-					$("#signup-modal").modal("show");
-				}else{
-					alert("パスワードとパスワードの確認が一致しません");
-				}
-			}else{
-				alert("メールアドレスとメールアドレスの確認が一致しません");
-			}
-
-	  	});
-
-		$("#signsubmitMobile").on("click", function() {
-			if($("#fMail").val()==$("#fMail2").val()){
-				if($("#fPassword").val()==$("#fPassword2").val()){
-
-					$("#sNameMobile").empty();
-					$("#sKanaMobile").empty();
-					$("#sSexMobile").empty();
-//					$("#sBirthMobile").empty();
-					$("#sMailMobile").empty();
-					$("#sIdMobile").empty();
-					$("#sPassMobile").empty();
-					$("#sQuestionMobile").empty();
-					$("#sAnswerMobile").empty();
-					$("#sKeyMobile").empty();
-
-					$("#sNameMobile").append($("#fName").val());
-					$("#sKanaMobile").append($("#fNameKana").val());
-					var cSex = $("input[name='sex']:checked").val();
-					if(cSex == 'f'){
-						cSex = '女';
-					}else if (cSex=='m') {
-						cSex='男';
-					}
-					$("#sSexMobile").append(cSex);
-//					$("#sBirthMobile").append($("#fBirthday").val());
-					$("#sMailMobile").append($("#fMail").val());
-					$("#sIdMobile").append($("#fLoginId").val());
-					$("#sPassMobile").append($("#fPassword").val());
-					$("#sQuestionMobile").append($("#fQuestionId option:selected").text());
-					$("#sAnswerMobile").append($("#fAnswer").val());
-					$("#sKeyMobile").append($("#fKey").val());
-
-					$("#signup-modal-mobile").modal("show");
-				}else{
-					alert("パスワードとパスワードの確認が一致しません");
-				}
-			}else{
-				alert("メールアドレスとメールアドレスの確認が一致しません");
-			}
-
-	  	});
-	  </script>
+	  
 </body>
 </html>
