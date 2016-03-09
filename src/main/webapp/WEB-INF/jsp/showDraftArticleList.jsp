@@ -95,11 +95,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="article" items="${result}">
+									<input type="hidden" id="articlesSize" value="${fn:length(result)}">
+									<c:forEach var="article" items="${result}" varStatus="status">
 										<tr id="tableRow${article.articleId}">
 											<td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
 											<td> ${ fn:substring(article.title, 0, 10) }<p class="visible-xs"><c:out value="${article.createdDate}"/></p></td>
-											<td> ${ fn:substring(article.articleBody, 0, 10) }</td>
+											<td id="${status.index}"><c:out value=" ${article.articleBody}" /></td>
 											<td class="hidden-xs"> <c:out value="${article.createdDate}"/> </td>
 											<td class="hidden-xs"> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
 										</tr>
@@ -156,6 +157,15 @@
 			<script>
 
 				$(function () {
+
+					//記事本文のHTMLタグ除去-----------------------------------------------------
+						var size = $("#articlesSize").val();
+						for(var i=0; i<size; i++){
+							var str = $("#"+i).text();
+							var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+							$("#"+i).text(body.substr(0,10));//10文字分かえす
+						}
+					//--------------------------------------------------------------------------
 
 					$("#btn_articleDelete").on("click", function () {
 						$("#articleDeleteModal").modal();

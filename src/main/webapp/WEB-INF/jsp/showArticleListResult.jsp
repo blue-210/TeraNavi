@@ -44,7 +44,8 @@
                        </tr>
                    </thead>
                    <tbody>
-                       <c:forEach var="article" items="${result}">
+                       <input type="hidden" id="articlesSize" value="${fn:length(result)}">
+                       <c:forEach var="article" items="${result}" varStatus="status">
                        <tr id="tableRow${article.articleId}">
                            <c:if test="${sessionScope.loginUser.id eq article.userId}" >
                                <td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
@@ -54,7 +55,7 @@
                                    <c:out value="${article.title}"/>
                                </a>
                            </td>
-                           <td><c:out value=" ${ fn:substring(article.articleBody, 0, 20) }" /></td>
+                           <td id="${status.index}"><c:out value=" ${article.articleBody}" /></td>
                            <td> ${article.createdDate}</td>
                            <c:if test="${sessionScope.loginUser.id eq article.userId}" >
                                <td> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
@@ -118,6 +119,17 @@
     <script>
 
         $(function(){
+
+
+            //記事本文のHTMLタグ除去-----------------------------------------------------
+				var size = $("#articlesSize").val();
+                for(var i=0; i<size; i++){
+                    var str = $("#"+i).text();
+                    var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+                    $("#"+i).text(body.substr(0,10));
+                }
+			//--------------------------------------------------------------------------
+
 
             $("#btn_articleDelete").on("click",function(){
                 $("#articleDeleteModal").modal();
