@@ -16,7 +16,7 @@ import ttc.dao.AbstractDao;
 
 import ttc.bean.UserBean;
 import ttc.exception.business.ParameterInvalidException;
-import ttc.util.UniqueKeyGenerator;
+
 import ttc.util.PasswordSaffer;
 
 public class SignUpCommand extends AbstractCommand{
@@ -50,20 +50,20 @@ public class SignUpCommand extends AbstractCommand{
 //				birthDate = dcash[0]+dcash[1]+dcash[2];
 //			}
 			
-			String hash = UniqueKeyGenerator.getHashCode(signKey);
+			
 
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("signKey");
-            AbstractDao dao2 = factory.getAbstractDao();
+            AbstractDao dao = factory.getAbstractDao();
             
 			
 //			登録時に入力された登録キーが使用可能かどうかの判定
 			Map kParam = new HashMap();
-			kParam.put("key",hash);
-			dao2.read(kParam);
+			kParam.put("key",signKey);
+			dao.read(kParam);
 			
 			factory = AbstractDaoFactory.getFactory("users");
-			AbstractDao dao = factory.getAbstractDao();
+			dao = factory.getAbstractDao();
 			
             Map params = new HashMap();
             params.put("loginId",loginId);
@@ -83,7 +83,6 @@ public class SignUpCommand extends AbstractCommand{
             params.put("adminFlag",adminFlag);
 			dao.insert(params);
 			
-			dao2.update(kParam);
 			
 			params.clear();
 			params.put("where", "where login_id=? ");

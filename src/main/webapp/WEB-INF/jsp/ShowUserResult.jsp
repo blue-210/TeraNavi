@@ -78,7 +78,18 @@
 							</div> --%>
 
 						</div><br><br>
+
 					</c:forEach>
+
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1 col-xs-12">
+							<h3 class="text-center">検索結果は以上です</h3>
+						</div>
+						<div class="col-md-1 col-xs-0">
+							
+						</div>
+					</div>
+
 				</div>
 			</div>
 
