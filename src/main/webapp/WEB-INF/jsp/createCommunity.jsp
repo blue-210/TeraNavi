@@ -28,6 +28,12 @@
 								<label class="control-label" for="name">コミュニティ名</label>
 								<input class="form-control" id="name" name="commName" placeholder="例:情報処理科2年のコミュニティ">
 							</div>
+
+							<div class="row" id="validateCommunityName" style="display: none;">
+								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">コミュニティは必須入力です</p>
+
+							</div>
+
 							<div class="form-group">
 								<label class="control-label" for="profile">紹介文</label>
 								<textarea class="form-control" id="profile" rows="4" name="commProfile" placeholder="例:情報処理科2年が入ることを推奨しますｗ"></textarea>
@@ -162,6 +168,16 @@
 		<script>
 			var ajaxSettings;
 			var ajax;
+
+			$(document).on("blur", "#name", function () {
+				if ($("#name").val().length <= 0) {
+
+					$("#validateCommunityName").css("display", "");
+				} else {
+					$("#validateCommunityName").css("display", "none");
+				}
+			});
+
 			$(function () {
 
 				ajaxSettings = {
@@ -174,26 +190,43 @@
 				}
 
 				$("#csubmit").on("click", function () {
-					$("#mTitle").empty();
-					$("#mProfile").empty();
+
+					if ($("#name").val().length <= 0) {
+
+						$("#validateCommunityName").css("display", "");
+					} else {
+						$("#mTitle").empty();
+						$("#mProfile").empty();
 
 
-					$("#mHeader").attr("src", $("#commHeaderPath").val());
-					$("#mTitle").append($("#name").val());
-					$("#mProfile").append($("#profile").val());
-					$("#mIcon").attr("src", $("#icon").val());
+						$("#mHeader").attr("src", $("#commHeaderPath").val());
+						$("#mTitle").append($("#name").val());
+						$("#mProfile").append($("#profile").val());
+						$("#mIcon").attr("src", $("#icon").val());
+					}
+
+
 
 				});
 
 				$("#csubmitMobile").on("click", function () {
-					$("#mTitleMobile").empty();
-					$("#mProfileMobile").empty();
+
+					if ($("#name").val().length <= 0) {
+
+						$("#validateCommunityName").css("display", "");
+					} else {
+						$("#mTitleMobile").empty();
+						$("#mProfileMobile").empty();
 
 
-					$("#mHeaderMobile").attr("src", $("#commHeaderPath").val());
-					$("#mTitleMobile").append($("#name").val());
-					$("#mProfileMobile").append($("#profile").val());
-					$("#mIconMobile").attr("src", $("#icon").val());
+						$("#mHeaderMobile").attr("src", $("#commHeaderPath").val());
+						$("#mTitleMobile").append($("#name").val());
+						$("#mProfileMobile").append($("#profile").val());
+						$("#mIconMobile").attr("src", $("#icon").val());
+					}
+
+
+
 
 				});
 
