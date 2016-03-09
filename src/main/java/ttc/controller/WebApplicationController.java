@@ -83,7 +83,6 @@ public class WebApplicationController implements ApplicationController{
 					List communities = (List)session.getAttribute("myCommunities");
 					communities.add(result.get("community"));
 					session.setAttribute("myCommunities", communities);
-
 				}
 
 				res.setContentType("application/json;charset=UTF-8");
@@ -118,17 +117,27 @@ public class WebApplicationController implements ApplicationController{
 				session.removeAttribute("loginUser");
 				session.removeAttribute("myCommunities");
 				session.invalidate();
-
-
 			}else if(path.equals("blogCreate")){
 				HttpSession session = req.getSession(true);
 				UserBean user = (UserBean)session.getAttribute("loginUser");
 				user.setBlogStatus("1");
 				session.setAttribute("loginUser", user);
+			}else if(path.equals("partiComm")){
+				System.out.println("コミュニティ参加きてる");
+				HttpSession session = req.getSession(true);
+
+				Map result = (Map)resc.getResult();
+				System.out.println(((CommunityBean)result.get("community")).getId());
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(result.get("community"));
+				session.setAttribute("myCommunities", communities);
+			}else if(path.equals("withDrawComm")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("myCommunities",result.get("community"));
+
 			}else{
-
 				req.setAttribute("result",resc.getResult());
-
 			}
 
 			RequestDispatcher rd = req.getRequestDispatcher(resc.getTarget());
