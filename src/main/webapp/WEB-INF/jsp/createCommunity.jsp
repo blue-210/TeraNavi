@@ -67,8 +67,8 @@
 
 							<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 							<div class="text-center col-xs-12 col-md-12">
-								<button type="button" class="btn btn-warning hidden-xs" id="csubmit"  data-toggle="modal" data-target="#myModal">コミュニティを作成</button>
-								<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile"  data-toggle="modal" data-target="#myModalMobile">コミュニティを作成</button>
+								<button type="button" class="btn btn-warning hidden-xs" id="csubmit">コミュニティを作成</button>
+								<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile">コミュニティを作成</button>
 
 
 								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
@@ -194,6 +194,7 @@
 					if ($("#name").val().length <= 0) {
 
 						$("#validateCommunityName").css("display", "");
+						alert("正しく入力されていない項目があります");
 					} else {
 						$("#mTitle").empty();
 						$("#mProfile").empty();
@@ -203,6 +204,9 @@
 						$("#mTitle").append($("#name").val());
 						$("#mProfile").append($("#profile").val());
 						$("#mIcon").attr("src", $("#icon").val());
+						
+//						確認モーダルを開く処理
+						$("#myModal").modal("show");
 					}
 
 
@@ -214,6 +218,7 @@
 					if ($("#name").val().length <= 0) {
 
 						$("#validateCommunityName").css("display", "");
+						alert("正しく入力されていない項目があります");
 					} else {
 						$("#mTitleMobile").empty();
 						$("#mProfileMobile").empty();
@@ -223,6 +228,8 @@
 						$("#mTitleMobile").append($("#name").val());
 						$("#mProfileMobile").append($("#profile").val());
 						$("#mIconMobile").attr("src", $("#icon").val());
+						
+						$("#myModalMobile").modal("show");
 					}
 
 
