@@ -83,7 +83,6 @@ public class WebApplicationController implements ApplicationController{
 					List communities = (List)session.getAttribute("myCommunities");
 					communities.add(result.get("community"));
 					session.setAttribute("myCommunities", communities);
-
 				}
 
 				res.setContentType("application/json;charset=UTF-8");
@@ -118,36 +117,46 @@ public class WebApplicationController implements ApplicationController{
 				session.removeAttribute("loginUser");
 				session.removeAttribute("myCommunities");
 				session.invalidate();
-
-
 			}else if(path.equals("blogCreate")){
 				HttpSession session = req.getSession(true);
 				UserBean user = (UserBean)session.getAttribute("loginUser");
 				user.setBlogStatus("1");
 				session.setAttribute("loginUser", user);
-			}else if( path.equals("basic")) { 
+
+			}else if( path.equals("basic")) {
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 			}else if(path.equals("mypage")){
 //				マイページのロード時にセッションの中身をリフレッシュする
-				
+
 				HttpSession session = req.getSession(true);
 				Map result = (HashMap)resc.getResult();
 				Boolean loginFlag = (Boolean)result.get("loginFlag");
-				
+
 //				読み込むページがログインユーザ自身のページあった場合セッションをリフレッシュする
 //				この判定を行わないと他人のマイページを見た際にそのユーザを乗っ取れてしまいます
 
 				if(loginFlag){
 					UserBean user = (UserBean)result.get("user");
 					session.setAttribute("loginUser", user);
-					
+
 				}
-				
+
+			}else if(path.equals("partiComm")){
+				HttpSession session = req.getSession(true);
+
+				Map result = (Map)resc.getResult();
+				System.out.println(((CommunityBean)result.get("community")).getId());
+				List communities = (List)session.getAttribute("myCommunities");
+				communities.add(result.get("community"));
+				session.setAttribute("myCommunities", communities);
+			}else if(path.equals("withDrawComm")){
+				Map result = (Map)resc.getResult();
+				HttpSession session = req.getSession(true);
+				session.setAttribute("myCommunities",result.get("community"));
+
 			}else{
-
 				req.setAttribute("result",resc.getResult());
-
 			}
 
 			RequestDispatcher rd = req.getRequestDispatcher(resc.getTarget());
