@@ -109,7 +109,7 @@ public class WebApplicationController implements ApplicationController{
 				communities.add(ub.getCommunity());
 				session.setAttribute("myCommunities", communities);
 
-			}else if(path.equals("signup") || path.equals("basic")){
+			}else if(path.equals("signup")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 				session.setAttribute("myCommunities",new HashMap());
@@ -125,6 +125,25 @@ public class WebApplicationController implements ApplicationController{
 				UserBean user = (UserBean)session.getAttribute("loginUser");
 				user.setBlogStatus("1");
 				session.setAttribute("loginUser", user);
+			}else if( path.equals("basic")) { 
+				HttpSession session = req.getSession(true);
+				session.setAttribute("loginUser",resc.getResult());
+			}else if(path.equals("mypage")){
+//				マイページのロード時にセッションの中身をリフレッシュする
+				
+				HttpSession session = req.getSession(true);
+				Map result = (HashMap)resc.getResult();
+				Boolean loginFlag = (Boolean)result.get("loginFlag");
+				
+//				読み込むページがログインユーザ自身のページあった場合セッションをリフレッシュする
+//				この判定を行わないと他人のマイページを見た際にそのユーザを乗っ取れてしまいます
+
+				if(loginFlag){
+					UserBean user = (UserBean)result.get("user");
+					session.setAttribute("loginUser", user);
+					
+				}
+				
 			}else{
 
 				req.setAttribute("result",resc.getResult());

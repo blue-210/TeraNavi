@@ -11,13 +11,13 @@
 				<div class="col-md-2 col-xs-12">
 					<br>
 					<div class="hidden-xs">
-						<img src="${article.iconPath}" style="width:100px;height:100px;">
+						<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
 						<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
 
 					</div>
 					<div class="visible-xs">
-						<img src="${article.iconPath}" style="width:100px;height:100px;">
-						<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h5 class="text-center text-muted mobile-user-name">${article.userName}</h5></a>
+						<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
+						<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h5 class="text-muted mobile-user-name">${article.userName}</h5></a>
 
 					</div>
 				</div>
@@ -31,10 +31,10 @@
 
 					</div>
 					<div class="visible-xs">
-						<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted">${article.title}</h5></a>
-						<p class="mobile-article-body" id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+						<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center">${article.title}</h5></a>
+						<%-- <p class="mobile-article-body" id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p> --%>
 
-						<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+						<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
 
 					</div>
 				</div>
@@ -61,19 +61,16 @@
 					<div class="col-md-2 col-xs-12">
 						<br>
 						<div class="hidden-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-thumbnail">
-
-
+							<img src="${blog.headerPath}" class="img-thumbnail" style="width:150px;height:50px;">
 						</div>
 						<div class="visible-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-thumbnail mobileBlogThumbnail">
-
+							<img src="${blog.headerPath}" class="img-thumbnail" style="width:150px;height:50px;">
 						</div>
 					</div>
 					<div class="col-md-7 col-xs-12">
 						<div class="hidden-xs">
 							<a href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}"><h2 class="text-muted">${blog.title}</h2></a>
-							<p id="articleBody"><c:out value="${blog.explanation}" />!!</p>
+							<p id="articleBody"><c:out value="${blog.explanation}" /></p>
 							<div class="text-right">
 								<a class="btn btn-warning" href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}">ブログページへ</a>
 							</div>

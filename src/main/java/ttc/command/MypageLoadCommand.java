@@ -33,8 +33,10 @@ public class MypageLoadCommand extends AbstractCommand{
             String loginUserId = reqc.getParameter("userId")[0];
             String paramUserId = reqc.getParameter("paramUserId")[0];
 
+//			読み込むページがログインユーザのマイページかどうかの判定フラグ
+			boolean loginFlag = loginUserId.equals(paramUserId);
 			String userId = "-1";
-			if( loginUserId.equals(paramUserId) ){
+			if( loginFlag ){
 				userId = loginUserId;
 			}else{
 				userId = paramUserId;
@@ -96,6 +98,7 @@ public class MypageLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
+			result.put("loginFlag",loginFlag);
 
 			resc.setResult(result);
             resc.setTarget("mypage");
