@@ -8,9 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import ttc.bean.Bean;
-import ttc.bean.SignKeyBean;
+import ttc.bean.SignUpKeyBean;
 
 
 import ttc.exception.integration.IntegrationException;
@@ -27,12 +28,13 @@ public class SignUpKeysDao implements AbstractDao{
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
             sql.append("insert into sign_up_keys ");
-            sql.append("values(?,0)");
+            sql.append("values(?,?)");
             
             pst = cn.prepareStatement(new String(sql));
             
             pst.setString(1,(String)map.get("key"));
-            
+            pst.setString(2,(String)map.get("endDate"));
+			
             result = pst.executeUpdate();
         }catch(SQLException e){
             MySqlConnectionManager.getInstance().rollback();
@@ -50,6 +52,7 @@ public class SignUpKeysDao implements AbstractDao{
         return result;
         
     }
+	
     public int update(Map map)throws IntegrationException{
         PreparedStatement pst = null;
         int result = 0;
@@ -88,14 +91,14 @@ public class SignUpKeysDao implements AbstractDao{
     }
     public Bean read(Map map)throws IntegrationException{
         PreparedStatement pst = null;
-		SignKeyBean bean = null;
+		SignUpKeyBean bean = null;
 		
 		try{
 			Connection cn = null;
 			cn = MySqlConnectionManager.getInstance().getConnection();
 			StringBuffer sql = new StringBuffer();
 			sql.append("select sign_up_key ");
-			sql.append("from sign_up_keys where key_status=0 and sign_up_key=?");
+			sql.append("from sign_up_keys where key_valid_date >= sysdate() and sign_up_key=?");
 			
 			pst = cn.prepareStatement(new String(sql));
 			
@@ -105,8 +108,8 @@ public class SignUpKeysDao implements AbstractDao{
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()){
-				bean = new SignKeyBean();
-				bean.setSignKey(rs.getString(1));
+				bean = new SignUpKeyBean();
+				bean.setSignUpKey(rs.getString(1));
 				
 			}else{
 				throw new SignUpKeyInvalidException("登録キーが違います", null);
@@ -130,6 +133,41 @@ public class SignUpKeysDao implements AbstractDao{
     
 
     public List readAll(Map map)throws IntegrationException{
-        return null;
+        PreparedStatement pst = null;
+		
+		List result = new ArrayList(); 
+		
+		try{
+			Connection cn = null;
+			cn = MySqlConnectionManager.getInstance().getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select sign_up_key,key_valid_date ");
+			sql.append("from sign_up_keys where key_valid_date >= sysdate()");
+			
+			pst = cn.prepareStatement(new String(sql));
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()){
+				SignUpKeyBean bean = new SignUpKeyBean();
+				bean.setSignUpKey(rs.getString(1));
+				bean.setKeyValidDate(rs.getString(2));
+				result.add(bean);
+			}
+			
+			
+			
+		}catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+		return result;
     }
 }

@@ -131,6 +131,7 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		<!--ランダム文字列の生成に使用するライブラリ-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
