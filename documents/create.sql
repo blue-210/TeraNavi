@@ -192,7 +192,7 @@ create table tera_db.chat(
 create table tera_db.sign_up_keys(
 	sign_up_key varchar(140) primary key,
 	-- 未使用→0, 使用済み→1
-	key_status char(1) not null,
+	key_valid_date datetime not null,
 	index(sign_up_key)
 )engine=InnoDB;
 

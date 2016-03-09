@@ -12,10 +12,10 @@
 					<div class="col-md-2 col-xs-12">
 						<br>
 						<div class="hidden-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+							<img src="${community.iconPath}" class="img-thumbnail" style="width:120px; height:120px;">
 						</div>
 						<div class="visible-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+							<img src="${community.iconPath}" class="img-thumbnail" style="width:120px; height:120px;">
 						</div>
 					</div>
 					<div class="col-md-7 col-xs-12">
@@ -24,13 +24,12 @@
 								<h3 class="text-center text-muted">${community.name}</h3>
 							</a>
 							<p class="text-center">${community.profile}</p>
-
 						</div>
 						<div class="visible-xs">
 							<a href="/TeraNavi/front/showcomm?commId=${community.id}">
-								<h3 class="text-center text-muted">${community.name}</h3>
-							</a>
-							<p class="text-center">${community.profile}</p>
+                                <h5 class="text-center text-muted mobile-community-title">${community.name}</h5>
+                            </a>
+                            <p class="text-center">${community.profile}</p>
 						</div>
 					</div>
 
@@ -39,7 +38,7 @@
 						<c:choose>
 							<%-- どのコミュニティにも参加していない場合 --%>
 							<c:when test="${empty sessionScope.myCommunities}">
-								<div class="col-md-1 text-center">
+								<div class="col-md-1 col-xs-12 text-center">
 									<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">
 										参加する
 									</a>
@@ -61,13 +60,13 @@
 								<%-- 参加していない場合ボタンを表示 --%>
 								<c:choose>
 									<c:when test="${flag eq 'false'}">
-										<div class="col-md-1 text-center">
+										<div class="col-md-1 col-xs-12 text-center">
 											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
 										</div>
 									</c:when>
 									<%-- 参加している場合 --%>
 									<c:otherwise>
-										<div class="col-md-1 text-center">
+										<div class="col-md-1 col-xs-12 text-center">
 											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
 										</div>
 									</c:otherwise>
@@ -95,10 +94,10 @@
 					<div class="col-md-2 col-xs-12">
 						<br>
 						<div class="hidden-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+							<img src="${community.iconPath}" class="img-thumbnail" style="width:120px; height:120px;">
 						</div>
 						<div class="visible-xs">
-							<img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+							<img src="${community.iconPath}" class="img-thumbnail" style="width:120px; height:120px;">
 						</div>
 					</div>
 					<div class="col-md-7 col-xs-12">
@@ -163,4 +162,3 @@
 		</div><!--コミュニティ一件の領域おわり-->
 	</div>
 </div>
-

@@ -11,6 +11,7 @@
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
+		<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		<title>TeraNavi TOP</title>
 	</head>
@@ -77,30 +78,30 @@
 								<div class="col-md-2 col-xs-12">
 									<br>
 									<div class="hidden-xs">
-										<img src="${article.iconPath}" style="width:100px;height:100px;" >
+										<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
 										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
 
 									</div>
 									<div class="visible-xs">
-											<img src="${article.iconPath}" style="width:100px;height:100px;">
-										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h5 class="text-center text-muted mobile-user-name">${article.userName}</h5></a>
+											<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
+										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h5 class="text-muted mobile-user-name">${article.userName}</h5></a>
 
 									</div>
 								</div>
 								<div class="col-md-7 col-xs-12">
 									<div class="hidden-xs">
 										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-										<p id="top${status.index}"><c:out value="${fn:substring(article.articleBody,0,30)}" /></p>
+										<p id="top${status.index}"><c:out value="${article.articleBody}" /></p>
 										<div class="text-right">
 											<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
 										</div>
 
 									</div>
 									<div class="visible-xs">
-										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted mobile-article-title">${article.title}</h5></a>
-										<p class="mobile-article-body" id="top${status.index}"><c:out value="${fn:substring(article.articleBody,0,30)}" /></p>
+										<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center mobile-article-title">${article.title}</h5></a>
+										<%-- <p class="mobile-article-body" id="top${status.index}"><c:out value="${fn:substring(article.articleBody,0,30)}" /></p> --%>
 
-										<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+										<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
 
 									</div>
 								</div>
@@ -126,25 +127,19 @@
 
 			$(document).ready(function () {
 
-				//記事本文のHTMLタグ除去
+			//記事本文のHTMLタグ除去-----------------------------------------------------
 				var size = $("#topArticlesSize").val();
 				for(var i=0; i<size; i++){
 					var str = $("#top"+i).text();
 					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-					// 閉じタグで切れてしまっている場合を考えてワンモアreplace
-					// </ではじまって、任意のアルファベット0文字以上で行末までにマッチさせる
-					var body2　= body.replace(/<\/(\w*?)?$/g,'');
-					str = $("#top"+i).text(body2);
+					$("#top"+i).text(body.substr(0,30));//30文字分かえす
 				}
 
 				size = $("#blogArticlesSize").val();
 				for(var i=0; i<size; i++){
 					var str = $("#blog"+i).text();
 					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-					// 閉じタグで切れてしまっている場合を考えてワンモアreplace
-					// </ではじまって、任意のアルファベット0文字以上で行末までにマッチさせる
-					var body2　= body.replace(/<\/(\w*?)?$/g,'');
-					str = $("#blog"+i).text(body2);
+					$("#blog"+i).text(body.substr(0,30));//30文字分かえす
 				}
 
 				var tagArticleCount = $("#tagArticleCount").val();
@@ -154,12 +149,10 @@
 					for(var j=0; j<size; j++){
 						var str = $("#"+i+"tag"+j).text();
 						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-						// 閉じタグで切れてしまっている場合を考えてワンモアreplace
-						// </ではじまって、任意のアルファベット0文字以上で行末までにマッチさせる
-						var body2　= body.replace(/<\/(\w*?)?$/g,'');
-						str = $("#"+i+"tag"+j).text(body2);
+						$("#"+i+"tag"+j).text(body.substr(0,30));//30文字分かえす
 					}
 				}
+			//--------------------------------------------------------------------------
 
 
 				// #(ハッシュ)指定されたタブを表示する
@@ -169,11 +162,11 @@
 
 					event.preventDefault();
 
-					// 所定の位置までスクロールする
-					var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
-					$('html, body').stop().animate({
-						scrollTop: 0
-					}, 2000);
+					// // 所定の位置までスクロールする
+					// var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
+					// $('html, body').stop().animate({
+					// 	scrollTop: 0
+					// }, 2000);
 				}
 
 			});

@@ -20,14 +20,17 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;" >
-              <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+              <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+              <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+              <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
             </div>
             <div class="col-md-7">
-              <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="0tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+              <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
+              <a class="visible-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center">${article.title}</h5></a>
+              <p class="hidden-xs" id="0tag${status.index}"><c:out value="${article.articleBody}" /></p>
               <div class="text-right">
-                <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+                <a class="hidden-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+                <a class="visible-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
               </div>
             </div>
             <div class="col-md-3">
@@ -48,18 +51,21 @@
       <input type="hidden" id="tagArticlesSize1" value="${fn:length(result.tagArticles[1])}">
       <c:forEach var="article" items="${result.tagArticles[1]}" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
-            <div class="col-md-2">
-              <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;">
-              <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
-            </div>
-            <div class="col-md-7">
-              <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="1tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
-              <div class="text-right">
-                <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+              <div class="col-md-2">
+                <br>
+                <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+                <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
               </div>
-            </div>
+              <div class="col-md-7">
+                <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
+                <a class="visible-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center">${article.title}</h5></a>
+                <p class="hidden-xs" id="1tag${status.index}"><c:out value="${article.articleBody}" /></p>
+                <div class="text-right">
+                  <a class="hidden-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+                  <a class="visible-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
+                </div>
+              </div>
             <div class="col-md-3">
               <br>
               <br>
@@ -78,18 +84,21 @@
        <input type="hidden" id="tagArticlesSize2" value="${fn:length(result.tagArticles[2])}">
       <c:forEach var="article" items="${result.tagArticles[2]}"  varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
-            <div class="col-md-2">
-              <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;">
-              <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
-            </div>
-            <div class="col-md-7">
-              <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="2tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
-              <div class="text-right">
-                <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+              <div class="col-md-2">
+                <br>
+                <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
+                <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
               </div>
-            </div>
+              <div class="col-md-7">
+                <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
+                <a class="visible-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center">${article.title}</h5></a>
+                <p class="hidden-xs" id="2tag${status.index}"><c:out value="${article.articleBody}" /></p>
+                <div class="text-right">
+                  <a class="hidden-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+                  <a class="visible-xs btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
+                </div>
+              </div>
             <div class="col-md-3">
               <br>
               <br>

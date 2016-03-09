@@ -191,7 +191,9 @@
 									</table>
 									<c:choose>
 										<c:when test="${fn:length(result.article)  > 0}">
-											<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>　
+											<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>
+											<br>
+											<p class="text-warning text-right" style="margin-top:15px; font-size:12px">記事の編集はこちらから</p>
 										</c:when>
 										<c:otherwise>
 											<p class="text-center">まだ記事が投稿されていません</p>
