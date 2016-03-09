@@ -109,7 +109,7 @@ public class WebApplicationController implements ApplicationController{
 				communities.add(ub.getCommunity());
 				session.setAttribute("myCommunities", communities);
 
-			}else if(path.equals("signup") || path.equals("basic")){
+			}else if(path.equals("signup")){
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
 				session.setAttribute("myCommunities",new HashMap());
@@ -125,6 +125,9 @@ public class WebApplicationController implements ApplicationController{
 				UserBean user = (UserBean)session.getAttribute("loginUser");
 				user.setBlogStatus("1");
 				session.setAttribute("loginUser", user);
+			}else if( path.equals("basic")) { 
+				HttpSession session = req.getSession(true);
+				session.setAttribute("loginUser",resc.getResult());
 			}else{
 
 				req.setAttribute("result",resc.getResult());
