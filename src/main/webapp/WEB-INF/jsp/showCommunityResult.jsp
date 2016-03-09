@@ -51,19 +51,45 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 hidden-xs">
-							<img id="icon" src="${result.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
+							<img id="icon" src="${result.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
                             <label for="iconFile" id="iconPath">
 								<input type="file" id="iconFile" style="display:none">
                             </label>
 						</div>
 						<div class="col-xs-12 visible-xs">
-							<img id="mobileCommIcon" src="${result.iconPath}"></img>
+							<img id="mobileCommIcon" src="${result.iconPath}" class="img-thumbnail"></img>
 
 						</div>
 					</div>
-					<c:if test="${sessionScope.loginUser.id eq result.createUserId}">
-						<button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
-					</c:if>
+					<c:choose>
+						<c:when test="${sessionScope.loginUser.id eq result.createUserId}">
+							<button type="button" id="edit" class="btn btn-warning btn-lg">編集</button>
+						</c:when>
+						<c:otherwise>
+							<c:set var="flag" value="false"/>
+							<%-- sessionにある参加しているコミュニティのリストを使って比較 --%>
+							<c:forEach var="co" items="${sessionScope.myCommunities}">
+								<c:choose>
+									<%-- co.idは自分が参加しているコミュ、community.idは比較対象となるコミュ --%>
+									<c:when test="${co.id eq result.id}">
+										<%-- 参加していればtrueに --%>
+										<c:set var="flag" value="true"/>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+							<%-- 参加していない場合ボタンを表示 --%>
+							<c:choose>
+								<c:when test="${flag eq 'false'}">
+									<a class="btn btn-warning communityBtn" id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}">参加する</a>
+								</c:when>
+								<%-- 参加している場合 --%>
+								<c:otherwise>
+									<a class="btn btn-warning communityBtn"id="joinButton" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
+
 
 					<div class="section">
 						<div class="container">
