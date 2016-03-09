@@ -70,9 +70,9 @@
 									<li>
 										<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
 									</li>
-<!--									<li>
-										<a href="/TeraNavi/front/showDmList">DM</a>
-									</li>-->
+									<!--									<li>
+																			<a href="/TeraNavi/front/showDmList">DM</a>
+																		</li>-->
 									<br><br>
 									<li>
 										<a href="/TeraNavi/withdraw">退会</a>
@@ -93,6 +93,13 @@
 									<div class="form-group">
 										<label class="control-label">タイトル</label>
 										<input type="text" name="title" class="form-control" id="inputTitle">
+
+										<!--入力チェックのメッセージ用のdiv-->
+										<div class="row" id="validateTitle" style="display: none;">
+											<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">名前は必須入力です</p>
+
+										</div>
+
 										<br>
 										<label class="control-label">内容</label>
 										<textarea class="ckeditor" id="inputBody" name="body"></textarea>
@@ -103,6 +110,11 @@
 										<input type="file" id="inputImage" class="hidden">
 									</div>
 								</form>
+							</div>
+
+							<div class="row" id="validateMessage" style="display: none;">
+								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">入力内容が正しくない項目があります</p>
+
 							</div>
 
 							<div class="row">
@@ -173,7 +185,7 @@
 							<button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
-            　<h4 class="modal-title text-center">確認</h4>
+							<h4 class="modal-title text-center">確認</h4>
 						</div>
 						<div class="modal-body" id="articlePostModalBody">
 						</div>
@@ -202,6 +214,8 @@
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
+
+
 
 			<script>
 				var ajaxSettings;
@@ -301,13 +315,21 @@
 
 					//記事投稿の際の確認モーダルを出す処理---------------------------------------------
 					$("#btn_post").on("click", function () {
-						var apmBody = $("#articlePostModalBody");
-						var title = $("#inputTitle").val();
-						var body = CKEDITOR.instances.inputBody.getData();
-						$("#articlePostModalBody").empty();
-						apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
-						apmBody.append('<hr><p>この内容でよろしいですか？<p>');
-						$("#articlePostModal").modal();
+
+						if ($("#inputTitle").val().length <= 0) {
+							$("#validateMessage").css("display","");
+							$("#validateTitle").css("display", "");
+						} else {
+							var apmBody = $("#articlePostModalBody");
+							var title = $("#inputTitle").val();
+							var body = CKEDITOR.instances.inputBody.getData();
+							$("#articlePostModalBody").empty();
+							apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
+							apmBody.append('<hr><p>この内容でよろしいですか？<p>');
+							$("#articlePostModal").modal();
+						}
+
+
 					});
 
 					//記事を投稿する処理--------------------------------------------------------------
@@ -346,37 +368,45 @@
 					//下書き保存する処理--------------------------------------------------------------
 					$("#btn_draft").on("click", function () {
 
-						var checks = [];
-						$("[name='chTag']:checked").each(function () {
-							checks.push(this.value);
-						});
+						if ($("#inputTitle").val().length <= 0) {
+							$("#validateTitle").css("display", "");
+							$("#validateMessage").css("display","");
+						} else {
+							var checks = [];
+							$("[name='chTag']:checked").each(function () {
+								checks.push(this.value);
+							});
 
-						$.ajax({
-							// urlで飛ばしたいコマンドを指定してあげる
-							url: '/TeraNavi/front/draftArticle',
-							type: 'POST',
-							//   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
-							dataType: 'json',
-							//   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
-							data: {
-								//   キー:バリューで書く。バリューには変数も使えます。
-								title: $("#inputTitle").val(),
-								body: CKEDITOR.instances.inputBody.getData(),
-								tag: checks,
-								ajax: 'true'
-							}
-						})
-								//    成功時の処理
-								.done(function (data) {
-									$("#articlePostResultModalLabel").text("記事の下書き保存結果");
-									$("#articlePostResultMessage").text("記事の下書き保存が完了しました");
-									$("#articlePostResultModal").modal();
-								})
-								//    失敗時の処理
-								.fail(function () {
-									$("#articlePostResultMessage").text("記事を下書き保存できませんでした");
-									$("#articlePostResultModal").modal();
-								});
+							$.ajax({
+								// urlで飛ばしたいコマンドを指定してあげる
+								url: '/TeraNavi/front/draftArticle',
+								type: 'POST',
+								//   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
+								dataType: 'json',
+								//   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+								data: {
+									//   キー:バリューで書く。バリューには変数も使えます。
+									title: $("#inputTitle").val(),
+									body: CKEDITOR.instances.inputBody.getData(),
+									tag: checks,
+									ajax: 'true'
+								}
+							})
+									//    成功時の処理
+									.done(function (data) {
+										$("#articlePostResultModalLabel").text("記事の下書き保存結果");
+										$("#articlePostResultMessage").text("記事の下書き保存が完了しました");
+										$("#articlePostResultModal").modal();
+									})
+									//    失敗時の処理
+									.fail(function () {
+										$("#articlePostResultMessage").text("記事を下書き保存できませんでした");
+										$("#articlePostResultModal").modal();
+									});
+						}
+
+
+
 					});
 
 
@@ -389,7 +419,16 @@
 						$("#previewModal").modal();
 					});
 
+					$(document).on("blur", "#inputTitle", function () {
+						if ($("#inputTitle").val().length <= 0) {
+							$("#validateTitle").css("display", "");
+						} else {
+							$("#validateTitle").css("display", "none");
+							$("#validateMessage").css("display","none");
+						}
+					});
 				});
+
 
 
 			</script>
