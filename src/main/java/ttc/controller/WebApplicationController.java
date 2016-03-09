@@ -130,10 +130,10 @@ public class WebApplicationController implements ApplicationController{
 				session.setAttribute("loginUser",resc.getResult());
 			}else if(path.equals("mypage")){
 //				マイページのロード時にセッションの中身をリフレッシュする
-				HttpSession session = req.getSession(true);
-				Map result = (HashMap)resc.getResult();
-				UserBean user = (UserBean)result.get("user");
-				session.setAttribute("loginUser", user);
+//				HttpSession session = req.getSession(true);
+//				Map result = (HashMap)resc.getResult();
+//				UserBean user = (UserBean)result.get("user");
+//				session.setAttribute("loginUser", user);
 			
 			}else{
 
