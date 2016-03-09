@@ -57,6 +57,10 @@ public class BasicSettingCommand extends AbstractCommand{
 			params.put("userbean",beforeUb);
 			dao.update(params);
 
+			params.clear();
+			params.put("value",userId);
+			params.put("where","where user_id=?");
+			
 
 			UserBean afterUb = (UserBean)dao.read(params);
 			resc.setResult(afterUb);

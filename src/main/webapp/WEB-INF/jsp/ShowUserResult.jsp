@@ -29,8 +29,8 @@
 					<c:forEach var="item" items="${result}">
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1 col-xs-11">
-								<img src="${item.iconPath}" class="img-responsive hidden-xs">
-								<img src="${item.iconPath}" class="img-responsive visible-xs mobile-user-icon">
+								<img src="${item.iconPath}" class="hidden-xs" style="width:140px;height:140px;">
+								<img src="${item.iconPath}" class="visible-xs"style="width:140px;height:140px;">
 								<div class="prof">
 									<div class="hidden-xs">
 										<a href="/TeraNavi/front/mypage?paramUserId=${item.id}" class="text-muted">

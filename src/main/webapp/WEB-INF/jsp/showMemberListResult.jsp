@@ -80,7 +80,7 @@
 										<div class="row hidden-xs">
 											<c:forEach var="member" items="${result.members}">
 												<div class="col-md-3">
-													<img src="${member.iconPath}" class="img-responsive">
+													<img src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
 													<h4>${member.userName}</h4>
 													<input type="hidden" name="targetUser" value="${member.id}">
 													<input type="hidden" name="communityId" value="${result.value}">
@@ -100,7 +100,7 @@
 													<c:forEach var="member" items="${result.members}">
 														<tr>
 															<td>
-																<img id="mobileMemberIcon" src="${member.iconPath}" class="img-responsive">
+																<img id="mobileMemberIcon" src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
 
 															</td>
 															<td>

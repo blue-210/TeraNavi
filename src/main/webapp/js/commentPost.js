@@ -6,10 +6,11 @@
 
 
 
-var ajaxSettings;
-var ajax;
+var ajaxSettings2;
+var ajax2;
 $(function(){
-	ajaxSettings = {
+	
+	ajaxSettings2 = {
 		type:'post',
 		url:'/TeraNavi/front/compost',
 		dataType:'json',
@@ -26,13 +27,13 @@ $(document).on("click","#commentSubmit",function(){
 function sendComment(){
 	var body = $("#commentBody").val();
 	if(body.length>0){
-		ajaxSettings.data = {
+		ajaxSettings2.data = {
 			ajax:"true",
 			articleId:$("#primaryArticleId").val(),
 			body:body
 		};
 
-		ajaxSettings.success = function(data){
+		ajaxSettings2.success = function(data){
 			var cDiv = $("#commentPostDiv");
 			console.log(data.length);
 	//		 　コメント数の更新
@@ -64,7 +65,7 @@ function sendComment(){
 			}
 		};
 
-		ajax = $.ajax(ajaxSettings);
+		ajax2 = $.ajax(ajaxSettings2);
 		
 	}else{
 		$("#commentBody").attr("placeholder","入力内容が足りません");
