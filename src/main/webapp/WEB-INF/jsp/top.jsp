@@ -11,6 +11,7 @@
 		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
+		<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		<title>TeraNavi TOP</title>
 	</head>
@@ -126,7 +127,7 @@
 
 			$(document).ready(function () {
 
-				//記事本文のHTMLタグ除去
+			//記事本文のHTMLタグ除去-----------------------------------------------------
 				var size = $("#topArticlesSize").val();
 				for(var i=0; i<size; i++){
 					var str = $("#top"+i).text();
@@ -160,6 +161,7 @@
 						str = $("#"+i+"tag"+j).text(body2);
 					}
 				}
+			//--------------------------------------------------------------------------
 
 
 				// #(ハッシュ)指定されたタブを表示する
@@ -169,11 +171,11 @@
 
 					event.preventDefault();
 
-					// 所定の位置までスクロールする
-					var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
-					$('html, body').stop().animate({
-						scrollTop: 0
-					}, 2000);
+					// // 所定の位置までスクロールする
+					// var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
+					// $('html, body').stop().animate({
+					// 	scrollTop: 0
+					// }, 2000);
 				}
 
 			});
