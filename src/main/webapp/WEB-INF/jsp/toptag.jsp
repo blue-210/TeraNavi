@@ -13,7 +13,10 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles[0]}">
+      <input type="hidden" id="tagArticleCount" value="${fn:length(result.tagArticles)}">
+
+      <input type="hidden" id="tagArticlesSize0" value="${fn:length(result.tagArticles[0])}">
+      <c:forEach var="article" items="${result.tagArticles[0]}" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -22,7 +25,7 @@
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+              <p id="0tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
@@ -42,7 +45,8 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles[1]}">
+      <input type="hidden" id="tagArticlesSize1" value="${fn:length(result.tagArticles[1])}">
+      <c:forEach var="article" items="${result.tagArticles[1]}" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -51,7 +55,7 @@
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p>${fn:substring(article.articleBody, 0, 30)}</p>
+              <p id="1tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
@@ -71,7 +75,8 @@
         <br>
       </div>
 
-      <c:forEach var="article" items="${result.tagArticles[2]}">
+       <input type="hidden" id="tagArticlesSize2" value="${fn:length(result.tagArticles[2])}">
+      <c:forEach var="article" items="${result.tagArticles[2]}"  varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -80,7 +85,7 @@
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p>${fn:substring(article.articleBody, 0, 30)}</p>
+              <p id="2tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
