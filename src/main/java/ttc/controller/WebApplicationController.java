@@ -130,11 +130,20 @@ public class WebApplicationController implements ApplicationController{
 				session.setAttribute("loginUser",resc.getResult());
 			}else if(path.equals("mypage")){
 //				マイページのロード時にセッションの中身をリフレッシュする
-//				HttpSession session = req.getSession(true);
-//				Map result = (HashMap)resc.getResult();
-//				UserBean user = (UserBean)result.get("user");
-//				session.setAttribute("loginUser", user);
-			
+				
+				HttpSession session = req.getSession(true);
+				Map result = (HashMap)resc.getResult();
+				Boolean loginFlag = (Boolean)result.get("loginFlag");
+				
+//				読み込むページがログインユーザ自身のページあった場合セッションをリフレッシュする
+//				この判定を行わないと他人のマイページを見た際にそのユーザを乗っ取れてしまいます
+
+				if(loginFlag){
+					UserBean user = (UserBean)result.get("user");
+					session.setAttribute("loginUser", user);
+					
+				}
+				
 			}else{
 
 				req.setAttribute("result",resc.getResult());
