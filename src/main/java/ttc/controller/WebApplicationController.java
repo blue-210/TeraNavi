@@ -128,6 +128,13 @@ public class WebApplicationController implements ApplicationController{
 			}else if( path.equals("basic")) { 
 				HttpSession session = req.getSession(true);
 				session.setAttribute("loginUser",resc.getResult());
+			}else if(path.equals("mypage")){
+//				マイページのロード時にセッションの中身をリフレッシュする
+				HttpSession session = req.getSession(true);
+				Map result = (HashMap)resc.getResult();
+				UserBean user = (UserBean)result.get("user");
+				session.setAttribute("loginUser", user);
+			
 			}else{
 
 				req.setAttribute("result",resc.getResult());
