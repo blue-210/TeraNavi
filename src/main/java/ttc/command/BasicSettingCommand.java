@@ -42,7 +42,7 @@ public class BasicSettingCommand extends AbstractCommand{
 			params.put("userId",userId);
 
             params.put("userName",userName);
-            params.put("nameKana",nameKana);
+            params.put("userNameKana",nameKana);
             params.put("sexVisibleFlag",sexVisibleFlag);
             params.put("mailAddress",mailAddress);
             params.put("headerPath",headerPath);
