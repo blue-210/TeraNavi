@@ -20,12 +20,12 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;" >
+              <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="0tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+              <p id="0tag${status.index}"><c:out value="${article.articleBody}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
@@ -50,12 +50,12 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;">
+              <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="1tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+              <p id="1tag${status.index}"><c:out value="${article.articleBody}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>
@@ -80,12 +80,12 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" style="width:100px;height:100px;">
+              <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
               <a href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
             </div>
             <div class="col-md-7">
               <a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
-              <p id="2tag${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+              <p id="2tag${status.index}"><c:out value="${article.articleBody}" /></p>
               <div class="text-right">
                 <a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
               </div>

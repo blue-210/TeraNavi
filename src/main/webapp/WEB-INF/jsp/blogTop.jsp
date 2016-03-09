@@ -140,7 +140,8 @@
 					<%-- 記事一覧の表示 --%>
 					<div class="col-md-2"></div>
 
-					<c:forEach var="article" items="${result.articleList}"  begin="0" end="3">
+					<input type="hidden" id="articlesSize" value="${fn:length(result.articleList)}">
+					<c:forEach var="article" items="${result.articleList}"  begin="0" end="3" varStatus="status">
 						<div class="section hidden-xs">
 							<div class=" col-md-9 col-md-offset-1 well">
 								<div class="article-title">
@@ -151,7 +152,7 @@
 								</div>
 								<div class="article-content">
 									<div class="section">
-										<p id="articleBody">${ fn:substring(article.articleBody, 0, 20) }...</p>
+										<p id="${status.index}"><c:out value="${article.articleBody}" /></p>
 
 									</div>
 									<p class="article-date">${article.createdDate}</p>
@@ -171,7 +172,8 @@
 
 						<table class="table table-hover">
 							<tbody>
-								<c:forEach var="article" items="${result.articleList}"  begin="0" end="3">
+								<input type="hidden" id="articlesSize" value="${fn:length(result.articleList)}">
+								<c:forEach var="article" items="${result.articleList}"  begin="0" end="3" varStatus="status">
 
 									<tr>
 										<td>
@@ -179,7 +181,7 @@
 												<h3 class="text-muted text-center">${article.title}</h3>
 											</a>
 
-											<p id="articleBodyMobile">${ fn:substring(article.articleBody, 0, 20) }...</p>
+											<%-- <p  id="${status.index}"><c:out value="${article.articleBody}" /></p> --%>
 
 											<p class="article-date-mobile">${article.createdDate}</p>
 
@@ -250,6 +252,19 @@
 
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
+		<script>
+			$(function () {
+
+				//記事本文のHTMLタグ除去-----------------------------------------------------
+					var size = $("#articlesSize").val();
+					for(var i=0; i<size; i++){
+						var str = $("#"+i).text();
+						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+						$("#"+i).text(body.substr(0,20));//20文字分かえす
+					}
+				//--------------------------------------------------------------------------
+			});
+		</script>
 		<script>
 			$("#dd").click(function () {
 				$('.bun').remove();
