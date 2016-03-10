@@ -42,7 +42,8 @@
 				<div class="row">
 					<div class="col-md-3"></div>
 					<div class="col-md-12 hidden-xs">
-						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
+						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}
+							<br><h2 class="col-md-12 text-center">${result.topic.name}</h2></span>
 						</p>
 					</div>
 					<div class="visible-xs col-xs-11">
@@ -57,7 +58,6 @@
 					</div>
 					<div class="col-xs-12 visible-xs">
 							<img id="mobileCommIcon" src="${result.community.iconPath}"></img>
-
 						</div>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 
 			</div>
 		</c:if>
-		
+
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 		<script src="/TeraNavi/js/script.js"></script>
