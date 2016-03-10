@@ -208,8 +208,11 @@
 					<div class="form-group">
 						<label for="question">秘密の質問</label>
 						<select name="questionId" form="signForm" id="fQuestionId" class="form-control">
-							<option value="1" selected="true">質問1</option>
-							<option value="2">質問2</option>
+							<option value="1" selected="true">あなたの出身地は？</option>
+							<option value="2">母親の旧姓は？</option>
+							<option value="3">好きな動物は？</option>
+							<option value="4">学生時代に所属していた部活動は？</option>
+							<option value="5">初めて飼ったペットの名前は？</option>
 						</select>
 					</div>
 				</div>
