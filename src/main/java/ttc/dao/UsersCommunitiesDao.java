@@ -27,10 +27,11 @@ public class UsersCommunitiesDao implements AbstractDao{
             StringBuffer sql=new StringBuffer();
             sql.append("select fk_community_id ");
             // 退会していないものを取得する
-            sql.append("from community_members_list where fk_user_id = ? ");
+            sql.append("from community_members_list where fk_user_id = ? and fk_community_id = ?");
 
             pst = cn.prepareStatement(new String(sql));
             pst.setInt(1, Integer.parseInt((String)map.get("userId")));
+            pst.setInt(2, Integer.parseInt((String)map.get("commId")));
 
             ResultSet rs = pst.executeQuery();
 
@@ -136,7 +137,7 @@ public class UsersCommunitiesDao implements AbstractDao{
         List members = null;
         PreparedStatement pst = null;
 		//Communityのメンバを取得する処理
-		
+
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
@@ -148,7 +149,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             pst = cn.prepareStatement(new String(sql));
             pst.setString(1,(String)map.get("communityId"));
-				
+
             ResultSet rs = pst.executeQuery();
 			members = new ArrayList();
 			while(rs.next()){
@@ -160,7 +161,7 @@ public class UsersCommunitiesDao implements AbstractDao{
 				member.setCommunityAdminFlag(rs.getString(5));
 				members.add(member);
 			}
-            
+
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
@@ -173,9 +174,9 @@ public class UsersCommunitiesDao implements AbstractDao{
                 throw new IntegrationException(e.getMessage(),e);
             }
         }
-		
+
         return members;
-		
+
     }
 
     /* UsersCommunities表は、一度参加して退会したコミュニティに参加しようとすると、

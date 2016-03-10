@@ -241,7 +241,7 @@ $(document).on("click", "#signsubmit", function () {
 		$("#validateKey").css("display", "none");
 	}
 
-	if (!$("#fSex:checked").val()) {
+	if (!$("input:radio[name='sex']:checked").val()) {
 		flag = 1;
 		$("#validateSex").css("display", "");
 	} else {
@@ -396,7 +396,7 @@ $(document).on("click", "#signsubmitMobile", function () {
 		$("#validateKey").css("display", "none");
 	}
 
-	if (!$("#fSex:checked").val()) {
+	if (!$("input:radio[name='sex']:checked").val()) {
 		flag = 1;
 		$("#validateSex").css("display", "");
 	} else {

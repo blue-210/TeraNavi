@@ -133,14 +133,14 @@
 									
 									
 									<div class="row">
-										<div class="col-md-4 col-md-offset-2 col-xs-6"><h2>名前</h2></div>
-										<div class="col-md-4 col-xs-6"><h2>ふりがな</h2></div>
+										<div class="col-md-4 col-md-offset-2 col-xs-4"><h2>名前</h2></div>
+										<div class="col-md-4 col-xs-8"><h2>ふりがな</h2></div>
 										<div class="col-md-2 col-xs-0"></div>
 										
 									</div>
 									<div class="row">
-										<div class="col-md-4 col-md-offset-2 col-xs-6"><h5 id="modalName"></h5></div>
-										<div class="col-md-4 col-xs-6"><h5 id="modalHuri"></h5></div>
+										<div class="col-md-4 col-md-offset-2 col-xs-4"><h5 id="modalName"></h5></div>
+										<div class="col-md-4 col-xs-8"><h5 id="modalHuri"></h5></div>
 										<div class="col-md-2 col-xs-0"></div>
 									</div>
 									<div class="row">

@@ -19,7 +19,7 @@
 					<option value="commList">コミュニティ</option>
 					<option value="keywordsearch">ブログ</option>
 				</select>
-				<input type="text"  name="keyword" class="md_keyword">
+				<input type="text"  name="keyword" class="md_keyword" placeholder="このまま検索すると全件検索になります">
 				<input type="hidden" name="intention" value="search">
 				<span>
 					<button type="submit" class="btn btn-default md_searchbutton" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
@@ -50,7 +50,7 @@
 			</ul>
 		</div>
 	</nav>
-	
+
 </div>
 
 <div class="visible-xs">
@@ -64,7 +64,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				
+
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -113,7 +113,7 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 </div>
-	
+
 <div id="loginmodal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content col-xs-12 col-md-12">

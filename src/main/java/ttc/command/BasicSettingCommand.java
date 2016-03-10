@@ -42,7 +42,7 @@ public class BasicSettingCommand extends AbstractCommand{
 			params.put("userId",userId);
 
             params.put("userName",userName);
-            params.put("nameKana",nameKana);
+            params.put("userNameKana",nameKana);
             params.put("sexVisibleFlag",sexVisibleFlag);
             params.put("mailAddress",mailAddress);
             params.put("headerPath",headerPath);
@@ -57,6 +57,10 @@ public class BasicSettingCommand extends AbstractCommand{
 			params.put("userbean",beforeUb);
 			dao.update(params);
 
+			params.clear();
+			params.put("value",userId);
+			params.put("where","where user_id=?");
+			
 
 			UserBean afterUb = (UserBean)dao.read(params);
 			resc.setResult(afterUb);

@@ -39,10 +39,9 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
 
             // insertした結果（参加したコミュを取得）
-            CommunityBean cb =(CommunityBean)dao.read(params);
+            CommunityBean cb = (CommunityBean)dao.read(params);
             params.put("community",cb);
 
-            MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(params);
