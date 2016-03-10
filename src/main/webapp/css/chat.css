@@ -211,8 +211,8 @@
 
 
 .accountImg{
-	width:100px;
-	height:auto;
+	width:55px;
+	height:55px;
 }
 
 /* 自分のチャット内容に対する吹き出しのCSS */
@@ -230,7 +230,7 @@ padding: 10px;
 	line-height: 1.5em;
 	letter-spacing: 0.8pt;
 }
- 
+
 .content:before {
 border:10px solid transparent;
 border-left-color:#FAAC58;
@@ -243,7 +243,7 @@ position:absolute;
 width:0;
 z-index:1;
 }
- 
+
 .content:after {
 border:10px solid transparent;
 border-left-color:#F7BE81;
@@ -266,7 +266,7 @@ position:relative;
 padding: 10px;
 background-color: #E6E6E6;
 }
- 
+
 .other_content:before {
 border:10px solid transparent;
 border-right-color:#E6E6E6;
@@ -279,7 +279,7 @@ position:absolute;
 width:0;
 z-index:1;
 }
- 
+
 .other_content:after {
 border:10px solid transparent;
 border-right-color:#000;
