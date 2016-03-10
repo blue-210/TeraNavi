@@ -20,9 +20,14 @@
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
-              <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
-              <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
-              <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
+              <a class="hidden-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                  <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                  <h3 class="text-muted" style="margin-top:0px;">${article.userName}</h3>
+              </a>
+              <a class="visible-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                  <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                  <h5 class="text-muted" style="margin-top:0px;">${article.userName}</h5>
+              </a>
             </div>
             <div class="col-md-7">
               <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
@@ -53,9 +58,14 @@
           <div class="row col-md-10 col-md-offset-1 well">
               <div class="col-md-2">
                 <br>
-                <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
-                <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
-                <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
+                <a class="hidden-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                    <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                    <h3 class="text-muted" style="margin-top:0px;">${article.userName}</h3>
+                </a>
+                <a class="visible-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                    <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                    <h5 class="text-muted" style="margin-top:0px;">${article.userName}</h5>
+                </a>
               </div>
               <div class="col-md-7">
                 <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
@@ -86,9 +96,14 @@
           <div class="row col-md-10 col-md-offset-1 well">
               <div class="col-md-2">
                 <br>
-                <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
-                <a class="hidden-xs" href=""><h3 class="text-center text-muted">${article.userName}</h3></a>
-                <a class="visible-xs" href=""><h5 class="text-muted">${article.userName}</h5></a>
+                <a class="hidden-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                    <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                    <h3 class="text-muted" style="margin-top:0px;">${article.userName}</h3>
+                </a>
+                <a class="visible-xs" href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+                    <img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+                    <h5 class="text-muted" style="margin-top:0px;">${article.userName}</h5>
+                </a>
               </div>
               <div class="col-md-7">
                 <a class="hidden-xs" href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>

@@ -96,7 +96,7 @@
 
 							<div class="container visible-xs">
 								<div class="dropdown">
-									<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">マイページ<span class="caret"></span></button>
+									<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">マイページ<span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<c:choose>
 											<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
@@ -191,9 +191,20 @@
 									</table>
 									<c:choose>
 										<c:when test="${fn:length(result.article)  > 0}">
-											<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">投稿記事の一覧</a>
-											<br>
-											<p class="text-warning text-right" style="margin-top:15px; font-size:12px">記事の編集はこちらから</p>
+											<c:choose>
+												<c:when test="${sessionScope.loginUser.id eq result.user.id}">
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" id="btn-articleList" class="btn btn-warning pull-right"
+														data-toggle="popover" title="記事の編集、削除はこちらから">
+														投稿記事の一覧
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">
+														投稿記事の一覧
+													</a>
+												</c:otherwise>
+											</c:choose>
+
 										</c:when>
 										<c:otherwise>
 											<p class="text-center">まだ記事が投稿されていません</p>
@@ -210,8 +221,7 @@
 											<c:forEach var="community" items="${result.community}">
 												<tr>
 													<td>
-														<img src="${community.iconPath}" class="img-thumbnail"
-															 style="width:50px;height:50px;">
+														<img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
 													</td>
 													<td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
 													<td>
@@ -252,6 +262,13 @@
 				</div><!--end container-->
 			</div><!--end section-->
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+	<script>
+		$(function() {
+		  $('#btn_articleList').popover({
+		    trigger: 'hover', // click,hover,focus,manualを選択出来る
+		  });
+		});
+	</script>
 	</body>
 
 </html>

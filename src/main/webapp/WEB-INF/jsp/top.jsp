@@ -78,13 +78,17 @@
 								<div class="col-md-2 col-xs-12">
 									<br>
 									<div class="hidden-xs">
-										<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
-										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h3 class="text-center text-muted">${article.userName}</h3></a>
+										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+											<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;" >
+											<h3 class="text-muted" style="margin-top:0px;">${article.userName}</h3>
+										</a>
 
 									</div>
 									<div class="visible-xs">
+										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
 											<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
-										<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}"><h5 class="text-muted mobile-user-name">${article.userName}</h5></a>
+											<h5 class="text-muted mobile-user-name" style="margin-top:0px;">${article.userName}</h5>
+										</a>
 
 									</div>
 								</div>

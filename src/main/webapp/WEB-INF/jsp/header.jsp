@@ -25,7 +25,7 @@
 					<button type="submit" class="btn btn-default md_searchbutton" id="searchbutton"><i class='fa fa-search' id="searchicon"></i></button>
 				</span>
 			</form>
-			<i class="fa fa-bell-o hidden-xs" id="bell_logo"></i>
+			<i class="fa fa-bell-o hidden-xs" id="bell_logo" style="display: none;"></i>
 			<ul class="nav pull-right">
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginUser}">

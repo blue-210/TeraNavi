@@ -48,7 +48,9 @@
 			</div>
 			<div class="row hidden-xs">
 				<div class="col-md-12">
-					<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">
+						<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+					</a>
 					<h3 style="position:relative; margin-top:-100px; margin-left:50px;">
 						<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
 					</h3>
@@ -148,7 +150,10 @@
 				<div class="row">
 					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="col-md-1 col-md-offset-2 col-xs-3">
-						<img src="${sessionScope.loginUser.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+
+						<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}">
+							<img src="${sessionScope.loginUser.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+						</a>
 					</div>
 					<form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
 						<div class="col-md-7 col-xs-8">
@@ -173,8 +178,10 @@
 						<c:forEach var="comment" items="${result.article.comments}">
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2">
-									<img src="${comment.iconPath}" style="width:50px;height:50px;">
-									<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}"><p class="text-center">${comment.userName}</p></a>
+									<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}">
+										<img src="${comment.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+										<p class="">${comment.userName}</p>
+									</a>
 								</div>
 								<div class="col-md-7">
 									<p>${comment.commentDate}</p>
