@@ -85,11 +85,11 @@
 								<%-- 参加していない場合ボタンを表示 --%>
 								<c:choose>
 									<c:when test="${flag eq 'false'}">
-										<a class="btn btn-warning communityBtn" id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}">参加する</a>
+										<a class="btn btn-warning communityBtn" id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}" style="margin-top: 64px;">参加する</a>
 									</c:when>
 									<%-- 参加している場合 --%>
 									<c:otherwise>
-										<a class="btn btn-warning communityBtn"id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}" disabled>参加中</a>
+										<a class="btn btn-warning communityBtn"id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}" disabled style="margin-top: 64px;">参加中</a>
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>
