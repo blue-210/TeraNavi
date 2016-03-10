@@ -58,7 +58,7 @@
 						<img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px; img-thumbnail"></img>
 					</div>
 					<div class="col-xs-12 visible-xs">
-							<img id="mobileCommIcon" style="width:130px; height:130px;" src="${result.community.iconPath}"></img>
+							<img id="mobileCommIcon" src="${result.community.iconPath}"></img>
 						</div>
 				</div>
 			</div>
