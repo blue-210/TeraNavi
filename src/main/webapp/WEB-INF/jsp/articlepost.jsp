@@ -96,8 +96,8 @@
 
 										<!--入力チェックのメッセージ用のdiv-->
 										<div class="row" id="validateTitle" style="display: none;">
-											<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">名前は必須入力です</p>
-
+											<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">タイトルは必須入力です</p>
+a
 										</div>
 
 										<br>
@@ -146,7 +146,7 @@
 							<button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
-            　<h4 class="modal-title text-center">タグ追加</h4>
+             <h4 class="modal-title text-center">タグ追加</h4>
 						</div>
 						<div class="modal-body" id="addTagModalBody">
 
@@ -357,6 +357,12 @@
 								//    成功時の処理
 								.done(function (data) {
 									$("#articlePostResultModal").modal();
+							
+									$("#inputTitle").val("");
+									CKEDITOR.instances.inputBody.setData("");
+									
+									$("[name='chTag']:checked").prop("checked",false);
+							
 								})
 								//    失敗時の処理
 								.fail(function () {
@@ -397,6 +403,13 @@
 										$("#articlePostResultModalLabel").text("記事の下書き保存結果");
 										$("#articlePostResultMessage").text("記事の下書き保存が完了しました");
 										$("#articlePostResultModal").modal();
+										
+										$("#inputTitle").val("");
+										CKEDITOR.instances.inputBody.setData("");
+										
+										$("[name='chTag']:checked").prop("checked",false);
+										
+										
 									})
 									//    失敗時の処理
 									.fail(function () {
@@ -417,6 +430,7 @@
 						$("#previewModalBody").empty();
 						apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
 						$("#previewModal").modal();
+						
 					});
 
 					$(document).on("blur", "#inputTitle", function () {
