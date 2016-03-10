@@ -45,14 +45,20 @@
 					<div class="row hidden-xs">
 						<div class="col-md-3"></div>
 						<div class="col-md-13">
-							<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+							<p>
+								<a href="/TeraNavi/front/showcomm?commId=${result.id}">
+									<span id="name" class="col-md-12 text-center text-muted" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.name}</span>
+								</a>
 							</p>
 						</div>
 						<div class="col-md-4"></div>
 					</div>
 					<div class="row visible-xs">
 						<div class="col-xs-10">
-							<p> <span id="mobileCommName-tppic" class="col-xs-8 text-center">${result.name}</span>
+							<p>
+								<a href="/TeraNavi/front/showcomm?commId=${result.id}">
+									<span id="mobileCommName-tppic" class="col-xs-8 text-center text-muted">${result.name}</span>
+								</a>
 							</p>
 						</div>
 					</div>
