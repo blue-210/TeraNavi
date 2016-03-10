@@ -73,8 +73,8 @@
 							<c:when test="${empty ch.body}">
 							</c:when>
 							<c:when test="${sessionScope.loginUser.id eq ch.userId}">
-								<div class="row" style="position: relative;">
-									<div class="col-md-6 col-md-offset-2 content col-xs-7" style="margin-bottom: 10px;">
+								<div class="row" style="position: relative; margin-bottom:15px;">
+									<div class="col-md-6 col-md-offset-2 content col-xs-7">
 										<p>
 												<c:out value="${ch.body}"/><br>
 											</p>
@@ -89,7 +89,7 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="row">
+								<div class="row" style="margin-bottom:15px;">
 									<div class="col-md-1 col-md-offset-2 col-xs-5">
 										<img class="accountImg img-thumbnail" style="width:55px; height:55px;" src="${ch.iconPath}">
 										<p class="username"><c:out value="${ch.userName}"/></p>
