@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<div class="row hidden-xs">
-				<div class="col-md-12">
+				<div class="col-md-12"> 
 					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">
 						<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
 					</a>
@@ -150,6 +150,7 @@
 				<div class="row">
 					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="col-md-1 col-md-offset-2 col-xs-3">
+
 						<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}">
 							<img src="${sessionScope.loginUser.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
 						</a>
