@@ -19,7 +19,40 @@ import ttc.exception.integration.IntegrationException;
 public class TopicDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
-        return new TopicBean();
+        PreparedStatement pst = null;
+		TopicBean bean = null;
+
+		try{
+			Connection cn = null;
+			cn = MySqlConnectionManager.getInstance().getConnection();
+			StringBuffer sql = new StringBuffer();
+
+			sql.append("select topic_id,topic_name ");
+			sql.append("from topics where topic_id=?");
+
+            pst = cn.prepareStatement( new String(sql) );
+
+            pst.setString(1, (String)map.get("topicId"));
+
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+
+			bean = new TopicBean();
+			bean.setTopicId(rs.getString(1));
+			bean.setName(rs.getString(2));
+
+		}catch(SQLException e){
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+		return bean;
     }
 
     public int update(Map map)throws IntegrationException{
@@ -45,7 +78,7 @@ public class TopicDao implements AbstractDao{
             pst.setString(1, (String)map.get("communityId"));
             pst.setString(2, (String)map.get("userId"));
             pst.setString(3, (String)map.get("topic_name"));
-            
+
             result = pst.executeUpdate();
 
         }catch(SQLException e){

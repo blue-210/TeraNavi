@@ -26,11 +26,11 @@ public class ShowChatCommand extends AbstractCommand{
 
             String topicId=reqc.getParameter("topicId")[0];
 			String communityId = reqc.getParameter("communityId")[0];
-			
+
             Map params = new HashMap();
             params.put("topicId", topicId);
-			
-			
+
+
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("chat");
@@ -40,31 +40,41 @@ public class ShowChatCommand extends AbstractCommand{
 
 			factory = AbstractDaoFactory.getFactory("community");
 			dao = factory.getAbstractDao();
-			
+
 			params = new HashMap();
 			params.put( "commId", communityId);
 			params.put("where","where community_id=? and community_delete_flag=0");
-			
+
 			Bean community = dao.read(params);
-			
+
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			
+            // topicのDAO取得
+            params = new HashMap();
+            params.put("topicId", topicId);
+
+            factory = AbstractDaoFactory.getFactory("topic");
+            dao = factory.getAbstractDao();
+
+            Bean topic = dao.read(params);
+
+
             // 投稿が一度もない場合
             if(result.isEmpty()){
                 ChatBean bean = new ChatBean();
                 bean.setFkTopicId(topicId);
                 result.add(bean);
-                
+
             }
-			
+
 			Map resultMap = new HashMap();
 			resultMap.put("chat",result);
 			resultMap.put("community",community);
-            
+			resultMap.put("topic",topic);
+
 			resc.setResult(resultMap);
-            
+
 			resc.setTarget("showchat");
 
             return resc;
