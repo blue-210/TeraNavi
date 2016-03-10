@@ -48,7 +48,9 @@
 			</div>
 			<div class="row hidden-xs">
 				<div class="col-md-12">
-					<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">
+						<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
+					</a>
 					<h3 style="position:relative; margin-top:-100px; margin-left:50px;">
 						<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">${result.article.userName}</a>
 					</h3>
