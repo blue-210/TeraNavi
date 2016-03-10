@@ -80,8 +80,10 @@
 										<div class="row hidden-xs">
 											<c:forEach var="member" items="${result.members}">
 												<div class="col-md-3">
-													<img src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
-													<h4>${member.userName}</h4>
+													<a href="/TeraNavi/front/mypage?paramUserId=${member.id}">
+														<img src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
+														<h4>${member.userName}</h4>
+													</a>
 													<input type="hidden" name="targetUser" value="${member.id}">
 													<input type="hidden" name="communityId" value="${result.value}">
 													<c:choose>
@@ -100,12 +102,14 @@
 													<c:forEach var="member" items="${result.members}">
 														<tr>
 															<td>
-																<img id="mobileMemberIcon" src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
-
+																<a href="/TeraNavi/front/mypage?paramUserId=${member.id}">
+																	<img id="mobileMemberIcon" src="${member.iconPath}" class="center-block img-circle" style="width:200px;height:200px;">
+																</a>
 															</td>
 															<td>
-																<h3>${member.userName}</h4>
-
+																<a href="/TeraNavi/front/mypage?paramUserId=${member.id}">
+																	<h3>${member.userName}</h4>
+																</a>
 															</td>
 														</tr>
 
