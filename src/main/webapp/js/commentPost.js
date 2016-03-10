@@ -13,7 +13,7 @@ $(function(){
 	ajaxSettings2 = {
 		type:'post',
 		url:'/TeraNavi/front/compost',
-		dataType:'json',
+		dataType:'json', 
 		data:null
 
 	};

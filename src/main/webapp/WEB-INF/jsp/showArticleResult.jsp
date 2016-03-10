@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<div class="row hidden-xs">
-				<div class="col-md-12">
+				<div class="col-md-12"> 
 					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.article.userId}">
 						<img src="${result.article.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
 					</a>
