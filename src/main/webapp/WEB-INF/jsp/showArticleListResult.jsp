@@ -74,6 +74,7 @@
 </c:choose>
            </div><!--end col-->
        </div><!--end row-->
+       <div id="dummyDiv"></div>
     </div><!--end container-->
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
@@ -161,6 +162,7 @@
 
                        jQuery.each(checks, function() {
                            $("#tableRow" + this).hide();
+                           $("#dummyDiv").append('<div style="height:47px;"></div>');
                         });
 
                    })
