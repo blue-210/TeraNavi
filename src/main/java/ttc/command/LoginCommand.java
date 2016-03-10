@@ -68,12 +68,12 @@ public class LoginCommand extends AbstractCommand{
 				}
 				
 				int endFlag = cal1.compareTo(cal2);
-				
-				System.out.println(endFlag);
+//				日付の比較処理 ロック終了日が現在時刻より前なら整数値が返る
+
 				
 				if(endFlag >= 0){
 //					ロック終了日が現在の日付より前だったらロックフラグを解除する
-					System.out.println("ロックフラグの書き換え処理");
+
 					Map params2 = new HashMap();
 					params2.put("userbean", ub);
 					params2.put("userStatus", "0");
@@ -93,9 +93,10 @@ public class LoginCommand extends AbstractCommand{
 			
 
             if(password.equals(ub.getPassword())){
+//				パスワードの比較処理
                 ub.setPassword("dummy");
                 ub.setSecretAnswer("dummy");
-
+				
                 // communities表から所属しているコミュニティを取得する
 				factory = AbstractDaoFactory.getFactory("community");
 				dao = factory.getAbstractDao();
