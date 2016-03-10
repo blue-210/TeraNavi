@@ -42,22 +42,23 @@
 				<div class="row">
 					<div class="col-md-3"></div>
 					<div class="col-md-12 hidden-xs">
-						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}</span>
+						<p> <span id="name" class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}
+							<br><span class="col-md-12 text-center" style="font-size: 40px;">${result.topic.name}</span></span>
 						</p>
 					</div>
 					<div class="visible-xs col-xs-11">
 						<p> <span id="mobileCommName" class="col-xs-12 text-center">${result.community.name}</span>
+							<br><span class="col-md-12 text-center">${result.topic.name}</span></span>
 						</p>
 					</div>
 					<div class="col-md-4"></div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 hidden-xs">
-						<img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;"></img>
+						<img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px; img-thumbnail"></img>
 					</div>
 					<div class="col-xs-12 visible-xs">
-							<img id="mobileCommIcon" src="${result.community.iconPath}"></img>
-
+							<img id="mobileCommIcon" style="width:130px; height:130px;" src="${result.community.iconPath}"></img>
 						</div>
 				</div>
 			</div>
@@ -73,7 +74,7 @@
 							</c:when>
 							<c:when test="${sessionScope.loginUser.id eq ch.userId}">
 								<div class="row" style="position: relative;">
-									<div class="col-md-6 col-md-offset-2 content col-xs-7">
+									<div class="col-md-6 col-md-offset-2 content col-xs-7" style="margin-bottom: 10px;">
 										<p>
 												<c:out value="${ch.body}"/><br>
 											</p>
@@ -82,7 +83,7 @@
 									<div class="col-md-1 col-xs-5">
 
 
-										<img class="accountImg img-thumbnail" src="${sessionScope.loginUser.iconPath}">
+										<img class="accountImg img-thumbnail"style="width:55px; height:55px;" src="${sessionScope.loginUser.iconPath}">
 										<p class="Myusername"><c:out value="${ch.userName}"/></p>
 									</div>
 								</div>
@@ -90,7 +91,7 @@
 							<c:otherwise>
 								<div class="row">
 									<div class="col-md-1 col-md-offset-2 col-xs-5">
-										<img class="accountImg img-thumbnail" src="${ch.iconPath}">
+										<img class="accountImg img-thumbnail" style="width:55px; height:55px;" src="${ch.iconPath}">
 										<p class="username"><c:out value="${ch.userName}"/></p>
 									</div>
 									<div class="col-md-6 col-xs-7 other_content">
@@ -124,7 +125,7 @@
 
 			</div>
 		</c:if>
-		
+
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 		<script src="/TeraNavi/js/script.js"></script>
