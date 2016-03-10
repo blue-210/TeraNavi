@@ -27,8 +27,22 @@ public class ArticlePostCommand extends AbstractCommand{
             String userId = reqc.getParameter("userId")[0];
 
             String title = reqc.getParameter("title")[0];
+            //タグエスケープ
+            title = title.replaceAll("<script", "&lt;script");
+            title = title.replaceAll("</script>", "&lt;/script&gt;");
+            title = title.replaceAll("<form", "&lt;form");
+            title = title.replaceAll("</form>", "&lt;/form&gt;");
+            title = title.replaceAll("<input", "&lt;/input");
+            title = title.replaceAll("</input>", "&lt;/input&gt;");
 
             String body = reqc.getParameter("body")[0];
+            //タグエスケープ
+            body = body.replaceAll("<script", "&lt;script");
+            body = body.replaceAll("</script>", "&lt;/script&gt;");
+            body = body.replaceAll("<form", "&lt;form");
+            body = body.replaceAll("</form>", "&lt;/form&gt;");
+            body = body.replaceAll("<input", "&lt;/input");
+            body = body.replaceAll("</input>", "&lt;/input&gt;");
 
 			String[] tags = null;
 			//タグはチェックボックス等で複数来る事を想定してます
@@ -45,7 +59,7 @@ public class ArticlePostCommand extends AbstractCommand{
 
 			}
 
-			
+
 
             String status = "0";
 

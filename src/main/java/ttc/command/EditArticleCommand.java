@@ -26,9 +26,25 @@ public class EditArticleCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             String articleId = reqc.getParameter("articleId")[0];
+
             String title = reqc.getParameter("title")[0];
+            //タグエスケープ
+            title = title.replaceAll("<script", "&lt;script");
+            title = title.replaceAll("</script>", "&lt;/script&gt;");
+            title = title.replaceAll("<form", "&lt;form");
+            title = title.replaceAll("</form>", "&lt;/form&gt;");
+            title = title.replaceAll("<input", "&lt;/input");
+            title = title.replaceAll("</input>", "&lt;/input&gt;");
 
             String body = reqc.getParameter("body")[0];
+            //タグエスケープ
+            body = body.replaceAll("<script", "&lt;script");
+            body = body.replaceAll("</script>", "&lt;/script&gt;");
+            body = body.replaceAll("<form", "&lt;form");
+            body = body.replaceAll("</form>", "&lt;/form&gt;");
+            body = body.replaceAll("<input", "&lt;/input");
+            body = body.replaceAll("</input>", "&lt;/input&gt;");
+            
             String status = reqc.getParameter("status")[0];
 
             String[] tags = null;
