@@ -43,7 +43,7 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
 			
-
+//			ユーザが入力した質問の番号と答えが、DBに登録されているものと同じか調べる
 			if(questionNo.equals(ub.getQuestionNo()) && questionAnswer.equals(ub.getSecretAnswer())){
 				
 				resc.setResult(ub);

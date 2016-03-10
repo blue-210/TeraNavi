@@ -28,8 +28,11 @@
 						<div class="form-group">
 							<label class="control-label" for="exampleInputQuestion">秘密の質問</label>
 							<select class="form-control"  name="questionNo">
-								<option value="1">質問1</option>
-								<option value="2">質問2</option>
+								<option value="1" selected="true">あなたの出身地は？</option>
+								<option value="2">母親の旧姓は？</option>
+								<option value="3">好きな動物は？</option>
+								<option value="4">学生時代に所属していた部活動は？</option>
+								<option value="5">初めて飼ったペットの名前は？</option>
 							</select>
 						</div>
 						<div class="form-group">
