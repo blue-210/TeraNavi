@@ -26,10 +26,10 @@ $(function(){
                 if(userId ==user_id){
                     console.log(i + " " + userId + " "+ body+user_id);
 
-                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6 col-md-offset-2 content col-xs-7\"><p>" + body + "</p><p class=\"Mydate\" style=\"text-align:right;\">" + date + "</p></div><div class=\"col-md-1 col-xs-5\"><img class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"Myusername\">" + userName + "</p></div></div>");
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-6 col-md-offset-2 content col-xs-7\"><p>" + body + "</p><p class=\"Mydate\" style=\"text-align:right;\">" + date + "</p></div><div class=\"col-md-1 col-xs-5\"><img style=\"width:55px; height:55px;\" class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"Myusername\">" + userName + "</p></div></div>");
                 }else{
                     console.log(i + " " + userId + " " + body+user_id);
-                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-1 col-md-offset-2 col-xs-5\"><img class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"username\">" + userName + "</p></div><div class=\"col-md-6 other_content col-xs-7\"><p>" + body + "</p><p style=\"text-align:right;\">" + date + "<p></div></div>"
+                    $(".wrapper").append("<div class=\"row\"><div class=\"col-md-1 col-md-offset-2 col-xs-5\"><img style=\"width:55px; height:55px;\" class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"username\">" + userName + "</p></div><div class=\"col-md-6 other_content col-xs-7\"><p>" + body + "</p><p style=\"text-align:right;\">" + date + "<p></div></div>"
                     );
                 }
             }
@@ -38,7 +38,7 @@ $(function(){
             console.log(data);
         });
     });
-	
+
 	$("#mobileChatWrite").on("click",function(){
 		 $.ajax({
             url : "/TeraNavi/front/writechat",
