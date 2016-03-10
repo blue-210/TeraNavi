@@ -42,13 +42,18 @@
 				<div class="row">
 					<div class="col-md-3"></div>
 					<div class="col-md-12 hidden-xs">
-						<p> <span id="name" class="col-md-12 text-center img-thumbnail" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}
+						<p>
+							<a href="/TeraNavi/front/showcomm?commId=${result.community.id}">
+								<span id="name" class="col-md-12 text-center text-muted" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">${result.community.name}
+							</a>
 							<br><span class="col-md-12 text-center" style="font-size: 40px;">${result.topic.name}</span></span>
 						</p>
 					</div>
 					<div class="visible-xs col-xs-11">
-						<p> <span id="mobileCommName" class="col-xs-12 text-center">${result.community.name}</span>
-							<br><span class="col-md-12 text-center">${result.topic.name}</span></span>
+						<p>
+							<a href="/TeraNavi/front/showcomm?commId=${result.community.id}"> <span id="mobileCommName" class="col-xs-12 text-center text-muted">${result.community.name}</span>
+								<br><span class="col-md-12 text-center">${result.topic.name}</span></span>
+							</a>
 						</p>
 					</div>
 					<div class="col-md-4"></div>
