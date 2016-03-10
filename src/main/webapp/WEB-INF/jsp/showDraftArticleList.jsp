@@ -39,7 +39,7 @@
 					<!--モバイル用のドロップダウンメニュー-->
 					<div class="container visible-xs">
 						<div class="dropdown">
-							<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">下書き一覧<span class="caret"></span></button>
+							<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">下書き一覧<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li id="mypageTab">
 									<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
