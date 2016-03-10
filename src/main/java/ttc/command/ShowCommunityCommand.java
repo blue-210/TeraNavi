@@ -35,13 +35,14 @@ public class ShowCommunityCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
-			
+            System.out.println("readの中身のてすと"+cb.getId());
+
 			factory=AbstractDaoFactory.getFactory("topic");
             dao= factory.getAbstractDao();
-			
+
 			params.clear();
 			params.put("communityId", communityId);
-			
+
             cb.setId(reqc.getParameter("commId")[0]);
             List listx = dao.readAll(params);
             List topicList = new ArrayList();
