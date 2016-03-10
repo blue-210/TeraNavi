@@ -148,7 +148,7 @@
 				<div class="row">
 					<c:if test="${not empty sessionScope.loginUser}">
 					<div class="col-md-1 col-md-offset-2 col-xs-3">
-						<img src="${sessionScope.loginUser.iconPath}" style="width:50px;height:50px;">
+						<img src="${sessionScope.loginUser.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
 					</div>
 					<form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
 						<div class="col-md-7 col-xs-8">
