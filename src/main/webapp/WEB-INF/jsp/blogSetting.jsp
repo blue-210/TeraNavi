@@ -98,8 +98,8 @@
                     </c:choose>
 
 
-                           <div class="col-md-1"></div>
-                           <div class="col-md-6">
+                           <div class="col-md-1 col-xs-0"></div>
+                           <div class="col-md-6 col-xs-12">
 
 
                                <c:choose>
@@ -107,19 +107,19 @@
                                        タイトル<input type="text" name="title" class="form-control" id="blogTitle" value="${result.blog.title}"><br>
                                        説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation">${result.blog.explanation}</textarea><br>
                                        <p>ヘッダー画像</p>
-                                       <img src="${result.blog.headerPath}" width="555px" height="150px" id="headimg">
+                                       <img src="${result.blog.headerPath}" width="80%" height="150px" id="headimg">
                                     </c:when>
                                     <c:otherwise>
                                         タイトル<input type="text" name="title" class="form-control" id="blogTitle" placeholder="例:野球ブログ"><br>
                                         説明文<textarea rows="3" class="form-control" name="explanation" id="bodyExplanation" placeholder="例:このブログは野球について書きます"></textarea><br>
                                         <p>ヘッダー画像</p>
-                                        <img src="/TeraNavi/img/NoImage.png" width="555px" height="150px" id="headimg">
+                                        <img src="/TeraNavi/img/NoImage.png" width="80%" height="150px" id="headimg">
                                     </c:otherwise>
                                 </c:choose>
                                 <input type="file" id="headerFile">
                                 <input type="hidden" name="headerPath" id="headerPathHidden" value="${result.blog.headerPath}">
-                               <div class="col-md-3">
-                                    <button class="btn btn-warning" type="button" id="blogSubmit" data-toggle="modal" style="margin-left:485px;">確認</button>
+                               <div class="col-md-2 col-md-offset-10 col-xs-12">
+								   <button class="btn btn-warning btn-block" type="button" id="blogSubmit" data-toggle="modal" style="margin-top: 20px;">確認</button>
                                 </div>
                             </div>
                        </form>
