@@ -60,10 +60,10 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12 hidden-xs">
-						<img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px; img-thumbnail"></img>
+						<img id="icon" src="${result.community.iconPath}" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;" class="img-thumbnail"></img>
 					</div>
 					<div class="col-xs-12 visible-xs">
-							<img id="mobileCommIcon" src="${result.community.iconPath}"></img>
+							<img id="mobileCommIcon" class="img-thumbnail" src="${result.community.iconPath}"></img>
 						</div>
 				</div>
 			</div>
@@ -87,17 +87,20 @@
 									</div>
 									<div class="col-md-1 col-xs-5">
 
-
-										<img class="accountImg img-thumbnail"style="width:55px; height:55px;" src="${sessionScope.loginUser.iconPath}">
-										<p class="Myusername"><c:out value="${ch.userName}"/></p>
+										<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${ch.userId}">
+											<img class="accountImg img-thumbnail"style="width:55px; height:55px;" src="${sessionScope.loginUser.iconPath}">
+											<p class="Myusername"><c:out value="${ch.userName}"/></p>
+										</a>
 									</div>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div class="row" style="margin-bottom:15px;">
 									<div class="col-md-1 col-md-offset-2 col-xs-5">
-										<img class="accountImg img-thumbnail" style="width:55px; height:55px;" src="${ch.iconPath}">
-										<p class="username"><c:out value="${ch.userName}"/></p>
+										<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${ch.userId}">
+											<img class="accountImg img-thumbnail" style="width:55px; height:55px;" src="${ch.iconPath}">
+											<p class="username"><c:out value="${ch.userName}"/></p>
+										</a>
 									</div>
 									<div class="col-md-6 col-xs-7 other_content">
 										<p>
@@ -114,21 +117,23 @@
 			</div>
 		</div>
 		<c:if test="${not empty sessionScope.loginUser}">
-			<div id="forms">
 
-				<textarea id="chatBody" name="chatBody"></textarea>
+			<div id="forms">
+				<div class="col-md-6 col-md-offset-2 col-xs-12">
+					<textarea id="chatBody" name="chatBody" style="width:100%;"></textarea>
+				</div>
 				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 				<input type="hidden" name="communityId" value="${result.community.id}">
-				<div class="hidden-xs" id="submit_button">
-					<button id="chatwrite" type="button" name="button">送信</button>
+				<div class="hidden-xs" id="submit_button" >
+					<button id="chatwrite" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
 				</div>
 				<div class="visible-xs col-xs-12">
+					<br>
 					<button id="mobileChatWrite" class="btn btn-default btn-block">送信</button>
 				</div>
-
-
 			</div>
+
 		</c:if>
 
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
