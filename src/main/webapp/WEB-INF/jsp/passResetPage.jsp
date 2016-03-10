@@ -20,6 +20,9 @@
 
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+			<script src="/TeraNavi/js/pass.js"></script>
+
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
 		<body>
@@ -30,14 +33,20 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 						<h1>リセットページ</h1>
-						<form action="passReset" method="post">
+						<form action="passReset" method="post" id="resetForm">
 							<div class="form-group">
 								<label class="control-label">新しいパスワード</label>
-								<input class="form-control" type="text" name="password">
+								<input class="form-control" id="pass" type="password" name="password">
+							</div>
+
+							<!--入力チェックのメッセージ用のdiv-->
+							<div class="row" id="validatePass" style="display: none;">
+								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">パスワードは必須入力です</p>
+
 							</div>
 
 							<input type="hidden" name="loginId" value="${result.loginId}">
-							<button type="submit" class="btn btn-default pull-right">パスワードを変更</button>
+							<button type="button" id="resetSubmit" class="btn btn-default pull-right">パスワードを変更</button>
 
 						</form>
 

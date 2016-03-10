@@ -31,16 +31,12 @@
 					<div class="hidden-xs">
 						<h1>${result.userbean.userName}さんのパスワードを変更しました</h1>
 
-						<p>
-							新しいパスワードは[ ${result.userbean.password} ]です
-						</p>
+						
 					</div>
 					<div class="visible-xs">
 						<h3>${result.userbean.userName}さんのパスワードを変更しました</h3>
 
-						<h4>
-							新しいパスワードは[ ${result.userbean.password} ]です
-						</h4>
+						
 					</div>
 
 				</div><!--end row-->
