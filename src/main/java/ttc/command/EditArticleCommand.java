@@ -44,7 +44,7 @@ public class EditArticleCommand extends AbstractCommand{
             body = body.replaceAll("</form>", "&lt;/form&gt;");
             body = body.replaceAll("<input", "&lt;/input");
             body = body.replaceAll("</input>", "&lt;/input&gt;");
-            
+
             String status = reqc.getParameter("status")[0];
 
             String[] tags = null;
@@ -86,17 +86,13 @@ public class EditArticleCommand extends AbstractCommand{
             params.clear();
 
             if(tagFlag){
-                //さっきインサートした記事情報を取得したいとき
-				params.put("lastInsert","true");
-				ArticleBean article = (ArticleBean)dao.read(params);
-
                 params.clear();
 
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
 
 				for(int i = 0;i < tags.length;i++){
-					params.put("articleId", article.getArticleId());
+					params.put("articleId", articleId);
 					params.put("tag", tags[i]);
 					dao.insert(params);
 					params.clear();

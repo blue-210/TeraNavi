@@ -264,6 +264,7 @@ public class UsersDao implements AbstractDao {
 
 			pst.setString(1, (String) map.get("value"));
 
+			
 			ResultSet rs = pst.executeQuery();
 
 			if (rs.next()) {

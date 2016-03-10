@@ -16,13 +16,22 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<script type="text/javascript" src="/TeraNavi/js/wysiwyger.js"></script>
-			<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
 			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 			<script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
 			<link rel="stylesheet" href="/TeraNavi/css/articlePost.css">
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+
+			<style>
+				.modal-open {
+					overflow: auto;
+				}
+				.modal-close {
+					overflow: auto;
+				}
+			</style>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -46,7 +55,7 @@
 						<!--モバイル用のドロップダウンメニュー-->
 						<div class="container visible-xs">
 							<div class="dropdown">
-								<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">記事を書く<span class="caret"></span></button>
+								<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">記事を書く<span class="caret"></span></button>
 								<ul class="dropdown-menu">
 									<li id="mypageTab">
 										<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
@@ -97,7 +106,6 @@
 										<!--入力チェックのメッセージ用のdiv-->
 										<div class="row" id="validateTitle" style="display: none;">
 											<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">タイトルは必須入力です</p>
-a
 										</div>
 
 										<br>
@@ -357,12 +365,12 @@ a
 								//    成功時の処理
 								.done(function (data) {
 									$("#articlePostResultModal").modal();
-							
+
 									$("#inputTitle").val("");
 									CKEDITOR.instances.inputBody.setData("");
-									
+
 									$("[name='chTag']:checked").prop("checked",false);
-							
+
 								})
 								//    失敗時の処理
 								.fail(function () {
@@ -403,13 +411,13 @@ a
 										$("#articlePostResultModalLabel").text("記事の下書き保存結果");
 										$("#articlePostResultMessage").text("記事の下書き保存が完了しました");
 										$("#articlePostResultModal").modal();
-										
+
 										$("#inputTitle").val("");
 										CKEDITOR.instances.inputBody.setData("");
-										
+
 										$("[name='chTag']:checked").prop("checked",false);
-										
-										
+
+
 									})
 									//    失敗時の処理
 									.fail(function () {
@@ -430,7 +438,7 @@ a
 						$("#previewModalBody").empty();
 						apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
 						$("#previewModal").modal();
-						
+
 					});
 
 					$(document).on("blur", "#inputTitle", function () {

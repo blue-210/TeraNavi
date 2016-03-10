@@ -44,9 +44,9 @@ create table tera_db.users(
 	admin_last_login_date char(100),
 	-- 正常→0, ロック→1, 無期限ロック→2, 削除→3
 	user_status_flag char(1) not null,
-	user_lock_start_date date,
+	user_lock_start_date datetime,
 	-- 深夜12時にチェックする
-	user_lock_end_date date,
+	user_lock_end_date datetime,
 	blog_explanation varchar(1000),
 	user_profile varchar(6000),
 	-- 開設してない→0,開設してる→１

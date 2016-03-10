@@ -51,7 +51,8 @@ function sendComment(){
 
 				cDiv.append('<div class="row">\n\
 								<div class="col-md-1 col-md-offset-2">\n\
-									<img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><a href="#"><p class="text-center">'+userName+'</p></a>\n\
+
+									<a href="/TeraNavi/front/mypage?paramUserId="'+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a>\n\
 								</div>\n\
 								<div class="col-md-7"><p>'+cDate+'</p><pre>'+body+'</pre>\n\
 									<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown"><i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i></a>\n\
