@@ -16,7 +16,7 @@
       <input type="hidden" id="tagArticleCount" value="${fn:length(result.tagArticles)}">
 
       <input type="hidden" id="tagArticlesSize0" value="${fn:length(result.tagArticles[0])}">
-      <c:forEach var="article" items="${result.tagArticles[0]}" varStatus="status">
+      <c:forEach var="article" items="${result.tagArticles[0]}" begin="0" end="3" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
             <div class="col-md-2">
               <br>
@@ -54,7 +54,7 @@
       </div>
 
       <input type="hidden" id="tagArticlesSize1" value="${fn:length(result.tagArticles[1])}">
-      <c:forEach var="article" items="${result.tagArticles[1]}" varStatus="status">
+      <c:forEach var="article" items="${result.tagArticles[1]}" begin="0" end="3" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
               <div class="col-md-2">
                 <br>
@@ -92,7 +92,7 @@
       </div>
 
        <input type="hidden" id="tagArticlesSize2" value="${fn:length(result.tagArticles[2])}">
-      <c:forEach var="article" items="${result.tagArticles[2]}"  varStatus="status">
+      <c:forEach var="article" items="${result.tagArticles[2]}" begin="0" end="3" varStatus="status">
           <div class="row col-md-10 col-md-offset-1 well">
               <div class="col-md-2">
                 <br>

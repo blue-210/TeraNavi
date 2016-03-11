@@ -83,29 +83,27 @@
 							<br><br><br><br><br><br>
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
-									<h3 class="text-center">注意事項</h3>
+									<h3 class="text-center text-danger">注意事項</h3>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-12 col-xs-12">
-									<p class="text-center">データ消えるよ。戻らんよ。
-										<br>あなたの情報消えます。ばいばい。</p>
+									<h3 class="text-center text-danger">
+									 一度退会すると、同じメールアドレスと同じログインIDで
+									</h3>
+									<h3 class="text-center text-danger">再登録することはできません。</h3>
 								</div>
 							</div>
 							<br><br><br>
 							<div class="row">
 								<div class="col-md-12 hidden-xs text-center">
-									<a data-toggle="modal" href="#withdraw-modal" class="btn btn-primary">退会する</a>
+									<a data-toggle="modal" href="#withdraw-modal" class="btn btn-danger">退会する</a>
 								</div>
 								<div class="col-xs-12 visible-xs text-center">
-									<a data-toggle="modal" href="#withdraw-modal-mobile" class="btn btn-primary">退会する</a>
+									<a data-toggle="modal" href="#withdraw-modal-mobile" class="btn btn-danger">退会する</a>
 								</div>
 							</div>
-
-
-
 						</div>
-
 					</div>
 
 
@@ -125,8 +123,8 @@
 					</div>
 					<div class="modal-body">
 						<p class="text-center">本当に退会しますか？</p>
-						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/withdraw">Yes</a>
-						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/top">No</a>
+						<a class="btn btn-lg btn-danger" href="/TeraNavi/front/withdraw">Yes</a>
+						<a class="btn btn-lg btn-default" href="/TeraNavi/front/top">No</a>
 					</div>
 					<div class="modal-footer"></div>
 				</div>
