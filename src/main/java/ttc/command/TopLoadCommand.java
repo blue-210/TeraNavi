@@ -151,8 +151,8 @@ public class TopLoadCommand extends AbstractCommand{
 			param1.put("topFlg","true");
 			//登録された記事の多い順にTagBeanを3件まで取得（なければ3件未満の可能性も）
 			List tags = dao.readAll(param1);
-			result.put("tags",tags);
 
+			
 			param1.clear();
 
 			param1.put("whereTagIdFlg", "true");
@@ -163,6 +163,7 @@ public class TopLoadCommand extends AbstractCommand{
 				param1.put("tagId",tb.getId() );
 				//多い順でとったタグからそのタグに登録されている記事ID一覧を取得
 				List list = dao.readAll(param1);
+				
 				tagArticleIdList.add(list);
 			}
 
@@ -173,6 +174,7 @@ public class TopLoadCommand extends AbstractCommand{
 
 			List tagArticles = new ArrayList();
 
+			int tagDeleteCount = 0;
 			for(int i=0; i<tagArticleIdList.size(); i++){
 				List list = (List)tagArticleIdList.get(i);
 				List oneTagArticles = new ArrayList();
@@ -181,12 +183,21 @@ public class TopLoadCommand extends AbstractCommand{
 					param1.put("articleId", articleId);
 					param1.put("flag", "0");
 					Bean article = dao.read(param1);
-					oneTagArticles.add(article);
+					if(article!=null){
+						oneTagArticles.add(article);
+					}
 					param1.clear();
 				}
-				tagArticles.add(oneTagArticles);
+				if(oneTagArticles.isEmpty()){
+					tags.remove(tagDeleteCount);
+					System.out.println("tags.size="+tags.size());
+				}else{
+					tagDeleteCount++;
+					tagArticles.add(oneTagArticles);
+				}
 			}
 
+			result.put("tags",tags);
 			result.put("tagArticles",tagArticles);
 
 			MySqlConnectionManager.getInstance().commit();

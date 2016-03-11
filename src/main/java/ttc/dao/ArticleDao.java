@@ -22,7 +22,7 @@ import ttc.exception.integration.IntegrationException;
 public class ArticleDao implements AbstractDao{
 
     public Bean read(Map map)throws IntegrationException{
-        ArticleBean ab = new ArticleBean();
+        ArticleBean ab = null;
         PreparedStatement pst = null;
         try{
             Connection cn = null;
@@ -31,7 +31,7 @@ public class ArticleDao implements AbstractDao{
 
 
             if( map.containsKey("lastInsert") ){
-
+				ab = new ArticleBean();
                 //最後にインサートした記事のIDがほしい場合（記事投稿のタグ付けでのみ使用）
                 sql.append("select last_insert_id() from articles limit 1 ");
                 pst = cn.prepareStatement( new String(sql) );
@@ -64,22 +64,25 @@ public class ArticleDao implements AbstractDao{
     				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
                     pst.setString(2, (String)map.get("flag"));
                 }else{
-    				sql.append("where article_id = ?");
+    				sql.append("where article_id = ? and not( article_status_flag=? )");
     				pst = cn.prepareStatement( new String(sql) );
     				pst.setInt(1, Integer.parseInt( (String)map.get("articleId") ) );
+					pst.setString(2,"2");
 
     			}
                 ResultSet rs = pst.executeQuery();
 
-                rs.next();
-                ab.setArticleId( rs.getString(1) );
-                ab.setTitle( rs.getString(2) );
-                ab.setArticleBody( rs.getString(3) );
-                ab.setCreatedDate( DateConversion.doFormatDateYear(rs.getString(4)) );
-                ab.setUserId(rs.getString(5));
-                ab.setUserName(rs.getString(6));
-                ab.setIconPath(rs.getString(7));
-    			//------------------------------------------------------------------
+                if(rs.next()){
+					ab = new ArticleBean();
+					ab.setArticleId( rs.getString(1) );
+					ab.setTitle( rs.getString(2) );
+					ab.setArticleBody( rs.getString(3) );
+					ab.setCreatedDate( DateConversion.doFormatDateYear(rs.getString(4)) );
+					ab.setUserId(rs.getString(5));
+					ab.setUserName(rs.getString(6));
+					ab.setIconPath(rs.getString(7));
+					//------------------------------------------------------------------
+				}
 
             }
 
