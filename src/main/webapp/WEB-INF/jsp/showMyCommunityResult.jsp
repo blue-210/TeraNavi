@@ -95,10 +95,14 @@
                                                     <input type="hidden" name="commId" value="${comm.id}">
                                                     <input type="hidden" name="commName" value="${comm.name}">
                                                     <input type="hidden" name="commProfile" value="${comm.profile}">
+                                                    <input type="hidden" name="iconPath" value="${comm.iconPath}">
                                                     <input type="hidden" name="headerPath" value="${comm.headerPath}">
+                                                    <input type="hidden" name="nowIconPath" value="${comm.iconPath}">
+                                                    <input type="hidden" name="nowHeaderPath" value="${comm.headerPath}">
                                                     <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
                                                     <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
                                                     <input type="hidden" name="del" value="del">
+                                                    <input type="hidden" name="target" value="communityDeleteResult">
                                                     <input type="submit" id="showDel" value="削除"></input>
                                                 </form>
                                             </div>
