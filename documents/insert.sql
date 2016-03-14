@@ -33,7 +33,7 @@ VALUES(
     'tt14@mail.com',
     '25dc6ce897d5c9eb1145993607d5eeb274b38f5b9ce4265a915dff744d6ac417',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'つばくろブログ',
     '/images/default/header.jpg',
@@ -82,7 +82,7 @@ VALUES(
     'tt15@mail.com',
     '2adc5a7230b5582fb0be329d41268d0a37965b23e5a2d1d7927c96ab4139d6ec',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'てすブログ',
     '/images/default/header.jpg',
@@ -130,7 +130,7 @@ VALUES(
     'tt16@mail.com',
     'koyazi',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
         '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'こやブログ',
     '/images/default/header.jpg',
@@ -179,7 +179,7 @@ VALUES(
     'tt17@mail.com',
     '613319abc47788033d7af7567e320a1c5602c47ea210799e918ab48fdd6b3f4c',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'ケイブ・ジョンソンのブログ',
     '/images/default/header.jpg',
@@ -227,7 +227,7 @@ VALUES(
     'tt18@mail.com',
     '3d739d9b85f7b47367e3301081ec71c95cd58c003293401861728a3b9a0dc5c9',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'つちやブログ',
     '/images/default/header.jpg',
@@ -275,7 +275,7 @@ VALUES(
     'tt19@mail.com',
     '47226bc6be819e34772fe54139acdbea2761ac8477b4fc4d7c2458b2a49140f7',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '情報処理科のブログ',
     '/images/default/header.jpg',
@@ -323,7 +323,7 @@ VALUES(
     'tt20@mail.com',
     '908540c5d8f7fe25bed975af3a4c9bb78cccb9c9d65995db5eacc159f4a385dd',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '建築監督科ブログ',
     '/images/default/header.jpg',
@@ -371,7 +371,7 @@ VALUES(
     'tt21@mail.com',
     '87143bd756803ee203348ce521f66c601e713b69ff83ad3fdec73291da9f5cc3',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '建築科ブログ',
     '/images/default/header.jpg',
@@ -419,7 +419,7 @@ VALUES(
     'tt22@mail.com',
     'ba39e72fef50485571eeeba6ac74b9a36f5dd653cf2b9c1c8b633f2cbbd152bb',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '建築夜間ブログ',
     '/images/default/header.jpg',
@@ -467,7 +467,7 @@ VALUES(
     'tt23@mail.com',
     'c9ed5ba51114e0effa0fb2fcff9a6f0228446e03847e769f3d89a3797699b591',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'インテリア科ブログ',
     '/images/default/header.jpg',
@@ -515,7 +515,7 @@ VALUES(
     'tt24@mail.com',
     '464d361689059bd8bd50bf622fdf91a6ddebb6e6b31d71d0b88106b4e702d29e',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'ゲーム科のブログ',
     '/images/default/header.jpg',
@@ -563,7 +563,7 @@ VALUES(
     'tt25@mail.com',
     '89079aaf03874bef38ea64f5e521ddc264294e022ae19401cef224618c7d5ae7',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'Webデザイナー科のブログ',
     '/images/default/header.jpg',
@@ -611,7 +611,7 @@ VALUES(
     'tt26@mail.com',
     '710121978d2d8511da965c365e6084837310642fdcc1fed6f85ef7d61131998c',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '環境テクノロジー科のブログ',
     '/images/default/header.jpg',
@@ -659,7 +659,7 @@ VALUES(
     'tt28@mail.com',
     '50741c255dbf143e149d33eb107996daaac8badeb8d78c2a87d5975a8a100d04',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     'バイオテクノロジー科のブログ',
     '/images/default/header.jpg',
@@ -707,7 +707,7 @@ VALUES(
     '9014@gmail.com',
     '831f373461be0e498411074ea2a5d07a2e1a6a183c39c27e81f107f4ed2dd84f',
     '呉石先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     '9014ブログ',
     '/images/default/header.jpg',
@@ -752,7 +752,7 @@ VALUES(
     'azuma@gmail.com',
     'd2906b9b2e64ee268ad062f4f3e4526604a52d30c409063b903587212a028e13',
     '東先生',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '/TeraNavi/imgPath/default/default_user_icon.jpg',
     1,
     '1995/02/11 20:20:30',
@@ -763,10 +763,6 @@ VALUES(
     'みんな、もっとテレビをみよう！',
     0
 );
-
-#secret_questions表
-INSERT INTO secret_questions(secret_question_body)
-VALUES('あなたの先生は？');
 
 #communities表
 -- community_delete_flagは通常→0　削除→1
@@ -781,8 +777,8 @@ INSERT INTO communities(
 VALUES(
     'ブラックバスを釣ろうの会',
     'ブラックバスを釣るための知識を共有します',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     0
@@ -799,8 +795,8 @@ INSERT INTO communities(
 )VALUES(
     'つちやを釣ろうの会',
     'つちやを釣るための知識を共有します',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -817,8 +813,8 @@ INSERT INTO communities(
 )VALUES(
     'テラカフェ公式コミュ',
     'テラカフェの公式コミュニティです！',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -835,8 +831,8 @@ INSERT INTO communities(
 )VALUES(
     'くらもちを讃える会',
     'くらもちお嬢を讃える会です。',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     1,
     0
@@ -853,8 +849,8 @@ INSERT INTO communities(
 )VALUES(
     '土屋について語りあう会',
     '土屋による土屋のためのコミュニティです。',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -872,8 +868,8 @@ INSERT INTO communities(
 )VALUES(
     '南條愛乃について語りあう会',
     '土屋による南條愛乃さんへの愛を語っていくコミュニティです。',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
     '2001/02/11 20:30:20',
     2,
     0
@@ -1316,7 +1312,7 @@ INSERT INTO cautions(
     '2004/02/14 20:30:20',
     '警告です',
     '警告文です',
-    'http://www.keikoku.com'
+    'https://www.keikoku.com'
 );
 
 
@@ -1434,11 +1430,6 @@ INSERT INTO chat(
     '2002/02/14 20:30:20',
     1
 );
-
-
-#sign_up_keys表
-INSERT INTO sign_up_keys(key_status)VALUES(0);
-
 
 #policy表
 INSERT INTO policy(
