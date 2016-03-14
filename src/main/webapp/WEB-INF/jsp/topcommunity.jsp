@@ -39,9 +39,7 @@
 							<%-- どのコミュニティにも参加していない場合 --%>
 							<c:when test="${empty sessionScope.myCommunities}">
 								<div class="col-md-1 col-xs-12 text-center">
-									<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">
-										参加する
-									</a>
+									<button type="button" class="btn btn-warning communityBtn" value="${community.id}">参加する</button>
 								</div>
 							</c:when>
 							<c:otherwise>
@@ -61,13 +59,13 @@
 								<c:choose>
 									<c:when test="${flag eq 'false'}">
 										<div class="col-md-1 col-xs-12 text-center">
-											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
+											<button type="button" class="btn btn-warning communityBtn" value="${community.id}">参加する</button>
 										</div>
 									</c:when>
 									<%-- 参加している場合 --%>
 									<c:otherwise>
 										<div class="col-md-1 col-xs-12 text-center">
-											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
+											<button  type="buton" class="btn btn-warning communityBtn" disabled>参加中</button>
 										</div>
 									</c:otherwise>
 								</c:choose>
@@ -122,10 +120,8 @@
 							<%-- どのコミュニティにも参加していない場合 --%>
 							<c:when test="${empty sessionScope.myCommunities}">
 								<div class="col-md-1 text-center">
-									<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">
-										参加する
-									</a>
-								</div>
+                                    <button type="button" class="btn btn-warning communityBtn" value="${community.id}">参加する</button>
+							    </div>
 							</c:when>
 							<c:otherwise>
 								<%-- あるコミュニティに参加しているかどうかの判定フラグ --%>
@@ -141,16 +137,16 @@
 									</c:choose>
 								</c:forEach>
 								<%-- 参加していない場合ボタンを表示 --%>
-								<c:choose>
+                                <c:choose>
 									<c:when test="${flag eq 'false'}">
-										<div class="col-md-1 text-center">
-											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}">参加する</a>
+										<div class="col-md-1 col-xs-12 text-center">
+											<button type="button" class="btn btn-warning communityBtn" value="${community.id}">参加する</button>
 										</div>
 									</c:when>
 									<%-- 参加している場合 --%>
 									<c:otherwise>
-										<div class="col-md-1 text-center">
-											<a class="btn btn-warning communityBtn" href="/TeraNavi/front/partiComm?commId=${community.id}" disabled>参加中</a>
+										<div class="col-md-1 col-xs-12 text-center">
+											<button  type="buton" class="btn btn-warning communityBtn" disabled>参加中</button>
 										</div>
 									</c:otherwise>
 								</c:choose>

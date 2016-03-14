@@ -61,31 +61,44 @@
 			</div>
 
 			<div class="container hidden-xs">
-				<div class="row">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>ユーザ名</th>
-								<th>最新内容</th>
-								<th>最新投稿日時</th>
-								<!-- <th class="deletable"></th> -->
-							</tr>
-						</thead>
-						<tbody>
+				<c:choose>
+					<c:when test="${empty result}">
+						<div cllass="row">
+							<div class="col-md-4 col-md-offset-4"><h2>まだDMが一件もありません</h2></div>
+						</div>
+					</c:when>
+					
+					<c:otherwise>
+						<div class="row">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>ユーザ名</th>
+										<th>最新内容</th>
+										<th>最新投稿日時</th>
+										<!-- <th class="deletable"></th> -->
+									</tr>
+								</thead>
+								<tbody>
 
-							<c:forEach var="dm" items="${result}">
 
-								<tr onclick="location.href = '/TeraNavi/front/dmreceive?sendUserId=${dm.fromUserId}'">
-									<td>${dm.fromUserName}</td>
-									<td>${dm.messageBody}</td>
-									<td>${dm.date}</td>
-								</tr>
+									<c:forEach var="dm" items="${result}">
 
-							</c:forEach>
+										<tr onclick="location.href = '/TeraNavi/front/dmreceive?sendUserId=${dm.fromUserId}'">
+											<td>${dm.fromUserName}</td>
+											<td>${dm.messageBody}</td>
+											<td>${dm.date}</td>
+										</tr>
 
-						</tbody>
-					</table>
-				</div><!--end row-->
+									</c:forEach>
+
+								</tbody>
+							</table>
+						</div><!--end row-->
+						
+					</c:otherwise>
+					
+				</c:choose>
 			</div><!--end container-->
 
 			

@@ -45,7 +45,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(params);
-            resc.setTarget("prticipationCommunityResult");
+            // resc.setTarget("prticipationCommunityResult");
 
             return resc;
         }catch(NullPointerException e){

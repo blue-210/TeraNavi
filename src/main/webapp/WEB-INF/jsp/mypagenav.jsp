@@ -26,9 +26,9 @@
     <li id="commMgrTab">
       <a href="/TeraNavi/front/commmy">コミュニティ管理</a>
     </li>
-    <!--<li id="dmTab">
+    <li id="dmTab">
       <a href="/TeraNavi/front/showDmList">DM</a>
-  </li>-->
+  </li>
     <br><br><br><br>
     <li id="withdrawTab">
       <a href="/TeraNavi/withdraw">退会</a>

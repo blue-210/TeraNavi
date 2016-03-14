@@ -7,6 +7,7 @@ public class DirectMessageBean implements Bean{
 	private String fromUserName;
     private String messageBody;
     private String date;
+	private String fromIconPath;
 
     /**
     * Returns value of messageId
@@ -100,5 +101,19 @@ public class DirectMessageBean implements Bean{
 	 */
 	public void setFromUserName(String fromUserName) {
 		this.fromUserName = fromUserName;
+	}
+
+	/**
+	 * @return the fromIconPath
+	 */
+	public String getFromIconPath() {
+		return fromIconPath;
+	}
+
+	/**
+	 * @param fromIconPath the fromIconPath to set
+	 */
+	public void setFromIconPath(String fromIconPath) {
+		this.fromIconPath = fromIconPath;
 	}
 }
