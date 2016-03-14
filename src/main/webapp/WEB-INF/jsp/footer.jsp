@@ -28,7 +28,8 @@
 			<div id="contact-modal" class="modal fade">
 				<div class="modal-dialog">
 				<c:choose>
-					<c:when test="${sessionScope.loginUser eq null}">
+					<!--ログインした時の処理-->
+						<c:when test="${not empty sessionScope.loginUser.id}">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -39,7 +40,7 @@
 									<form action="/TeraNavi/front/sendContact" method="post">
 										<div class="form-group">
 											<label class="control-label" for="exampleInputName">お名前</label>
-											<input class="form-control" id="contactName" name="name" type="text">
+											<input class="form-control" id="contactName" name="name" type="text" value="${sessionScope.loginUser.userName}">
 										</div>
 										<div class="form-group">
 											<label class="control-label" for="exampleInputTitle">件名</label>
@@ -47,7 +48,7 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">メールアドレス</label>
-											<input class="form-control" id="contactAddress" type="email" name="address">
+											<input class="form-control" id="contactAddress" type="email" name="address" value="${sessionScope.loginUser.mailAddress}">
 										</div>
 										<div class="form-group">
 											<label class="control-label">カテゴリ</label>
@@ -71,6 +72,7 @@
 							</div><!--end moal-content-->
 
 					</c:when>
+					<!--ログインしてないときの処理-->
 					<c:otherwise>
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -83,7 +85,7 @@
 									<form action="/TeraNavi/front/sendContact" method="post">
 										<div class="form-group">
 											<label class="control-label" for="exampleInputName">お名前</label>
-											<input class="form-control" id="contactName" name="name" type="text" value="${sessionScope.loginUser.userName}">
+											<input class="form-control" id="contactName" name="name" type="text">
 										</div>
 										<div class="form-group">
 											<label class="control-label" for="exampleInputTitle">件名</label>
@@ -91,7 +93,7 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">メールアドレス</label>
-											<input class="form-control" id="contactAddress" type="email" name="address" value="${sessionScope.loginUser.mailAddress}">
+											<input class="form-control" id="contactAddress" type="email" name="address">
 										</div>
 										<div class="form-group">
 											<label class="control-label">カテゴリ</label>
