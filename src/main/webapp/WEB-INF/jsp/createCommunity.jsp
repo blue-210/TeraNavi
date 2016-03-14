@@ -23,58 +23,111 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
-						<form role="form" action="/TeraNavi/front/createcomm" method="post" id="commForm">
-							<div class="form-group">
-								<label class="control-label" for="name">コミュニティ名</label>
-								<input class="form-control" id="name" name="commName" placeholder="例:情報処理科2年のコミュニティ">
-							</div>
+						<%-- コミュニティ作成と編集で分岐 --%>
+						<%-- resultが空なら作成、空でなければ編集 --%>
+						<c:choose>
+							<c:when test="${empty result}">
+								<form role="form" action="/TeraNavi/front/createcomm" method="post" id="commForm">
+									<div class="form-group">
+										<label class="control-label" for="name">コミュニティ名</label>
+										<input class="form-control" id="name" name="commName" placeholder="例:情報処理科2年のコミュニティ">
+									</div>
 
-							<div class="row" id="validateCommunityName" style="display: none;">
-								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">コミュニティは必須入力です</p>
+									<div class="row" id="validateCommunityName" style="display: none;">
+										<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">コミュニティは必須入力です</p>
+									</div>
 
-							</div>
+									<div class="form-group">
+										<label class="control-label" for="profile">紹介文</label>
+										<textarea class="form-control" id="profile" rows="4" name="commProfile" placeholder="例:情報処理科2年が入ることを推奨します"></textarea>
+									</div>アイコン
+									<div class="col-md-12 text-left">
+										<img id="preIcon" class="hidden-xs" src="" width="150px" height="150px">
+										<img id="preIconMobile" class="visible-xs" src="" width="60px" height="60px">
+									</div>
 
-							<div class="form-group">
-								<label class="control-label" for="profile">紹介文</label>
-								<textarea class="form-control" id="profile" rows="4" name="commProfile" placeholder="例:情報処理科2年が入ることを推奨しますｗ"></textarea>
-							</div>アイコン
-							<div class="col-md-12 text-left">
-								<img id="preIcon" class="hidden-xs" src="" width="150px" height="150px">
-								<img id="preIconMobile" class="visible-xs" src="" width="60px" height="60px">
-							</div>
+									<div class="col-md-12">
+										<input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
 
-							<div class="col-md-12">
-								<input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
+									</div>
+									<input id="icon" type="hidden" name="commIcon">
+									<br>
+									<br>ヘッダ画像
+									<br>
+									<div class="col-md-12 text-left hidden-xs">
+										<img id="preHeader" src="" width="450px" height="150px">
+									</div>
+									<div class="col-xs-12 text-left visible-xs">
+										<img id="preHeaderMobile" src="" width="260px" height="100px">
+									</div>
+									<div class="col-md-12">
+										<input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
 
-							</div>
-							<input id="icon" type="hidden" name="commIcon">
-							<br>
-							<br>ヘッダ画像
-							<br>
-							<div class="col-md-12 text-left hidden-xs">
-								<img id="preHeader" src="" width="450px" height="150px">
-							</div>
-							<div class="col-xs-12 text-left visible-xs">
-								<img id="preHeaderMobile" src="" width="260px" height="100px">
-							</div>
-							<div class="col-md-12">
-								<input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
+									</div>
+									<br>
+									<br>
+									<input id="commHeaderPath" type="hidden" name="commHeader">
 
-							</div>
-							<br>
-							<br>
-							<input id="commHeaderPath" type="hidden" name="commHeader">
-
-							<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-							<div class="text-center col-xs-12 col-md-12">
-								<button type="button" class="btn btn-warning hidden-xs" id="csubmit">コミュニティを作成</button>
-								<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile">コミュニティを作成</button>
+									<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+									<div class="text-center col-xs-12 col-md-12">
+										<button type="button" class="btn btn-warning hidden-xs" id="csubmit">コミュニティを作成</button>
+										<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile">コミュニティを作成</button>
 
 
-								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
-								<!--モーダルがあったところ-->
-							</div>
-						</form>
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
+										<!--モーダルがあったところ-->
+									</div>
+								</form>
+							</c:when>
+							<c:otherwise>
+								<form role="form" action="/TeraNavi/front/commSetting" method="post" id="commForm">
+									<div class="form-group">
+										<label class="control-label" for="name">コミュニティ名</label>
+										<input class="form-control" id="name" name="commName" placeholder="例:情報処理科2年のコミュニティ" value="${result.name}">
+									</div>
+
+									<div class="row" id="validateCommunityName" style="display: none;">
+										<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">コミュニティは必須入力です</p>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label" for="profile">紹介文</label>
+										<textarea class="form-control" id="profile" rows="4" name="commProfile" placeholder="例:情報処理科2年が入ることを推奨します" value="${result.profile}"></textarea>
+									</div>アイコン
+									<div class="col-md-12 text-left">
+										<img id="preIcon" class="hidden-xs" src="${result.iconPath}" width="150px" height="150px">
+										<img id="preIconMobile" class="visible-xs" src="${result.iconPath}" width="60px" height="60px">
+									</div>
+
+									<div class="col-md-12">
+										<input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
+									</div>
+									<input id="icon" type="hidden" name="commIcon" value="${result.iconPath}">
+									<br>
+									<br>ヘッダ画像
+									<br>
+									<div class="col-md-12 text-left hidden-xs">
+										<img id="preHeader" src="${result.headerPath}" width="450px" height="150px">
+									</div>
+									<div class="col-xs-12 text-left visible-xs">
+										<img id="preHeaderMobile" src="${result.headerPath}" width="260px" height="100px">
+									</div>
+									<div class="col-md-12">
+										<input type='file' value="ファイル選択" id='headerFile' onchange="fileUpHeader();"><br>
+									</div>
+									<br>
+									<br>
+									<input id="commHeaderPath" type="hidden" name="commHeader" value="${result.headerPath}">
+									<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+									<div class="text-center col-xs-12 col-md-12">
+										<button type="button" class="btn btn-warning hidden-xs" id="csubmit">コミュニティを編集</button>
+										<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile">コミュニティを編集</button>
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
+										<!--モーダルがあったところ-->
+									</div>
+								</form>
+							</c:otherwise>
+						</c:choose>
 
 						<!-- モーダルウィンドウの中身 -->
 						<div class="fade modal text-justify hidden-xs" id="myModal">
@@ -90,8 +143,6 @@
 										<div class="row">
 											<div class="col-xs-1"></div>
 											<div class="col-xs-10">
-
-
 												<h2>コミュニティ名</h2>
 												<h5 id="mTitle"></h5>
 												<h2>コミュニティ紹介文</h2>
@@ -112,10 +163,6 @@
 							</div>
 						</div>
 						<!-- モーダル閉じるやつだよ -->
-
-
-
-
 					</div>
 				</div>
 			</div>

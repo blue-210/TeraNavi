@@ -74,7 +74,6 @@
 									ユーザアイコン <img id="usericon" src="${sessionScope.loginUser.iconPath}" width="150px" height="150px"></img>
 									<input id="userIconPath" type="hidden" name="iconPath" value="${sessionScope.loginUser.iconPath}">
 									<input type="file" id="iconFile">
-
 								</div>
 							</div>
 						</div>
@@ -85,7 +84,6 @@
 						<div class="col-md-6 col-xs-12">
 							<div class="form-group">
 								<div id="head">
-
 									ヘッダ画像<img src="${sessionScope.loginUser.headerPath}" width="80%" height="150px" id="headimg">
 									<input type="file" id="headerFile">
 									<input type="hidden" name="headerPath" id="headerPathHidden" value="${sessionScope.loginUser.headerPath}">
