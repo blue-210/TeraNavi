@@ -37,6 +37,9 @@ public class ArticlePostCommand extends AbstractCommand{
             title = title.replaceAll("</form>", "&lt;/form&gt;");
             title = title.replaceAll("<input", "&lt;/input");
             title = title.replaceAll("</input>", "&lt;/input&gt;");
+            title = title.replaceAll("<style", "&lt;/style");
+            title = title.replaceAll("</style>", "&lt;/style&gt;");
+            title = title.replaceAll("&nbsp;", " ");//スペース
 
             String body = reqc.getParameter("body")[0];
             //タグエスケープ
@@ -46,6 +49,9 @@ public class ArticlePostCommand extends AbstractCommand{
             body = body.replaceAll("</form>", "&lt;/form&gt;");
             body = body.replaceAll("<input", "&lt;/input");
             body = body.replaceAll("</input>", "&lt;/input&gt;");
+            body = body.replaceAll("<style", "&lt;/style");
+            body = body.replaceAll("</style>", "&lt;/style&gt;");
+            body = body.replaceAll("&nbsp;", " ");//スペース
 
 			String[] tags = null;
 			//タグはチェックボックス等で複数来る事を想定してます
@@ -104,9 +110,9 @@ public class ArticlePostCommand extends AbstractCommand{
 
 				List tagData = new ArrayList();
 				//insertしたタグを保持しておく
-				
+
 				for(int i = 0;i < tags.length;i++){
-					
+
 					if(tagData.indexOf(tags[i])<0){
 						params.put("articleId", article.getArticleId());
 						params.put("tag", tags[i]);
@@ -114,7 +120,7 @@ public class ArticlePostCommand extends AbstractCommand{
 						params.clear();
 						tagData.add(tags[i]);
 					}
-					
+
 				}
 
 			}
