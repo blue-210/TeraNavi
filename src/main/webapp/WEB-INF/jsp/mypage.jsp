@@ -260,9 +260,7 @@
 														</c:choose>
 													</td>
 												</tr>
-
 											</c:forEach>
-
 										</tbody>
 									</table>
 									<c:choose>
