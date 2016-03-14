@@ -7,6 +7,9 @@
             <li id="articlePostTab">
               <a href="/TeraNavi/articlepost">記事を書く</a>
             </li>
+            <li id="articleListTab">
+                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+            </li>
             <li id="draftArticleTab">
                 <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
             </li>

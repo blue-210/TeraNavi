@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import ttc.bean.Bean;
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.exception.business.ParameterInvalidException;
@@ -19,32 +20,49 @@ import ttc.exception.business.ParameterInvalidException;
 public class ShowArticleListCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
-            
+
             RequestContext reqc = getRequestContext();
 
-            String userId = reqc.getParameter("writeUserId")[0];
-            String scope = reqc.getParameter("scope")[0];//期間指定（ない場合は-1）
+            Map results = new HashMap();
 
+            String userId = reqc.getParameter("writeUserId")[0];
+
+            String scope = null;//期間を指定して投稿記事を取得する場合つかう
+            boolean scopeFlag = false;
+			try{
+				//scope(指定期間)パラメータがあるかのチェック
+				scope =reqc.getParameter("scope")[0];
+
+				if(scope.length() > 0){
+					scopeFlag=true;
+				}
+			}catch(NullPointerException e){}
 
             Map params = new HashMap();
             params.put("userId", userId);
             params.put("flag", "0");
 
-            //期間を指定する場合はwhere句に無理やり追加
-            if( scope.equals("-1") ){
-
-            }else{
-                params.put("where", "and date_format(article_created_date, '%Y%m')="+scope+" ");
-            }
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
-            List results = dao.readAll(params);
+            List articles = dao.readAll(params);
+            results.put("articles",articles);
+
+            params.clear();
+
+            //ユーザー情報の取得
+			factory = AbstractDaoFactory.getFactory("users");
+			dao = factory.getAbstractDao();
+			params.put("where", "where user_id = ?");
+			params.put("value", userId);
+			Bean user = dao.read(params);
+			results.put("user", user);
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
+
 
             resc.setResult(results);
             resc.setTarget("showArticleListResult");
