@@ -37,7 +37,7 @@ $(function(){
 	//		コメント数の更新
 			$("#commentCount").text(data.length);
 			cDiv.empty();
-			$("#commentBody").val("");
+			
 			for(var i in data){
 				var userIcon = data[i].iconPath;
 				var userName = data[i].userName;
@@ -45,20 +45,21 @@ $(function(){
 				var body = data[i].commentBody;
 				var userId = data[i].userId;
 
-
+				console.log("userId:"+userId);
 
 				cDiv.append('<div class="row">\n\
-								<div class="col-md-1 col-md-offset-2">\n\
-									<a href="/TeraNavi/front/mypage?paramUserId="'+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a>\n\
-								</div>\n\
-								<div class="col-md-7"><p>'+cDate+'</p><pre>'+body+'</pre>\n\
-									<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown"><i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i></a>\n\
-									<ul class="dropdown-menu dropdown-menu-right">\n\
-										<li><a onclick="commentCaution(\''+userId+'\')">このコメントを通報する</a></li>\n\
-										<li><a onclick="commentUserCaution(\''+userId+'\')">このユーザを通報する</a></li>\n\
-									</ul>\n\
-								</div>\n\
-							</div>');
+					<div class="col-md-1 col-md-offset-2">\n\
+					<a href="/TeraNavi/front/mypage?paramUserId='+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a>\n\
+					</div>\n\
+					<div class="col-md-7"><p>'+cDate+'</p><pre>'+body+'</pre>\n\
+					<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown"><i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i></a>\n\
+					<ul class="dropdown-menu dropdown-menu-right">\n\
+					<li><a onclick="commentCaution(\''+userId+'\')">このコメントを通報する</a></li>\n\
+					<li><a onclick="commentUserCaution(\''+userId+'\')">このユーザを通報する</a></li>\n\
+					</ul>\n\
+					</div>\n\
+					</div>'
+				);
 				cDiv.append('<div class="row"><div class="col-md-8 col-md-offset-2"><hr></div></div>');
 			}	
 		}
@@ -66,7 +67,7 @@ $(function(){
 	
 	setInterval(function(){
 		ajax3 = $.ajax(ajaxSettings3);
-	},10000);
+	},1000);
 	
 
 });
@@ -102,7 +103,7 @@ function sendComment(){
 
 				cDiv.append('<div class="row">\n\
 								<div class="col-md-1 col-md-offset-2">\n\
-									<a href="/TeraNavi/front/mypage?paramUserId="'+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a>\n\
+									<a href="/TeraNavi/front/mypage?paramUserId='+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a>\n\
 								</div>\n\
 								<div class="col-md-7"><p>'+cDate+'</p><pre>'+body+'</pre>\n\
 									<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown"><i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i></a>\n\
