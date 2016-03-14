@@ -94,33 +94,36 @@
                                 <c:if test="${community.adminFlag eq 1}">
                                     <tr id="tableRow${community.id}">
                                         <td>
-                                            <div class="edit">
-                                                <form action="commSetting" method="post" name="showDel">
-                                                    <input type="hidden" name="commId" value="${comm.id}">
-                                                    <input type="hidden" name="commName" value="${comm.name}">
-                                                    <input type="hidden" name="commProfile" value="${comm.profile}">
-                                                    <input type="hidden" name="iconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="nowIconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="nowHeaderPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                                    <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                                    <input type="hidden" name="del" value="del">
-                                                    <input type="hidden" name="target" value="communityDeleteResult">
-                                                    <input type="submit" id="showDel" value="削除"></input>
-                                                </form>
-                                            </div>
-                                        </td>
-                                        <td>
                                             <img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
                                         </td>
                                         <td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
+                                        <td>
+                                            <button type="button" class="btn btn-default">編集</button>
+                                        </td>
                                         <td>
                                             <c:choose>
                                                 <c:when test="${sessionScope.loginUser.id eq result.user.id}">
                                                     <button type="button" class="btn btn-danger btn_withDraw" value="${community.id}">退会</button>
                                                 </c:when>
                                             </c:choose>
+                                        </td>
+                                        <td>
+                                            <div class="edit">
+                                                <form action="commSetting" method="post" name="showDel">
+                                                    <input type="hidden" name="commId" value="${community.id}">
+                                                    <input type="hidden" name="commName" value="${community.name}">
+                                                    <input type="hidden" name="commProfile" value="${community.profile}">
+                                                    <input type="hidden" name="iconPath" value="${community.iconPath}">
+                                                    <input type="hidden" name="headerPath" value="${community.headerPath}">
+                                                    <input type="hidden" name="nowIconPath" value="${community.iconPath}">
+                                                    <input type="hidden" name="nowHeaderPath" value="${community.headerPath}">
+                                                    <input type="hidden" name="deleteFlag" value="${community.deleteFlag}">
+                                                    <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                                    <input type="hidden" name="del" value="del">
+                                                    <input type="hidden" name="target" value="communityDeleteResult">
+                                                    <button type="submit" class="btn btn-danger" id="showDel">削除</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 </c:if>
@@ -210,6 +213,40 @@
     		</div><!-- /.modal-dialog -->
     	  </div><!-- /.modal -->
 
+          <!--コミュ編集のモーダル-->
+          <div class="fade modal text-justify" id="communitySetting-modal">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title">コミュニティ編集確認</h4>
+                      </div>
+
+                      <div class="modal-body">
+                          <div class="row">
+                              <div class="col-md-1"></div>
+                              <div class="col-md-10">
+                                  <h2>コミュニティ名</h2>
+                                  <h5 id="modalName"></h5>
+                                  <h2>説明文</h2>
+                                  <h5 id="modalProfile"></h5>
+                                  <h2>ヘッダー画像</h2>
+                                  <img src="" class="img-rounded" width="450" height="150" id="commHeader">
+                                  <h2>アイコン画像</h2>
+                                  <img src="" class="img-thumbnail" width="110" height="150" id="commIcon">
+                              </div>
+                              <div class="col-md-1"></div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-warning" form="setting">設定する</button>
+                          <button type="button" class="btn btn-warning" data-dismiss="modal">キャンセル</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
     	  <%-- 退会処理のjs --%>
     	<script>
     		$(function(){
@@ -244,5 +281,130 @@
     			});
     		});
     	</script>
+        <script>
+            var ajaxSettings;
+            var ajax;
+            $(function () {
+
+            ajaxSettings = {
+            type: 'post',
+                    url: '/TeraNavi/upload',
+                    processData: false,
+                    contentType: false,
+                            cache: false,
+                            dataType: 'json'};
+                            $("#edit").click(function () {
+                            var id = $('#commid');
+                            var userid = $('#userId');
+                            var name = $('#name');
+                            var profile = $('#profile').text();
+                            var iconPath = " ${result.iconPath}";
+                            var headerPath = "${result .headerPath}";
+                            var del = '0';
+                            var target = 'communitySettingResult';
+                            var button = $('#ed i tButton');
+                            $("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="100"><br>');
+                            $("#name").css("background-color", "");
+                            $("#name").removeClass("col-md-12");
+                            $("#name").addClass("col-md-8");
+                            $("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">' + profile + '</textarea>');
+                            $("#headerPa t h").append('<p id="headerText">ヘッダー画像を選択</p>');
+                            $("#headerPath").addClass("changeEffectHead");
+                            // $("#headimg").addClass("changeEffectHead");
+                            $("#iconPath").append('<p id="changeEffectIconText">アイコン画像を選択</p>');
+                            $("#iconPath").addClass("changeEffectIcon");
+                            $("#edit").css("display", "none");
+                            // $("#iconFile").show();
+                            $("#iconFile").append('<input id="comIconPath" type="hidden" name="iconPath">');
+                            // $("#headerFile").show();
+                            $("#headerFile").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
+                            button.hide();
+            //									<!-- 下は隠し要素 -->
+                            $('#userId').html('<input type="hidden" name="userId" value="' + userid.text() + '">');
+                            $('#commid').html('<input type="hidden" name="commId" value="' + id.text() + '">');
+                            $('#commid').append('<input type="hidden" name="deleteFlag" value="' + del + '">');
+                            $('#commid').append('<input type="hidden" name="target" value="' + target + '">');
+                            $('#commid').append('<input type="hidden" name="nowIconPath" value="' + iconPath + '">');
+                            $('#commid').append('<input type="hidden" name="nowHeaderPath" value="' + headerPath + '">');
+                            $('#sub').html('<button class="btn btn-warning btn-lg" type="button" id="commSubmit" data-toggle="modal">確認</button>');
+                    });
+                    });
+                    //画像のアップロード関係
+                            function fileUpIcon() {
+                            var files = document.getElementById("iconFile").files;
+                                    for (var i = 0; i < files.length; i++) {
+                            console.log("for");
+                                    var f = files[i];
+                                    var formData = new FormData();
+                                    formData.append("file", f);
+                                    ajaxSettings.data = formData;
+                                    ajaxSettings.url = "/TeraNavi/upload";
+                                    ajaxSettings.success = function (data) {
+                                    $("#comIconPath").val(data.result);
+                                            $("#icon").attr("src", data.result);
+                                    }
+
+                            ajax = $.ajax(ajaxSettings);
+                            }
+
+                            }
+
+                    $(document).on("change", "#headerFile", function () {
+                var file = this.files[0];
+                // ブラウザごとの違いをフォローする
+                window.URL = window.URL || window.webkitURL;
+
+                // Blob URLの作成
+                src = window.URL.createObjectURL(file);
+                $("#headimg").attr("src", src);
+                fileUpHeader();
+            });
+
+            $(document).on("change", "#iconFile", function () {
+                var file = this.files[0];
+                // ブラウザごとの違いをフォローする
+                window.URL = window.URL || window.webkitURL;
+
+                // Blob URLの作成
+                src = window.URL.createObjectURL(file);
+
+                fileUpIcon();
+            });
+
+
+            function fileUpHeader() {
+                var files = document.getElementById("headerFile").files;
+
+                for (var i = 0; i < files.length; i++) {
+                    console.log("for");
+                    var f = files[i];
+                    var formData = new FormData();
+                    formData.append("file", f);
+                    ajaxSettings.data = formData;
+                    ajaxSettings.url = "/TeraNavi/upload/header";
+                    ajaxSettings.success = function (data) {
+                        $("#commHeaderPath").val(data.result);
+                        $("#preHeader").attr("src", data.result);
+                    }
+
+                    ajax = $.ajax(ajaxSettings);
+                }
+            }
+
+            $(document).on('click', "#commSubmit", function () {
+                $("#modalName").empty();
+                $("#modalProfile").empty();
+                $("#commHeader").empty();
+                $("#commIcon").empty();
+
+                $("#modalName").append($("#commName").val());
+                $("#modalProfile").append($("#profile").text());
+                $("#commHeader").attr("src", $("#headimg").attr("src"));
+                $("#commIcon").attr("src", $("#icon").attr("src"));
+
+                $("#communitySetting-modal").modal("show");
+            });
+
+        </script>
 </body>
 </html>
