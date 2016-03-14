@@ -216,7 +216,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             　<h4 class="modal-title text-center">確認</h4>
@@ -264,27 +264,23 @@
                 }
 			//--------------------------------------------------------------------------
 
-
+            //削除ボタンを押したら確認モーダルを出す
             $("#btn_articleDelete").on("click",function(){
                 $("#articleDeleteModal").modal();
             });
 
+            //確認モーダルの削除ボタンを押したらAjaxでコマンドを呼ぶ
             $("#btn_modalDelete").on("click",function(){
-
                 var checks=[];
                 $("[name='articleId']:checked").each(function(){
                     checks.push(this.value);
                 });
 
                 $.ajax({
-                    // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/deleteArticle',
                   type:'POST',
-                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
                   dataType: 'json',
-                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
                   data:{
-                    //   キー:バリューで書く。バリューには変数も使えます。
                     "articleId":checks,
                     ajax:'true'
                   }

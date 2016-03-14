@@ -15,6 +15,14 @@
 		<link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/mypage.css" type="text/css">
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+		<style>
+	        .modal-open {
+	            overflow: auto;
+	        }
+	        .modal-close {
+	            overflow: auto;
+	        }
+	    </style>
 	</head>
 	<body>
 		<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -175,33 +183,53 @@
 							<hr>
 							<div class="row">
 								<div class="col-md-12">
+
 									<h1 class="text-warning">投稿した記事</h1>
 									<table class="table table-striped">
 										<tbody>
 											<c:forEach var="article" items="${result.article}">
-												<tr>
+												<tr id="tableRow${article.articleId}">
+												<c:if test="${sessionScope.loginUser.id eq article.userId}" >
+					                                <td> <a class="btn btn-default btn-sm" href="/TeraNavi/front/showArticle?articleId=${article.articleId}&edit=true">編集</a> </td>
+					                            </c:if>
 													<td>
 														<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><p class="text-muted">${article.title}</p></a>
 													</td>
 													<td>${article.createdDate}</td>
+												<c:if test="${sessionScope.loginUser.id eq article.userId}" >
+													<div>
+				                                    	<td> <input class="chDelete" type="checkbox" name="articleId" value="${article.articleId}"> </td>
+													</div>
+				                                </c:if>
 												</tr>
+											</c:forEach>
+												<c:if test="${fn:length(result.article)  > 0}" >
 												<tr>
-												</c:forEach>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td><a id="btn_articleDelete" class="btn btn-danger btn-sm">削除</a></td>
+												</tr>
+												</c:if>
 										</tbody>
 									</table>
+
 									<c:choose>
 										<c:when test="${fn:length(result.article)  > 0}">
 											<c:choose>
 												<c:when test="${sessionScope.loginUser.id eq result.user.id}">
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" id="btn-articleList" class="btn btn-warning pull-right"
-														data-toggle="popover" title="記事の編集、削除はこちらから">
-														投稿記事の一覧
-													</a>
+													<div>
+														<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" id="btn-articleList" class="btn btn-warning pull-right">
+															全件を表示
+														</a>
+													</div>
 												</c:when>
 												<c:otherwise>
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">
-														投稿記事の一覧
-													</a>
+													<div>
+														<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" class="btn btn-warning pull-right">
+															全件を表示
+														</a>
+													</div>
 												</c:otherwise>
 											</c:choose>
 
@@ -259,11 +287,86 @@
 				</div><!--end container-->
 			</div><!--end section-->
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+			<!-- 記事削除確認モーダル -->
+		    <div class="fade modal text-justify" id="articleDeleteModal">
+		        <div class="modal-dialog">
+		          <div class="modal-content">
+		            <div class="modal-header">
+		              <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+		                <span aria-hidden="true">×</span>
+		              </button>
+		            　<h4 class="modal-title text-center">確認</h4>
+		             </div>
+		            <div class="modal-body">
+		                <p class="text-center">本当に削除しますか？</p>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="submit" class="btn btn-block btn-danger" id="btn_modalDelete" data-dismiss="modal">削除</button>
+		                <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+		            </div>
+		          </div>
+		        </div>
+		     </div>
+
+		     <!-- 記事削除結果モーダル -->
+		      <div class="modal fade" id="deleteArticleResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		        <div class="modal-dialog">
+		          <div class="modal-content">
+		            <div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+		              <h4 class="modal-title text-center" id="deleteArticleResultModalLabel">記事削除結果</h4>
+		            </div>
+		            <div class="modal-body">
+		              <p id="deleteArticleResultMessage" class="text-center">記事の削除が完了しました</p>
+		            </div>
+		            <div class="modal-footer">
+		              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+		            </div>
+		          </div><!-- /.modal-content -->
+		        </div><!-- /.modal-dialog -->
+		      </div><!-- /.modal -->
+
 	<script>
 		$(function() {
-		  $('#btn_articleList').popover({
-		    trigger: 'hover', // click,hover,focus,manualを選択出来る
-		  });
+
+			//削除ボタンを押したら確認モーダルを出す
+			$("#btn_articleDelete").on("click",function(){
+                $("#articleDeleteModal").modal();
+            });
+
+			//確認モーダルの削除ボタンを押したらAjaxでコマンドを呼ぶ
+            $("#btn_modalDelete").on("click",function(){
+                var checks=[];
+                $("[name='articleId']:checked").each(function(){
+                    checks.push(this.value);
+                });
+
+                $.ajax({
+                  url: '/TeraNavi/front/deleteArticle',
+                  type:'POST',
+                  dataType: 'json',
+                  data:{
+                    "articleId":checks,
+                    ajax:'true'
+                  }
+               })
+                //    成功時の処理
+                   .done(function(data) {
+                       $("#deleteArticleResultModal").modal();
+					   jQuery.each(checks, function() {
+					   $("#tableRow" + this).hide();
+
+						});
+
+                   })
+                //    失敗時の処理
+                   .fail(function() {
+                       $("#deleteArticleResultMessage").text("記事の削除に失敗しました");
+                       $("#deleteArticleResultModal").modal();
+                   });
+            });
+
 		});
 	</script>
 
