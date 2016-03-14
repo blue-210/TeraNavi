@@ -8,10 +8,10 @@
 		<title>マイページ</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/mypage.css" type="text/css">
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
@@ -24,7 +24,7 @@
 		<div class="section hidden-xs">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-md-10 col-md-offset-1">
 						<ul class="lead nav nav-justified nav-tabs">
 							<li>
 								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
@@ -102,6 +102,9 @@
 											<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
 												<li>
 													<a href="/TeraNavi/articlepost">記事を書く</a>
+												</li>
+												<li>
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
 												</li>
 												<li>
 													<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
@@ -193,14 +196,14 @@
 										<c:when test="${fn:length(result.article)  > 0}">
 											<c:choose>
 												<c:when test="${sessionScope.loginUser.id eq result.user.id}">
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" id="btn-articleList" class="btn btn-warning pull-right"
-														data-toggle="popover" title="記事の編集、削除はこちらから">
-														投稿記事の一覧
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" id="btn-articleList" class="btn btn-warning pull-right"
+														data-toggle="popover" title="記事の編集、削除はこちらから"><!--ボタンにホバーで解説を出す-->
+														全件を表示
 													</a>
 												</c:when>
 												<c:otherwise>
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">
-														投稿記事の一覧
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" class="btn btn-warning pull-right">
+														全件を表示
 													</a>
 												</c:otherwise>
 											</c:choose>

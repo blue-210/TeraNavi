@@ -5,10 +5,10 @@
     <title>コミュニティ管理</title>
     <!-- Latest compiled and minified CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
         <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
@@ -68,10 +68,15 @@
 
                         </ul>
                     </div>
+                    <a class="btn btn-warning btn-block visible-xs" href="/TeraNavi/createcomm" role="button" style="margin-top: 60px">コミュニティ作成</a>
                 </div>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
+                    <div class="row col-md-10 col-md-offset-1 col-xs-12">
+            			<a class="btn btn-warning btn-lg hidden-xs" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
+            		</div>
+
                     <c:choose>
                         <c:when test="${fn:length(result.list) > 0}">
                             <div class="col-xs-10 col-xs-offset-1">
@@ -95,10 +100,14 @@
                                                     <input type="hidden" name="commId" value="${comm.id}">
                                                     <input type="hidden" name="commName" value="${comm.name}">
                                                     <input type="hidden" name="commProfile" value="${comm.profile}">
+                                                    <input type="hidden" name="iconPath" value="${comm.iconPath}">
                                                     <input type="hidden" name="headerPath" value="${comm.headerPath}">
+                                                    <input type="hidden" name="nowIconPath" value="${comm.iconPath}">
+                                                    <input type="hidden" name="nowHeaderPath" value="${comm.headerPath}">
                                                     <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
                                                     <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
                                                     <input type="hidden" name="del" value="del">
+                                                    <input type="hidden" name="target" value="communityDeleteResult">
                                                     <input type="submit" id="showDel" value="削除"></input>
                                                 </form>
                                             </div>

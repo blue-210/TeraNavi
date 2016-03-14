@@ -1,11 +1,4 @@
-<%@ page
-	contentType="text/html ; charset=UTF-8"
-	pageEncoding="UTF-8"
-	%>
-
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-	<!DOCTYPE html>
+<!DOCTYPE html>
 	<html lang="ja">
 		<head>
 
@@ -14,11 +7,11 @@
 			<title>記事を書く</title>
 
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<script type="text/javascript" src="/TeraNavi/js/wysiwyger.js"></script>
 			<script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
-			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 			<script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
 			<link rel="stylesheet" href="/TeraNavi/css/articlePost.css">

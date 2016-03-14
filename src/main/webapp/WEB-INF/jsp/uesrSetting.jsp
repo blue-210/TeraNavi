@@ -1,10 +1,3 @@
-<%@ page
-	contentType="text/html ; charset=UTF-8"
-	pageEncoding="UTF-8"
-	%>
-
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 	<!DOCTYPE html>
 	<html lang="ja">
 		<head>
@@ -13,10 +6,10 @@
 
 			<title>マイページ</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-			<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+			<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
@@ -125,18 +118,18 @@
 										<div class="col-md-8 col-md-offset-2"><img src="" class="img-rounded" width="100%" height="150" id="modalHeader"></div>
 										<div class="col-md-2"></div>
 									</div>
-									
+
 									<div class="row" >
 										<div class="col-md-4 col-md-offset-2"><img src="" style="margin-top: -100px;" class="img-thumbnail" width="110" height="110" id="modalIcon"></div>
 										<div class="col-md-6"></div>
 									</div>
-									
-									
+
+
 									<div class="row">
 										<div class="col-md-4 col-md-offset-2 col-xs-4"><h2>名前</h2></div>
 										<div class="col-md-4 col-xs-8"><h2>ふりがな</h2></div>
 										<div class="col-md-2 col-xs-0"></div>
-										
+
 									</div>
 									<div class="row">
 										<div class="col-md-4 col-md-offset-2 col-xs-4"><h5 id="modalName"></h5></div>
@@ -151,7 +144,7 @@
 										<div class="col-md-6 col-md-offset-2"><h5 id="modalMail"></h5></div>
 										<div class="col-md-4"></div>
 									</div>
-									
+
 									<div class="row">
 										<div class="col-md-6 col-md-offset-2"><h2>自己紹介</h2></div>
 										<div class="col-md-4"></div>
@@ -160,9 +153,9 @@
 										<div class="col-md-6 col-md-offset-2"><h5 id="modalProfile"></h5></div>
 										<div class="col-md-4"></div>
 									</div>
-									
-											
-											
+
+
+
 								</div>
 								<div class="modal-footer">
                                     <button type="submit" class="btn btn-warning" form="setting">設定する</button>

@@ -4,10 +4,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>${result.blog.title}</title>
 
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/blog.css" type="text/css">
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
@@ -101,7 +101,7 @@
 						</button>
 						<ul class="dropdown-menu">
 							<c:forEach var="contents" items="${result.archives}">
-								<li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.article.userId}&scope=${contents.year}${contents.month}">
+								<li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=${contents.year}${contents.month}">
 										${contents.year}年${contents.month}月(${contents.count})
 									</a></li>
 								</c:forEach>
