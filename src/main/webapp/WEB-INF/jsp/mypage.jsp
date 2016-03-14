@@ -360,10 +360,11 @@
                 //    成功時の処理
                    .done(function(data) {
                        $("#deleteArticleResultModal").modal();
-
 					   jQuery.each(checks, function() {
-						   $("#tableRow" + this).hide();
+					   $("#tableRow" + this).hide();
+
 						});
+
                    })
                 //    失敗時の処理
                    .fail(function() {
