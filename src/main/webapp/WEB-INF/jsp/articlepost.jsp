@@ -89,7 +89,7 @@
 
 						<!-- 残り8列はコンテンツ表示部分として使う -->
 						<div class="col-md-8">
-
+							<div class="hidden-xs">
 							<div class="row">
 								<form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
 									<div class="form-group">
@@ -131,7 +131,49 @@
 							</div>
 
 
+						</div>
+						<div class="visible-xs">
+							<div class="row">
+								<form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
+									<div class="form-group">
+										<label class="control-label">タイトル</label>
+										<input type="text" name="title" class="form-control" id="inputTitle">
 
+										<!--入力チェックのメッセージ用のdiv-->
+										<div class="row" id="validateTitle" style="display: none;">
+											<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">タイトルは必須入力です</p>
+										</div>
+
+										<br>
+										<label class="control-label">内容</label>
+										<textarea class="form-control" id="inputBody" name="body" style="width: 100%; height: 210px;"></textarea>
+										<div class="col-md-2" style="padding-left:0px;">
+											<a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
+										</div>
+										<a id="addImage" style="cursor:pointer"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
+										<input type="file" id="inputImage" class="hidden">
+									</div>
+								</form>
+							</div>
+
+							<div class="row" id="validateMessage" style="display: none;">
+								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">入力内容が正しくない項目があります</p>
+
+							</div>
+
+							<div class="row">
+								<div class="col-md-4 col-md-offset-4 col-xs-4">
+									<button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
+								</div>
+								<div class="col-md-2 col-xs-4">
+									<button type="button" class="btn btn-default pull-right" id="btn_draft">下書き保存</button>
+								</div>
+								<div class="col-md-2 col-xs-4">
+									<button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
+								</div>
+							</div>
+
+						</div>
 						</div><!-- end col-8コンテンツ -->
 
 					</div><!--end row-->
