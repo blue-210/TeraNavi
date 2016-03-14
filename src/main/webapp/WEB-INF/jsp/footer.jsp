@@ -27,46 +27,97 @@
 
 			<div id="contact-modal" class="modal fade">
 				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h1 class="text-center hidden-xs">お問い合わせ</h1>
-							<h3 class="text-center visible-xs" id="mobileContactTitle">お問い合わせ</h3>
-						</div>
-						<div id="contactM" class="modal-body">
-							<form action="/TeraNavi/front/sendContact" method="post">
-								<div class="form-group">
-									<label class="control-label" for="exampleInputName">お名前</label>
-									<input class="form-control" id="contactName" name="name" type="text">
+				<c:choose>
+					<c:when test="${sessionScope.loginUser eq null}">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h1 class="text-center hidden-xs">お問い合わせ</h1>
+									<h3 class="text-center visible-xs" id="mobileContactTitle">お問い合わせ</h3>
 								</div>
-								<div class="form-group">
-									<label class="control-label" for="exampleInputTitle">件名</label>
-									<input class="form-control" id="contactTitle" name="title" type="text">
+								<div id="contactM" class="modal-body">
+									<form action="/TeraNavi/front/sendContact" method="post">
+										<div class="form-group">
+											<label class="control-label" for="exampleInputName">お名前</label>
+											<input class="form-control" id="contactName" name="name" type="text">
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="exampleInputTitle">件名</label>
+											<input class="form-control" id="contactTitle" name="title" type="text">
+										</div>
+										<div class="form-group">
+											<label class="control-label">メールアドレス</label>
+											<input class="form-control" id="contactAddress" type="email" name="address">
+										</div>
+										<div class="form-group">
+											<label class="control-label">カテゴリ</label>
+											<select class="form-control" id="contactCategory" name="category">
+												<option>サイトについて</option>
+												<option>その他</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label class="control-label">本文</label>
+											<textarea class="form-control" id="contactBody" name="body"></textarea>
+										</div>
+									</form>
 								</div>
-								<div class="form-group">
-									<label class="control-label">メールアドレス</label>
-									<input class="form-control" id="contactAddress" type="email" name="address">
+								<div class="modal-footer">
+									<div>
+										<button type="button" id="contactBtn" class="btn btn-default pull-right hidden-xs">送信する</button>
+										<button type="button" id="contactBtn" class="btn btn-default btn-block pull-right visible-xs">送信する</button>
+									</div>
 								</div>
-								<div class="form-group">
-									<label class="control-label">カテゴリ</label>
-									<select class="form-control" id="contactCategory" name="category">
-										<option>サイトについて</option>
-										<option>その他</option>
-									</select>
+							</div><!--end moal-content-->
+
+					</c:when>
+					<c:otherwise>
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h1 class="text-center hidden-xs">お問い合わせ</h1>
+									<h3 class="text-center visible-xs" id="mobileContactTitle">お問い合わせ</h3>
 								</div>
-								<div class="form-group">
-									<label class="control-label">本文</label>
-									<textarea class="form-control" id="contactBody" name="body"></textarea>
+								<div id="contactM" class="modal-body">
+									<form action="/TeraNavi/front/sendContact" method="post">
+										<div class="form-group">
+											<label class="control-label" for="exampleInputName">お名前</label>
+											<input class="form-control" id="contactName" name="name" type="text" value="${sessionScope.loginUser.userName}">
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="exampleInputTitle">件名</label>
+											<input class="form-control" id="contactTitle" name="title" type="text">
+										</div>
+										<div class="form-group">
+											<label class="control-label">メールアドレス</label>
+											<input class="form-control" id="contactAddress" type="email" name="address" value="${sessionScope.loginUser.mailAddress}">
+										</div>
+										<div class="form-group">
+											<label class="control-label">カテゴリ</label>
+											<select class="form-control" id="contactCategory" name="category">
+												<option>サイトについて</option>
+												<option>その他</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label class="control-label">本文</label>
+											<textarea class="form-control" id="contactBody" name="body"></textarea>
+										</div>
+									</form>
+
 								</div>
-							</form>
-							<div>
-								<button type="button" id="contactBtn" class="btn btn-default pull-right hidden-xs">送信する</button>
-								<button type="button" id="contactBtn" class="btn btn-default btn-block pull-right visible-xs">送信する</button>
-							</div>
-						</div>
-						<div class="modal-footer">
-						</div>
-					</div><!--end moal-content-->
+								<div class="modal-footer">
+									<div>
+										<button type="button" id="contactBtn" class="btn btn-default pull-right hidden-xs">送信する</button>
+										<button type="button" id="contactBtn" class="btn btn-default btn-block pull-right visible-xs">送信する</button>
+									</div>
+
+								</div>
+							</div><!--end moal-content-->
+						</div><!--end modal-dialog-->
+					</c:otherwise>
+				</c:choose>
 				</div><!--end modal-dialog-->
 			</div><!--end modal-->
 		</div>
