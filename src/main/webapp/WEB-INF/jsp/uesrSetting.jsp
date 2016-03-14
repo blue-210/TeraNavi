@@ -93,12 +93,8 @@
 						<div class="col-md-3 col-xs-0"></div>
 					</div>
 
-
-
 					<button class="btn btn-warning btn-lg" type="button" id="userSubmit" data-toggle="modal" style="margin-left:70%">確認</button>
 					</form>
-
-
 
 					<!--モーダルウインドウの中身-->
 					<div class="fade modal text-justify" id="userSetting-modal" style="margin-top: 60px;">

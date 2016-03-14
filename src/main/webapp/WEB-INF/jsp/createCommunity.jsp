@@ -45,10 +45,8 @@
 										<img id="preIcon" class="hidden-xs" src="" width="150px" height="150px">
 										<img id="preIconMobile" class="visible-xs" src="" width="60px" height="60px">
 									</div>
-
 									<div class="col-md-12">
 										<input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
-
 									</div>
 									<input id="icon" type="hidden" name="commIcon">
 									<br>
@@ -98,11 +96,10 @@
 										<img id="preIcon" class="hidden-xs" src="${result.iconPath}" width="150px" height="150px">
 										<img id="preIconMobile" class="visible-xs" src="${result.iconPath}" width="60px" height="60px">
 									</div>
-
 									<div class="col-md-12">
 										<input type='file' value="ファイル選択" id='iconFile' onchange="fileUpIcon();">
 									</div>
-									<input id="icon" type="hidden" name="commIcon" value="${result.iconPath}">
+									<input id="icon" type="hidden" name="iconPath" value="${result.iconPath}">
 									<br>
 									<br>ヘッダ画像
 									<br>
@@ -117,13 +114,14 @@
 									</div>
 									<br>
 									<br>
-									<input id="commHeaderPath" type="hidden" name="commHeader" value="${result.headerPath}">
+									<input id="commHeaderPath" type="hidden" name="headerPath" value="${result.headerPath}">
 									<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+									<input type="hidden" name="commId" value="${result.id}">
+									<input type="hidden" name="deleteFlag" value="0">
+									<input type="hidden" name="target" value="communitySettingResult">
 									<div class="text-center col-xs-12 col-md-12">
 										<button type="button" class="btn btn-warning hidden-xs" id="csubmit">コミュニティを編集</button>
 										<button type="button" class="btn btn-warning visible-xs btn-block" id="csubmitMobile">コミュニティを編集</button>
-										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">クリックするとモーダルウィンドウが開きます。</button> -->
-										<!--モーダルがあったところ-->
 									</div>
 								</form>
 							</c:otherwise>

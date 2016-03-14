@@ -18,7 +18,6 @@
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 			<form action="commSetting" method="post" id="setting" >
 				<div class="hidden-xs">
-
 					<img src="${result.headerPath}" id="headimg">
 					<label for="headerFile" id="headerPath">
 						<input type="file" id="headerFile" style="display:none">
@@ -96,12 +95,10 @@
 									<p id="commid" style="display:none">${result.id}</p>
 									<p id="userId" style="display:none">${sessionScope.loginUser.id}</p>
 									<p id="createId" style="display:none">${result.createUserId}</p>
-
 									<p class="bun"><span id="profile"><pre>${result.profile}</pre></span></p>
 									<p id="sub"></p>
 								</div>
 							</div>
-
 							<div class="row visible-xs" id="mobileCommProfile">
 								<div class="col-xs-10">
 									<h2 class="text-primary">コミュニティ紹介文</h2>
@@ -133,7 +130,6 @@
 								</a>
 							</div>
 						</c:forEach>
-
 					</div>
 
 					<div class="row visible-xs">
@@ -157,9 +153,7 @@
 							</c:forEach>
 							</tbody>
 						</table>
-
 					</div>
-
 
 					<div class="col-md-10 col-md-offset-1 col-xs-12">
 						<div class="col-md-10 col-xs-0"></div>
@@ -223,7 +217,7 @@
 											</a>
 										</div>
 
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<p id="date">
 												<c:out value="${item.updateDate}" />
 											</p>
@@ -271,7 +265,6 @@
 						</div>
 
 						<div class="col-xs-12 col-md-offset-1 visible-xs">
-
 							<div class="col-xs-12">
 								<a class="btn btn-warning btn-block" href="/TeraNavi/front/showTopic?communityId=${result.id}">トピック一覧</a>
 							</div>
