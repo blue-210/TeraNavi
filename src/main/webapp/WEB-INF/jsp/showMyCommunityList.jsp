@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
@@ -86,7 +86,7 @@
               <h4 class="modal-title text-center" id="withDrawResultModalLabel">退会結果</h4>
             </div>
             <div class="modal-body">
-              <p id="withDrawResultMessage" class="text-center">記事の削除が完了しました</p>
+              <p id="withDrawResultMessage" class="text-center">退会しました。</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
@@ -102,40 +102,31 @@
             var withDrawId;
 
             $(".btn_withDraw").on("click",function(){
-                withDrawId = $(".btn_withDraw").val();
+                withDrawId = $(this).val();
                 $("#withDrawModal").modal();
             });
 
             $("#btn_modalWithDraw").on("click",function(){
 
                 $.ajax({
-                    // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/withDrawComm',
                   type:'POST',
-                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
                   dataType: 'json',
-                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
                   data:{
-                    //   キー:バリューで書く。バリューには変数も使えます。
                     commId:withDrawId,
                     ajax:'true'
                   }
                })
-                //    成功時の処理
                    .done(function(data) {
-                       $("#deleteArticleResultModal").modal();
-
+                       $("#withDrawResultModal").modal();
+                       console.log("#tableRow"+withDrawId);
                         $("#tableRow" + withDrawId).hide();
-
                    })
-                //    失敗時の処理
                    .fail(function() {
-                       $("#withDrawResultMessage").text("記事の削除に失敗しました");
+                       $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
                        $("#withDrawResultModal").modal();
                    });
             });
-
-
         });
 
     </script>
