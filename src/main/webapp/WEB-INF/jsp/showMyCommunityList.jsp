@@ -4,10 +4,10 @@
     <title>参加コミュニティ一覧</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
     <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
@@ -86,7 +86,7 @@
               <h4 class="modal-title text-center" id="withDrawResultModalLabel">退会結果</h4>
             </div>
             <div class="modal-body">
-              <p id="withDrawResultMessage" class="text-center">記事の削除が完了しました</p>
+              <p id="withDrawResultMessage" class="text-center">退会しました。</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
@@ -123,14 +123,12 @@
                })
                 //    成功時の処理
                    .done(function(data) {
-                       $("#deleteArticleResultModal").modal();
-
+                       $("#withDrawResultModal").modal();
                         $("#tableRow" + withDrawId).hide();
-
                    })
                 //    失敗時の処理
                    .fail(function() {
-                       $("#withDrawResultMessage").text("記事の削除に失敗しました");
+                       $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
                        $("#withDrawResultModal").modal();
                    });
             });

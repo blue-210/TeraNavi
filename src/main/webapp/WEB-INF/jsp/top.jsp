@@ -5,10 +5,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
 		<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
@@ -176,5 +176,53 @@
 			});
 		</script>
 
+		<!-- 確認モーダル -->
+		<div class="fade modal text-justify" id="partiCommModal">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				  </button>
+				　<h4 class="modal-title text-center">確認</h4>
+				 </div>
+				<div class="modal-body">
+					<p id="joinResultMessage" class="text-center">参加中...</p>
+				</div>
+				<div class="modal-footer"></div>
+			  </div>
+			</div>
+		 </div>
+		<script>
+			$(function(){
+
+				var commId;
+				var button;
+				$(".communityBtn").on("click",function(){
+					button = $(this);
+					commId = $(this).val();
+					$("#partiCommModal").modal();
+					$.ajax({
+						// urlで飛ばしたいコマンドを指定してあげる
+					  url: '/TeraNavi/front/partiComm',
+					  type:'POST',
+					  dataType: 'json',
+					  data:{
+						commId:commId,
+						ajax:'true'
+					  }
+				   })
+				   .done(function(data) {
+					   console.log(data);
+					   $("#joinResultMessage").text("参加しました!");
+					   button.text("参加中");
+					   button.prop("disabled",true);
+				   })
+				   .fail(function() {
+					   $("#joinResultMessage").text("参加できませんでした。もういちどお試しください。");
+				   });
+				});
+			});
+		</script>
 	</body>
 </html>

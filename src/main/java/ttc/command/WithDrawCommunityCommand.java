@@ -64,7 +64,7 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             // result.put("commName",reqc.getParameter("commName")[0]);
             // communities表から取得した最新の参加コミュニティがWebApplicationControllerのhandleResponse内でsessionに反映される
             resc.setResult(result);
-            resc.setTarget("communityWithDrawResult");
+            // resc.setTarget("communityWithDrawResult");
 
             return resc;
         }catch(NullPointerException e){
