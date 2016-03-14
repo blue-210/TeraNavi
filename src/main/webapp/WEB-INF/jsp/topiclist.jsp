@@ -1,10 +1,3 @@
-<%@ page
-	contentType="text/html ; charset=UTF-8"
-	pageEncoding="UTF-8"
-	%>
-
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 	<!DOCTYPE html>
 	<html lang="ja">
 		<head>
@@ -22,8 +15,8 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 			<script type="text/javascript" src="js/fileup.js"></script>
 
-			<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-			<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 			<link rel="stylesheet" type="text/css" href="/TeraNavi/css/style.css">
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>

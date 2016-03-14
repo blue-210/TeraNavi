@@ -722,6 +722,47 @@ VALUES(
     1
 );
 
+INSERT INTO users(
+    login_id,
+    user_name,
+    user_name_kana,
+    sex,
+    sex_visible_flag,
+    birth_date,
+    mail_address,
+    password,
+    secret_answer,
+    user_header_path,
+    user_icon_path,
+    admin_flag,
+    last_login_date,
+    admin_last_login_date,
+    user_status_flag,
+    user_lock_start_date,
+    user_lock_end_date,
+    user_profile,
+    blog_status_flag)
+VALUES(
+    'adminUser2',
+    '東先生',
+    'あずませんせい',
+    'm',
+    1,
+    '1995/02/11 20:20:20',
+    'azuma@gmail.com',
+    'd2906b9b2e64ee268ad062f4f3e4526604a52d30c409063b903587212a028e13',
+    '東先生',
+    'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+    '/TeraNavi/imgPath/default/default_user_icon.jpg',
+    1,
+    '1995/02/11 20:20:30',
+    '1995/02/11 20:20:40',
+    0,
+    '2020/02/11 20:20:20',
+    '2020/02/11 20:30:20',
+    'みんな、もっとテレビをみよう！',
+    0
+);
 
 #secret_questions表
 INSERT INTO secret_questions(secret_question_body)

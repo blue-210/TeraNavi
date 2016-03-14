@@ -1,10 +1,3 @@
-<%@ page
-	contentType="text/html ; charset=UTF-8"
-	pageEncoding="UTF-8"
-	%>
-
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 	<!DOCTYPE html>
 	<html lang="ja">
 		<head>
@@ -12,7 +5,7 @@
 			<title>変更結果</title>
 			<meta name="viewport" content="width=device-width, initial-s<cale=1">
 			<!-- Latest compiled and minified CSS -->
-			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 			<!-- Optional theme -->
@@ -31,16 +24,12 @@
 					<div class="hidden-xs">
 						<h1>${result.userbean.userName}さんのパスワードを変更しました</h1>
 
-						<p>
-							新しいパスワードは[ ${result.userbean.password} ]です
-						</p>
+
 					</div>
 					<div class="visible-xs">
 						<h3>${result.userbean.userName}さんのパスワードを変更しました</h3>
 
-						<h4>
-							新しいパスワードは[ ${result.userbean.password} ]です
-						</h4>
+
 					</div>
 
 				</div><!--end row-->
