@@ -1,10 +1,3 @@
-<%@ page
-	contentType="text/html ; charset=UTF-8"
-	pageEncoding="UTF-8"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!-- saved from url=(0069)file:///C:/GitHub/TeraNavi/src/main/webapp/WEB-INF/design/signUp.html -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,16 +6,16 @@
 	<title>新規登録</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="/TeraNavi/css/style.css" type="text/css">
 	<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	<script src="/TeraNavi/js/signup.js"></script>
-	
-	
-	
+
+
+
 </head>
 <body>
 	<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -43,17 +36,17 @@
 				</div>
 				<div class="col-md-3"></div>
 				<!-- ここまででひとつのインプットを構成する -->
-				
+
 				</form>
-				
+
 			</div><!--end of row-->
-			
+
 			<!--入力チェックのメッセージ用のdiv-->
 			<div class="row" id="validateName" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">名前は必須入力です</p>
-				
+
 			</div>
-			
+
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -69,8 +62,8 @@
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">ふりがなは必須入力です</p>
 
 			</div>
-			
-			
+
+
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
@@ -82,13 +75,13 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<!--入力チェック用-->
 			<div class="row" id="validateSex" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">性別は必須入力です</p>
-				
+
 			</div>
-			
+
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -147,7 +140,7 @@
 			<!--入力チェックのメッセージ用のdiv-->
 			<div class="row" id="validateMail2" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">メールアドレスと確認のアドレスが一致しません</p>
-				
+
 			</div>
 
 			<div class="row">
@@ -160,13 +153,13 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<!--入力チェック用-->
 			<div class="row" id="validateLoginId" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">ログインIDは必須入力です</p>
-				
+
 			</div>
-			
+
 
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -179,10 +172,10 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<div class="row" id="validatePassword" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">パスワードの入力が不正です</p>
-				
+
 			</div>
 
 			<div class="row">
@@ -195,11 +188,11 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<!--入力チェック用-->
 			<div class="row" id="validatePassword2" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">パスワードとパスワードの確認が一致しません</p>
-				
+
 			</div>
 
 			<div class="row">
@@ -229,11 +222,11 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
-			
+
 			<!--入力チェック用-->
 			<div class="row" id="validateAnswer" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">秘密の質問の答えは必須入力です</p>
-				
+
 			</div>
 
 			<div class="row">
@@ -247,16 +240,16 @@
 				<div class="col-md-3"></div>
 
 			</div>
-			
+
 			<!--入力チェック用-->
 			<div class="row" id="validateKey" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">登録キーは必須入力です</p>
-				
+
 			</div>
-			
+
 			<!--入力チェック用-->
-			
-			
+
+
 			<div class="row">
 				<input type="hidden" name="adminFlag" form="signForm" value="0">
 				<div class="hidden-xs">
@@ -406,6 +399,6 @@
 
 
 	  <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
-	  
+
 </body>
 </html>

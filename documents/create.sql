@@ -51,8 +51,7 @@ create table tera_db.users(
 	user_profile varchar(6000),
 	-- 開設してない→0,開設してる→１
 	blog_status_flag char(1) default '0',
-	index(user_id),index(user_name),
-	foreign key(fk_secret_question_id) references tera_db.secret_questions(secret_question_id)
+	index(user_id),index(user_name)
 )engine=InnoDB;
 
 #　コミュニティ表
