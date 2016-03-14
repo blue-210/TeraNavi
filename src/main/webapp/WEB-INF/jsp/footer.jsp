@@ -28,7 +28,6 @@
 			<div id="contact-modal" class="modal fade">
 				<div class="modal-dialog">
 				<c:choose>
-					<!--ログインした時の処理-->
 						<c:when test="${not empty sessionScope.loginUser.id}">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -72,7 +71,6 @@
 							</div><!--end moal-content-->
 
 					</c:when>
-					<!--ログインしてないときの処理-->
 					<c:otherwise>
 						<div class="modal-dialog">
 							<div class="modal-content">
