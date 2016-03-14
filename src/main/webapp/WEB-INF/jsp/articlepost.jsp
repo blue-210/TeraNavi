@@ -107,7 +107,8 @@
 										<div class="col-md-2" style="padding-left:0px;">
 											<a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
 										</div>
-										<a id="addImage" style="cursor:pointer"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
+										<a id="addImage" style="cursor:pointer" class="hidden-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
+										<a id="mobileAddImage" style="cursor:pointer" class="visible-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
 										<input type="file" id="inputImage" class="hidden">
 									</div>
 								</form>
@@ -119,15 +120,24 @@
 							</div>
 
 							<div class="row">
-								<div class="col-md-4 col-md-offset-4 col-xs-4">
+								<div class="col-md-4 col-md-offset-4 col-xs-4 hidden-xs">
 									<button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
 								</div>
-								<div class="col-md-2 col-xs-4">
+								<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1 visible-xs">
+									<button type="button" class="btn btn-default pull-right" id="mobile_btn_preview">プレビュー</button>
+								</div>
+								<div class="col-md-2 col-xs-4 hidden-xs">
 									<button type="button" class="btn btn-default pull-right" id="btn_draft">下書き保存</button>
 								</div>
-								<div class="col-md-2 col-xs-4">
+								<div class="col-md-2 col-xs-4 col-xs-offset-1 visible-xs">
+									<button type="button" class="btn btn-default pull-right" id="mobile_btn_draft">下書き保存</button>
+								</div>
+								<div class="col-md-2 col-xs-4 hidden-xs">
 									<button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
 								</div>
+							</div>
+							<div class="col-xs-12 visible-xs" style="margin-top:10px;">
+								<button type="button" class="btn btn-block btn-warning" id="mobile_btn_post">投稿</button>
 							</div>
 
 
@@ -191,7 +201,8 @@
 						<div class="modal-body" id="articlePostModalBody">
 						</div>
 						<div class="modal-footer" id="articlePostModalFooter">
-							<button type="submit" class="btn btn-block btn-warning" id="btn_modalArticlePost" data-dismiss="modal">投稿</button>
+							<button type="submit" class="btn btn-block btn-warning hidden-xs" id="btn_modalArticlePost" data-dismiss="modal">投稿</button>
+							<button type="submit" class="btn btn-block btn-warning visible-xs" id="mobile_btn_modalArticlePost" data-dismiss="modal">投稿</button>
 							<button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
 						</div>
 					</div>
@@ -309,6 +320,47 @@
 					}
 
 
+					//モバイル版の画像追加-------------------------------------------------------------
+
+					$("#mobileAddImage").on("click", function () {
+						$("#inputImage").click();
+					});
+
+					$(document).on("change", "#inputImage", function () {
+						var file = this.files[0];
+						// ブラウザごとの違いをフォローする
+						window.URL = window.URL || window.webkitURL;
+
+						// Blob URLの作成
+						src = window.URL.createObjectURL(file);
+						$("#headimg").attr("src", src);
+						uploadMobileImage();
+					});
+
+					function uploadMobileImage() {
+						var files = document.getElementById("inputImage").files;
+
+						for (var i = 0; i < files.length; i++) {
+							var f = files[i];
+							var formData = new FormData();
+							formData.append("file", f);
+							ajaxSettings.data = formData;
+							ajaxSettings.url = "/TeraNavi/upload/article";
+							ajaxSettings.success = function (data) {
+								var imageTag = "<img src=\"" + data.result + "\" / style=\"width:100%;\">";
+								var currentText = $("#inputBody").val();
+								$("#inputBody").val(currentText + "" + imageTag);
+								console.log(imageTag);
+								console.log(currentText);
+								console.log($("#inputBody").val());
+							}
+
+							ajax = $.ajax(ajaxSettings);
+						}
+					}
+
+
+
 					//タグ選択モーダルを出す処理---------------------------------------------
 					$("#btn_addTag").on("click", function () {
 						$("#addTagModal").modal();
@@ -332,6 +384,26 @@
 
 
 					});
+
+					//モバイル版の確認画面の表示処理
+					$("#mobile_btn_post").on("click", function () {
+
+						if ($("#inputTitle").val().length <= 0) {
+							$("#validateMessage").css("display","");
+							$("#validateTitle").css("display", "");
+						} else {
+							var apmBody = $("#articlePostModalBody");
+							var title = $("#inputTitle").val();
+							var body = $("#inputBody").val();
+							$("#articlePostModalBody").empty();
+							apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
+							apmBody.append('<hr><p>この内容でよろしいですか？<p>');
+							$("#articlePostModal").modal();
+						}
+
+
+					});
+
 
 					//記事を投稿する処理--------------------------------------------------------------
 					$("#btn_modalArticlePost").on("click", function () {
@@ -371,6 +443,45 @@
 									$("#articlePostResultModal").modal();
 								});
 					});
+					//モバイル版投稿処理-------------------------------------------------------------------
+					$("#mobile_btn_modalArticlePost").on("click", function () {
+
+						var checks = [];
+						$("[name='chTag']:checked").each(function () {
+							checks.push(this.value);
+						});
+
+						$.ajax({
+							// urlで飛ばしたいコマンドを指定してあげる
+							url: '/TeraNavi/front/articlepost',
+							type: 'POST',
+							dataType: 'json',
+							//   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+							data: {
+								//   キー:バリューで書く。バリューには変数も使えます。
+								title: $("#inputTitle").val(),
+								body: $("#inputBody").val(),
+								tag: checks,
+								ajax: 'true'
+							}
+						})
+								//    成功時の処理
+								.done(function (data) {
+									$("#articlePostResultModal").modal();
+
+									$("#inputTitle").val("");
+									$("#inputBody").val("");
+
+									$("[name='chTag']:checked").prop("checked",false);
+
+								})
+								//    失敗時の処理
+								.fail(function () {
+									$("#articlePostResultMessage").text("記事を投稿できませんでした");
+									$("#articlePostResultModal").modal();
+								});
+					});
+
 
 					//下書き保存する処理--------------------------------------------------------------
 					$("#btn_draft").on("click", function () {
@@ -422,12 +533,72 @@
 
 
 					});
+					//モバイル版の下書き保存---------------------------------------------------------------------
+					$("#mobile_btn_draft").on("click", function () {
+
+						if ($("#inputTitle").val().length <= 0) {
+							$("#validateTitle").css("display", "");
+							$("#validateMessage").css("display","");
+						} else {
+							var checks = [];
+							$("[name='chTag']:checked").each(function () {
+								checks.push(this.value);
+							});
+
+							$.ajax({
+								// urlで飛ばしたいコマンドを指定してあげる
+								url: '/TeraNavi/front/draftArticle',
+								type: 'POST',
+								//   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
+								dataType: 'json',
+								//   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
+								data: {
+									//   キー:バリューで書く。バリューには変数も使えます。
+									title: $("#inputTitle").val(),
+									body: $("#inputBody").val(),
+									tag: checks,
+									ajax: 'true'
+								}
+							})
+									//    成功時の処理
+									.done(function (data) {
+										$("#articlePostResultModalLabel").text("記事の下書き保存結果");
+										$("#articlePostResultMessage").text("記事の下書き保存が完了しました");
+										$("#articlePostResultModal").modal();
+
+										$("#inputTitle").val("");
+										$("#inputBody").val("");
+
+										$("[name='chTag']:checked").prop("checked",false);
+
+
+									})
+									//    失敗時の処理
+									.fail(function () {
+										$("#articlePostResultMessage").text("記事を下書き保存できませんでした");
+										$("#articlePostResultModal").modal();
+									});
+						}
+
+
+
+					});
 
 
 					$("#btn_preview").on("click", function () {
 						var apmBody = $("#previewModalBody");
 						var title = $("#inputTitle").val();
 						var body = CKEDITOR.instances.inputBody.getData();
+						$("#previewModalBody").empty();
+						apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
+						$("#previewModal").modal();
+
+					});
+					//モバイル版プレビュー
+					$("#mobile_btn_preview").on("click", function () {
+						var apmBody = $("#previewModalBody");
+						var title = $("#inputTitle").val();
+						var body = $("#inputBody").val();
 						$("#previewModalBody").empty();
 						apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
 						$("#previewModal").modal();
@@ -442,7 +613,26 @@
 							$("#validateMessage").css("display","none");
 						}
 					});
-				});
+
+						//useragent（デバイスの情報）を取得
+						var userAgent = window.navigator.userAgent.toLowerCase();
+
+						//デバイスごとに挿入するタグを分岐
+						if(userAgent.indexOf('iphone') != -1 || userAgent.indexOf('Android') != -1){
+						//iphoneの場合に、#apAreaにpタグを挿入
+						$('#inputBody').removeClass('ckeditor');
+						$('#inputBody').addClass('form-control');
+						$('#inputBody').css('height','210px');
+						}
+
+
+						$("textarea").change( function() {
+							var txtVal = $(this).val();
+							text = txtVal.replace(/\r?\n/g, "<br />");
+							$('#inputBody').val(text);
+						});
+					});
+
 
 
 
