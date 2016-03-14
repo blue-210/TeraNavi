@@ -1,21 +1,13 @@
-<%@ page
-   contentType="text/html ; charset=UTF-8"
-   pageEncoding="UTF-8"
-   import="ttc.bean.ArticleBean"
-%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <title>記事一覧表示</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/TeraNavi/css/mypage.css" type="text/css">
@@ -216,7 +208,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             　<h4 class="modal-title text-center">確認</h4>
@@ -264,27 +256,23 @@
                 }
 			//--------------------------------------------------------------------------
 
-
+            //削除ボタンを押したら確認モーダルを出す
             $("#btn_articleDelete").on("click",function(){
                 $("#articleDeleteModal").modal();
             });
 
+            //確認モーダルの削除ボタンを押したらAjaxでコマンドを呼ぶ
             $("#btn_modalDelete").on("click",function(){
-
                 var checks=[];
                 $("[name='articleId']:checked").each(function(){
                     checks.push(this.value);
                 });
 
                 $.ajax({
-                    // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/deleteArticle',
                   type:'POST',
-                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
                   dataType: 'json',
-                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
                   data:{
-                    //   キー:バリューで書く。バリューには変数も使えます。
                     "articleId":checks,
                     ajax:'true'
                   }

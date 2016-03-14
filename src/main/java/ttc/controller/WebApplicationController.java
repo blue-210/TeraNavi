@@ -135,25 +135,10 @@ public class WebApplicationController implements ApplicationController{
 
 //				読み込むページがログインユーザ自身のページあった場合セッションをリフレッシュする
 //				この判定を行わないと他人のマイページを見た際にそのユーザを乗っ取れてしまいます
-
 				if(loginFlag){
 					UserBean user = (UserBean)result.get("user");
 					session.setAttribute("loginUser", user);
-
 				}
-
-			}else if(path.equals("partiComm")){
-				HttpSession session = req.getSession(true);
-
-				Map result = (Map)resc.getResult();
-				System.out.println(((CommunityBean)result.get("community")).getId());
-				List communities = (List)session.getAttribute("myCommunities");
-				communities.add(result.get("community"));
-				session.setAttribute("myCommunities", communities);
-			}else if(path.equals("withDrawComm")){
-				Map result = (Map)resc.getResult();
-				HttpSession session = req.getSession(true);
-				session.setAttribute("myCommunities",result.get("community"));
 
 			}else{
 				req.setAttribute("result",resc.getResult());
