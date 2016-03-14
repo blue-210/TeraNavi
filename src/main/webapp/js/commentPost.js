@@ -37,7 +37,7 @@ $(function(){
 	//		コメント数の更新
 			$("#commentCount").text(data.length);
 			cDiv.empty();
-			$("#commentBody").val("");
+			
 			for(var i in data){
 				var userIcon = data[i].iconPath;
 				var userName = data[i].userName;
@@ -66,7 +66,7 @@ $(function(){
 	
 	setInterval(function(){
 		ajax3 = $.ajax(ajaxSettings3);
-	},10000);
+	},2000);
 	
 
 });
