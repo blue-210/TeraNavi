@@ -13,11 +13,15 @@ import java.util.HashMap;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 
 import ttc.bean.ArticleBean;
+import ttc.bean.TagBean;
 import ttc.exception.business.ParameterInvalidException;
 
 public class EditArticleCommand extends AbstractCommand{
@@ -83,7 +87,6 @@ public class EditArticleCommand extends AbstractCommand{
 			params.put("articlebean",ab);
             dao.update(params);
 
-            params.clear();
 
             if(tagFlag){
                 params.clear();
@@ -91,11 +94,30 @@ public class EditArticleCommand extends AbstractCommand{
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
 
+				params.put("articleId", ab.getArticleId());
+				List tagBeans = dao.readAll(params);
+				List tagData = new ArrayList();
+				//既に記事に付いているタグを保持しておくList
+				
+				Iterator itr = tagBeans.iterator();
+				while(itr.hasNext()){
+//					TagDataに既に記事に付いているタグにIDを取得
+					TagBean tag = (TagBean)itr.next();
+					tagData.add(tag.getId());
+				}
+				
+				params.clear();
+				
 				for(int i = 0;i < tags.length;i++){
-					params.put("articleId", articleId);
-					params.put("tag", tags[i]);
-					dao.insert(params);
-					params.clear();
+					
+					if(tagData.indexOf(tags[i])<0){
+						params.put("articleId", ab.getArticleId());
+						params.put("tag", tags[i]);
+						dao.insert(params);
+						params.clear();
+						tagData.add(tags[i]);
+					}
+					
 				}
 
 			}

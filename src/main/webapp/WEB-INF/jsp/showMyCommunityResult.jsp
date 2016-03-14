@@ -68,10 +68,15 @@
 
                         </ul>
                     </div>
+                    <a class="btn btn-warning btn-block visible-xs" href="/TeraNavi/createcomm" role="button" style="margin-top: 60px">コミュニティ作成</a>
                 </div>
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
+                    <div class="row col-md-10 col-md-offset-1 col-xs-12">
+            			<a class="btn btn-warning btn-lg hidden-xs" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
+            		</div>
+
                     <c:choose>
                         <c:when test="${fn:length(result.list) > 0}">
                             <div class="col-xs-10 col-xs-offset-1">
