@@ -21,7 +21,7 @@
 				<div class="container">
 					<c:forEach var="item" items="${result}">
 						<div class="row">
-							<div class="col-md-10 col-md-offset-1 col-xs-11">
+							<div class="col-md-2 col-md-offset-1 col-xs-11">
 								<img src="${item.iconPath}" class="hidden-xs" style="width:140px;height:140px;">
 								<img src="${item.iconPath}" class="visible-xs"style="width:140px;height:140px;">
 								<div class="prof">
@@ -41,22 +41,25 @@
 
 									<p>${item.profile}</p>
 
-									<%-- <div class="hidden-xs">
-										<form action="dmsend" method="post">
-											<div class="form-inline">
-												<label class="control-label">DMの本文</label>
-												<input class="form-control" type="text" name="messageBody">
-												<input type="hidden" name="receiveUserId" value="${item.id}">
-												<button type="submit" class="btn btn-default">DM送信</button>
-											</div>
-										</form>
-
-									</div> --%>
+									
+								</div>
+							</div>
+									
+							<div class="col-md-8">
+								<div class="hidden-xs dm-form" style="margin-top: 30px;">
+									<form action="dmsend" method="post">
+										<div class="form-inline">
+											<label class="control-label">DMの本文</label>
+											<textarea name="messageBody" rows="3" class="form-control" style="width:100%;"></textarea>
+											<input type="hidden" name="receiveUserId" value="${item.id}">
+											<button type="submit" class="btn btn-default mobile-btn pull-right">DM送信</button>
+										</div>
+									</form>
 
 								</div>
 							</div>
 
-							<%-- <div class="col-xs-12">
+							<div class="col-xs-12">
 								<div class="visible-xs mobile-dm-form">
 									<form action="dmsend" method="post">
 										<div class="form-inline">
@@ -68,7 +71,7 @@
 									</form>
 
 								</div>
-							</div> --%>
+							</div>
 
 						</div><br><br>
 

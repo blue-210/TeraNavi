@@ -36,7 +36,7 @@ public class DirectMessageDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
 
             sql.append("select message_id,message_body,message_date," );
-            sql.append("fk_send_user_id,fk_receive_user_id,user_name ");
+            sql.append("fk_send_user_id,fk_receive_user_id,user_name,user_icon_path ");
             sql.append("from direct_messages join users on user_id=fk_send_user_id ");
             sql.append("where fk_receive_user_id=?");
 			
@@ -68,6 +68,7 @@ public class DirectMessageDao implements AbstractDao{
                 dmBean.setFromUserId(rs.getString(4));
                 dmBean.setToUserId(rs.getString(5));
 				dmBean.setFromUserName(rs.getString(6));
+				dmBean.setFromIconPath(rs.getString(7));
                 result.add(dmBean);
             }
 
@@ -101,14 +102,14 @@ public class DirectMessageDao implements AbstractDao{
             sql.append("insert into ");
             sql.append("direct_messages(message_body,message_date, ");
             sql.append("fk_send_user_id,fk_receive_user_id) ");
-            sql.append("values(?,?,?,?)");
+            sql.append("values(?,sysdate(),?,?)");
 
             pst = cn.prepareStatement( new String(sql) );
 
             pst.setString(1, (String)map.get("messageBody"));
-            pst.setString(2, (String)map.get("messageDate"));
-            pst.setString(3, (String)map.get("sendUserId"));
-            pst.setString(4, (String)map.get("receiveUserId"));
+//            pst.setString(2, (String)map.get("messageDate"));
+            pst.setString(2, (String)map.get("sendUserId"));
+            pst.setString(3, (String)map.get("receiveUserId"));
 
             result = pst.executeUpdate();
 
