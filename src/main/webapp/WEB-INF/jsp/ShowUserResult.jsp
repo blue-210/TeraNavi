@@ -19,7 +19,7 @@
 			<br>
 			<div class="section">
 				<div class="container">
-					<c:forEach var="item" items="${result}">
+					<c:forEach var="item" items="${result}" varStatus="status">
 						<div class="row">
 							<div class="col-md-2 col-md-offset-1 col-xs-11">
 								<img src="${item.iconPath}" class="hidden-xs" style="width:140px;height:140px;">
@@ -47,12 +47,12 @@
 									
 							<div class="col-md-8">
 								<div class="hidden-xs dm-form" style="margin-top: 30px;">
-									<form action="dmsend" method="post">
+									<form action="dmsend" method="post"  id="form${status.index}">
 										<div class="form-inline">
 											<label class="control-label">DMの本文</label>
 											<textarea name="messageBody" rows="3" class="form-control" style="width:100%;"></textarea>
 											<input type="hidden" name="receiveUserId" value="${item.id}">
-											<button type="submit" class="btn btn-default mobile-btn pull-right">DM送信</button>
+											<button type="button" class="btn btn-default mobile-btn pull-right" onclick="dmSend('${status.index}')">DM送信</button>
 										</div>
 									</form>
 
@@ -61,12 +61,12 @@
 
 							<div class="col-xs-12">
 								<div class="visible-xs mobile-dm-form">
-									<form action="dmsend" method="post">
+									<form action="dmsend" method="post" class="dmForm" id="mobileForm${status.index}">
 										<div class="form-inline">
 											<label class="control-label">DMの本文</label>
-											<input class="form-control" type="text" name="messageBody">
+											<textarea name="messageBody" rows="3" class="form-control" style="width:100%;"></textarea>
 											<input type="hidden" name="receiveUserId" value="${item.id}">
-											<button type="submit" class="btn btn-default btn-block mobile-btn">DM送信</button>
+											<button type="button" class="btn btn-default btn-block mobile-btn" onclick="dmSendMobile('${status.index}')">DM送信</button>
 										</div>
 									</form>
 
@@ -88,10 +88,34 @@
 
 				</div>
 			</div>
+			
+			
+			<div class="fade modal text-justify" id="dm-modal" style="margin-top:50px;">
+        	<div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+            	  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title">DMを送信</h4>
+                </div>
+
+				<div class="modal-body">
+					
+					<h1>DMの送信に成功しました</h1>
+                </div>
+
+				<div class="modal-footer">
+                	<button type="button" class="btn btn-block btn-primary" data-dismiss="modal">閉じる</button>
+                </div>
+              </div>
+            </div>
+         </div>
+			
 
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-
+			<script src="/TeraNavi/js/dmsend.js"></script>
 
 		</body>
 	</html>
