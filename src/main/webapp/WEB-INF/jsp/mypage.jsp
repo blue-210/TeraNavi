@@ -9,7 +9,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,7 @@
 		<div class="section hidden-xs">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="col-xs-10 col-xs-offset-1">
 						<ul class="lead nav nav-justified nav-tabs">
 							<li>
 								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
@@ -102,9 +102,6 @@
 											<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
 												<li>
 													<a href="/TeraNavi/articlepost">記事を書く</a>
-												</li>
-												<li>
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
 												</li>
 												<li>
 													<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
@@ -196,14 +193,14 @@
 										<c:when test="${fn:length(result.article)  > 0}">
 											<c:choose>
 												<c:when test="${sessionScope.loginUser.id eq result.user.id}">
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" id="btn-articleList" class="btn btn-warning pull-right"
-														data-toggle="popover" title="記事の編集、削除はこちらから"><!--ボタンにホバーで解説を出す-->
-														全件を表示
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" id="btn-articleList" class="btn btn-warning pull-right"
+														data-toggle="popover" title="記事の編集、削除はこちらから">
+														投稿記事の一覧
 													</a>
 												</c:when>
 												<c:otherwise>
-													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}" class="btn btn-warning pull-right">
-														全件を表示
+													<a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=-1" class="btn btn-warning pull-right">
+														投稿記事の一覧
 													</a>
 												</c:otherwise>
 											</c:choose>
@@ -222,7 +219,7 @@
 									<table class="table table-striped">
 										<tbody>
 											<c:forEach var="community" items="${result.community}">
-												<tr>
+												<tr id="tableRow${community.id}">
 													<td>
 														<img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
 													</td>
@@ -230,10 +227,7 @@
 													<td>
 														<c:choose>
 															<c:when test="${sessionScope.loginUser.id eq result.user.id}">
-																<form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
-																	<input type="hidden" name="commId" value="${community.id}">
-																	<button type="submit" class="btn btn-danger pull-right">退会</button>
-																</form>
+																<button type="button" class="btn btn-danger btn_withDraw" value="${community.id}">退会</button>
 															</c:when>
 														</c:choose>
 													</td>
@@ -272,6 +266,83 @@
 		  });
 		});
 	</script>
+
+	<!-- 退会確認モーダル -->
+	<div class="fade modal text-justify" id="withDrawModal">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			  </button>
+			　<h4 class="modal-title text-center">確認</h4>
+			 </div>
+			<div class="modal-body">
+				<p class="text-center">本当に退会しますか？</p>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-block btn-danger" id="btn_modalWithDraw" data-dismiss="modal">退会</button>
+				<button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+			</div>
+		  </div>
+		</div>
+	 </div>
+
+	 <!-- 結果モーダル -->
+	  <div class="modal fade" id="withDrawResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+			  <h4 class="modal-title text-center" id="withDrawResultModalLabel">退会結果</h4>
+			</div>
+			<div class="modal-body">
+			  <p id="withDrawResultMessage" class="text-center">退会しました。</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	  </div><!-- /.modal -->
+
+	  <%-- 退会処理のjs --%>
+	<script>
+
+		$(function(){
+
+			var withDrawId;
+
+			$(".btn_withDraw").on("click",function(){
+				withDrawId = $(this).val();
+				$("#withDrawModal").modal();
+			});
+
+			$("#btn_modalWithDraw").on("click",function(){
+
+				$.ajax({
+				  url: '/TeraNavi/front/withDrawComm',
+				  type:'POST',
+				  dataType: 'json',
+				  data:{
+					commId:withDrawId,
+					ajax:'true'
+				  }
+			   })
+				   .done(function(data) {
+					   $("#withDrawResultModal").modal();
+					   console.log("#tableRow"+withDrawId);
+						$("#tableRow" + withDrawId).hide();
+				   })
+				   .fail(function() {
+					   $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
+					   $("#withDrawResultModal").modal();
+				   });
+			});
+		});
+
+	</script>
+
 	</body>
 
 </html>

@@ -102,38 +102,31 @@
             var withDrawId;
 
             $(".btn_withDraw").on("click",function(){
-                withDrawId = $(".btn_withDraw").val();
+                withDrawId = $(this).val();
                 $("#withDrawModal").modal();
             });
 
             $("#btn_modalWithDraw").on("click",function(){
 
                 $.ajax({
-                    // urlで飛ばしたいコマンドを指定してあげる
                   url: '/TeraNavi/front/withDrawComm',
                   type:'POST',
-                //   Ajaxは基本的にJSONというデータ形式を使うのが一般的。JSONについては後述。
                   dataType: 'json',
-                //   dataでパラメータ名を指定する。コマンド側でgetParameterのときに使います。
                   data:{
-                    //   キー:バリューで書く。バリューには変数も使えます。
                     commId:withDrawId,
                     ajax:'true'
                   }
                })
-                //    成功時の処理
                    .done(function(data) {
                        $("#withDrawResultModal").modal();
+                       console.log("#tableRow"+withDrawId);
                         $("#tableRow" + withDrawId).hide();
                    })
-                //    失敗時の処理
                    .fail(function() {
                        $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
                        $("#withDrawResultModal").modal();
                    });
             });
-
-
         });
 
     </script>
