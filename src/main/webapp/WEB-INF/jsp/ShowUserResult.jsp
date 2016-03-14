@@ -61,12 +61,12 @@
 
 							<div class="col-xs-12">
 								<div class="visible-xs mobile-dm-form">
-									<form action="dmsend" method="post" class="dmForm">
+									<form action="dmsend" method="post" class="dmForm" id="mobileForm${status.index}">
 										<div class="form-inline">
 											<label class="control-label">DMの本文</label>
-											<input class="form-control" type="text" name="messageBody">
+											<textarea name="messageBody" rows="3" class="form-control" style="width:100%;"></textarea>
 											<input type="hidden" name="receiveUserId" value="${item.id}">
-											<button type="submit" class="btn btn-default btn-block mobile-btn">DM送信</button>
+											<button type="button" class="btn btn-default btn-block mobile-btn" onclick="dmSendMobile('${status.index}')">DM送信</button>
 										</div>
 									</form>
 
@@ -90,7 +90,7 @@
 			</div>
 			
 			
-			<div class="fade modal text-justify hidden-xs" id="dm-modal" style="margin-top:50px;">
+			<div class="fade modal text-justify" id="dm-modal" style="margin-top:50px;">
         	<div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -106,7 +106,7 @@
                 </div>
 
 				<div class="modal-footer">
-                	
+                	<button type="button" class="btn btn-block btn-primary" data-dismiss="modal">閉じる</button>
                 </div>
               </div>
             </div>

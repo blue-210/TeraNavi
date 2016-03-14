@@ -24,3 +24,24 @@ function dmSend(id){
             console.log(data);
         });
 }
+
+function dmSendMobile(id){
+	$.ajax({
+            url : "/TeraNavi/front/dmsend",
+            type : "POST",
+            dataType : "JSON",
+            data : {
+                ajax : 'true',
+                receiveUserId : $("#mobileForm"+id+" input[name=receiveUserId]").val(),
+                messageBody : $("#mobileForm"+id+" textarea[name=messageBody]").val()
+            }
+        })
+		
+        .done(function(data){
+			$("#mobileForm"+id+" textarea[name=messageBody]").val("");
+            $("#dm-modal").modal();
+        })
+        .fail(function(data){
+            console.log(data);
+        });
+}
