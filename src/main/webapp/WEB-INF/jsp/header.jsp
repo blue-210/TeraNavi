@@ -145,7 +145,7 @@
 							<li><a href="/TeraNavi/front/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+							<li><a class="headermenu" onclick="showAgreeModal()">新規登録</a><li>
 							<li><a data-toggle="modal" href="#loginmodal">Login</a></li>
 						</c:otherwise>
 					</c:choose>
