@@ -26,8 +26,6 @@ public class CommunitySettingCommand extends AbstractCommand{
 
             String loginId=reqc.getParameter("userId")[0];
 
-
-
             String communityName = reqc.getParameter("commName")[0];
             String communityProfile = reqc.getParameter("commProfile")[0];
             String iconPath = reqc.getParameter("iconPath")[0];
@@ -37,8 +35,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             String userId=reqc.getParameter("userId")[0];
 
             //土屋がやらかした意味のない処理
-            String nowIconPath=reqc.getParameter("nowIconPath")[0];
-            String nowHeaderPath=reqc.getParameter("nowHeaderPath")[0];
+            // String nowIconPath=reqc.getParameter("nowIconPath")[0];
+            // String nowHeaderPath=reqc.getParameter("nowHeaderPath")[0];
 
             HashMap params = new HashMap();
             params.put("value",loginId);
@@ -49,13 +47,9 @@ public class CommunitySettingCommand extends AbstractCommand{
             // この比較処理も本来は必要ないのですが、実装者がやらかしてます
             if(iconPath!=null && iconPath.length()!=0){
                 params.put("iconPath",iconPath);
-            }else{
-                params.put("iconPath",nowIconPath);
             }
             if(headerPath != null && headerPath.length() != 0){
                 params.put("headerPath",headerPath);
-            }else{
-                params.put("headerPath",nowHeaderPath);
             }
             params.put("deleteFlag",deleteFlag);
             params.put("commId",communityId);
@@ -73,8 +67,8 @@ public class CommunitySettingCommand extends AbstractCommand{
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-			    resc.setResult(params);
-                resc.setTarget(reqc.getParameter("target")[0]);
+		    resc.setResult(params);
+            resc.setTarget(reqc.getParameter("target")[0]);
 
             return resc;
         }catch(NullPointerException e){

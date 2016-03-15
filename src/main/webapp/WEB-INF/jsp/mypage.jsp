@@ -127,9 +127,9 @@
 										<li>
 											<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 										</li>
-<!--										<li>
+										<li>
 											<a href="/TeraNavi/front/showDmList">DM</a>
-										</li>-->
+										</li>
 										<br><br>
 										<li>
 											<a href="/TeraNavi/withdraw">退会</a>
@@ -260,9 +260,7 @@
 														</c:choose>
 													</td>
 												</tr>
-
 											</c:forEach>
-
 										</tbody>
 									</table>
 									<c:choose>
@@ -275,14 +273,7 @@
 									</c:choose>
 								</div>
 							</div>
-
-							<!--<div class="col-sm-3 col-xs-6">
-								<a href="/TeraNavi/dmsend">DMの送信</a><br><br>
-							</div>-->
-
 						</div>
-
-
 					</div><!--end row-->
 				</div><!--end container-->
 			</div><!--end section-->

@@ -137,7 +137,9 @@ public class TopLoadCommand extends AbstractCommand{
 				param.put( "flag", "0" );
 				param.put( "option", "limit 1 " );
 				List departmentArticle = dao.readAll(param);
-				departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
+				if( departmentArticle.size() > 0 ){
+					departmentArticles.add( (ArticleBean)departmentArticle.get(0) );
+				}
 			}
 			result.put( "department", departmentArticles );
 
@@ -152,7 +154,7 @@ public class TopLoadCommand extends AbstractCommand{
 			//登録された記事の多い順にTagBeanを3件まで取得（なければ3件未満の可能性も）
 			List tags = dao.readAll(param1);
 
-			
+
 			param1.clear();
 
 			param1.put("whereTagIdFlg", "true");
@@ -163,7 +165,7 @@ public class TopLoadCommand extends AbstractCommand{
 				param1.put("tagId",tb.getId() );
 				//多い順でとったタグからそのタグに登録されている記事ID一覧を取得
 				List list = dao.readAll(param1);
-				
+
 				tagArticleIdList.add(list);
 			}
 
