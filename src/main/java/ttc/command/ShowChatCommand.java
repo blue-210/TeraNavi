@@ -26,17 +26,26 @@ public class ShowChatCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 			
 			
-			boolean flag = false;	//ログインしているかどうかの判定フラグ
+			boolean userFlag = false;	//ログインしているかどうかの判定フラグ
 			String userId = null;	//ログインしている場合にIDを保持するための変数
 
+			boolean communityFlag = false;	//コミュニティ情報を一緒に取得するかどうかのフラグ
+			String communityId = null;
+			
 			Map resultMap = new HashMap();
 			
             String topicId=reqc.getParameter("topicId")[0];
-			String communityId = reqc.getParameter("communityId")[0];
 			
 			try{
 				userId = reqc.getParameter("userId")[0];
-				flag = true;
+				userFlag = true;
+			}catch(NullPointerException e){
+				
+			}
+			
+			try{
+				communityId = reqc.getParameter("communityId")[0];
+				communityFlag = true;
 			}catch(NullPointerException e){
 				
 			}
@@ -52,14 +61,20 @@ public class ShowChatCommand extends AbstractCommand{
 
 			List result = dao.readAll(params);
 
-			factory = AbstractDaoFactory.getFactory("community");
-			dao = factory.getAbstractDao();
+			
+			if(communityFlag){
+				factory = AbstractDaoFactory.getFactory("community");
+				dao = factory.getAbstractDao();
 
-			params = new HashMap();
-			params.put( "commId", communityId);
-			params.put("where","where community_id=? and community_delete_flag=0");
+				params = new HashMap();
+				params.put( "commId", communityId);
+				params.put("where","where community_id=? and community_delete_flag=0");
 
-			Bean community = dao.read(params);
+				Bean community = dao.read(params);
+				resultMap.put("community",community);
+
+			}
+			
 
             // topicのDAO取得
             params = new HashMap();
@@ -79,7 +94,7 @@ public class ShowChatCommand extends AbstractCommand{
 
             }
             
-			if(flag){
+			if(userFlag && communityFlag){
 				//ログインしている場合にログインユーザがそのコミュニティのメンバーかどうかを調べる処理
 				params.clear();
 				params.put("userId", userId);
@@ -101,7 +116,6 @@ public class ShowChatCommand extends AbstractCommand{
 
 
 			resultMap.put("chat",result);
-			resultMap.put("community",community);
 			resultMap.put("topic",topic);
 
 			resc.setResult(resultMap);

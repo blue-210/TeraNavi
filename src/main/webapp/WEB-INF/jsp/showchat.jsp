@@ -61,6 +61,7 @@
 			</div>
 			<%-- <h2 id="comunity_title">チャットルーム</p> --%>
 		</div>
+		<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
 		<div id="chat_room">
 			<div class="container-fluid">
 				<div class="wrapper">
@@ -114,7 +115,7 @@
 				<div class="col-md-6 col-md-offset-2 col-xs-12">
 					<textarea id="chatBody" name="chatBody" style="width:100%;"></textarea>
 				</div>
-				<input type="hidden" name="topicId" value="${result.chat[0].fkTopicId}">
+				
 				<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 				<input type="hidden" name="communityId" value="${result.community.id}">
 				<div class="hidden-xs" id="submit_button" >
