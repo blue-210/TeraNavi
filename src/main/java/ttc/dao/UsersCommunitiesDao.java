@@ -15,6 +15,7 @@ import ttc.bean.Bean;
 import ttc.bean.CommunityBean;
 import ttc.bean.MembersBean;
 import ttc.exception.integration.IntegrationException;
+import ttc.exception.integration.NoMemberException;
 
 public class UsersCommunitiesDao implements AbstractDao{
 
@@ -37,7 +38,9 @@ public class UsersCommunitiesDao implements AbstractDao{
 
             if(rs.next()){
                 cb.setId(rs.getString("fk_community_id"));
-            }
+            }else{
+				throw new NoMemberException(null,null);
+			}
 
         }catch(SQLException e){
             throw new IntegrationException(e.getMessage(),e);
