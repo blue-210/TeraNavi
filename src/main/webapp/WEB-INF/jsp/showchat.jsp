@@ -151,8 +151,11 @@
 			success: function (data) {
 
 				var text = $("#chatBodyArea").val();
+				if(text.length>0){
+					text+="<br>";
+				}
 				
-				$("#chatBodyArea").val(text + "<br><img src='" + data.result+"'>");
+				$("#chatBodyArea").val(text + "<img src='" + data.result+"'>");
 			}
 		};
 
