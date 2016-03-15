@@ -160,7 +160,7 @@
 	</div><!-- /.modal -->
 </div>
 
-<div id="loginmodal" class="modal fade">
+	<div id="loginmodal" class="modal fade" style="z-index: 1100; width: 100%;">
 		<div class="modal-dialog">
 			<div class="modal-content col-xs-12 col-md-12">
 				<div class="modal-header">
