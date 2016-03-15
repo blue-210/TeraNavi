@@ -5,6 +5,35 @@
  */
 
 //基本的に入力チェック用のjsです
+var flag = 0;	//未入力の項目があるかどうかの判定フラグ
+
+var ajaxSettingsId = {
+	type: 'post',
+	url: '/TeraNavi/front/loginIdCheck',
+	dataType: 'json',
+	data: null,
+	success:function(data){
+		if(data=='true'){
+			$("#validateLoginId").css("display", "none");
+			$("#validateLoginIdOk").css("display", "");
+		}else{
+			$("#validateLoginIdOk").css("display", "none");
+			$("#validateLoginId p").text("そのログインIDはすでに使用されています");
+			$("#validateLoginId").css("display", "");
+			flag=1;
+		}
+	}
+};
+
+function idCheck(id){
+	ajaxSettingsId.data={
+		ajax:'true',
+		loginId:id
+	};
+	
+	ajax = $.ajax(ajaxSettingsId);
+}
+
 
 $(document).on("blur", "#fName", function () {
 	if ($("#fName").val().length <= 0) {
@@ -62,10 +91,11 @@ $(document).on("blur", "#fMail2", function () {
 
 $(document).on("blur", "#fLoginId", function () {
 	if ($("#fLoginId").val().length <= 0) {
-
+		$("#validateLoginIdOk").css("display", "none");
+		$("#validateLoginId p").text("ログインIDは必須入力です");
 		$("#validateLoginId").css("display", "");
 	} else {
-		$("#validateLoginId").css("display", "none");
+		idCheck($("#fLoginId").val());
 	}
 
 });
@@ -133,7 +163,7 @@ $(document).on("blur", "#fKey", function () {
 $(document).on("click", "#signsubmit", function () {
 
 //	最後の入力チェック
-	var flag = 0;	//未入力の項目があるかどうかの判定フラグ
+	
 
 	if ($("#fName").val().length <= 0) {
 
@@ -189,7 +219,7 @@ $(document).on("click", "#signsubmit", function () {
 		flag = 1;
 		$("#validateLoginId").css("display", "");
 	} else {
-		$("#validateLoginId").css("display", "none");
+		idCheck($("#fLoginId").val());
 	}
 
 	var seiki = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}$/i;
@@ -344,7 +374,7 @@ $(document).on("click", "#signsubmitMobile", function () {
 		flag = 1;
 		$("#validateLoginId").css("display", "");
 	} else {
-		$("#validateLoginId").css("display", "none");
+		idCheck($("#fLoginId").val());
 	}
 
 	var seiki = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}$/i;
