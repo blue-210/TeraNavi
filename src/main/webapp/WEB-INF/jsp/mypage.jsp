@@ -234,7 +234,6 @@
 													</div>
 												</c:otherwise>
 											</c:choose>
-
 										</c:when>
 										<c:otherwise>
 											<p class="text-center">まだ記事が投稿されていません</p>
