@@ -131,6 +131,6 @@
 
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-		<script src="/TeraNavi/js/script.js"></script>
+		<script src="/TeraNavi/js/chat.js"></script>
 	</body>
 </html>
