@@ -203,14 +203,16 @@
 				                                </c:if>
 												</tr>
 											</c:forEach>
-												<c:if test="${fn:length(result.article)  > 0}" >
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><a id="btn_articleDelete" class="btn btn-danger btn-sm">削除</a></td>
-												</tr>
-												</c:if>
+											<c:if test="${sessionScope.loginUser.id eq result.user.id}" >
+											<c:if test="${fn:length(result.article)  > 0}" >
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td><a id="btn_articleDelete" class="btn btn-danger btn-sm">削除</a></td>
+											</tr>
+											</c:if>
+											</c:if>
 										</tbody>
 									</table>
 
