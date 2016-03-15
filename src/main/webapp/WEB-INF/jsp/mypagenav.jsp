@@ -11,7 +11,7 @@
                 <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
             </li>
             <li id="draftArticleTab">
-                <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
+                <a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
             </li>
             <li id="blogSettingTab">
                 <a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>

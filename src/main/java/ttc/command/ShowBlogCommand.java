@@ -25,8 +25,21 @@ public class ShowBlogCommand extends AbstractCommand{
             RequestContext reqc = getRequestContext();
 
             Map result = new HashMap();
+
             String userId = reqc.getParameter("bloguserId")[0];
-            System.out.println();
+
+            //編集だったらターゲットを変える
+            boolean editFlag = false;
+			try{
+				//editパラメータがあるかのチェック
+				String edit = reqc.getParameter("edit")[0];
+
+				if(edit.length() > 0){
+					editFlag=true;
+                    userId = reqc.getParameter("userId")[0];//編集は自分のしかできないように
+			    }
+			}catch(NullPointerException e){}
+
             Map params = new HashMap();
             params.put("userId",userId);
 
@@ -62,16 +75,7 @@ public class ShowBlogCommand extends AbstractCommand{
 
             resc.setResult(result);
 
-            //編集だったらターゲットを変える
-            boolean editFlag = false;
-			try{
-				//editパラメータがあるかのチェック
-				String edit = reqc.getParameter("edit")[0];
 
-				if(edit.length() > 0){
-					editFlag=true;
-			}
-			}catch(NullPointerException e){}
 
             if(editFlag){
                 resc.setTarget("blogSetting");
