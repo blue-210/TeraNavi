@@ -100,7 +100,7 @@
 														</a>
 													</div>
 
-													<div class="col-md-2">
+													<div class="col-md-3">
 														<p id="date">
 															<c:out value="${item.updateDate}" />
 														</p>

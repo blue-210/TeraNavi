@@ -18,14 +18,37 @@ import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.bean.ChatBean;
 import ttc.exception.business.ParameterInvalidException;
+import ttc.exception.integration.NoMemberException;
 
 public class ShowChatCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
+			
+			
+			boolean userFlag = false;	//ログインしているかどうかの判定フラグ
+			String userId = null;	//ログインしている場合にIDを保持するための変数
 
+			boolean communityFlag = false;	//コミュニティ情報を一緒に取得するかどうかのフラグ
+			String communityId = null;
+			
+			Map resultMap = new HashMap();
+			
             String topicId=reqc.getParameter("topicId")[0];
-			String communityId = reqc.getParameter("communityId")[0];
+			
+			try{
+				userId = reqc.getParameter("userId")[0];
+				userFlag = true;
+			}catch(NullPointerException e){
+				
+			}
+			
+			try{
+				communityId = reqc.getParameter("communityId")[0];
+				communityFlag = true;
+			}catch(NullPointerException e){
+				
+			}
 
             Map params = new HashMap();
             params.put("topicId", topicId);
@@ -38,17 +61,20 @@ public class ShowChatCommand extends AbstractCommand{
 
 			List result = dao.readAll(params);
 
-			factory = AbstractDaoFactory.getFactory("community");
-			dao = factory.getAbstractDao();
+			
+			if(communityFlag){
+				factory = AbstractDaoFactory.getFactory("community");
+				dao = factory.getAbstractDao();
 
-			params = new HashMap();
-			params.put( "commId", communityId);
-			params.put("where","where community_id=? and community_delete_flag=0");
+				params = new HashMap();
+				params.put( "commId", communityId);
+				params.put("where","where community_id=? and community_delete_flag=0");
 
-			Bean community = dao.read(params);
+				Bean community = dao.read(params);
+				resultMap.put("community",community);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			}
+			
 
             // topicのDAO取得
             params = new HashMap();
@@ -67,10 +93,29 @@ public class ShowChatCommand extends AbstractCommand{
                 result.add(bean);
 
             }
+            
+			if(userFlag && communityFlag){
+				//ログインしている場合にログインユーザがそのコミュニティのメンバーかどうかを調べる処理
+				params.clear();
+				params.put("userId", userId);
+				params.put("commId", communityId);
+				
+				factory = AbstractDaoFactory.getFactory("communitymember");
+				dao = factory.getAbstractDao();
+				try{
+					dao.read(params);
+					resultMap.put("writeFlag","true");
+				}catch(NoMemberException e){
+					
+				}
+				
+			}
+			
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
 
-			Map resultMap = new HashMap();
+
 			resultMap.put("chat",result);
-			resultMap.put("community",community);
 			resultMap.put("topic",topic);
 
 			resc.setResult(resultMap);

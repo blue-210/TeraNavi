@@ -83,6 +83,10 @@ public class WebApplicationController implements ApplicationController{
 					List communities = (List)session.getAttribute("myCommunities");
 					communities.add(result.get("community"));
 					session.setAttribute("myCommunities", communities);
+				}else if(path.equals("deleteComm")){
+					HttpSession session = req.getSession(true);
+					Map result = (Map)resc.getResult();
+					session.setAttribute("myCommunities", result.get("community"));
 				}
 
 				res.setContentType("application/json;charset=UTF-8");

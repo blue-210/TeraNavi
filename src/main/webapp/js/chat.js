@@ -1,4 +1,42 @@
 $(function(){
+	setInterval(function(){
+		$.ajax({
+            url : "/TeraNavi/front/showchat",
+            type : "POST",
+            dataType : "JSON",
+            data : {
+                ajax : 'true',
+                topicId : $("input[name=topicId]").val()
+            }
+        })
+        .done(function(data){
+           
+            $(".wrapper").empty();
+            // JSON形式で返ってきたものから中身を取り出して表示するサンプル
+            for(var i in data.chat){
+                var userId = data.chat[i].userId;
+                var userName = data.chat[i].userName;
+                var iconPath = data.chat[i].iconPath;
+                var body = data.chat[i].body;
+                var date = data.chat[i].date;
+
+                 var user_id = $("input[name=userId]").val();
+                if(userId ==user_id){
+                    console.log(i + " " + userId + " "+ body+user_id);
+
+                    $(".wrapper").append("<div class=\"row\" style=\"margin-bottom: 15px;\"><div class=\"col-md-6 col-md-offset-2 content col-xs-7\"><p>" + body + "</p><p class=\"Mydate\" style=\"text-align:right;\">" + date + "</p></div><div class=\"col-md-1 col-xs-5\"><img style=\"width:55px; height:55px;\" class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"Myusername\">" + userName + "</p></div></div>");
+                }else{
+                    console.log(i + " " + userId + " " + body+user_id);
+                    $(".wrapper").append("<div class=\"row\" style=\"margin-bottom: 15px;\"><div class=\"col-md-1 col-md-offset-2 col-xs-5\"><img style=\"width:55px; height:55px;\" class=\"accountImg img-thumbnail\" src=\"" + iconPath + "\"/><p class=\"username\">" + userName + "</p></div><div class=\"col-md-6 other_content col-xs-7\"><p>" + body + "</p><p style=\"text-align:right;\">" + date + "<p></div></div>"
+                    );
+                }
+            }
+        })
+        .fail(function(data){
+            console.log(data);
+        });
+	},2000);
+	
     $("#chatwrite").on("click",function(){
         $.ajax({
             url : "/TeraNavi/front/writechat",
