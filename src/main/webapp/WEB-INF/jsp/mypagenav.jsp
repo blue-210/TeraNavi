@@ -7,6 +7,9 @@
             <li id="articlePostTab">
               <a href="/TeraNavi/articlepost">記事を書く</a>
             </li>
+            <li id="articleListTab">
+                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+            </li>
             <li id="draftArticleTab">
                 <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
             </li>
@@ -23,9 +26,9 @@
     <li id="commMgrTab">
       <a href="/TeraNavi/front/commmy">コミュニティ管理</a>
     </li>
-    <!--<li id="dmTab">
+    <li id="dmTab">
       <a href="/TeraNavi/front/showDmList">DM</a>
-  </li>-->
+  </li>
     <br><br><br><br>
     <li id="withdrawTab">
       <a href="/TeraNavi/withdraw">退会</a>

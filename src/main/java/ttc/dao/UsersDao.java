@@ -259,7 +259,12 @@ public class UsersDao implements AbstractDao {
 			sql.append(",users.blog_status_flag from users left outer join community_members_list ");
 			sql.append("on users.user_id=community_members_list.fk_user_id ");
 			sql.append((String) map.get("where"));
-			sql.append("and not(user_status_flag=3)");
+			
+			if(map.containsKey("idCheck")){
+				//ログインIDが使用可能かチェックする際はstatusのチェックを省く
+			}else{
+				sql.append("and not(user_status_flag=3)");
+			}
 			pst = cn.prepareStatement(new String(sql));
 
 			pst.setString(1, (String) map.get("value"));
@@ -295,7 +300,7 @@ public class UsersDao implements AbstractDao {
 				ub.setBlogStatus(rs.getString("blog_status_flag"));
 			} else {
 				throw new UserUnregisteredException("登録されていません", null);
-			};
+			}
 
 		} catch (SQLException e) {
 			throw new IntegrationException(e.getMessage(), e);

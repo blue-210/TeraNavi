@@ -174,5 +174,53 @@
 			});
 		</script>
 
+		<!-- 確認モーダル -->
+		<div class="fade modal text-justify" id="partiCommModal">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				  </button>
+				　<h4 class="modal-title text-center">確認</h4>
+				 </div>
+				<div class="modal-body">
+					<p id="joinResultMessage" class="text-center">参加中...</p>
+				</div>
+				<div class="modal-footer"></div>
+			  </div>
+			</div>
+		 </div>
+		<script>
+			$(function(){
+
+				var commId;
+				var button;
+				$(".communityBtn").on("click",function(){
+					button = $(this);
+					commId = $(this).val();
+					$("#partiCommModal").modal();
+					$.ajax({
+						// urlで飛ばしたいコマンドを指定してあげる
+					  url: '/TeraNavi/front/partiComm',
+					  type:'POST',
+					  dataType: 'json',
+					  data:{
+						commId:commId,
+						ajax:'true'
+					  }
+				   })
+				   .done(function(data) {
+					   console.log(data);
+					   $("#joinResultMessage").text("参加しました!");
+					   button.text("参加中");
+					   button.prop("disabled",true);
+				   })
+				   .fail(function() {
+					   $("#joinResultMessage").text("参加できませんでした。もういちどお試しください。");
+				   });
+				});
+			});
+		</script>
 	</body>
 </html>

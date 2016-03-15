@@ -6,14 +6,10 @@
 		<title>記事一覧表示</title>
 		<!-- Latest compiled and minified CSS -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="/TeraNavi/css/navbar.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/TeraNavi/css/mypage.css" type="text/css">
 	</head>
@@ -61,38 +57,55 @@
 			</div>
 
 			<div class="container hidden-xs">
-				<div class="row">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>ユーザ名</th>
-								<th>最新内容</th>
-								<th>最新投稿日時</th>
-								<!-- <th class="deletable"></th> -->
-							</tr>
-						</thead>
-						<tbody>
+				<!-- 2列をサイドメニューに割り当て -->
+				<div class="col-md-2 hidden-xs">
+					<jsp:include page="/WEB-INF/jsp/mypagenav.jsp"/>
+				</div>
+				<c:choose>
+					<c:when test="${empty result}">
+						<div cllass="row">
+							<div class="col-md-4 col-md-offset-4"><h2>まだDMが一件もありません</h2></div>
+						</div>
+					</c:when>
 
-							<c:forEach var="dm" items="${result}">
+					<c:otherwise>
+						<div class="row col-md-8 col-xs-12">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ユーザ名</th>
+										<th>最新内容</th>
+										<th>最新投稿日時</th>
+										<!-- <th class="deletable"></th> -->
+									</tr>
+								</thead>
+								<tbody>
 
-								<tr onclick="location.href = '/TeraNavi/front/dmreceive?sendUserId=${dm.fromUserId}'">
-									<td>${dm.fromUserName}</td>
-									<td>${dm.messageBody}</td>
-									<td>${dm.date}</td>
-								</tr>
 
-							</c:forEach>
+									<c:forEach var="dm" items="${result}">
 
-						</tbody>
-					</table>
-				</div><!--end row-->
+										<tr onclick="location.href = '/TeraNavi/front/dmreceive?sendUserId=${dm.fromUserId}'">
+											<td>${dm.fromUserName}</td>
+											<td>${dm.messageBody}</td>
+											<td>${dm.date}</td>
+										</tr>
+
+									</c:forEach>
+
+								</tbody>
+							</table>
+						</div><!--end row-->
+
+					</c:otherwise>
+
+				</c:choose>
 			</div><!--end container-->
 
-			
+
 			<div class="visible-xs">
 				<div class="container" style="width:90%;">
 				<div class="row">
-					<table class="table table-striped col-xs-10">
+					<table class="table table-hover col-xs-10">
 						<thead>
 							<tr>
 								<th class="col-xs-3">ユーザ名</th>
@@ -118,7 +131,7 @@
 				</div><!--end row-->
 			</div><!--end container-->
 			</div>
-			
+
 		</div>
 
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>

@@ -5,47 +5,39 @@ import ttc.context.ResponseContext;
 
 import ttc.util.MySqlConnectionManager;
 
-import ttc.exception.business.BusinessLogicException;
 import ttc.exception.integration.IntegrationException;
-
-import ttc.util.factory.AbstractDaoFactory;
-import ttc.dao.AbstractDao;
+import ttc.exception.business.BusinessLogicException;
 
 import java.util.Map;
 import java.util.HashMap;
-import ttc.bean.CommunityBean;
-import ttc.bean.UserBean;
+import java.util.List;
+
+
+
+import ttc.util.factory.AbstractDaoFactory;
+import ttc.dao.AbstractDao;
 import ttc.exception.business.ParameterInvalidException;
 
-public class ParticipationCommunityCommand extends AbstractCommand{
+public class CommentReadCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
+			
+            String articleId = reqc.getParameter("articleId")[0];
 
-            HashMap params = new HashMap();
-            HashMap para=new HashMap();
-
-            params.put("userId",reqc.getParameter("userId")[0]);
-            params.put("commId",reqc.getParameter("commId")[0]);
-
+            Map params = new HashMap();
+            params.put("articleId",articleId);
+            
+            
             MySqlConnectionManager.getInstance().beginTransaction();
-
-            // UsersCommunitiesDaoを取得
-            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("communitymember");
+            AbstractDaoFactory factory = AbstractDaoFactory.getFactory("comment");
             AbstractDao dao = factory.getAbstractDao();
-            dao.insert(params);
+			List result = dao.readAll(params);
 
-            // いったんコミット。
             MySqlConnectionManager.getInstance().commit();
-
-            // insertした結果（参加したコミュを取得）
-            CommunityBean cb = (CommunityBean)dao.read(params);
-            params.put("community",cb);
-
             MySqlConnectionManager.getInstance().closeConnection();
 
-            resc.setResult(params);
-            // resc.setTarget("prticipationCommunityResult");
+            resc.setResult(result);
 
             return resc;
         }catch(NullPointerException e){

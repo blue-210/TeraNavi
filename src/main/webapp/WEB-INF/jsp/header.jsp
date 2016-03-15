@@ -42,7 +42,7 @@
 					</c:when>
 					<c:otherwise>
 						<ul class="nav navbar-nav navbar-right list-inline">
-							<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+							<li><a id="btn_sign" class="headermenu" onclick="showAgreeModal()" style="cursor:pointer;">新規登録</a><li>
 							<li><a class="headermenu" data-toggle="modal" href="#loginmodal">ログイン</a><li>
 						</ul>
 					</c:otherwise>
@@ -52,6 +52,52 @@
 	</nav>
 
 </div>
+
+<!-- 利用規約同意モーダル -->
+<div class="fade modal text-justify" id="agreeModal">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		  </button>
+		　<h4 class="modal-title text-center">確認</h4>
+		 </div>
+		<div class="modal-body">
+			<p class="text-center">
+				TeraNaviにアカウントを作成するには、<br><a href="/TeraNavi/showRule" target="_blank">利用規約</a>、
+				および<a href="/TeraNavi/showPolicy" target="_blank">プライバシーポリシー</a>に同意する必要があります
+			</p>
+			<hr>
+			<form name="Form1" method="post" action="#">
+				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
+				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button type="button" onclick="location.href='/TeraNavi/sign'" class="btn btn-block btn-warning" id="btn_modalSign" data-dismiss="modal" disabled>新規登録</button>
+			<button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+		</div>
+	  </div>
+	</div>
+ </div>
+
+<script>
+	//モーダル出す
+	function showAgreeModal(){
+		$("#agreeModal").modal();
+	}
+
+	//同意するにチェックしたらボタンを有効化
+	function changeDisabled() {
+		if ( document.Form1["agreement"][1].checked ) {
+			$("#btn_modalSign").prop("disabled",false);
+		} else {
+			$("#btn_modalSign").prop("disabled",true);
+		}
+	}
+	window.onload = changeDisabled;
+</script>
 
 <div class="visible-xs">
 	<div class="navbar navbar-default navbar-fixed-top xs-header-nav">
@@ -100,7 +146,7 @@
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
-					  <input type="text" class="form-group" name="keyword" placeholder="検索キーワード">
+					  <input type="text" class="form-group" name="keyword" placeholder="このまま検索すると全件検索になります">
 					  <input type="hidden" name="intention" value="search">
                   </div>
                   <button type="submit" class="btn btn-default btn-block">検索</button>
@@ -114,7 +160,7 @@
 	</div><!-- /.modal -->
 </div>
 
-<div id="loginmodal" class="modal fade">
+	<div id="loginmodal" class="modal fade" style="z-index: 1100; width: 100%;">
 		<div class="modal-dialog">
 			<div class="modal-content col-xs-12 col-md-12">
 				<div class="modal-header">

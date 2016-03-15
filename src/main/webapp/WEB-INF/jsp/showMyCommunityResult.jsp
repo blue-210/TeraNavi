@@ -6,11 +6,19 @@
     <!-- Latest compiled and minified CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
         <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+        <style>
+            .modal-open {
+                overflow: auto;
+            }
+            .modal-close {
+                overflow: auto;
+            }
+        </style>
 </head>
 <body>
     <%-- ヘッダー部分のHTMLを読み込み --%>
@@ -73,89 +81,168 @@
 
                 <!-- 残り8列はコンテンツ表示部分として使う -->
                 <div class="col-md-8">
-                    <div class="row col-md-10 col-md-offset-1 col-xs-12">
-            			<a class="btn btn-warning btn-lg hidden-xs" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-xs-12">
+        			        <a class="btn btn-warning btn-lg hidden-xs" href="/TeraNavi/createcomm" role="button" style="margin-left: 80%;">コミュニティ作成</a>
+                        </div>
             		</div>
 
-                    <c:choose>
-                        <c:when test="${fn:length(result.list) > 0}">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <h1 class="text-warning">作成したコミュニティ</h1>
-                            </div>
-                            <c:forEach var="comm" items="${result.list}">
-                                <c:if test="${comm.adminFlag eq 1}">
-                                    <div class="row col-md-10 col-md-offset-1 well">
-                                        <div class="col-md-2">
-                                            <img src="${comm.iconPath}" id="topicIcon" class="img-thumbnail">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <a href="/TeraNavi/front/showcomm?commId=${comm.id}">
-                                                <h2 class="text-muted">${comm.name}</h2>
-                                            </a>
-                                            <p id="articleBody">${comm.profile}...</p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="edit">
-                                                <form action="commSetting" method="post" name="showDel">
-                                                    <input type="hidden" name="commId" value="${comm.id}">
-                                                    <input type="hidden" name="commName" value="${comm.name}">
-                                                    <input type="hidden" name="commProfile" value="${comm.profile}">
-                                                    <input type="hidden" name="iconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="nowIconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="nowHeaderPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                                    <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                                    <input type="hidden" name="del" value="del">
-                                                    <input type="hidden" name="target" value="communityDeleteResult">
-                                                    <input type="submit" id="showDel" value="削除"></input>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <h1 class="text-warning">作成したコミュニティ</h1>
+                    <table class="table table-striped">
+                        <tbody>
+                            <c:forEach var="community" items="${result.list}">
+                                <c:if test="${community.adminFlag eq 1}">
+                                    <tr id="tableRow${community.id}">
+                                        <td>
+                                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                                <a class="btn btn-default" href="/TeraNavi/front/showcomm?commId=${community.id}&edit=true">編集</button>
+                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+                                        </td>
+                                        <td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
+                                        <td>
+                                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                                <div class="edit">
+                                                    <form action="commSetting" method="post" name="showDel">
+                                                        <input type="hidden" name="commId" value="${community.id}">
+                                                        <input type="hidden" name="commName" value="${community.name}">
+                                                        <input type="hidden" name="commProfile" value="${community.profile}">
+                                                        <input type="hidden" name="iconPath" value="${community.iconPath}">
+                                                        <input type="hidden" name="headerPath" value="${community.headerPath}">
+                                                        <input type="hidden" name="nowIconPath" value="${community.iconPath}">
+                                                        <input type="hidden" name="nowHeaderPath" value="${community.headerPath}">
+                                                        <input type="hidden" name="deleteFlag" value="${community.deleteFlag}">
+                                                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                                        <input type="hidden" name="del" value="del">
+                                                        <input type="hidden" name="target" value="communityDeleteResult">
+                                                        <button type="submit" class="btn btn-danger" id="showDel">削除</button>
+                                                    </form>
+                                                </div>
+                                            </c:if>
+                                        </td>
+                                    </tr>
                                 </c:if>
                             </c:forEach>
+                        </tbody>
+                    </table>
+                    <c:set var="commAdminFlag" value="false"/>
+                    <c:forEach var="comm" items="${result.list}">
+                        <c:choose>
+                            <c:when test="${comm.adminFlag eq 1}">
+                                <c:set var="commAdminFlag" value="true"/>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${commAdminFlag eq false}">
+                        <p class="text-center">まだコミュニティを作成していません</p>
+                    </c:if>
 
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <hr>
-                            </div>
+                    <hr>
 
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <h1 class="text-warning">参加しているコミュニティ</h1>
-                            </div>
-                            <c:forEach var="comm2" items="${result.list}">
-                                <c:if test="${comm2.adminFlag ne 1}">
-                                    <div class="row col-md-10 col-md-offset-1 well">
-                                        <div class="col-md-2">
-                                            <img src="${comm2.iconPath}" id="topicIcon" class="img-thumbnail">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <a href="/TeraNavi/front/showcomm?commId=${comm2.id}">
-                                                <h2 class="text-muted">${comm2.name}</h2>
-                                            </a>
-                                            <p id="articleBody">${comm2.profile}...</p>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <form action="/TeraNavi/front/withDrawComm" method="post" name="showDel">
-                                                <input type="hidden" name="commId" value="${comm.id}">
-                                                <input type="hidden" name="commName" value="${comm.name}">
-                                                <input type="hidden" name="target" value="community_withdrawal_flag=1">
-                                                <input type="submit" id="showDel" value="退会"></input>
-                                            </form>
-                                        </div>
-                                    </div>
+                    <h1 class="text-warning">参加中のコミュニティ</h1>
+                    <table class="table table-striped">
+                        <tbody>
+                            <c:forEach var="community2" items="${result.list}">
+                                <c:if test="${community2.adminFlag ne 1}">
+                                    <tr id="tableRow${community2.id}">
+                                        <td>
+                                            <img src="${community2.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+                                        </td>
+                                        <td><a href="/TeraNavi/front/showcomm?commId=${community2.id}"><p class="text-muted">${community2.name}</p></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.loginUser.id eq result.user.id}">
+                                                    <button type="button" class="btn btn-danger btn_withDraw" value="${community2.id}">退会</button>
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                    </tr>
                                 </c:if>
                             </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <p class="text-center">まだコミュニティに参加していません</p>
-                        </c:otherwise>
-                    </c:choose>
-
+                        </tbody>
+                    </table>
+                    <c:if test="${fn:length(result.list) <= 0}">
+                        <p class="text-center">まだコミュニティに参加していません</p>
+                    </c:if>
                 </div>
             </div>
         </div>
     <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+    	<!-- 退会確認モーダル -->
+    	<div class="fade modal text-justify" id="withDrawModal">
+    		<div class="modal-dialog">
+    		  <div class="modal-content">
+    			<div class="modal-header">
+    			  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+    				<span aria-hidden="true">×</span>
+    			  </button>
+    			　<h4 class="modal-title text-center">確認</h4>
+    			 </div>
+    			<div class="modal-body">
+    				<p class="text-center">本当に退会しますか？</p>
+    			</div>
+    			<div class="modal-footer">
+    				<button type="submit" class="btn btn-block btn-danger" id="btn_modalWithDraw" data-dismiss="modal">退会</button>
+    				<button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+    			</div>
+    		  </div>
+    		</div>
+    	 </div>
+
+    	 <!-- 結果モーダル -->
+    	  <div class="modal fade" id="withDrawResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    		<div class="modal-dialog">
+    		  <div class="modal-content">
+    			<div class="modal-header">
+    			  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+    			  <h4 class="modal-title text-center" id="withDrawResultModalLabel">退会結果</h4>
+    			</div>
+    			<div class="modal-body">
+    			  <p id="withDrawResultMessage" class="text-center">退会しました。</p>
+    			</div>
+    			<div class="modal-footer">
+    			  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+    			</div>
+    		  </div><!-- /.modal-content -->
+    		</div><!-- /.modal-dialog -->
+    	  </div><!-- /.modal -->
+
+    	  <%-- 退会処理のjs --%>
+    	<script>
+    		$(function(){
+
+    			var withDrawId;
+
+    			$(".btn_withDraw").on("click",function(){
+    				withDrawId = $(this).val();
+    				$("#withDrawModal").modal();
+    			});
+
+    			$("#btn_modalWithDraw").on("click",function(){
+
+    				$.ajax({
+    				  url: '/TeraNavi/front/withDrawComm',
+    				  type:'POST',
+    				  dataType: 'json',
+    				  data:{
+    					commId:withDrawId,
+    					ajax:'true'
+    				  }
+    			   })
+    				   .done(function(data) {
+    					   $("#withDrawResultModal").modal();
+    					   console.log("#tableRow"+withDrawId);
+    						$("#tableRow" + withDrawId).hide();
+    				   })
+    				   .fail(function() {
+    					   $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
+    					   $("#withDrawResultModal").modal();
+    				   });
+    			});
+    		});
+    	</script>
 </body>
 </html>

@@ -159,6 +159,10 @@
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">ログインIDは必須入力です</p>
 
 			</div>
+			
+			<div class="row" id="validateLoginIdOk" style="display: none;">
+				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-success help-message text-primary">使用可能なログインIDです</p>
+			</div>
 
 
 			<div class="row">

@@ -6,18 +6,6 @@ create user 'TERA_NAVI'@'localhost' identified by 'tera';
 grant all privileges on tera_db.* to 'TERA_NAVI'@'localhost';
 #追加した権限を適用
 FLUSH PRIVILEGES;
--- サンプル表de
-create table tera_db.sampleusers(
-	id char(8),
-	name varchar(80)
-);
-
-#秘密の質問表
-create table tera_db.secret_questions(
-	secret_question_id int(1) primary key auto_increment,
-	secret_question_body varchar(80) not null,
-	index(secret_question_id)
-)engine=InnoDB;
 
 #ユーザー表
 create table tera_db.users(
@@ -32,12 +20,14 @@ create table tera_db.users(
 	birth_date char(8),
 	mail_address varchar(40) not null unique,
 	password char(64) not null,
+	-- 秘密の質問表はお亡くなりになりました。質問内容自体は決め打ちで、数字で判定。fkだけど、外部キーじゃないよ。（なくなったよ）
+	-- 1→あなたの出身地は？、2,母親の旧姓は？、3,好きな動物は？　4, 学生時代に所属していた部活動は？　５，初めて飼ったペットの名前は？
 	fk_secret_question_id int(1),
 	secret_answer varchar(100) not null,
-	user_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	user_header_path varchar(255) default 'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	user_icon_path varchar(255) default '/TeraNavi/imgPath/default/default_user_icon.jpg',
 	blog_title varchar(200) default 'ようこそブログへ',
-	blog_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	blog_header_path varchar(255) default 'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	-- 通常ユーザ→0, 管理者→1, 建築監督→2, 建築→3, 建築夜間→4, インテリア→5、ゲーム→6、情報処理→7、Web→8、環境→9、バイオ→10、師岡→11
 	admin_flag char(2) not null,
 	last_login_date char(100),
@@ -59,8 +49,8 @@ create table tera_db.communities(
 	community_id int(10) primary key auto_increment,
 	community_name varchar(200),
 	community_profile varchar(2000),
-	community_icon_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
-	community_header_path varchar(255) default 'http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	community_icon_path varchar(255) default 'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
+	community_header_path varchar(255) default 'https://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png',
 	community_created_date datetime,
 	fk_user_id int(8),
 	-- 通常→0　削除→1
@@ -94,7 +84,8 @@ create table tera_db.articles_tags(
 	fk_article_id int(10),
 	fk_tag_id int(10),
 	foreign key (fk_article_id) references tera_db.articles(article_id),
-	foreign key(fk_tag_id) references tera_db.tags(tag_id)
+	foreign key(fk_tag_id) references tera_db.tags(tag_id),
+	primary key(fk_article_id, fk_tag_id)
 )engine=InnoDB;
 
 #コミュニティユーザーリスト表
