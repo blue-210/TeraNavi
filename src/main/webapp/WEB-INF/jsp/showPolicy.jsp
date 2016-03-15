@@ -57,7 +57,7 @@
 
 			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-			<script src="/TeraNavi/js/LoadPolicy.js">
+			<script src="/TeraNavi/js/LoadPolicy.js"></script>
 
 			</script>
 
