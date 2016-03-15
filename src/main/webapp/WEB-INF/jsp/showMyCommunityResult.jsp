@@ -94,33 +94,33 @@
                                 <c:if test="${community.adminFlag eq 1}">
                                     <tr id="tableRow${community.id}">
                                         <td>
-                                            <div class="edit">
-                                                <form action="commSetting" method="post" name="showDel">
-                                                    <input type="hidden" name="commId" value="${comm.id}">
-                                                    <input type="hidden" name="commName" value="${comm.name}">
-                                                    <input type="hidden" name="commProfile" value="${comm.profile}">
-                                                    <input type="hidden" name="iconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="headerPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="nowIconPath" value="${comm.iconPath}">
-                                                    <input type="hidden" name="nowHeaderPath" value="${comm.headerPath}">
-                                                    <input type="hidden" name="deleteFlag" value="${comm.deleteFlag}">
-                                                    <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                                    <input type="hidden" name="del" value="del">
-                                                    <input type="hidden" name="target" value="communityDeleteResult">
-                                                    <input type="submit" id="showDel" value="削除"></input>
-                                                </form>
-                                            </div>
+                                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                                <a class="btn btn-default" href="/TeraNavi/front/showcomm?commId=${community.id}&edit=true">編集</button>
+                                            </c:if>
                                         </td>
                                         <td>
                                             <img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
                                         </td>
                                         <td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
                                         <td>
-                                            <c:choose>
-                                                <c:when test="${sessionScope.loginUser.id eq result.user.id}">
-                                                    <button type="button" class="btn btn-danger btn_withDraw" value="${community.id}">退会</button>
-                                                </c:when>
-                                            </c:choose>
+                                            <c:if test="${sessionScope.loginUser.id eq result.user.id}">
+                                                <div class="edit">
+                                                    <form action="commSetting" method="post" name="showDel">
+                                                        <input type="hidden" name="commId" value="${community.id}">
+                                                        <input type="hidden" name="commName" value="${community.name}">
+                                                        <input type="hidden" name="commProfile" value="${community.profile}">
+                                                        <input type="hidden" name="iconPath" value="${community.iconPath}">
+                                                        <input type="hidden" name="headerPath" value="${community.headerPath}">
+                                                        <input type="hidden" name="nowIconPath" value="${community.iconPath}">
+                                                        <input type="hidden" name="nowHeaderPath" value="${community.headerPath}">
+                                                        <input type="hidden" name="deleteFlag" value="${community.deleteFlag}">
+                                                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
+                                                        <input type="hidden" name="del" value="del">
+                                                        <input type="hidden" name="target" value="communityDeleteResult">
+                                                        <button type="submit" class="btn btn-danger" id="showDel">削除</button>
+                                                    </form>
+                                                </div>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:if>

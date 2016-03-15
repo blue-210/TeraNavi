@@ -35,7 +35,6 @@ public class ShowCommunityCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
             CommunityBean cb =(CommunityBean)dao.read(params);
-            System.out.println("readの中身のてすと"+cb.getId());
 
 			factory=AbstractDaoFactory.getFactory("topic");
             dao= factory.getAbstractDao();
@@ -55,8 +54,6 @@ public class ShowCommunityCommand extends AbstractCommand{
             }
 
             cb.setTopics(topicList);
-
-
 
             factory=AbstractDaoFactory.getFactory("users");
             dao= factory.getAbstractDao();
@@ -78,18 +75,30 @@ public class ShowCommunityCommand extends AbstractCommand{
 				miniList = list;
 			}
 
-
-
             cb.setMembers(miniList);
-
 
             MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
-
 			resc.setResult(cb);
 
-            resc.setTarget("showCommunityResult");
+            // マイページからのコミュニティ編集の場合、分岐
+            //編集だったらターゲットを変える
+            boolean editFlag = false;
+            try{
+                //editパラメータがあるかのチェック
+                String edit = reqc.getParameter("edit")[0];
+
+                if(edit.length() > 0){
+                    editFlag=true;
+                }
+            }catch(NullPointerException e){}
+
+            if(editFlag){
+                resc.setTarget("createCommunity");
+            }else{
+                resc.setTarget("showCommunityResult");
+            }
 
             return resc;
         }catch(NullPointerException e){
