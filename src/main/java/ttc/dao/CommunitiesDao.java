@@ -78,23 +78,36 @@ public class CommunitiesDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
+
             StringBuffer sql = new StringBuffer();
             sql.append("update communities set ");
-            sql.append("community_name=?,community_profile=?,");
-            sql.append("community_icon_path=?,community_header_path=?,");
-            sql.append("community_delete_flag=? where community_id=? ");
-            String upSql=new String(sql);
+            // コミュニティ削除とそうでない場合で分岐
+            if(map.get("deleteFlag").equals("true")){
+                sql.append("community_delete_flag = ? ");
+                sql.append("where community_id = ?");
 
-            pst = cn.prepareStatement(new String(upSql));
+                String upSql=new String(sql);
 
-            pst.setString(1,(String)map.get("communityName"));
-            pst.setString(2,(String)map.get("communityProfile"));
-            pst.setString(3,(String)map.get("iconPath"));
-            pst.setString(4,(String)map.get("headerPath"));
-            pst.setString(5,(String)map.get("deleteFlag"));
-            pst.setString(6,(String)map.get("commId"));
+                pst = cn.prepareStatement(new String(upSql));
 
+                pst.setString(1, "1");
+                pst.setString(2, (String)map.get("commId"));
+            }else{
+                sql.append("community_name=?,community_profile=?,");
+                sql.append("community_icon_path=?,community_header_path=?,");
+                sql.append("community_delete_flag=? where community_id=? ");
 
+                String upSql=new String(sql);
+
+                pst = cn.prepareStatement(new String(upSql));
+
+                pst.setString(1,(String)map.get("communityName"));
+                pst.setString(2,(String)map.get("communityProfile"));
+                pst.setString(3,(String)map.get("iconPath"));
+                pst.setString(4,(String)map.get("headerPath"));
+                pst.setString(5,(String)map.get("deleteFlag"));
+                pst.setString(6,(String)map.get("commId"));
+            }
 
             result = pst.executeUpdate();
         }catch(SQLException e){
