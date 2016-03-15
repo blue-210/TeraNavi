@@ -108,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${not empty sessionScope.loginUser}">
+		<c:if test="${not empty result.writeFlag}">
 
 			<div id="forms">
 				<div class="col-md-6 col-md-offset-2 col-xs-12">
