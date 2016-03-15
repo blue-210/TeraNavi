@@ -24,6 +24,8 @@ import ttc.util.MySqlConnectionManager;
 
 public class TagDao implements AbstractDao{
     public int insert(Map map)throws IntegrationException{
+		
+		
         PreparedStatement pst = null;
         int result = 0;
         try{
@@ -33,7 +35,7 @@ public class TagDao implements AbstractDao{
             StringBuffer sql = new StringBuffer();
 
 			String tag = (String)map.get("tag");
-            String articleId = (String)map.get("articleId");
+			String articleId = (String)map.get("articleId");
 			sql.setLength(0);
 			sql.append("insert into articles_tags values(?,?)");
 
@@ -60,8 +62,52 @@ public class TagDao implements AbstractDao{
         return result;
 
     }
+	
+	private int delete(String articleId)throws IntegrationException{
+		//記事に対してタグをつける前にその記事に付いているタグを削除するためのメソッド
+		//updateメソッドの内部から呼び出されるのでprivate
+		PreparedStatement pst = null;
+        int result = 0;
+        try{
+            Connection cn = null;
+            cn = MySqlConnectionManager.getInstance().getConnection();
+
+            StringBuffer sql = new StringBuffer();
+
+			sql.append("delete from articles_tags where fk_article_id=?");
+
+			pst = cn.prepareStatement(new String(sql));
+			pst.setString(1,articleId);
+			result = pst.executeUpdate();
+
+
+
+        }catch(SQLException e){
+            MySqlConnectionManager.getInstance().rollback();
+            throw new IntegrationException(e.getMessage(),e);
+        }finally{
+            try{
+                if(pst!=null){
+                    pst.close();
+                }
+            }catch(SQLException e){
+                throw new IntegrationException(e.getMessage(),e);
+            }
+        }
+
+        return result;
+	}
+	
+	
     public int update(Map map)throws IntegrationException{
-        return 0;
+        //内部でdeleteメソッドを呼び出している
+		String articleId = (String)map.get("articleId");
+		
+		int result = delete(articleId);
+		//記事を削除するためのメソッドを呼び出す
+		
+		return result;
+		
     }
     public Bean read(Map map)throws IntegrationException{
         return null;
