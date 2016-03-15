@@ -88,13 +88,14 @@
 
 
 						<!-- 残り8列はコンテンツ表示部分として使う -->
-						<div class="col-md-8">
+						<div class="col-md-8 col-xs-offset-1">
 
 							<div class="row">
 								<form action="/TeraNavi/front/articlepost" method="post" id="articleForm" role="form">
 									<div class="form-group">
 										<label class="control-label">タイトル</label>
-										<input type="text" name="title" class="form-control" id="inputTitle">
+										<input type="text" name="title" class="form-control" id="inputTitle" style="width: 92%;">
+
 
 										<!--入力チェックのメッセージ用のdiv-->
 										<div class="row" id="validateTitle" style="display: none;">
@@ -103,8 +104,10 @@
 
 										<br>
 										<label class="control-label">内容</label>
-										<textarea class="ckeditor" id="inputBody" name="body"></textarea>
-										<div class="col-md-2" style="padding-left:0px;">
+
+											<textarea class="ckeditor" id="inputBody" name="body"></textarea>
+
+										<div class="col-md-3 pull-left" >
 											<a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
 										</div>
 										<a id="addImage" style="cursor:pointer" class="hidden-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
@@ -127,16 +130,16 @@
 									<button type="button" class="btn btn-default pull-right" id="mobile_btn_preview">プレビュー</button>
 								</div>
 								<div class="col-md-2 col-xs-4 hidden-xs">
-									<button type="button" class="btn btn-default pull-right" id="btn_draft">下書き保存</button>
+									<button type="button" class="btn btn-default" id="btn_draft">下書き保存</button>
 								</div>
 								<div class="col-md-2 col-xs-4 col-xs-offset-1 visible-xs">
 									<button type="button" class="btn btn-default pull-right" id="mobile_btn_draft">下書き保存</button>
 								</div>
-								<div class="col-md-2 col-xs-4 hidden-xs">
-									<button type="button" class="btn btn-lg btn-warning pull-right" id="btn_post">投稿</button>
+								<div class="col-md-2 col-xs-4 hidden-xs" style="margin-left: inherit;">
+									<button type="button" class="btn btn-lg btn-warning" id="btn_post">投稿</button>
 								</div>
 							</div>
-							<div class="col-xs-12 visible-xs" style="margin-top:10px;">
+							<div class="col-xs-12 visible-xs" style="margin-top:10px;margin-left: -4%;">
 								<button type="button" class="btn btn-block btn-warning" id="mobile_btn_post">投稿</button>
 							</div>
 
@@ -623,6 +626,8 @@
 						$('#inputBody').removeClass('ckeditor');
 						$('#inputBody').addClass('form-control');
 						$('#inputBody').css('height','210px');
+						$('#inputBody').css('width','92%');
+
 						}
 
 

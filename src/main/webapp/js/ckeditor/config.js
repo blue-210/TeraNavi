@@ -22,6 +22,8 @@
  	];
 
     CKEDITOR.config.height = '500px'; //高さ
+    CKEDITOR.config.width = '92%'; //横
+
 
     config.allowedContent = true;
 
