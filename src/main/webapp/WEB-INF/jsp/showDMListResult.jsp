@@ -22,21 +22,24 @@
 		<div class="main-content">
 			<div class="container visible-xs">
 				<div class="dropdown">
-					<button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">DM<span class="caret"></span></button>
+					<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">DM<span class="caret"></span></button>
 					<ul class="dropdown-menu">
 						<li id="mypageTab">
 							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
 						</li>
+						<li>
+							<a href="/TeraNavi/articlepost">記事を書く</a>
+						</li>
+						<li>
+							<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+						</li>
+						<li>
+							<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+						</li>
 						<c:choose>
 							<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
 								<li>
-									<a href="/TeraNavi/articlepost">記事を書く</a>
-								</li>
-								<li>
-									<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-								</li>
-								<li>
-									<a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
+									<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 								</li>
 							</c:when>
 							<c:otherwise>
@@ -46,7 +49,7 @@
 							</c:otherwise>
 						</c:choose>
 						<li>
-							<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+							<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 						</li>
 						<br><br>
 						<li>
@@ -64,7 +67,7 @@
 				<c:choose>
 					<c:when test="${empty result}">
 						<div cllass="row">
-							<div class="col-md-4 col-md-offset-4"><h2>まだDMが一件もありません</h2></div>
+							<div class="col-md-4 col-md-offset-4"><p class="text-center">まだDMが一件もありません</p></div>
 						</div>
 					</c:when>
 
