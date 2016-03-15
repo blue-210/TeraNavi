@@ -95,28 +95,21 @@ public class EditArticleCommand extends AbstractCommand{
 				dao = factory.getAbstractDao();
 
 				params.put("articleId", ab.getArticleId());
-				List tagBeans = dao.readAll(params);
-				List tagData = new ArrayList();
+				dao.update(params);
+				
 				//既に記事に付いているタグを保持しておくList
 				
-				Iterator itr = tagBeans.iterator();
-				while(itr.hasNext()){
-//					TagDataに既に記事に付いているタグにIDを取得
-					TagBean tag = (TagBean)itr.next();
-					tagData.add(tag.getId());
-				}
 				
 				params.clear();
 				
 				for(int i = 0;i < tags.length;i++){
 					
-					if(tagData.indexOf(tags[i])<0){
-						params.put("articleId", ab.getArticleId());
-						params.put("tag", tags[i]);
-						dao.insert(params);
-						params.clear();
-						tagData.add(tags[i]);
-					}
+					
+					params.put("articleId", ab.getArticleId());
+					params.put("tag", tags[i]);
+					dao.insert(params);
+					params.clear();
+					
 					
 				}
 
