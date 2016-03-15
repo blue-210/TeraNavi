@@ -6,10 +6,10 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
+			<script type="text/javascript" src="/TeraNavi/js/community.js"></script>
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
-
 			<link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		</head>
@@ -76,11 +76,11 @@
 								<%-- 参加していない場合ボタンを表示 --%>
 								<c:choose>
 									<c:when test="${flag eq 'false'}">
-										<a class="btn btn-warning communityBtn" id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}" style="margin-top: 64px;">参加する</a>
+										<button type="button" class="btn btn-warning communityBtn" id="joinButton" value="${result.id}">参加する</button>
 									</c:when>
 									<%-- 参加している場合 --%>
 									<c:otherwise>
-										<a class="btn btn-warning communityBtn"id="joinButton" href="/TeraNavi/front/partiComm?commId=${result.id}" disabled >参加中</a>
+										<button type="button" class="btn btn-warning communityBtn" id="joinButton" disabled>参加中</button>
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>
@@ -272,173 +272,60 @@
 					</div>
 
 			</div>
-			<!--モーダルウインドウの中身-->
-			<div class="fade modal text-justify" id="communitySetting-modal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-							<h4 class="modal-title">コミュニティ編集確認</h4>
-						</div>
+		</div><!--end container-->
+		<!--モーダルウインドウの中身-->
+		<div class="fade modal text-justify" id="communitySetting-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title">コミュニティ編集確認</h4>
+					</div>
 
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-1"></div>
-								<div class="col-md-10">
-									<h2>コミュニティ名</h2>
-									<h5 id="modalName"></h5>
-									<h2>説明文</h2>
-									<h5 id="modalProfile"></h5>
-									<h2>ヘッダー画像</h2>
-									<img src="" class="img-rounded" width="450" height="150" id="commHeader">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<h2>コミュニティ名</h2>
+								<h5 id="modalName"></h5>
+								<h2>説明文</h2>
+								<h5 id="modalProfile"></h5>
+								<h2>ヘッダー画像</h2>
+								<img src="" class="img-rounded" width="450" height="150" id="commHeader">
 									<h2>アイコン画像</h2>
 									<img src="" class="img-thumbnail" width="110" height="150" id="commIcon">
+									</div>
+									<div class="col-md-1"></div>
 								</div>
-								<div class="col-md-1"></div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-warning" form="setting">設定する</button>
-							<button type="button" class="btn btn-warning" data-dismiss="modal">キャンセル</button>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-warning" form="setting">設定する</button>
+								<button type="button" class="btn btn-warning" data-dismiss="modal">キャンセル</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><!--end container-->
 
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-		<script>
-			var ajaxSettings;
-			var ajax;
-			$(function () {
-
-				ajaxSettings = {
-					type: 'post',
-					url: '/TeraNavi/upload',
-					processData: false,
-					contentType: false,
-					cache: false,
-					dataType: 'json'
-				};
-
-				$("#edit").click(function () {
-					var id = $('#commid');
-					var userid = $('#userId');
-					var name = $('#name');
-					var profile = $('#profile').text();
-					var iconPath = " ${result.iconPath}";
-					var headerPath = "${result.headerPath}";
-					var del = '0';
-					var target = 'communitySettingResult';
-					var button = $('#editButton');
-
-					$("#name").html('<input type="text" class = "form-control" name="commName" value="' + name.text() + '" id="commName" maxlength="100"><br>');
-					$("#name").css("background-color", "");
-					$("#name").removeClass("col-md-12");
-					$("#name").addClass("col-md-8");
-					$("#profile").html('<textarea class="form-control" id="profile" rows="4" name="commProfile">' + profile + '</textarea>');
-					$("#headerPath").append('<p id="headerText">ヘッダー画像を選択</p>');
-					$("#headerPath").addClass("changeEffectHead");
-					// $("#headimg").addClass("changeEffectHead");
-					$("#iconPath").append('<p id="changeEffectIconText">アイコン画像を選択</p>');
-					$("#iconPath").addClass("changeEffectIcon");
-					$("#edit").css("display", "none");
-					// $("#iconFile").show();
-					$("#iconFile").append('<input id="comIconPath" type="hidden" name="iconPath">');
-					// $("#headerFile").show();
-					$("#headerFile").append('<input id="commHeaderPath" type="hidden" name="headerPath">');
-					button.hide();
-
-					//	<!-- 下は隠し要素 -->
-					$('#userId').html('<input type="hidden" name="userId" value="' + userid.text() + '">');
-					$('#commid').html('<input type="hidden" name="commId" value="' + id.text() + '">');
-					$('#commid').append('<input type="hidden" name="deleteFlag" value="' + del + '">');
-					$('#commid').append('<input type="hidden" name="target" value="' + target + '">');
-					$('#commid').append('<input type="hidden" name="nowIconPath" value="' + iconPath + '">');
-					$('#commid').append('<input type="hidden" name="nowHeaderPath" value="' + headerPath + '">');
-					$('#sub').html('<button class="btn btn-warning btn-lg" type="button" id="commSubmit" data-toggle="modal">確認</button>');
-				});
-			});
-
-			//画像のアップロード関係
-			function fileUpIcon() {
-				var files = document.getElementById("iconFile").files;
-
-				for (var i = 0; i < files.length; i++) {
-					var f = files[i];
-					var formData = new FormData();
-
-					formData.append("file", f);
-					ajaxSettings.data = formData;
-					ajaxSettings.url = "/TeraNavi/upload";
-
-					ajaxSettings.success = function (data) {
-						$("#comIconPath").val(data.result);
-						$("#icon").attr("src", data.result);
-					}
-					ajax = $.ajax(ajaxSettings);
-				}
-			}
-
-			$(document).on("change", "#headerFile", function () {
-				var file = this.files[0];
-				// ブラウザごとの違いをフォローする
-				window.URL = window.URL || window.webkitURL;
-
-				// Blob URLの作成
-				src = window.URL.createObjectURL(file);
-				$("#headimg").attr("src", src);
-				fileUpHeader();
-			});
-
-			$(document).on("change", "#iconFile", function () {
-				var file = this.files[0];
-				// ブラウザごとの違いをフォローする
-				window.URL = window.URL || window.webkitURL;
-
-				// Blob URLの作成
-				src = window.URL.createObjectURL(file);
-
-				fileUpIcon();
-			});
-
-
-			function fileUpHeader() {
-				var files = document.getElementById("headerFile").files;
-
-				for (var i = 0; i < files.length; i++) {
-					var f = files[i];
-					var formData = new FormData();
-
-					formData.append("file", f);
-					ajaxSettings.data = formData;
-					ajaxSettings.url = "/TeraNavi/upload/header";
-
-					ajaxSettings.success = function (data) {
-						$("#commHeaderPath").val(data.result);
-						$("#preHeader").attr("src", data.result);
-					}
-					ajax = $.ajax(ajaxSettings);
-				}
-			}
-
-			$(document).on('click', "#commSubmit", function () {
-				$("#modalName").empty();
-				$("#modalProfile").empty();
-				$("#commHeader").empty();
-				$("#commIcon").empty();
-
-				$("#modalName").append($("#commName").val());
-				$("#modalProfile").append($("#profile").text());
-				$("#commHeader").attr("src", $("#headimg").attr("src"));
-				$("#commIcon").attr("src", $("#icon").attr("src"));
-
-				$("#communitySetting-modal").modal("show");
-			});
-
-		</script>
+		<!-- 確認モーダル -->
+		<div class="fade modal text-justify" id="partiCommModal">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				  </button>
+				　<h4 class="modal-title text-center">確認</h4>
+				 </div>
+				<div class="modal-body">
+					<p id="joinResultMessage" class="text-center">参加中...</p>
+				</div>
+				<div class="modal-footer"></div>
+			  </div>
+			</div>
+		 </div>
 	</body>
 </html>
