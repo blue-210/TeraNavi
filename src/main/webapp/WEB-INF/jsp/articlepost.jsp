@@ -118,7 +118,7 @@
 							</div>
 
 							<div class="row" id="validateMessage" style="display: none;">
-								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">入力内容が正しくない項目があります</p>
+								<p class="col-md-12 col-xs-12 bg-warning text-danger help-message">記事内容が書かれてません</p>
 
 							</div>
 
