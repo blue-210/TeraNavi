@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
-							${result.blog.title}</span>
+							<a href="/TeraNavi/front/showBlog?bloguserId=${result.blog.userId}" class="text-muted">${result.blog.title}</a></span>
 					</p>
 
 				</div>
@@ -210,7 +210,7 @@
 										<p class="">${comment.userName}</p>
 									</a>
 								</div>
-								<div class="col-xs-10" style="padding-left:0px;">
+								<div class="col-xs-10">
 									<div class="row">
 										<pre><c:out value="${comment.commentBody}" /></pre>
 									</div>
