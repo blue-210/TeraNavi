@@ -13,7 +13,8 @@
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
-			<script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
+			<%-- <script src="/TeraNavi/js/ckeditor/ckeditor.js"></script> --%>
+			<script src="/TeraNavi/js/tinymce/tinymce.min.js"></script>
 			<script src="/TeraNavi/js/articlepost.js"></script>
 			<link rel="stylesheet" href="/TeraNavi/css/articlePost.css">
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
@@ -26,6 +27,25 @@
 					overflow: auto;
 				}
 			</style>
+			<script>
+				tinymce.init({
+					language : "ja",
+					mode : "specific_textareas",
+					editor_selector: "articleEditor",
+					plugins: [
+						 "advlist autolink link image imagetools lists charmap print preview hr anchor pagebreak",
+						 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+						 "table contextmenu directionality emoticons paste textcolor responsivefilemanager code"
+				   ],
+				   toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+				   toolbar2: "| link unlink anchor | jbimages | image media | forecolor backcolor  | print preview code ",
+				   relative_urls: false ,
+
+					 // external_filemanager_path:"./filemanager/",
+					  filemanager_title:"jbimages" ,
+					  external_plugins: { "jbimages" : "plugins/jbimages/plugin.min.js"}
+				});
+			</script>
 		</head>
 		<body>
 			<%-- ヘッダー部分のHTMLを読み込み --%>
@@ -108,12 +128,11 @@
 										<br>
 										<label class="control-label">内容</label>
 
-											<textarea class="ckeditor" id="inputBody" name="body"></textarea>
+										<textarea class="articleEditor" id="inputBody" name="body" rows="30"></textarea>
 
 										<div class="col-md-3 pull-left" >
 											<a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
 										</div>
-										<a id="addImage" style="cursor:pointer" class="hidden-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
 										<a id="mobileAddImage" style="cursor:pointer" class="visible-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
 										<input type="file" id="inputImage" class="hidden">
 									</div>
@@ -127,7 +146,6 @@
 
 							<div class="row">
 								<div class="col-md-4 col-md-offset-4 col-xs-4 hidden-xs">
-									<button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
 								</div>
 								<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1 visible-xs">
 									<button type="button" class="btn btn-default pull-right" id="mobile_btn_preview">プレビュー</button>
