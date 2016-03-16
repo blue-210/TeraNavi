@@ -24,8 +24,8 @@ import ttc.util.MySqlConnectionManager;
 
 public class TagDao implements AbstractDao{
     public int insert(Map map)throws IntegrationException{
-		
-		
+
+
         PreparedStatement pst = null;
         int result = 0;
         try{
@@ -62,7 +62,7 @@ public class TagDao implements AbstractDao{
         return result;
 
     }
-	
+
 	private int delete(String articleId)throws IntegrationException{
 		//記事に対してタグをつける前にその記事に付いているタグを削除するためのメソッド
 		//updateメソッドの内部から呼び出されるのでprivate
@@ -97,17 +97,17 @@ public class TagDao implements AbstractDao{
 
         return result;
 	}
-	
-	
+
+
     public int update(Map map)throws IntegrationException{
         //内部でdeleteメソッドを呼び出している
 		String articleId = (String)map.get("articleId");
-		
+
 		int result = delete(articleId);
 		//記事を削除するためのメソッドを呼び出す
-		
+
 		return result;
-		
+
     }
     public Bean read(Map map)throws IntegrationException{
         return null;
