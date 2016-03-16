@@ -63,7 +63,7 @@ $(function(){
 					<div class="col-xs-2" style="padding-right:0px;">\n\
 					<a href="/TeraNavi/front/mypage?paramUserId='+userId+'"><img src="'+userIcon+'" class="img-thumbnail" style="width:50px;height:50px;"><p class="">'+userName+'</p></a></a>\n\
 					</div>\n\
-					<div class="col-xs-10" style="padding-left:0px;">\n\
+					<div class="col-xs-10">\n\
 					<div class="row">\n\
 					<pre>'+body+'</pre>\n\
 					</div>\n\
