@@ -36,7 +36,7 @@ public class ShowUserCommand extends AbstractCommand{
 
             List result = dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);

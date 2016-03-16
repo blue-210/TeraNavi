@@ -37,7 +37,7 @@ public class ShowUserSettingCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             UserBean ub = (UserBean)dao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 

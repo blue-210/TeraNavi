@@ -55,7 +55,7 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             params.put("where", " where user_id=? ");
             results.put("user", dao.read(params));
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(results);

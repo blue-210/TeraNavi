@@ -43,7 +43,7 @@ public class TermsDisplayCommand extends AbstractCommand{
 			Bean policy = dao.read(params);
 			List list = dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			Map result = new HashMap();

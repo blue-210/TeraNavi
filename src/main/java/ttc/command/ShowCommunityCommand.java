@@ -77,7 +77,7 @@ public class ShowCommunityCommand extends AbstractCommand{
 
             cb.setMembers(miniList);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(cb);

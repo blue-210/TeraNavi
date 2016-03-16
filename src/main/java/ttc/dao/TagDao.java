@@ -194,7 +194,7 @@ public class TagDao implements AbstractDao{
 
 
         }catch(SQLException e){
-            MySqlConnectionManager.getInstance().rollback();
+            //MySqlConnectionManager.getInstance().rollback();
             throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{

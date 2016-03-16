@@ -48,7 +48,7 @@ public class LoginIdCheckCommand extends AbstractCommand{
 				flag = true;
 			}
 			
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			String result = "false";

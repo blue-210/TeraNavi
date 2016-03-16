@@ -16,11 +16,13 @@ import ttc.exception.integration.IntegrationException;
 import ttc.util.MySqlConnectionManager;
 
 public class CautionDao implements AbstractDao{
-    PreparedStatement pst=null;
-    Connection cn=null;
-    ResultSet rs=null;
+    
     public int insert(Map map)throws IntegrationException{
-         int count = 0;
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
+
+        int count = 0;
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
