@@ -57,6 +57,13 @@
 			<div class="container">
 
 				<div class="row">
+
+					<div class="row">
+						<div class="col-md-6 col-xs-12 col-md-offset-1">
+							<h1 class="text-warning">${fn:substring(result.articles[0].createdDate, 0, 7)}の記事</h1>
+						</div>
+					</div>
+
 					<div class="col-md-10 col-md-offset-1 col-xs-12">
 						<input type="hidden" id="articlesSize" value="${fn:length(result.articles)}">
 						<c:forEach var="article" items="${result.articles}" varStatus="status">

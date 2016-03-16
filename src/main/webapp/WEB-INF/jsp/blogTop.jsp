@@ -86,8 +86,10 @@
 
 				<div class="row">
 
-					<div class="row col-md-6 col-xs-12 col-md-offset-1">
-						<h1 class="text-warning">新着記事</h1>
+					<div class="row">
+						<div class="col-md-6 col-xs-12 col-md-offset-1">
+							<h1 class="text-warning">新着記事</h1>
+						</div>
 					</div>
 
 					<div class="col-md-10 col-md-offset-1 col-xs-12">
