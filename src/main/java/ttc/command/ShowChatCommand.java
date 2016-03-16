@@ -111,7 +111,7 @@ public class ShowChatCommand extends AbstractCommand{
 				
 			}
 			
-			MySqlConnectionManager.getInstance().commit();
+			//MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 

@@ -72,7 +72,7 @@ public class ShowArticleListCommand extends AbstractCommand{
             System.out.println("こんにてゃ"+bb);
             results.put("blog", bb);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 

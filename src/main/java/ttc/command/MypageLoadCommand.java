@@ -98,6 +98,8 @@ public class MypageLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
+			MySqlConnectionManager.getInstance().closeConnection();
+			
 			result.put("loginFlag",loginFlag);
 
 			resc.setResult(result);

@@ -70,7 +70,7 @@ public class ShowBlogCommand extends AbstractCommand{
             UserBean ub = (UserBean)dao.read(params);
             result.put("user", ub);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);

@@ -33,7 +33,7 @@ public class ShowDirectMessageListCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             List results = dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(results);

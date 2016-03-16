@@ -22,12 +22,15 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 
 public class UsersDao implements AbstractDao {
 
-	PreparedStatement pst = null;
-	Connection cn = null;
-	ResultSet rs = null;
+//	PreparedStatement pst = null;
+//	Connection cn = null;
+//	ResultSet rs = null;
 
 	public List readAll(Map map) throws IntegrationException {
 		List list = new ArrayList();
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
 		try {
 			cn = MySqlConnectionManager.getInstance().getConnection();
 			StringBuffer sql = new StringBuffer();
@@ -87,6 +90,7 @@ public class UsersDao implements AbstractDao {
 			throw new IntegrationException(e.getMessage(), e);
 		} finally {
 			try {
+				
 				if (pst != null) {
 					pst.close();
 				}
@@ -98,11 +102,15 @@ public class UsersDao implements AbstractDao {
 	}
 
 	public int update(Map map) throws IntegrationException {
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		int result = 0;
 		try {
 			UserBean ub = (UserBean) map.get("userbean");
-			Connection cn = MySqlConnectionManager.getInstance().getConnection();
+			cn = MySqlConnectionManager.getInstance().getConnection();
 			StringBuffer sql = new StringBuffer();
 			sql.append("update users set user_name=?,user_name_kana=?,sex_visible_flag=?,");
 			sql.append("mail_address=?,password=?,user_header_path=?,user_icon_path=?,");
@@ -205,6 +213,10 @@ public class UsersDao implements AbstractDao {
 	}
 
 	public int insert(Map map) throws IntegrationException {
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
+
 		int count = 0;
 		try {
 			cn = MySqlConnectionManager.getInstance().getConnection();
@@ -229,6 +241,7 @@ public class UsersDao implements AbstractDao {
 			count = pst.executeUpdate();
 
 		} catch (MySQLIntegrityConstraintViolationException e) {
+			MySqlConnectionManager.getInstance().rollback();
 			throw new AddressDuplicationException(e.getMessage(), e);
 		} catch (SQLException e) {
 			MySqlConnectionManager.getInstance().rollback();

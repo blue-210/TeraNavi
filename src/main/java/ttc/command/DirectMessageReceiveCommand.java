@@ -51,7 +51,7 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
 			List sendDm = dao.readAll(params);
 			//自分から特定の相手に送信したDMを取得
 			
-			MySqlConnectionManager.getInstance().commit();
+			//MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			List resultDm = new ArrayList();
