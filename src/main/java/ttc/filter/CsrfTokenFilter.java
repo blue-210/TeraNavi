@@ -16,7 +16,8 @@ public class CsrfTokenFilter implements Filter{
   public void doFilter(ServletRequest request, ServletResponse res, FilterChain chain){
     try{
 			HttpServletRequest req = (HttpServletRequest)request;
-
+			req.setCharacterEncoding("utf-8");
+			
            // セッションが存在しない場合NULLを返す
            HttpSession session = req.getSession();
 		   String token = null;

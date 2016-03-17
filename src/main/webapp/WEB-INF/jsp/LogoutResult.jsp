@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <%
-    	String token = ttc.util.CsrfUtil.getToken();
-    	session.setAttribute("token",token);
-    %>
+    
         <META HTTP-EQUIV="refresh" content="2;URL=/TeraNavi/front/top">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-s<cale=1">
@@ -29,7 +26,7 @@
 				fadeIn: 1000,
 				timeout:   2000,
 				onBlock: function() {
-					location.href="/TeraNavi/front/top?token=<%=token %>";
+					location.href="/TeraNavi/front/top";
 				}
 		});
 	</script>

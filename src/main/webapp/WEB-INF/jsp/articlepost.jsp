@@ -48,6 +48,11 @@
 			</script>
 		</head>
 		<body>
+			<%
+				String token = ttc.util.CsrfUtil.getToken();
+				session.setAttribute("token",token);
+			%>
+			
 			<%-- ヘッダー部分のHTMLを読み込み --%>
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 

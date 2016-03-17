@@ -415,6 +415,8 @@
         <url-pattern>/front/signup</url-pattern>
 		<url-pattern>/front/writechat</url-pattern>
 		<url-pattern>/front/articlepost</url-pattern>
+		<url-pattern>/front/editArticle</url-pattern>
+		<url-pattern>/front/draftArticle</url-pattern>
     </filter-mapping>
 
 

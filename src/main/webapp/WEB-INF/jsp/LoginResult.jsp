@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <%
-    	String token = ttc.util.CsrfUtil.getToken();
-    	session.setAttribute("token",token);
-    %>
+    
 
     <meta charset="UTF-8">
 
@@ -28,7 +25,7 @@
 				fadeIn: 1000,
 				timeout:   2000,
 				onBlock: function() {
-					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}&token=<%=token %>";
+					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}";
 				}
 		});
 	</script>
