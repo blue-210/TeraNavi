@@ -40,10 +40,7 @@ public class WithdrawCommand extends AbstractCommand{
 			params.put("userStatus", "3");
 			params.put("userId",ub.getId());
 			dao.update(params);
-			
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-			
+
 			resc.setTarget("withdrawResult");
 
 			return resc;
@@ -53,6 +50,9 @@ public class WithdrawCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

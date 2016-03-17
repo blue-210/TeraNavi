@@ -41,14 +41,9 @@ public class TermsDisplayCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
             AbstractDao dao = factory.getAbstractDao();
 			Bean policy = dao.read(params);
-            MySqlConnectionManager.getInstance().closeConnection();
-
-            MySqlConnectionManager.getInstance().beginTransaction();
 			List list = dao.readAll(params);
 
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
+           
 			Map result = new HashMap();
 			result.put("main",policy);
 			result.put("list",list);
@@ -60,6 +55,9 @@ public class TermsDisplayCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

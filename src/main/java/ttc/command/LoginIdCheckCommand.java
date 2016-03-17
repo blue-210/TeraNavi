@@ -48,9 +48,7 @@ public class LoginIdCheckCommand extends AbstractCommand{
 				flag = true;
 			}
 			
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
+            
 			String result = "false";
 			if(flag){
 				result = "true";
@@ -64,6 +62,9 @@ public class LoginIdCheckCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }
