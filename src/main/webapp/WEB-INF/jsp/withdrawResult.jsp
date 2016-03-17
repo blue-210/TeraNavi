@@ -21,7 +21,7 @@
     <div class="container">
        <div class="row">
 		   <h1>退会しました</h1>
-        <a href="../top">Topへ</a>
+        <a href="/TeraNavi/index">Topへ</a>
 
        </div><!--end row-->
     </div><!--end container-->

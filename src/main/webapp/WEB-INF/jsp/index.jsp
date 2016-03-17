@@ -49,7 +49,7 @@
 			
 			<div class="row">
 				<a class="btn btn-warning btn-sm col-xs-4 visible-xs" href="/TeraNavi/sign">登録</a>
-				<a class="btn btn-warning btn-sm col-xs-offset-2 col-xs-5 visible-xs" href="/TeraNavi/front/top">ログインせずに利用</a>
+				<a class="btn btn-warning btn-sm col-xs-offset-2 col-xs-5 visible-xs" href="/TeraNavi/front/top?token=<%=token %>">ログインせずに利用</a>
 			</div>
 
 		</div>
