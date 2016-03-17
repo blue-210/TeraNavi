@@ -23,24 +23,27 @@ public class TermsDisplayCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
- 
+
 			String target = reqc.getParameter("target")[0];
-			
+
 			Map params = new HashMap();
-			
+
 			try{
 				String id = reqc.getParameter("id")[0];
-				
+
 				params.put("value", id);
 				params.put("where",reqc.getParameter("where")[0]);
 			}catch(NullPointerException e){
-				
+
 			}
-			
+
             MySqlConnectionManager.getInstance().beginTransaction();
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory(target);
             AbstractDao dao = factory.getAbstractDao();
 			Bean policy = dao.read(params);
+            MySqlConnectionManager.getInstance().closeConnection();
+
+            MySqlConnectionManager.getInstance().beginTransaction();
 			List list = dao.readAll(params);
 
             //MySqlConnectionManager.getInstance().commit();
@@ -49,7 +52,7 @@ public class TermsDisplayCommand extends AbstractCommand{
 			Map result = new HashMap();
 			result.put("main",policy);
 			result.put("list",list);
-			
+
 			resc.setResult(result);
 
             return resc;
