@@ -24,6 +24,12 @@
 		<%-- ヘッダー部分のHTMLを読み込み --%>
 		<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 		
+		
+		<%
+			String token = ttc.util.CsrfUtil.getToken();
+			session.setAttribute("token",token);
+		%>
+		<input type="hidden" id="tokenInput" value="<%=token %>">
 
 		<div class="hidden-xs">
 			<img src="${result.community.headerPath}" id="headimg">

@@ -51,21 +51,21 @@
 							<button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">退会<span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li id="mypageTab">
-									<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}&token=<%=token %>">マイページ</a>
+									<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
 								</li>
 								<li>
 									<a href="/TeraNavi/articlepost">記事を書く</a>
 								</li>
 								<li>
-	                                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}&token=<%=token %>">投稿記事一覧</a>
+	                                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
 	                            </li>
 								<li>
-									<a href="/TeraNavi/front/showDraftArticleList?token=<%=token %>">下書き一覧</a>
+									<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
 								</li>
 								<c:choose>
 									<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
 										<li>
-											<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}&token=<%=token %>">ブログ設定</a>
+											<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 										</li>
 									</c:when>
 									<c:otherwise>
@@ -75,10 +75,10 @@
 									</c:otherwise>
 								</c:choose>
 								<li>
-									<a href="/TeraNavi/front/commmy?token=<%=token %>">コミュニティ管理</a>
+									<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 								</li>
 								<li>
-									<a href="/TeraNavi/front/showDmList?token=<%=token %>">DM</a>
+									<a href="/TeraNavi/front/showDmList">DM</a>
 								</li>
 								<br><br>
 	                            <li>
@@ -137,8 +137,8 @@
 					</div>
 					<div class="modal-body">
 						<p class="text-center">本当に退会しますか？</p>
-						<a class="btn btn-lg btn-danger" href="/TeraNavi/front/withdraw?token=<%=token %>">Yes</a>
-						<a class="btn btn-lg btn-default" href="/TeraNavi/front/top?token=<%=token %>">No</a>
+						<a class="btn btn-lg btn-danger" href="/TeraNavi/front/withdraw">Yes</a>
+						<a class="btn btn-lg btn-default" href="/TeraNavi/front/top">No</a>
 					</div>
 					<div class="modal-footer"></div>
 				</div>
@@ -159,8 +159,8 @@
 					</div>
 					<div class="modal-body">
 						<p class="text-center">本当に退会しますか？</p>
-						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/withdraw?token=<%=token %>">Yes</a>
-						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/top?token=<%=token %>">No</a>
+						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/withdraw">Yes</a>
+						<a class="btn btn-lg btn-primary" href="/TeraNavi/front/top">No</a>
 					</div>
 					<div class="modal-footer"></div>
 				</div>

@@ -22,6 +22,13 @@
 		<%-- トップのナビゲーションを読み込み --%>
 		<jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
+		<%
+			String token = ttc.util.CsrfUtil.getToken();
+			session.setAttribute("token",token);
+		%>
+		
+		<input type="hidden" id="tokenInput" value="<%=token %>">
+		
 		<div class="section">
 			<div class="container">
 				<div class="row">
@@ -338,7 +345,8 @@
 							title: $("#inputTitle").val(),
 							body: CKEDITOR.instances.inputBody.getData(),
 							tag: checks,
-							ajax: 'true'
+							ajax: 'true',
+							token:$("#tokenInput").val()
 						}
 					})
 							//    成功時の処理
@@ -366,7 +374,8 @@
 							status: "1",
 							title: $("#inputTitle").val(),
 							body: CKEDITOR.instances.inputBody.getData(),
-							ajax: 'true'
+							ajax: 'true',
+							token:$("#tokenInput").val()
 						}
 					})
 							//    成功時の処理

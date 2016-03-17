@@ -1,16 +1,16 @@
 var ajaxSettings;
 var ajax;
 var nowId;
-var token = $("input[name=token]").val();
+
 $(function () {
 
-	console.log("token = "+token);
+	
 	ajaxSettings = {
 		type: 'post',
 		url: '/TeraNavi/front/TermsDisplay',
 		dataType: 'json',
 		data: {
-			token:token
+			
 		}
 	};
 
@@ -22,7 +22,7 @@ function loadPolicy() {
 	ajaxSettings.data = {
 		ajax: "true",
 		target: "policy",
-		token:token
+		
 	};
 
 	ajaxSettings.success = function (data) {
@@ -46,7 +46,7 @@ function loadPolicyId(id) {
 		target: "policy",
 		id: id,
 		where: " WHERE policy_id = ?",
-		token:token
+		
 	};
 
 	ajaxSettings.success = function (data) {
