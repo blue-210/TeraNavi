@@ -1,6 +1,7 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-<script src="/TeraNavi/JavaScriptServlet"></script>
+<script src="/TeraNavi/js/loadPolicyModal.js"></script>
+<script src="/TeraNavi/js/loadRuleModal.js"></script>
 
 <%
 	String token = ttc.util.CsrfUtil.getToken();
