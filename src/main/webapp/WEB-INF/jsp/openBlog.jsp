@@ -25,6 +25,7 @@
        <div class="row">
            <h1>ブログ開設ページ</h1>
            <form action="front/blogCreate" method="post">
+               <input type="hidden" name="token" value="<%=token %>">
                タイトル <input type="text" name="title"><br>
                ヘッダ画像 <input id="head" type="text" name="headerPath"ondrop="onDrop1(event)" ondragover="onDragOver(event)"><br>
 			   説明文 <input type="text" name="explanation"><br>

@@ -412,7 +412,7 @@
     </filter>
     <filter-mapping>
         <filter-name>CsrfTokenFilter</filter-name>
-        <url-pattern>/front/login</url-pattern>
+        <url-pattern>/front/*</url-pattern>
     </filter-mapping>
 
 

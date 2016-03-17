@@ -158,6 +158,7 @@
 						</a>
 					</div>
 					<form action="/TeraNavi/front/compost" method="post" class="form-horizontal" role="form">
+						<input type="hidden" name="token" value="<%=token %>">
 						<div class="col-md-7 col-xs-8">
 							<div class="form-group">
 								<textarea required="" name="body" class="form-control" id="commentBody" placeholder="コメントを書く"></textarea>
@@ -252,6 +253,7 @@
 								<div id="cautionM" class="modal-body">
 									<div class="form-group">
 										<form action="/TeraNavi/front/caution" method="post" id="cautionForm">
+											<input type="hidden" name="token" value="<%=token %>">
 											<input class="form-control" id="uiCaution" form="cautionForm" type="hidden" name="cautionUserId" value="${result.blog.userId}">
 											<input class="form-control" form="cautionForm" id="targetUrl" type="hidden" name="url" value="<%=request.getRequestURI()%>">
 											<div class="form-group">
