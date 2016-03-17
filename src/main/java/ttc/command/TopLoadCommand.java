@@ -52,11 +52,11 @@ public class TopLoadCommand extends AbstractCommand{
 
 			while(itr.hasNext()){
 				//取得したarticleに対してコメントとタグをセットする
-				
+
 				ArticleBean ab = (ArticleBean)itr.next();
 				param1.clear();
-				
-				
+
+
 				param1.put("articleId", ab.getArticleId());
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
@@ -94,33 +94,7 @@ public class TopLoadCommand extends AbstractCommand{
 				result.put("blog",nBlogs);
 			}
 
-			// コミュニティの取得
-			factory = AbstractDaoFactory.getFactory("community");
-			dao = factory.getAbstractDao();
-
-			Map param2 = new HashMap();
-			// 新規コミュニティの取得処理
-			param2.put("where","Where community_delete_flag = 0");
-			param2.put("sort", " order by communities.community_created_date desc ");
-			List communities = dao.readAll(param2);
-
-			if(communities.size() <= 5){
-				result.put("hotCommunity",communities);
-			}else{
-				List nCommunities = new ArrayList();
-				for(int i = 0;i < 5;i++){
-					nCommunities.add(communities.get(i));
-				}
-
-				result.put("hotCommunity",nCommunities);
-			}
-
-			//人気コミュニティの取得処理
-			param2.clear();
-			param2.put("where","where community_delete_flag = 0");
-			param2.put("sort", " order by membercount limit 5 offset 0");
-			List popularCommunity = dao.readAll(param2);
-			result.put("popularCommunity", popularCommunity);
+			
 
 
 			//ブログタブで表示する学科ごとの新着記事の取得
@@ -207,7 +181,7 @@ public class TopLoadCommand extends AbstractCommand{
 			result.put("tagArticles",tagArticles);
 
 			//MySqlConnectionManager.getInstance().commit();
-            
+
 
 
 			resc.setResult(result);
