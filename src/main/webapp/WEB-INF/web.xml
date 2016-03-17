@@ -11,6 +11,7 @@
    <welcome-file-list>
      <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
    </welcome-file-list>
+   
 
 
    <error-page>
@@ -395,27 +396,27 @@
       <url-pattern>/help</url-pattern>
   </servlet-mapping>
 
-   <!-- エラーページ -->
-   <!-- <error-page>
-      <error-type>javax.servlet.ServletException</error-type>
-      <location>/error.jsp</location>
-   </error-page>
-   <error-page>
-      <error-code>404</error-code>
-      <location>/error.jsp</location>
-   </error-page> -->
-
-
-   <!-- フィルター -->
-
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>LoginFilter</filter-class>
+        <filter-class>ttc.filter.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/mypage</url-pattern>
         <url-pattern>/front/mypage</url-pattern>
+    </filter-mapping>
+
+	<filter>
+        <filter-name>CsrfTokenFilter</filter-name>
+        <filter-class>ttc.filter.CsrfTokenFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CsrfTokenFilter</filter-name>
+        <url-pattern>/front/signup</url-pattern>
+		<url-pattern>/front/writechat</url-pattern>
+		<url-pattern>/front/articlepost</url-pattern>
+		<url-pattern>/front/editArticle</url-pattern>
+		<url-pattern>/front/draftArticle</url-pattern>
     </filter-mapping>
 
 

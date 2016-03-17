@@ -11,7 +11,7 @@
 			<!-- Optional theme -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 			<link href="/TeraNavi/css/dm.css" rel="stylesheet" type="text/css">
-			
+
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="forms">
 			<div class="col-md-6 col-md-offset-2 col-xs-12">
 				<textarea id="dmBody" name="messageBody" style="width:100%;"></textarea>
@@ -77,7 +77,7 @@
 			<input type="hidden" name="userId" id="myId" value="${sessionScope.loginUser.id}">
 			<input type="hidden" name="receiveUserId" value="${result.partnerId}">
 			<div class="hidden-xs" id="submit_button" >
-				<button id="dmsend" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
+				<button id="dmsend" class="btn btn-default btn-block" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
 			</div>
 			<div class="visible-xs col-xs-12">
 				<br>

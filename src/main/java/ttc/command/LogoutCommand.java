@@ -51,13 +51,6 @@ public class LogoutCommand extends AbstractCommand{
 
             dao.update(params2);
 
-
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
-
-
-
             resc.setTarget("LogoutResult");
 
             return resc;
@@ -65,6 +58,9 @@ public class LogoutCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

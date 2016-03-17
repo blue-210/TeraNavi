@@ -13,6 +13,14 @@
     <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
+
+    <!--ログインしてる人にだけ見せる-->
+    <%
+        if(session.getAttribute("loginUser")==null){
+            response.sendRedirect("/TeraNavi/login");
+        }
+    %>
+
     <%-- ヘッダー部分のHTMLを読み込み --%>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 

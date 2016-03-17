@@ -33,8 +33,6 @@ public class ShowDirectMessageListCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             List results = dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(results);
             resc.setTarget("showDMListResult");
@@ -45,6 +43,9 @@ public class ShowDirectMessageListCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

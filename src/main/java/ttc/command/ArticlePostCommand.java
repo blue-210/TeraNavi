@@ -125,8 +125,7 @@ public class ArticlePostCommand extends AbstractCommand{
 
 			}
 
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			
 
 			resc.setResult(params);
 
@@ -136,6 +135,9 @@ public class ArticlePostCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

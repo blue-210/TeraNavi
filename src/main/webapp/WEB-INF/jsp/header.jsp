@@ -1,6 +1,9 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
 
+<script src="/TeraNavi/js/loadRuleModal.js"></script>
+
+
 <div class="hidden-xs">
 	<nav class="navbar navbar-default navbar-fixed-top" id="header_bar">
 		<div class="container-fluid">
@@ -14,11 +17,13 @@
 				<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 			</div>
 			<form method="post" action="/TeraNavi/front/usearch" class="md_sform" id="sform" role="search">
+
 				<select id="target" class="md_target">
 					<option value="usearch" selected>ユーザ</option>
 					<option value="commList">コミュニティ</option>
 					<option value="keywordsearch">ブログ</option>
 				</select>
+				
 				<input type="text"  name="keyword" class="md_keyword" placeholder="このまま検索すると全件検索になります">
 				<input type="hidden" name="intention" value="search">
 				<span>
@@ -79,7 +84,7 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row">
+<!--			<div class="row">
 				<div class="col-md-12" style="width:100%; height:40%; overflow:auto;">
 					<div id="policyMainModal">
 						<h1></h1>
@@ -89,6 +94,7 @@
 				</div>
 			</div>
 			<hr>
+-->
 			<form name="Form1" method="post" action="#">
 				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
 				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
@@ -108,6 +114,7 @@
 <script>
 	//モーダル出す
 	function showAgreeModal(){
+		loadRule();
 		$("#agreeModal").modal();
 	}
 
@@ -145,7 +152,7 @@
 							<li><a href="/TeraNavi/front/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+							<li><a class="headermenu" onclick="showAgreeModal()">新規登録</a><li>
 							<li><a data-toggle="modal" href="#loginmodal">Login</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -163,12 +170,14 @@
 			<div class="modal-content">
 				<div class="modal-body">
                 <form action="/TeraNavi/front/usearch" method="POST" id="sFormMobile">
+
                   <div class="form-group">
 						<select id="targetMobile">
 							<option value="usearch" selected>ユーザ</option>
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
+						
 					  <input type="text" class="form-group" name="keyword" placeholder="このまま検索すると全件検索になります">
 					  <input type="hidden" name="intention" value="search">
                   </div>
@@ -192,6 +201,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
+						
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">

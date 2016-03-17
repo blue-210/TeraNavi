@@ -29,59 +29,31 @@
 
 
 		<header>
-			<%-- PCばん --%>
-			<div class="row hidden-xs">
-				<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12 hidden-xs">
 					<img src="${result.blog.headerPath}" style="width:100%; height:250px">
 				</div>
-			</div>
 
-			<%-- MOBILEばん --%>
-			<div class="row visible-xs">
-				<div class="col-xs-12">
-					<img src="${result.blog.headerPath}" style="width:100%; height:100px">
+				<div class="col-md-12 visible-xs">
+					<img src="${result.blog.headerPath}" style="width:100%; height:80px">
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
+							<a href="/TeraNavi/front/showBlog?bloguserId=${result.blog.userId}" class="text-muted">${result.blog.title}</a></span>
+					</p>
 
-			<%-- PCばん --%>
+				</div>
+			</div>
 			<div class="row hidden-xs">
 				<div class="col-md-12">
 					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.user.id}">
-						<img src="${result.user.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px; z-index: 1100;">
+						<img src="${result.user.iconPath}" class="img-thumbnail" style="width:130px; height:130px; position:relative; bottom:110px; margin-left:50px;">
 					</a>
 					<h3 style="position:relative; margin-top:-100px; margin-left:50px;">
 						<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.user.id}">${result.user.userName}</a>
 					</h3>
-				</div>
-			</div>
-
-			<%-- MOBILEばん --%>
-			<div class="row visible-xs">
-				<div class="col-xs-12">
-					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.user.id}">
-						<img src="${result.user.iconPath}" class="img-thumbnail" style="width:60px; height:60px; margin-top: -95px; margin-left:10px;">
-					</a>
-					<a class="text-muted" href="/TeraNavi/front/mypage?paramUserId=${result.user.id}">
-						<h3 style="margin-top: -35px; margin-left:10px;">${result.user.userName}</h3>
-					</a>
-				</div>
-			</div>
-
-			<%-- PCばん --%>
-			<div class="row hidden-xs">
-				<div class="col-md-12">
-					<p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
-							${result.blog.title}</span>
-					</p>
-				</div>
-			</div>
-
-			<%-- MOBILEばん --%>
-			<div class="row visible-xs">
-				<div class="col-xs-12">
-					<p> <span  class="text-center" style="position:relative;margin-top:-260px;background-color:rgba(255,255,255,0.7);font-size: 30px;">
-							${result.blog.title}</span>
-					</p>
 				</div>
 			</div>
 
@@ -91,7 +63,7 @@
 		<div class="section">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4 hidden-xs">
-					<pre>${result.blog.explanation}</pre>
+					<pre style="position:relative; margin-top:-100px;">${result.blog.explanation}</pre>
 				</div>
 				<div class="col-md-2 col-md-offset-2 hidden-xs">
 					<h3 class="text-warning">月別アーカイブ</h3>
@@ -114,8 +86,10 @@
 
 				<div class="row">
 
-					<div class="row col-md-6 col-xs-12 col-md-offset-1">
-						<h1 class="text-warning">新着記事</h1>
+					<div class="row">
+						<div class="col-md-6 col-xs-12 col-md-offset-1">
+							<h1 class="text-warning">新着記事</h1>
+						</div>
 					</div>
 
 					<div class="col-md-10 col-md-offset-1 col-xs-12">

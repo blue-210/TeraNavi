@@ -17,17 +17,19 @@ import ttc.util.MySqlConnectionManager;
 import ttc.util.DateConversion;
 
 public class ChatDao implements AbstractDao{
-    PreparedStatement pst=null;
-    Connection cn=null;
-    ResultSet rs=null;
+    
 
     public List readAll(Map map)throws IntegrationException{
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
+
         ChatBean chatBean=null;
         List result = new ArrayList();
-        PreparedStatement pst = null;
+       
 
         try{
-            Connection cn = null;
+            
             cn = MySqlConnectionManager.getInstance().getConnection();
             StringBuffer sql = new StringBuffer();
 
@@ -39,7 +41,7 @@ public class ChatDao implements AbstractDao{
             pst = cn.prepareStatement(new String(sql));
             pst.setString(1,(String)map.get("topicId"));
 
-            ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
 
             while(rs.next()){
                 chatBean = new ChatBean();
@@ -74,6 +76,10 @@ public class ChatDao implements AbstractDao{
     }
 
     public int insert(Map map)throws IntegrationException{
+		PreparedStatement pst = null;
+		Connection cn = null;
+		ResultSet rs = null;
+
         int count = 0;
         try{
             cn=MySqlConnectionManager.getInstance().getConnection();

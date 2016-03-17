@@ -35,7 +35,6 @@ public class DeleteCommunityCommand extends AbstractCommand{
             // deleteFlagを削除にupdate
             dao.update(params);
 
-            MySqlConnectionManager.getInstance().commit();
 
             // 削除した結果を取得する処理
             // 値を一度クリア
@@ -49,7 +48,7 @@ public class DeleteCommunityCommand extends AbstractCommand{
             List communities = dao.readAll(params);
 
             result.put("community", communities);
-            MySqlConnectionManager.getInstance().closeConnection();
+            
 
 		    resc.setResult(result);
 
@@ -58,6 +57,9 @@ public class DeleteCommunityCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

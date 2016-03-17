@@ -37,8 +37,7 @@ public class CommunitySearchCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             List result =dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+            
 
 			resc.setResult(result);
 
@@ -49,6 +48,9 @@ public class CommunitySearchCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

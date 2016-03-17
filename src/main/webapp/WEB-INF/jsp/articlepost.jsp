@@ -8,12 +8,12 @@
 
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-			<script type="text/javascript" src="/TeraNavi/js/wysiwyger.js"></script>
 			<script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 			<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="/TeraNavi/js/fileup.js"></script>
-			<script src="/TeraNavi/js/ckeditor/ckeditor.js"></script>
+			<%-- <script src="/TeraNavi/js/ckeditor/ckeditor.js"></script> --%>
+			<script src="/TeraNavi/js/tinymce/tinymce.min.js"></script>
 			<script src="/TeraNavi/js/articlepost.js"></script>
 			<link rel="stylesheet" href="/TeraNavi/css/articlePost.css">
 			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
@@ -26,14 +26,48 @@
 					overflow: auto;
 				}
 			</style>
+			<script>
+				tinymce.init({
+					language : "ja",
+					mode : "specific_textareas",
+					editor_selector: "articleEditor",
+					plugins: [
+						 "advlist autolink link image imagetools lists charmap print preview hr anchor pagebreak",
+						 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+						 "table contextmenu directionality emoticons paste textcolor responsivefilemanager code"
+				   ],
+				   toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+				   toolbar2: "| link unlink anchor | jbimages | image media | forecolor backcolor  | print preview code ",
+				   relative_urls: false ,
+
+					 // external_filemanager_path:"./filemanager/",
+					  filemanager_title:"jbimages" ,
+					  external_plugins: { "jbimages" : "plugins/jbimages/plugin.min.js"}
+				});
+			</script>
 		</head>
 		<body>
+
+			<!--ログインしてる人にだけ見せる-->
+			<%
+				if(session.getAttribute("loginUser")==null){
+					response.sendRedirect("/TeraNavi/login");
+				}
+			%>
+			
+			<%
+				String token = ttc.util.CsrfUtil.getToken();
+				session.setAttribute("token",token);
+			%>
+
 			<%-- ヘッダー部分のHTMLを読み込み --%>
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 			<%-- トップのナビゲーションを読み込み --%>
 			<jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
+			<input type="hidden" id="tokenInput" value="<%=token %>">
+			
 			<div class="section">
 				<div class="container">
 					<div class="row">
@@ -54,12 +88,14 @@
 									<li id="mypageTab">
 										<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
 									</li>
+									<li>
+										<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+									</li>
+									<li>
+										<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+									</li>
 									<c:choose>
 										<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-
-											<li>
-												<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-											</li>
 											<li>
 												<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 											</li>
@@ -71,11 +107,11 @@
 										</c:otherwise>
 									</c:choose>
 									<li>
-										<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+										<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 									</li>
-									<!--									<li>
-																			<a href="/TeraNavi/front/showDmList">DM</a>
-																		</li>-->
+									<li>
+										<a href="/TeraNavi/front/showDmList">DM</a>
+									</li>
 									<br><br>
 									<li>
 										<a href="/TeraNavi/withdraw">退会</a>
@@ -106,12 +142,11 @@
 										<br>
 										<label class="control-label">内容</label>
 
-											<textarea class="ckeditor" id="inputBody" name="body"></textarea>
+										<textarea class="articleEditor" id="inputBody" name="body" rows="30"></textarea>
 
 										<div class="col-md-3 pull-left" >
 											<a class="btn btn-default btn-block" id="btn_addTag">タグ追加</a>
 										</div>
-										<a id="addImage" style="cursor:pointer" class="hidden-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
 										<a id="mobileAddImage" style="cursor:pointer" class="visible-xs"><i class="fa fa-3x fa-fw fa-image text-muted pull-left"></i></a>
 										<input type="file" id="inputImage" class="hidden">
 									</div>
@@ -125,7 +160,6 @@
 
 							<div class="row">
 								<div class="col-md-4 col-md-offset-4 col-xs-4 hidden-xs">
-									<button type="button" class="btn btn-default pull-right" id="btn_preview">プレビュー</button>
 								</div>
 								<div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-1 visible-xs">
 									<button type="button" class="btn btn-default pull-right" id="mobile_btn_preview">プレビュー</button>

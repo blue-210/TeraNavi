@@ -33,19 +33,20 @@ public class PublicationRangeSettingCommand extends AbstractCommand{
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("article");
             AbstractDao dao = factory.getAbstractDao();
 
-            for(int i = 0; i < articleId.length; i++){
+            MySqlConnectionManager.getInstance().beginTransaction();
+            
+			for(int i = 0; i < articleId.length; i++){
                 params.put("articleId", articleId[i]);
 
-                MySqlConnectionManager.getInstance().beginTransaction();
 
                 ArticleBean ab = (ArticleBean)dao.read(params);
 
     			params.put("articlebean",ab);
                 dao.update(params);
 
-                MySqlConnectionManager.getInstance().commit();
-                MySqlConnectionManager.getInstance().closeConnection();
             }
+			
+
 
             resc.setTarget("publicationrangesetting");
 
@@ -55,6 +56,9 @@ public class PublicationRangeSettingCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

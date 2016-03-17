@@ -39,8 +39,6 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
 
 			UserBean ub = (UserBean)dao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
 			
 //			ユーザが入力した質問の番号と答えが、DBに登録されているものと同じか調べる
@@ -60,6 +58,9 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

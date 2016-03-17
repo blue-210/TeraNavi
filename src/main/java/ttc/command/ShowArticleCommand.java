@@ -70,12 +70,12 @@ public class ShowArticleCommand extends AbstractCommand{
             }
             int preArticleId = -1, nextArticleId =-1;
             if(index > 0){
-                
+
                 ArticleBean nextArticle = (ArticleBean)articles.get(index-1);
                 nextArticleId = Integer.parseInt( nextArticle.getArticleId() );
             }
             if(index+1 <  articles.size() && index > -1 ){
-                
+
                 ArticleBean preArticle = (ArticleBean)articles.get(index+1);
                 preArticleId = Integer.parseInt( preArticle.getArticleId() );
             }
@@ -97,8 +97,6 @@ public class ShowArticleCommand extends AbstractCommand{
             //----------------------------------------------------------------
 
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);
 
@@ -110,6 +108,13 @@ public class ShowArticleCommand extends AbstractCommand{
 
 				if(edit.length() > 0){
 					editFlag=true;
+                    //記事の投稿者以外が編集しようとしたら、ただの記事表示にする
+                    String loginUserId = reqc.getParameter("userId")[0];
+                    String articleUserId = ab.getUserId();
+                    if( loginUserId.equals(articleUserId) ){
+                    }else{
+                        editFlag = false;
+                    }
 				}
 			}catch(NullPointerException e){}
 
@@ -126,6 +131,9 @@ public class ShowArticleCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

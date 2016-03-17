@@ -1,19 +1,3 @@
-var ajaxSettings;
-var ajax;
-$(function () {
-
-    ajaxSettings = {
-        type: 'post',
-        url: 'upload',
-        processData: false,
-        contentType: false,
-        cache: false,
-        dataType: 'json'
-
-    };
-
-});
-
 $(function () {
 
     //タグ一覧を取得する処理-----------------------------------------------------------
@@ -50,42 +34,42 @@ $(function () {
 
     //画像追加-------------------------------------------------------------
 
-    $("#addImage").on("click", function () {
-        $("#inputImage").click();
-    });
-
-    $(document).on("change", "#inputImage", function () {
-        var file = this.files[0];
-        // ブラウザごとの違いをフォローする
-        window.URL = window.URL || window.webkitURL;
-
-        // Blob URLの作成
-        src = window.URL.createObjectURL(file);
-        $("#headimg").attr("src", src);
-        uploadImage();
-    });
-
-    function uploadImage() {
-        var files = document.getElementById("inputImage").files;
-
-        for (var i = 0; i < files.length; i++) {
-            var f = files[i];
-            var formData = new FormData();
-            formData.append("file", f);
-            ajaxSettings.data = formData;
-            ajaxSettings.url = "/TeraNavi/upload/article";
-            ajaxSettings.success = function (data) {
-                var imageTag = "<img src=\"" + data.result + "\" / style=\"width:100%;\">";
-                var currentText = CKEDITOR.instances.inputBody.getData();
-                CKEDITOR.instances.inputBody.setData(currentText + "" + imageTag);
-                console.log(imageTag);
-                console.log(currentText);
-                console.log(CKEDITOR.instances.inputBody.getData());
-            }
-
-            ajax = $.ajax(ajaxSettings);
-        }
-    }
+    // $("#addImage").on("click", function () {
+    //     $("#inputImage").click();
+    // });
+    //
+    // $(document).on("change", "#inputImage", function () {
+    //     var file = this.files[0];
+    //     // ブラウザごとの違いをフォローする
+    //     window.URL = window.URL || window.webkitURL;
+    //
+    //     // Blob URLの作成
+    //     var src = window.URL.createObjectURL(file);
+    //     $("#headimg").attr("src", src);
+    //     uploadImage();
+    // });
+    //
+    // function uploadImage() {
+    //     var files = document.getElementById("inputImage").files;
+    //
+    //     for (var i = 0; i < files.length; i++) {
+    //         var f = files[i];
+    //         var formData = new FormData();
+    //         formData.append("file", f);
+    //         ajaxSettings.data = formData;
+    //         ajaxSettings.url = "/TeraNavi/upload/article";
+    //         ajaxSettings.success = function (data) {
+    //             var imageTag = "<img src=\"" + data.result + "\" / style=\"width:100%;\">";
+    //             var currentText = CKEDITOR.instances.inputBody.getData();
+    //             CKEDITOR.instances.inputBody.setData(currentText + "" + imageTag);
+    //             console.log(imageTag);
+    //             console.log(currentText);
+    //             console.log(CKEDITOR.instances.inputBody.getData());
+    //         }
+    //
+    //         ajax = $.ajax(ajaxSettings);
+    //     }
+    // }
 
 
     //モバイル版の画像追加-------------------------------------------------------------
@@ -95,18 +79,24 @@ $(function () {
     });
 
     $(document).on("change", "#inputImage", function () {
-        var file = this.files[0];
-        // ブラウザごとの違いをフォローする
-        window.URL = window.URL || window.webkitURL;
-
-        // Blob URLの作成
-        src = window.URL.createObjectURL(file);
-        $("#headimg").attr("src", src);
         uploadMobileImage();
     });
 
     function uploadMobileImage() {
         var files = document.getElementById("inputImage").files;
+
+        var ajaxSettings;
+        var ajax;
+
+        ajaxSettings = {
+            type: 'post',
+            url: 'upload',
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+
+        };
 
         for (var i = 0; i < files.length; i++) {
             var f = files[i];
@@ -115,12 +105,9 @@ $(function () {
             ajaxSettings.data = formData;
             ajaxSettings.url = "/TeraNavi/upload/article";
             ajaxSettings.success = function (data) {
-                var imageTag = "<img src=\"" + data.result + "\" / style=\"width:100%;\">";
+                var imageTag = '<img src=\"'+data.result+'\" style=\"width:100%;\">';
                 var currentText = $("#inputBody").val();
-                $("#inputBody").val(currentText + "" + imageTag);
-                console.log(imageTag);
-                console.log(currentText);
-                console.log($("#inputBody").val());
+                $("#inputBody").val(currentText+ "" +imageTag);
             }
 
             ajax = $.ajax(ajaxSettings);
@@ -143,7 +130,8 @@ $(function () {
         } else {
             var apmBody = $("#articlePostModalBody");
             var title = $("#inputTitle").val();
-            var body = CKEDITOR.instances.inputBody.getData();
+            var body = tinyMCE.get('inputBody').getContent();
+            //var body = CKEDITOR.instances.inputBody.getData();
             $("#articlePostModalBody").empty();
             apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
             apmBody.append('<hr><p>この内容でよろしいですか？<p>');
@@ -190,9 +178,11 @@ $(function () {
             data: {
                 //   キー:バリューで書く。バリューには変数も使えます。
                 title: $("#inputTitle").val(),
-                body: CKEDITOR.instances.inputBody.getData(),
+                body: tinyMCE.get('inputBody').getContent(),
+                //body: CKEDITOR.instances.inputBody.getData(),
                 tag: checks,
-                ajax: 'true'
+                ajax: 'true',
+				token:$("#tokenInput").val()
             }
         })
                 //    成功時の処理
@@ -200,7 +190,7 @@ $(function () {
                     $("#articlePostResultModal").modal();
 
                     $("#inputTitle").val("");
-                    CKEDITOR.instances.inputBody.setData("");
+                    tinyMCE.get('inputBody').setContent("");
 
                     $("[name='chTag']:checked").prop("checked",false);
 
@@ -230,7 +220,8 @@ $(function () {
                 title: $("#inputTitle").val(),
                 body: $("#inputBody").val(),
                 tag: checks,
-                ajax: 'true'
+                ajax: 'true',
+				token:$("#tokenInput").val()
             }
         })
                 //    成功時の処理
@@ -273,9 +264,10 @@ $(function () {
                 data: {
                     //   キー:バリューで書く。バリューには変数も使えます。
                     title: $("#inputTitle").val(),
-                    body: CKEDITOR.instances.inputBody.getData(),
+                    body: tinyMCE.get('inputBody').getContent(),
                     tag: checks,
-                    ajax: 'true'
+                    ajax: 'true',
+					token:$("#tokenInput").val()
                 }
             })
                     //    成功時の処理
@@ -285,7 +277,7 @@ $(function () {
                         $("#articlePostResultModal").modal();
 
                         $("#inputTitle").val("");
-                        CKEDITOR.instances.inputBody.setData("");
+                        tinyMCE.get('inputBody').setContent("");
 
                         $("[name='chTag']:checked").prop("checked",false);
 
@@ -325,7 +317,8 @@ $(function () {
                     title: $("#inputTitle").val(),
                     body: $("#inputBody").val(),
                     tag: checks,
-                    ajax: 'true'
+                    ajax: 'true',
+					token:$("#tokenInput").val()
                 }
             })
                     //    成功時の処理
@@ -353,15 +346,15 @@ $(function () {
     });
 
 
-    $("#btn_preview").on("click", function () {
-        var apmBody = $("#previewModalBody");
-        var title = $("#inputTitle").val();
-        var body = CKEDITOR.instances.inputBody.getData();
-        $("#previewModalBody").empty();
-        apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
-        $("#previewModal").modal();
-
-    });
+    // $("#btn_preview").on("click", function () {
+    //     var apmBody = $("#previewModalBody");
+    //     var title = $("#inputTitle").val();
+    //     var body = tinyMCE.get('inputBody').getContent();
+    //     $("#previewModalBody").empty();
+    //     apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
+    //     $("#previewModal").modal();
+    //
+    // });
     //モバイル版プレビュー
     $("#mobile_btn_preview").on("click", function () {
         var apmBody = $("#previewModalBody");
@@ -388,7 +381,7 @@ $(function () {
         //デバイスごとに挿入するタグを分岐
         if(userAgent.indexOf('iphone') != -1 || userAgent.indexOf('Android') != -1){
         //iphoneの場合に、#apAreaにpタグを挿入
-        $('#inputBody').removeClass('ckeditor');
+        $('#inputBody').removeClass('articleEditor');
         $('#inputBody').addClass('form-control');
         $('#inputBody').css('height','210px');
         $('#inputBody').css('width','92%');

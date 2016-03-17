@@ -17,6 +17,14 @@
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
 	<body>
+
+		<!--ログインしてる人にだけ見せる-->
+		<%
+			if(session.getAttribute("loginUser")==null){
+				response.sendRedirect("/TeraNavi/login");
+			}
+		%>
+
 		<%-- ヘッダー部分のHTMLを読み込み --%>
 		<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
@@ -45,14 +53,17 @@
 								<li id="mypageTab">
 									<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
 								</li>
+								<li>
+									<a href="/TeraNavi/articlepost">記事を書く</a>
+								</li>
+								<li>
+	                                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+	                            </li>
+								<li>
+									<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+								</li>
 								<c:choose>
 									<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-										<li>
-											<a href="/TeraNavi/articlepost">記事を書く</a>
-										</li>
-										<li>
-											<a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-										</li>
 										<li>
 											<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 										</li>
@@ -64,12 +75,15 @@
 									</c:otherwise>
 								</c:choose>
 								<li>
-									<a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
+									<a href="/TeraNavi/front/commmy">コミュニティ管理</a>
 								</li>
-<!--								<li>
+								<li>
 									<a href="/TeraNavi/front/showDmList">DM</a>
-								</li>-->
-
+								</li>
+								<br><br>
+	                            <li>
+	                                <a href="/TeraNavi/withdraw">退会</a>
+	                            </li>
 							</ul>
 						</div>
 					</div>

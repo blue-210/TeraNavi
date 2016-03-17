@@ -1,28 +1,26 @@
 var ajaxSettings;
-var ajax;
+var ajaxRule;
 var nowId;
+
 $(function () {
 
-    ajaxSettings = {
+    ajaxRuleSettings = {
         type: 'post',
         url: '/TeraNavi/front/TermsDisplay',
-        dataType: 'json',
-        data: null
-
+        dataType: 'json'
     };
-
-    loadRule();
 
 });
 
 function loadRule() {
 
-    ajaxSettings.data = {
+    ajaxRuleSettings.data = {
         ajax: "true",
         target: "rule"
+       
     };
 
-    ajaxSettings.success = function (data) {
+    ajaxRuleSettings.success = function (data) {
 
         var ruleMainModal = $("#ruleMainModal");
 
@@ -32,21 +30,22 @@ function loadRule() {
 
     };
 
-    ajax = $.ajax(ajaxSettings);
+    ajaxRule = $.ajax(ajaxRuleSettings);
 
 }
 
 function loadRuleId(id) {
     nowId = id;
 
-    ajaxSettings.data = {
+    ajaxRuleSettings.data = {
         ajax: "true",
         target: "rule",
         id: id,
         where: " WHERE rule_id = ?"
+        
     };
 
-    ajaxSettings.success = function (data) {
+    ajaxRuleSettings.success = function (data) {
 
         var ruleMainModal = $("#ruleMainModal");
 
@@ -56,5 +55,5 @@ function loadRuleId(id) {
 
     };
 
-    ajax = $.ajax(ajaxSettings);
+    ajaxRule = $.ajax(ajaxRuleSettings);
 }

@@ -45,8 +45,7 @@ public class ShowMemberListCommand extends AbstractCommand{
 
 			Bean comm = abdao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+
 
 
             Map result=new HashMap();
@@ -64,6 +63,9 @@ public class ShowMemberListCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }
