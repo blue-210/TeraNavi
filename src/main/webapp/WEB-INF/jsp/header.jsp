@@ -18,9 +18,10 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
+				<a href="/TeraNavi/front/top?token=<%=token %>" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 			</div>
 			<form method="post" action="/TeraNavi/front/usearch" class="md_sform" id="sform" role="search">
+				 <input type="hidden" name="token" value="<%=token %>">
 				<select id="target" class="md_target">
 					<option value="usearch" selected>ユーザ</option>
 					<option value="commList">コミュニティ</option>
@@ -42,8 +43,8 @@
 								<span>${sessionScope.loginUser.userName}さん<b class="caret"></b></span>
 							</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
-								<li><a href="/TeraNavi/front/logout">ログアウト</a></li>
+								<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}&token=<%=token %>">マイページ</a></li>
+								<li><a href="/TeraNavi/front/logout?token=<%=token %>">ログアウト</a></li>
 							</ul>
 						</li>
 					</c:when>
@@ -133,7 +134,7 @@
 	<div class="navbar navbar-default navbar-fixed-top xs-header-nav">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:60px; margin-top:-10px;"></a>
+				<a href="/TeraNavi/front/top?token=<%=token %>" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:60px; margin-top:-10px;"></a>
 				<button type="button" class="navbar-toggle navbar-left" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only"></span>
 					<span class="icon-bar"></span>
@@ -144,12 +145,12 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/TeraNavi/front/top">Top</a></li>
+					<li><a href="/TeraNavi/front/top?token=<%=token %>">Top</a></li>
 					<li><a data-toggle="modal" href="#searchFormModal">検索</a><li>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginUser}">
-							<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
-							<li><a href="/TeraNavi/front/logout">Logout</a></li>
+							<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}&token=<%=token %>">マイページ</a></li>
+							<li><a href="/TeraNavi/front/logout?token=<%=token %>">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a class="headermenu" onclick="showAgreeModal()">新規登録</a><li>
@@ -170,6 +171,7 @@
 			<div class="modal-content">
 				<div class="modal-body">
                 <form action="/TeraNavi/front/usearch" method="POST" id="sFormMobile">
+					<input type="hidden" name="token" value="<%=token %>">
                   <div class="form-group">
 						<select id="targetMobile">
 							<option value="usearch" selected>ユーザ</option>
