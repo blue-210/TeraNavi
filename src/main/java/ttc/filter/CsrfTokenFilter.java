@@ -15,8 +15,12 @@ import javax.servlet.FilterChain;
 public class CsrfTokenFilter implements Filter{
   public void doFilter(ServletRequest request, ServletResponse res, FilterChain chain){
     try{
+		
+			//CSRFの対策として用意したフィルタです
+			
 			HttpServletRequest req = (HttpServletRequest)request;
-
+			req.setCharacterEncoding("utf-8");
+			
            // セッションが存在しない場合NULLを返す
            HttpSession session = req.getSession();
 		   String token = null;
@@ -28,8 +32,9 @@ public class CsrfTokenFilter implements Filter{
 				token = (String)session.getAttribute("token");
 				paramToken = req.getParameter("token");
 
-                System.out.println("パス情報="+((HttpServletRequest)req).getPathInfo()+"\ttoken="+token+"\tparamToken="+paramToken);
-
+                //System.out.println("パス情報="+((HttpServletRequest)req).getPathInfo()+"\ttoken="+token+"\tparamToken="+paramToken);
+				//動作チェック用のシステムアウトです、挙動がおかしい際はコメントアウトを外して確認してください
+				
                if(token.equals(paramToken)){
                    // session内のトークンとパラメータとして送られてきたトークンを比較
     			   //トークンが一致したときのみ正しい送り先へrequestを跳ばす

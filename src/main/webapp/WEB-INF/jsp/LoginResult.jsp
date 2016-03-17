@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <%
-    	String token = ttc.util.CsrfUtil.getToken();
-    	session.setAttribute("token",token);
-    %>
+    
 
     <meta charset="UTF-8">
 

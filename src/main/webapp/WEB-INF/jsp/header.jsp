@@ -1,11 +1,7 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-<script src="/TeraNavi/JavaScriptServlet"></script>
-
-<%
-	String token = ttc.util.CsrfUtil.getToken();
-	session.setAttribute("token",token);
-%>
+<script src="/TeraNavi/js/loadPolicyModal.js"></script>
+<script src="/TeraNavi/js/loadRuleModal.js"></script>
 
 
 <div class="hidden-xs">
@@ -27,7 +23,7 @@
 					<option value="commList">コミュニティ</option>
 					<option value="keywordsearch">ブログ</option>
 				</select>
-
+				
 				<input type="text"  name="keyword" class="md_keyword" placeholder="このまま検索すると全件検索になります">
 				<input type="hidden" name="intention" value="search">
 				<span>
@@ -179,7 +175,7 @@
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
-
+						
 					  <input type="text" class="form-group" name="keyword" placeholder="このまま検索すると全件検索になります">
 					  <input type="hidden" name="intention" value="search">
                   </div>
@@ -203,7 +199,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
-
+						
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">
