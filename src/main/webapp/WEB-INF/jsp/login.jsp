@@ -9,7 +9,6 @@
     <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
-    <script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
     <jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 </head>
 <body>
@@ -22,6 +21,7 @@
            <div class="col-md-4 col-md-offset-4" style="margin-top:50px;">
                <h1 class="text-center">ログインページ</h1>
                <form action="/TeraNavi/front/login" method="post">
+                   
                    <div class="form-group">
                        <label class="control-label">ログインID</label>
                        <input class="form-control" type="text" name="loginId">

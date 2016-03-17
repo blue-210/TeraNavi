@@ -181,7 +181,8 @@ $(function () {
                 body: tinyMCE.get('inputBody').getContent(),
                 //body: CKEDITOR.instances.inputBody.getData(),
                 tag: checks,
-                ajax: 'true'
+                ajax: 'true',
+				token:$("#tokenInput").val()
             }
         })
                 //    成功時の処理
@@ -219,7 +220,8 @@ $(function () {
                 title: $("#inputTitle").val(),
                 body: $("#inputBody").val(),
                 tag: checks,
-                ajax: 'true'
+                ajax: 'true',
+				token:$("#tokenInput").val()
             }
         })
                 //    成功時の処理
@@ -264,7 +266,8 @@ $(function () {
                     title: $("#inputTitle").val(),
                     body: tinyMCE.get('inputBody').getContent(),
                     tag: checks,
-                    ajax: 'true'
+                    ajax: 'true',
+					token:$("#tokenInput").val()
                 }
             })
                     //    成功時の処理
@@ -314,7 +317,8 @@ $(function () {
                     title: $("#inputTitle").val(),
                     body: $("#inputBody").val(),
                     tag: checks,
-                    ajax: 'true'
+                    ajax: 'true',
+					token:$("#tokenInput").val()
                 }
             })
                     //    成功時の処理

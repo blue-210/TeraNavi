@@ -1,11 +1,7 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-<script src="/TeraNavi/JavaScriptServlet"></script>
-
-<%
-	String token = ttc.util.CsrfUtil.getToken();
-	session.setAttribute("token",token);
-%>
+<script src="/TeraNavi/js/loadPolicyModal.js"></script>
+<script src="/TeraNavi/js/loadRuleModal.js"></script>
 
 
 <div class="hidden-xs">
@@ -21,11 +17,13 @@
 				<a href="/TeraNavi/front/top" class="navbar-brand" id="TeraNavi"><img src="/TeraNavi/img/TeraNavi_logo.png" style="width:100px; margin-top:-25px;"></a>
 			</div>
 			<form method="post" action="/TeraNavi/front/usearch" class="md_sform" id="sform" role="search">
+
 				<select id="target" class="md_target">
 					<option value="usearch" selected>ユーザ</option>
 					<option value="commList">コミュニティ</option>
 					<option value="keywordsearch">ブログ</option>
 				</select>
+				
 				<input type="text"  name="keyword" class="md_keyword" placeholder="このまま検索すると全件検索になります">
 				<input type="hidden" name="intention" value="search">
 				<span>
@@ -170,12 +168,14 @@
 			<div class="modal-content">
 				<div class="modal-body">
                 <form action="/TeraNavi/front/usearch" method="POST" id="sFormMobile">
+
                   <div class="form-group">
 						<select id="targetMobile">
 							<option value="usearch" selected>ユーザ</option>
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
+						
 					  <input type="text" class="form-group" name="keyword" placeholder="このまま検索すると全件検索になります">
 					  <input type="hidden" name="intention" value="search">
                   </div>
@@ -199,7 +199,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
-						<input type="hidden" name="token" value="<%=token %>">
+						
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">

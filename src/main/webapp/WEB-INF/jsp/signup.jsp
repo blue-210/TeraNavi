@@ -18,6 +18,12 @@
 
 </head>
 <body>
+	
+	<%
+		String token = ttc.util.CsrfUtil.getToken();
+		session.setAttribute("token",token);
+	%>
+	
 	<%-- ヘッダー部分のHTMLを読み込み --%>
 	<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
@@ -177,6 +183,8 @@
 				<div class="col-md-3"></div>
 			</div>
 
+			<input type="hidden" form="signForm" name="token" class="form-control" value="<%=token %>">
+			
 			<div class="row" id="validatePassword" style="display: none;">
 				<p class="col-md-6 col-md-offset-3 col-xs-12 bg-warning text-danger help-message">パスワードの入力が不正です</p>
 

@@ -17,8 +17,8 @@
 
   <body>
 	  
-	  
-	  
+
+
     <div class="cover">
       <div class="cover-image" style="background-image : url('https://pingendo.github.io/pingendo-bootstrap/assets/blurry/800x600/10.jpg')"></div>
       <div class="container">
@@ -34,7 +34,7 @@
 		  
         <div class="row">
           <div class="col-md-12 text-center">
-			  <a class="btn btn-lg btn-warning text-center hidden-xs" href="/TeraNavi/front/top">TeraNaviへ</a>
+			  <a class="btn btn-lg btn-warning text-center hidden-xs" href="/TeraNavi/front/top" >TeraNaviへ</a>
           </div>
         </div>
 		<div class="vertical_bottom container">
@@ -53,6 +53,7 @@
       </div>
     </div>
 		  
+
 		  
   </body>
 </html>
