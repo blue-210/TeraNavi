@@ -1,13 +1,16 @@
 var ajaxSettings;
 var ajax;
 var nowId;
+var token = $("input[name=token]").val();
 $(function () {
 
     ajaxSettings = {
         type: 'post',
         url: '/TeraNavi/front/TermsDisplay',
         dataType: 'json',
-        data: null
+        data: {
+            token:token
+        }
 
     };
 
@@ -19,7 +22,8 @@ function loadRule() {
 
     ajaxSettings.data = {
         ajax: "true",
-        target: "rule"
+        target: "rule",
+        token:token
     };
 
     ajaxSettings.success = function (data) {
@@ -43,7 +47,8 @@ function loadRuleId(id) {
         ajax: "true",
         target: "rule",
         id: id,
-        where: " WHERE rule_id = ?"
+        where: " WHERE rule_id = ?",
+        token:token
     };
 
     ajaxSettings.success = function (data) {
