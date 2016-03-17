@@ -1,19 +1,3 @@
-var ajaxSettings;
-var ajax;
-$(function () {
-
-    ajaxSettings = {
-        type: 'post',
-        url: 'upload',
-        processData: false,
-        contentType: false,
-        cache: false,
-        dataType: 'json'
-
-    };
-
-});
-
 $(function () {
 
     //タグ一覧を取得する処理-----------------------------------------------------------
@@ -60,7 +44,7 @@ $(function () {
     //     window.URL = window.URL || window.webkitURL;
     //
     //     // Blob URLの作成
-    //     src = window.URL.createObjectURL(file);
+    //     var src = window.URL.createObjectURL(file);
     //     $("#headimg").attr("src", src);
     //     uploadImage();
     // });
@@ -95,18 +79,24 @@ $(function () {
     });
 
     $(document).on("change", "#inputImage", function () {
-        var file = this.files[0];
-        // ブラウザごとの違いをフォローする
-        window.URL = window.URL || window.webkitURL;
-
-        // Blob URLの作成
-        src = window.URL.createObjectURL(file);
-        $("#headimg").attr("src", src);
         uploadMobileImage();
     });
 
     function uploadMobileImage() {
         var files = document.getElementById("inputImage").files;
+
+        var ajaxSettings;
+        var ajax;
+
+        ajaxSettings = {
+            type: 'post',
+            url: 'upload',
+            processData: false,
+            contentType: false,
+            cache: false,
+            dataType: 'json'
+
+        };
 
         for (var i = 0; i < files.length; i++) {
             var f = files[i];
@@ -115,12 +105,9 @@ $(function () {
             ajaxSettings.data = formData;
             ajaxSettings.url = "/TeraNavi/upload/article";
             ajaxSettings.success = function (data) {
-                var imageTag = "<img src=\"" + data.result + "\" / style=\"width:100%;\">";
+                var imageTag = '<img src=\"'+data.result+'\" style=\"width:100%;\">';
                 var currentText = $("#inputBody").val();
-                $("#inputBody").val(currentText + "" + imageTag);
-                console.log(imageTag);
-                console.log(currentText);
-                console.log($("#inputBody").val());
+                $("#inputBody").val(currentText+ "" +imageTag);
             }
 
             ajax = $.ajax(ajaxSettings);
