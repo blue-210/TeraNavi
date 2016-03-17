@@ -1,5 +1,12 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
+<script src="/TeraNavi/JavaScriptServlet"></script>
+
+<%
+	String token = ttc.util.CsrfUtil.getToken();
+	session.setAttribute("token",token);
+%>
+
 
 <div class="hidden-xs">
 	<nav class="navbar navbar-default navbar-fixed-top" id="header_bar">
@@ -192,6 +199,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
+						<input type="hidden" name="token" value="<%=token %>">
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">

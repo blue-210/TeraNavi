@@ -155,7 +155,7 @@
 					text+="<br>";
 				}
 				
-				$("#chatBodyArea").val(text + "<img src='" + data.result+"'>");
+				$("#chatBodyArea").val(text + "<img src='" + data.result+"' width='100%'>");
 			}
 		};
 
