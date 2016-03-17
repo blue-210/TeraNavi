@@ -1,6 +1,5 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-
 <script src="/TeraNavi/js/loadRuleModal.js"></script>
 
 
@@ -97,27 +96,6 @@
 	</div>
 </div>
 
-<script src="/TeraNavi/js/loadRuleModal.js"></script>
-<script src="/TeraNavi/js/loadPolicyModal.js"></script>
-
-<script>
-	//モーダル出す
-	function showAgreeModal(){
-		loadRule();
-		$("#agreeModal").modal();
-	}
-
-	//同意するにチェックしたらボタンを有効化
-	function changeDisabled() {
-		if ( document.Form1["agreement"][1].checked ) {
-			$("#btn_modalSign").prop("disabled",false);
-		} else {
-			$("#btn_modalSign").prop("disabled",true);
-		}
-	}
-	window.onload = changeDisabled;
-</script>
-
 <%-- モバイル用ナビゲーション --%>
 <div class="visible-xs">
 	<div class="navbar navbar-default navbar-fixed-top xs-header-nav">
@@ -209,3 +187,23 @@
 			</div><!--end moal-content-->
 		</div><!--end modal-dialog-->
 	</div><!--end modal-->
+
+	<script src="/TeraNavi/js/loadRuleModal.js"></script>
+	<script src="/TeraNavi/js/loadPolicyModal.js"></script>
+	<script>
+		//モーダル出す
+		function showAgreeModal(){
+			loadRule();
+			$("#agreeModal").modal();
+		}
+
+		//同意するにチェックしたらボタンを有効化
+		function changeDisabled() {
+			if ( document.Form1["agreement"][1].checked ) {
+				$("#btn_modalSign").prop("disabled",false);
+			} else {
+				$("#btn_modalSign").prop("disabled",true);
+			}
+		}
+		window.onload = changeDisabled;
+	</script>
