@@ -29,7 +29,7 @@
 				fadeIn: 1000,
 				timeout:   2000,
 				onBlock: function() {
-					location.href="/TeraNavi/front/top?token=<%=token %>";
+					location.href="/TeraNavi/front/top";
 				}
 		});
 	</script>

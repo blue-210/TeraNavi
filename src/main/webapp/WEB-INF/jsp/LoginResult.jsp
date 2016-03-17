@@ -28,7 +28,7 @@
 				fadeIn: 1000,
 				timeout:   2000,
 				onBlock: function() {
-					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}&token=<%=token %>";
+					location.href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}";
 				}
 		});
 	</script>
