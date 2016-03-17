@@ -355,15 +355,15 @@ $(function () {
     });
 
 
-    $("#btn_preview").on("click", function () {
-        var apmBody = $("#previewModalBody");
-        var title = $("#inputTitle").val();
-        var body = tinyMCE.get('inputBody').getContent();
-        $("#previewModalBody").empty();
-        apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
-        $("#previewModal").modal();
-
-    });
+    // $("#btn_preview").on("click", function () {
+    //     var apmBody = $("#previewModalBody");
+    //     var title = $("#inputTitle").val();
+    //     var body = tinyMCE.get('inputBody').getContent();
+    //     $("#previewModalBody").empty();
+    //     apmBody.append('<h1 class="text-center">' + title + '</h1><br>' + body);
+    //     $("#previewModal").modal();
+    //
+    // });
     //モバイル版プレビュー
     $("#mobile_btn_preview").on("click", function () {
         var apmBody = $("#previewModalBody");
