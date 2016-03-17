@@ -163,7 +163,7 @@ $(document).on("blur", "#fKey", function () {
 $(document).on("click", "#signsubmit", function () {
 
 //	最後の入力チェック
-	
+	flag = 0;
 
 	if ($("#fName").val().length <= 0) {
 
