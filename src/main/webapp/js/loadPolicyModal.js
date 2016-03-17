@@ -8,13 +8,11 @@ $(function () {
 	ajaxSettings = {
 		type: 'post',
 		url: '/TeraNavi/front/TermsDisplay',
-		dataType: 'json',
-		data: {
-			
-		}
+		dataType: 'json'
+		
 	};
 
-	loadPolicy();
+	//loadPolicy();
 
 });
 
@@ -45,7 +43,7 @@ function loadPolicyId(id) {
 		ajax: "true",
 		target: "policy",
 		id: id,
-		where: " WHERE policy_id = ?",
+		where: " WHERE policy_id = ?"
 		
 	};
 
