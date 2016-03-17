@@ -25,16 +25,16 @@
 					<div class="col-xs-10 col-xs-offset-1">
 						<ul class="lead nav nav-justified nav-tabs">
 							<li>
-								<a href="TeraNavi/front/top" class="text-warning">TOP</a>
+								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
 							</li>
 							<li>
-								<a href="./top#blog" class="text-warning">ブログ</a>
+								<a href="/TeraNavi/front/topBlog" class="text-warning">ブログ</a>
 							</li>
 							<li class="active">
-								<a href="/TeraNavi/front/TopLoadCommunity" class="text-warning">コミュニティ</a>
+								<a href="/TeraNavi/front/topCommunity" class="text-warning">コミュニティ</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/showTag" class="text-warning">タグ</a>
+								<a href="/TeraNavi/front/topTag" class="text-warning">タグ</a>
 							</li>
 							<li>
 								<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
@@ -48,22 +48,15 @@
 			<nav class="nav nav-horizontal">
 				<div class="mask">
 					<ul class="list">
-						<li><a href="./top">Top</a></li>
-						<li><a href="./top#blog">ブログ</a></li>
-						<li><a href="/TeraNavi/front/TopLoadCommunity">コミュニティ</a></li>
-						<li><a href="/TeraNavi/front/showTag" data-toggle="tab">タグ</a></li>
-
-						<li>
-							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
-						</li>
-
+						<li><a href="/TeraNavi/front/top">Top</a></li>
+						<li><a href="/TeraNavi/front/topBlog">ブログ</a></li>
+						<li><a href="/TeraNavi/front/topCommunity">コミュニティ</a></li>
+						<li><a href="/TeraNavi/front/topTag">タグ</a></li>
+						<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
 					</ul>
 				</div>
 			</nav>
 		</div>
-
-
-
 
             <div class="section">
                 <div class="container">

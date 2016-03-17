@@ -42,7 +42,7 @@ public class TopBlogLoadCommand extends AbstractCommand{
 
 			MySqlConnectionManager.getInstance().beginTransaction();
 
-	
+
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("blog");
 			AbstractDao dao = factory.getAbstractDao();
 			List blogs = dao.readAll(new HashMap());
@@ -83,11 +83,11 @@ public class TopBlogLoadCommand extends AbstractCommand{
 			result.put( "department", departmentArticles );
 
 			//MySqlConnectionManager.getInstance().commit();
-            
+
 
 
 			resc.setResult(result);
-            resc.setTarget("top");
+            resc.setTarget("topblog");
 
             return resc;
 

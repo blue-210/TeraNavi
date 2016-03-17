@@ -23,7 +23,7 @@
 					<option value="commList">コミュニティ</option>
 					<option value="keywordsearch">ブログ</option>
 				</select>
-				
+
 				<input type="text"  name="keyword" class="md_keyword" placeholder="このまま検索すると全件検索になります">
 				<input type="hidden" name="intention" value="search">
 				<span>
@@ -59,7 +59,7 @@
 </div>
 
 <!-- 利用規約同意モーダル -->
-<div class="fade modal text-justify" id="agreeModal">
+<div class="fade modal text-justify" id="agreeModal" style="z-index: 1100;">
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -84,17 +84,6 @@
 				</div>
 			</div>
 			<hr>
-<!--			<div class="row">
-				<div class="col-md-12" style="width:100%; height:40%; overflow:auto;">
-					<div id="policyMainModal">
-						<h1></h1>
-						<p class='text-center'>申し訳ございません。正しくプライバシーポリシーを読み込めませんでした</p>
-						<p class='text-center'>ページを更新するか、上部のリンクから確認してください。</p>
-					</div>
-				</div>
-			</div>
-			<hr>
--->
 			<form name="Form1" method="post" action="#">
 				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
 				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
@@ -129,6 +118,7 @@
 	window.onload = changeDisabled;
 </script>
 
+<%-- モバイル用ナビゲーション --%>
 <div class="visible-xs">
 	<div class="navbar navbar-default navbar-fixed-top xs-header-nav">
 		<div class="container-fluid">
@@ -177,7 +167,7 @@
 							<option value="commList">コミュニティ</option>
 							<option value="keywordsearch">ブログ</option>
 						</select>
-						
+
 					  <input type="text" class="form-group" name="keyword" placeholder="このまま検索すると全件検索になります">
 					  <input type="hidden" name="intention" value="search">
                   </div>
@@ -192,6 +182,7 @@
 	</div><!-- /.modal -->
 </div>
 
+	<%-- ログインモーダル --%>
 	<div id="loginmodal" class="modal fade" style="z-index: 1100; width: 100%;">
 		<div class="modal-dialog">
 			<div class="modal-content col-xs-12 col-md-12">
@@ -201,7 +192,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
-						
+
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">

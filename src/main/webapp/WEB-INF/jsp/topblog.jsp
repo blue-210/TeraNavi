@@ -1,31 +1,223 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
+		<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
+		<script type="text/javascript" src="/TeraNavi/js/community.js"></script>
+        <script type="text/javascript" src="/TeraNavi/js/topcommunity.js"></script>
+		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+		<title>TeraNavi TOP</title>
+	</head>
+	<body>
+        <%-- ヘッダー部分のHTMLを読み込み --%>
+        <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-<div class="section">
-	<div class="container">
-		<div class="row col-md-10 col-xs-11 col-xs-offset-1 col-md-offset-1">
-			<h1 class="text-warning">各科新着記事</h1>
+		<div class="section hidden-xs">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-1">
+						<ul class="lead nav nav-justified nav-tabs">
+							<li>
+								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
+							</li>
+							<li class="active">
+								<a href="/TeraNavi/front/topBlog" class="text-warning">ブログ</a>
+							</li>
+							<li>
+								<a href="/TeraNavi/front/topCommunity" class="text-warning">コミュニティ</a>
+							</li>
+							<li>
+								<a href="/TeraNavi/front/topTag" class="text-warning">タグ</a>
+							</li>
+							<li>
+								<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
-		<input type="hidden" id="blogArticlesSize" value="${fn:length(result.department)}">
-		
-		<div id="departmentSpace">
-			
+		<div class="visible-xs xs-top-nav">
+			<nav class="nav nav-horizontal">
+				<div class="mask">
+					<ul class="list">
+						<li><a href="/TeraNavi/front/top" >Top</a></li>
+						<li><a href="/TeraNavi/front/topBlog">ブログ</a></li>
+						<li><a href="/TeraNavi/front/topCommunity">コミュニティ</a></li>
+						<li><a href="/TeraNavi/front/topTag">タグ</a></li>
+						<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
+					</ul>
+				</div>
+			</nav>
 		</div>
-		
-		
+
+
+			<div class="section">
+				<div class="container">
+					<div class="row col-md-10 col-xs-11 col-xs-offset-1 col-md-offset-1">
+						<h1 class="text-warning">各科新着記事</h1>
+					</div>
+					<input type="hidden" id="blogArticlesSize" value="${fn:length(result.department)}">
+
+						<c:forEach var="article" items="${result.department}" varStatus="status">
+				<div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well mobile-content-space">
+					<div class="col-md-2 col-xs-12">
+						<br>
+						<div class="hidden-xs">
+							<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+								<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
+								<h3 class="text-muted" style="margin-top:0px;">${article.userName}</h3>
+							</a>
+						</div>
+						<div class="visible-xs">
+							<a href="/TeraNavi/front/mypage?paramUserId=${article.userId}">
+								<img src="${article.iconPath}" class="img-thumbnail" style="width:100px;height:100px;">
+								<h5 class="text-muted mobile-user-name" style="margin-top:0px;">${article.userName}</h5>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<div class="hidden-xs">
+							<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h2 class="text-muted">${article.title}</h2></a>
+							<p id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p>
+							<div class="text-right">
+								<a class="btn btn-warning" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">続きを読む</a>
+							</div>
+
+						</div>
+						<div class="visible-xs">
+							<a href="/TeraNavi/front/showArticle?articleId=${article.articleId}"><h5 class="text-muted text-center">${article.title}</h5></a>
+							<%-- <p class="mobile-article-body" id="blog${status.index}"><c:out value="${fn:substring(article.articleBody, 0, 30)}" /></p> --%>
+
+							<a class="btn btn-warning btn-block" href="/TeraNavi/front/showArticle?articleId=${article.articleId}">記事を読む</a>
+
+						</div>
+					</div>
+					<div class="col-md-3 hidden-xs">
+						<br><br>
+						<p>${article.createdDate}</p>
+						<br>
+						<p>コメント数 ${article.commentCount}</p>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-</div>
 
 
-<div class="section">
-    <div class="container">
-		<div class="row col-md-10 col-xs-11 col-xs-offset-1 col-md-offset-1">
-			<h1 class="text-warning">人気ブログ</h1>
-		</div>
-		<%-- <div class="row col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1"> --%>
-		
-		<div id="blogSpace">
-			
-		</div>
+	<div class="section">
+	    <div class="container">
+			<div class="row col-md-10 col-xs-11 col-xs-offset-1 col-md-offset-1">
+				<h1 class="text-warning">人気ブログ</h1>
+			</div>
+			<%-- <div class="row col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1"> --%>
+				<c:forEach var="blog" items="${result.blog}">
+					<div class="row col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1 well mobile-content-space">
+						<div class="col-md-2 col-xs-12">
+							<br>
+							<div class="hidden-xs">
+								<img src="${blog.headerPath}" class="img-thumbnail" style="width:150px;height:50px;">
+							</div>
+							<div class="visible-xs">
+								<img src="${blog.headerPath}" class="img-thumbnail" style="width:150px;height:50px;">
+							</div>
+						</div>
+						<div class="col-md-7 col-xs-12">
+							<div class="hidden-xs">
+								<a href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}"><h2 class="text-muted">${blog.title}</h2></a>
+								<p id="articleBody"><c:out value="${blog.explanation}" /></p>
+								<div class="text-right">
+									<a class="btn btn-warning" href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}">ブログページへ</a>
+								</div>
+							</div>
+							<div class="visible-xs">
+								<a href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}"><h4 class="text-muted text-center">${blog.title}</h4></a>
+								<p class="mobile-article-body" id="articleBody"><c:out value="${blog.explanation}" />!!</p>
+								<a class="btn btn-warning btn-block" href="/TeraNavi/front/showBlog?bloguserId=${blog.userId}">ブログページへ</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+	    </div>
+	</div>
 
-		<%-- </div> --%>
-    </div>
-</div>
+
+			<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
+			<%-- <script src="/TeraNavi/js/topblog.js"></script> --%>
+
+			<script>
+
+				$(document).ready(function () {
+
+				//記事本文のHTMLタグ除去-----------------------------------------------------
+					var size = $("#topArticlesSize").val();
+					for(var i=0; i<size; i++){
+						var str = $("#top"+i).text();
+						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+						$("#top"+i).text(body.substr(0,30));//30文字分かえす
+					}
+	//
+	//				size = $("#blogArticlesSize").val();
+	//				for(var i=0; i<size; i++){
+	//					var str = $("#blog"+i).text();
+	//					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+	//					$("#blog"+i).text(body.substr(0,30));//30文字分かえす
+	//				}
+
+					var tagArticleCount = $("#tagArticleCount").val();
+					console.log("tagArticleCount"+tagArticleCount);
+					for(var i=0; i<tagArticleCount; i++){
+						size = $("#tagArticlesSize"+i).val();
+						for(var j=0; j<size; j++){
+							var str = $("#"+i+"tag"+j).text();
+							var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+							$("#"+i+"tag"+j).text(body.substr(0,30));//30文字分かえす
+						}
+					}
+				//--------------------------------------------------------------------------
+
+
+					// #(ハッシュ)指定されたタブを表示する
+					var hashTabName = document.location.hash;
+					if (hashTabName) {
+						$('.nav-tabs a[href=' + hashTabName + ']').tab('show');
+
+						event.preventDefault();
+
+						// // 所定の位置までスクロールする
+						// var tabParent = $("#" + $('.nav-tabs a[href=' + hashTabName + ']').parents('div').attr('id'));
+						// $('html, body').stop().animate({
+						// 	scrollTop: 0
+						// }, 2000);
+					}
+
+				});
+			</script>
+
+			<!-- 確認モーダル -->
+			<div class="fade modal text-justify" id="partiCommModal">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					  </button>
+					　<h4 class="modal-title text-center">確認</h4>
+					 </div>
+					<div class="modal-body">
+						<p id="joinResultMessage" class="text-center">参加中...</p>
+					</div>
+					<div class="modal-footer"></div>
+				  </div>
+				</div>
+			 </div>
+	 </body>
+</html>

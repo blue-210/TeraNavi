@@ -24,16 +24,16 @@
 					<div class="col-xs-10 col-xs-offset-1">
 						<ul class="lead nav nav-justified nav-tabs">
 							<li class="active">
-								<a href="/TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
+								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
 							</li>
 							<li>
-								<a href="#blog" data-toggle="tab" class="text-warning" onclick="topBlogLoad();">ブログ</a>
+								<a href="/TeraNavi/front/topBlog" class="text-warning">ブログ</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/TopLoadCommunity" class="text-warning">コミュニティ</a>
+								<a href="/TeraNavi/front/topCommunity" class="text-warning">コミュニティ</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/showTag" id="showtags" class="text-warning">タグ</a>
+								<a href="/TeraNavi/front/topTag" class="text-warning">タグ</a>
 							</li>
 							<li>
 								<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
@@ -44,18 +44,16 @@
 			</div>
 		</div>
 
-
+		<%-- モバイル用のナビゲーション --%>
 		<div class="visible-xs xs-top-nav">
 			<nav class="nav nav-horizontal">
 				<div class="mask">
 					<ul class="list">
-						<li><a href="TeraNavi/front/top#top" data-toggle="tab">Top</a></li>
-						<li><a href="#blog" data-toggle="tab" >ブログ</a></li>
-						<li><a href="#community" data-toggle="tab" >コミュニティ</a></li>
-						<li><a href="/TeraNavi/front/showTag">タグ</a></li>
-						<li>
-							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
-						</li>
+						<li><a href="/TeraNavi/front/top">Top</a></li>
+						<li><a href="/TeraNavi/front/topBlog">ブログ</a></li>
+						<li><a href="/TeraNavi/front/topCommunity">コミュニティ</a></li>
+						<li><a href="/TeraNavi/front/topTag">タグ</a></li>
+						<li><a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -118,13 +116,11 @@
 				</div>
 			</div>
 			<div class="tab-pane" id="blog"> <jsp:include page="/WEB-INF/jsp/topblog.jsp"/> </div>
-			<div class="tab-pane" id="community"> <jsp:include page="/WEB-INF/jsp/topcommunity.jsp"/> </div>
-			<div class="tab-pane" id="tag"> <jsp:include page="/WEB-INF/jsp/toptag.jsp"/> </div>
 		</div><!-- tab-content -->
 
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
-		<script src="/TeraNavi/js/topblog.js"></script>
+		<%-- <script src="/TeraNavi/js/topblog.js"></script> --%>
 
 		<script>
 

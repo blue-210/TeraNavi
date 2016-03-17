@@ -3,8 +3,8 @@
     <title>ログイン</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/TeraNavi/css/style.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
            <div class="col-md-4 col-md-offset-4" style="margin-top:50px;">
                <h1 class="text-center">ログインページ</h1>
                <form action="/TeraNavi/front/login" method="post">
-                   
+
                    <div class="form-group">
                        <label class="control-label">ログインID</label>
                        <input class="form-control" type="text" name="loginId">

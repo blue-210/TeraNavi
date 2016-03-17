@@ -33,7 +33,7 @@ import ttc.exception.business.ParameterInvalidException;
  *
  * @author Masaki
  */
-public class TopLoadCommunityCommand extends AbstractCommand{
+public class TopCommunityLoadCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
