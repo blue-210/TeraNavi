@@ -52,7 +52,7 @@
 						<li><a href="TeraNavi/front/top#top" data-toggle="tab">Top</a></li>
 						<li><a href="#blog" data-toggle="tab" >ブログ</a></li>
 						<li><a href="#community" data-toggle="tab" >コミュニティ</a></li>
-						<li><a href="" data-toggle="tab">タグ</a></li>
+						<li><a href="/TeraNavi/front/showTag">タグ</a></li>
 						<li>
 							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
 						</li>
