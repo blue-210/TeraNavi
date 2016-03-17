@@ -71,7 +71,7 @@ public class FileUploadServlet extends HttpServlet {
 					String fileName = item.getName();
 					if ((fileName != null) && (!fileName.equals(""))) {
 //						File target = new File(fileName);
-//						
+//
 //						fileName = target.getName();
 
 //						ファイルの拡張子を保持する変数
@@ -79,7 +79,7 @@ public class FileUploadServlet extends HttpServlet {
 						String suffix = "";
 						int point = fileName.lastIndexOf(".");
 //						ファイル名から一番最後の.の位置を取得
-						
+
 						if (point != -1) {	//ファイル名に.が含まれているかどうかのチェック
 //							最後の.の次の文字から先を拡張子として切り取る
 							suffix = fileName.substring(point);
@@ -93,15 +93,15 @@ public class FileUploadServlet extends HttpServlet {
 						String result = null;
 
 						if (resizeFlg) {
-							
+
 							result = ImageResizer.doResize(new File(path + "/" + fileName), width, height, path + "/" + fileName);
 						} else {
 							result = fileName;
-//							
+//
 						}
 
 //						戻り値としてサーバ上の画像のパスを返す
-						resultPath = "http://" + hostName + "/TeraNavi/imgPath/" + result;
+						resultPath = "https://" + hostName + "/TeraNavi/imgPath/" + result;
 					}
 				}
 
