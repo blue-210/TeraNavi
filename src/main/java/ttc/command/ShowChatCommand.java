@@ -91,8 +91,10 @@ public class ShowChatCommand extends AbstractCommand{
                 ChatBean bean = new ChatBean();
                 bean.setFkTopicId(topicId);
                 result.add(bean);
-
-            }
+				resultMap.put("empty","true");
+            }else{
+				resultMap.put("empty","false");
+			}
             
 			if(userFlag && communityFlag){
 				//ログインしている場合にログインユーザがそのコミュニティのメンバーかどうかを調べる処理
