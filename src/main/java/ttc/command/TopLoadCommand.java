@@ -52,11 +52,11 @@ public class TopLoadCommand extends AbstractCommand{
 
 			while(itr.hasNext()){
 				//取得したarticleに対してコメントとタグをセットする
-				
+
 				ArticleBean ab = (ArticleBean)itr.next();
 				param1.clear();
-				
-				
+
+
 				param1.put("articleId", ab.getArticleId());
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
@@ -149,66 +149,6 @@ public class TopLoadCommand extends AbstractCommand{
 
 
 			param1.clear();
-
-			//人気タグ取得
-			factory = AbstractDaoFactory.getFactory("tag");
-			dao = factory.getAbstractDao();
-
-			param1.put("topFlg","true");
-			//登録された記事の多い順にTagBeanを3件まで取得（なければ3件未満の可能性も）
-			List tags = dao.readAll(param1);
-
-
-			param1.clear();
-
-			param1.put("whereTagIdFlg", "true");
-
-			List tagArticleIdList = new ArrayList();
-			for(int i=0; i<tags.size(); i++){
-				TagBean tb = (TagBean)tags.get(i);
-				param1.put("tagId",tb.getId() );
-				//多い順でとったタグからそのタグに登録されている記事ID一覧を取得
-				List list = dao.readAll(param1);
-
-				tagArticleIdList.add(list);
-			}
-
-			param1.clear();
-
-			factory = AbstractDaoFactory.getFactory("article");
-			dao = factory.getAbstractDao();
-
-			List tagArticles = new ArrayList();
-
-			int tagDeleteCount = 0;
-			for(int i=0; i<tagArticleIdList.size(); i++){
-				List list = (List)tagArticleIdList.get(i);
-				List oneTagArticles = new ArrayList();
-				for(int j=0; j<list.size(); j++){
-					String articleId = (String)list.get(j);
-					param1.put("articleId", articleId);
-					param1.put("flag", "0");
-					Bean article = dao.read(param1);
-					if(article!=null){
-						oneTagArticles.add(article);
-					}
-					param1.clear();
-				}
-				if(oneTagArticles.isEmpty()){
-					tags.remove(tagDeleteCount);
-					System.out.println("tags.size="+tags.size());
-				}else{
-					tagDeleteCount++;
-					tagArticles.add(oneTagArticles);
-				}
-			}
-
-			result.put("tags",tags);
-			result.put("tagArticles",tagArticles);
-
-			//MySqlConnectionManager.getInstance().commit();
-            
-
 
 			resc.setResult(result);
             resc.setTarget("top");
