@@ -45,7 +45,7 @@ public class ShowMemberListCommand extends AbstractCommand{
 
 			Bean comm = abdao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 

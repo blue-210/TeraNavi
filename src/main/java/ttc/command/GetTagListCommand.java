@@ -82,7 +82,7 @@ public class GetTagListCommand extends AbstractCommand{
 				}
 			}
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			if(flag){

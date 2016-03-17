@@ -31,7 +31,10 @@ public class WriteChatCommand extends AbstractCommand{
             String topicId=reqc.getParameter("topicId")[0];
             String chatBody=reqc.getParameter("chatBody")[0];
 
-            Calendar c = Calendar.getInstance();
+			chatBody= chatBody.replaceAll("<script","&lt;script");
+			chatBody=chatBody.replaceAll("</script","&lt;/script");
+			
+			Calendar c = Calendar.getInstance();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date=sdf.format(c.getTime());
 

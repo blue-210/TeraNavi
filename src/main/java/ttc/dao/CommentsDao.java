@@ -91,7 +91,6 @@ public class CommentsDao implements AbstractDao{
         try{
             Connection cn = null;
             cn = MySqlConnectionManager.getInstance().getConnection();
-            MySqlConnectionManager.getInstance().beginTransaction();
             StringBuffer sql = new StringBuffer();
 			sql.append("select comment_id,fk_article_id,");
             sql.append("comment_body,");
@@ -118,7 +117,7 @@ public class CommentsDao implements AbstractDao{
 
 
         }catch(SQLException e){
-            MySqlConnectionManager.getInstance().rollback();
+            //MySqlConnectionManager.getInstance().rollback();
             throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{

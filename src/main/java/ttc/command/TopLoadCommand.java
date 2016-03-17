@@ -51,8 +51,12 @@ public class TopLoadCommand extends AbstractCommand{
 			Iterator itr = articles.iterator();
 
 			while(itr.hasNext()){
+				//取得したarticleに対してコメントとタグをセットする
+				
 				ArticleBean ab = (ArticleBean)itr.next();
 				param1.clear();
+				
+				
 				param1.put("articleId", ab.getArticleId());
 				factory = AbstractDaoFactory.getFactory("tag");
 				dao = factory.getAbstractDao();
@@ -202,7 +206,7 @@ public class TopLoadCommand extends AbstractCommand{
 			result.put("tags",tags);
 			result.put("tagArticles",tagArticles);
 
-			MySqlConnectionManager.getInstance().commit();
+			//MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 

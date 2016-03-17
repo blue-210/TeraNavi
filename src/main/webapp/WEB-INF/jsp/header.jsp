@@ -1,5 +1,12 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
+<script src="/TeraNavi/JavaScriptServlet"></script>
+
+<%
+	String token = ttc.util.CsrfUtil.getToken();
+	session.setAttribute("token",token);
+%>
+
 
 <div class="hidden-xs">
 	<nav class="navbar navbar-default navbar-fixed-top" id="header_bar">
@@ -55,7 +62,7 @@
 
 <!-- 利用規約同意モーダル -->
 <div class="fade modal text-justify" id="agreeModal">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 		<div class="modal-header">
 		  <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
@@ -69,6 +76,26 @@
 				および<a href="/TeraNavi/showPolicy" target="_blank">プライバシーポリシー</a>に同意する必要があります
 			</p>
 			<hr>
+			<div class="row">
+				<div class="col-md-12" style="width:100%; height:40%; overflow:auto;">
+					<div id="ruleMainModal">
+						<h1></h1>
+						<p class='text-center'>申し訳ございません。正しく利用規約を読み込めませんでした</p>
+						<p class='text-center'>ページを更新するか、上部のリンクから確認してください。</p>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-12" style="width:100%; height:40%; overflow:auto;">
+					<div id="policyMainModal">
+						<h1></h1>
+						<p class='text-center'>申し訳ございません。正しくプライバシーポリシーを読み込めませんでした</p>
+						<p class='text-center'>ページを更新するか、上部のリンクから確認してください。</p>
+					</div>
+				</div>
+			</div>
+			<hr>
 			<form name="Form1" method="post" action="#">
 				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
 				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
@@ -80,7 +107,10 @@
 		</div>
 	  </div>
 	</div>
- </div>
+</div>
+
+<script src="/TeraNavi/js/loadRuleModal.js"></script>
+<script src="/TeraNavi/js/loadPolicyModal.js"></script>
 
 <script>
 	//モーダル出す
@@ -122,7 +152,7 @@
 							<li><a href="/TeraNavi/front/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="headermenu" href="/TeraNavi/sign">新規登録</a><li>
+							<li><a class="headermenu" onclick="showAgreeModal()">新規登録</a><li>
 							<li><a data-toggle="modal" href="#loginmodal">Login</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -169,6 +199,7 @@
 				</div>
 				<div class="modal-body">
 					<form action="/TeraNavi/front/login" method="post">
+						<input type="hidden" name="token" value="<%=token %>">
 						<div class="form-group">
 							<label class="control-label" for="exampleInputId">ログインID</label>
 							<input class="form-control" required="" name="loginId" type="text">

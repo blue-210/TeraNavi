@@ -46,7 +46,7 @@ public class ShowCommunityListCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             List result =dao.readAll(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			resc.setResult(result);

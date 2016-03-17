@@ -88,7 +88,7 @@ public class ArticleDao implements AbstractDao{
 
 
         }catch(SQLException e){
-            MySqlConnectionManager.getInstance().rollback();
+            //MySqlConnectionManager.getInstance().rollback();
             throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{
@@ -228,8 +228,7 @@ public class ArticleDao implements AbstractDao{
                     results.add( contents );
                 }
                 //-----------------------------------------------------------------------
-            }
-            else{
+            }else{
 
                 //記事一覧の取得----------------------------------------------------------------------
                 sql.append("select article_id, article_title, article_body, ");
@@ -243,7 +242,7 @@ public class ArticleDao implements AbstractDao{
                     sql.append((String)map.get("where"));
                 }
 
-                sql.append("order by article_created_date desc ");
+				sql.append("order by article_created_date desc ");
 
                 if(map.containsKey("option")){
                     sql.append((String)map.get("option"));
@@ -274,7 +273,7 @@ public class ArticleDao implements AbstractDao{
             }
 
         }catch(SQLException e){
-            MySqlConnectionManager.getInstance().rollback();
+            //MySqlConnectionManager.getInstance().rollback();
             throw new IntegrationException(e.getMessage(),e);
         }finally{
             try{

@@ -24,15 +24,14 @@ public class CommunitySettingCommand extends AbstractCommand{
         try{
             RequestContext reqc = getRequestContext();
 
-            String loginId=reqc.getParameter("userId")[0];
+            String loginId = reqc.getParameter("userId")[0];
+            String communityId = reqc.getParameter("commId")[0];
 
             String communityName = reqc.getParameter("commName")[0];
             String communityProfile = reqc.getParameter("commProfile")[0];
             String iconPath = reqc.getParameter("iconPath")[0];
             String headerPath = reqc.getParameter("headerPath")[0];
             String deleteFlag = reqc.getParameter("deleteFlag")[0];
-            String communityId = reqc.getParameter("commId")[0];
-            String userId=reqc.getParameter("userId")[0];
 
             //土屋がやらかした意味のない処理
             // String nowIconPath=reqc.getParameter("nowIconPath")[0];

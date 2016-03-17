@@ -39,7 +39,7 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
 
 			UserBean ub = (UserBean)dao.read(params);
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 			

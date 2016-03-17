@@ -12,18 +12,6 @@
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
 	<body>
-		<div id="fb-root"></div>
-		<script>(function (d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id))
-					return;
-				js = d.createElement(s);
-				js.id = id;
-				js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=584104165076285";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));</script>
-
-
 		<%-- ヘッダー部分のHTMLを読み込み --%>
 		<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
@@ -65,22 +53,6 @@
 				<div class="col-md-4 col-md-offset-4 hidden-xs">
 					<pre style="position:relative; margin-top:-100px;">${result.blog.explanation}</pre>
 				</div>
-				<div class="col-md-2 col-md-offset-2 hidden-xs">
-					<h3 class="text-warning">月別アーカイブ</h3>
-					<div class="btn-group btn-block">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-							月を選択 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<c:forEach var="contents" items="${result.archives}">
-								<li><a href="/TeraNavi/front/showArticleList?writeUserId=${result.user.id}&scope=${contents.year}${contents.month}">
-										${contents.year}年${contents.month}月(${contents.count})
-									</a></li>
-								</c:forEach>
-						</ul>
-					</div>
-				</div>
-
 			</div>
 			<div class="container">
 
@@ -88,13 +60,13 @@
 
 					<div class="row">
 						<div class="col-md-6 col-xs-12 col-md-offset-1">
-							<h1 class="text-warning">新着記事</h1>
+							<h1 class="text-warning">${fn:substring(result.articles[0].createdDate, 0, 7)}の記事</h1>
 						</div>
 					</div>
 
 					<div class="col-md-10 col-md-offset-1 col-xs-12">
-						<input type="hidden" id="articlesSize" value="${fn:length(result.articleList)}">
-						<c:forEach var="article" items="${result.articleList}"  begin="0" end="6" varStatus="status">
+						<input type="hidden" id="articlesSize" value="${fn:length(result.articles)}">
+						<c:forEach var="article" items="${result.articles}" varStatus="status">
 							<div class="row col-md-12 col-xs-12 well mobile-content-space" style="margin-left:0px;">
 								<div class="col-md-9 col-xs-12">
 									<div class="hidden-xs">
@@ -128,40 +100,20 @@
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 		<script>
-			$(function () {
-
+			$(function(){
 				//記事本文のHTMLタグ除去-----------------------------------------------------
-					var size = $("#articlesSize").val();
-					for(var i=0; i<size; i++){
-						var str = $("#"+i).text();
-						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-						$("#"+i).text(body.substr(0,30));//20文字分かえす
-					}
+				var size = $("#articlesSize").val();
+				console.log("articlesSize="+size);
+				for(var i=0; i<size; i++){
+					var str = $("#"+i).text();
+					console.log("無加工="+str);
+					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+					console.log("加工済み="+body);
+					$("#"+i).text(body.substr(0,30));
+				}
 				//--------------------------------------------------------------------------
 			});
 		</script>
-		<script>
-			$("#dd").click(function () {
-				$('.bun').remove();
-				$('#cauTile').html('警告名：<input type="text" name="cautionTitle">');
-				$('#cauBody').html('警告する内容：<input type="text" name="cautionBody" >');
-				$('#cauBody').append('<input type="hidden" name="url" value="location.href">');
-				$('#sub').html('<input type="submit" value="この記事を警告">');
-			});
-		</script>
-		<script>
-			!function (d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-				if (!d.getElementById(id)) {
-					js = d.createElement(s);
-					js.id = id;
-					js.src = p + '://platform.twitter.com/widgets.js';
-					fjs.parentNode.insertBefore(js, fjs);
-				}
-			}(document, 'script', 'twitter-wjs');
-		</script>
 
-		<script src="/TeraNavi/js/articleCaution.js"></script>
-		<script src="/TeraNavi/js/commentPost.js"></script>
 	</body>
 </html>

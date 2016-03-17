@@ -10,39 +10,48 @@ import ttc.exception.integration.IntegrationException;
 
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
+import ttc.dao.UsersCommunitiesDao;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import ttc.exception.business.ParameterInvalidException;
 
-public class CommunitySearchCommand extends AbstractCommand{
+public class DeleteCommunityCommand extends AbstractCommand{
     public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
 
             Map params = new HashMap();
+            Map result = new HashMap();
 
-            String keyword = reqc.getParameter("keyword")[0];
-
-            String where = "where community_name like ? and community_delete_flag=0";
-
-            params.put("where",where);
-
-            params.put("value",keyword);
+            params.put("commId",reqc.getParameter("commId")[0]);
+            params.put("deleteFlag", "true");
 
             MySqlConnectionManager.getInstance().beginTransaction();
 
             AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
             AbstractDao dao = factory.getAbstractDao();
-            List result =dao.readAll(params);
+            // deleteFlagを削除にupdate
+            dao.update(params);
 
-            //MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().commit();
+
+            // 削除した結果を取得する処理
+            // 値を一度クリア
+            params.clear();
+            // whereで絞り込み条件を、valueにはバインド変数にセットする値を入れる
+            // ユーザーが所属し、かつ退会していないコミュニティを取得する条件を設定
+            params.put("where","where community_members_list.fk_user_id=?");
+            System.out.println(reqc.getParameter("userId")[0]);
+            params.put("value", reqc.getParameter("userId")[0]);
+
+            List communities = dao.readAll(params);
+
+            result.put("community", communities);
             MySqlConnectionManager.getInstance().closeConnection();
 
-			resc.setResult(result);
-
-            resc.setTarget("communitySearchResult");
+		    resc.setResult(result);
 
             return resc;
         }catch(NullPointerException e){

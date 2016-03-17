@@ -8,7 +8,7 @@
 		<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-			<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
+		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 	</head>
 	<body>
 
@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<p> <span  class="col-md-12 text-center" style="position:relative;margin-top:-200px;background-color:rgba(255,255,255,0.7);font-size: 60px;">
-							${result.blog.title}</span>
+							<a href="/TeraNavi/front/showBlog?bloguserId=${result.blog.userId}" class="text-muted">${result.blog.title}</a></span>
 					</p>
 
 				</div>
@@ -178,7 +178,8 @@
 					</div>
 					<div id="commentPostDiv">
 						<c:forEach var="comment" items="${result.article.comments}">
-							<div class="row">
+							<!--PCばんのコメント欄-->
+							<div class="row hidden-xs">
 								<div class="col-md-1 col-md-offset-2">
 									<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}">
 										<img src="${comment.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
@@ -201,8 +202,38 @@
 									</ul>
 								</div>
 							</div>
+							<!--MOBILEばんのコメント欄-->
+							<div class="row visible-xs">
+								<div class="col-xs-2" style="padding-right:0px;">
+									<a href="/TeraNavi/front/mypage?paramUserId=${comment.userId}">
+										<img src="${comment.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+										<p class="">${comment.userName}</p>
+									</a>
+								</div>
+								<div class="col-xs-10">
+									<div class="row">
+										<pre><c:out value="${comment.commentBody}" /></pre>
+									</div>
+									<div class="row" style="text-align:right;">
+										<small>${comment.commentDate}</small>
+									</div>
+									<div class="row">
+										<a href="#" class="dropdown pull-right dropdown-toggle" data-toggle="dropdown">
+											<i class="-o -square fa fa-ellipsis-h fa-fw fa-lg text-muted"></i>
+										</a>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li>
+												<a onclick="commentCaution('${comment.userId}')">このコメントを通報する</a>
+											</li>
+											<li>
+												<a onclick="commentUserCaution('${comment.userId}')">このユーザを通報する</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 							<div class="row">
-								<div class="col-md-8 col-md-offset-2">
+								<div class="col-xs-12">
 									<hr>
 								</div>
 							</div>

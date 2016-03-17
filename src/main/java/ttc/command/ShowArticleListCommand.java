@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ttc.bean.Bean;
+import ttc.bean.BlogBean;
+
 import ttc.util.factory.AbstractDaoFactory;
 import ttc.dao.AbstractDao;
 import ttc.exception.business.ParameterInvalidException;
@@ -26,6 +28,7 @@ public class ShowArticleListCommand extends AbstractCommand{
             Map results = new HashMap();
 
             String userId = reqc.getParameter("writeUserId")[0];
+            System.out.println(userId);
 
             String scope = null;//期間を指定して投稿記事を取得する場合つかう
             boolean scopeFlag = false;
@@ -60,12 +63,26 @@ public class ShowArticleListCommand extends AbstractCommand{
 			Bean user = dao.read(params);
 			results.put("user", user);
 
-            MySqlConnectionManager.getInstance().commit();
+            //ブログ情報取得----------------------------------------------------
+            factory = AbstractDaoFactory.getFactory("blog");
+            dao = factory.getAbstractDao();
+
+            params.put("userId",userId);
+            BlogBean bb = (BlogBean)dao.read(params);
+            System.out.println("こんにてゃ"+bb);
+            results.put("blog", bb);
+
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
 
             resc.setResult(results);
-            resc.setTarget("showArticleListResult");
+
+            if(scopeFlag==false){
+                resc.setTarget("showArticleListResult");
+            }else{
+                resc.setTarget("monthlyArchive");
+            }
 
             return resc;
 

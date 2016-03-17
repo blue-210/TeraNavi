@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="/TeraNavi/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/TeraNavi/js/community.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="/TeraNavi/css/comm.css">
@@ -35,8 +36,6 @@
                     <script>
                       $("#commMgrTab").attr("class","active");
                     </script>
-
-                    </script>
                 </div>
                 <!--モバイル用のドロップダウンメニュー-->
                 <div class="container visible-xs">
@@ -46,12 +45,17 @@
                             <li id="mypageTab">
                                 <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
                             </li>
+                            <li>
+                                <a href="/TeraNavi/articlepost">記事を書く</a>
+                            </li>
+                            <li>
+                                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+                            </li>
+                            <li>
+                                <a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+                            </li>
                             <c:choose>
                                 <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
-
-                                    <li>
-                                        <a href="/TeraNavi/front/showDraftArticleList?writeUserId=${sessionScope.loginUser.id}">下書き一覧</a>
-                                    </li>
                                     <li>
                                         <a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
                                     </li>
@@ -62,12 +66,9 @@
                                     </li>
                                 </c:otherwise>
                             </c:choose>
-                            <li>
-                                <a href="/TeraNavi/front/commmy?groupBy=group+By+community_members_list.fk_community_id+&where=community_members_list.fk_user_id%3D+%3F+and+communities.community_delete_flag+%3D0+and+community_members_list.community_withdrawal_flag+%3D0&target=create">コミュニティ管理</a>
-                            </li>
-<!--									<li>
+							<li>
                                 <a href="/TeraNavi/front/showDmList">DM</a>
-                            </li>-->
+                            </li>
                             <br><br>
                             <li>
                                 <a href="/TeraNavi/withdraw">退会</a>
@@ -93,32 +94,19 @@
                             <c:forEach var="community" items="${result.list}">
                                 <c:if test="${community.adminFlag eq 1}">
                                     <tr id="tableRow${community.id}">
-                                        <td>
+                                        <td class="col-md-1 col-xs-1">
+                                            <img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
+                                        </td>
+                                        <td class="col-md-7 col-xs-7"><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
+                                        <td class="col-md-1 col-xs-1">
                                             <c:if test="${sessionScope.loginUser.id eq result.user.id}">
                                                 <a class="btn btn-default" href="/TeraNavi/front/showcomm?commId=${community.id}&edit=true">編集</button>
                                             </c:if>
                                         </td>
-                                        <td>
-                                            <img src="${community.iconPath}" class="img-thumbnail" style="width:50px;height:50px;">
-                                        </td>
-                                        <td><a href="/TeraNavi/front/showcomm?commId=${community.id}"><p class="text-muted">${community.name}</p></td>
-                                        <td>
+                                        <td class="col-md-1 col-xs-1">
                                             <c:if test="${sessionScope.loginUser.id eq result.user.id}">
                                                 <div class="edit">
-                                                    <form action="commSetting" method="post" name="showDel">
-                                                        <input type="hidden" name="commId" value="${community.id}">
-                                                        <input type="hidden" name="commName" value="${community.name}">
-                                                        <input type="hidden" name="commProfile" value="${community.profile}">
-                                                        <input type="hidden" name="iconPath" value="${community.iconPath}">
-                                                        <input type="hidden" name="headerPath" value="${community.headerPath}">
-                                                        <input type="hidden" name="nowIconPath" value="${community.iconPath}">
-                                                        <input type="hidden" name="nowHeaderPath" value="${community.headerPath}">
-                                                        <input type="hidden" name="deleteFlag" value="${community.deleteFlag}">
-                                                        <input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
-                                                        <input type="hidden" name="del" value="del">
-                                                        <input type="hidden" name="target" value="communityDeleteResult">
-                                                        <button type="submit" class="btn btn-danger" id="showDel">削除</button>
-                                                    </form>
+                                                    <button type="button" class="btn btn-danger deleteConfirm" value="${community.id}">削除</button>
                                                 </div>
                                             </c:if>
                                         </td>
@@ -192,7 +180,7 @@
     		</div>
     	 </div>
 
-    	 <!-- 結果モーダル -->
+    	 <!-- 退会結果モーダル -->
     	  <div class="modal fade" id="withDrawResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     		<div class="modal-dialog">
     		  <div class="modal-content">
@@ -210,39 +198,42 @@
     		</div><!-- /.modal-dialog -->
     	  </div><!-- /.modal -->
 
-    	  <%-- 退会処理のjs --%>
-    	<script>
-    		$(function(){
+          <!-- コミュ削除確認モーダル -->
+          <div class="fade modal text-justify" id="deleteCommModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right[]" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  　<h4 class="modal-title text-center">確認</h4>
+                   </div>
+                  <div class="modal-body">
+                      <p class="text-center">本当に削除しますか？</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-block btn-danger" id="btn_delete" data-dismiss="modal">削除</button>
+                      <button type="button" class="btn btn-block btn-default" data-dismiss="modal">キャンセル</button>
+                  </div>
+                </div>
+              </div>
+           </div>
 
-    			var withDrawId;
-
-    			$(".btn_withDraw").on("click",function(){
-    				withDrawId = $(this).val();
-    				$("#withDrawModal").modal();
-    			});
-
-    			$("#btn_modalWithDraw").on("click",function(){
-
-    				$.ajax({
-    				  url: '/TeraNavi/front/withDrawComm',
-    				  type:'POST',
-    				  dataType: 'json',
-    				  data:{
-    					commId:withDrawId,
-    					ajax:'true'
-    				  }
-    			   })
-    				   .done(function(data) {
-    					   $("#withDrawResultModal").modal();
-    					   console.log("#tableRow"+withDrawId);
-    						$("#tableRow" + withDrawId).hide();
-    				   })
-    				   .fail(function() {
-    					   $("#withDrawResultMessage").text("退会できませんでした。もういちどお試しください。");
-    					   $("#withDrawResultModal").modal();
-    				   });
-    			});
-    		});
-    	</script>
-</body>
+           <!-- コミュ削除結果モーダル -->
+            <div class="modal fade" id="deleteResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <p id="deleteResultMessage" class="text-center">削除しました。</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </body>
 </html>

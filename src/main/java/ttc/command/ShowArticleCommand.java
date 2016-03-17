@@ -97,7 +97,7 @@ public class ShowArticleCommand extends AbstractCommand{
             //----------------------------------------------------------------
 
 
-            MySqlConnectionManager.getInstance().commit();
+            //MySqlConnectionManager.getInstance().commit();
             MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(result);
