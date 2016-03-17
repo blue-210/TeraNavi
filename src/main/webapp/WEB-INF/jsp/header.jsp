@@ -1,6 +1,6 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-<script src="/TeraNavi/js/loadPolicyModal.js"></script>
+
 <script src="/TeraNavi/js/loadRuleModal.js"></script>
 
 
@@ -84,7 +84,7 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row">
+<!--			<div class="row">
 				<div class="col-md-12" style="width:100%; height:40%; overflow:auto;">
 					<div id="policyMainModal">
 						<h1></h1>
@@ -94,6 +94,7 @@
 				</div>
 			</div>
 			<hr>
+-->
 			<form name="Form1" method="post" action="#">
 				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
 				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
@@ -113,6 +114,7 @@
 <script>
 	//モーダル出す
 	function showAgreeModal(){
+		loadRule();
 		$("#agreeModal").modal();
 	}
 
