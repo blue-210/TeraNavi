@@ -16,6 +16,7 @@ function topBlogLoad(){
 
 	.done(function(data){
 		var space = $("#departmentSpace");
+		space.empty();
 
 		// 各科ブログのデータの表示
 		for(var i in data.department){
@@ -88,6 +89,7 @@ function topBlogLoad(){
 		}
 		
 		var space2 = $("#blogSpace");
+		space2.empty();
 		
 		//人気ブログの表示
 		for(var i in data.blog){
