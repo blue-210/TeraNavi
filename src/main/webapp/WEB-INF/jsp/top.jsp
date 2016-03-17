@@ -27,7 +27,7 @@
 								<a href="TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
 							</li>
 							<li>
-								<a href="#blog" data-toggle="tab" class="text-warning">ブログ</a>
+								<a href="#blog" data-toggle="tab" class="text-warning" onclick="topBlogLoad();">ブログ</a>
 							</li>
 							<li>
 								<a href="#community" data-toggle="tab" class="text-warning">コミュニティ</a>
@@ -50,7 +50,7 @@
 				<div class="mask">
 					<ul class="list">
 						<li><a href="TeraNavi/front/top#top" data-toggle="tab">Top</a></li>
-						<li><a href="#blog" data-toggle="tab" >ブログ</a></li>
+						<li><a href="#blog" data-toggle="tab"  onclick="topBlogLoad();">ブログ</a></li>
 						<li><a href="#community" data-toggle="tab" >コミュニティ</a></li>
 						<li><a href="#tag" data-toggle="tab">タグ</a></li>
 
@@ -126,6 +126,8 @@
 
 		<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
+		<script src="/TeraNavi/js/topblog.js"></script>
+		
 		<script>
 
 			$(document).ready(function () {
@@ -137,13 +139,13 @@
 					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
 					$("#top"+i).text(body.substr(0,30));//30文字分かえす
 				}
-
-				size = $("#blogArticlesSize").val();
-				for(var i=0; i<size; i++){
-					var str = $("#blog"+i).text();
-					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-					$("#blog"+i).text(body.substr(0,30));//30文字分かえす
-				}
+//
+//				size = $("#blogArticlesSize").val();
+//				for(var i=0; i<size; i++){
+//					var str = $("#blog"+i).text();
+//					var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+//					$("#blog"+i).text(body.substr(0,30));//30文字分かえす
+//				}
 
 				var tagArticleCount = $("#tagArticleCount").val();
 				console.log("tagArticleCount"+tagArticleCount);
