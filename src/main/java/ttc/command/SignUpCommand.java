@@ -91,11 +91,6 @@ public class SignUpCommand extends AbstractCommand{
 //			セッションに保持するためのUserBeanの取得
 			UserBean ub = (UserBean)dao.read(params);
 			
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-			
-
-			
 
             resc.setResult(ub);
             resc.setTarget("signupResult");
@@ -105,6 +100,9 @@ public class SignUpCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

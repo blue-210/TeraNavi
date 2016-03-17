@@ -18,13 +18,13 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script src="/TeraNavi/js/chat.js"></script>
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
-		
+
 	</head>
 	<body>
 		<%-- ヘッダー部分のHTMLを読み込み --%>
 		<jsp:include page="/WEB-INF/jsp/header.jsp"/>
-		
-		
+
+
 		<%
 			String token = ttc.util.CsrfUtil.getToken();
 			session.setAttribute("token",token);
@@ -128,7 +128,7 @@
 			<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 			<input type="hidden" name="communityId" value="${result.community.id}">
 			<div class="hidden-xs" id="submit_button">
-				<button id="chatwrite" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
+				<button id="chatwrite" class="btn btn-default" type="button" name="button" style="margin-right:65%;">送信</button>
 			</div>
 			<div class="visible-xs col-xs-12">
 				<br>
@@ -149,7 +149,7 @@
 
 		ajaxSettingsFile = {
 			type: 'post',
-			url: '/TeraNavi/upload/article', 
+			url: '/TeraNavi/upload/article',
 			processData: false,
 			contentType: false,
 			cache: false,
@@ -160,7 +160,7 @@
 				if(text.length>0){
 					text+="<br>";
 				}
-				
+
 				$("#chatBodyArea").val(text + "<img src='" + data.result+"' width='100%'>");
 			}
 		};
@@ -187,8 +187,8 @@
 			event.preventDefault();
 		}
 
-		
-	
+
+
 	</script>
 
 </body>

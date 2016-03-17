@@ -98,7 +98,7 @@ public class MypageLoadCommand extends AbstractCommand{
 				result.put("community",nCommunities);
 			}
 
-			MySqlConnectionManager.getInstance().closeConnection();
+			
 			
 			result.put("loginFlag",loginFlag);
 
@@ -111,7 +111,10 @@ public class MypageLoadCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 
 }
