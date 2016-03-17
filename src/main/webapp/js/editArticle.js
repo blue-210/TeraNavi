@@ -102,7 +102,7 @@ $(function () {
 
         var ajaxSettings;
         var ajax;
-        
+
         ajaxSettings = {
                 type: 'post',
                 url: 'upload',
@@ -209,11 +209,16 @@ $(function () {
 				title: $("#inputTitle").val(),
 				body: tinyMCE.get('inputBody').getContent(),
 				tag: checks,
-				ajax: 'true'
+				ajax: 'true',
+				token:$("#tokenInput").val()
 			}
 		})
 				//    成功時の処理
 				.done(function (data) {
+					$("#inputTitle").val("");
+                    tinyMCE.get('inputBody').setContent("");
+
+                    $("[name='chTag']:checked").prop("checked",false);
 					$("#editArticleResultModal").modal();
 				})
 				//    失敗時の処理
@@ -244,7 +249,8 @@ $(function () {
                 title: $("#inputTitle").val(),
                 body: $("#inputBody").val(),
                 tag: checks,
-                ajax: 'true'
+                ajax: 'true',
+				token:$("#tokenInput").val()
             }
         })
             //    成功時の処理
@@ -273,13 +279,18 @@ $(function () {
 				status: "1",
 				title: $("#inputTitle").val(),
 				body: tinyMCE.get('inputBody').getContent(),
-				ajax: 'true'
+				ajax: 'true',
+				token:$("#tokenInput").val()
 			}
 		})
 				//    成功時の処理
 				.done(function (data) {
 					$("#editArticleResultMessage").text("記事の編集結果を下書き保存しました");
 					$("#editArticleResultModal").modal();
+					$("#inputTitle").val("");
+                    tinyMCE.get('inputBody').setContent("");
+
+                    $("[name='chTag']:checked").prop("checked",false);
 				})
 				//    失敗時の処理
 				.fail(function () {
@@ -314,7 +325,8 @@ $(function () {
                     title: $("#inputTitle").val(),
                     body: $("#inputBody").val(),
                     tag: checks,
-                    ajax: 'true'
+                    ajax: 'true',
+					token:$("#tokenInput").val()
                 }
             })
                     //    成功時の処理
