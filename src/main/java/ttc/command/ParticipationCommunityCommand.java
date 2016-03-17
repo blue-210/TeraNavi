@@ -35,14 +35,14 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-            // いったんコミット。
-            MySqlConnectionManager.getInstance().commit();
+            
+            
 
             // insertした結果（参加したコミュを取得）
             CommunityBean cb = (CommunityBean)dao.read(params);
             params.put("community",cb);
 
-            MySqlConnectionManager.getInstance().closeConnection();
+            
 
             resc.setResult(params);
             // resc.setTarget("prticipationCommunityResult");
@@ -52,6 +52,9 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

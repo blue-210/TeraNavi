@@ -34,8 +34,6 @@ public class ShowDraftArticleListCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             List results = dao.readAll(params);
 
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setResult(results);
             resc.setTarget("showDraftArticleList");
@@ -46,6 +44,9 @@ public class ShowDraftArticleListCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

@@ -72,8 +72,7 @@ public class ShowArticleListCommand extends AbstractCommand{
             System.out.println("こんにてゃ"+bb);
             results.put("blog", bb);
 
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+            
 
 
             resc.setResult(results);
@@ -90,6 +89,9 @@ public class ShowArticleListCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

@@ -117,10 +117,6 @@ public class LoginCommand extends AbstractCommand{
                 throw new PasswordInvalidException("パスワードが違います",null);
             }
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
-
 
             return resc;
 
@@ -129,6 +125,9 @@ public class LoginCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

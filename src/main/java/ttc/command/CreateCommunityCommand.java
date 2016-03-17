@@ -81,8 +81,6 @@ public class CreateCommunityCommand extends AbstractCommand{
 			UserBean user = (UserBean)dao.read(params);
 
 
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
 
 
 			user.setCommunity(community);
@@ -97,6 +95,9 @@ public class CreateCommunityCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }
