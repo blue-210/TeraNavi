@@ -142,7 +142,7 @@
 //				}
 
 				var tagArticleCount = $("#tagArticleCount").val();
-				console.log("tagArticleCount"+tagArticleCount);
+				
 				for(var i=0; i<tagArticleCount; i++){
 					size = $("#tagArticlesSize"+i).val();
 					for(var j=0; j<size; j++){

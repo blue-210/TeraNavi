@@ -1,6 +1,6 @@
 <link href="/TeraNavi/css/header.css" rel="stylesheet" type="text/css">
 <script src="/TeraNavi/js/search.js"></script>
-<script src="/TeraNavi/js/loadRuleModal.js"></script>
+<%-- <script src="/TeraNavi/js/loadRuleModal.js"></script> --%>
 
 
 <div class="hidden-xs">
@@ -84,7 +84,7 @@
 			</div>
 			<hr>
 			<form name="Form1" method="post" action="#">
-				<input type="radio" value="同意しない" id="radio-no" name="agreement" checked onClick="changeDisabled()"><label for="radio-no"> 同意しない</label><br>
+				<input type="radio" value="同意しない" id="radio-no" name="agreement" onClick="changeDisabled()" checked><label for="radio-no"> 同意しない</label><br>
 				<input type="radio" value="同意する" id="radio-agree" name="agreement" onClick="changeDisabled()"><label for="radio-agree"> 同意する</label>
 			</form>
 		</div>
@@ -199,11 +199,21 @@
 
 		//同意するにチェックしたらボタンを有効化
 		function changeDisabled() {
-			if ( document.Form1["agreement"][1].checked ) {
+			var disagree = $("#radio-no");
+			var agree = $("#radio-agree");
+
+			if ( disagree[0].checked ) {
 				$("#btn_modalSign").prop("disabled",false);
 			} else {
 				$("#btn_modalSign").prop("disabled",true);
 			}
+
+			if ( agree[0].checked ) {
+				$("#btn_modalSign").prop("disabled",false);
+			} else {
+				$("#btn_modalSign").prop("disabled",true);
+			}
+
 		}
 		window.onload = changeDisabled;
 	</script>
