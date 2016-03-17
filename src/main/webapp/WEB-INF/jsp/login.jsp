@@ -21,7 +21,7 @@
            <div class="col-md-4 col-md-offset-4" style="margin-top:50px;">
                <h1 class="text-center">ログインページ</h1>
                <form action="/TeraNavi/front/login" method="post">
-                   <input type="hidden" name="token" value="<%=token %>">
+                   
                    <div class="form-group">
                        <label class="control-label">ログインID</label>
                        <input class="form-control" type="text" name="loginId">
