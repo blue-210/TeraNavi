@@ -50,9 +50,7 @@ public class SendContactCommand extends AbstractCommand{
 			params.put("category",reqc.getParameter("category")[0]);
 			
 			dao.insert(params);
-			
-            MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+
 
 			Map result = new HashMap();
 			result.put("userName","userName");
@@ -64,6 +62,9 @@ public class SendContactCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

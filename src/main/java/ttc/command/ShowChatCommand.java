@@ -91,8 +91,10 @@ public class ShowChatCommand extends AbstractCommand{
                 ChatBean bean = new ChatBean();
                 bean.setFkTopicId(topicId);
                 result.add(bean);
-
-            }
+				resultMap.put("empty","true");
+            }else{
+				resultMap.put("empty","false");
+			}
             
 			if(userFlag && communityFlag){
 				//ログインしている場合にログインユーザがそのコミュニティのメンバーかどうかを調べる処理
@@ -111,10 +113,7 @@ public class ShowChatCommand extends AbstractCommand{
 				
 			}
 			
-			//MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
-
+			
 			resultMap.put("chat",result);
 			resultMap.put("topic",topic);
 
@@ -128,6 +127,9 @@ public class ShowChatCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

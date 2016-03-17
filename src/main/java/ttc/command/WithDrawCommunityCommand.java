@@ -59,7 +59,6 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 
 			result.put("community", communities);
 
-            MySqlConnectionManager.getInstance().closeConnection();
 
             // result.put("commName",reqc.getParameter("commName")[0]);
             // communities表から取得した最新の参加コミュニティがWebApplicationControllerのhandleResponse内でsessionに反映される
@@ -71,6 +70,9 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

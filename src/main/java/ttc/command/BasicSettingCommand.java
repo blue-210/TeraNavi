@@ -66,8 +66,6 @@ public class BasicSettingCommand extends AbstractCommand{
 			resc.setResult(afterUb);
 
 
-			MySqlConnectionManager.getInstance().commit();
-			MySqlConnectionManager.getInstance().closeConnection();
 
             resc.setTarget("SettingResult");
 
@@ -76,6 +74,9 @@ public class BasicSettingCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

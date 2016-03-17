@@ -55,8 +55,7 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
             params.put("where", " where user_id=? ");
             results.put("user", dao.read(params));
 
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+
 
 			resc.setResult(results);
 
@@ -82,6 +81,9 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

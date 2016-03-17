@@ -46,8 +46,7 @@ public class PublicationRangeSettingCommand extends AbstractCommand{
 
             }
 			
-			MySqlConnectionManager.getInstance().commit();
-			MySqlConnectionManager.getInstance().closeConnection();
+
 
             resc.setTarget("publicationrangesetting");
 
@@ -57,6 +56,9 @@ public class PublicationRangeSettingCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

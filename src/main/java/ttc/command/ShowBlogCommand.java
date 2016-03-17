@@ -70,9 +70,7 @@ public class ShowBlogCommand extends AbstractCommand{
             UserBean ub = (UserBean)dao.read(params);
             result.put("user", ub);
 
-            //MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
-
+            
             resc.setResult(result);
 
 
@@ -90,6 +88,9 @@ public class ShowBlogCommand extends AbstractCommand{
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
-        }
+        }finally{
+			MySqlConnectionManager.getInstance().commit();
+            MySqlConnectionManager.getInstance().closeConnection();
+		}
     }
 }

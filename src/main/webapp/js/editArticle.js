@@ -1,16 +1,7 @@
-var ajaxSettings;
-var ajax;
+
 $(function () {
 
-    ajaxSettings = {
-        type: 'post',
-        url: 'upload',
-        processData: false,
-        contentType: false,
-        cache: false,
-        dataType: 'json'
 
-    };
 
 	//タグ一覧を取得する処理-----------------------------------------------------------
 	$.ajax({
@@ -103,18 +94,24 @@ $(function () {
     });
 
     $(document).on("change", "#inputImage", function () {
-        var file = this.files[0];
-        // ブラウザごとの違いをフォローする
-        window.URL = window.URL || window.webkitURL;
-
-        // Blob URLの作成
-        src = window.URL.createObjectURL(file);
-        $("#headimg").attr("src", src);
         uploadMobileImage();
     });
 
     function uploadMobileImage() {
         var files = document.getElementById("inputImage").files;
+
+        var ajaxSettings;
+        var ajax;
+        
+        ajaxSettings = {
+                type: 'post',
+                url: 'upload',
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: 'json'
+
+            };
 
         for (var i = 0; i < files.length; i++) {
             var f = files[i];
