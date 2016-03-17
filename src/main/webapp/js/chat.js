@@ -46,7 +46,8 @@ $(function () {
 				ajax: 'true',
 				topicId: $("input[name=topicId]").val(),
 				chatBody: $("textarea[name=chatBody]").val(),
-				userId: $("input[name=userId]").val()
+				userId: $("input[name=userId]").val(),
+				token:$("#tokenInput").val()
 			}
 		})
 				.done(function (data) {

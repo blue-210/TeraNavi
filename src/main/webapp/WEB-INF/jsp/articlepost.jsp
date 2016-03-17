@@ -54,6 +54,11 @@
 					response.sendRedirect("/TeraNavi/login");
 				}
 			%>
+			
+			<%
+				String token = ttc.util.CsrfUtil.getToken();
+				session.setAttribute("token",token);
+			%>
 
 			<%-- ヘッダー部分のHTMLを読み込み --%>
 			<jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -61,6 +66,8 @@
 			<%-- トップのナビゲーションを読み込み --%>
 			<jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
+			<input type="hidden" id="tokenInput" value="<%=token %>">
+			
 			<div class="section">
 				<div class="container">
 					<div class="row">
