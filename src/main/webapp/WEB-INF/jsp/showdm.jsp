@@ -77,7 +77,7 @@
 			<input type="hidden" name="userId" id="myId" value="${sessionScope.loginUser.id}">
 			<input type="hidden" name="receiveUserId" value="${result.partnerId}">
 			<div class="hidden-xs" id="submit_button" >
-				<button id="dmsend" class="btn btn-default btn-block" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
+				<button id="dmsend" class="btn btn-default btn-block" type="button" name="button" style="margin-right:140%;">送信</button>
 			</div>
 			<div class="visible-xs col-xs-12">
 				<br>

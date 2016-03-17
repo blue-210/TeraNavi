@@ -128,7 +128,7 @@
 			<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 			<input type="hidden" name="communityId" value="${result.community.id}">
 			<div class="hidden-xs" id="submit_button">
-				<button id="chatwrite" class="btn btn-default btn-block" type="button" name="button" style="margin-right:140%;width:25%;">送信</button>
+				<button id="chatwrite" class="btn btn-default btn-block" type="button" name="button" style="margin-right:140%;">送信</button>
 			</div>
 			<div class="visible-xs col-xs-12">
 				<br>
