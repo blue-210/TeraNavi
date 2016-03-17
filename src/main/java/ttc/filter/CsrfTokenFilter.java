@@ -13,12 +13,12 @@ import javax.servlet.FilterChain;
 
 
 public class CsrfTokenFilter implements Filter{
-  public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain){
+  public void doFilter(ServletRequest request, ServletResponse res, FilterChain chain){
     try{
-
+			HttpServletRequest req = (HttpServletRequest)request;
 
            // セッションが存在しない場合NULLを返す
-           HttpSession session = ((HttpServletRequest)req).getSession();
+           HttpSession session = req.getSession();
 		   String token = null;
 		   String paramToken = null;
 
@@ -28,7 +28,7 @@ public class CsrfTokenFilter implements Filter{
 				token = (String)session.getAttribute("token");
 				paramToken = req.getParameter("token");
 
-                System.out.println("token="+token+"  paramToken="+paramToken);
+                System.out.println("パス情報="+((HttpServletRequest)req).getPathInfo()+"\ttoken="+token+"\tparamToken="+paramToken);
 
                if(token.equals(paramToken)){
                    // session内のトークンとパラメータとして送られてきたトークンを比較
@@ -46,8 +46,7 @@ public class CsrfTokenFilter implements Filter{
            }
 
 
-    }catch (ServletException se){
-    }catch (IOException e){
+    }catch (ServletException | IOException se){
     }
 
   }
