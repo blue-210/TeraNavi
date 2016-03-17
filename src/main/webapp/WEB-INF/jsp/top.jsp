@@ -11,7 +11,6 @@
 		<link rel="stylesheet" href="/TeraNavi/css/navbar.css" type="text/css">
 		<script type="text/javascript" src="/TeraNavi/js/footerFixed.js"></script>
 		<script type="text/javascript" src="/TeraNavi/js/community.js"></script>
-
 		<jsp:include page="/WEB-INF/jsp/googleanalytics.jsp"/>
 		<title>TeraNavi TOP</title>
 	</head>
@@ -25,7 +24,7 @@
 					<div class="col-xs-10 col-xs-offset-1">
 						<ul class="lead nav nav-justified nav-tabs">
 							<li class="active">
-								<a href="TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
+								<a href="/TeraNavi/front/top#top" data-toggle="tab" class="text-warning">TOP</a>
 							</li>
 							<li>
 								<a href="#blog" data-toggle="tab" class="text-warning" onclick="topBlogLoad();">ブログ</a>
@@ -34,7 +33,7 @@
 								<a href="/TeraNavi/front/TopLoadCommunity" class="text-warning">コミュニティ</a>
 							</li>
 							<li>
-								<a href="#tag" data-toggle="tab" class="text-warning">タグ</a>
+								<a href="/TeraNavi/front/showTag" id="showtags" class="text-warning">タグ</a>
 							</li>
 							<li>
 								<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
@@ -52,13 +51,11 @@
 					<ul class="list">
 						<li><a href="TeraNavi/front/top#top" data-toggle="tab">Top</a></li>
 						<li><a href="#blog" data-toggle="tab" >ブログ</a></li>
-						<li><a href="/TeraNavi/front/TopLoadCommunity">コミュニティ</a></li>
-						<li><a href="#tag" data-toggle="tab">タグ</a></li>
-
+						<li><a href="#community" data-toggle="tab" >コミュニティ</a></li>
+						<li><a href="" data-toggle="tab">タグ</a></li>
 						<li>
 							<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}" class="text-warning">マイページ</a>
 						</li>
-
 					</ul>
 				</div>
 			</nav>
