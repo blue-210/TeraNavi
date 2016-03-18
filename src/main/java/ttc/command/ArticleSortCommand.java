@@ -30,7 +30,8 @@ public class ArticleSortCommand extends AbstractCommand{
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("sort");
 			AbstractDao dao = factory.getAbstractDao();
 
-			
+			MySqlConnectionManager.getInstance().commit();
+            
 
 			resc.setTarget("SerchResult");
 			resc.setResult(dao.readAll(params));
@@ -41,8 +42,7 @@ public class ArticleSortCommand extends AbstractCommand{
 		}catch(IntegrationException e){
 				throw new BusinessLogicException(e.getMessage(),e);
 		}finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
 
 	}

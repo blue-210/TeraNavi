@@ -44,7 +44,7 @@ public class BlogSettingCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.update(params);
 
-            
+            MySqlConnectionManager.getInstance().commit();
 
 			resc.setResult(params);
             resc.setTarget("blogSettingResult");
@@ -55,7 +55,7 @@ public class BlogSettingCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

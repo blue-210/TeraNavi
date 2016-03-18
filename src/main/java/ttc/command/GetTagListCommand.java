@@ -90,6 +90,9 @@ public class GetTagListCommand extends AbstractCommand{
 				resc.setResult(tags);
 				
 			}
+			
+			MySqlConnectionManager.getInstance().commit();
+            
 
             return resc;
 
@@ -98,8 +101,7 @@ public class GetTagListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

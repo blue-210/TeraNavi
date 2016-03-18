@@ -57,14 +57,16 @@ public class SendContactCommand extends AbstractCommand{
 			
 			resc.setResult(result);
 
+			MySqlConnectionManager.getInstance().commit();
+            
+			
             return resc;
         }catch(NullPointerException e){
 			throw new ParameterInvalidException("入力内容が足りません", e);
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

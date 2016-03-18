@@ -42,7 +42,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
             CommunityBean cb = (CommunityBean)dao.read(params);
             params.put("community",cb);
 
-            
+            MySqlConnectionManager.getInstance().commit();
 
             resc.setResult(params);
             // resc.setTarget("prticipationCommunityResult");
@@ -53,7 +53,7 @@ public class ParticipationCommunityCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

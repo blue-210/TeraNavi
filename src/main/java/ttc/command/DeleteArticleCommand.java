@@ -53,7 +53,8 @@ public class DeleteArticleCommand extends AbstractCommand{
                 params.put("flag", "0");
                 List articles = dao.readAll( params );
                 resc.setResult(articles);
-
+				
+				MySqlConnectionManager.getInstance().commit();
                 
             }
 
@@ -64,7 +65,7 @@ public class DeleteArticleCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

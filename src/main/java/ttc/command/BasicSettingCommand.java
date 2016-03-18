@@ -65,7 +65,7 @@ public class BasicSettingCommand extends AbstractCommand{
 			UserBean afterUb = (UserBean)dao.read(params);
 			resc.setResult(afterUb);
 
-
+			MySqlConnectionManager.getInstance().commit();
 
             resc.setTarget("SettingResult");
 
@@ -75,7 +75,7 @@ public class BasicSettingCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

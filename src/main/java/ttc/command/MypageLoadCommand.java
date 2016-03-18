@@ -105,6 +105,8 @@ public class MypageLoadCommand extends AbstractCommand{
 			resc.setResult(result);
             resc.setTarget("mypage");
 
+			MySqlConnectionManager.getInstance().commit();
+			
             return resc;
 
         }catch(NullPointerException e){
@@ -112,7 +114,7 @@ public class MypageLoadCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

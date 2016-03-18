@@ -45,7 +45,7 @@ public class CommentPostCommand extends AbstractCommand{
             dao.insert(params);
 			List result = dao.readAll(params);
 
-            
+            MySqlConnectionManager.getInstance().commit();
 
             resc.setResult(result);
 
@@ -55,7 +55,7 @@ public class CommentPostCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

@@ -33,7 +33,7 @@ public class TagSearchCommand extends AbstractCommand{
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("tagsearch");
 			AbstractDao dao = factory.getAbstractDao();
 
-			
+			MySqlConnectionManager.getInstance().commit();
 
 			resc.setTarget("tagsearch_show");
 			resc.setResult(dao.readAll(params));
@@ -44,7 +44,7 @@ public class TagSearchCommand extends AbstractCommand{
 		}catch(IntegrationException e){
 				throw new BusinessLogicException(e.getMessage(),e);
 		}finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
 

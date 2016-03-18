@@ -82,6 +82,8 @@ public class ShowArticleListCommand extends AbstractCommand{
             }else{
                 resc.setTarget("monthlyArchive");
             }
+			
+			MySqlConnectionManager.getInstance().commit();
 
             return resc;
 
@@ -90,7 +92,7 @@ public class ShowArticleListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

@@ -113,6 +113,7 @@ public class ShowChatCommand extends AbstractCommand{
 				
 			}
 			
+			MySqlConnectionManager.getInstance().commit();
 			
 			resultMap.put("chat",result);
 			resultMap.put("topic",topic);
@@ -128,7 +129,7 @@ public class ShowChatCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

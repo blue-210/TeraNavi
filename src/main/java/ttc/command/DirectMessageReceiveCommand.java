@@ -66,6 +66,8 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
 			result.put("dm",resultDm);
 			result.put("partnerId", sendUser);
 			
+			MySqlConnectionManager.getInstance().commit();
+			
 			resc.setResult(result);
 
             resc.setTarget("showdm");
@@ -77,7 +79,7 @@ public class DirectMessageReceiveCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

@@ -41,6 +41,8 @@ public class WithdrawCommand extends AbstractCommand{
 			params.put("userId",ub.getId());
 			dao.update(params);
 
+			MySqlConnectionManager.getInstance().commit();
+			
 			resc.setTarget("withdrawResult");
 
 			return resc;
@@ -51,7 +53,7 @@ public class WithdrawCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

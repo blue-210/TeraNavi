@@ -43,6 +43,8 @@ public class ShowUserSettingCommand extends AbstractCommand{
             resc.setResult(ub);
             resc.setTarget("LoginResult");
 
+			MySqlConnectionManager.getInstance().commit();
+			
             return resc;
 
 
@@ -51,7 +53,7 @@ public class ShowUserSettingCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

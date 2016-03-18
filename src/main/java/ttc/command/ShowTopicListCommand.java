@@ -42,6 +42,7 @@ public class ShowTopicListCommand extends AbstractCommand{
             dao = factory.getAbstractDao();
             cb.setTopics(dao.readAll(params));
 
+			MySqlConnectionManager.getInstance().commit();
 
 			resc.setResult(cb);
             resc.setTarget("topiclist");
@@ -53,7 +54,7 @@ public class ShowTopicListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

@@ -49,6 +49,7 @@ public class DeleteCommunityCommand extends AbstractCommand{
 
             result.put("community", communities);
             
+			MySqlConnectionManager.getInstance().commit();
 
 		    resc.setResult(result);
 
@@ -58,7 +59,7 @@ public class DeleteCommunityCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

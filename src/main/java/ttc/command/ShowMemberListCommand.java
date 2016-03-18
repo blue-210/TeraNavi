@@ -54,6 +54,8 @@ public class ShowMemberListCommand extends AbstractCommand{
 
 			result.put("community",comm);
 
+			MySqlConnectionManager.getInstance().commit();
+			
 			resc.setResult(result);
 
             resc.setTarget("showMemberListResult");
@@ -64,7 +66,7 @@ public class ShowMemberListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

@@ -45,7 +45,7 @@ public class CreateTopicCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.insert(params);
 
-            
+            MySqlConnectionManager.getInstance().commit();
 
 			resc.setResult(params);
             resc.setTarget("topicCreateResult");
@@ -56,7 +56,7 @@ public class CreateTopicCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

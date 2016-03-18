@@ -55,6 +55,8 @@ public class WriteChatCommand extends AbstractCommand{
             List result = new ArrayList();
             result = dao.readAll(params);
 
+			MySqlConnectionManager.getInstance().commit();
+			
             resc.setResult(result);
             //resc.setTarget("showchat");
 
@@ -64,7 +66,7 @@ public class WriteChatCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

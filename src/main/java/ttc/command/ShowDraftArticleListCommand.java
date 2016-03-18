@@ -38,6 +38,9 @@ public class ShowDraftArticleListCommand extends AbstractCommand{
             resc.setResult(results);
             resc.setTarget("showDraftArticleList");
 
+			MySqlConnectionManager.getInstance().commit();
+            
+			
             return resc;
 
         }catch(NullPointerException e){
@@ -45,8 +48,7 @@ public class ShowDraftArticleListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

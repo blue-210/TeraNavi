@@ -32,7 +32,7 @@ public class CommentDeleteCommand extends AbstractCommand{
             AbstractDao dao = factory.getAbstractDao();
             dao.update(params);
             
-
+			MySqlConnectionManager.getInstance().commit();
 
             resc.setTarget("commentdeleteresult");
 
@@ -42,7 +42,7 @@ public class CommentDeleteCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

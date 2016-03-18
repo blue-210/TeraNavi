@@ -75,6 +75,9 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
                 resc.setTarget("showMyCommunityResult");
             }
 
+			MySqlConnectionManager.getInstance().commit();
+            
+			
             return resc;
 
         }catch(NullPointerException e){
@@ -82,8 +85,7 @@ public class ShowMyCommunityListCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

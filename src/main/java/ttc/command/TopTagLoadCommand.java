@@ -19,11 +19,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import ttc.bean.Bean;
-import ttc.bean.ArticleBean;
-import ttc.bean.UserBean;
 import ttc.bean.TagBean;
 
 import ttc.util.factory.AbstractDaoFactory;

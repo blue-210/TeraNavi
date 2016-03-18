@@ -115,6 +115,7 @@ public class EditArticleCommand extends AbstractCommand{
 
 			}
 
+            MySqlConnectionManager.getInstance().commit();
             
 
             return resc;
@@ -124,8 +125,7 @@ public class EditArticleCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

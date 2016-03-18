@@ -43,7 +43,6 @@ public class WithDrawCommunityCommand extends AbstractCommand{
             UsersCommunitiesDao udao = (UsersCommunitiesDao)factory.getAbstractDao();
             udao.delete(params);
 
-            MySqlConnectionManager.getInstance().commit();
 
             // communities表を取得
 			factory = AbstractDaoFactory.getFactory("community");
@@ -57,6 +56,7 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 			params.put("value", userId);
 			List communities = dao.readAll(params);
 
+            MySqlConnectionManager.getInstance().commit();
 			result.put("community", communities);
 
 
@@ -71,8 +71,7 @@ public class WithDrawCommunityCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
-            MySqlConnectionManager.getInstance().closeConnection();
+			MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
 }

@@ -82,6 +82,8 @@ public class DirectMessageSendCommand extends AbstractCommand{
 			//↑
 			//これ書いた人後で説教
 			
+			MySqlConnectionManager.getInstance().commit();
+			
             resc.setTarget("sendResult");
 
             return resc;
@@ -91,7 +93,7 @@ public class DirectMessageSendCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(), e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

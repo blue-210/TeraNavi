@@ -47,11 +47,11 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
 				resc.setResult(ub);
 				resc.setTarget("passResetPage");
 
+				MySqlConnectionManager.getInstance().commit();
 	            return resc;
 			}else{
 				throw new BusinessLogicException("入力内容が違います",null);
 			}
-
 
 
         }catch(NullPointerException e){
@@ -59,7 +59,7 @@ public class PasswordResetAuthenticationCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }

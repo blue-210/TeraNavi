@@ -85,6 +85,8 @@ public class CreateCommunityCommand extends AbstractCommand{
 
 			user.setCommunity(community);
 
+			MySqlConnectionManager.getInstance().commit();
+			
 			resc.setResult(user);
 
 
@@ -96,7 +98,7 @@ public class CreateCommunityCommand extends AbstractCommand{
 		}catch(IntegrationException e){
             throw new BusinessLogicException(e.getMessage(),e);
         }finally{
-			MySqlConnectionManager.getInstance().commit();
+			
             MySqlConnectionManager.getInstance().closeConnection();
 		}
     }
