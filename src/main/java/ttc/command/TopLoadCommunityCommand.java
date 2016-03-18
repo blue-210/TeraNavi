@@ -33,7 +33,7 @@ import ttc.exception.business.ParameterInvalidException;
  *
  * @author Masaki
  */
-public class TopLoadCommand extends AbstractCommand{
+public class TopLoadCommunityCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext resc)throws BusinessLogicException{
         try{
             RequestContext reqc = getRequestContext();
@@ -42,48 +42,39 @@ public class TopLoadCommand extends AbstractCommand{
 
 			MySqlConnectionManager.getInstance().beginTransaction();
 
-			//TOPで表示する新着記事の取得
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("sort");
+			// コミュニティの取得
+			AbstractDaoFactory factory = AbstractDaoFactory.getFactory("community");
 			AbstractDao dao = factory.getAbstractDao();
-			Map param1 = new HashMap();
-			param1.put("sortType","0");
-			List articles = dao.readAll(param1);
-			Iterator itr = articles.iterator();
 
-			while(itr.hasNext()){
-				//取得したarticleに対してコメントとタグをセットする
+			Map param2 = new HashMap();
+			// 新規コミュニティの取得処理
+			param2.put("where","Where community_delete_flag = 0");
+			param2.put("sort", " order by communities.community_created_date desc ");
+			List communities = dao.readAll(param2);
 
-				ArticleBean ab = (ArticleBean)itr.next();
-				param1.clear();
-
-
-				param1.put("articleId", ab.getArticleId());
-				factory = AbstractDaoFactory.getFactory("tag");
-				dao = factory.getAbstractDao();
-
-				ab.setTags(dao.readAll(param1));
-
-				factory = AbstractDaoFactory.getFactory("comment");
-				dao = factory.getAbstractDao();
-				ab.setComments(dao.readAll(param1));
-			}
-
-			if(articles.size() <= 6){
-				result.put("article", articles);
+			if(communities.size() <= 5){
+				result.put("hotCommunity",communities);
 			}else{
-				List nArticles = new ArrayList();
-				for(int i = 0;i < 6;i++){
-					nArticles.add(articles.get(i));
+				List nCommunities = new ArrayList();
+				for(int i = 0;i < 5;i++){
+					nCommunities.add(communities.get(i));
 				}
-				result.put("article",nArticles);
+
+				result.put("hotCommunity",nCommunities);
 			}
 
-			//ブログタブで表示する学科ごとの新着記事の取得
+			//人気コミュニティの取得処理
+			param2.clear();
+			param2.put("where","where community_delete_flag = 0");
+			param2.put("sort", " order by membercount limit 5 offset 0");
+			List popularCommunity = dao.readAll(param2);
+			result.put("popularCommunity", popularCommunity);
 
-			param1.clear();
+
+
 
 			resc.setResult(result);
-            resc.setTarget("top");
+            resc.setTarget("topcommunity");
 
             return resc;
 
