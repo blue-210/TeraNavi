@@ -118,21 +118,22 @@
 			</div>
 		</div>
 	</div>
+	<%-- コミュニティのメンバーかどうかの判定 --%>
 	<c:if test="${not empty result.writeFlag}">
 
 		<div id="forms">
 			<div class="col-md-6 col-md-offset-2 col-xs-12">
 				<textarea id="chatBodyArea" name="chatBody" style="width:100%;" ondragover="fileDragOver(event)" ondrop="fileDrop(event)"></textarea>
 			</div>
-
 			<input type="hidden" name="userId" value="${sessionScope.loginUser.id}">
 			<input type="hidden" name="communityId" value="${result.community.id}">
 			<div class="hidden-xs" id="submit_button">
 				<button id="chatwrite" class="btn btn-default" type="button" name="button" style="margin-right:65%;">送信</button>
 			</div>
-			<div class="visible-xs col-xs-12">
-				<br>
-				<button id="mobileChatWrite" class="btn btn-default btn-block">送信</button>
+			<div class="row">
+				<div class="visible-xs col-xs-12">
+					<button id="mobileChatWrite" class="btn btn-default btn-block">送信</button>
+				</div>				
 			</div>
 		</div>
 
