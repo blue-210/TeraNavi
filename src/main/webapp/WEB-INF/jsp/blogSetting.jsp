@@ -47,17 +47,17 @@
                             <li id="mypageTab">
                                 <a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
                             </li>
-                            <li>
-                                <a href="/TeraNavi/articlepost">記事を書く</a>
-                            </li>
-                            <li>
-                                <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
-                            </li>
-                            <li>
-                                <a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
-                            </li>
                             <c:choose>
                                 <c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+                                    <li>
+                                        <a href="/TeraNavi/articlepost">記事を書く</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+                                    </li>
                                     <li>
                                         <a href="/TeraNavi/front/showBlog?targetURL=blogSetting">ブログ設定</a>
                                     </li>

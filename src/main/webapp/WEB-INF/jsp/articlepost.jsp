@@ -54,7 +54,7 @@
 					response.sendRedirect("/TeraNavi/login");
 				}
 			%>
-			
+
 			<%
 				String token = ttc.util.CsrfUtil.getToken();
 				session.setAttribute("token",token);
@@ -67,7 +67,7 @@
 			<jsp:include page="/WEB-INF/jsp/topnav.jsp"/>
 
 			<input type="hidden" id="tokenInput" value="<%=token %>">
-			
+
 			<div class="section">
 				<div class="container">
 					<div class="row">
@@ -88,14 +88,14 @@
 									<li id="mypageTab">
 										<a href="/TeraNavi/front/mypage?paramUserId=${sessionScope.loginUser.id}">マイページ</a>
 									</li>
-									<li>
-										<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
-									</li>
-									<li>
-										<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
-									</li>
 									<c:choose>
 										<c:when test="${sessionScope.loginUser.blogStatus eq 1}">
+											<li>
+												<a href="/TeraNavi/front/showArticleList?writeUserId=${sessionScope.loginUser.id}">投稿記事一覧</a>
+											</li>
+											<li>
+												<a href="/TeraNavi/front/showDraftArticleList">下書き一覧</a>
+											</li>
 											<li>
 												<a href="/TeraNavi/front/showBlog?edit=true&bloguserId=${sessionScope.loginUser.id}">ブログ設定</a>
 											</li>
