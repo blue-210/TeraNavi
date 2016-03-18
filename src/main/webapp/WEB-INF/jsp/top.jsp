@@ -141,16 +141,16 @@
 //					$("#blog"+i).text(body.substr(0,30));//30文字分かえす
 //				}
 
-				var tagArticleCount = $("#tagArticleCount").val();
-				
-				for(var i=0; i<tagArticleCount; i++){
-					size = $("#tagArticlesSize"+i).val();
-					for(var j=0; j<size; j++){
-						var str = $("#"+i+"tag"+j).text();
-						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
-						$("#"+i+"tag"+j).text(body.substr(0,30));//30文字分かえす
-					}
-				}
+//				var tagArticleCount = $("#tagArticleCount").val();
+//				
+//				for(var i=0; i<tagArticleCount; i++){
+//					size = $("#tagArticlesSize"+i).val();
+//					for(var j=0; j<size; j++){
+//						var str = $("#"+i+"tag"+j).text();
+//						var body = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'');
+//						$("#"+i+"tag"+j).text(body.substr(0,30));//30文字分かえす
+//					}
+//				}
 			//--------------------------------------------------------------------------
 
 
