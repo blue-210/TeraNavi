@@ -38,13 +38,13 @@
 								<a href="/TeraNavi/front/top" class="text-warning">TOP</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/top#blog" class="text-warning">ブログ</a>
+								<a href="/TeraNavi/front/topBlog" class="text-warning">ブログ</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/top#community" class="text-warning">コミュニティ</a>
+								<a href="/TeraNavi/front/topCommunity" class="text-warning">コミュニティ</a>
 							</li>
 							<li>
-								<a href="/TeraNavi/front/top#tag" class="text-warning">タグ</a>
+								<a href="/TeraNavi/front/topTag" class="text-warning">タグ</a>
 							</li>
 							<c:choose>
 								<c:when test="${sessionScope.loginUser.id eq result.user.id}">

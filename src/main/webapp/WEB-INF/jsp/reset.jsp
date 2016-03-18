@@ -20,14 +20,12 @@
 				<div class="col-md-4 col-md-offset-4" style="margin-top:50px">
 					<h1 class="text-center">パスワードリセット</h1>
 					<form action="front/resetAuthenticate" method="post">
-						<input type="hidden" name="token" value="<%=token %>">
 						<div class="form-group">
 							<label class="control-label">ログインID</label>
 							<input class="form-control" name="loginId" type="text">
 						</div>
 						<div class="form-group">
 							<label class="control-label" for="exampleInputQuestion">秘密の質問</label>
-							<input type="hidden" name="token" value="<%=token %>">
 							<select class="form-control"  name="questionNo">
 								<option value="1" selected="true">あなたの出身地は？</option>
 								<option value="2">母親の旧姓は？</option>
