@@ -19,8 +19,7 @@
         <div class="cover-image" style="background-image : url('/TeraNavi/img/landing.jpg')"></div>
         <div class="vertical_bottom container">
           <div class="row" id="xsLog">
-            <a class="btn btn-warning btn-sm col-xs-offset-7 col-xs-4 visible-xs"
-            href="/TeraNavi/login">ログイン</a>
+            <a class="btn btn-warning btn-sm col-xs-offset-7 col-xs-4 visible-xs" href="/TeraNavi/login">ログイン</a>
           </div>
           <div class="row">
             <a class="btn btn-warning btn-sm col-xs-4 visible-xs" href="/TeraNavi/sign">登録</a>
