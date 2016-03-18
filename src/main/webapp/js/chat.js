@@ -32,7 +32,7 @@ $(function () {
 										);
 							}
 						}
-						
+
 					}
 				})
 				.fail(function (data) {
@@ -76,7 +76,7 @@ $(function () {
 										);
 							}
 						}
-						
+
 					}
 				})
 				.fail(function (data) {
@@ -93,7 +93,8 @@ $(function () {
 				ajax: 'true',
 				topicId: $("input[name=topicId]").val(),
 				chatBody: $("textarea[name=chatBody]").val(),
-				userId: $("input[name=userId]").val()
+				userId: $("input[name=userId]").val(),
+				token:$("#tokenInput").val()
 			}
 		})
 				.done(function (data) {
@@ -101,7 +102,7 @@ $(function () {
 					$(".wrapper").empty();
 					// JSON形式で返ってきたものから中身を取り出して表示するサンプル
 					if(data.length>0){
-						
+
 						for (var i in data) {
 							var userId = data[i].userId;
 							var userName = data[i].userName;
@@ -135,7 +136,7 @@ $(function () {
 //
 //	ajaxSettingsFile = {
 //		type: 'post',
-//		url: '/TeraNavi/upload', 
+//		url: '/TeraNavi/upload',
 //				processData: false,
 //		contentType: false,
 //		cache: false,
@@ -168,13 +169,13 @@ $(function () {
 //	function fileDragOver(event) {
 //		event.preventDefault();
 //	}
-//	
+//
 //	$("#chatBody").on("dragover",function(event){
 //		fileDragOver(event);
 //	});
-//	
+//
 //	$("#chatBody").on("drop",function(event){
 //		fileDrop(event);
 //	});
-//	
+//
 });
