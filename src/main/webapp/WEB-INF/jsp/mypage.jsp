@@ -70,9 +70,9 @@
 				<div class="mask">
 					<ul class="list">
 						<li><a href="/TeraNavi/front/top">Top</a></li>
-						<li><a href="/TeraNavi/front/top#blog">ブログ</a></li>
-						<li><a href="/TeraNavi/front/top#community">コミュニティ</a></li>
-						<li><a href="/TeraNavi/front/top#tag">タグ</a></li>
+						<li><a href="/TeraNavi/front/topBlog">ブログ</a></li>
+						<li><a href="/TeraNavi/front/topCommunity">コミュニティ</a></li>
+						<li><a href="/TeraNavi/front/topTag">タグ</a></li>
 							<c:choose>
 								<c:when test="${sessionScope.loginUser.id eq result.user.id}">
 								<li class="active">
